@@ -26,15 +26,7 @@ export const TabPanel = (props) => {
           sx={{ p: 3, maxHeight: "328px", position: "absolute", width: "100%" }}
         >
           <Container maxWidth="xl">
-            <Typography
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                flex: 1,
-              }}
-            >
-              {children}
-            </Typography>
+            <Typography>{children}</Typography>
           </Container>
         </Paper>
       )}
@@ -148,26 +140,26 @@ const TabsCategories = () => {
           </Container>
         </Box>
         <TabPanel value={value} index={0}>
-          {Ropa.map((item) => {
-            return <Link>{item}</Link>;
+          {Ropa.map((item, index) => {
+            return <Link key={index}>{item}</Link>;
           })}
           <Link>VER TODO</Link>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {Calzado.map((item) => {
-            return <Link>{item}</Link>;
+          {Calzado.map((item, index) => {
+            return <Link key={index}>{item}</Link>;
           })}
           <Link>VER TODO</Link>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {Accesorios.map((item) => {
-            return <Link>{item}</Link>;
+          {Accesorios.map((item, index) => {
+            return <Link key={index}>{item}</Link>;
           })}
           <Link>VER TODO</Link>
         </TabPanel>
         <TabPanel value={value} index={3}>
-          {Belleza.map((item) => {
-            return <Link>{item}</Link>;
+          {Belleza.map((item, index) => {
+            return <Link key={index}>{item}</Link>;
           })}
           <Link>VER TODO</Link>
         </TabPanel>

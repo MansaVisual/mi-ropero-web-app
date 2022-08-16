@@ -5,7 +5,7 @@ import { StyledInput } from "./styles";
 import { IoSearch } from "react-icons/io5";
 import theme from "../../styles/theme";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
@@ -23,7 +23,9 @@ const SearchBar = () => {
         inputProps={{
           "aria-label": "Buscá por ropero, producto, marca o talle",
         }}
-        sx={{ minWidth: "530px" }}
+        sx={{ minWidth: { xs: "328px", lg: "530px" } }}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
       />
       <IconButton
         type="submit"

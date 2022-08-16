@@ -2,14 +2,14 @@ import { Avatar, Box, Rating, Typography } from "@mui/material";
 import React from "react";
 import theme from "../../styles/theme";
 
-const AvatarMR = ({ imgAvatar, avatarCard }) => {
+const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
   return (
     <Box>
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <Avatar
           sx={{
-            height: "32px",
-            width: "32px",
+            height: avatarRopero ? "40px" : "32px",
+            width: avatarRopero ? "40px" : "32px",
             backgroundColor: "red",
             filter: avatarCard
               ? "drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"

@@ -1,9 +1,15 @@
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import theme from "../../styles/theme";
 import { StyledChip } from "./styles";
 
+
+
 const Chip = (props) => {
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+
   return (
     <StyledChip
       sx={{
@@ -15,6 +21,7 @@ const Chip = (props) => {
     >
       <Typography
         sx={{
+          fontSize: isMobile ? theme.typography.fontSize[5] : theme.typography.fontSize[9],
           padding: "0px 48px 0px 48px",
           fontWeight: theme.typography.fontWeightBold,
           fontFamily: theme.typography.fontFamily,

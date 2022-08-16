@@ -39,3 +39,37 @@ body {
   bottom: calc(50% - -40px);
   cursor: pointer;
 }
+
+.css-tguw8w-MuiCardContent-root:last-child {
+  padding-top: 5px;
+  padding-bottom: 5px !important;
+}
+
+.onboarding.slick-slider {
+  max-width: 1000px !important;
+}
+
+.onboarding .slick-current {
+  width: 260px !important;
+}
+
+.css-1o3vxtg {
+  overflow: hidden;
+}
+
+@media (max-width: 360px) {
+  .slick-slide > div {
+    padding: 0 7px;
+  }
+  .slick-slider {
+    max-width: 350px;
+  }
+  .css-tguw8w-MuiCardContent-root:last-child {
+    padding-top: 1px;
+    padding-bottom: 1px !important;
+  }
+
+  .css-46bh2p-MuiCardContent-root {
+    padding-left: 10px !important;
+  }
+}

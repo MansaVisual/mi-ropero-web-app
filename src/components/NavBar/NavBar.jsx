@@ -7,6 +7,11 @@ import {
   Button,
   Container,
   useMediaQuery,
+  ClickAwayListener,
+  Typography,
+  Link,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { FiMenu } from "react-icons/fi";
 
@@ -15,19 +20,44 @@ import SearchBar from "../SearchBar/SearchBar";
 import NavIcons from "../NavIcons/NavIcons";
 import TabsCategories from "../TabsCategories/TabsCategories";
 import theme from "../../styles/theme";
+import { AntTab, AntTabs } from "../TabsCategories/styles";
 
 const NavBar = ({ onNavClick }) => {
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const [openSearch, setOpenSearch] = React.useState(false);
+
+  const handleFocus = () => {
+    setOpenSearch(true);
+    console.log("abierto");
+  };
+
+  const handleClickAway = () => {
+    setOpenSearch(false);
+    console.log("cerrado");
+  };
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const searchTabs = () => {
+    if (openSearch) {
+      return (
+        <Box sx={{ height: "40px", display: "flex", justifyContent: "center" }}>
+          <Button>Productos</Button>
+          <Button>Ropero</Button>
+        </Box>
+      );
+    }
+    return <TabsCategories />;
+  };
 
   return (
     <AppBar
@@ -38,26 +68,40 @@ const NavBar = ({ onNavClick }) => {
       }}
       elevation={1}
     >
-      <Container
+      <Toolbar
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "48px",
-          boxShadow: isMobile ? "0px 1px 5px rgba(66, 65, 67, 0.1)" : null,
+          maxWidth: isMobile ? "360px" : null,
+          boxShadow: isMobile ? null : "0px 4px 8px rgba(0, 0, 0, 0.2)",
         }}
-        maxWidth="xl"
       >
-        <Toolbar sx={{ width: isMobile ? "100%" : null }}>
-          <Box sx={{ flex: isMobile ? 1 : null , paddingRight: '225px'}}>
+        <Container
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "48px",
+          }}
+          maxWidth="xl"
+        >
+          <Box
+            sx={{
+              flex: isMobile ? 1 : null,
+              paddingRight: { xs: "50px", lg: "225px" },
+            }}
+          >
             <img src={isologoMR} alt="logo-mi-ropero" />
           </Box>
           {!isMobile ? (
-            <React.Fragment>
+            <>
               <Box>
-                <SearchBar placeholder="Buscá por ropero, producto, marca o talle" />
+                <SearchBar
+                  placeholder="Buscá por ropero, producto, marca o talle"
+                  onFocus={handleFocus}
+                  onBlur={handleClickAway}
+                />
               </Box>
-              <Box sx={{marginRight: '27px', paddingLeft: '36px'}}>
+
+              <Box sx={{ marginRight: "27px", paddingLeft: "36px" }}>
                 <Button
                   sx={{
                     border: "1px solid black",
@@ -65,7 +109,7 @@ const NavBar = ({ onNavClick }) => {
                     padding: "6px 25px 6px 25px",
                     fontSize: theme.typography.fontSize[2],
                     fontWeight: theme.typography.fontWeightRegular,
-                    lineHeight: '16.34px',
+                    lineHeight: "16.34px",
                     color: "hsla(351, 6%, 25%, 1)",
                     height: "31px",
                   }}
@@ -73,24 +117,46 @@ const NavBar = ({ onNavClick }) => {
                   Vender
                 </Button>
               </Box>
-            </React.Fragment>
+            </>
           ) : null}
 
           <Box>
             <NavIcons />
           </Box>
           {isMobile ? (
-            <IconButton sx={{ ml: "13px" }}>
-              <FiMenu size={20} />
-            </IconButton>
+            <Box>
+              <IconButton sx={{ ml: "13px" }} onClick={handleOpenNavMenu}>
+                <FiMenu size={20} />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Hola</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
           ) : null}
-        </Toolbar>
-      </Container>
+        </Container>
+      </Toolbar>
+
       {isMobile ? (
-        <Container
-          maxWidth="sm"
-          sx={{ boxShadow: "0px 1px 5px rgba(66, 65, 67, 0.1)" }}
-        >
+        <Container maxWidth="sm">
           <Box
             sx={{
               display: "flex",
@@ -104,7 +170,7 @@ const NavBar = ({ onNavClick }) => {
           </Box>
         </Container>
       ) : (
-        <TabsCategories />
+        searchTabs()
       )}
     </AppBar>
   );

@@ -9,5 +9,4 @@ export const TagNewStyled = styled(Box)(({ theme }) => ({
   borderRadius: "0px 10px 0px 0px",
   padding: "4px 15px 4px 15px",
   position: 'absolute',
-  bottom: '152px'
 }));

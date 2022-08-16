@@ -27,7 +27,7 @@ const footerContent = {
 };
 
 const Footer = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isFooterTab = useMediaQuery("(max-width: 720px)");
 
   return (

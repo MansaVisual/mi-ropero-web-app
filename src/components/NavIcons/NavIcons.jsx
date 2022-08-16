@@ -184,7 +184,16 @@ const NavIcons = () => {
           }}
         >
           {optionUser.map((item) => (
-            <MenuItem sx={{ width: "100%", minHeight: "40px" }}>
+            <MenuItem
+              sx={{
+                width: "100%",
+                minHeight: "40px",
+                ":hover": {
+                  backgroundColor: theme.palette.primary.main,
+                  color: "white",
+                },
+              }}
+            >
               <Icon sx={{ fontSize: "15px" }}>{item.icon}</Icon>
               <Typography sx={{ pl: "15px" }}>{item.title}</Typography>
             </MenuItem>
@@ -235,7 +244,7 @@ const NavIcons = () => {
   };
 
   return (
-    <Stack direction="row" spacing={isMobile ? 1 : 3}>
+    <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
       <IconButton onClick={handleClickNotif}>
         <StyledBadge
           badgeContent={120}
@@ -332,7 +341,7 @@ const NavIcons = () => {
               display: "block",
               position: "absolute",
               top: 0,
-              right: 120,
+              right: isMobile ? 109 : 120,
               width: 13,
               height: 13,
               borderRadius: "2px",
@@ -394,7 +403,7 @@ const NavIcons = () => {
               display: "block",
               position: "absolute",
               top: 0,
-              right: 120,
+              right: isMobile ? 60 : 120,
               width: 13,
               height: 13,
               borderRadius: "2px",
