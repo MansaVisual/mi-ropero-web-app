@@ -9,15 +9,19 @@ import theme from "./styles/theme";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Home from "./views/Home/Home";
-
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <NavBar />
-      <Home />
-      <Footer />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        <Routes>
+          <Route path="/" index element={<Home />} />
+        </Routes>
+        <Footer />
+      </ThemeProvider>
+    </Router>
   );
 }
 
