@@ -9,7 +9,8 @@ import theme from "./styles/theme";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Home from "./views/Home/Home";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import SearchResults from "./views/SearchResults/SearchResults";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <NavBar />
         <Routes>
+          <Route path="/results/:keyword" element={<SearchResults />} />
           <Route path="/" index element={<Home />} />
         </Routes>
         <Footer />

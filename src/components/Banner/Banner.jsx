@@ -17,7 +17,6 @@ const slides = [
 ];
 
 const Banner = () => {
-
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box>
@@ -48,11 +47,18 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ height: isMobile ? '157px' : "344px" }}
+        sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
         {slides.map((item, index) => (
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <img src={item.img} alt="" className="imgBanner" key={index} width='100%'/>
+            <img
+              src={item.img}
+              alt=""
+              className="imgBanner"
+              key={index}
+              width="100%"
+              height='100%'
+            />
           </Box>
         ))}
       </Carousel>

@@ -17,8 +17,9 @@ import {
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { ListItemStyled } from "./styles";
+import theme from "../../styles/theme";
 
-const Filter = () => {
+const Filter = (props) => {
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -27,12 +28,16 @@ const Filter = () => {
 
   return (
     <List
-      sx={{ width: "100%", maxWidth: 297, bgcolor: "background.paper" }}
+      sx={{ width: "100%", maxWidth: 297, bgcolor: "transparent" }}
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Calzado
+        <ListSubheader
+          component="div"
+          id="nested-list-subheader"
+          sx={{ bgcolor: "transparent", fontSize: theme.typography.fontSize[9], paddingLeft: 0, paddingBottom: '22px' }}
+        >
+          {props.children}
         </ListSubheader>
       }
     >

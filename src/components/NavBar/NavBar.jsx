@@ -7,9 +7,7 @@ import {
   Button,
   Container,
   useMediaQuery,
-  ClickAwayListener,
   Typography,
-  Link,
   Menu,
   MenuItem,
 } from "@mui/material";
@@ -20,7 +18,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import NavIcons from "../NavIcons/NavIcons";
 import TabsCategories from "../TabsCategories/TabsCategories";
 import theme from "../../styles/theme";
-import { AntTab, AntTabs } from "../TabsCategories/styles";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ onNavClick }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -32,32 +30,7 @@ const NavBar = ({ onNavClick }) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const [openSearch, setOpenSearch] = React.useState(false);
-
-  const handleFocus = () => {
-    setOpenSearch(true);
-    console.log("abierto");
-  };
-
-  const handleClickAway = () => {
-    setOpenSearch(false);
-    console.log("cerrado");
-  };
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const searchTabs = () => {
-    if (openSearch) {
-      return (
-        <Box sx={{ height: "40px", display: "flex", justifyContent: "center" }}>
-          <Button>Productos</Button>
-          <Button>Ropero</Button>
-        </Box>
-      );
-    }
-    return <TabsCategories />;
-  };
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
     <AppBar
@@ -70,7 +43,7 @@ const NavBar = ({ onNavClick }) => {
     >
       <Toolbar
         sx={{
-          maxWidth: isMobile ? "360px" : null,
+          maxWidth: { xs: "360px", md: "800px", lg: "100%", xl: "100%" },
           boxShadow: isMobile ? null : "0px 4px 8px rgba(0, 0, 0, 0.2)",
         }}
       >
@@ -86,19 +59,17 @@ const NavBar = ({ onNavClick }) => {
           <Box
             sx={{
               flex: isMobile ? 1 : null,
-              paddingRight: { xs: "50px", lg: "225px" },
+              paddingRight: { xs: "50px", lg: "60px", xl: "225px" },
             }}
           >
-            <img src={isologoMR} alt="logo-mi-ropero" />
+            <Link to="/">
+              <img src={isologoMR} alt="logo-mi-ropero" />
+            </Link>
           </Box>
           {!isMobile ? (
             <>
               <Box>
-                <SearchBar
-                  placeholder="Buscá por ropero, producto, marca o talle"
-                  onFocus={handleFocus}
-                  onBlur={handleClickAway}
-                />
+                <SearchBar placeholder="Buscá por ropero, producto, marca o talle" />
               </Box>
 
               <Box sx={{ marginRight: "27px", paddingLeft: "36px" }}>
@@ -143,7 +114,7 @@ const NavBar = ({ onNavClick }) => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: "block", md: "block" },
                 }}
               >
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -170,7 +141,7 @@ const NavBar = ({ onNavClick }) => {
           </Box>
         </Container>
       ) : (
-        searchTabs()
+        <TabsCategories />
       )}
     </AppBar>
   );

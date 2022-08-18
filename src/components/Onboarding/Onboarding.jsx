@@ -134,14 +134,11 @@ const Onboarding = () => {
           </Stack>
         </Container>
       ) : (
-        <Slider
-          slidesToShow={2}
-          className="onboarding"
-          variableWidth
-        >
+        <Slider slidesToShow={2} className="onboarding" variableWidth>
           {dataOnboarding.map((item) => (
             <Box
               sx={{
+                paddingLeft: isMobile ? '15px' : null,
                 paddingTop: isMobile ? "18px" : "16px",
                 paddingBottom: isMobile ? "18px" : "16px",
                 alignItems: "center",

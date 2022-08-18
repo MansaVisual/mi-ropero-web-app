@@ -13,7 +13,7 @@ export const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     letterSpacing: "0.8px",
     textTransform: "none",
     minWidth: 0,
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("xs")]: {
       minWidth: 0,
     },
     fontWeight: theme.typography.fontWeightRegular,

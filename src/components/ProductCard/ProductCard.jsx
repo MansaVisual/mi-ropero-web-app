@@ -8,6 +8,34 @@ import { TagNewStyled } from "./styles";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
+import fotoProd from "../../assets/fotoProd.png";
+
+const prod = [
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+  {
+    imageCard: fotoProd,
+  },
+];
 
 const ProductCard = ({ imageCard, tag }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -15,7 +43,7 @@ const ProductCard = ({ imageCard, tag }) => {
   return (
     <Card
       sx={{
-        width: isMobile ? "160px" : "264px",
+        width: { xs: "160px", md: "264px", lg: "220px", xl: "264px" },
 
         position: "relative",
         overflow: "hidden",
@@ -51,7 +79,7 @@ const ProductCard = ({ imageCard, tag }) => {
             textAlign: isMobile ? null : "center",
           }}
         >
-          Calza multicolor Adidas 2022
+          Calza multicolor Adidas
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
           <AvatarMR avatarCard />

@@ -57,12 +57,27 @@ body {
   overflow: hidden;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 1000px) {
+  .slick-slider {
+    max-width: 950px;
+  }
+}
+
+@media (max-width: 768px) {
   .slick-slide > div {
-    padding: 0 7px;
+    padding: 0 20px;
   }
   .slick-slider {
-    max-width: 350px;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 360px) {
+  .slick-slide > div {
+    padding: 0 3px;
+  }
+  .slick-slider {
+    max-width: 335px;
   }
   .css-tguw8w-MuiCardContent-root:last-child {
     padding-top: 1px;
