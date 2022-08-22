@@ -9,6 +9,7 @@ import {
   Link,
   Typography,
   Modal,
+  styled
 } from "@mui/material";
 
 import isologoMR from "../../assets/isologoMR.png";
@@ -27,6 +28,8 @@ const NavBar = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
@@ -250,6 +253,7 @@ const NavBar = () => {
           <TabsCategories />
         )}
       </AppBar>
+      <Offset />
     </Box>
   );
 };
