@@ -38,7 +38,6 @@ const SearchResults = () => {
             sx={{
               color: "hsla(0, 0%, 53%, 1)",
               fontSize: theme.typography.fontSize[4],
-              fontFamily: theme.typography.fontFamily,
             }}
           >
             VER TODOS LOS PRODUCTOS RELACIONADOS

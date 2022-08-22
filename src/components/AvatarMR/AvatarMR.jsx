@@ -1,10 +1,10 @@
-import { Avatar, Box, Rating, Typography } from "@mui/material";
 import React from "react";
+import { Avatar, Box, Rating, Typography } from "@mui/material";
 import theme from "../../styles/theme";
 
 const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
   return (
-    <Box>
+    <Box sx={{fontFamily: theme.typography.fontFamily}}>
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <Avatar
           sx={{

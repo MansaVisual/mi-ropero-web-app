@@ -13,7 +13,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { ListItemStyled } from "./styles";
@@ -28,14 +27,20 @@ const Filter = (props) => {
 
   return (
     <List
-      sx={{ width: "100%", maxWidth: 297, bgcolor: "transparent" }}
+      sx={{ width: "100%", maxWidth: 297, bgcolor: "transparent", fontFamily: theme.typography.fontFamily }}
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={
         <ListSubheader
           component="div"
           id="nested-list-subheader"
-          sx={{ bgcolor: "transparent", fontSize: theme.typography.fontSize[9], paddingLeft: 0, paddingBottom: '22px' }}
+          sx={{
+            bgcolor: "transparent",
+            fontSize: theme.typography.fontSize[9],
+            paddingLeft: 0,
+            paddingBottom: "22px",
+            fontFamily: theme.typography.fontFamily
+          }}
         >
           {props.children}
         </ListSubheader>

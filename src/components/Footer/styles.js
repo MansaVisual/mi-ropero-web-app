@@ -4,7 +4,6 @@ export const StyledLink = styled(Link)(({theme}) => ({
     color: theme.palette.secondary.contrastText,
     textDecoration: 'none',
     cursor: 'pointer',
-    fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize[3],
 }))
 

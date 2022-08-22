@@ -46,7 +46,7 @@ const NextArrow = (props) => {
   const { onClick } = props;
   return (
     <button onClick={onClick} className="buttonSlideNext">
-      <IoIosArrowForward size={23} color="hsla(0, 0%, 0%, 0.5)" />
+      <IoIosArrowForward size={20} color="hsla(0, 0%, 0%, 0.5)" />
     </button>
   );
 };

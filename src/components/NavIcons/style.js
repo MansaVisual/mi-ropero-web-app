@@ -7,7 +7,6 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
     minWidth: "13.47px",
     height: "13.47px",
     fontSize: "10px",
-    fontFamily: theme.typography.fontFamily,
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",

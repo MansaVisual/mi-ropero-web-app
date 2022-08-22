@@ -31,7 +31,7 @@ const Footer = () => {
   const isFooterTab = useMediaQuery("(max-width: 720px)");
 
   return (
-    <Box>
+    <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box
         sx={{
           backgroundColor: theme.palette.primary.main,

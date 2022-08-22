@@ -57,6 +57,10 @@ body {
   overflow: hidden;
 }
 
+.toolbar-download {
+  min-height: 40px !important;
+}
+
 @media (max-width: 1000px) {
   .slick-slider {
     max-width: 950px;

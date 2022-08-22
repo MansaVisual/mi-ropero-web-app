@@ -1,8 +1,7 @@
 import React from "react";
 import IMGbanner from "../../assets/IMGbanner.png";
 import Carousel from "react-material-ui-carousel";
-import { Box, useMediaQuery } from "@mui/material";
-import theme from "../../styles/theme";
+import { Box } from "@mui/material";
 
 const slides = [
   {
@@ -17,7 +16,6 @@ const slides = [
 ];
 
 const Banner = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box>
       <Carousel
@@ -57,7 +55,7 @@ const Banner = () => {
               className="imgBanner"
               key={index}
               width="100%"
-              height='100%'
+              height="100%"
             />
           </Box>
         ))}

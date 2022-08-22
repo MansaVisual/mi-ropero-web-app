@@ -9,6 +9,5 @@ export const StyledInput = styled(InputBase)(({ theme }) => ({
     paddingLeft: '18px',
     flex: 1,
     fontSize: theme.typography.fontSize[2],
-    fontFamily: theme.typography.fontFamily,
     lineHeight: '16px',
 }))

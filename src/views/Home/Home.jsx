@@ -46,7 +46,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS LOS INGRESOS
@@ -64,7 +63,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS ROPA
@@ -94,7 +92,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS CALZADO
@@ -112,7 +109,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS ACCESORIOS
@@ -177,7 +173,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS BELLEZA
@@ -194,7 +189,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS LOS PRODUCTOS RECOMENDADOS
@@ -211,7 +205,6 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                fontFamily: theme.typography.fontFamily,
               }}
             >
               VER TODOS LOS MEJORES VENDEDORES

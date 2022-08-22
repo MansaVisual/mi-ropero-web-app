@@ -17,7 +17,6 @@ export const AntTab = styled((props) => <Tab disableRipple {...props} />)(
       minWidth: 0,
     },
     fontWeight: theme.typography.fontWeightRegular,
-    fontFamily: theme.typography.fontFamily,
     lineHeight: "19.07px",
     fontSize: theme.typography.fontSize[4],
     color: "hsla(0, 0%, 100%, 1)",

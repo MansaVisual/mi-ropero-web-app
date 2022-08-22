@@ -5,11 +5,11 @@ import {
   MenuItem,
   Stack,
   Typography,
-  useMediaQuery,
   Box,
   Link,
   Icon,
   Button,
+  Divider,
 } from "@mui/material";
 import BellNotif from "../../assets/BellNotif.png";
 import Cart from "../../assets/Cart.png";
@@ -26,9 +26,10 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BiMessage } from "react-icons/bi";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { RiFilePaperLine } from "react-icons/ri";
+import fotoProd from "../../assets/fotoProd.png";
+import { IoTrashOutline } from "react-icons/io5";
 
 const NavIcons = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);
   const [notifMenu, setNotifMenu] = useState(null);
@@ -107,7 +108,6 @@ const NavIcons = () => {
           <Typography
             sx={{
               fontSize: theme.typography.fontSize[3],
-              fontFamily: theme.typography.fontFamily,
               fontWeight: theme.typography.fontWeightMedium,
               color: "hsla(8, 100%, 56%, 1)",
             }}
@@ -124,7 +124,6 @@ const NavIcons = () => {
       return (
         <Stack
           sx={{
-            fontFamily: theme.typography.fontFamily,
             fontSize: theme.typography.fontSize[2],
           }}
           justifyContent="center"
@@ -204,7 +203,6 @@ const NavIcons = () => {
             sx={{
               color: "hsla(8, 100%, 56%, 1)",
               fontSize: theme.typography.fontSize[0],
-              fontFamily: theme.typography.fontFamily,
               textDecoration: "none",
               cursor: "pointer",
             }}
@@ -219,25 +217,135 @@ const NavIcons = () => {
 
   const getMenuCart = () => {
     return (
-      <Stack
-        justifyContent="center"
-        alignItems="center"
-        sx={{ paddingTop: "10px", paddingBottom: "10px" }}
-      >
-        <Box sx={{ mb: "4px" }}>
-          <CgCloseO size={24} color="hsla(8, 100%, 56%, 1)" />
-        </Box>
+      // <Stack
+      //   justifyContent="center"
+      //   alignItems="center"
+      //   sx={{ paddingTop: "10px", paddingBottom: "10px" }}
+      // >
+      //   <Box sx={{ mb: "4px" }}>
+      //     <CgCloseO size={24} color="hsla(8, 100%, 56%, 1)" />
+      //   </Box>
+      //   <Box>
+      //     <Typography
+      //       sx={{
+      //         fontSize: theme.typography.fontSize[3],
+      //         fontWeight: theme.typography.fontWeightMedium,
+      //         color: "hsla(8, 100%, 56%, 1)",
+      //       }}
+      //     >
+      //       TU CARRITO ESTÁ VACÍO
+      //     </Typography>
+      //   </Box>
+      // </Stack>
+
+      <Stack>
         <Box>
-          <Typography
+          <Box
             sx={{
-              fontSize: theme.typography.fontSize[3],
-              fontFamily: theme.typography.fontFamily,
-              fontWeight: theme.typography.fontWeightMedium,
-              color: "hsla(8, 100%, 56%, 1)",
+              display: "flex",
+              justifyContent: "space-between",
+              px: "20px",
+              mt: "15px",
             }}
           >
-            TU CARRITO ESTÁ VACÍO
-          </Typography>
+            <Typography
+              sx={{
+                color: "hsla(0, 0%, 53%, 1)",
+                fontSize: theme.typography.fontSize[1],
+              }}
+            >
+              TOTAL (1 productos)
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: theme.typography.fontSize[2],
+                fontWeight: theme.typography.fontWeightMedium,
+              }}
+            >
+              $10500
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mt: "17px",
+              mb: "16px",
+            }}
+          >
+            <Button
+              sx={{
+                backgroundColor: "hsla(8, 100%, 56%, 1)",
+                color: "hsla(0, 0%, 100%, 1)",
+                letterSpacing: "0.8px",
+                borderRadius: "20px",
+                width: "189px",
+                height: "36px",
+                fontSize: theme.typography.fontSize[2],
+                lineHeight: "16.34px",
+                fontWeight: theme.typography.fontWeightRegular,
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.main,
+                },
+              }}
+            >
+              Finalizar compra
+            </Button>
+            <Link
+              sx={{
+                color: "hsla(351, 6%, 25%, 1)",
+                fontSize: theme.typography.fontSize[1],
+                lineHeight: "14.98px",
+                fontWeight: theme.typography.fontWeightRegular,
+                cursor: "pointer",
+                mt: "8px",
+              }}
+            >
+              IR AL CARRITO
+            </Link>
+          </Box>
+          <Box sx={{ pt: "10px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", px: "8px" }}>
+              <Box
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "20px",
+                  pr: "16px",
+                }}
+              >
+                <img src={fotoProd} alt="" width={40} height={40} />
+              </Box>
+              <Box>
+                <Typography sx={{ fontSize: theme.typography.fontSize[2] }}>
+                  Campera Dama
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[0],
+                    color: "hsla(0, 0%, 53%, 1)",
+                  }}
+                >
+                  Romialaniz
+                </Typography>
+                <Typography
+                  sx={{ fontSize: theme.typography.fontSize[1], pt: "6px" }}
+                >
+                  $10500
+                </Typography>
+              </Box>
+              <Box sx={{ pl: "68px" }}>
+                <IconButton>
+                  <IoTrashOutline
+                    color={theme.palette.secondary.main}
+                    size={20}
+                  />
+                </IconButton>
+              </Box>
+            </Box>
+          </Box>
+          <Divider />
         </Box>
       </Stack>
     );

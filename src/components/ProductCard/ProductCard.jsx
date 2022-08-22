@@ -1,43 +1,23 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Divider, Box, CardActionArea, useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import {
+  Divider,
+  Box,
+  CardActionArea,
+  useMediaQuery,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { TagNewStyled } from "./styles";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
-import fotoProd from "../../assets/fotoProd.png";
-
-const prod = [
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-  {
-    imageCard: fotoProd,
-  },
-];
 
 const ProductCard = ({ imageCard, tag }) => {
+  const [showButton, setShowButton] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
@@ -49,16 +29,21 @@ const ProductCard = ({ imageCard, tag }) => {
         overflow: "hidden",
         borderRadius: "10px",
         boxShadow: "-10px -10px 30px rgba(223, 229, 239, 0.25)",
+        fontFamily: theme.typography.fontFamily
       }}
     >
       <Box>
-        <CardActionArea>
+        <CardActionArea
+          onMouseOver={() => setShowButton(true)}
+          onMouseOut={() => setShowButton(false)}
+        >
           <CardMedia
             component="img"
             height={isMobile ? "196px" : "323px"}
             image={imageCard}
             alt="product"
-            sx={{ objectFit: "cover" }}
+            sx={{ objectFit: "cover", "&:hover": { filter: "blur(2px)" } }}
+            className="image-product"
           />
         </CardActionArea>
 
@@ -68,13 +53,28 @@ const ProductCard = ({ imageCard, tag }) => {
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
           <LikeButton />
         </Box>
+        {!showButton ? null : (
+          <Button
+            sx={{
+              position: "absolute",
+              backgroundColor: theme.palette.primary.main,
+              color: theme.palette.secondary.contrastText,
+              minWidth: "159px",
+              minHeight: "36px",
+              borderRadius: "20px",
+              top: "30%",
+              right: "20%",
+            }}
+          >
+            Comprar
+          </Button>
+        )}
       </Box>
 
       <CardContent>
         <Typography
           sx={{
             fontSize: isMobile ? "11px" : "16px",
-            fontFamily: theme.typography.fontFamily,
             lineHeight: "20px",
             textAlign: isMobile ? null : "center",
           }}
