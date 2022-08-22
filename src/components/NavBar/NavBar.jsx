@@ -164,7 +164,7 @@ const NavBar = () => {
         </Box>
       ) : null}
       <AppBar
-        position="sticky"
+        position="fixed"
         sx={{
           backgroundColor: "white",
           boxShadow: "0px 1px 5px rgba(66, 65, 67, 0.1)",
