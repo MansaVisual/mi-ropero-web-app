@@ -49,7 +49,7 @@ const SearchBar = () => {
         aria-label="search"
         sx={{
           position: "absolute",
-          right: { xs: "7%", md: "30%", lg: "38%", xl: "31.5%" },
+          right: { xs: "7%", md: "30%", lg: "38%", xl: "32%" },
         }}
       >
         <IoSearch fontSize="15px" color="red" />
