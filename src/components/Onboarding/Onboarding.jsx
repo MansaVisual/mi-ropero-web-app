@@ -68,13 +68,14 @@ const Onboarding = () => {
             direction="row"
             spacing={{ xs: 3, md: 5, lg: 8 }}
           >
-            {dataOnboarding.map((item) => (
+            {dataOnboarding.map((item, key) => (
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
                 }}
+                key={key}
               >
                 <Box
                   sx={{

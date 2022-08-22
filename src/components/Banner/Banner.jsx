@@ -48,7 +48,7 @@ const Banner = () => {
         sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
         {slides.map((item, index) => (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }} key={index}>
             <img
               src={item.img}
               alt=""

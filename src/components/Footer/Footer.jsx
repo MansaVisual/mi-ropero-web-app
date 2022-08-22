@@ -94,8 +94,8 @@ const Footer = () => {
               >
                 PRODUCTOS
               </Typography>
-              {footerContent.products.text.map((item) => (
-                <StyledLink
+              {footerContent.products.text.map((item, key) => (
+                <StyledLink key={key}
                   sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                 >
                   {item}
@@ -105,8 +105,8 @@ const Footer = () => {
             <Box sx={{ pt: isMobile ? "78px" : null, lineHeight: "18px" }}>
               <StyledLink>VENDER</StyledLink>
               <Box sx={{ display: "flex", flexDirection: "column" }}>
-                {footerContent.section.text.map((item) => (
-                  <StyledLink
+                {footerContent.section.text.map((item, key) => (
+                  <StyledLink key={key}
                     sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                   >
                     {item}

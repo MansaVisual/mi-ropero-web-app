@@ -154,7 +154,7 @@ const TabsCategories = () => {
           >
             {Ropa.map((item, index) => {
               return (
-                <List>
+                <List key={index}>
                   {item.map((subItem, sindex) => {
                     return (
                       <ListItem key={sindex}>
