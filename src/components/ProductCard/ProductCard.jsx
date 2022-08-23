@@ -16,7 +16,7 @@ import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 
-const ProductCard = ({ imageCard, tag }) => {
+const ProductCard = ({ imageCard, tag, productName, productPrice }) => {
   const [showButton, setShowButton] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -29,7 +29,7 @@ const ProductCard = ({ imageCard, tag }) => {
         overflow: "hidden",
         borderRadius: "10px",
         boxShadow: "-10px -10px 30px rgba(223, 229, 239, 0.25)",
-        fontFamily: theme.typography.fontFamily
+        fontFamily: theme.typography.fontFamily,
       }}
     >
       <Box>
@@ -79,7 +79,7 @@ const ProductCard = ({ imageCard, tag }) => {
             textAlign: isMobile ? null : "center",
           }}
         >
-          Calza multicolor Adidas
+          {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
           <AvatarMR avatarCard />
@@ -94,7 +94,7 @@ const ProductCard = ({ imageCard, tag }) => {
             pl: "16px",
           }}
         >
-          $2850
+          {productPrice}
         </Typography>
       </CardContent>
     </Card>

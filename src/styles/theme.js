@@ -26,11 +26,6 @@ const theme = createTheme({
     fontWeightBold: 800,
     fontSize: [10, 11, 12, 13, 14, 16, 17, 18, 20, 24, 32, 44],
   },
-  mixins: {
-    toolbar: {
-      minHeight: 40
-    }
-  }
 });
 
 export default theme;

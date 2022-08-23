@@ -9,7 +9,7 @@ import {
   Link,
   Typography,
   Modal,
-  styled
+  styled,
 } from "@mui/material";
 
 import isologoMR from "../../assets/isologoMR.png";
@@ -29,7 +29,7 @@ const NavBar = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+  const Offset = styled("div")(({ theme }) => ({ height: "85px" }));
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>

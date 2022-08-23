@@ -9,27 +9,43 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const slides = [
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
   {
     img: fotoProd,
+    title: "Calza Adidas 2022",
+    price: 2000,
   },
 ];
 
@@ -92,7 +108,12 @@ export default class SimpleSlider extends Component {
           {slides.map((item, index) => {
             return (
               <Box key={index}>
-                <ProductCard imageCard={item.img} tag="NUEVO" />
+                <ProductCard
+                  imageCard={item.img}
+                  productName={item.title}
+                  productPrice={item.price}
+                  tag="NUEVO"
+                />
               </Box>
             );
           })}

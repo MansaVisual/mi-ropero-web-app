@@ -1,5 +1,7 @@
 body {
   overflow-x: hidden;
+  position: relative;
+  height: 100vh;
 }
 
 .slick-slider {
