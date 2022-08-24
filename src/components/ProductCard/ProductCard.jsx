@@ -47,7 +47,7 @@ const ProductCard = ({ imageCard, tag, productName, productPrice }) => {
           />
         </CardActionArea>
 
-        <TagNewStyled sx={{ bottom: isMobile ? "163px" : "155px" }}>
+        <TagNewStyled sx={{ bottom: isMobile ? "145px" : "157px" }}>
           {tag}
         </TagNewStyled>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>

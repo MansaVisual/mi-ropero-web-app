@@ -1,8 +1,8 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
 
-const SearchList = ({ filteredPersons }) => {
-  const filtered = filteredPersons.map((product) => (
+const SearchList = ({ filteredProd }) => {
+  const filtered = filteredProd.map((product) => (
     <ProductCard
       key={product.id}
       imageCard={product.image}
