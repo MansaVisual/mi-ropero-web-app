@@ -22,10 +22,11 @@ const SearchBar = () => {
     setOpenSearch(true);
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = (evt, route) => {
     evt.preventDefault();
     setOpenSearch(false);
-    navigate(`/results/${keyword}`);
+    navigate(`/${route}/${keyword}`);
+    setKeyword("");
   };
 
   const handleChange = (evt) => {
@@ -35,11 +36,11 @@ const SearchBar = () => {
   return (
     <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
       <Box
+        onSubmit={(e) => e.preventDefault()}
         component="form"
         sx={{
           display: "flex",
           alignItems: "center",
-          flex: isMobile ? 1 : null,
           fontFamily: theme.typography.fontFamily,
         }}
       >
@@ -50,15 +51,26 @@ const SearchBar = () => {
           inputProps={{
             "aria-label": "Buscá por ropero, producto, marca o talle",
           }}
-          sx={{ minWidth: { xs: "328px", lg: "420px", xl: "530px" } }}
+          sx={{
+            minWidth: { xs: "328px", lg: "420px", xl: "530px" },
+            position: "relative",
+            "&.MuiInputBase-root": {
+              width: "unset",
+              flexGrow: "unset",
+            },
+            "&.MuiInputBase-root .MuiInputBase-input": {
+              padding: "4px calc(45px + 3%) 4px 0",
+            },
+          }}
           onFocus={handleFocus}
           onChange={handleChange}
         />
         <IconButton
+          type="button"
           aria-label="search"
           sx={{
             position: "absolute",
-            right: { xs: "7%", md: "30%", lg: "38%", xl: "32%" },
+            right: { xs: "68%", md: "30%", lg: "38%", xl: "32%" },
           }}
         >
           <IoSearch fontSize="15px" color="red" />
@@ -80,7 +92,8 @@ const SearchBar = () => {
             }}
           >
             <Button
-              onClick={handleSubmit}
+              onClick={(e) => handleSubmit(e, "productos")}
+              disabled={keyword.length === 0}
               sx={{
                 textTransform: "none",
                 color: "hsla(0, 0%, 53%, 1)",
@@ -93,7 +106,8 @@ const SearchBar = () => {
               Productos
             </Button>
             <Button
-              onClick={handleSubmit}
+              onClick={(e) => handleSubmit(e, "roperos")}
+              disabled={keyword.length === 0}
               sx={{
                 textTransform: "none",
                 color: "hsla(0, 0%, 53%, 1)",

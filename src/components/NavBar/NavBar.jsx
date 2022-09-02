@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,21 +11,20 @@ import {
   Modal,
   styled,
 } from "@mui/material";
-
-import isologoMR from "../../assets/isologoMR.png";
-import MRlogoModal from "../../assets/MRlogoModal.png";
+import isologoMR from "../../assets/img/isologoMR.png";
+import MRlogoModal from "../../assets/img/MRlogoModal.png";
 import SearchBar from "../SearchBar/SearchBar";
 import NavIcons from "../NavIcons/NavIcons";
 import TabsCategories from "../TabsCategories/TabsCategories";
-import theme from "../../styles/theme";
 import NavMenu from "../NavMenu/NavMenu";
 import { IoCloseCircle } from "react-icons/io5";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
+import theme from "../../styles/theme";
 
 const NavBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -145,6 +144,7 @@ const NavBar = () => {
                       "_blank"
                     )
                   }
+                  rel="noopener noreferrer"
                 >
                   <Box sx={{ pr: "10px", pt: "5px" }}>
                     <FaGooglePlay color="grey" size={20} />
@@ -239,9 +239,6 @@ const NavBar = () => {
           <Container maxWidth="sm">
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 boxShadow: "0xp 1px 5px rgba(66,65,67,0.1)",
                 minHeight: "56px",
               }}

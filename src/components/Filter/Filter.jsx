@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Divider,
   Box,
@@ -19,7 +19,7 @@ import { ListItemStyled } from "./styles";
 import theme from "../../styles/theme";
 
 const Filter = (props) => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
@@ -27,7 +27,12 @@ const Filter = (props) => {
 
   return (
     <List
-      sx={{ width: "100%", maxWidth: 297, bgcolor: "transparent", fontFamily: theme.typography.fontFamily }}
+      sx={{
+        width: "100%",
+        maxWidth: 297,
+        bgcolor: "transparent",
+        fontFamily: theme.typography.fontFamily,
+      }}
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={
@@ -39,7 +44,7 @@ const Filter = (props) => {
             fontSize: theme.typography.fontSize[9],
             paddingLeft: 0,
             paddingBottom: "22px",
-            fontFamily: theme.typography.fontFamily
+            fontFamily: theme.typography.fontFamily,
           }}
         >
           {props.children}

@@ -1,51 +1,58 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import ProductCard from "../ProductCard/ProductCard";
-import fotoProd from "../../assets/fotoProd.png";
 import { Box } from "@mui/material";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const slides = [
+export const slides = [
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
   {
-    img: fotoProd,
+    img: require("../../assets/img/fotoProd.png"),
     title: "Calza Adidas 2022",
     price: 2000,
+    tag: "NUEVO",
   },
 ];
 
@@ -69,15 +76,20 @@ const NextArrow = (props) => {
 
 export default class SimpleSlider extends Component {
   render() {
+    const { slidesVertical, noPrevArrow, noNextArrow, slidesToShow } =
+      this.props;
+
     const settings = {
+      vertical: slidesVertical ? true : false,
+      verticalSwiping: slidesVertical ? true : false,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: slidesToShow ? 1 : 3,
       slidesToScroll: 1,
       initialSlide: 0,
       swipeToSlide: true,
-      prevArrow: <PrevArrow />,
-      nextArrow: <NextArrow />,
+      prevArrow: noPrevArrow ? null : <PrevArrow />,
+      nextArrow: noNextArrow ? null : <NextArrow />,
       responsive: [
         {
           breakpoint: 1000,
@@ -105,8 +117,15 @@ export default class SimpleSlider extends Component {
     return (
       <div>
         <Slider {...settings}>
-          {slides.map((item, index) => {
-            return (
+          {slides.map((item, index) =>
+            slidesVertical ? (
+              <img
+                key={index}
+                src={item.img}
+                alt="foto"
+                className="imgSliderVertical"
+              />
+            ) : (
               <Box key={index}>
                 <ProductCard
                   imageCard={item.img}
@@ -115,8 +134,8 @@ export default class SimpleSlider extends Component {
                   tag="NUEVO"
                 />
               </Box>
-            );
-          })}
+            )
+          )}
         </Slider>
       </div>
     );

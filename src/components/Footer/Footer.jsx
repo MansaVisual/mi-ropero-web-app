@@ -1,13 +1,12 @@
 import React from "react";
-
 import { Box, Button, Typography, Stack, useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
 import { StyledInput } from "../SearchBar/styles";
 import { Container } from "@mui/system";
-import fiscal from "../../assets/fiscal.png";
-import pdp from "../../assets/pdp.png";
-import MP from "../../assets/MP.png";
-import sps from "../../assets/sps.png";
+import fiscal from "../../assets/img/fiscal.png";
+import pdp from "../../assets/img/pdp.png";
+import MP from "../../assets/img/MP.png";
+import sps from "../../assets/img/sps.png";
 import { SocialButton, StyledLink } from "./styles";
 import {
   FaGooglePlay,
@@ -95,7 +94,8 @@ const Footer = () => {
                 PRODUCTOS
               </Typography>
               {footerContent.products.text.map((item, key) => (
-                <StyledLink key={key}
+                <StyledLink
+                  key={key}
                   sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                 >
                   {item}
@@ -106,7 +106,8 @@ const Footer = () => {
               <StyledLink>VENDER</StyledLink>
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 {footerContent.section.text.map((item, key) => (
-                  <StyledLink key={key}
+                  <StyledLink
+                    key={key}
                     sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                   >
                     {item}

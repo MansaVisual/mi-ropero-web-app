@@ -1,5 +1,5 @@
 import React from "react";
-import IMGbanner from "../../assets/IMGbanner.png";
+import IMGbanner from "../../assets/img/IMGbanner.png";
 import Carousel from "react-material-ui-carousel";
 import { Box } from "@mui/material";
 

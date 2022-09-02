@@ -31,6 +31,7 @@ const Home = () => {
           flexDirection: "column",
           alignContent: "center",
           justifyContent: "center",
+          overflowX: "hidden",
           pb: "84px",
         }}
       >

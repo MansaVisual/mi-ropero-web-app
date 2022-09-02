@@ -1,3 +1,9 @@
+html {
+  font-family: "Opens Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 body {
   overflow-x: hidden;
   position: relative;
@@ -61,6 +67,13 @@ body {
 
 .toolbar-download {
   min-height: 40px !important;
+}
+
+.imgSliderVertical {
+  width: 93px !important;
+  height: 112px !important;
+  margin-bottom: 8px;
+  object-fit: cover;
 }
 
 @media (max-width: 1000px) {

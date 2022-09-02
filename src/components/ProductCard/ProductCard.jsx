@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useState } from "react";
+import React from "react";
 import {
   Divider,
   Box,
@@ -16,15 +15,19 @@ import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 
-const ProductCard = ({ imageCard, tag, productName, productPrice }) => {
-  const [showButton, setShowButton] = useState(false);
+const ProductCard = ({
+  imageCard,
+  tag,
+  productName,
+  productPrice,
+  onClick,
+}) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Card
       sx={{
         width: { xs: "160px", md: "264px", lg: "220px", xl: "264px" },
-
         position: "relative",
         overflow: "hidden",
         borderRadius: "10px",
@@ -33,17 +36,14 @@ const ProductCard = ({ imageCard, tag, productName, productPrice }) => {
       }}
     >
       <Box>
-        <CardActionArea
-          onMouseOver={() => setShowButton(true)}
-          onMouseOut={() => setShowButton(false)}
-        >
+        <CardActionArea>
           <CardMedia
             component="img"
             height={isMobile ? "196px" : "323px"}
             image={imageCard}
             alt="product"
+            loading="lazy"
             sx={{ objectFit: "cover", "&:hover": { filter: "blur(2px)" } }}
-            className="image-product"
           />
         </CardActionArea>
 
@@ -53,22 +53,27 @@ const ProductCard = ({ imageCard, tag, productName, productPrice }) => {
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
           <LikeButton />
         </Box>
-        {!showButton ? null : (
-          <Button
-            sx={{
-              position: "absolute",
-              backgroundColor: theme.palette.primary.main,
+        <Button
+          sx={{
+            position: "absolute",
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.secondary.contrastText,
+            minWidth: "159px",
+            minHeight: "36px",
+            borderRadius: "20px",
+            top: "30%",
+            right: "20%",
+            opacity: "0",
+            "&:hover": {
+              backgroundColor: theme.palette.primary.dark,
               color: theme.palette.secondary.contrastText,
-              minWidth: "159px",
-              minHeight: "36px",
-              borderRadius: "20px",
-              top: "30%",
-              right: "20%",
-            }}
-          >
-            Comprar
-          </Button>
-        )}
+              opacity: "1",
+            },
+          }}
+          onClick={onClick}
+        >
+          Comprar
+        </Button>
       </Box>
 
       <CardContent>

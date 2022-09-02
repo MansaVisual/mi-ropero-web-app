@@ -11,22 +11,22 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-import BellNotif from "../../assets/BellNotif.png";
-import Cart from "../../assets/Cart.png";
-import Avatar from "../../assets/Avatar.png";
+import BellNotif from "../../assets/img/BellNotif.png";
+import Cart from "../../assets/img/Cart.png";
+import Avatar from "../../assets/img/Avatar.png";
+import fotoProd from "../../assets/img/fotoProd.png";
+import AvatarMR from "../AvatarMR/AvatarMR";
 import { StyledBadge, StyledMenu } from "./style";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import theme from "../../styles/theme";
 import { CgCloseO } from "react-icons/cg";
-import AvatarMR from "../AvatarMR/AvatarMR";
 import { IoStorefrontOutline, IoLocationOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiMessage } from "react-icons/bi";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { RiFilePaperLine } from "react-icons/ri";
-import fotoProd from "../../assets/fotoProd.png";
 import { IoTrashOutline } from "react-icons/io5";
 
 const NavIcons = () => {

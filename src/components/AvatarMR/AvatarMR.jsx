@@ -4,8 +4,8 @@ import theme from "../../styles/theme";
 
 const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
   return (
-    <Box sx={{fontFamily: theme.typography.fontFamily}}>
-      <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+    <Box sx={{ fontFamily: theme.typography.fontFamily }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
         <Avatar
           sx={{
             height: avatarRopero ? "40px" : "32px",

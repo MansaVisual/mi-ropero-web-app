@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Drawer,
@@ -12,77 +12,76 @@ import {
   IconButton,
   Toolbar,
 } from "@mui/material";
-
-import isologoMR from "../../assets/isologoMR.png";
-import CloseIcon from "@mui/icons-material/Close";
+import isologoMR from "../../assets/img/isologoMR.png";
 import theme from "../../styles/theme";
+import CloseIcon from "@mui/icons-material/Close";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FiMenu } from "react-icons/fi";
 
-const Ropa = [
-  "Abrigos (185)",
-  "Bermuda / Short (198)",
-  "Blazers (64)",
-  "Blusa / top (346)",
-  "Buzos (132)",
-  "Calzas (67)",
-  "Camisas (232)",
-  "Camperas (279)",
-  "Chalecos (59)",
-  "Chombas (13)",
-  "Jeans (238)",
-  "Monos (46)",
-  "Pantalones (246)",
-  "Piloto / Trench (17)",
-  "Polleras (176)",
-  "Remeras (590)",
-  "Ropa de dormir (25)",
-  "Ropa interior (37)",
-  "Sacos (41)",
-  "Tejidos (148)",
-  "Trajes (12)",
-  "Trajes de baño (55)",
-  "Vestidos (273)",
-  "Vestidos / Fiesta / Coctel (157)",
-  "VER TODOS",
-];
+// const Ropa = [
+//   "Abrigos (185)",
+//   "Bermuda / Short (198)",
+//   "Blazers (64)",
+//   "Blusa / top (346)",
+//   "Buzos (132)",
+//   "Calzas (67)",
+//   "Camisas (232)",
+//   "Camperas (279)",
+//   "Chalecos (59)",
+//   "Chombas (13)",
+//   "Jeans (238)",
+//   "Monos (46)",
+//   "Pantalones (246)",
+//   "Piloto / Trench (17)",
+//   "Polleras (176)",
+//   "Remeras (590)",
+//   "Ropa de dormir (25)",
+//   "Ropa interior (37)",
+//   "Sacos (41)",
+//   "Tejidos (148)",
+//   "Trajes (12)",
+//   "Trajes de baño (55)",
+//   "Vestidos (273)",
+//   "Vestidos / Fiesta / Coctel (157)",
+//   "VER TODOS",
+// ];
 
-const Calzado = [
-  "Botas / Borcegos (171)",
-  "Ojotas / Slides / Flats (36)",
-  "Plataforma (29)",
-  "Sandalias (100)",
-  "Zapatillas (241)",
-  "Zuecos (24)",
-  "VER TODOS",
-];
+// const Calzado = [
+//   "Botas / Borcegos (171)",
+//   "Ojotas / Slides / Flats (36)",
+//   "Plataforma (29)",
+//   "Sandalias (100)",
+//   "Zapatillas (241)",
+//   "Zuecos (24)",
+//   "VER TODOS",
+// ];
 
-const Accesorios = [
-  "Abrigos (185)",
-  "Aros (10)",
-  "Barbijos (4)v",
-  "Billeteras (15)",
-  "Bufandas / pashminas (22)",
-  "Carteras (134)",
-  "Cinturones (6)",
-  "Collares (25)",
-  "Corbatas (0)",
-  "Gorras (10)",
-  "Medias (1)",
-  "Mochilas / Riñoneras (13)",
-  "Pulseras (17)",
-  "VER TODOS",
-];
+// const Accesorios = [
+//   "Abrigos (185)",
+//   "Aros (10)",
+//   "Barbijos (4)v",
+//   "Billeteras (15)",
+//   "Bufandas / pashminas (22)",
+//   "Carteras (134)",
+//   "Cinturones (6)",
+//   "Collares (25)",
+//   "Corbatas (0)",
+//   "Gorras (10)",
+//   "Medias (1)",
+//   "Mochilas / Riñoneras (13)",
+//   "Pulseras (17)",
+//   "VER TODOS",
+// ];
 
-const Belleza = ["Esmaltes (3)", "Perfumes (33)", "VER TODOS"];
+// const Belleza = ["Esmaltes (3)", "Perfumes (33)", "VER TODOS"];
 
 const NavMenu = () => {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     right: false,
   });
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const toggleDrawer = (anchor, open) => () => {
     setState({ ...state, [anchor]: open });

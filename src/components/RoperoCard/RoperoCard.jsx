@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -11,7 +11,7 @@ import {
 import theme from "../../styles/theme";
 import fotoProd from "../../assets/fotoProd.png";
 
-export default function RoperoCard() {
+const RoperoCard = () => {
   return (
     <Card
       sx={{
@@ -59,4 +59,6 @@ export default function RoperoCard() {
       </CardActionArea>
     </Card>
   );
-}
+};
+
+export default RoperoCard;

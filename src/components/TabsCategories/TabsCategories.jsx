@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   ClickAwayListener,
@@ -7,9 +8,8 @@ import {
   ListItem,
   Paper,
 } from "@mui/material";
-import React from "react";
-import theme from "../../styles/theme";
 import { AntTab, AntTabs } from "./styles";
+import theme from "../../styles/theme";
 
 export const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -34,9 +34,9 @@ export const TabPanel = (props) => {
 };
 
 const TabsCategories = () => {
-  const [value, setValue] = React.useState(undefined);
+  const [value, setValue] = useState(undefined);
 
-  console.log(value);
+  console.log("VALUE", value);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

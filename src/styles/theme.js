@@ -10,6 +10,13 @@ const theme = createTheme({
       main: "hsla(8, 100%, 56%, 1)",
       contrastText: "hsla(0, 0%, 100%, 1)",
     },
+    tertiary: {
+      main: "hsla(0, 0%, 53%, 1)",
+    },
+    quaternary: {
+      main: "hsla(320, 100%, 83%, 1)",
+      contrastText: "hsla(270, 2%, 26%, 1)",
+    },
   },
   breakpoints: {
     values: {
@@ -26,6 +33,7 @@ const theme = createTheme({
     fontWeightBold: 800,
     fontSize: [10, 11, 12, 13, 14, 16, 17, 18, 20, 24, 32, 44],
   },
+  spacing: [0, 4, 8, 16, 24, 32, 48, 64, 96, 128],
 });
 
 export default theme;
