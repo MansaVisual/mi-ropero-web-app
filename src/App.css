@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 html {
   font-family: "Opens Sans", sans-serif;
   font-size: 16px;
@@ -69,11 +71,38 @@ body {
   min-height: 40px !important;
 }
 
-.imgSliderVertical {
+.image-gallery-thumbnail-image {
   width: 93px !important;
   height: 112px !important;
-  margin-bottom: 8px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.image-gallery-slide-wrapper.left {
+  width: unset !important;
+}
+
+.image-gallery-left-nav {
+  left: 20px;
+}
+
+.image-gallery-svg {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.image-gallery-swipe {
+  max-width: 400px;
+}
+
+.image-gallery-slides {
+  margin-left: 20px;
+}
+
+.image-gallery-image {
+  width: 354px !important;
+  height: 538px !important;
+  object-fit: cover !important;
 }
 
 @media (max-width: 1000px) {

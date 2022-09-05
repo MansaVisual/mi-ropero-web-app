@@ -17,6 +17,9 @@ const theme = createTheme({
       main: "hsla(320, 100%, 83%, 1)",
       contrastText: "hsla(270, 2%, 26%, 1)",
     },
+    quinary: {
+      main: "hsla(211, 78%, 95%, 1)",
+    },
   },
   breakpoints: {
     values: {

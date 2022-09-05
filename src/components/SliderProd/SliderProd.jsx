@@ -76,20 +76,15 @@ const NextArrow = (props) => {
 
 export default class SimpleSlider extends Component {
   render() {
-    const { slidesVertical, noPrevArrow, noNextArrow, slidesToShow } =
-      this.props;
-
     const settings = {
-      vertical: slidesVertical ? true : false,
-      verticalSwiping: slidesVertical ? true : false,
       infinite: true,
       speed: 500,
-      slidesToShow: slidesToShow ? 1 : 3,
+      slidesToShow: 3,
       slidesToScroll: 1,
       initialSlide: 0,
       swipeToSlide: true,
-      prevArrow: noPrevArrow ? null : <PrevArrow />,
-      nextArrow: noNextArrow ? null : <NextArrow />,
+      prevArrow: <PrevArrow />,
+      nextArrow: <NextArrow />,
       responsive: [
         {
           breakpoint: 1000,
@@ -117,25 +112,16 @@ export default class SimpleSlider extends Component {
     return (
       <div>
         <Slider {...settings}>
-          {slides.map((item, index) =>
-            slidesVertical ? (
-              <img
-                key={index}
-                src={item.img}
-                alt="foto"
-                className="imgSliderVertical"
+          {slides.map((item, index) => (
+            <Box key={index}>
+              <ProductCard
+                imageCard={item.img}
+                productName={item.title}
+                productPrice={item.price}
+                tag="NUEVO"
               />
-            ) : (
-              <Box key={index}>
-                <ProductCard
-                  imageCard={item.img}
-                  productName={item.title}
-                  productPrice={item.price}
-                  tag="NUEVO"
-                />
-              </Box>
-            )
-          )}
+            </Box>
+          ))}
         </Slider>
       </div>
     );
