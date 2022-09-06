@@ -19,62 +19,62 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FiMenu } from "react-icons/fi";
 
-// const Ropa = [
-//   "Abrigos (185)",
-//   "Bermuda / Short (198)",
-//   "Blazers (64)",
-//   "Blusa / top (346)",
-//   "Buzos (132)",
-//   "Calzas (67)",
-//   "Camisas (232)",
-//   "Camperas (279)",
-//   "Chalecos (59)",
-//   "Chombas (13)",
-//   "Jeans (238)",
-//   "Monos (46)",
-//   "Pantalones (246)",
-//   "Piloto / Trench (17)",
-//   "Polleras (176)",
-//   "Remeras (590)",
-//   "Ropa de dormir (25)",
-//   "Ropa interior (37)",
-//   "Sacos (41)",
-//   "Tejidos (148)",
-//   "Trajes (12)",
-//   "Trajes de baño (55)",
-//   "Vestidos (273)",
-//   "Vestidos / Fiesta / Coctel (157)",
-//   "VER TODOS",
-// ];
+const Ropa = [
+  "Abrigos (185)",
+  "Bermuda / Short (198)",
+  "Blazers (64)",
+  "Blusa / top (346)",
+  "Buzos (132)",
+  "Calzas (67)",
+  "Camisas (232)",
+  "Camperas (279)",
+  "Chalecos (59)",
+  "Chombas (13)",
+  "Jeans (238)",
+  "Monos (46)",
+  "Pantalones (246)",
+  "Piloto / Trench (17)",
+  "Polleras (176)",
+  "Remeras (590)",
+  "Ropa de dormir (25)",
+  "Ropa interior (37)",
+  "Sacos (41)",
+  "Tejidos (148)",
+  "Trajes (12)",
+  "Trajes de baño (55)",
+  "Vestidos (273)",
+  "Vestidos / Fiesta / Coctel (157)",
+  "VER TODOS",
+];
 
-// const Calzado = [
-//   "Botas / Borcegos (171)",
-//   "Ojotas / Slides / Flats (36)",
-//   "Plataforma (29)",
-//   "Sandalias (100)",
-//   "Zapatillas (241)",
-//   "Zuecos (24)",
-//   "VER TODOS",
-// ];
+const Calzado = [
+  "Botas / Borcegos (171)",
+  "Ojotas / Slides / Flats (36)",
+  "Plataforma (29)",
+  "Sandalias (100)",
+  "Zapatillas (241)",
+  "Zuecos (24)",
+  "VER TODOS",
+];
 
-// const Accesorios = [
-//   "Abrigos (185)",
-//   "Aros (10)",
-//   "Barbijos (4)v",
-//   "Billeteras (15)",
-//   "Bufandas / pashminas (22)",
-//   "Carteras (134)",
-//   "Cinturones (6)",
-//   "Collares (25)",
-//   "Corbatas (0)",
-//   "Gorras (10)",
-//   "Medias (1)",
-//   "Mochilas / Riñoneras (13)",
-//   "Pulseras (17)",
-//   "VER TODOS",
-// ];
+const Accesorios = [
+  "Abrigos (185)",
+  "Aros (10)",
+  "Barbijos (4)v",
+  "Billeteras (15)",
+  "Bufandas / pashminas (22)",
+  "Carteras (134)",
+  "Cinturones (6)",
+  "Collares (25)",
+  "Corbatas (0)",
+  "Gorras (10)",
+  "Medias (1)",
+  "Mochilas / Riñoneras (13)",
+  "Pulseras (17)",
+  "VER TODOS",
+];
 
-// const Belleza = ["Esmaltes (3)", "Perfumes (33)", "VER TODOS"];
+const Belleza = ["Esmaltes (3)", "Perfumes (33)", "VER TODOS"];
 
 const NavMenu = () => {
   const [state, setState] = useState({
@@ -82,15 +82,47 @@ const NavMenu = () => {
   });
 
   const [open, setOpen] = useState(true);
+  const [clothes, setClothes] = useState("");
+  const [categories] = useState({
+    Ropa,
+    Calzado,
+    Accesorios,
+    Belleza,
+  });
 
   const toggleDrawer = (anchor, open) => () => {
     setState({ ...state, [anchor]: open });
     setOpen(true);
   };
 
+  const showItems = (category) => {
+    if (!open && categories[category] && clothes === category) {
+      return categories[category].map((item, index) => (
+        <ListItem key={index} disablePadding>
+          <ListItemButton>
+            <ListItemText
+              primary={item}
+              sx={{
+                fontSize: theme.typography.fontSize[4],
+                fontWeight: theme.typography.fontWeightRegular,
+                color: "hsla(210, 3%, 74%, 1)",
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
+      ));
+    }
+  };
+
   const list = (anchor) => (
     <Box
-      sx={{ width: 300, fontFamily: theme.typography.fontFamily }}
+      sx={{
+        width: 300,
+        height: "100%",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+      }}
       role="presentation"
     >
       <AppBar sx={{ position: "relative" }}>
@@ -112,27 +144,48 @@ const NavMenu = () => {
         </Toolbar>
       </AppBar>
       {!open ? (
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => setOpen(true)}>
-              <ListItemText
-                primary={"Volver al menú"}
-                sx={{
-                  color: "hsla(210, 3%, 74%, 1)",
-                  fontSize: theme.typography.fontSize[4],
-                }}
-              />
-              <ListItemIcon sx={{ justifyContent: "end" }}>
-                <ChevronLeftIcon />
-              </ListItemIcon>
-            </ListItemButton>
-          </ListItem>
-        </List>
+        <>
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => setOpen(true)}>
+                <ListItemText
+                  primary={"Volver al menú"}
+                  sx={{
+                    color: "hsla(210, 3%, 74%, 1)",
+                    fontSize: theme.typography.fontSize[4],
+                  }}
+                />
+                <ListItemIcon sx={{ justifyContent: "end" }}>
+                  <ChevronLeftIcon />
+                </ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+          </List>
+
+          <List sx={{ flex: 1 }}>
+            <ListItemText
+              sx={{
+                fontSize: theme.typography.fontSize[4],
+                fontWeight: theme.typography.fontWeightMedium,
+                color: theme.palette.secondary.main,
+                padding: "0 16px 8px",
+              }}
+            >
+              {clothes}
+            </ListItemText>
+            {showItems(clothes)}
+          </List>
+        </>
       ) : (
-        <List>
+        <List sx={{ flex: 1 }}>
           {["Ropa", "Calzado", "Accesorios", "Belleza"].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton onClick={() => setOpen(false)}>
+              <ListItemButton
+                onClick={() => {
+                  setClothes(text);
+                  setOpen(false);
+                }}
+              >
                 <ListItemText
                   primary={text}
                   sx={{
@@ -159,10 +212,7 @@ const NavMenu = () => {
         </List>
       )}
 
-      <Box
-        sx={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
-        className="support-button"
-      >
+      <Box className="support-button">
         <Toolbar
           sx={{
             backgroundColor: "hsla(0, 0%, 100%, 1)",
@@ -199,6 +249,7 @@ const NavMenu = () => {
           <Drawer
             anchor={anchor}
             open={state[anchor]}
+            aria-label="menu"
             onClose={toggleDrawer(anchor, false)}
           >
             {list(anchor)}

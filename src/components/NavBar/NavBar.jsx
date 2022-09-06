@@ -144,7 +144,6 @@ const NavBar = () => {
                       "_blank"
                     )
                   }
-                  rel="noopener noreferrer"
                 >
                   <Box sx={{ pr: "10px", pt: "5px" }}>
                     <FaGooglePlay color="grey" size={20} />
@@ -176,7 +175,13 @@ const NavBar = () => {
       >
         <Toolbar
           sx={{
-            maxWidth: { xs: "360px", md: "800px", lg: "100%", xl: "100%" },
+            maxWidth: {
+              xs: "400px",
+              sm: "550px",
+              md: "100%",
+              lg: "100%",
+              xl: "100%",
+            },
             boxShadow: isMobile ? null : "0px 4px 8px rgba(0, 0, 0, 0.2)",
           }}
         >
@@ -239,6 +244,9 @@ const NavBar = () => {
           <Container maxWidth="sm">
             <Box
               sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 boxShadow: "0xp 1px 5px rgba(66,65,67,0.1)",
                 minHeight: "56px",
               }}

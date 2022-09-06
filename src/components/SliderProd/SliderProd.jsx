@@ -77,7 +77,7 @@ const NextArrow = (props) => {
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,

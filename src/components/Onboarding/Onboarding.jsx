@@ -135,7 +135,15 @@ const Onboarding = () => {
           </Stack>
         </Container>
       ) : (
-        <Slider slidesToShow={2} className="onboarding" variableWidth>
+        <Box
+          sx={{
+            scrollSnapType: "x mandatory",
+            display: "flex",
+            overflowX: "auto",
+            overflowY: "hidden",
+            width: "100%",
+          }}
+        >
           {dataOnboarding.map((item, index) => (
             <Box
               key={index}
@@ -145,13 +153,14 @@ const Onboarding = () => {
                 paddingBottom: isMobile ? "18px" : "16px",
                 alignItems: "center",
                 justifyContent: "center",
+                scrollSnapAlign: "start",
               }}
             >
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
                   alignItems: "center",
+                  width: "250px",
                 }}
               >
                 <Box
@@ -210,7 +219,7 @@ const Onboarding = () => {
               </Box>
             </Box>
           ))}
-        </Slider>
+        </Box>
       )}
     </Box>
   );

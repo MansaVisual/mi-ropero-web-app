@@ -124,9 +124,11 @@ body {
   .slick-slide > div {
     padding: 0 3px;
   }
+
   .slick-slider {
     max-width: 335px;
   }
+
   .css-tguw8w-MuiCardContent-root:last-child {
     padding-top: 1px;
     padding-bottom: 1px !important;

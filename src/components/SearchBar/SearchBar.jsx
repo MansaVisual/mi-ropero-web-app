@@ -40,6 +40,7 @@ const SearchBar = () => {
         component="form"
         sx={{
           display: "flex",
+          justifyContent: "center",
           alignItems: "center",
           fontFamily: theme.typography.fontFamily,
         }}
@@ -52,7 +53,7 @@ const SearchBar = () => {
             "aria-label": "Buscá por ropero, producto, marca o talle",
           }}
           sx={{
-            minWidth: { xs: "328px", lg: "420px", xl: "530px" },
+            minWidth: { xs: "328px", sm: "400px", lg: "420px", xl: "530px" },
             position: "relative",
             "&.MuiInputBase-root": {
               width: "unset",
@@ -70,7 +71,7 @@ const SearchBar = () => {
           aria-label="search"
           sx={{
             position: "absolute",
-            right: { xs: "68%", md: "30%", lg: "38%", xl: "32%" },
+            right: { xs: "14%", md: "30%", lg: "38%", xl: "32%" },
           }}
         >
           <IoSearch fontSize="15px" color="red" />
