@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import ProductCard from "../ProductCard/ProductCard";
 import { Box } from "@mui/material";
-
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export const slides = [

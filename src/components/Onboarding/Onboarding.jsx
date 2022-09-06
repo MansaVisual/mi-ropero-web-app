@@ -35,10 +35,11 @@ const Onboarding = () => {
   return (
     <Box
       sx={{
-        boxShadow: "0px 1px 5px hsla(270, 1.5%, 25.9%, 0.1)",
+        boxShadow: "0 1px 5px hsla(270, 1.5%, 25.9%, 0.1)",
         width: "100%",
         display: close,
         position: "relative",
+        marginTop: "16px",
       }}
     >
       {!isMobile ? (
@@ -63,7 +64,7 @@ const Onboarding = () => {
               paddingTop: isMobile ? "18px" : "16px",
               paddingBottom: isMobile ? "18px" : "16px",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-between",
             }}
             direction="row"
             spacing={{ xs: 3, md: 5, lg: 8 }}
@@ -74,6 +75,9 @@ const Onboarding = () => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
+                  "&.MuiBox-root": {
+                    marginLeft: "0 !important",
+                  },
                 }}
                 key={index}
               >

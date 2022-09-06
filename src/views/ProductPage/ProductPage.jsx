@@ -35,32 +35,14 @@ const data = [
 const productDetails = [
   {
     genero: "Unisex",
-  },
-  {
     talle: "L",
-  },
-  {
     colores: "Rosa",
-  },
-  {
     marca: "Adidas",
-  },
-  {
     condicion: "Nuevo",
-  },
-  {
     "tipo de tela": "Silver",
-  },
-  {
     estampado: "Combinado con texturas",
-  },
-  {
     temporada: "Media estacion",
-  },
-  {
     estilo: "Deportivo",
-  },
-  {
     origen: "Importado",
   },
 ];
@@ -76,7 +58,7 @@ const ProductPage = () => {
       <Grid
         container
         sx={{ px: "74px", py: "32px" }}
-        spacing={isMobile ? 0 : 4}
+        spacing={isMobile ? 0 : 2}
       >
         <Grid item xs={12} md={7}>
           <Box sx={{ mb: "24px" }}>
@@ -94,6 +76,13 @@ const ProductPage = () => {
             disableThumbnailScroll={true}
             infinite={false}
           />
+        </Grid>
+
+        <Grid item xs={12} md={5}>
+          <ProductBuyBox />
+        </Grid>
+
+        <Grid item xs={12} md={7}>
           <Typography
             sx={{
               fontSize: theme.typography.fontSize[10],
@@ -111,9 +100,6 @@ const ProductPage = () => {
         </Grid>
 
         <Grid item xs={12} md={5}>
-          <Box sx={{ position: "relative" }}>
-            <ProductBuyBox />
-          </Box>
           <Box
             sx={{
               display: "flex",

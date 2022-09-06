@@ -200,7 +200,7 @@ const NavBar = () => {
                 paddingRight: { xs: "50px", lg: "60px", xl: "225px" },
               }}
             >
-              <Link to="/">
+              <Link href="/">
                 <img src={isologoMR} alt="logo-mi-ropero" />
               </Link>
             </Box>

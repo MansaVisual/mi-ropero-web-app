@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useLocation, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import theme from "../../styles/theme";
@@ -41,11 +41,10 @@ const SearchClosetResults = () => {
   return (
     <>
       {isMobile ? <></> : <Onboarding />}
-      <Box sx={{ px: "74px", py: "40px", display: "flex" }}>
-        <Box>
-          <Box sx={{ mb: "24px" }}>
-            <Breadcrumbs links={pathnames} />
-          </Box>
+
+      <Grid container sx={{ px: "74px", py: "40px" }}>
+        <Grid item xs={12} md={3}>
+          <Breadcrumbs links={pathnames} />
           <Typography
             sx={{
               fontSize: theme.typography.fontSize[5],
@@ -89,16 +88,22 @@ const SearchClosetResults = () => {
           <ClosetCard />
           <ClosetCard />
           <ClosetCard />
-        </Box>
+        </Grid>
 
-        <Box
-          sx={{ ml: "24px", display: "flex", flexWrap: "wrap", gap: "30px" }}
-        >
-          {contacts.map((contact, index) => (
-            <ClosetImagesCard key={index} contact={contact} keyword={keyword} />
-          ))}
-        </Box>
-      </Box>
+        <Grid item xs={12} md={9}>
+          <Box
+            sx={{ ml: "24px", display: "flex", flexWrap: "wrap", gap: "30px" }}
+          >
+            {contacts.map((contact, index) => (
+              <ClosetImagesCard
+                key={index}
+                contact={contact}
+                keyword={keyword}
+              />
+            ))}
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };

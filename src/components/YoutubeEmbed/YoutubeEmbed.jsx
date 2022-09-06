@@ -2,7 +2,7 @@ import React from "react";
 import { useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
 
-const YoutubeEmbed = ({ embedId }) => {
+const YoutubeEmbed = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (

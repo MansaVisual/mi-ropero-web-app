@@ -20,23 +20,31 @@ import theme from "../../styles/theme";
 const ProductBuyBox = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        height: "100%",
+      }}
+    >
       <Box sx={{ mb: "24px" }}>
         <Breadcrumbs links={pathnames} />
       </Box>
       <Box sx={{ display: "flex" }}>
-        <Typography
-          sx={{
-            fontSize: theme.typography.fontSize[10],
-            fontWeight: theme.typography.fontWeightMedium,
-            color: theme.palette.quaternary.contrastText,
-          }}
-        >
-          Campera deportiva Adicolor Colorblock 2022 Ed. limitada
-        </Typography>
+        <Box sx={{ maxWidth: "90%" }}>
+          <Typography
+            sx={{
+              fontSize: theme.typography.fontSize[10],
+              fontWeight: theme.typography.fontWeightMedium,
+              color: theme.palette.quaternary.contrastText,
+            }}
+          >
+            Campera deportiva Adicolor Colorblock 2022 Ed. limitada
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -48,17 +56,19 @@ const ProductBuyBox = () => {
           <CommentButton />
         </Box>
       </Box>
-      <Typography
-        sx={{
-          fontSize: theme.typography.fontSize[5],
-          fontWeight: theme.typography.fontWeightRegular,
-          color: theme.palette.tertiary.main,
-        }}
-      >
-        Campera deportiva Adidad rosa pastel sin uso, como nueva, talle L mangas
-        largas, su calidad es excelente, algodón super suave, tela impermedable.
-        Adicolor Colorblock 2022. Edición limitada.
-      </Typography>
+      <Box>
+        <Typography
+          sx={{
+            fontSize: theme.typography.fontSize[5],
+            fontWeight: theme.typography.fontWeightRegular,
+            color: theme.palette.tertiary.main,
+          }}
+        >
+          Campera deportiva Adidad rosa pastel sin uso, como nueva, talle L
+          mangas largas, su calidad es excelente, algodón super suave, tela
+          impermedable. Adicolor Colorblock 2022. Edición limitada.
+        </Typography>
+      </Box>
 
       <Box
         sx={{
@@ -207,13 +217,10 @@ const ProductBuyBox = () => {
 
       <Box
         sx={{
-          display: "grid",
-          gridTemplateRows: "1fr",
-          gridTemplateColumns: "1fr",
-          gridTemplateAreas: `"button button"`,
-          alignItems: "end",
-          justifyContent: "center",
-          mt: isDesktop ? "120px" : "24px",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
         }}
       >
         <Button
@@ -221,11 +228,11 @@ const ProductBuyBox = () => {
           color="hsla(351, 6%, 25%, 1)"
           text="Comprar"
           endIcon={<FiShoppingCart style={{ fontSize: "18px" }} />}
+          fullWidth
           height
-          sx={{ gridArea: "button" }}
         />
       </Box>
-    </>
+    </Box>
   );
 };
 
