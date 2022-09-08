@@ -20,147 +20,239 @@ import theme from "../../styles/theme";
 const ProductBuyBox = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        height: "100%",
-      }}
-    >
-      <Box sx={{ mb: "24px" }}>
-        <Breadcrumbs links={pathnames} />
-      </Box>
-      <Box sx={{ display: "flex" }}>
-        <Box sx={{ maxWidth: "90%" }}>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[10],
-              fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.quaternary.contrastText,
-            }}
-          >
-            Campera deportiva Adicolor Colorblock 2022 Ed. limitada
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-          }}
-        >
-          <LikeButton />
-          <CommentButton />
-        </Box>
-      </Box>
-      <Box>
-        <Typography
-          sx={{
-            fontSize: theme.typography.fontSize[5],
-            fontWeight: theme.typography.fontWeightRegular,
-            color: theme.palette.tertiary.main,
-          }}
-        >
-          Campera deportiva Adidad rosa pastel sin uso, como nueva, talle L
-          mangas largas, su calidad es excelente, algodón super suave, tela
-          impermedable. Adicolor Colorblock 2022. Edición limitada.
-        </Typography>
-      </Box>
-
+    <>
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          mt: "24px",
+          flexDirection: "column",
         }}
       >
         <Box>
           <Typography
             sx={{
-              fontSize: theme.typography.fontSize[10],
-              fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.primary.main,
+              fontSize: theme.typography.fontSize[5],
+              fontWeight: theme.typography.fontWeightRegular,
+              color: theme.palette.tertiary.main,
+              mt: isMobile || isMobileBigScreen ? "16px" : 0,
             }}
           >
-            $23.600,00
+            Campera deportiva Adidad rosa pastel sin uso, como nueva, talle L
+            mangas largas, su calidad es excelente, algodón super suave, tela
+            impermedable. Adicolor Colorblock 2022. Edición limitada.
           </Typography>
-          <Box sx={{ mt: "16px" }}>
-            <Button
-              backgroundColor={theme.palette.quinary.main}
-              color={theme.palette.primary.main}
-              text="Ofertar"
-              icon={ofertIcon}
-            />
-          </Box>
         </Box>
 
-        {/* <Box>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[2],
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.quaternary.contrastText,
-              mb: "18px",
-            }}
-          >
-            Calculá el envío
-          </Typography>
-          <Box sx={{ whiteSpace: "nowrap" }}>
-            <TextField
-              id="outlined-number"
-              type="number"
-              placeholder="Código postal"
-              InputProps={{
-                sx: {
-                  "& input": {
-                    padding: "8px 10px",
-                    height: "32px",
-                    boxSizing: "border-box",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  },
-                },
-              }}
-              variant="outlined"
-            />
-            <IconButton
-              style={{
-                width: "32px",
-                height: "32px",
-                marginLeft: "8px",
-                borderRadius: "3px",
-                border: "1px solid hsla(210, 3%, 74%, 1)",
-                backgroundColor: "hsla(210, 3%, 74%, 1)",
-              }}
-            >
-              <BiRightArrow
-                style={{ fontSize: "32px", color: "hsla(0, 0%, 100%, 1)" }}
-              />
-            </IconButton>
-          </Box>
-          <Typography sx={{ mt: "8px" }}>
-            <Link
-              href="https://www.correoargentino.com.ar/formularios/cpa"
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="hover"
+        {isMobile || isMobileBigScreen ? (
+          <>
+            <Box
               sx={{
-                fontSize: theme.typography.fontSize[1],
-                fontWeight: theme.typography.fontWeightRegular,
-                color: theme.palette.primary.main,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mt: "24px",
+                mb: "32px",
               }}
             >
-              No sé mi código postal
-            </Link>
-          </Typography>
-        </Box> */}
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[9],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.quaternary.contrastText,
+                  }}
+                >
+                  $23.600,00
+                </Typography>
+              </Box>
+              <Box sx={{ maxWidth: "120px" }}>
+                <Button
+                  backgroundColor={theme.palette.quinary.main}
+                  color={theme.palette.primary.main}
+                  text="Ofertar"
+                  medium
+                  icon={ofertIcon}
+                  sx={{ height: "30px" }}
+                />
+              </Box>
+              <CommentButton />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                mb: "72px",
+              }}
+            >
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[4],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    color: theme.palette.quaternary.contrastText,
+                  }}
+                >
+                  Calculá el envío
+                </Typography>
+                <Typography>
+                  <Link
+                    href="https://www.correoargentino.com.ar/formularios/cpa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    underline="hover"
+                    sx={{
+                      fontSize: theme.typography.fontSize[1],
+                      fontWeight: theme.typography.fontWeightRegular,
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    No sé mi código postal
+                  </Link>
+                </Typography>
+              </Box>
+              <Box sx={{ whiteSpace: "nowrap" }}>
+                <TextField
+                  id="outlined-number"
+                  type="number"
+                  placeholder="Código postal"
+                  InputProps={{
+                    sx: {
+                      "& input": {
+                        padding: "8px 10px",
+                        height: "40px",
+                        boxSizing: "border-box",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        maxWidth: "130px",
+                      },
+                    },
+                  }}
+                  variant="outlined"
+                />
+                <IconButton
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    marginLeft: "8px",
+                    borderRadius: "3px",
+                    border: "1px solid hsla(210, 3%, 74%, 1)",
+                    backgroundColor: "hsla(210, 3%, 74%, 1)",
+                  }}
+                >
+                  <BiRightArrow
+                    style={{
+                      fontSize: "32px",
+                      color: "hsla(0, 0%, 100%, 1)",
+                    }}
+                  />
+                </IconButton>
+              </Box>
+            </Box>
+          </>
+        ) : (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                mt: "24px",
+              }}
+            >
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[10],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.primary.main,
+                  }}
+                >
+                  $23.600,00
+                </Typography>
+                <Box sx={{ mt: "16px" }}>
+                  <Button
+                    backgroundColor={theme.palette.quinary.main}
+                    color={theme.palette.primary.main}
+                    text="Ofertar"
+                    icon={ofertIcon}
+                  />
+                </Box>
+              </Box>
 
-        <Box>
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[2],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    color: theme.palette.quaternary.contrastText,
+                    mb: "18px",
+                  }}
+                >
+                  Calculá el envío
+                </Typography>
+                <Box sx={{ whiteSpace: "nowrap" }}>
+                  <TextField
+                    id="outlined-number"
+                    type="number"
+                    placeholder="Código postal"
+                    InputProps={{
+                      sx: {
+                        "& input": {
+                          padding: "8px 10px",
+                          height: "32px",
+                          boxSizing: "border-box",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        },
+                      },
+                    }}
+                    variant="outlined"
+                  />
+                  <IconButton
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      marginLeft: "8px",
+                      borderRadius: "3px",
+                      border: "1px solid hsla(210, 3%, 74%, 1)",
+                      backgroundColor: "hsla(210, 3%, 74%, 1)",
+                    }}
+                  >
+                    <BiRightArrow
+                      style={{
+                        fontSize: "32px",
+                        color: "hsla(0, 0%, 100%, 1)",
+                      }}
+                    />
+                  </IconButton>
+                </Box>
+                <Typography sx={{ mt: "8px" }}>
+                  <Link
+                    href="https://www.correoargentino.com.ar/formularios/cpa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    underline="hover"
+                    sx={{
+                      fontSize: theme.typography.fontSize[1],
+                      fontWeight: theme.typography.fontWeightRegular,
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    No sé mi código postal
+                  </Link>
+                </Typography>
+              </Box>
+            </Box>
+          </>
+        )}
+
+        {/* <Box>
           <Typography
             sx={{
               fontSize: theme.typography.fontSize[2],
@@ -212,27 +304,28 @@ const ProductBuyBox = () => {
           >
             $599,71 a sucursal
           </Typography>
+        </Box> */}
+        {/* </Box> */}
+
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <Button
+            backgroundColor="hsla(59, 100%, 60%, 1)"
+            color="hsla(351, 6%, 25%, 1)"
+            text="Comprar"
+            endIcon={<FiShoppingCart style={{ fontSize: "18px" }} />}
+            fullWidth
+            height
+          />
         </Box>
       </Box>
-
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
-      >
-        <Button
-          backgroundColor="hsla(59, 100%, 60%, 1)"
-          color="hsla(351, 6%, 25%, 1)"
-          text="Comprar"
-          endIcon={<FiShoppingCart style={{ fontSize: "18px" }} />}
-          fullWidth
-          height
-        />
-      </Box>
-    </Box>
+    </>
   );
 };
 

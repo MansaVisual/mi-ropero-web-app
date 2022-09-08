@@ -11,6 +11,7 @@ import {
   Link,
   CardActionArea,
   Grid,
+  useMediaQuery,
 } from "@mui/material";
 import theme from "../../styles/theme";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -43,14 +44,16 @@ const ClosetImagesCard = ({
     event.preventDefault();
     navigate(`/roperos/${keyword}/${name}`);
   };
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box>
       <Box>
         <ImageList
           sx={{
-            width: "420px",
-            height: "226px",
+            width: isMobile || isMobileBigScreen ? "343px" : "420px",
+            height: isMobile || isMobileBigScreen ? "161px" : "226px",
             position: "relative",
             "&.MuiImageList-root": {
               overflow: "hidden",
@@ -64,7 +67,8 @@ const ClosetImagesCard = ({
             <Card>
               <CardContent
                 sx={{
-                  height: "56px",
+                  boxSizing: "border-box",
+                  height: isMobile || isMobileBigScreen ? "45px" : "56px",
                   backgroundColor: "hsla(210, 77%, 95%, 1)",
                   display: "flex",
                   alignItems: "center",
@@ -132,7 +136,14 @@ const ClosetImagesCard = ({
                     </Box>
                   </Box>
 
-                  <Box sx={{ ml: "calc(75% - 10px)" }}>
+                  <Box
+                    sx={{
+                      ml:
+                        isMobile || isMobileBigScreen
+                          ? "calc(40% - 10px)"
+                          : "calc(75% - 10px)",
+                    }}
+                  >
                     <CardActionArea>
                       <AiOutlineHeart
                         size="24px"
@@ -149,7 +160,7 @@ const ClosetImagesCard = ({
               <ImageListItem
                 sx={{
                   "&.MuiImageListItem-root .MuiImageListItem-img": {
-                    width: "140px",
+                    width: isMobile || isMobileBigScreen ? "110px" : "140px",
                     height: "auto",
                   },
                 }}
@@ -165,7 +176,7 @@ const ClosetImagesCard = ({
             </Grid>
           ))}
         </ImageList>
-        <Box sx={{ textAlign: "center" }}>
+        <Box sx={{ textAlign: "center", mt: "8px" }}>
           <Link
             underline="hover"
             href="#"

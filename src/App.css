@@ -4,12 +4,13 @@ html {
   font-family: "Opens Sans", sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 body {
-  overflow-x: hidden;
   position: relative;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .slick-slider {
@@ -97,13 +98,23 @@ body {
   object-fit: cover !important;
 }
 
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   .slick-slider {
     max-width: 950px;
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
+  .image-gallery-slides {
+    margin-left: 0;
+  }
+  .image-gallery-thumbnail-image {
+    width: 74px !important;
+    height: 80px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .slick-slide > div {
     padding: 0 20px;
   }
@@ -112,7 +123,7 @@ body {
   }
 }
 
-@media (max-width: 360px) {
+@media screen and (max-width: 360px) {
   .slick-slide > div {
     padding: 0 3px;
   }

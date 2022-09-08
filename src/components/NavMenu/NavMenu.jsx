@@ -217,7 +217,7 @@ const NavMenu = () => {
           sx={{
             backgroundColor: "hsla(0, 0%, 100%, 1)",
             justifyContent: "center",
-            boxShadow: "0px -4px 10px rgba(0,0,0,0.2)",
+            boxShadow: "0 -4px 10px hsla(0, 0%, 0%, 0.2)",
             py: "10px",
           }}
         >

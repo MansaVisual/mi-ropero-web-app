@@ -1,5 +1,8 @@
 import React from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Grid,
   Link,
@@ -16,6 +19,11 @@ import IconGroupText from "../../components/IconGroupText/IconGroupText";
 import SliderProd from "../../components/SliderProd/SliderProd";
 import Chip from "../../components/Chip/Chip";
 import theme from "../../styles/theme";
+import {
+  CommentButton,
+  LikeButton,
+} from "../../components/ActionButton/ActionButton";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const data = [
   {
@@ -51,55 +59,163 @@ const ProductPage = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    // grid container with 2 columns in desktop and 1 column in mobile
     <>
       <Grid
         container
-        sx={{ px: "74px", py: "32px" }}
-        spacing={isMobile ? 0 : 2}
+        sx={{
+          padding: isMobile || isMobileBigScreen ? "40px 16px" : "40px 74px",
+        }}
+        spacing={isMobile || isMobileBigScreen ? 0 : 2}
       >
-        <Grid item xs={12} md={7}>
-          <Box sx={{ mb: "24px" }}>
-            <Breadcrumbs links={pathnames} />
-          </Box>
-          <ImageGallery
-            items={data}
-            showIndex={false}
-            showNav={true}
-            showThumbnails={true}
-            thumbnailPosition={isMobile ? "bottom" : "left"}
-            showFullscreenButton={false}
-            showPlayButton={false}
-            slideOnThumbnailOver={true}
-            disableThumbnailScroll={true}
-            infinite={false}
-          />
+        <Grid item xs={12} sm={12} md={7}>
+          {isMobile || isMobileBigScreen ? (
+            <>
+              <Box sx={{ mt: "16px" }}>
+                <Breadcrumbs links={pathnames} />
+              </Box>
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[10],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.quaternary.contrastText,
+                  }}
+                >
+                  Campera deportiva Adicolor Colorblock 2022 Ed. limitada
+                </Typography>
+              </Box>
+              <ImageGallery
+                items={data}
+                showIndex={false}
+                showNav={true}
+                showThumbnails={true}
+                thumbnailPosition={
+                  isMobile || isMobileBigScreen ? "bottom" : "left"
+                }
+                showFullscreenButton={false}
+                showPlayButton={false}
+                slideOnThumbnailOver={true}
+                disableThumbnailScroll={true}
+                infinite={false}
+              />
+            </>
+          ) : (
+            <>
+              <Box sx={{ mb: "16px" }}>
+                <Breadcrumbs links={pathnames} />
+              </Box>
+              <ImageGallery
+                items={data}
+                showIndex={false}
+                showNav={true}
+                showThumbnails={true}
+                thumbnailPosition={
+                  isMobile || isMobileBigScreen ? "bottom" : "left"
+                }
+                showFullscreenButton={false}
+                showPlayButton={false}
+                slideOnThumbnailOver={true}
+                disableThumbnailScroll={true}
+                infinite={false}
+              />
+            </>
+          )}
         </Grid>
 
-        <Grid item xs={12} md={5}>
-          <ProductBuyBox />
+        <Grid item xs={12} sm={12} md={5} position="relative">
+          {isMobile || isMobileBigScreen ? (
+            <>
+              <ProductBuyBox />
+            </>
+          ) : (
+            <>
+              <Box sx={{ mb: "24px" }}>
+                <Breadcrumbs links={pathnames} />
+              </Box>
+              <Box sx={{ display: "flex" }}>
+                <Box sx={{ maxWidth: "90%" }}>
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[10],
+                      fontWeight: theme.typography.fontWeightMedium,
+                      color: theme.palette.quaternary.contrastText,
+                    }}
+                  >
+                    Campera deportiva Adicolor Colorblock 2022 Ed. limitada
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <LikeButton />
+                  <CommentButton />
+                </Box>
+              </Box>
+              <ProductBuyBox />
+            </>
+          )}
         </Grid>
 
-        <Grid item xs={12} md={7}>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[10],
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.tertiary.main,
-              mt: "56px",
-              mb: "16px",
-            }}
-          >
-            Características del producto
-          </Typography>
-          {productDetails.map((detail, index) => (
-            <ProductDetails key={index} detail={detail} />
-          ))}
+        <Grid item xs={12} sm={12} md={7}>
+          {isMobile || isMobileBigScreen ? (
+            <Box sx={{ mt: "32px" }}>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[5],
+                      fontWeight: theme.typography.fontWeightMedium,
+                      color: theme.palette.tertiary.main,
+                    }}
+                  >
+                    Características del producto
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails
+                  sx={{
+                    "&.MuiAccordionDetails-root": {
+                      pb: 0,
+                    },
+                  }}
+                >
+                  {Object.entries(productDetails[0]).map(([key, value]) => (
+                    <ProductDetails key={key} title={key} content={value} />
+                  ))}
+                </AccordionDetails>
+              </Accordion>
+            </Box>
+          ) : (
+            <>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[10],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.tertiary.main,
+                  mt: "56px",
+                  mb: "16px",
+                }}
+              >
+                Características del producto
+              </Typography>
+              {Object.entries(productDetails[0]).map(([key, value]) => (
+                <ProductDetails key={key} title={key} content={value} />
+              ))}
+            </>
+          )}
         </Grid>
 
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} sm={12} md={5}>
           <Box
             sx={{
               display: "flex",
@@ -110,10 +226,16 @@ const ProductPage = () => {
             <Box>
               <Typography
                 sx={{
-                  fontSize: theme.typography.fontSize[10],
-                  fontWeight: theme.typography.fontWeightRegular,
+                  fontSize:
+                    isMobile || isMobileBigScreen
+                      ? theme.typography.fontSize[5]
+                      : theme.typography.fontSize[10],
+                  fontWeight:
+                    isMobile || isMobileBigScreen
+                      ? theme.typography.fontWeightMedium
+                      : theme.typography.fontWeightRegular,
                   color: theme.palette.tertiary.main,
-                  mt: "56px",
+                  mt: isMobile || isMobileBigScreen ? "16px" : "56px",
                   mb: "16px",
                 }}
               >

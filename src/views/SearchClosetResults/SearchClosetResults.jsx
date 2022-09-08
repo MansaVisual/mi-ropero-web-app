@@ -10,7 +10,7 @@ import Onboarding from "../../components/Onboarding/Onboarding";
 const SearchClosetResults = () => {
   const { keyword } = useParams();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  // const isTablet = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -40,59 +40,86 @@ const SearchClosetResults = () => {
 
   return (
     <>
-      {isMobile ? <></> : <Onboarding />}
+      {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
 
-      <Grid container sx={{ px: "74px", py: "40px" }}>
-        <Grid item xs={12} md={3}>
-          <Breadcrumbs links={pathnames} />
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[5],
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.tertiary.main,
-            }}
-          >
-            Busqueda de Roperos:
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[9],
-              fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.primary.main,
-              textTransform: "capitalize",
-            }}
-          >
-            {keyword}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[4],
-              fontWeight: 400,
-              color: theme.palette.tertiary.main,
-              marginBottom: "30px",
-            }}
-          >
-            Resultado: 3 roperos
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[9],
-              fontWeight: theme.typography.fontWeightBold,
-              mb: "20px",
-              color: theme.palette.secondary.main,
-            }}
-          >
-            Top Roperos 🔥
-          </Typography>
+      <Grid
+        container
+        sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", py: "40px" }}
+      >
+        <Grid item xs={12} sm={12} md={3}>
+          {isMobile || isMobileBigScreen ? (
+            <Box sx={{ mt: "16px" }}>
+              <Breadcrumbs links={pathnames} />
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[9],
+                  fontWeight: theme.typography.fontWeightBold,
+                  mb: "20px",
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                Top Roperos 🔥
+              </Typography>
+            </Box>
+          ) : (
+            <>
+              <Breadcrumbs links={pathnames} />
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[5],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.tertiary.main,
+                }}
+              >
+                Busqueda de Roperos:
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[9],
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: theme.palette.primary.main,
+                  textTransform: "capitalize",
+                }}
+              >
+                {keyword}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[4],
+                  fontWeight: 400,
+                  color: theme.palette.tertiary.main,
+                  marginBottom: "30px",
+                }}
+              >
+                Resultado: 3 roperos
+              </Typography>
 
-          <ClosetCard />
-          <ClosetCard />
-          <ClosetCard />
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[9],
+                  fontWeight: theme.typography.fontWeightBold,
+                  mb: "20px",
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                Top Roperos 🔥
+              </Typography>
+
+              <ClosetCard />
+              <ClosetCard />
+              <ClosetCard />
+            </>
+          )}
         </Grid>
 
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} sm={12} md={9}>
           <Box
-            sx={{ ml: "24px", display: "flex", flexWrap: "wrap", gap: "30px" }}
+            sx={{
+              ml: isMobile || isMobileBigScreen ? 0 : "24px",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "30px",
+            }}
           >
             {contacts.map((contact, index) => (
               <ClosetImagesCard

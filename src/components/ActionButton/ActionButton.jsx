@@ -4,6 +4,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoArrowUndoSharp } from "react-icons/io5";
 import { FaRegCommentAlt } from "react-icons/fa";
+import { IoFilter } from "react-icons/io5";
 
 export const LikeButton = () => {
   const [like, setLike] = useState(null);
@@ -56,11 +57,21 @@ export const WspButton = () => {
   );
 };
 
-export const CommentButton = () => {
+export const CommentButton = ({ onClick }) => {
   return (
-    <Box>
+    <Box onClick={onClick}>
       <Fab size="small" sx={{ backgroundColor: "hsla(248, 41%, 38%, 1)" }}>
         <FaRegCommentAlt fontSize="19px" color="hsl(0, 0%, 100%)" />
+      </Fab>
+    </Box>
+  );
+};
+
+export const FilterButton = ({ onClick }) => {
+  return (
+    <Box onClick={onClick}>
+      <Fab size="small" sx={{ backgroundColor: "hsla(248, 41%, 38%, 1)" }}>
+        <IoFilter fontSize="19px" color="hsl(0, 0%, 100%)" />
       </Fab>
     </Box>
   );

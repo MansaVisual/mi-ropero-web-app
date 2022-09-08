@@ -23,7 +23,6 @@ import theme from "../../styles/theme";
 
 const NavBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -144,6 +143,7 @@ const NavBar = () => {
                       "_blank"
                     )
                   }
+                  rel="noopener noreferrer"
                 >
                   <Box sx={{ pr: "10px", pt: "5px" }}>
                     <FaGooglePlay color="grey" size={20} />
@@ -169,7 +169,7 @@ const NavBar = () => {
         position="fixed"
         sx={{
           backgroundColor: "white",
-          boxShadow: "0px 1px 5px rgba(66, 65, 67, 0.1)",
+          boxShadow: "0 1px 5px hsla(270, 1.5%, 25.9%, 0.1)",
         }}
         elevation={1}
       >

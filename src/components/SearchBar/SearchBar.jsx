@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [keyword, setKeyword] = useState("");
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const navigate = useNavigate();
 
@@ -80,16 +81,18 @@ const SearchBar = () => {
           <Box
             sx={{
               position: "absolute",
-              top: { xs: "110px", md: "100px", lg: "48px", xl: "48px" },
+              top: { xs: "120px", md: "100px", lg: "48px", xl: "48px" },
               left: 0,
               right: 0,
               zIndex: 10,
-              backgroundColor: "hsla(0, 0%, 100%, 1)",
+              backgroundColor: theme.palette.secondary.contrastText,
               width: "100%",
               display: "flex",
-              justifyContent: "center",
-              height: "40px",
-              boxShadow: "inset 0px 11px 8px -10px rgba(0, 0, 0, 0.2)",
+              justifyContent:
+                isMobile || isMobileBigScreen ? "space-evenly" : "center",
+              alignItems: "center",
+              height: "48px",
+              boxShadow: "0 11px 8px -10px hsla(0, 0%, 0%, 0.2)",
             }}
           >
             <Button
