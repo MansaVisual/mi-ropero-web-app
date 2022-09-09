@@ -122,12 +122,7 @@ const ViewCloset = () => {
               >
                 Ropero de Romina86
               </Typography>
-              <FilterButton
-                onClick={() => {
-                  setOpen(true);
-                  console.log("open", open);
-                }}
-              />
+              <FilterButton onClick={() => setOpen(true)} />
               {open && (
                 <Modal
                   open={open}

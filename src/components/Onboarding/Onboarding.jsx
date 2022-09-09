@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Typography, Stack, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
 import { IoCloseCircle } from "react-icons/io5";
-import Slider from "react-slick";
 import theme from "../../styles/theme";
 
 const Onboarding = () => {

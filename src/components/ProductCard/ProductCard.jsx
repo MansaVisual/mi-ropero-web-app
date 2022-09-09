@@ -58,7 +58,7 @@ const ProductCard = ({
             position: "absolute",
             backgroundColor: theme.palette.primary.main,
             color: theme.palette.secondary.contrastText,
-            minWidth: "159px",
+            minWidth: "75%",
             minHeight: "36px",
             borderRadius: "20px",
             top: "30%",

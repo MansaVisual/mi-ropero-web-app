@@ -362,7 +362,7 @@ const NavIcons = () => {
             horizontal: "right",
           }}
         >
-          <img src={BellNotif} alt="logo-mi-ropero" width="17px" />
+          <img src={BellNotif} alt="Icono de notificacion" width="17px" />
         </StyledBadge>
       </IconButton>
       <StyledMenu
@@ -415,7 +415,7 @@ const NavIcons = () => {
             horizontal: "right",
           }}
         >
-          <img src={Avatar} alt="logo-mi-ropero" width="20px" />
+          <img src={Avatar} alt="icono de avatar" width="20px" />
         </StyledBadge>
         {!avatarMenu ? (
           <ExpandMoreIcon
