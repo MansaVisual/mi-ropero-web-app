@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import {
   Box,
   Dialog,
@@ -17,19 +17,19 @@ import {
 import { BiRightArrow } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
 import { styled } from "@mui/material/styles";
-import { CommentButton, LikeButton } from "../ActionButton/ActionButton";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import { CommentButton } from "../ActionButton/ActionButton";
+// import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Button from "../Button/Button";
 import ofertIcon from "../../assets/img/OfertIcon.svg";
 import isologoMR from "../../assets/img/isologoMR.png";
-import OCA from "../../assets/img/OCA.png";
-import { IoCloseCircle } from "react-icons/io5";
+// import OCA from "../../assets/img/OCA.png";
+// import { IoCloseCircle } from "react-icons/io5";
 import CloseIcon from "@mui/icons-material/Close";
 import theme from "../../styles/theme";
 
 const ProductBuyBox = () => {
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
+  // const location = useLocation();
+  // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
