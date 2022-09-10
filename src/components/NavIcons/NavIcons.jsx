@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   IconButton,
   MenuItem,
@@ -19,7 +18,6 @@ import AvatarMR from "../AvatarMR/AvatarMR";
 import { StyledBadge, StyledMenu } from "./style";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import theme from "../../styles/theme";
 import { CgCloseO } from "react-icons/cg";
 import { IoStorefrontOutline, IoLocationOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi";
@@ -28,6 +26,7 @@ import { BiMessage } from "react-icons/bi";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { RiFilePaperLine } from "react-icons/ri";
 import { IoTrashOutline } from "react-icons/io5";
+import theme from "../../styles/theme";
 
 const NavIcons = () => {
   const [avatarMenu, setAvatarMenu] = useState(null);
@@ -102,14 +101,14 @@ const NavIcons = () => {
         sx={{ paddingTop: "10px", paddingBottom: "10px" }}
       >
         <Box sx={{ mb: "4px" }}>
-          <CgCloseO size={24} color="hsla(8, 100%, 56%, 1)" />
+          <CgCloseO size={24} color={theme.palette.secondary.main} />
         </Box>
         <Box>
           <Typography
             sx={{
               fontSize: theme.typography.fontSize[3],
               fontWeight: theme.typography.fontWeightMedium,
-              color: "hsla(8, 100%, 56%, 1)",
+              color: theme.palette.secondary.main,
             }}
           >
             NO TENÉS NOTIFICACIONES
@@ -156,7 +155,7 @@ const NavIcons = () => {
                 border: "1px solid hsla(8, 100%, 56%, 1)",
                 borderRadius: "20px",
                 padding: "0px 36px 0px 36px",
-                color: "hsla(8, 100%, 56%, 1)",
+                color: theme.palette.secondary.main,
                 minHeight: "32px",
                 minWidth: "188px",
               }}
@@ -201,7 +200,7 @@ const NavIcons = () => {
         <Box sx={{ textAlign: "center", pb: "10px", pt: "7px" }}>
           <Link
             sx={{
-              color: "hsla(8, 100%, 56%, 1)",
+              color: theme.palette.secondary.main,
               fontSize: theme.typography.fontSize[0],
               textDecoration: "none",
               cursor: "pointer",
@@ -250,7 +249,7 @@ const NavIcons = () => {
           >
             <Typography
               sx={{
-                color: "hsla(0, 0%, 53%, 1)",
+                color: theme.palette.tertiary.main,
                 fontSize: theme.typography.fontSize[1],
               }}
             >
@@ -276,8 +275,8 @@ const NavIcons = () => {
           >
             <Button
               sx={{
-                backgroundColor: "hsla(8, 100%, 56%, 1)",
-                color: "hsla(0, 0%, 100%, 1)",
+                backgroundColor: theme.palette.secondary.main,
+                color: theme.palette.secondary.contrastText,
                 letterSpacing: "0.8px",
                 borderRadius: "20px",
                 width: "189px",
@@ -294,7 +293,7 @@ const NavIcons = () => {
             </Button>
             <Link
               sx={{
-                color: "hsla(351, 6%, 25%, 1)",
+                color: theme.palette.quaternary.contrastText,
                 fontSize: theme.typography.fontSize[1],
                 lineHeight: "14.98px",
                 fontWeight: theme.typography.fontWeightRegular,
@@ -324,7 +323,7 @@ const NavIcons = () => {
                 <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[0],
-                    color: "hsla(0, 0%, 53%, 1)",
+                    color: theme.palette.tertiary.main,
                   }}
                 >
                   Romialaniz
@@ -449,7 +448,7 @@ const NavIcons = () => {
               display: "block",
               position: "absolute",
               top: 0,
-              right: { xs: 105, md: 120, lg: 109, xl: 120 },
+              right: { xs: 105, md: 120, lg: 120, xl: 120 },
               width: 13,
               height: 13,
               borderRadius: "2px",

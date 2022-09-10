@@ -5,7 +5,6 @@ import {
   TextField,
   Collapse,
   ListItemText,
-  ListItemButton,
   List,
   ListSubheader,
   Radio,
@@ -15,14 +14,28 @@ import {
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { ListItemStyled } from "./styles";
+import {
+  FormControlLabelStyled,
+  ListItemPriceRangeStyled,
+  ListItemStyled,
+  ListItemTextStyled,
+} from "./styles";
 import theme from "../../styles/theme";
 
 const Filter = (props) => {
-  const [open, setOpen] = useState(true);
+  const [openFilter, setOpenFilter] = useState({
+    sort: false,
+    brand: false,
+    material: false,
+    gender: false,
+    condition: false,
+    color: false,
+    origin: false,
+    style: false,
+  });
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleClick = (filter) => {
+    setOpenFilter({ ...openFilter, [filter]: !openFilter[filter] });
   };
 
   return (
@@ -52,122 +65,349 @@ const Filter = (props) => {
       }
     >
       <Divider />
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Ordenar por" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("sort")}>
+        <ListItemText primary="Ordenar por" sx={ListItemTextStyled} />
+        {openFilter.sort ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.sort} timeout="auto" unmountOnExit>
         <List component="div">
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
+            defaultValue="Mas relevante primero"
             name="radio-buttons-group"
           >
             <FormControlLabel
-              value="female"
+              value="Mas relevante primero"
               control={<Radio />}
-              label="Female"
+              label="Mas relevante primero"
+              sx={FormControlLabelStyled}
             />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel
+              value="Menos relevante primero"
+              control={<Radio />}
+              label="Menos relevante primero"
+              sx={FormControlLabelStyled}
+            />
+            <FormControlLabel
+              value="Mayor precio primero"
+              control={<Radio />}
+              label="Mayor precio primero"
+              sx={FormControlLabelStyled}
+            />
+            <FormControlLabel
+              value="Menor precio primero"
+              control={<Radio />}
+              label="Menor precio primero"
+              sx={FormControlLabelStyled}
+            />
           </RadioGroup>
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Marca" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("brand")}>
+        <ListItemText primary="Marca" sx={ListItemTextStyled} />
+        {openFilter.brand ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.brand} timeout="auto" unmountOnExit>
         <List component="div">
-          <FormControlLabel label="Todos" control={<Checkbox />} />
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Giesso"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Sarkany"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Tascani"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Valdez"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Zara"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Material" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("material")}>
+        <ListItemText primary="Material" sx={ListItemTextStyled} />
+        {openFilter.material ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.material} timeout="auto" unmountOnExit>
         <List component="div">
-          <ListItemButton>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Cuero"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Ecocuero"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Lona"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Género" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("gender")}>
+        <ListItemText primary="Género" sx={ListItemTextStyled} />
+        {openFilter.gender ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.gender} timeout="auto" unmountOnExit>
         <List component="div">
-          <ListItemButton>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Genderless"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Hombre"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Mujer"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Niñez"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Unisex"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Condición" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("condition")}>
+        <ListItemText primary="Condición" sx={ListItemTextStyled} />
+        {openFilter.condition ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.condition} timeout="auto" unmountOnExit>
         <List component="div">
-          <ListItemButton>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Nuevo"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Nuevo con etiqueta"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Usado"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Color/es" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("color")}>
+        <ListItemText primary="Color/es" sx={ListItemTextStyled} />
+        {openFilter.color ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.color} timeout="auto" unmountOnExit>
         <List component="div">
-          <ListItemButton>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Amarillo"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Azul"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Azul claro"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Beige"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Blanco"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Origen" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("origin")}>
+        <ListItemText primary="Origen" sx={ListItemTextStyled} />
+        {openFilter.origin ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.origin} timeout="auto" unmountOnExit>
         <List component="div">
-          <ListItemButton>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Nacional"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Importado"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
 
-      <ListItemStyled onClick={handleClick}>
-        <ListItemText primary="Estilo" sx={{ fontSize: "14px" }} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <ListItemStyled onClick={() => handleClick("style")}>
+        <ListItemText primary="Estilo" sx={ListItemTextStyled} />
+        {openFilter.style ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={openFilter.style} timeout="auto" unmountOnExit>
         <List component="div">
-          <ListItemButton>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          <FormControlLabel
+            label="Todos"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Casual"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Clasico"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Deportivo"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Fiesta"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
+        </List>
+        <List component="div">
+          <FormControlLabel
+            label="Vintage"
+            control={<Checkbox />}
+            sx={FormControlLabelStyled}
+          />
         </List>
       </Collapse>
       <Divider />
+
       <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
-        <ListItemText
-          primary="Rango de precio"
-          sx={{ fontSize: "14px", mb: "18px" }}
-        />
+        <ListItemText primary="Rango de precio" sx={ListItemPriceRangeStyled} />
         <Box sx={{ display: "flex" }}>
           <TextField
             id="outlined-basic"
