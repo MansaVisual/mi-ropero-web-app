@@ -2,12 +2,6 @@ import React, { useState } from "react";
 // import { useLocation } from "react-router-dom";
 import {
   Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  FormControl,
   IconButton,
   Link,
   TextField,
@@ -16,15 +10,12 @@ import {
 } from "@mui/material";
 import { BiRightArrow } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
-import { styled } from "@mui/material/styles";
 import { CommentButton } from "../ActionButton/ActionButton";
 // import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Button from "../Button/Button";
+import DialogComponent from "../Dialog/Dialog";
 import ofertIcon from "../../assets/img/OfertIcon.svg";
-import isologoMR from "../../assets/img/isologoMR.png";
 // import OCA from "../../assets/img/OCA.png";
-// import { IoCloseCircle } from "react-icons/io5";
-import CloseIcon from "@mui/icons-material/Close";
 import theme from "../../styles/theme";
 
 const ProductBuyBox = () => {
@@ -40,38 +31,6 @@ const ProductBuyBox = () => {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const MuiDialog = styled(Dialog)(({ theme }) => ({
-    "& .MuiDialogContent-root": {
-      padding: "24px",
-    },
-    "& .MuiDialogActions-root": {
-      padding: "24px",
-    },
-  }));
-
-  const MuiDialogTitle = (props) => {
-    const { children, onClose, ...other } = props;
-
-    return (
-      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-        {children}
-        {onClose ? (
-          <IconButton
-            aria-label="close"
-            onClick={onClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        ) : null}
-      </DialogTitle>
-    );
   };
 
   return (
@@ -130,139 +89,7 @@ const ProductBuyBox = () => {
                   sx={{ height: "30px" }}
                 />
                 {open && (
-                  <MuiDialog
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="responsive-dialog-title"
-                  >
-                    <MuiDialogTitle
-                      id="responsive-dialog-title"
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        "&.MuiTypography-root-MuiDialogTitle-root": {
-                          pt: "24px !important",
-                        },
-                      }}
-                      onClose={handleClose}
-                    >
-                      <img src={isologoMR} alt="logo-mi-ropero" />
-                      <Typography
-                        sx={{
-                          fontSize: theme.typography.fontSize[5],
-                          fontWeight: theme.typography.fontWeightMedium,
-                          color: theme.palette.quaternary.contrastText,
-                          my: "8px",
-                        }}
-                      >
-                        ¡OFERTÁ!
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: theme.typography.fontSize[2],
-                          fontWeight: theme.typography.fontWeightMedium,
-                          color: theme.palette.tertiary.main,
-                          maxWidth: "360px",
-                          textAlign: "center",
-                        }}
-                      >
-                        Ingresá el monto que querés pagar por este
-                        producto.Recordá que debe ser mayor a $0 y menos a $3600
-                      </Typography>
-                    </MuiDialogTitle>
-                    <DialogContent
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FormControl sx={{ mt: "24px" }}>
-                        <DialogContentText sx={{ textAlign: "center" }}>
-                          <Typography
-                            component="label"
-                            sx={{
-                              fontSize: theme.typography.fontSize[5],
-                              fontWeight: theme.typography.fontWeightMedium,
-                              color: theme.palette.quaternary.contrastText,
-                            }}
-                          >
-                            Monto de la oferta*
-                          </Typography>
-                        </DialogContentText>
-                        <TextField
-                          autoFocus
-                          margin="dense"
-                          type="number"
-                          placeholder="$ Ingresar valor"
-                          sx={{
-                            "& input": {
-                              padding: "4px 8px",
-                              height: "40px",
-                              boxSizing: "border-box",
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              borderRadius: "8px",
-                            },
-                          }}
-                        />
-                      </FormControl>
-                      <FormControl sx={{ mt: "16px" }}>
-                        <DialogContentText sx={{ textAlign: "center" }}>
-                          <Typography
-                            component="label"
-                            sx={{
-                              fontSize: theme.typography.fontSize[5],
-                              fontWeight: theme.typography.fontWeightMedium,
-                              color: theme.palette.quaternary.contrastText,
-                            }}
-                          >
-                            Comentarios
-                          </Typography>
-                        </DialogContentText>
-                        <TextField
-                          margin="dense"
-                          placeholder="Ingresar comentario"
-                          multiline
-                          sx={{
-                            "& textarea": {
-                              padding: "4px 8px",
-                              height: "95px !important",
-                              boxSizing: "border-box",
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              borderRadius: "8px",
-                            },
-                          }}
-                        />
-                      </FormControl>
-                    </DialogContent>
-                    <DialogActions
-                      sx={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr",
-                        gridGap: "16px",
-                        "&.MuiDialogActions-root>:not(:first-of-type)": {
-                          ml: "0 !important",
-                        },
-                      }}
-                    >
-                      <Button
-                        text="Hacer Oferta"
-                        backgroundColor={theme.palette.primary.main}
-                        color={theme.palette.secondary.contrastText}
-                      />
-                      <Button
-                        text="Cancelar"
-                        backgroundColor={theme.palette.secondary.contrastText}
-                        color={theme.palette.primary.main}
-                        border={`1px solid ${theme.palette.primary.main}`}
-                      />
-                    </DialogActions>
-                  </MuiDialog>
+                  <DialogComponent open={open} handleClose={handleClose} />
                 )}
               </Box>
               <CommentButton />
@@ -370,139 +197,7 @@ const ProductBuyBox = () => {
                     onClick={handleClickOpen}
                   />
                   {open && (
-                    <MuiDialog
-                      open={open}
-                      onClose={handleClose}
-                      aria-labelledby="responsive-dialog-title"
-                    >
-                      <MuiDialogTitle
-                        id="responsive-dialog-title"
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          "&.MuiTypography-root-MuiDialogTitle-root": {
-                            pt: "24px !important",
-                          },
-                        }}
-                        onClose={handleClose}
-                      >
-                        <img src={isologoMR} alt="logo-mi-ropero" />
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[5],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.quaternary.contrastText,
-                            my: "8px",
-                          }}
-                        >
-                          ¡OFERTÁ!
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[2],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.tertiary.main,
-                            maxWidth: "360px",
-                            textAlign: "center",
-                          }}
-                        >
-                          Ingresá el monto que querés pagar por este
-                          producto.Recordá que debe ser mayor a $0 y menos a
-                          $3600
-                        </Typography>
-                      </MuiDialogTitle>
-                      <DialogContent
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
-                        <FormControl sx={{ mt: "24px" }}>
-                          <DialogContentText sx={{ textAlign: "center" }}>
-                            <Typography
-                              component="label"
-                              sx={{
-                                fontSize: theme.typography.fontSize[5],
-                                fontWeight: theme.typography.fontWeightMedium,
-                                color: theme.palette.quaternary.contrastText,
-                              }}
-                            >
-                              Monto de la oferta*
-                            </Typography>
-                          </DialogContentText>
-                          <TextField
-                            autoFocus
-                            margin="dense"
-                            type="number"
-                            placeholder="$ Ingresar valor"
-                            sx={{
-                              "& input": {
-                                padding: "4px 8px",
-                                height: "40px",
-                                boxSizing: "border-box",
-                                whiteSpace: "nowrap",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                borderRadius: "8px",
-                                minWidth: "130px",
-                              },
-                            }}
-                          />
-                        </FormControl>
-                        <FormControl sx={{ mt: "16px" }}>
-                          <DialogContentText sx={{ textAlign: "center" }}>
-                            <Typography
-                              component="label"
-                              sx={{
-                                fontSize: theme.typography.fontSize[5],
-                                fontWeight: theme.typography.fontWeightMedium,
-                                color: theme.palette.quaternary.contrastText,
-                              }}
-                            >
-                              Comentarios
-                            </Typography>
-                          </DialogContentText>
-                          <TextField
-                            margin="dense"
-                            placeholder="Ingresar comentario"
-                            multiline
-                            sx={{
-                              "& textarea": {
-                                padding: "4px 8px",
-                                height: "95px !important",
-                                boxSizing: "border-box",
-                                whiteSpace: "nowrap",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                borderRadius: "8px",
-                                minWidth: "430px",
-                              },
-                            }}
-                          />
-                        </FormControl>
-                      </DialogContent>
-                      <DialogActions
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Button
-                          text="Cancelar"
-                          backgroundColor={theme.palette.secondary.contrastText}
-                          color={theme.palette.primary.main}
-                          border={`1px solid ${theme.palette.primary.main}`}
-                        />
-                        <Button
-                          text="Hacer Oferta"
-                          backgroundColor={theme.palette.primary.main}
-                          color={theme.palette.secondary.contrastText}
-                        />
-                      </DialogActions>
-                    </MuiDialog>
+                    <DialogComponent open={open} handleClose={handleClose} />
                   )}
                 </Box>
               </Box>

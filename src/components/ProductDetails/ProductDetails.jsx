@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
 
-const ProductDetails = ({ key, title, content }) => {
+const ProductDetails = ({ title, content }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -19,7 +19,6 @@ const ProductDetails = ({ key, title, content }) => {
         }}
       >
         <Typography
-          key={key}
           sx={{
             fontSize:
               isMobile || isMobileBigScreen

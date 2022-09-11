@@ -1,8 +1,5 @@
 import React from "react";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Grid,
   Link,
@@ -23,7 +20,7 @@ import {
   CommentButton,
   LikeButton,
 } from "../../components/ActionButton/ActionButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Accordion from "../../components/Accordion/Accordion";
 
 const data = [
   {
@@ -67,6 +64,7 @@ const ProductPage = () => {
         container
         sx={{
           padding: isMobile || isMobileBigScreen ? "40px 16px" : "40px 74px",
+          overflowX: "hidden",
         }}
         spacing={isMobile || isMobileBigScreen ? 0 : 2}
       >
@@ -166,34 +164,7 @@ const ProductPage = () => {
         <Grid item xs={12} sm={12} md={7}>
           {isMobile || isMobileBigScreen ? (
             <Box sx={{ mt: "32px" }}>
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography
-                    sx={{
-                      fontSize: theme.typography.fontSize[5],
-                      fontWeight: theme.typography.fontWeightMedium,
-                      color: theme.palette.tertiary.main,
-                    }}
-                  >
-                    Características del producto
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails
-                  sx={{
-                    "&.MuiAccordionDetails-root": {
-                      pb: 0,
-                    },
-                  }}
-                >
-                  {Object.entries(productDetails[0]).map(([key, value]) => (
-                    <ProductDetails key={key} title={key} content={value} />
-                  ))}
-                </AccordionDetails>
-              </Accordion>
+              <Accordion title="Características del producto" />
             </Box>
           ) : (
             <>

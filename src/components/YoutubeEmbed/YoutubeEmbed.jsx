@@ -11,7 +11,7 @@ const YoutubeEmbed = () => {
         width="100%"
         height={isMobile ? "204px" : "665px"}
         src="https://www.youtube.com/embed/0Eucpoysz8M"
-        title="YouTube video player"
+        title="YouTube video"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen

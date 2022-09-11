@@ -51,7 +51,7 @@ const SearchProductsResults = () => {
   useEffect(() => {
     // filter products by keyword entered in search bar
     const filteredProd = slides.filter((product) => {
-      return product.title.toLowerCase().includes(keyword.toLowerCase());
+      return product.title.toLowerCase().includes(keyword.toLowerCase().trim());
     });
     setFilteredProducts(filteredProd);
   }, [keyword]);
@@ -141,7 +141,7 @@ const SearchProductsResults = () => {
             </Box>
           ) : (
             <>
-              <Box sx={{ mt: "16px" }}>
+              <Box>
                 <Breadcrumbs links={pathnames} />
                 <Typography
                   sx={{

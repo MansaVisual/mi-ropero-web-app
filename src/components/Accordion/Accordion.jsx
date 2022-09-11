@@ -4,8 +4,25 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ProductDetails from "../ProductDetails/ProductDetails";
+import theme from "../../styles/theme";
 
-const Accordion = ({ title, feature, content }) => {
+const productDetails = [
+  {
+    genero: "Unisex",
+    talle: "L",
+    colores: "Rosa",
+    marca: "Adidas",
+    condicion: "Nuevo",
+    "tipo de tela": "Silver",
+    estampado: "Combinado con texturas",
+    temporada: "Media estacion",
+    estilo: "Deportivo",
+    origen: "Importado",
+  },
+];
+
+const Accordion = ({ title }) => {
   return (
     <MuiAccordion>
       <AccordionSummary
@@ -13,18 +30,26 @@ const Accordion = ({ title, feature, content }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>{title}</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
         <Typography
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            fontSize: theme.typography.fontSize[5],
+            fontWeight: theme.typography.fontWeightMedium,
+            color: theme.palette.tertiary.main,
           }}
         >
-          {feature} <Typography component="span">{content}</Typography>
+          {title}
         </Typography>
+      </AccordionSummary>
+      <AccordionDetails
+        sx={{
+          "&.MuiAccordionDetails-root": {
+            pb: 0,
+          },
+        }}
+      >
+        {Object.entries(productDetails[0]).map(([key, value]) => (
+          <ProductDetails key={key} title={key} content={value} />
+        ))}
       </AccordionDetails>
     </MuiAccordion>
   );
