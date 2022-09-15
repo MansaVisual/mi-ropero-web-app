@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "easy-soap-request": "^4.8.0",
+    "react-hook-form": "^7.35.0",
     "react-icons": "^4.4.0",
     "react-image-gallery": "^1.2.9",
     "react-material-ui-carousel": "^3.4.2",

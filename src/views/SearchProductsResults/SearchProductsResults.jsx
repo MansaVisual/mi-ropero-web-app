@@ -274,6 +274,9 @@ const SearchProductsResults = () => {
                         borderRadius: "20px",
                         mt: 4,
                         cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
                       Ir al Inicio

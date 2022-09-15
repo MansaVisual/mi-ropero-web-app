@@ -63,7 +63,9 @@ const SearchClosetResults = () => {
             </Box>
           ) : (
             <>
-              <Breadcrumbs links={pathnames} />
+              <Box sx={{ mb: "24px" }}>
+                <Breadcrumbs links={pathnames} />
+              </Box>
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[5],
@@ -89,6 +91,7 @@ const SearchClosetResults = () => {
                   fontWeight: 400,
                   color: theme.palette.tertiary.main,
                   marginBottom: "30px",
+                  marginTop: "16px",
                 }}
               >
                 Resultado: 3 roperos

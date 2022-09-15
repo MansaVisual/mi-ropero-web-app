@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Box,
@@ -8,15 +8,23 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import theme from "../../styles/theme";
 
 const ClosetCard = () => {
+  const [like, setLike] = useState(false);
+
   return (
-    <Card sx={{ maxWidth: 296, mb: "16px" }}>
+    <Card
+      sx={{
+        maxWidth: 254,
+        mb: "16px",
+      }}
+    >
       <CardContent
         sx={{
-          height: "56px",
+          boxSizing: "border-box",
+          height: "48px",
           backgroundColor: "hsl(0, 0%, 98.4%)",
           display: "flex",
           alignItems: "center",
@@ -72,14 +80,62 @@ const ClosetCard = () => {
                 >
                   142 productos
                 </Typography>
-                <Rating name="read-only" readOnly value={1} size="small" />
+                <Rating
+                  name="read-only"
+                  readOnly
+                  value={1}
+                  sx={{ fontSize: theme.typography.fontSize[0] }}
+                />
               </Box>
             </Box>
           </Box>
 
-          <Box sx={{ ml: "20px" }}>
-            <CardActionArea>
-              <AiOutlineHeart size="24px" color={theme.palette.primary.main} />
+          <Box sx={{ ml: { xs: 0, md: "10px", xl: "10px" } }}>
+            <CardActionArea
+              onClick={() => setLike(!like)}
+              disableTouchRipple
+              sx={{ position: "relative" }}
+            >
+              {!like ? (
+                <>
+                  <AiOutlineHeart
+                    size="26px"
+                    color={theme.palette.primary.main}
+                  />
+                  <Typography
+                    component="span"
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -65%)",
+                      color: `${theme.palette.primary.main}`,
+                      fontSize: "9px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    24
+                  </Typography>
+                </>
+              ) : (
+                <>
+                  <AiFillHeart size="26px" color={theme.palette.primary.main} />
+                  <Typography
+                    component="span"
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -65%)",
+                      color: `${theme.palette.secondary.contrastText}`,
+                      fontSize: "9px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    24
+                  </Typography>
+                </>
+              )}
             </CardActionArea>
           </Box>
         </Box>

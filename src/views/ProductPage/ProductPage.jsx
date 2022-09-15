@@ -24,16 +24,16 @@ import Accordion from "../../components/Accordion/Accordion";
 
 const data = [
   {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
+    original: require("../../assets/img/Sweater.png"),
+    thumbnail: require("../../assets/img/SweaterSmall.png"),
   },
   {
-    original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
+    original: require("../../assets/img/Sweater.png"),
+    thumbnail: require("../../assets/img/SweaterSmall.png"),
   },
   {
-    original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
+    original: require("../../assets/img/Sweater.png"),
+    thumbnail: require("../../assets/img/SweaterSmall.png"),
   },
 ];
 
@@ -63,7 +63,8 @@ const ProductPage = () => {
       <Grid
         container
         sx={{
-          padding: isMobile || isMobileBigScreen ? "40px 16px" : "40px 74px",
+          px: isMobile || isMobileBigScreen ? "16px" : "74px",
+          py: "40px",
           overflowX: "hidden",
         }}
         spacing={isMobile || isMobileBigScreen ? 0 : 2}
@@ -130,7 +131,7 @@ const ProductPage = () => {
             </>
           ) : (
             <>
-              <Box sx={{ mb: "24px" }}>
+              <Box sx={{ mb: "24px", mt: "32px" }}>
                 <Breadcrumbs links={pathnames} />
               </Box>
               <Box sx={{ display: "flex" }}>

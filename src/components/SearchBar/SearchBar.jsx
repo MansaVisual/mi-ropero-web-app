@@ -43,6 +43,7 @@ const SearchBar = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "relative",
           fontFamily: theme.typography.fontFamily,
         }}
       >
@@ -72,7 +73,7 @@ const SearchBar = () => {
           aria-label="search"
           sx={{
             position: "absolute",
-            right: { xs: "14%", md: "30%", lg: "38%", xl: "32%" },
+            right: "8px",
           }}
         >
           <IoSearch fontSize="15px" color="red" />
@@ -80,7 +81,7 @@ const SearchBar = () => {
         {openSearch && (
           <Box
             sx={{
-              position: "absolute",
+              position: "fixed",
               top: { xs: "120px", md: "100px", lg: "48px", xl: "48px" },
               left: 0,
               right: 0,

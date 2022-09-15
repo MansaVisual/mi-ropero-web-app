@@ -98,9 +98,7 @@ const ViewCloset = () => {
     <Grid
       container
       spacing={2}
-      sx={{
-        padding: isMobile || isMobileBigScreen ? "40px 16px" : "40px 74px",
-      }}
+      sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", py: "40px" }}
     >
       <Grid item xs={12} sm={12} md={3}>
         {isMobile || isMobileBigScreen ? (
@@ -193,6 +191,9 @@ const ViewCloset = () => {
           </Box>
         ) : (
           <>
+            <Box sx={{ mt: "16px" }}>
+              <Breadcrumbs links={pathnames} />
+            </Box>
             <ChipFilterCategories />
             <Typography
               sx={{

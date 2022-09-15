@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageList,
   ImageListItem,
@@ -14,7 +14,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import theme from "../../styles/theme";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const itemData = [
@@ -46,6 +46,7 @@ const ClosetImagesCard = ({
   };
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [like, setLike] = useState(false);
 
   return (
     <Box>
@@ -144,11 +145,56 @@ const ClosetImagesCard = ({
                           : "calc(75% - 10px)",
                     }}
                   >
-                    <CardActionArea>
-                      <AiOutlineHeart
-                        size="24px"
-                        color={theme.palette.primary.main}
-                      />
+                    <CardActionArea
+                      onClick={() => setLike(!like)}
+                      disableTouchRipple
+                      sx={{
+                        position: "relative",
+                      }}
+                    >
+                      {!like ? (
+                        <>
+                          <AiOutlineHeart
+                            size="26px"
+                            color={theme.palette.primary.main}
+                          />
+                          <Typography
+                            component="span"
+                            sx={{
+                              position: "absolute",
+                              top: "50%",
+                              left: "50%",
+                              transform: "translate(-50%, -65%)",
+                              color: `${theme.palette.primary.main}`,
+                              fontSize: "9px",
+                              fontWeight: 700,
+                            }}
+                          >
+                            24
+                          </Typography>
+                        </>
+                      ) : (
+                        <>
+                          <AiFillHeart
+                            size="26px"
+                            color={theme.palette.primary.main}
+                          />
+                          <Typography
+                            component="span"
+                            sx={{
+                              position: "absolute",
+                              top: "50%",
+                              left: "50%",
+                              transform: "translate(-50%, -65%)",
+                              color: `${theme.palette.secondary.contrastText}`,
+                              fontSize: "9px",
+                              fontWeight: 700,
+                            }}
+                          >
+                            24
+                          </Typography>
+                        </>
+                      )}
                     </CardActionArea>
                   </Box>
                 </Box>

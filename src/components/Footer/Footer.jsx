@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Button, Typography, Stack, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  Stack,
+  useMediaQuery,
+  Link,
+} from "@mui/material";
 import theme from "../../styles/theme";
 import { StyledInput } from "../SearchBar/styles";
 import { Container } from "@mui/system";
@@ -137,12 +144,34 @@ const Footer = () => {
                 spacing={2}
                 pt="15px"
               >
-                <SocialButton>
-                  <FaApple style={{ fontSize: "16px" }} />
-                </SocialButton>
-                <SocialButton>
-                  <FaGooglePlay style={{ fontSize: "14px" }} />
-                </SocialButton>
+                <Link
+                  href="https://apps.apple.com/us/app/mi-ropero/id1515990319"
+                  color="inherit"
+                  underline="none"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SocialButton>
+                    <FaApple style={{ fontSize: "16px" }} />
+                  </SocialButton>
+                </Link>
+                <Link
+                  href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero"
+                  color="inherit"
+                  underline="none"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SocialButton>
+                    <FaGooglePlay style={{ fontSize: "14px" }} />
+                  </SocialButton>
+                </Link>
               </Stack>
               <Typography pt={isMobile ? "60px" : "26px"}>SEGUÍNOS</Typography>
               <Stack
@@ -151,15 +180,48 @@ const Footer = () => {
                 spacing={2}
                 pt="15px"
               >
-                <SocialButton>
-                  <FaFacebookF style={{ fontSize: "15px" }} />
-                </SocialButton>
-                <SocialButton>
-                  <FaYoutube style={{ fontSize: "15px" }} />
-                </SocialButton>
-                <SocialButton>
-                  <FaInstagram style={{ fontSize: "15px" }} />
-                </SocialButton>
+                <Link
+                  href="https://www.facebook.com/miroperoapp"
+                  color="inherit"
+                  underline="none"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SocialButton>
+                    <FaFacebookF style={{ fontSize: "15px" }} />
+                  </SocialButton>
+                </Link>
+                <Link
+                  href="https://www.youtube.com/channel/UCAFGxJMe8rJQ9LXYd26tnPQ"
+                  color="inherit"
+                  underline="none"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SocialButton>
+                    <FaYoutube style={{ fontSize: "15px" }} />
+                  </SocialButton>
+                </Link>
+                <Link
+                  href="https://www.instagram.com/miroperoapp/"
+                  color="inherit"
+                  underline="none"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SocialButton>
+                    <FaInstagram style={{ fontSize: "15px" }} />
+                  </SocialButton>
+                </Link>
               </Stack>
             </Box>
             <Box>

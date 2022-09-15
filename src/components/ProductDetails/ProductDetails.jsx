@@ -44,6 +44,10 @@ const ProductDetails = ({ title, content }) => {
                 ? theme.typography.fontSize[3]
                 : theme.typography.fontSize[4],
             fontWeight: theme.typography.fontWeightRegular,
+            color:
+              isMobile || isMobileBigScreen
+                ? theme.palette.quaternary.contrastText
+                : theme.palette.tertiary.main,
             textTransform: "capitalize",
             my: "8px",
             flex: 0.6,
