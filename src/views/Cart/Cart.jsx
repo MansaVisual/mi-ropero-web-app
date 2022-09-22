@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import { Box, Grid, IconButton, Link, useMediaQuery } from "@mui/material";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Chip from "../../components/Chip/Chip";
 import SliderProd from "../../components/SliderProd/SliderProd";
 import theme from "../../styles/theme";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import "../../styles/scss/styles.scss"
 
 const products = [
@@ -53,11 +54,14 @@ const products = [
 ]
 
 const Cart = () => {
+    const navigate = useNavigate();
+
     const [descuento,setDescuento]=useState(true)
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
     const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
     return(
         <>
@@ -68,7 +72,7 @@ const Cart = () => {
             container
             sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", my: "24px"}}
         >
-            <Grid item xs={12} sm={12} lg={9} pr={"32px"}>
+            <Grid item xs={12} sm={12} lg={9} sx={{paddingRight: isDesktop && "32px"}}>
                 <h2 className="carritoTitulo">Carrito de  compras</h2>
                 {products.map((prod,i)=>{
                     return(
@@ -86,7 +90,7 @@ const Cart = () => {
                                 <IconButton
                                     aria-label="delete"
                                     sx={{
-                                        fontSize:"2.3vw"
+                                        fontSize: isDesktop ? "2.3vw" : "35px"
                                     }}
                                 >
                                     <DeleteIcon color="secondary"/>
@@ -95,14 +99,19 @@ const Cart = () => {
                         </div>
                     )
                 })}
+                <p className="carritoVolver" onClick={()=>navigate("/")}>
+                    <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
+                    VOLVER
+                </p>
             </Grid>
 
-            <Grid item xs={12} sm={12} lg={3}
+            <Grid item xs={12} sm={12} md={6} lg={3}
                 sx={{
+                    margin:"auto",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
                     borderRadius:"10px 10px 20px 20px;",
                     backgroundColor:"#FDFEFF",
-                    height:"100%"
+                    height:"100%",
                 }}
             >
                 <ResumeBox/>
