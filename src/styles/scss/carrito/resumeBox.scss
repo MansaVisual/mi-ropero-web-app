@@ -24,6 +24,9 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            @include screen_1070{
+                flex-wrap: wrap;
+            }
             input{
                 background: #FFFFFF;
                 mix-blend-mode: normal;

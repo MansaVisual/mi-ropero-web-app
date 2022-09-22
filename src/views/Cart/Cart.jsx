@@ -107,7 +107,7 @@ const Cart = () => {
 
             <Grid item xs={12} sm={12} md={6} lg={3}
                 sx={{
-                    margin:"auto",
+                    margin: "0px auto",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
                     borderRadius:"10px 10px 20px 20px;",
                     backgroundColor:"#FDFEFF",
