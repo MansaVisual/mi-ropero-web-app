@@ -27,8 +27,12 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { RiFilePaperLine } from "react-icons/ri";
 import { IoTrashOutline } from "react-icons/io5";
 import theme from "../../styles/theme";
+import { useNavigate } from "react-router-dom";
 
 const NavIcons = () => {
+  const navigate = useNavigate();
+
+
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);
   const [notifMenu, setNotifMenu] = useState(null);
@@ -300,6 +304,7 @@ const NavIcons = () => {
                 cursor: "pointer",
                 mt: "8px",
               }}
+              onClick={()=>navigate("/carrito")}
             >
               IR AL CARRITO
             </Link>
