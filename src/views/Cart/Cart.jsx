@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Box, Grid, IconButton, Link, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, IconButton, Link, useMediaQuery } from "@mui/material";
 import { useLocation, useParams } from "react-router-dom";
 import Chip from "../../components/Chip/Chip";
 import SliderProd from "../../components/SliderProd/SliderProd";
@@ -19,6 +19,7 @@ const products = [
     },
     {
       id: 2,
+      description:"El ropero de Romialaniz",
       title: "Pantalon nuevo 2022",
       price: 1200,
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -28,7 +29,27 @@ const products = [
       title: "Remera negra 2022",
       price: 3000,
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    }
+    },
+    {
+        id: 1,
+        title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
+        description:"El ropero de Romialaniz",
+        price: 280000,
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      },
+      {
+        id: 2,
+        description:"El ropero de Romialaniz",
+        title: "Pantalon nuevo 2022",
+        price: 1200,
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      },
+      {
+        id: 3,
+        title: "Remera negra 2022",
+        price: 3000,
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      },
 ]
 
 const Cart = () => {
@@ -47,44 +68,41 @@ const Cart = () => {
             container
             sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", my: "24px"}}
         >
-            <Grid item xs={12} sm={12} md={9} pr={"32px"}>
-                {isMobile || isMobileBigScreen ? 
-                    <>
-                        
-                    </>
-                    :
-                    <>
-                        {products.map((prod,i)=>{
-                            console.log(prod)
-                            return(
-                                <div className="contenedorCarritoResumen">
-                                    <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
-                                    <div className="titleDescription">
-                                        <h3>{prod.title}</h3>
-                                        <p>{prod.description}</p>
-                                    </div>
-                                    {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
-                                    <p className="precioProd">$ {prod.price}</p>
-                                    <IconButton
-                                        aria-label="delete"
-                                        sx={{
-                                            mr:"40px",
-                                        }}
-                                    >
-                                        <DeleteIcon color="secondary"/>
-                                    </IconButton>
+            <Grid item xs={12} sm={12} lg={9} pr={"32px"}>
+                <h2 className="carritoTitulo">Carrito de  compras</h2>
+                {products.map((prod,i)=>{
+                    return(
+                        <div className="contenedorCarritoResumen">
+                            <div className="fotoTitle">
+                                <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
+                                <div className="titleDescription">
+                                    <h3>{prod.title}</h3>
+                                    <p>{prod.description}</p>
                                 </div>
-                            )
-                        })}
-                    </>
-                }
+                            </div>
+                            <div className="preciosDelete">
+                                {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
+                                <p className="precioProd">$ {prod.price}</p>
+                                <IconButton
+                                    aria-label="delete"
+                                    sx={{
+                                        fontSize:"2.3vw"
+                                    }}
+                                >
+                                    <DeleteIcon color="secondary"/>
+                                </IconButton>
+                            </div>
+                        </div>
+                    )
+                })}
             </Grid>
 
-            <Grid item xs={12} sm={12} md={3}
+            <Grid item xs={12} sm={12} lg={3}
                 sx={{
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
                     borderRadius:"10px 10px 20px 20px;",
                     backgroundColor:"#FDFEFF",
+                    height:"100%"
                 }}
             >
                 <ResumeBox/>
