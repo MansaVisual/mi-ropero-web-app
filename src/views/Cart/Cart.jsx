@@ -57,6 +57,7 @@ const Cart = () => {
     const navigate = useNavigate();
 
     const [descuento,setDescuento]=useState(true)
+    setDescuento(true)
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
