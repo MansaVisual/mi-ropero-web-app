@@ -12,6 +12,7 @@ import SearchClosetResults from "./views/SearchClosetResults/SearchClosetResults
 import ViewCloset from "./views/ViewCloset/ViewCloset";
 import ProductPage from "./views/ProductPage/ProductPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Cart from "./views/Cart/Cart";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
           <Route
             path="/roperos/:keyword/:closetId/:itemName"
             element={<ProductPage />}
+          />
+          <Route
+            path="/carrito"
+            element={<Cart />}
           />
         </Routes>
         <Footer />
