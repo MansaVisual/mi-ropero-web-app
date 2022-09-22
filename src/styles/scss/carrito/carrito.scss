@@ -1,0 +1,66 @@
+.carritoTitulo{
+    font-family: $fontFamily;
+    font-size: 25px;
+    font-weight: 700;
+    color: #443988;
+    margin-top: 0px;
+}
+.contenedorCarritoResumen{
+    width: 100%;
+    min-height: 8.7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $fontFamily;
+    font-weight: 600;
+    margin-top: 16px;
+    background-color: #FDFEFF;
+    box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
+    border-radius: 6px;
+    .fotoTitle{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-grow: 1;
+    }
+    .preciosDelete{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 15.5vw;
+        margin-right: 2.9vw;
+    }
+    .fotoProd{
+        min-width: 5vw;
+        height: 5vw;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 1.7vw 2.3vw;
+    }
+    .titleDescription{
+        flex-grow: 1;
+        max-width: 27.5vw;
+        color: $colorGrisaseo;
+        margin: 19px 0px;
+        font-size: 1.15vw;
+        padding-right: 10.4vw;
+        font-size: 1.1vw;
+    }
+    .precioDesc{
+        color: #969696;
+        font-size: 1vw;
+        margin-right: 22px;
+        text-align: center;
+        white-space: nowrap;
+        min-width: 5.2vw;
+    }
+    .precioProd{
+        font-size: 1.2vw;
+        color: #423B3C;
+        margin-right: 22px;
+        text-align: center;
+        white-space: nowrap;
+        min-width: 5.2vw;
+    }
+}
