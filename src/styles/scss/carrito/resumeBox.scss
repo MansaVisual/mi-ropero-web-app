@@ -22,14 +22,8 @@
         }
         .inputButton{
             display: flex;
-            justify-content: space-between;
-            @include screen_1070{
-                flex-wrap: wrap;
-                button{
-                    margin-top: 8px;
-                    margin-left: 0px !important;
-                }
-            }
+            justify-content: flex-start;
+            align-items: center;
             input{
                 background: #FFFFFF;
                 mix-blend-mode: normal;
@@ -39,6 +33,10 @@
                 font-weight: 400;
                 font-size: 1vw;
                 line-height: 18px;
+                @include screen_1000{
+                    width: 18vw;
+                    font-size: 12px;
+                }
             }
             button{
                 margin-left: 16px;
@@ -49,6 +47,15 @@
                 background: #969696;
                 box-shadow: 0.878378px 0.878378px 17.5676px #F6F8F9;
                 border-radius: 4.39189px;
+                @include screen_1070{
+                    margin-top: 8px;
+                    margin-left: 0px !important;
+                }
+                @include screen_1000{
+                    margin: 0px;
+                    margin-left: 16px !important;
+                    font-size: 11px;
+                }
             }
         }
     }
@@ -57,6 +64,10 @@
         height: 152px;
         border: 1px solid pink;
         border-radius: 8px;
+        max-width: 300px;
+        @include screen_1000{
+            margin: auto;
+        }
     }
     .botonFinalizar{
         padding: 24px 16px;

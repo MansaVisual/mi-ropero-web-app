@@ -17,6 +17,9 @@
     background-color: #FDFEFF;
     box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
     border-radius: 6px;
+    @include screen_1000{
+        margin-top: 24px;
+    }
     .fotoTitle{
         display: flex;
         align-items: center;
@@ -29,6 +32,9 @@
         justify-content: flex-end;
         width: 15.5vw;
         margin-right: 2.9vw;
+        @include screen_1000{
+            width: 212px;
+        }
     }
     .fotoProd{
         min-width: 5vw;
@@ -37,6 +43,10 @@
         background-repeat: no-repeat;
         background-position: center;
         margin: 1.7vw 2.3vw;
+        @include screen_1000{
+            min-width: 71px;
+            height: 71px;
+        }
     }
     .titleDescription{
         flex-grow: 1;
@@ -46,6 +56,17 @@
         font-size: 1.15vw;
         padding-right: 10.4vw;
         font-size: 1.1vw;
+        @include screen_1000{
+            font-size: 1.8vw;
+            max-width: 374px;
+            margin: 10px 0px;
+        }
+        h3{
+            color: #423B3C;
+        }
+        p{
+            color: #878787;
+        }
     }
     .precioDesc{
         color: #969696;
@@ -54,6 +75,10 @@
         text-align: center;
         white-space: nowrap;
         min-width: 5.2vw;
+        @include screen_1000{
+            min-width: 52px;
+            font-size: 14px;
+        }
     }
     .precioProd{
         font-size: 1.2vw;
@@ -62,5 +87,22 @@
         text-align: center;
         white-space: nowrap;
         min-width: 5.2vw;
+        @include screen_1000{
+            min-width: 52px;
+            font-size: 17px;
+        }
+    }
+}
+.carritoVolver{
+    font-family: $fontFamily;
+    font-weight: 600;
+    font-size: 12px;
+    color: #424143;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    @include screen_1000{
+        margin: 32px 0px 64px;
     }
 }
