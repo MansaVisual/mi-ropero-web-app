@@ -1,108 +1,138 @@
-.carritoTitulo{
-    font-family: $fontFamily;
-    font-size: 25px;
-    font-weight: 700;
-    color: #443988;
-    margin-top: 0px;
-}
-.contenedorCarritoResumen{
-    width: 100%;
-    min-height: 8.7vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: $fontFamily;
-    font-weight: 600;
-    margin-top: 16px;
-    background-color: #FDFEFF;
-    box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
-    border-radius: 6px;
-    @include screen_1000{
-        margin-top: 24px;
+.gridContainer{
+    padding: 0px 74px;
+    margin: 24px 0px;
+    @include screen_768{
+        padding: 0px 32px;
     }
-    .fotoTitle{
+    .carritoTitulo{
+        font-family: $fontFamily;
+        font-size: 25px;
+        font-weight: 700;
+        color: #443988;
+        margin-top: 0px;
+    }
+    .contenedorCarritoResumen{
+        width: 100%;
+        min-height: 8.7vw;
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: flex-start;
-        flex-grow: 1;
-    }
-    .preciosDelete{
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        width: 15.5vw;
-        margin-right: 2.9vw;
+        font-family: $fontFamily;
+        font-weight: 600;
+        margin-top: 16px;
+        background-color: #FDFEFF;
+        box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
+        border-radius: 6px;
+        position: relative;
         @include screen_1000{
-            width: 212px;
+            margin-top: 24px;
         }
-    }
-    .fotoProd{
-        min-width: 5vw;
-        height: 5vw;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        margin: 1.7vw 2.3vw;
-        @include screen_1000{
-            min-width: 71px;
-            height: 71px;
+        .fotoTitle{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
         }
-    }
-    .titleDescription{
-        flex-grow: 1;
-        max-width: 27.5vw;
-        color: $colorGrisaseo;
-        margin: 19px 0px;
-        font-size: 1.15vw;
-        padding-right: 10.4vw;
-        font-size: 1.1vw;
-        @include screen_1000{
-            font-size: 1.8vw;
-            max-width: 374px;
-            margin: 10px 0px;
+        .preciosDelete{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 15.5vw;
+            margin-right: 2.9vw;
+            @include screen_1000{
+                width: 212px;
+            }
         }
-        h3{
+        .fotoProd{
+            min-width: 5vw;
+            height: 5vw;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 1.7vw 2.3vw;
+            @include screen_1000{
+                min-width: 71px;
+                height: 71px;
+            }
+        }
+        .titleDescription{
+            flex-grow: 1;
+            max-width: 27.5vw;
+            color: $colorGrisaseo;
+            margin: 19px 0px;
+            font-size: 1.15vw;
+            padding-right: 10.4vw;
+            font-size: 1.1vw;
+            @include screen_1000{
+                font-size: 1.8vw;
+                max-width: 374px;
+                margin: 10px 0px;
+            }
+            @include screen_768{
+                font-size: 1.9vw;
+            }
+            h3{
+                color: #423B3C;
+                overflow-y: hidden;
+                @include screen_1000{
+                    min-height: 60px;
+                    max-height: 60px;
+                }
+                @include screen_768{
+                    min-height: 70px;
+                    max-height: 70px;
+                }
+            }
+            p{
+                color: #878787;
+            }
+        }
+        .precioDesc{
+            color: #969696;
+            font-size: 1vw;
+            margin-right: 22px;
+            text-align: center;
+            white-space: nowrap;
+            min-width: 5.2vw;
+            @include screen_1000{
+                min-width: 52px;
+                font-size: 14px;
+            }
+        }
+        .precioProd{
+            font-size: 1.2vw;
             color: #423B3C;
+            margin-right: 22px;
+            text-align: center;
+            white-space: nowrap;
+            min-width: 5.2vw;
+            @include screen_1000{
+                min-width: 52px;
+                font-size: 17px;
+            }
         }
-        p{
-            color: #878787;
+        .botonBorrar{
+            @include screen_768{
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
         }
     }
-    .precioDesc{
-        color: #969696;
-        font-size: 1vw;
-        margin-right: 22px;
-        text-align: center;
-        white-space: nowrap;
-        min-width: 5.2vw;
+    .carritoVolver{
+        font-family: $fontFamily;
+        font-weight: 600;
+        font-size: 12px;
+        color: #424143;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: fit-content;
+        &:hover{
+            transform: scale(1.1);
+        }
         @include screen_1000{
-            min-width: 52px;
-            font-size: 14px;
+            margin: 32px 0px 64px;
         }
-    }
-    .precioProd{
-        font-size: 1.2vw;
-        color: #423B3C;
-        margin-right: 22px;
-        text-align: center;
-        white-space: nowrap;
-        min-width: 5.2vw;
-        @include screen_1000{
-            min-width: 52px;
-            font-size: 17px;
-        }
-    }
-}
-.carritoVolver{
-    font-family: $fontFamily;
-    font-weight: 600;
-    font-size: 12px;
-    color: #424143;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: fit-content;
-    @include screen_1000{
-        margin: 32px 0px 64px;
     }
 }
