@@ -1,8 +1,6 @@
 import React, {useState} from "react";
-import { Box, Button, Grid, IconButton, Link, useMediaQuery } from "@mui/material";
+import { Box, Button, Grid, IconButton, useMediaQuery } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import Chip from "../../components/Chip/Chip";
-import SliderProd from "../../components/SliderProd/SliderProd";
 import theme from "../../styles/theme";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
@@ -10,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import "../../styles/scss/styles.scss"
+import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 
 const products = [
     {
@@ -166,24 +165,8 @@ const Cart = () => {
                     </Grid>
                 }
 
-                <Grid item xs={12} sm={12} md={12}>
-                    <Box sx={{ mt: "40px", textAlign: "center" }}>
-                        <Chip primary>Productos relacionados</Chip>
-                    </Box>
-                    <Box sx={{ mt: "24px", mb: "28px" }}>
-                        <SliderProd />
-                    </Box>
-                    <Box sx={{ textAlign: "center" }}>
-                        <Link
-                        sx={{
-                            color: theme.palette.tertiary.main,
-                            fontSize: theme.typography.fontSize[4],
-                        }}
-                        >
-                            VER TODOS LOS PRODUCTOS RELACIONADOS
-                        </Link>
-                    </Box>
-                </Grid>
+                <ProdsRelation/>
+                
             </Grid>
             {eliminar &&
                 <div className="cartElimianrPopUp">
