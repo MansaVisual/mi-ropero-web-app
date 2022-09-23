@@ -13,7 +13,7 @@ import "../../styles/scss/styles.scss"
 const products = [
     {
       id: 1,
-      title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
+      title: "Buzo campera Fila aeroflat microfibra sie nuevo modelo 2022. Perfecto estado.",
       description:"El ropero de Romialaniz",
       price: 280000,
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -27,7 +27,8 @@ const products = [
     },
     {
       id: 3,
-      title: "Remera negra 2022",
+      description:"El ropero de Romialaniz",
+      title: "Remera negra 2022 de algodon y algunas tiras rojas y blancas a los costados y frente de las manguitas cortas",
       price: 3000,
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     },
@@ -46,6 +47,7 @@ const products = [
         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       },
       {
+        description:"El ropero de Romialaniz",
         id: 3,
         title: "Remera negra 2022",
         price: 3000,
@@ -60,9 +62,10 @@ const Cart = () => {
 
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
-    const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-    const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    // const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+    // const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+    const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
     return(
         <>
@@ -71,32 +74,40 @@ const Cart = () => {
         </Box>
         <Grid
             container
-            sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", my: "24px"}}
+            className="gridContainer"
         >
             <Grid item xs={12} sm={12} lg={9} sx={{paddingRight: isDesktop && "32px"}}>
                 <h2 className="carritoTitulo">Carrito de  compras</h2>
                 {products.map((prod,i)=>{
+                    const newTitle = isTablet ? prod.title.slice(0,50) : prod.title.slice(0,90)
                     return(
                         <div className="contenedorCarritoResumen">
                             <div className="fotoTitle">
                                 <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
                                 <div className="titleDescription">
-                                    <h3>{prod.title}</h3>
-                                    <p>{prod.description}</p>
+                                    <h3>
+                                        {newTitle}
+                                        {prod.title.length > 50 && isTablet && "..."}
+                                        {prod.title.length > 90 && !isTablet && "..."}
+                                    </h3>
+                                    <p>
+                                        {prod.description}
+                                    </p>
                                 </div>
                             </div>
                             <div className="preciosDelete">
                                 {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
                                 <p className="precioProd">$ {prod.price}</p>
-                                <IconButton
+                            </div>
+                            <IconButton
                                     aria-label="delete"
+                                    className="botonBorrar"
                                     sx={{
-                                        fontSize: isDesktop ? "2.3vw" : "35px"
+                                        fontSize: isDesktop ? "2.3vw" : "35px",
                                     }}
                                 >
                                     <DeleteIcon color="secondary"/>
-                                </IconButton>
-                            </div>
+                            </IconButton>
                         </div>
                     )
                 })}
@@ -106,7 +117,7 @@ const Cart = () => {
                 </p>
             </Grid>
 
-            <Grid item xs={12} sm={12} md={6} lg={3}
+            <Grid item xs={12} sm={6} md={6} lg={3}
                 sx={{
                     margin: "0px auto",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
