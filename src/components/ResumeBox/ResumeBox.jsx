@@ -1,7 +1,28 @@
 import { Button, TextField } from "@mui/material"
-
-
+import React,{useState} from "react"
+ 
 const ResumeBox = ()=>{
+
+    const [codigo,setCodigo]=useState("")
+    const [codigoValido,setCodigoValido]=useState(true)
+
+
+    const handleChange= ()=>{
+        const cod = document.getElementById("codigo").value
+        console.log(cod)
+        setCodigoValido(true)
+        setCodigo(cod)
+    }
+    const handleClick = ()=>{
+        setCodigoValido(true)
+        if(codigo!==""){
+            alert(codigo)
+        }else{
+            document.getElementById("codigo").focus()
+            setCodigoValido(false)
+        }
+    }
+
     return(
         <div className="resumeBox">
             <div className="box firstBox">
@@ -17,8 +38,13 @@ const ResumeBox = ()=>{
                 <div className="inputButton">
                     <TextField placeholder="INGRESAR CÓDIGO"
                         size="small"
+                        id="codigo"
+                        color={`${codigoValido ? "primary" : "secondary"}`}
+                        onChangeCapture={()=>handleChange()}
                     ></TextField>
-                    <Button>
+                    <Button
+                        onClick={()=>handleClick()}
+                    >
                         VALIDAR
                     </Button>
                 </div>
