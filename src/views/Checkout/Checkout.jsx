@@ -8,6 +8,7 @@ import theme from "../../styles/theme";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
 import NavBarForm from "../../components/NavBarForm/NavBarForm";
+import InfoContact from "../../components/FormCheckout/InfoContact";
 
 const Checkout = ()=>{
 
@@ -43,7 +44,7 @@ const Checkout = ()=>{
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
-                    <h2 className="TituloCartCheck">Datos de contacto</h2>
+                    {typeNav === "info" ? <InfoContact typeNav={typeNav} /> : null}
 
                     <p className="carritoVolver" onClick={()=>navigate("/carrito")}>
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>

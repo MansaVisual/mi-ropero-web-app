@@ -1,0 +1,50 @@
+.formCheckout{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .inputForm{
+        font-style: italic;
+        font-weight: 400;
+        color: #BABCBE;
+        font-size: 14px;
+        width: 373px;
+        background: #FFFFFF;
+        mix-blend-mode: normal;
+        border: 0.5px solid #878787;
+        border-radius: 4px;
+    }
+    .inputFormEspecial{
+        font-style: italic;
+        font-weight: 400;
+        color: #BABCBE;
+        font-size: 14px;
+        background: #FFFFFF;
+        mix-blend-mode: normal;
+        border: 0.5px solid #878787;
+        border-radius: 4px;
+    }
+    .labelForm{
+        font-weight: 600;
+        font-size: 13px;
+        text-indent: 16px;
+        color: #423B3C;
+    }
+    .subLabelForm{
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+        align-items: center;
+        color: #878787;
+        margin-top: 8px;
+    }
+    .AlturaPisoDepto{
+        display: flex;
+        .inputs{
+            margin: 0px 6px;
+        }
+    }
+    .margenInput{
+        margin-bottom: 24px;
+        min-width: 49%;
+    }
+}
