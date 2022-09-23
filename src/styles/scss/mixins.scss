@@ -1,17 +1,32 @@
-@mixin screen_1070{
-    @media (max-width:1070px) {
-        @content;
-      }
-}
+// SCREENS PREDETERMIANDAS
 
 @mixin screen_1000 {
-    @media (max-width:1000px) {
-      @content;
-    }
+  @media (max-width:1000px) {
+    @content;
+  }
 }
 
 @mixin screen_768{
   @media(max-width:768px){
     @content;
   }
+}
+
+@mixin screen_601{
+  @media(max-width:601px){
+    @content;
+  }
+}
+
+// ESPECIALES
+@mixin screen_1070{
+  @media (max-width:1070px) {
+      @content;
+    }
+}
+
+@mixin screen_328{
+  @media (max-width:328px) {
+      @content;
+    }
 }
