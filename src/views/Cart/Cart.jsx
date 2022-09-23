@@ -85,7 +85,7 @@ const Cart = () => {
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px"
                     }}>
-                    <h2 className="carritoTitulo">Carrito de  compras</h2>
+                    <h2 className="TituloCartCheck">Carrito de  compras</h2>
                     {products.length !== 0 ?
                         <>
                             {products.map((prod,i)=>{
