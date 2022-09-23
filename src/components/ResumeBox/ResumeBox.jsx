@@ -1,7 +1,9 @@
 import { Button, TextField } from "@mui/material"
 import React,{useState} from "react"
- 
-const ResumeBox = ()=>{
+import { useLocation, useNavigate } from "react-router-dom";
+
+const ResumeBox = ({stateForm})=>{
+    const navigate = useNavigate();
 
     const [codigo,setCodigo]=useState("")
     const [codigoValido,setCodigoValido]=useState(true)
@@ -33,34 +35,40 @@ const ResumeBox = ()=>{
                 <p className="subtitulo">Envío</p>
                 <p className="subtitulo p14">GRATIS</p>
             </div>
-            <div className="boxInput">
-                <p className="subtitulo subtituloDesc">Código de descuento / Giftcard</p>
-                <div className="inputButton">
-                    <TextField placeholder="INGRESAR CÓDIGO"
-                        size="small"
-                        id="codigo"
-                        color={`${codigoValido ? "primary" : "secondary"}`}
-                        onChangeCapture={()=>handleChange()}
-                    ></TextField>
-                    <Button
-                        onClick={()=>handleClick()}
-                    >
-                        VALIDAR
-                    </Button>
+            {!stateForm && 
+                <div className="boxInput">
+                    <p className="subtitulo subtituloDesc">Código de descuento / Giftcard</p>
+                    <div className="inputButton">
+                        <TextField placeholder="INGRESAR CÓDIGO"
+                            size="small"
+                            id="codigo"
+                            color={`${codigoValido ? "primary" : "secondary"}`}
+                            onChangeCapture={()=>handleChange()}
+                            ></TextField>
+                        <Button
+                            onClick={()=>handleClick()}
+                            >
+                            VALIDAR
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            }
             <div className="box">
                 <p className="subtitulo subtituloTotal">TOTAL:</p>
                 <p className="subtitulo subtituloTotal">$ 127.199</p>
             </div>
-            <div className="banner">
+            <div className="banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>
-            <div className="botonFinalizar">
-                <Button>
-                    FINALIZAR COMPRA
-                </Button>
-            </div>
+            {!stateForm && 
+                <div className="botonFinalizar">
+                    <Button
+                        onClick={()=>navigate("/checkout")}
+                        >
+                        FINALIZAR COMPRA
+                    </Button>
+                </div>
+            }
         </div>
     )
 }
