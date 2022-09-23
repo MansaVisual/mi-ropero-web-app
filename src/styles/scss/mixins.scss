@@ -30,3 +30,9 @@
       @content;
     }
 }
+
+@mixin screen_506 {
+  @media (max-width:506px){
+    @content
+  }
+}
