@@ -63,20 +63,23 @@ const Cart = () => {
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     // const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-    // const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
     return(
         <>
-        <Box container mt={"56px"} ml={"74px"}>
+        <Box container className="cartBreadcrumbs">
             <Breadcrumbs links={pathnames} />
         </Box>
         <Grid
             container
             className="gridContainer"
         >
-            <Grid item xs={12} sm={12} lg={9} sx={{paddingRight: isDesktop && "32px"}}>
+            <Grid item xs={12} sm={12} lg={9} 
+                sx={{
+                    paddingRight: isDesktop ? "32px" : "0px"
+                }}>
                 <h2 className="carritoTitulo">Carrito de  compras</h2>
                 {products.map((prod,i)=>{
                     const newTitle = isTablet ? prod.title.slice(0,50) : prod.title.slice(0,90)
@@ -90,9 +93,13 @@ const Cart = () => {
                                         {prod.title.length > 50 && isTablet && "..."}
                                         {prod.title.length > 90 && !isTablet && "..."}
                                     </h3>
-                                    <p>
+                                    <p className="description">
                                         {prod.description}
                                     </p>
+                                    <div className="preciosDeleteMobile">
+                                        {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
+                                        <p className="precioProd">$ {prod.price}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div className="preciosDelete">
@@ -103,7 +110,7 @@ const Cart = () => {
                                     aria-label="delete"
                                     className="botonBorrar"
                                     sx={{
-                                        fontSize: isDesktop ? "2.3vw" : "35px",
+                                        fontSize: isDesktop ? "2.3vw" : isMobileBigScreen ? "30px" : "35px"
                                     }}
                                 >
                                     <DeleteIcon color="secondary"/>
@@ -117,7 +124,7 @@ const Cart = () => {
                 </p>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={6} lg={3}
+            <Grid item md={6} lg={3}
                 sx={{
                     margin: "0px auto",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",

@@ -4,6 +4,9 @@
     @include screen_768{
         padding: 0px 32px;
     }
+    @include screen_601{
+        padding: 0px 16px;
+    }
     .carritoTitulo{
         font-family: $fontFamily;
         font-size: 25px;
@@ -27,6 +30,10 @@
         @include screen_1000{
             margin-top: 24px;
         }
+        @include screen_601{
+            max-width: 328px;
+            margin: auto;
+        }
         .fotoTitle{
             display: flex;
             align-items: center;
@@ -41,6 +48,17 @@
             margin-right: 2.9vw;
             @include screen_1000{
                 width: 212px;
+            }
+            @include screen_601{
+                display: none;
+            }
+        }
+        .preciosDeleteMobile{
+            display: none;
+            @include screen_601{
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
         .fotoProd{
@@ -71,6 +89,10 @@
             @include screen_768{
                 font-size: 1.9vw;
             }
+            @include screen_601{
+                font-size: 13px;
+                max-width: 176px;
+            }
             h3{
                 color: #423B3C;
                 overflow-y: hidden;
@@ -83,7 +105,7 @@
                     max-height: 70px;
                 }
             }
-            p{
+            .description{
                 color: #878787;
             }
         }
@@ -134,5 +156,15 @@
         @include screen_1000{
             margin: 32px 0px 64px;
         }
+    }
+}
+.cartBreadcrumbs{
+    margin-left: 74px;
+    margin-top: 56px;
+    @include screen_768{
+        margin-left: 32px;
+    }
+    @include screen_601{
+        margin-left: 16px;
     }
 }

@@ -3,6 +3,9 @@
     justify-content: "center";
     flex-wrap: "wrap";
     width: "100%";
+    @include screen_601{
+        max-width: 327px;
+    }
     .firstBox{
         margin-top: 24px;
     }
@@ -40,6 +43,12 @@
                     width: 18vw;
                     font-size: 12px;
                 }
+                @include screen_601{
+                    width: 140px;
+                }
+                @include screen_328{
+                    width: 160px;
+                }
             }
             button{
                 margin-left: 16px;
@@ -59,6 +68,10 @@
                     margin-left: 16px !important;
                     font-size: 11px;
                 }
+                @include screen_328{
+                    margin-top: 8px;
+                    margin-left: 0px !important;
+                }
             }
         }
     }
@@ -70,6 +83,9 @@
         max-width: 300px;
         @include screen_1000{
             margin: auto;
+        }
+        @include screen_601{
+            margin: 0px 16px;
         }
     }
     .botonFinalizar{
@@ -90,6 +106,9 @@
         font-weight: 700;
         white-space: nowrap;
         color: $colorGrisaseo;
+        @include screen_601{
+            font-size: 14px;
+        }
     }
     .subtituloDesc{
         white-space: unset;
