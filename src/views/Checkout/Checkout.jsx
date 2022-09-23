@@ -7,10 +7,7 @@ import "../../styles/scss/styles.scss"
 import theme from "../../styles/theme";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import SystemUpdateAltOutlinedIcon from '@mui/icons-material/SystemUpdateAltOutlined';
-import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import NavBarForm from "../../components/NavBarForm/NavBarForm";
 
 const Checkout = ()=>{
 
@@ -24,9 +21,10 @@ const Checkout = ()=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     // const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
-    const onNextForm=()=>{
-        
+    const onNextForm=(type)=>{
+        setTypeNav(type)
     }
+    console.log(typeNav)
 
     return(
         <>
@@ -43,38 +41,10 @@ const Checkout = ()=>{
                         paddingRight: isDesktop ? "32px" : "0px"
                     }}
                 >
-                    <div className="navForm">
-                        <div style={{textAlign:"center"}} onClick={()=>onNextForm("info")}>
-                            <InfoOutlinedIcon
-                                className={`${typeNav==="info" ? "navEnabled" : "barraInferiorDisabled"}`}
-                                sx={{fontSize:"32px"}}
-                            />
-                            <div className={`${typeNav==="info" ? "barraInferior" : "navDisabled"}`}></div>
-                        </div>
-                        <div style={{textAlign:"center"}} onClick={()=>onNextForm("envio")}>
-                            <SystemUpdateAltOutlinedIcon 
-                                className={`${typeNav==="envio" ? "navEnabled" : "navDisabled"}`} 
-                                sx={{fontSize:"32px"}}
-                            />
-                            <div className={`${typeNav==="envio" ? "barraInferior" : "navDisabled"}`}></div>
-                        </div>
-                        <div style={{textAlign:"center"}} onClick={()=>onNextForm("tarjeta")}>
-                            <CreditCardOutlinedIcon 
-                                className={`${typeNav==="tarjeta" ? "navEnabled" : "navDisabled"}`} 
-                                sx={{fontSize:"32px"}}
-                            />
-                            <div className={`${typeNav==="tarjeta" ? "barraInferior" : "navDisabled"}`}></div>
-                        </div>
-                        <div style={{textAlign:"center"}} onClick={()=>onNextForm("check")}>
-                            <CheckCircleOutlineOutlinedIcon 
-                                className={`${typeNav==="check" ? "navEnabled" : "navDisabled"}`} 
-                                sx={{fontSize:"32px"}}
-                            />
-                            <div className={`${typeNav==="check" ? "barraInferior" : "navDisabled"}`}></div>
-                        </div>
-                    </div>
+                    <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
-                    <h2 className="carritoTitulo">Carrito de  compras</h2>
+                    <h2 className="TituloCartCheck">Datos de contacto</h2>
+
                     <p className="carritoVolver" onClick={()=>navigate("/carrito")}>
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
                         VOLVER
