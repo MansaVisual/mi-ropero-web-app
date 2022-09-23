@@ -74,7 +74,7 @@ const Cart = () => {
 
     return(
         <>
-            <Box container className="cartBreadcrumbs">
+            <Box container className="Breadcrumbs">
                 <Breadcrumbs links={pathnames} />
             </Box>
             <Grid
@@ -161,7 +161,7 @@ const Cart = () => {
                         height:"100%",
                     }}
                     >
-                        <ResumeBox/>
+                        <ResumeBox stateForm={false}/>
                     </Grid>
                 }
 
