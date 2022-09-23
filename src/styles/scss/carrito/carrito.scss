@@ -173,16 +173,6 @@
         }
     }
 }
-.cartBreadcrumbs{
-    margin-left: 74px;
-    margin-top: 56px;
-    @include screen_768{
-        margin-left: 32px;
-    }
-    @include screen_601{
-        margin-left: 16px;
-    }
-}
 .cartElimianrPopUp{
     width: 100vw;
     height: 100vh;
