@@ -3,3 +3,16 @@
 
 @import "./carrito/carrito.scss";
 @import "./carrito/resumeBox.scss";
+@import "./form/formGeneral.scss";
+
+
+.Breadcrumbs{
+    margin-left: 74px;
+    margin-top: 56px;
+    @include screen_768{
+        margin-left: 32px;
+    }
+    @include screen_601{
+        margin-left: 16px;
+    }
+}
