@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material"
 import React,{useState} from "react"
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ResumeBox = ({stateForm})=>{
     const navigate = useNavigate();
