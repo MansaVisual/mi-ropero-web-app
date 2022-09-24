@@ -2,12 +2,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    .firstLine{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        .margenInput{
+            margin-bottom: 24px;
+            width: 50%;
+        }
+        .margenInputEspecial{
+            padding-right: 12px;
+        }
+    }
     .inputForm{
         font-style: italic;
         font-weight: 400;
         color: #BABCBE;
         font-size: 14px;
-        width: 373px;
+        width: 100%;
         background: #FFFFFF;
         mix-blend-mode: normal;
         border: 0.5px solid #878787;
@@ -23,6 +35,9 @@
         border: 0.5px solid #878787;
         border-radius: 4px;
     }
+    .textarea{
+        max-width: 758px;
+    }
     .labelForm{
         font-weight: 600;
         font-size: 13px;
@@ -36,6 +51,7 @@
         align-items: center;
         color: #878787;
         margin-top: 8px;
+        text-indent: 9px;
     }
     .AlturaPisoDepto{
         display: flex;
@@ -43,8 +59,34 @@
             margin: 0px 6px;
         }
     }
-    .margenInput{
-        margin-bottom: 24px;
-        min-width: 49%;
+    .codPostalContainer{
+        justify-content: flex-start;
+        align-items: center;
+        .codPostal{
+            width: 176px;
+        }
+        a{
+            margin-left: 12px;
+            margin-top: 16px;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 18px;
+            text-indent: 16px;
+            text-decoration-line: underline;
+            color: #443988;
+        }
+    }
+    .botonEnvio{
+        margin-top: 58px;
+        width: 200px;
+        text-align: center;
+        background: #443988;
+        border: 1px solid #443988;
+        box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        button{
+            color: #FFFFFF;
+            width: 100%;
+        }
     }
 }
