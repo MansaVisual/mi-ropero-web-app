@@ -23,3 +23,8 @@
     color: #443988;
     margin-top: 0px;
 }
+.screen1000{
+    @include screen_1000{
+        margin: 24px 12px !important;
+    }
+}
