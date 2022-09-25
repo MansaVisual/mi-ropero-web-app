@@ -6,6 +6,11 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
+        @include screen_601{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
         .margenInput{
             margin-bottom: 24px;
             width: 50%;
