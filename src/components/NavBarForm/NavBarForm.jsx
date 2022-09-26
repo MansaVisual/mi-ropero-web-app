@@ -3,8 +3,6 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SystemUpdateAltOutlinedIcon from '@mui/icons-material/SystemUpdateAltOutlined';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import { useMediaQuery } from "@mui/material";
-import theme from "../../styles/theme";
 
 const NavBarForm = ({typeNav,onNextForm})=>{
 
