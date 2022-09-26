@@ -22,7 +22,7 @@ import { FaApple, FaGooglePlay } from "react-icons/fa";
 import theme from "../../styles/theme";
 
 const NavBar = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -31,7 +31,7 @@ const NavBar = () => {
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
-      {isMobile ? (
+      {isMobileBigScreen ? (
         <Box>
           <Toolbar
             className="toolbar-download"
@@ -175,14 +175,9 @@ const NavBar = () => {
       >
         <Toolbar
           sx={{
-            maxWidth: {
-              xs: "400px",
-              sm: "550px",
-              md: "100%",
-              lg: "100%",
-              xl: "100%",
-            },
-            boxShadow: isMobile ? null : "0px 4px 8px rgba(0, 0, 0, 0.2)",
+            boxShadow: isMobileBigScreen
+              ? null
+              : "0px 4px 8px rgba(0, 0, 0, 0.2)",
           }}
         >
           <Container
@@ -191,12 +186,13 @@ const NavBar = () => {
               alignItems: "center",
               justifyContent: "center",
               height: "48px",
+              p: 0,
             }}
             maxWidth="xl"
           >
             <Box
               sx={{
-                flex: isMobile ? 1 : null,
+                flex: isMobileBigScreen ? 1 : null,
                 paddingRight: { xs: "50px", lg: "60px", xl: "225px" },
               }}
             >
@@ -204,7 +200,7 @@ const NavBar = () => {
                 <img src={isologoMR} alt="logo-mi-ropero" />
               </Link>
             </Box>
-            {!isMobile ? (
+            {!isMobileBigScreen ? (
               <>
                 <Box>
                   <SearchBar placeholder="Buscá por ropero, producto, marca o talle" />
@@ -218,7 +214,6 @@ const NavBar = () => {
                       padding: "6px 25px 6px 25px",
                       fontSize: theme.typography.fontSize[2],
                       fontWeight: theme.typography.fontWeightRegular,
-                      lineHeight: "16.34px",
                       color: "hsla(351, 6%, 25%, 1)",
                       height: "31px",
                     }}
@@ -232,7 +227,7 @@ const NavBar = () => {
             <Box>
               <NavIcons />
             </Box>
-            {isMobile ? (
+            {isMobileBigScreen ? (
               <Box>
                 <NavMenu />
               </Box>
@@ -240,14 +235,13 @@ const NavBar = () => {
           </Container>
         </Toolbar>
 
-        {isMobile ? (
+        {isMobileBigScreen ? (
           <Container maxWidth="sm">
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0xp 1px 5px rgba(66,65,67,0.1)",
                 minHeight: "56px",
               }}
             >

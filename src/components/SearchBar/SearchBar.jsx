@@ -45,6 +45,7 @@ const SearchBar = () => {
           alignItems: "center",
           position: "relative",
           fontFamily: theme.typography.fontFamily,
+          flex: isMobile || isMobileBigScreen ? 1 : 0,
         }}
       >
         <StyledInput
@@ -57,10 +58,6 @@ const SearchBar = () => {
           sx={{
             minWidth: { xs: "328px", sm: "400px", lg: "420px", xl: "530px" },
             position: "relative",
-            "&.MuiInputBase-root": {
-              width: "unset",
-              flexGrow: "unset",
-            },
             "&.MuiInputBase-root .MuiInputBase-input": {
               padding: "4px calc(45px + 3%) 4px 0",
             },

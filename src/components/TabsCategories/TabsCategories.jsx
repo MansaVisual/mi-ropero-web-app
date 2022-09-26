@@ -36,8 +36,6 @@ export const TabPanel = (props) => {
 const TabsCategories = () => {
   const [value, setValue] = useState(undefined);
 
-  console.log("VALUE", value);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

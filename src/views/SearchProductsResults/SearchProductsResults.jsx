@@ -62,7 +62,6 @@ const SearchProductsResults = () => {
 
       <Grid
         container
-        spacing={4}
         sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", py: "40px" }}
       >
         <Grid item xs={12} sm={12} md={3}>

@@ -22,6 +22,7 @@ const ProductBuyBox = () => {
   // const location = useLocation();
   // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
+  const [openCommentDialog, setOpenCommentDialog] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -31,6 +32,14 @@ const ProductBuyBox = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClickOpenCommentDialog = () => {
+    setOpenCommentDialog(true);
+  };
+
+  const handleCloseCommentDialog = () => {
+    setOpenCommentDialog(false);
   };
 
   return (
@@ -47,7 +56,7 @@ const ProductBuyBox = () => {
               fontSize: theme.typography.fontSize[5],
               fontWeight: theme.typography.fontWeightRegular,
               color: theme.palette.tertiary.main,
-              mt: isMobile || isMobileBigScreen ? "16px" : 0,
+              mt: "16px",
             }}
           >
             Campera deportiva Adidad rosa pastel sin uso, como nueva, talle L
@@ -89,10 +98,32 @@ const ProductBuyBox = () => {
                   sx={{ height: "30px" }}
                 />
                 {open && (
-                  <DialogComponent open={open} handleClose={handleClose} />
+                  <DialogComponent
+                    open={open}
+                    handleClose={handleClose}
+                    dialogType="ofertar"
+                    title="¡OFERTÁ!"
+                    firstInputLabel="Monto de la oferta*"
+                    secondInputLabel="Comentarios"
+                    firstText="Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"
+                    leftButtonText="Cancelar"
+                    rightButtonText="Hacer oferta"
+                  />
                 )}
               </Box>
-              <CommentButton />
+              <CommentButton onClick={handleClickOpenCommentDialog} />
+              {openCommentDialog && (
+                <DialogComponent
+                  open={openCommentDialog}
+                  handleClose={handleCloseCommentDialog}
+                  dialogType="comentar"
+                  title="¡ENVIÁ UN MENSAJE!"
+                  firstDialogText="Sacate todas las dudas que tengas escribiéndole al vendedor/a. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc."
+                  thirdInputLabel="Tu mensaje para el vendedor/a"
+                  leftButtonText="Cancelar"
+                  rightButtonText="Enviar mensaje"
+                />
+              )}
             </Box>
             <Box
               sx={{
@@ -176,6 +207,7 @@ const ProductBuyBox = () => {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 mt: "24px",
+                mb: "80px",
               }}
             >
               <Box>
@@ -197,12 +229,22 @@ const ProductBuyBox = () => {
                     onClick={handleClickOpen}
                   />
                   {open && (
-                    <DialogComponent open={open} handleClose={handleClose} />
+                    <DialogComponent
+                      open={open}
+                      handleClose={handleClose}
+                      dialogType="ofertar"
+                      title="¡OFERTÁ!"
+                      firstInputLabel="Monto de la oferta*"
+                      secondInputLabel="Comentarios"
+                      firstText="Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"
+                      leftButtonText="Cancelar"
+                      rightButtonText="Hacer oferta"
+                    />
                   )}
                 </Box>
               </Box>
 
-              <Box>
+              <Box sx={{ marginLeft: "14px" }}>
                 <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[2],
@@ -228,6 +270,7 @@ const ProductBuyBox = () => {
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           maxWidth: "168px",
+                          minWidth: "100%",
                         },
                       },
                     }}

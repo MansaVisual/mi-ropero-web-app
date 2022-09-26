@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
@@ -21,6 +21,7 @@ import {
   LikeButton,
 } from "../../components/ActionButton/ActionButton";
 import Accordion from "../../components/Accordion/Accordion";
+import DialogComponent from "../../components/Dialog/Dialog";
 
 const data = [
   {
@@ -57,6 +58,16 @@ const ProductPage = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -67,10 +78,9 @@ const ProductPage = () => {
           py: "40px",
           overflowX: "hidden",
         }}
-        spacing={isMobile || isMobileBigScreen ? 0 : 2}
       >
-        <Grid item xs={12} sm={12} md={7}>
-          {isMobile || isMobileBigScreen ? (
+        <Grid item xs={12} sm={12} md={8} xl={6}>
+          {isMobile || isMobileBigScreen || isTablet ? (
             <>
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
@@ -92,7 +102,7 @@ const ProductPage = () => {
                 showNav={true}
                 showThumbnails={true}
                 thumbnailPosition={
-                  isMobile || isMobileBigScreen ? "bottom" : "left"
+                  isMobile || isMobileBigScreen || isTablet ? "bottom" : "left"
                 }
                 showFullscreenButton={false}
                 showPlayButton={false}
@@ -124,7 +134,7 @@ const ProductPage = () => {
           )}
         </Grid>
 
-        <Grid item xs={12} sm={12} md={5} position="relative">
+        <Grid item xs={12} sm={12} md={4} xl={6} position="relative">
           {isMobile || isMobileBigScreen ? (
             <>
               <ProductBuyBox />
@@ -154,15 +164,27 @@ const ProductPage = () => {
                   }}
                 >
                   <LikeButton />
-                  <CommentButton />
+                  <CommentButton onClick={handleClickOpen} />
                 </Box>
               </Box>
               <ProductBuyBox />
+              {open && (
+                <DialogComponent
+                  open={open}
+                  handleClose={handleClose}
+                  dialogType="comentar"
+                  title="¡ENVIÁ UN MENSAJE!"
+                  firstDialogText="Sacate todas las dudas que tengas escribiéndole al vendedor/a. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc."
+                  thirdInputLabel="Tu mensaje para el vendedor/a"
+                  leftButtonText="Cancelar"
+                  rightButtonText="Enviar mensaje"
+                />
+              )}
             </>
           )}
         </Grid>
 
-        <Grid item xs={12} sm={12} md={7}>
+        <Grid item xs={12} sm={12} md={8} xl={6}>
           {isMobile || isMobileBigScreen ? (
             <Box sx={{ mt: "32px" }}>
               <Accordion title="Características del producto" />
@@ -187,7 +209,7 @@ const ProductPage = () => {
           )}
         </Grid>
 
-        <Grid item xs={12} sm={12} md={5}>
+        <Grid item xs={12} sm={12} md={4} xl={6}>
           <Box
             sx={{
               display: "flex",
@@ -229,7 +251,7 @@ const ProductPage = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12}>
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip>Mas productos del ropero</Chip>
           </Box>
