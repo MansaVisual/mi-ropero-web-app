@@ -7,7 +7,7 @@ import { useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
 
 const NavBarForm = ({typeNav,onNextForm})=>{
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+
     return(
         <div className="navForm">
             <div style={{textAlign:"center",margin:"0px 3px"}} onClick={()=>onNextForm("info")}>
