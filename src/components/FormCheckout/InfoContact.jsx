@@ -140,7 +140,7 @@ const InfoContact=({typeForm})=>{
             </div>
 
             <div className="firstLine" style={{display:"flex",flexDirection:"column"}}>
-                <div>
+                <div className="contenedorTextarea">
                     <InputLabel className="labelForm" sx={{marginTop:"24px",marginBottom:"12px"}}>Información adicional</InputLabel>
                     <TextField 
                         placeholder="Puerta roja, timbre blanco"
@@ -149,7 +149,7 @@ const InfoContact=({typeForm})=>{
                         inputProps={{ maxLength: 70 }}
                     ></TextField>
                 </div>
-                <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Agregar información útil para encontrar la dirección.</InputLabel>
+                <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>
             </div>
 
             <div className="botonEnvio">
