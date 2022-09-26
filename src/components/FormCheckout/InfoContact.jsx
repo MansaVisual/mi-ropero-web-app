@@ -30,13 +30,13 @@ const InfoContact=({typeForm})=>{
             {errorInicial &&
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
-                    <p>Debe completar los campos del formulario</p>
+                    <p>Debe completar los campos del formulario para avanzar</p>
                 </div>
             }
             {campoObligatorio &&
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
-                    <p>Debe completar los campos obligatorios</p>
+                    <p>Debe completar los campos obligatorios para avanzar</p>
                 </div>
             }
 
@@ -56,12 +56,14 @@ const InfoContact=({typeForm})=>{
                 <div className="margenInput">
                     <InputLabel className="labelForm">Telefono de contacto *</InputLabel>
                     <TextField 
-                        placeholder="+54 011 - 4417 - 8054"
+                        placeholder="011589210"
                         size="small"
                         className={`inputForm`}
                         id="telefono"
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                         onFocus={(e)=>onFocus(e,clase)}
+                        type="number"
+                        
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Llamarán a este número si hay algún problema con el envío</InputLabel>
                 </div>
