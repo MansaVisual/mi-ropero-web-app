@@ -5,11 +5,12 @@ export const UseFormContext = createContext();
 export function FormContext ({children}) {
 
     const x = () =>{
+        console.log("HOLA A TODODS")
         const formData = new FormData();
         formData.append('email', 'esarias@gmail.com');
         formData.append('clave', '1234567890');
     
-        fetch('http://miroperoapp.7kb.net/MiRoperoApiDataGetway.php?class=clientes&method=login', {
+        fetch('https://miroperoapp.7kb.net/MiRoperoApiDataGetway.php?class=clientes&method=login', {
             method: 'POST',					
             body: formData
         })
