@@ -18,14 +18,13 @@ const Checkout = ()=>{
     
     const [typeNav,setTypeNav]=useState("info")
 
-    // const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-    // const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
     const onNextForm=(type)=>{
         setTypeNav(type)
     }
-    console.log(typeNav)
+
+
 
     return(
         <>
