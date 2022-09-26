@@ -1,5 +1,11 @@
 .metodoEnvio{
     .domicilioEntrega{
+        .domicilioTitle{
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 24px;
+            color: #878787;
+        }
         .card{
             background: #FDFEFF;
             border: 1px solid #BABCBE;
@@ -40,6 +46,9 @@
                 line-height: 24px;
                 color: #423B3C;
             }
+            img{
+                margin-right: 16px;
+            }
             .subtitle{
                 font-weight: 600;
                 font-size: 13px;
@@ -56,6 +65,11 @@
                 text-align: right;
                 color: #423B3C;
             }
+        }
+        .radioSelected{
+            border: 1px solid #443988;
+            box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
+            border-radius: 6px;
         }
     }
     .botonContinuar{
