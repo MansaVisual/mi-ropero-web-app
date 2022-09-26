@@ -1,5 +1,6 @@
 @import "./variables.scss";
 @import "./mixins.scss";
+@import "./screen1000.scss";
 
 @import "./carrito/carrito.scss";
 @import "./carrito/resumeBox.scss";
@@ -22,9 +23,4 @@
     font-weight: 700;
     color: #443988;
     margin-top: 0px;
-}
-.screen1000{
-    @include screen_1000{
-        margin: 24px 12px !important;
-    }
 }

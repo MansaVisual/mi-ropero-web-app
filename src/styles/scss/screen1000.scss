@@ -1,0 +1,10 @@
+.screen1000-banner{
+    @include screen_1000{
+        margin: 24px 12px !important;
+    }
+}
+.screen1000-codigo{
+    @include screen_1000{
+        margin: 8px 0px !important;
+    }
+}
