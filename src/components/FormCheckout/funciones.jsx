@@ -1,3 +1,8 @@
+// import {useContext} from "react"
+// import {UseFormContext} from "../../context/FormContext"
+
+// const {phoe}
+
 export const handleChangeForm = async(setErrorInicial,setForm,form) => {
     setErrorInicial(false)
     await setForm({...form,

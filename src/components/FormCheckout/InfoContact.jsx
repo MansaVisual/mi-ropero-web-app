@@ -11,6 +11,7 @@ const InfoContact=({typeForm})=>{
     const [form,setForm]=useState([])
 
     let clase = "formObligatorio"
+
     const [errorInicial, setErrorInicial]=useState(false)
     const [campoObligatorio,setCampoObligatorio]=useState(false)
 

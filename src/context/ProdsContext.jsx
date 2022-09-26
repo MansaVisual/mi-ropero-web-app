@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 export const UseProdsContext = createContext();
 
-const ProdsContext = ({children}) => {
+export const ProdsContext = ({children}) => {
 
     return(
         <UseProdsContext.Provider value={{}}>
@@ -10,5 +10,3 @@ const ProdsContext = ({children}) => {
         </UseProdsContext.Provider>
     )
 }
-
-export default ProdsContext

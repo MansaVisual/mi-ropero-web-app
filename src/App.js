@@ -14,8 +14,9 @@ import ProductPage from "./views/ProductPage/ProductPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cart from "./views/Cart/Cart";
 import Checkout from "./views/Checkout/Checkout";
-import ProdsContext from "./context/ProdsContext";
-import FormContext from "./context/FormContext";
+import { FormContext } from "./context/FormContext";
+import { ProdsContext } from "./context/ProdsContext";
+
 
 function App() {
   return (
