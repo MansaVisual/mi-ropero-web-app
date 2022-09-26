@@ -41,6 +41,7 @@
         border-radius: 4px;
         @include screen_601{
             max-width: 328px;
+            font-size: 13PX;
         }
     }
     .inputFormEspecial{
@@ -95,10 +96,22 @@
     .codPostalContainer{
         justify-content: flex-start;
         align-items: center;
+        @include screen_601{
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
         .codPostal{
             width: 176px;
             @include screen_601{
                 width: 100%;
+                max-width: 128px;
+            }
+            .inputForm{
+                @include screen_601{
+                    max-width: 128px;
+                    width: 100%;
+                }
             }
         }
         a{
@@ -111,9 +124,9 @@
             text-decoration-line: underline;
             color: #443988;
             @include screen_601{
-                margin-left: 0px;
+                margin-left: 16px;
                 text-indent: 0px;
-                margin-top: 8px;
+                margin-top: 24px;
             }
         }
     }

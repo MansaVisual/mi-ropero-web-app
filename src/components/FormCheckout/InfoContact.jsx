@@ -4,7 +4,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleClick, handleChangeForm, onFocus } from "./funciones";
 
 
-const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA']
+const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORRIENTES','SAN JUAN','NEUQUEN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT']
 
 const InfoContact=({typeForm})=>{
     const [currency, setCurrency] = useState('');
