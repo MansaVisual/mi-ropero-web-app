@@ -5,6 +5,7 @@
     width: "100%";
     @include screen_601{
         max-width: 327px;
+        margin: auto;
     }
     .firstBox{
         margin-top: 24px;
@@ -90,7 +91,7 @@
         @include screen_1001{
             margin: auto;
         }
-        @include screen_601{
+        @include screen_820{
             margin: 0px 16px;
         }
     }
