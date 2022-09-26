@@ -38,6 +38,12 @@
 
 @mixin screen_506 {
   @media (max-width:506px){
+    @content;
+  }
+}
+
+@mixin screen_360 {
+  @media (max-width:360px){
     @content
   }
 }
