@@ -1,26 +1,55 @@
 import { Button, InputLabel, MenuItem, TextField } from "@mui/material"
 import React, {useState} from "react"
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { handleClick, handleChangeForm, onFocus } from "./funciones";
 
-const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA']
+
+const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA']
 
 const InfoContact=({typeForm})=>{
     const [currency, setCurrency] = useState('');
+    const [form,setForm]=useState([])
+
+    let clase = "formObligatorio"
+    const [errorInicial, setErrorInicial]=useState(false)
+    const [campoObligatorio,setCampoObligatorio]=useState(false)
 
     const handleChange = (event) => {
-      setCurrency(event.target.value)
+        setCurrency(event.target.value)
+        setForm({...form,provincia:event.target.value})
+    }
+
+    const checkForm = async()=>{
+        await handleClick(form,setErrorInicial,setCampoObligatorio,clase,campoObligatorio)
     }
 
     return(
         <div className="formCheckout">
-            <h2 className="TituloCartCheck" style={{width:"100%"}}>Datos de contacto</h2>
+            <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Datos de contacto</h2>
             
-            <div className="firstLine">
+            {errorInicial &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Debe completar los campos del formulario</p>
+                </div>
+            }
+            {campoObligatorio &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Debe completar los campos obligatorios</p>
+                </div>
+            }
+
+            <div className="firstLine" style={{marginTop:"12px"}}>
                 <div className="margenInput margenInputEspecial">
                     <InputLabel className="labelForm">Nombre y Apellido ¿A quién se entrega? *</InputLabel>
                     <TextField 
                         placeholder="Nombre Apellido"
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="nombreApellido"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onFocus={(e)=>onFocus(e,clase)}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Como aparece en el DNI</InputLabel>
                 </div>
@@ -29,7 +58,10 @@ const InfoContact=({typeForm})=>{
                     <TextField 
                         placeholder="+54 011 - 4417 - 8054"
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="telefono"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onFocus={(e)=>onFocus(e,clase)}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Llamarán a este número si hay algún problema con el envío</InputLabel>
                 </div>
@@ -39,9 +71,12 @@ const InfoContact=({typeForm})=>{
                 <div className="margenInput margenInputEspecial">
                     <InputLabel className="labelForm">Calle</InputLabel>
                     <TextField 
-                        placeholder="Nombre Apellido"
+                        placeholder="Avenida Anta"
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="calle"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onFocus={(e)=>onFocus(e,clase)}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
                 </div>
@@ -53,6 +88,9 @@ const InfoContact=({typeForm})=>{
                             placeholder="1770"
                             size="small"
                             className="inputFormEspecial"
+                            id="alturaKM"
+                            onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                            onFocus={(e)=>onFocus(e,clase)}
                         ></TextField>
                     </div>
                     <div className="inputs">
@@ -61,6 +99,8 @@ const InfoContact=({typeForm})=>{
                             placeholder="5"
                             size="small"
                             className="inputFormEspecial"
+                            id="piso"
+                            onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                         ></TextField>
                     </div>
                     <div className="inputs">
@@ -69,6 +109,8 @@ const InfoContact=({typeForm})=>{
                             placeholder="C"
                             size="small"
                             className="inputFormEspecial"
+                            id="depto"
+                            onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                         ></TextField>
                     </div>
                 </div>
@@ -83,8 +125,10 @@ const InfoContact=({typeForm})=>{
                         select
                         defaultValue={"ejemplo"}
                         value={currency===""?"ejemplo":currency}
-                        onChange={handleChange}
-                        className="inputForm"
+                        onChange={(e)=>handleChange(e)}
+                        onFocus={(e)=>onFocus(e,clase)}
+                        id="provincia"
+                        className={`inputForm`}
                         sx={{"& div":{fontSize:"14px",color:currency===""&&"#BABCBE"}}}
                     >
                         <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
@@ -103,7 +147,10 @@ const InfoContact=({typeForm})=>{
                         placeholder={currency===""?"Primero debes ingresar una provincia":"Mar del Plata"}
                         disabled={currency==="" ? true : false}
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="barrioLocalidad"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onFocus={(e)=>onFocus(e,clase)}
                     ></TextField>
                 </div>
             </div>
@@ -115,6 +162,8 @@ const InfoContact=({typeForm})=>{
                         placeholder="Avenida Callao"
                         size="small"
                         className="inputForm"
+                        id="entrecalle1"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                     ></TextField>
                 </div>
                 <div className="margenInput">
@@ -123,6 +172,8 @@ const InfoContact=({typeForm})=>{
                         placeholder="Rodriguez Peña"
                         size="small"
                         className="inputForm"
+                        id="entrecalle2"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                     ></TextField>
                 </div>
             </div>
@@ -133,7 +184,10 @@ const InfoContact=({typeForm})=>{
                     <TextField 
                         placeholder="1428"
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="codigoPostal"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onFocus={(e)=>onFocus(e,clase)}
                     ></TextField>
                 </div>
                 <a href="/">No sé mi código postal</a>
@@ -146,6 +200,8 @@ const InfoContact=({typeForm})=>{
                         placeholder="Puerta roja, timbre blanco"
                         size="small"
                         className="inputForm textarea"
+                        id="comentario"
+                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                         inputProps={{ maxLength: 70 }}
                     ></TextField>
                 </div>
@@ -154,7 +210,7 @@ const InfoContact=({typeForm})=>{
 
             <div className="botonEnvio">
                 <Button
-                    // onClick={()=>navigate("/checkout")}
+                    onClick={()=>checkForm()}
                     >
                     IR A ENVÍO
                 </Button>
