@@ -1,0 +1,73 @@
+.metodoEnvio{
+    .domicilioEntrega{
+        .card{
+            background: #FDFEFF;
+            border: 1px solid #BABCBE;
+            border-radius: 6px;
+            padding: 24px 32px;
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            div h3{
+                font-weight: 600;
+                font-size: 15px;
+                line-height: 24px;
+                margin: 0px;
+                font-weight: 600;
+            }
+            .boton{
+                border: 1px solid #443988;
+                filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+                border-radius: 20px;
+                padding: 10px 32px;
+            }
+        }
+        .metodos{
+            padding: 0px;
+            .radio{
+                margin-left: 32px;
+                margin-right: 24px;
+            }
+            .botonLogo{
+                font-size: 45px;
+                margin-right: 36px;
+            }
+            .title{
+                font-weight: 600;
+                font-size: 15px;
+                line-height: 24px;
+                color: #423B3C;
+            }
+            .subtitle{
+                font-weight: 600;
+                font-size: 13px;
+                line-height: 21px;
+                color: #878787;
+                max-width: 500px;
+                margin-right: 48px;
+            }
+            .precio{
+                margin-right: 50px;
+                font-weight: 600;
+                font-size: 15px;
+                line-height: 20px;
+                text-align: right;
+                color: #423B3C;
+            }
+        }
+    }
+    .botonContinuar{
+        border: 1px solid #443988;
+        background: #443988;
+        filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+        border-radius: 20px;
+        padding: 10px 32px;
+        color: #FFFFFF;
+        margin-top: 48px;
+        &:hover{
+            background-color: #443988;
+        }
+    }
+}

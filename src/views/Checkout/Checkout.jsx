@@ -10,6 +10,7 @@ import ResumeBox from "../../components/ResumeBox/ResumeBox";
 import NavBarForm from "../../components/NavBarForm/NavBarForm";
 import InfoContact from "../../components/FormCheckout/InfoContact";
 import { UseFormContext } from "../../context/FormContext";
+import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
 
 const Checkout = ()=>{
 
@@ -49,6 +50,7 @@ const Checkout = ()=>{
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
                     {typeNav === "info" ? <InfoContact typeNav={typeNav} /> : null}
+                    {typeNav === "envio" ? <MetodoEnvio typeNav={typeNav} /> : null}
 
                     <p className="carritoVolver" onClick={()=>navigate("/carrito")}>
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
