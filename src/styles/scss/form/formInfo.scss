@@ -6,12 +6,27 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
+        @include screen_601{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
         .margenInput{
             margin-bottom: 24px;
             width: 50%;
+            @include screen_601{
+                width: 100%;
+                text-align: center;
+            }
         }
         .margenInputEspecial{
             padding-right: 12px;
+            @include screen_601{
+                padding-right: 0px;
+                width: 100%;
+                text-align: center;
+            }
         }
     }
     .inputForm{
@@ -24,6 +39,9 @@
         mix-blend-mode: normal;
         border: 0.5px solid #878787;
         border-radius: 4px;
+        @include screen_601{
+            max-width: 328px;
+        }
     }
     .inputFormEspecial{
         font-style: italic;
@@ -35,6 +53,12 @@
         border: 0.5px solid #878787;
         border-radius: 4px;
     }
+    .contenedorTextarea{
+        @include screen_601{
+            max-width: 328px;
+            width: 100%;
+        }
+    }
     .textarea{
         max-width: 758px;
     }
@@ -43,6 +67,13 @@
         font-size: 13px;
         text-indent: 16px;
         color: #423B3C;
+        margin-bottom: 8px;
+        @include screen_601{
+            text-indent: 0px;
+        }
+        @include screen_360{
+            text-align: start;
+        }
     }
     .subLabelForm{
         font-weight: 400;
@@ -55,8 +86,13 @@
     }
     .AlturaPisoDepto{
         display: flex;
+        @include screen_601{
+            justify-content: center;
+            align-items: center;
+        }
         .inputs{
             margin: 0px 6px;
+            max-width: 128px;
         }
     }
     .codPostalContainer{
@@ -64,6 +100,9 @@
         align-items: center;
         .codPostal{
             width: 176px;
+            @include screen_601{
+                width: 100%;
+            }
         }
         a{
             margin-left: 12px;
@@ -74,6 +113,11 @@
             text-indent: 16px;
             text-decoration-line: underline;
             color: #443988;
+            @include screen_601{
+                margin-left: 0px;
+                text-indent: 0px;
+                margin-top: 8px;
+            }
         }
     }
     .botonEnvio{
@@ -84,6 +128,9 @@
         border: 1px solid #443988;
         box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
         border-radius: 20px;
+        @include screen_601{
+            margin-top: 16px;
+        }
         button{
             color: #FFFFFF;
             width: 100%;

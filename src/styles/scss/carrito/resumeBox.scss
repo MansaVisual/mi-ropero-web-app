@@ -39,7 +39,7 @@
                 font-weight: 400;
                 font-size: 1vw;
                 line-height: 18px;
-                @include screen_1000{
+                @include screen_1001{
                     width: 18vw;
                     font-size: 12px;
                 }
@@ -69,7 +69,7 @@
                     margin-top: 8px;
                     margin-left: 0px !important;
                 }
-                @include screen_1000{
+                @include screen_1001{
                     margin: 0px;
                     margin-left: 16px !important;
                     font-size: 11px;
@@ -87,7 +87,7 @@
         border: 1px solid pink;
         border-radius: 8px;
         max-width: 300px;
-        @include screen_1000{
+        @include screen_1001{
             margin: auto;
         }
         @include screen_601{

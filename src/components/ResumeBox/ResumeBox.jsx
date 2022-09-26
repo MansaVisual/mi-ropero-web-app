@@ -46,6 +46,7 @@ const ResumeBox = ({stateForm})=>{
                             onChangeCapture={()=>handleChange()}
                             ></TextField>
                         <Button
+                            className="screen1000-codigo"
                             onClick={()=>handleClick()}
                             >
                             VALIDAR
@@ -57,7 +58,7 @@ const ResumeBox = ({stateForm})=>{
                 <p className="subtitulo subtituloTotal">TOTAL:</p>
                 <p className="subtitulo subtituloTotal">$ 127.199</p>
             </div>
-            <div className="banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
+            <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>
             {!stateForm && 

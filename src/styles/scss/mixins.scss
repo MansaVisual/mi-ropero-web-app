@@ -1,7 +1,7 @@
 // SCREENS PREDETERMIANDAS
 
-@mixin screen_1000 {
-  @media (max-width:1000px) {
+@mixin screen_1001 {
+  @media (max-width:1001px) {
     @content;
   }
 }
@@ -19,6 +19,11 @@
 }
 
 // ESPECIALES
+@mixin screen_1000 {
+  @media (min-width:1000px) and (max-width:1001px){
+    @content;
+  }
+}
 @mixin screen_1070{
   @media (max-width:1070px) {
       @content;
@@ -33,6 +38,12 @@
 
 @mixin screen_506 {
   @media (max-width:506px){
+    @content;
+  }
+}
+
+@mixin screen_360 {
+  @media (max-width:360px){
     @content
   }
 }
