@@ -52,7 +52,7 @@ const Checkout = ()=>{
                     </p>
                 </Grid>
                 
-                <Grid item md={6} lg={3}
+                <Grid item xs={10} sm={6} md={6} lg={3}
                 sx={{
                     margin: "0px auto",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
