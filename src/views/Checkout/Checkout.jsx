@@ -16,7 +16,7 @@ const Checkout = ()=>{
 
     const {x}=useContext(UseFormContext)
 
-    // x()
+    x()
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +30,7 @@ const Checkout = ()=>{
         setTypeNav(type)
     }
 
-    console.log(typeNav)
+    
 
     return(
         <>
