@@ -54,7 +54,8 @@ const Checkout = ()=>{
 
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>navigate("/carrito")
-                            : typeNav==="envio" ? ()=>setTypeNav("info") : null
+                            : typeNav==="envio" ? ()=>setTypeNav("info")
+                            : typeNav==="tarjeta" ? ()=>setTypeNav("envio") : null
                         }
                     >
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>

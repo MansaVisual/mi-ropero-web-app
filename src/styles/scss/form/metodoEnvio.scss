@@ -25,13 +25,33 @@
                 line-height: 24px;
                 margin: 0px;
                 font-weight: 600;
+                @include screen_601{
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 20px;
+                    color: #878787;
+                }
             }
             .boton{
                 border: 1px solid #443988;
                 filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
                 border-radius: 20px;
                 padding: 10px 32px;
+                @include screen_601{
+                    display: none;
+                }
             }
+            .botonMobile{
+                display: none;
+                @include screen_601{
+                    display: block;
+                    font-size: 24px;
+                    color: #BABCBE;
+                }
+            }
+        }
+        .firstCard{
+            padding: 16px;
         }
         .metodos{
             padding: 0px;
@@ -49,12 +69,27 @@
                 @include screen_820{
                     margin-right: 24px;
                 }
+                @include screen_601{
+                    display: none;
+                }
+            }
+            .botonLogoMobile{
+                display: none;
+                @include screen_601{
+                    display: flex;
+                    font-size: 32px;
+                    margin-top: 8px;
+                }
             }
             .title{
                 font-weight: 600;
                 font-size: 15px;
                 line-height: 24px;
                 color: #423B3C;
+                @include screen_601{
+                    margin-top: 8px;
+                    margin-right: 8px;
+                }
             }
             img{
                 margin-right: 16px;
@@ -68,6 +103,10 @@
                 margin-right: 48px;
                 @include screen_820{
                     margin-right: 100px;
+                }
+                @include screen_601{
+                    max-width: none;
+                    margin-right: 18px;
                 }
             }
             .precio{

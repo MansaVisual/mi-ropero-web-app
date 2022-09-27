@@ -2,6 +2,7 @@ import { Button, Radio} from "@mui/material"
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import HomeIcon from '@mui/icons-material/Home';
 import StorefrontIcon from '@mui/icons-material/Storefront';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import oca from "../../assets/img/OCA.png"
 import React, {useState} from "react"
 
@@ -26,12 +27,13 @@ const MetodoEnvio=({typeForm})=>{
 
             <div className="domicilioEntrega">
                 <p className="domicilioTitle">Domicilio de entrega</p>
-                <div className="card">
+                <div className="card firstCard">
                     <div>
                         <h3>Cuenca 3440. CABA Comuna 17 (C1417).</h3>
                         <h3>Entre Francisco Beiró y José P. Varela.</h3>
                         <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
                     </div>
+                    <BorderColorOutlinedIcon className="botonMobile"/>
                     <Button className="boton">
                         MODIFICAR
                     </Button>
@@ -49,6 +51,7 @@ const MetodoEnvio=({typeForm})=>{
                     />
                     <TwoWheelerIcon color="primary" className="botonLogo"/>
                     <div>
+                        <TwoWheelerIcon color="primary" className="botonLogoMobile"/>
                         <p className="title">Envío en motmo (sólo disponible en CABA)</p>
                         <p className="subtitle">Tu compra llegará en 24hs hábiles. En fecha festivas o especiales pueden surgir demoras.<br/>
                             Nos pondremos en contacto para coordinar el envío.
@@ -68,6 +71,7 @@ const MetodoEnvio=({typeForm})=>{
                     />
                     <HomeIcon color="primary" className="botonLogo"/>
                     <div>
+                        <HomeIcon color="primary" className="botonLogoMobile"/>
                         <p className="title">
                             <img src={oca} alt="OCA" />
                             Entrega a domicilio
@@ -91,6 +95,7 @@ const MetodoEnvio=({typeForm})=>{
                     />
                     <StorefrontIcon color="primary" className="botonLogo"/>
                     <div>
+                        <StorefrontIcon color="primary" className="botonLogoMobile"/>
                         <p className="title">
                             <img src={oca} alt="OCA" />
                             Entrega en sucursal
