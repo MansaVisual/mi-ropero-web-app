@@ -1,6 +1,6 @@
 import { Grid, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system"
-import React,{useState,useContext} from "react"
+import React,{useState} from "react"
 import { useLocation,useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import "../../styles/scss/styles.scss"
@@ -9,20 +9,15 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
 import NavBarForm from "../../components/NavBarForm/NavBarForm";
 import InfoContact from "../../components/FormCheckout/InfoContact";
-import { UseFormContext } from "../../context/FormContext";
 import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
 
 const Checkout = ()=>{
-
-    const {x}=useContext(UseFormContext)
-
-    x()
 
     const navigate = useNavigate();
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     
-    const [typeNav,setTypeNav]=useState("envio")
+    const [typeNav,setTypeNav]=useState("info")
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -31,7 +26,6 @@ const Checkout = ()=>{
     }
 
     
-
     return(
         <>
             <Box container className="Breadcrumbs">
