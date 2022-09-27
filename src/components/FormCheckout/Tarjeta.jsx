@@ -98,6 +98,16 @@ const Tarjeta = ({setTypeNav})=>{
                     </div>
                 </div>
             </div>
+
+            <div className="botones">
+                <Button className="botonVolver">
+                    VOLVER
+                </Button>
+                <Button className="botonPagar">
+                    IR A PAGAR
+                </Button>
+            </div>
+            <p className="terminos">Al oprimir IR A PAGAR se aceptan los <span className="terminosLink">términos y condiciones</span> de Mi Ropero</p>
         </div>
     )
 }
