@@ -22,7 +22,12 @@ const InfoContact=({typeForm})=>{
     }
 
     const checkForm = async()=>{
-        await handleClick(form,setErrorInicial,setCampoObligatorio,campoObligatorio,clase,clase2)
+        const res = await handleClick(form,setErrorInicial,setCampoObligatorio,campoObligatorio,clase,clase2)
+        if(res){
+            return
+        }else{
+            alert("PASO")
+        }
     }
 
     return(

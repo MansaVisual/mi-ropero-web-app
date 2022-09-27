@@ -62,7 +62,7 @@ export const handleClick=(form,setErrorInicial,setCampoObligatorio,campoObligato
             cambioCampo=true
         }
     }
-    console.log(cambioCampo)
+    return(cambioCampo)
 }
 
 const handleClickHelp = async(id,id2,clase,clase2,setCampoObligatorio)=>{
