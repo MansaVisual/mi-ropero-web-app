@@ -27,16 +27,15 @@ const MetodoEnvio=()=>{
             return true
         }
     }
-    const onClickCheck = (type)=>{
-        setCheck(type)
-    }
-
     const defaultCheckSucursal = (type) =>{
         if(sucursalEntrega===""){
             return false
         }else if(sucursalEntrega===type){
             return true
         }
+    }
+    const onClickCheck = (type)=>{
+        setCheck(type)
     }
     const onClickCheckSucursal = (type)=>{
         if(type===""){
