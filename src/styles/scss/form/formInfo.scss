@@ -105,11 +105,11 @@
             width: 176px;
             @include screen_601{
                 width: 100%;
-                max-width: 128px;
+                max-width: 170px;
             }
             .inputForm{
                 @include screen_601{
-                    max-width: 128px;
+                    max-width: 170px;
                     width: 100%;
                 }
             }
