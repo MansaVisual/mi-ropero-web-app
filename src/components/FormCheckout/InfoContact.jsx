@@ -11,6 +11,7 @@ const InfoContact=({typeForm})=>{
     const [form,setForm]=useState([])
 
     let clase = "formObligatorio"
+    let clase2 = "formObligatorioTitle"
 
     const [errorInicial, setErrorInicial]=useState(false)
     const [campoObligatorio,setCampoObligatorio]=useState(false)
@@ -21,7 +22,7 @@ const InfoContact=({typeForm})=>{
     }
 
     const checkForm = async()=>{
-        await handleClick(form,setErrorInicial,setCampoObligatorio,clase,campoObligatorio)
+        await handleClick(form,setErrorInicial,setCampoObligatorio,campoObligatorio,clase,clase2)
     }
 
     return(
@@ -43,26 +44,26 @@ const InfoContact=({typeForm})=>{
 
             <div className="firstLine" style={{marginTop:"12px"}}>
                 <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Nombre y Apellido ¿A quién se entrega? *</InputLabel>
+                    <InputLabel className="labelForm" id="labelNombreApellido">Nombre y Apellido ¿A quién se entrega? *</InputLabel>
                     <TextField 
                         placeholder="Nombre Apellido"
                         size="small"
                         className={`inputForm`}
                         id="nombreApellido"
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
-                        onFocus={(e)=>onFocus(e,clase)}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelNombreApellido")}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Como aparece en el DNI</InputLabel>
                 </div>
                 <div className="margenInput">
-                    <InputLabel className="labelForm">Telefono de contacto *</InputLabel>
+                    <InputLabel className="labelForm" id="labelTelefono">Telefono de contacto *</InputLabel>
                     <TextField 
                         placeholder="011589210"
                         size="small"
                         className={`inputForm`}
                         id="telefono"
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
-                        onFocus={(e)=>onFocus(e,clase)}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelTelefono")}
                         type="number"
                         
                     ></TextField>
@@ -72,28 +73,28 @@ const InfoContact=({typeForm})=>{
 
             <div className="firstLine">
                 <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Calle</InputLabel>
+                    <InputLabel className="labelForm" id="labelCalle">Calle</InputLabel>
                     <TextField 
                         placeholder="Avenida Anta"
                         size="small"
                         className={`inputForm`}
                         id="calle"
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
-                        onFocus={(e)=>onFocus(e,clase)}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelCalle")}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
                 </div>
 
                 <div className="AlturaPisoDepto margenInput">
                     <div className="inputs">
-                        <InputLabel className="labelForm">Altura/Km *</InputLabel>
+                        <InputLabel className="labelForm" id="labelAlturaKM">Altura/Km *</InputLabel>
                         <TextField 
                             placeholder="1770"
                             size="small"
                             className="inputFormEspecial"
                             id="alturaKM"
                             onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
-                            onFocus={(e)=>onFocus(e,clase)}
+                            onFocus={(e)=>onFocus(e,clase,clase2,"labelAlturaKM")}
                         ></TextField>
                     </div>
                     <div className="inputs">
@@ -121,7 +122,7 @@ const InfoContact=({typeForm})=>{
 
             <div className="firstLine">
                 <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Provincia *</InputLabel>
+                    <InputLabel className="labelForm" id="labelProvincia">Provincia *</InputLabel>
                     <TextField 
                         placeholder="Ciudad Autónoma de Buenos Aires"
                         size="small"
@@ -129,7 +130,7 @@ const InfoContact=({typeForm})=>{
                         defaultValue={"ejemplo"}
                         value={currency===""?"ejemplo":currency}
                         onChange={(e)=>handleChange(e)}
-                        onFocus={(e)=>onFocus(e,clase)}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                         id="provincia"
                         className={`inputForm`}
                         sx={{"& div":{fontSize:"14px",color:currency===""&&"#BABCBE"}}}
@@ -145,7 +146,7 @@ const InfoContact=({typeForm})=>{
                     </TextField>
                 </div>
                 <div className="margenInput">
-                    <InputLabel className="labelForm">Localidad / Barrio *</InputLabel>
+                    <InputLabel className="labelForm" id="labelBarrioLocalidad">Localidad / Barrio *</InputLabel>
                     <TextField 
                         placeholder={currency===""?"Primero debes ingresar una provincia":"Mar del Plata"}
                         disabled={currency==="" ? true : false}
@@ -153,7 +154,7 @@ const InfoContact=({typeForm})=>{
                         className={`inputForm`}
                         id="barrioLocalidad"
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
-                        onFocus={(e)=>onFocus(e,clase)}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelBarrioLocalidad")}
                     ></TextField>
                 </div>
             </div>
@@ -183,14 +184,14 @@ const InfoContact=({typeForm})=>{
 
             <div className="firstLine codPostalContainer">
                 <div className="codPostal">
-                    <InputLabel className="labelForm">Código Postal *</InputLabel>
+                    <InputLabel className="labelForm" id="labelCodigoPostal">Código Postal *</InputLabel>
                     <TextField 
                         placeholder="1428"
                         size="small"
                         className={`inputForm`}
                         id="codigoPostal"
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
-                        onFocus={(e)=>onFocus(e,clase)}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelCodigoPostal")}
                     ></TextField>
                 </div>
                 <a href="/">No sé mi código postal</a>
