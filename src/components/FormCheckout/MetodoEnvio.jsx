@@ -14,6 +14,11 @@ const MetodoEnvio=()=>{
     const [check,setCheck]=useState("")
     const [sucursales,setSucursales]=useState(false)
 
+
+    const [setSucursal,setSetSucursal]=useState(false)
+    const [sucursalEntrega,setSucursalEntrega]=useState("")
+
+
     let envioMoto = true
 
     const defaultCheck = (type) =>{
@@ -23,13 +28,30 @@ const MetodoEnvio=()=>{
             return true
         }
     }
-
     const onClickCheck = (type)=>{
         setCheck(type)
     }
 
+    const defaultCheckSucursal = (type) =>{
+        console.log(type)
+        if(sucursalEntrega===""){
+            return false
+        }else if(sucursalEntrega===type){
+            return true
+        }
+    }
+    const onClickCheckSucursal = (type)=>{
+        setSucursalEntrega(type)
+    }
+
+
+
     const handleClickContinuar = ()=>{
-        // if()
+        if(check==="ocaSucursal"){
+            setSetSucursal(true)
+        }else{
+            alert("HOLA")
+        }
     }
 
     return(
@@ -63,7 +85,7 @@ const MetodoEnvio=()=>{
                         />
                         :
                         <>
-                        <Radio className="radio" disabled></Radio>
+                            <Radio className="radio" disabled></Radio>
                         </>
                     }
                     <TwoWheelerIcon color={`${envioMoto ? "primary" : "tertiary"}`} className="botonLogo"/>
@@ -163,6 +185,34 @@ const MetodoEnvio=()=>{
                                 )
                             })}
                         </div>
+                    </div>
+                </div>
+            }
+            {setSucursal &&
+                <div className="setSucursales">
+                    <div className="fondoPopUp" onClick={()=>{setSetSucursal(false);onClickCheckSucursal("")}}></div>
+                    <div className="popUp">
+                        <CancelIcon color="tertiary" className="cross" onClick={()=>{setSetSucursal(false);onClickCheckSucursal("")}}/>
+                        <StorefrontIcon color="primary" className="botonLogo"/>
+                        <img src={oca} alt="OCA" />
+                        <p>Sucursales más próximas al domicilio elegido.</p>
+                        <div className="cardContainer">
+                            {sucursaless.map((sucursal,i)=>{
+                                return(
+                                    <div className={`cardSucursal ${sucursalEntrega===sucursal+i && "selected"}`} onClick={()=>onClickCheckSucursal(sucursal+i)}>
+                                        <Radio
+                                            name="sucursal"
+                                            id={sucursal+i}
+                                            checked={defaultCheckSucursal(sucursal+i)}
+                                        />
+                                        {sucursal}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <Button className="botonContinuar">
+                            CONTINUAR
+                        </Button>
                     </div>
                 </div>
             }
