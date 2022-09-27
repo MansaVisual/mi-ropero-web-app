@@ -1,12 +1,16 @@
 import { Button, InputLabel, MenuItem, TextField } from "@mui/material"
-import React, {useState} from "react"
+import React, {useState,useContext} from "react"
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleClick, handleChangeForm, onFocus } from "./funciones";
+import { UseFormContext } from "../../context/FormContext";
 
 
 const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORRIENTES','SAN JUAN','NEUQUEN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT']
 
 const InfoContact=()=>{
+    const {DireccionNormalize}=useContext(UseFormContext)
+
+
     const [currency, setCurrency] = useState('');
     const [form,setForm]=useState([])
 
@@ -26,7 +30,17 @@ const InfoContact=()=>{
         if(res){
             return
         }else{
-            alert("PASO")
+            DireccionNormalize(
+                {
+                    calle: document.getElementById("calle").value,
+                    numero: document.getElementById("alturaKM").value,
+                    provincia: document.getElementById("provincia").nextSibling.value,
+                    localidad: document.getElementById("barrioLocalidad").value,
+                    codigo_postal: document.getElementById("codigoPostal").value,
+                },
+                "direcciones",
+                "normalize"
+            )
         }
     }
 
@@ -134,7 +148,7 @@ const InfoContact=()=>{
                         select
                         defaultValue={"ejemplo"}
                         value={currency===""?"ejemplo":currency}
-                        onChange={(e)=>handleChange(e)}
+                        onChange={(e)=>{handleChange(e)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                         id="provincia"
                         className={`inputForm`}

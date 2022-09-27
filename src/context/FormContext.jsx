@@ -4,13 +4,17 @@ export const UseFormContext = createContext();
 
 export function FormContext ({children}) {
 
-    const x = () =>{
-        console.log("HOLA A TODODS")
-        const formData = new FormData();
-        formData.append('email', 'esarias@gmail.com');
-        formData.append('clave', '1234567890');
-    
-        fetch('https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=clientes&method=login', {
+    const DireccionNormalize = async(data,clase,metodo) =>{
+
+        const formData = new FormData()
+        formData.append('calle',data.calle)
+        formData.append('numero',data.numero)
+        formData.append('provincia',data.provincia)
+        formData.append('localidad',data.localidad)
+        formData.append('codigo_postal',data.codigo_postal)
+
+        console.log(data)
+        fetch(`https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
             method: 'POST',					
             body: formData
         })
@@ -27,7 +31,7 @@ export function FormContext ({children}) {
     }
 
     return(
-        <UseFormContext.Provider value={{x}}>
+        <UseFormContext.Provider value={{DireccionNormalize}}>
             {children}
         </UseFormContext.Provider>
     )
