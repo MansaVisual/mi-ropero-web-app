@@ -10,6 +10,7 @@ import ResumeBox from "../../components/ResumeBox/ResumeBox";
 import NavBarForm from "../../components/NavBarForm/NavBarForm";
 import InfoContact from "../../components/FormCheckout/InfoContact";
 import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
+import Tarjeta from "../../components/FormCheckout/Tarjeta";
 
 const Checkout = ()=>{
 
@@ -43,13 +44,15 @@ const Checkout = ()=>{
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
-                    {typeNav === "info" ? <InfoContact /> : null}
-                    {typeNav === "envio" ? <MetodoEnvio /> : null}
+                    {typeNav === "info" ? <InfoContact setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "envio" ? <MetodoEnvio setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
 
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>navigate("/carrito")
                             : typeNav==="envio" ? ()=>setTypeNav("info")
-                            : typeNav==="tarjeta" ? ()=>setTypeNav("envio") : null
+                            : typeNav==="tarjeta" ? ()=>setTypeNav("envio")
+                            : typeNav==="check" ? ()=>setTypeNav("tarjeta") : null
                         }
                     >
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>

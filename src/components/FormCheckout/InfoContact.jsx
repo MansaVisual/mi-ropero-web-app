@@ -7,7 +7,7 @@ import { UseFormContext } from "../../context/FormContext";
 
 const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORRIENTES','SAN JUAN','NEUQUEN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT']
 
-const InfoContact=()=>{
+const InfoContact=({setTypeNav})=>{
     const {DireccionNormalize}=useContext(UseFormContext)
 
 
@@ -41,6 +41,7 @@ const InfoContact=()=>{
                 "direcciones",
                 "normalize"
             )
+            // setTypeNav("envio")
         }
     }
 

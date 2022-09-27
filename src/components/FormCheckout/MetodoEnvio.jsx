@@ -10,7 +10,7 @@ import PopUpSetSucursal from "./PopUpME2";
 
 const sucursaless = ['Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal']
 
-const MetodoEnvio=()=>{
+const MetodoEnvio=({setTypeNav})=>{
     const [check,setCheck]=useState("")
 
     const [sucursales,setSucursales]=useState(false)
@@ -55,6 +55,7 @@ const MetodoEnvio=()=>{
             alert("ELIJA UN METODO")
         }else{
             alert("APROBADO")
+            setTypeNav("tarjeta")
         }
     }
     const handleClickSetSucusarl=()=>{
@@ -62,6 +63,7 @@ const MetodoEnvio=()=>{
             alert("DEBE ELEGIR UNO")
         }else{
             alert("OK")
+            setTypeNav("tarjeta")
         }
     }
 
