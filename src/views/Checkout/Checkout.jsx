@@ -16,7 +16,7 @@ const Checkout = ()=>{
 
     const {x}=useContext(UseFormContext)
 
-    x()
+    // x()
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +30,7 @@ const Checkout = ()=>{
         setTypeNav(type)
     }
 
-    
+    console.log(typeNav)
 
     return(
         <>
@@ -52,7 +52,11 @@ const Checkout = ()=>{
                     {typeNav === "info" ? <InfoContact typeNav={typeNav} /> : null}
                     {typeNav === "envio" ? <MetodoEnvio typeNav={typeNav} /> : null}
 
-                    <p className="carritoVolver" onClick={()=>navigate("/carrito")}>
+                    <p className="carritoVolver" 
+                        onClick={typeNav==="info" ? ()=>navigate("/carrito")
+                            : typeNav==="envio" ? ()=>setTypeNav("info") : null
+                        }
+                    >
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
                         VOLVER
                     </p>
