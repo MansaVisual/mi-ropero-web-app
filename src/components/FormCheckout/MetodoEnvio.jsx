@@ -8,6 +8,7 @@ import React, {useState} from "react"
 
 const MetodoEnvio=({typeForm})=>{
     const [check,setCheck]=useState("")
+    let envioMoto = true
 
     const defaultCheck = (type) =>{
         if(check===""){
@@ -40,22 +41,34 @@ const MetodoEnvio=({typeForm})=>{
                 </div>
             </div>
             
-            <div className="domicilioEntrega" onClick={()=>onClickCheck("moto")}>
+            <div className={`domicilioEntrega ${!envioMoto && "disabled"}`} onClick={envioMoto ? ()=>onClickCheck("moto") : null}>
                 <p className="domicilioTitle">Seleccione un método de envío *</p>
                 <div className={`card metodos ${check === "moto" && "radioSelected"}`}>
-                    <Radio 
-                        className="radio"
-                        checked={defaultCheck("moto")}
-                        id="radioButton1"
-                        name="radioButton"
-                    />
-                    <TwoWheelerIcon color="primary" className="botonLogo"/>
+                    {envioMoto ?
+                        <Radio 
+                            className="radio"
+                            checked={defaultCheck("moto")}
+                            id="radioButton1"
+                            name="radioButton"
+                        />
+                        :
+                        <>
+                        <Radio className="radio" disabled></Radio>
+                        </>
+                    }
+                    <TwoWheelerIcon color={`${envioMoto ? "primary" : "tertiary"}`} className="botonLogo"/>
                     <div>
                         <TwoWheelerIcon color="primary" className="botonLogoMobile"/>
                         <p className="title">Envío en motmo (sólo disponible en CABA)</p>
-                        <p className="subtitle">Tu compra llegará en 24hs hábiles. En fecha festivas o especiales pueden surgir demoras.<br/>
-                            Nos pondremos en contacto para coordinar el envío.
-                        </p>
+                        {envioMoto ? 
+                            <p className="subtitle">Tu compra llegará en 24hs hábiles. En fecha festivas o especiales pueden surgir demoras.<br/>
+                                Nos pondremos en contacto para coordinar el envío.
+                            </p>
+                        :
+                            <p className="subtitle">
+                                Este método de envío no está disponible para el domicilio de entrega.
+                            </p>
+                        }
                         <p className="subtitle"></p>
                     </div>
                     <p style={{whiteSpace:"nowrap"}} className="precio"></p>
