@@ -48,16 +48,18 @@ const Checkout = ()=>{
                     {typeNav === "envio" ? <MetodoEnvio setTypeNav={setTypeNav}/> : null}
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
 
+                    {typeNav!=="tarjeta" &&
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>navigate("/carrito")
-                            : typeNav==="envio" ? ()=>setTypeNav("info")
-                            : typeNav==="tarjeta" ? ()=>setTypeNav("envio")
-                            : typeNav==="check" ? ()=>setTypeNav("tarjeta") : null
-                        }
+                        : typeNav==="envio" ? ()=>setTypeNav("info")
+                        : typeNav==="tarjeta" ? ()=>setTypeNav("envio")
+                        : typeNav==="check" ? ()=>setTypeNav("tarjeta") : null
+                    }
                     >
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
                         VOLVER
                     </p>
+                    }
                 </Grid>
                 
                 <Grid item xs={10} sm={6} md={6} lg={3}
