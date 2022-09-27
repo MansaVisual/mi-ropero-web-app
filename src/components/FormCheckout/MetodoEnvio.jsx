@@ -3,11 +3,17 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import HomeIcon from '@mui/icons-material/Home';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import CancelIcon from '@mui/icons-material/Cancel';
 import oca from "../../assets/img/OCA.png"
 import React, {useState} from "react"
 
+const sucursaless = ['Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal']
+
 const MetodoEnvio=({typeForm})=>{
+
     const [check,setCheck]=useState("")
+    const [sucursales,setSucursales]=useState(false)
+
     let envioMoto = true
 
     const defaultCheck = (type) =>{
@@ -112,6 +118,7 @@ const MetodoEnvio=({typeForm})=>{
                         <p className="title">
                             <img src={oca} alt="OCA" />
                             Entrega en sucursal
+                            <span onClick={()=>{setSucursales(true)}}>Ver sucursales</span>
                         </p>
                         <p className="subtitle">      
                             El pedido puede demorar de 5 a 10 días hábiles. Dependerá de la distancia entre las personas vendedoras y compradoras.<br/>
@@ -127,6 +134,34 @@ const MetodoEnvio=({typeForm})=>{
                     CONTINUAR
                 </Button>
             </div>
+
+            {sucursales &&
+                <div className="verSucursales">
+                    <div className="fondoPopUp" onClick={()=>setSucursales(false)}></div>
+                    <div className="popUp">
+                        <CancelIcon color="tertiary" className="cross" onClick={()=>setSucursales(false)}/>
+                        <StorefrontIcon color="primary" className="botonLogo"/>
+                        <img src={oca} alt="OCA" />
+                        <p>Sucursales más próximas al domicilio elegido.</p>
+                        <div className="cardContainer">
+                            {sucursaless.map(sucursal=>{
+                                return(
+                                    <div className="cardSucursal">
+                                        {sucursal}
+                                    </div>
+                                )
+                            })}
+                            {sucursaless.map(sucursal=>{
+                                return(
+                                    <div className="cardSucursal">
+                                        {sucursal}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     )
 }
