@@ -1,0 +1,113 @@
+.tarjetaContenedor{
+    .productos{
+        p{
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 24px;
+            color: #878787; 
+        }
+        .prodCard{
+            display: flex;
+            align-items: center;
+            background: #FDFEFF;
+            border: 1px solid #BABCBE;
+            box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            .fotoProd{
+                min-width: 4vw;
+                height: 4vw;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                margin: 1.7vw 2.3vw;
+                @include screen_1001{
+                    min-width: 71px;
+                    height: 71px;
+                }
+            }
+            div{
+                color: #878787;
+                font-weight: 600;
+                font-size: 15px;
+                line-height: 24px;
+                p{
+                    margin-right: 80px;
+                }
+                .roperoDe{
+                    margin-top: -16px;
+                    line-height: 25px;
+                }
+            }
+        }
+    }
+
+    .domicilioMetodo{
+        .title{
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 24px;
+            color: #878787;
+            margin-top: 24px;
+        }
+        .card{
+            background: #FDFEFF;
+            border: 1px solid #BABCBE;
+            border-radius: 6px;
+            padding: 24px 32px;
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            @include screen_820{
+                position: relative;
+            }
+            div{
+                p{
+                    font-weight: 600;
+                    font-size: 17px;
+                    line-height: 23px;
+                    color: #423B3C;
+                    margin-bottom: 8px;
+                    margin-top: 0px;
+                    img{
+                        margin-right: 8px;
+                    }
+                }
+                h3{
+                    font-weight: 600;
+                    font-size: 15px;
+                    line-height: 24px;
+                    margin: 0px;
+                    font-weight: 600;
+                    font-weight: 600;
+                    color: #878787;
+                    @include screen_601{
+                        font-weight: 400;
+                        font-size: 13px;
+                        line-height: 20px;
+                        color: #878787;
+                    }
+                }
+            } 
+        }
+        .boton{
+            border: 1px solid #443988;
+            filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+            border-radius: 20px;
+            padding: 10px 32px;
+            @include screen_601{
+                display: none;
+            }
+        }
+        .botonMobile{
+            display: none;
+            @include screen_601{
+                display: block;
+                font-size: 24px;
+                color: #BABCBE;
+            }
+        }
+    }
+}
