@@ -51,8 +51,10 @@ const MetodoEnvio=()=>{
     const handleClickContinuar = ()=>{
         if(check==="ocaSucursal"){
             setSetSucursal(true)
+        }else if(check===""){
+            alert("ELIJA UN METODO")
         }else{
-            alert("HOLA")
+            alert("APROBADO")
         }
     }
     const handleClickSetSucusarl=()=>{
