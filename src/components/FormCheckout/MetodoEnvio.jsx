@@ -9,7 +9,7 @@ import React, {useState} from "react"
 
 const sucursaless = ['Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal']
 
-const MetodoEnvio=({typeForm})=>{
+const MetodoEnvio=()=>{
 
     const [check,setCheck]=useState("")
     const [sucursales,setSucursales]=useState(false)
@@ -26,6 +26,10 @@ const MetodoEnvio=({typeForm})=>{
 
     const onClickCheck = (type)=>{
         setCheck(type)
+    }
+
+    const handleClickContinuar = ()=>{
+        // if()
     }
 
     return(
@@ -130,7 +134,7 @@ const MetodoEnvio=({typeForm})=>{
             </div>
             
             <div style={{display:"flex",width:"100%",justifyContent:"center"}}>
-                <Button className="botonContinuar">
+                <Button className="botonContinuar" onClick={()=>handleClickContinuar()}>
                     CONTINUAR
                 </Button>
             </div>

@@ -49,8 +49,8 @@ const Checkout = ()=>{
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
-                    {typeNav === "info" ? <InfoContact typeNav={typeNav} /> : null}
-                    {typeNav === "envio" ? <MetodoEnvio typeNav={typeNav} /> : null}
+                    {typeNav === "info" ? <InfoContact /> : null}
+                    {typeNav === "envio" ? <MetodoEnvio /> : null}
 
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>navigate("/carrito")

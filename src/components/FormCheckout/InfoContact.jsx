@@ -6,7 +6,7 @@ import { handleClick, handleChangeForm, onFocus } from "./funciones";
 
 const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORRIENTES','SAN JUAN','NEUQUEN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT']
 
-const InfoContact=({typeForm})=>{
+const InfoContact=()=>{
     const [currency, setCurrency] = useState('');
     const [form,setForm]=useState([])
 
