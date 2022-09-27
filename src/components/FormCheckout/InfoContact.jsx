@@ -70,7 +70,6 @@ const InfoContact=({typeForm})=>{
                         onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelTelefono")}
                         type="number"
-                        
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Llamarán a este número si hay algún problema con el envío</InputLabel>
                 </div>
@@ -100,6 +99,7 @@ const InfoContact=({typeForm})=>{
                             id="alturaKM"
                             onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
                             onFocus={(e)=>onFocus(e,clase,clase2,"labelAlturaKM")}
+                            type="number"
                         ></TextField>
                     </div>
                     <div className="inputs">
