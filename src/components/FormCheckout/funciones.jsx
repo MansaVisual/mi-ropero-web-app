@@ -31,7 +31,7 @@ export const handleClick=(form,setErrorInicial,setCampoObligatorio,campoObligato
             behavior: 'smooth'
           })
         setErrorInicial(true)
-        return
+        return(true)
     }else{
         if(document.getElementById("nombreApellido").value===""){
             handleClickHelp("nombreApellido","labelNombreApellido",clase,clase2,setCampoObligatorio)
