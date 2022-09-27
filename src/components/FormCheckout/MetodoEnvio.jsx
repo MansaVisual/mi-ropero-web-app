@@ -3,23 +3,22 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import HomeIcon from '@mui/icons-material/Home';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import CancelIcon from '@mui/icons-material/Cancel';
 import oca from "../../assets/img/OCA.png"
 import React, {useState} from "react"
+import PopUpSucursales from "./PopUpME";
+import PopUpSetSucursal from "./PopUpME2";
 
 const sucursaless = ['Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal']
 
 const MetodoEnvio=()=>{
-
     const [check,setCheck]=useState("")
+
     const [sucursales,setSucursales]=useState(false)
-
-
     const [setSucursal,setSetSucursal]=useState(false)
     const [sucursalEntrega,setSucursalEntrega]=useState("")
 
-
     let envioMoto = true
+
 
     const defaultCheck = (type) =>{
         if(check===""){
@@ -33,7 +32,6 @@ const MetodoEnvio=()=>{
     }
 
     const defaultCheckSucursal = (type) =>{
-        console.log(type)
         if(sucursalEntrega===""){
             return false
         }else if(sucursalEntrega===type){
@@ -41,7 +39,12 @@ const MetodoEnvio=()=>{
         }
     }
     const onClickCheckSucursal = (type)=>{
-        setSucursalEntrega(type)
+        if(type===""){
+            setSetSucursal(false)
+            setSucursalEntrega(type)
+        }else{
+            setSucursalEntrega(type)
+        }
     }
 
 
@@ -51,6 +54,13 @@ const MetodoEnvio=()=>{
             setSetSucursal(true)
         }else{
             alert("HOLA")
+        }
+    }
+    const handleClickSetSucusarl=()=>{
+        if(sucursalEntrega===""){
+            alert("DEBE ELEGIR UNO")
+        }else{
+            alert("OK")
         }
     }
 
@@ -161,60 +171,21 @@ const MetodoEnvio=()=>{
                 </Button>
             </div>
 
+
+
             {sucursales &&
-                <div className="verSucursales">
-                    <div className="fondoPopUp" onClick={()=>setSucursales(false)}></div>
-                    <div className="popUp">
-                        <CancelIcon color="tertiary" className="cross" onClick={()=>setSucursales(false)}/>
-                        <StorefrontIcon color="primary" className="botonLogo"/>
-                        <img src={oca} alt="OCA" />
-                        <p>Sucursales más próximas al domicilio elegido.</p>
-                        <div className="cardContainer">
-                            {sucursaless.map(sucursal=>{
-                                return(
-                                    <div className="cardSucursal">
-                                        {sucursal}
-                                    </div>
-                                )
-                            })}
-                            {sucursaless.map(sucursal=>{
-                                return(
-                                    <div className="cardSucursal">
-                                        {sucursal}
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </div>
+                <PopUpSucursales setSucursales={setSucursales} sucursaless={sucursaless}/>
             }
+
             {setSucursal &&
-                <div className="setSucursales">
-                    <div className="fondoPopUp" onClick={()=>{setSetSucursal(false);onClickCheckSucursal("")}}></div>
-                    <div className="popUp">
-                        <CancelIcon color="tertiary" className="cross" onClick={()=>{setSetSucursal(false);onClickCheckSucursal("")}}/>
-                        <StorefrontIcon color="primary" className="botonLogo"/>
-                        <img src={oca} alt="OCA" />
-                        <p>Sucursales más próximas al domicilio elegido.</p>
-                        <div className="cardContainer">
-                            {sucursaless.map((sucursal,i)=>{
-                                return(
-                                    <div className={`cardSucursal ${sucursalEntrega===sucursal+i && "selected"}`} onClick={()=>onClickCheckSucursal(sucursal+i)}>
-                                        <Radio
-                                            name="sucursal"
-                                            id={sucursal+i}
-                                            checked={defaultCheckSucursal(sucursal+i)}
-                                        />
-                                        {sucursal}
-                                    </div>
-                                )
-                            })}
-                        </div>
-                        <Button className="botonContinuar">
-                            CONTINUAR
-                        </Button>
-                    </div>
-                </div>
+                <PopUpSetSucursal
+                    setSetSucursal={setSucursales}
+                    sucursaless={sucursaless}
+                    onClickCheckSucursal={onClickCheckSucursal}
+                    defaultCheckSucursal={defaultCheckSucursal}
+                    handleClickSetSucusarl={handleClickSetSucusarl}
+                    sucursalEntrega={sucursalEntrega}
+                />
             }
         </div>
     )
