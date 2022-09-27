@@ -106,6 +106,7 @@ const Tarjeta = ({setTypeNav})=>{
                 <Button className="botonPagar">
                     IR A PAGAR
                 </Button>
+                <p className="botonVolverMobile">VOLVER</p>
             </div>
             <p className="terminos">Al oprimir IR A PAGAR se aceptan los <span className="terminosLink">términos y condiciones</span> de Mi Ropero</p>
         </div>
