@@ -11,6 +11,7 @@ import NavBarForm from "../../components/NavBarForm/NavBarForm";
 import InfoContact from "../../components/FormCheckout/InfoContact";
 import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
 import Tarjeta from "../../components/FormCheckout/Tarjeta";
+import CheckForm from "../../components/FormCheckout/Check";
 
 const Checkout = ()=>{
 
@@ -47,8 +48,9 @@ const Checkout = ()=>{
                     {typeNav === "info" ? <InfoContact setTypeNav={setTypeNav}/> : null}
                     {typeNav === "envio" ? <MetodoEnvio setTypeNav={setTypeNav}/> : null}
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
 
-                    {typeNav!=="tarjeta" &&
+                    {typeNav !== "tarjeta" && typeNav !== "check" &&
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>navigate("/carrito")
                         : typeNav==="envio" ? ()=>setTypeNav("info")
