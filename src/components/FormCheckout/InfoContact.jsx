@@ -5,13 +5,16 @@ import { handleClick, handleChangeForm, onFocus } from "./funciones";
 import { UseFormContext } from "../../context/FormContext";
 
 
-const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORRIENTES','SAN JUAN','NEUQUEN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT']
+const currencies = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
+                    'CORRIENTES','SAN JUAN','NEUQUÉN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT',
+                    'MISIONES','TIERRA DEL FUEGO','LA PAMPA','SANTA FE','CHACO','RÍO NEGRO',
+                    'FORMOSA','SANTA CRUZ','LA RIOJA','CATAMARCA','SANTIAGO DEL ESTERO'
+                    ]
 
-const InfoContact=({setTypeNav})=>{
+const InfoContact=({setTypeNav,form,setForm})=>{
     const {FormAPI}=useContext(UseFormContext)
 
     const [currency, setCurrency] = useState('');
-    const [form,setForm]=useState([])
 
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
@@ -179,7 +182,7 @@ const InfoContact=({setTypeNav})=>{
                         <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
                             {"Ciudad Autónoma de Buenos Aires"}
                         </MenuItem>
-                        {currencies.map((option) => (
+                        {currencies.sort().map((option) => (
                             <MenuItem key={option} value={option} sx={{fontSize:"14px",color:"#969696"}}>
                                 {option}
                             </MenuItem>
