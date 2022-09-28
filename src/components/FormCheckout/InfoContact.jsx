@@ -8,8 +8,7 @@ import { UseFormContext } from "../../context/FormContext";
 const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORRIENTES','SAN JUAN','NEUQUEN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT']
 
 const InfoContact=({setTypeNav})=>{
-    const {DireccionNormalize}=useContext(UseFormContext)
-
+    const {FormAPI}=useContext(UseFormContext)
 
     const [currency, setCurrency] = useState('');
     const [form,setForm]=useState([])
@@ -17,8 +16,8 @@ const InfoContact=({setTypeNav})=>{
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
 
-    const [errorInicial, setErrorInicial]=useState(false)
     const [campoObligatorio,setCampoObligatorio]=useState(false)
+    const [errorPhone,setErrorPhone]=useState(false)
 
     const handleChange = (event) => {
         setCurrency(event.target.value)
@@ -26,39 +25,61 @@ const InfoContact=({setTypeNav})=>{
     }
 
     const checkForm = async()=>{
-        const res = await handleClick(form,setErrorInicial,setCampoObligatorio,campoObligatorio,clase,clase2)
+        const res = handleClick(form,setCampoObligatorio,campoObligatorio,clase,clase2)
+        let resFinal = true
         if(res){
             return
         }else{
-            DireccionNormalize(
-                {
-                    calle: document.getElementById("calle").value,
-                    numero: document.getElementById("alturaKM").value,
-                    provincia: document.getElementById("provincia").nextSibling.value,
-                    localidad: document.getElementById("barrioLocalidad").value,
-                    codigo_postal: document.getElementById("codigoPostal").value,
-                },
-                "direcciones",
-                "normalize"
-            )
-            // setTypeNav("envio")
+            // const formDireccion = new FormData()
+            // formDireccion.append('calle',"Alberti")
+            // formDireccion.append('numero',"961")
+            // formDireccion.append('provincia',"BUENOS AIRES")
+            // formDireccion.append('localidad',"Buenos Aires")
+            // formDireccion.append('codigo_postal',"2800")
+            // FormAPI(
+                //     formDireccion,
+                //     "direcciones",
+                //     "normalize"
+                // )
+                
+            const formPhone = new FormData()
+            formPhone.append('telefono', document.getElementById("telefono").value)
+            FormAPI(
+                formPhone,
+                "clientes",
+                "validate_phone"
+            ).then((res)=>{
+                if(!res){
+                    resFinal = false
+                    setErrorPhone(true)
+                    document.getElementById("telefono").classList.add(clase)
+                    document.getElementById("labelTelefono").classList.add(clase2)
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    })
+                }
+            })
+        }
+        if(resFinal){
+            alert("OKKKK")
         }
     }
-
+    
     return(
         <div className="formCheckout">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Datos de contacto</h2>
             
-            {errorInicial &&
-                <div className="errorBox">
-                    <CancelOutlinedIcon color="secondary" className="cruz"/>
-                    <p>Debe completar los campos del formulario para avanzar</p>
-                </div>
-            }
             {campoObligatorio &&
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
                     <p>Debe completar los campos obligatorios para avanzar</p>
+                </div>
+            }
+            {errorPhone &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>El número de telefono es inválido.</p>
                 </div>
             }
 
@@ -70,7 +91,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className={`inputForm`}
                         id="nombreApellido"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelNombreApellido")}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Como aparece en el DNI</InputLabel>
@@ -82,7 +103,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className={`inputForm`}
                         id="telefono"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorPhone(false);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelTelefono")}
                         type="number"
                     ></TextField>
@@ -98,7 +119,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className={`inputForm`}
                         id="calle"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelCalle")}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
@@ -112,7 +133,7 @@ const InfoContact=({setTypeNav})=>{
                             size="small"
                             className="inputFormEspecial"
                             id="alturaKM"
-                            onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                            onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
                             onFocus={(e)=>onFocus(e,clase,clase2,"labelAlturaKM")}
                             type="number"
                         ></TextField>
@@ -124,7 +145,7 @@ const InfoContact=({setTypeNav})=>{
                             size="small"
                             className="inputFormEspecial"
                             id="piso"
-                            onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                            onChangeCapture={()=>handleChangeForm(setForm,form)}
                         ></TextField>
                     </div>
                     <div className="inputs">
@@ -134,7 +155,7 @@ const InfoContact=({setTypeNav})=>{
                             size="small"
                             className="inputFormEspecial"
                             id="depto"
-                            onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                            onChangeCapture={()=>handleChangeForm(setForm,form)}
                         ></TextField>
                     </div>
                 </div>
@@ -149,7 +170,7 @@ const InfoContact=({setTypeNav})=>{
                         select
                         defaultValue={"ejemplo"}
                         value={currency===""?"ejemplo":currency}
-                        onChange={(e)=>{handleChange(e)}}
+                        onChange={(e)=>{handleChange(e);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                         id="provincia"
                         className={`inputForm`}
@@ -173,7 +194,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className={`inputForm`}
                         id="barrioLocalidad"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelBarrioLocalidad")}
                     ></TextField>
                 </div>
@@ -187,7 +208,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className="inputForm"
                         id="entrecalle1"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>handleChangeForm(setForm,form)}
                     ></TextField>
                 </div>
                 <div className="margenInput">
@@ -197,7 +218,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className="inputForm"
                         id="entrecalle2"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>handleChangeForm(setForm,form)}
                     ></TextField>
                 </div>
             </div>
@@ -210,7 +231,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className={`inputForm`}
                         id="codigoPostal"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelCodigoPostal")}
                     ></TextField>
                 </div>
@@ -225,7 +246,7 @@ const InfoContact=({setTypeNav})=>{
                         size="small"
                         className="inputForm textarea"
                         id="comentario"
-                        onChangeCapture={()=>handleChangeForm(setErrorInicial,setForm,form)}
+                        onChangeCapture={()=>handleChangeForm(setForm,form)}
                         inputProps={{ maxLength: 70 }}
                     ></TextField>
                 </div>

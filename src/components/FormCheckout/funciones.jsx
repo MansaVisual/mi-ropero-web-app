@@ -1,5 +1,4 @@
-export const handleChangeForm = async(setErrorInicial,setForm,form) => {
-    setErrorInicial(false)
+export const handleChangeForm = async(setForm,form) => {
     await setForm({...form,
         nombreApellido:document.getElementById("nombreApellido").value,
         telefono:document.getElementById("telefono").value,
@@ -22,58 +21,45 @@ export const onFocus=(event,clase,clase2,id)=>{
     }
 }
 
-export const handleClick=(form,setErrorInicial,setCampoObligatorio,campoObligatorio,clase,clase2)=>{
+export const handleClick=(form,setCampoObligatorio,campoObligatorio,clase,clase2)=>{
     let cambioCampo = false
-
-    if(form.length===0){
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          })
-        setErrorInicial(true)
-        return(true)
-    }else{
-        if(document.getElementById("nombreApellido").value===""){
-            handleClickHelp("nombreApellido","labelNombreApellido",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
-        if(document.getElementById("telefono").value===""){
-            handleClickHelp("telefono","labelTelefono",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
-        if(document.getElementById("calle").value===""){
-            handleClickHelp("calle","labelCalle",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
-        if(document.getElementById("alturaKM").value===""){
-            handleClickHelp("alturaKM","labelAlturaKM",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
-        if(document.getElementById("provincia").nextSibling.value==="ejemplo"){
-            handleClickHelp("provincia","labelProvincia",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
-        if(document.getElementById("barrioLocalidad").value===""){
-            handleClickHelp("barrioLocalidad","labelBarrioLocalidad",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
-        if(document.getElementById("codigoPostal").value===""){
-            handleClickHelp("codigoPostal","labelCodigoPostal",clase,clase2,setCampoObligatorio)
-            cambioCampo=true
-        }
+    if(document.getElementById("nombreApellido").value===""){
+        handleClickHelp("nombreApellido","labelNombreApellido",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
+    }
+    if(document.getElementById("telefono").value===""){
+        handleClickHelp("telefono","labelTelefono",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
+    }
+    if(document.getElementById("calle").value===""){
+        handleClickHelp("calle","labelCalle",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
+    }
+    if(document.getElementById("alturaKM").value===""){
+        handleClickHelp("alturaKM","labelAlturaKM",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
+    }
+    if(document.getElementById("provincia").nextSibling.value==="ejemplo"){
+        handleClickHelp("provincia","labelProvincia",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
+    }
+    if(document.getElementById("barrioLocalidad").value===""){
+        handleClickHelp("barrioLocalidad","labelBarrioLocalidad",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
+    }
+    if(document.getElementById("codigoPostal").value===""){
+        handleClickHelp("codigoPostal","labelCodigoPostal",clase,clase2,setCampoObligatorio)
+        cambioCampo=true
     }
     return(cambioCampo)
 }
 
 const handleClickHelp = async(id,id2,clase,clase2,setCampoObligatorio)=>{
     await setCampoObligatorio(true)
-    if(id==="provincia"){
-        await document.getElementById(id).classList.add(clase)
-        await document.getElementById(id2).classList.add(clase2)
-    }else{
-        await document.getElementById(id).classList.add(clase)
-        await document.getElementById(id2).classList.add(clase2)
-    }
+
+    await document.getElementById(id).classList.add(clase)
+    await document.getElementById(id2).classList.add(clase2)
+
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
