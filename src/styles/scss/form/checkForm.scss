@@ -58,5 +58,8 @@
         border-radius: 20px;
         color: #FFFFFF;
         margin-bottom: 80px;
+        @include screen_1001{
+            margin-bottom: 24px;
+        }
     }
 }

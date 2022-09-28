@@ -15,9 +15,12 @@ const CheckForm = ()=>{
                 <p>Nos comunicaremos con vos por Whatsapp a la brevedad para coordinar la entrega.</p>
             </div>
 
+            <div className="fotoBannerCheckMobile"/>
+
             <Button className="misCompras">
                 IR A MIS COMPRAS
             </Button>
+            
         </div>
     )
 }

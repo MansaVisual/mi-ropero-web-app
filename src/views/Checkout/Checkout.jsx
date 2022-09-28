@@ -64,7 +64,7 @@ const Checkout = ()=>{
                     }
                 </Grid>
                 
-                <Grid item xs={10} sm={6} md={6} lg={3}
+                <Grid item xs={typeNav !== "check" ? 10 : 12} sm={6} md={6} lg={3}
                 sx={{
                     margin: "0px auto",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
@@ -73,7 +73,11 @@ const Checkout = ()=>{
                     height:"100%",
                 }}
                 >
-                    <ResumeBox stateForm={true}/>
+                    {typeNav !== "check" ?
+                        <ResumeBox stateForm={true}/>
+                    :   
+                        <div className="fotoBannerCheck"/>
+                    }
                 </Grid>
             </Grid>
         </>
