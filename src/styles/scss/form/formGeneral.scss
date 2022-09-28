@@ -18,6 +18,7 @@
         @include screen_601{
             width: 17vw;
             min-width: 65px;
+            height: 4px;
         }
     }
     .barraInferiorDisabled{
@@ -31,6 +32,7 @@
         @include screen_601{
             width: 17vw;
             min-width: 65px;
+            height: 4px;
         }
     }
     .navEnabled{
