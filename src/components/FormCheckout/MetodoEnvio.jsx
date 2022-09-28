@@ -104,7 +104,7 @@ const MetodoEnvio=({setTypeNav})=>{
                     <TwoWheelerIcon color={`${envioMoto ? "primary" : "tertiary"}`} className="botonLogo"/>
                     <div>
                         <TwoWheelerIcon color="primary" className="botonLogoMobile"/>
-                        <p className="title">Envío en motmo (sólo disponible en CABA)</p>
+                        <p className="title">Envío en moto (sólo disponible en CABA)</p>
                         {envioMoto ? 
                             <p className="subtitle">Tu compra llegará en 24hs hábiles. En fecha festivas o especiales pueden surgir demoras.<br/>
                                 Nos pondremos en contacto para coordinar el envío.

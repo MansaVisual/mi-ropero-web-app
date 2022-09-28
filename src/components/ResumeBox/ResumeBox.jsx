@@ -11,7 +11,6 @@ const ResumeBox = ({stateForm})=>{
 
     const handleChange= ()=>{
         const cod = document.getElementById("codigo").value
-        console.log(cod)
         setCodigoValido(true)
         setCodigo(cod)
     }

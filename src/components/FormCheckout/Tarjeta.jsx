@@ -71,7 +71,7 @@ const Tarjeta = ({setTypeNav})=>{
             </div>
 
             <div className="domicilioMetodo">
-                <p className="title">Productos</p>
+                <p className="title">Método de envío</p>
                 <div className="card">
                     <div>
                         <p>
@@ -89,7 +89,7 @@ const Tarjeta = ({setTypeNav})=>{
             </div>
 
             <div className="domicilioMetodo">
-                <p className="title">Productos</p>
+                <p className="title">Método de pago</p>
                 <div className="card">
                     <div>
                         <h3>Al oprimir IR A PAGAR se abrirá Mercado Pago.</h3>

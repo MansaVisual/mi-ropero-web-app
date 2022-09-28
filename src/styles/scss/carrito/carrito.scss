@@ -24,7 +24,8 @@
             margin-top: 24px;
         }
         @include screen_601{
-            max-width: 328px;
+            min-width: 280px;
+            width: 90%;
             margin: 16px auto;
         }
         .fotoTitle{
@@ -83,7 +84,8 @@
             }
             @include screen_601{
                 font-size: 13px;
-                max-width: 176px;
+                max-width: none;
+                min-width: 170px;
             }
             h3{
                 color: #423B3C;
