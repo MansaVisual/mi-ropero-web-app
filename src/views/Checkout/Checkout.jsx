@@ -20,6 +20,7 @@ const Checkout = ()=>{
     const pathnames = location.pathname.split("/").filter((x) => x)
     
     const [typeNav,setTypeNav]=useState("info")
+    const [form,setForm]=useState([])
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -45,7 +46,7 @@ const Checkout = ()=>{
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
-                    {typeNav === "info" ? <InfoContact setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "info" ? <InfoContact setTypeNav={setTypeNav} form={form} setForm={setForm}/> : null}
                     {typeNav === "envio" ? <MetodoEnvio setTypeNav={setTypeNav}/> : null}
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
