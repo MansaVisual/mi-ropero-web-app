@@ -15,13 +15,19 @@ export const handleChangeForm = async(setForm,form) => {
 }
 
 export const onFocus=(event,clase,clase2,id)=>{
+    if(event.target.id === "barrioLocalidad"){
+        if(document.getElementById(id).classList.contains(clase2)){
+            console.log("SI")
+            document.getElementById(id).classList.remove(clase2)
+        }
+    }
     if(event.target.classList.contains(clase)){
         event.target.classList.remove(clase)
         document.getElementById(id).classList.remove(clase2)
     }
 }
 
-export const handleClick=(form,setCampoObligatorio,campoObligatorio,clase,clase2)=>{
+export const handleClick=(setCampoObligatorio,clase,clase2)=>{
     let cambioCampo = false
     if(document.getElementById("nombreApellido").value===""){
         handleClickHelp("nombreApellido","labelNombreApellido",clase,clase2,setCampoObligatorio)
@@ -57,8 +63,8 @@ export const handleClick=(form,setCampoObligatorio,campoObligatorio,clase,clase2
 const handleClickHelp = async(id,id2,clase,clase2,setCampoObligatorio)=>{
     await setCampoObligatorio(true)
 
-    await document.getElementById(id).classList.add(clase)
-    await document.getElementById(id2).classList.add(clase2)
+    document.getElementById(id).classList.add(clase)
+    document.getElementById(id2).classList.add(clase2)
 
     window.scrollTo({
         top: 0,

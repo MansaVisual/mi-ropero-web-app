@@ -25,7 +25,7 @@ const InfoContact=({setTypeNav})=>{
     }
 
     const checkForm = async()=>{
-        const res = handleClick(form,setCampoObligatorio,campoObligatorio,clase,clase2)
+        const res = handleClick(setCampoObligatorio,clase,clase2)
         let resFinal = true
         if(res){
             return
