@@ -256,7 +256,7 @@ const NavBar = () => {
           </Container>
         ) : (
           null
-          // <TabsCategories />
+          <TabsCategories />
         )}
       </AppBar>
       <Offset />
