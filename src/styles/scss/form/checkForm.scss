@@ -6,6 +6,9 @@
     .botonCheck{
         font-size: 48px;
         color: #20FFA6;
+        @include screen_601{
+            font-size: 32px;
+        }
     }
     p{
         font-weight: 600;
@@ -14,6 +17,11 @@
         color: #878787;
         margin-top: 8px;
         margin-bottom: 32px;
+        @include screen_601{
+            font-size: 13px;
+            line-height: 24px;
+            margin-bottom: 16px;
+        }
     }
     .felicidades{
         font-weight: 700;
@@ -21,6 +29,10 @@
         line-height: 34px;
         color: #443988;
         margin-top: 8px;margin-bottom: 8px;
+        @include screen_601{
+            font-size: 16px;
+            line-height: 22px;
+        }
     }
     .card{
         padding: 24px 32px;
@@ -32,6 +44,7 @@
         margin-bottom: 56px;
         @include screen_601{
             padding: 16px;
+            margin-bottom: 32px;
         }
         .logoWhap{
             color: #00BB2D;
