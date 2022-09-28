@@ -16,39 +16,42 @@ import Cart from "./views/Cart/Cart";
 import Checkout from "./views/Checkout/Checkout";
 import { FormContext } from "./context/FormContext";
 import { ProdsContext } from "./context/ProdsContext";
+import { CardContext } from "./context/CartContext";
 
 
 function App() {
   return (
     <ProdsContext>
       <FormContext>
-        <Router>
-          <ThemeProvider theme={theme}>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/productos/:keyword"
-                element={<SearchProductsResults />}
-              />
-              <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
-              <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
-              <Route
-                path="/roperos/:keyword/:closetId/:itemName"
-                element={<ProductPage />}
-              />
-              <Route
-                path="/carrito"
-                element={<Cart />}
-              />  
-              <Route
-                path="/checkout"
-                element={<Checkout />}
-              />  
-            </Routes>
-            <Footer />
-          </ThemeProvider>
-        </Router>
+        <CardContext>
+          <Router>
+            <ThemeProvider theme={theme}>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/productos/:keyword"
+                  element={<SearchProductsResults />}
+                />
+                <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
+                <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
+                <Route
+                  path="/roperos/:keyword/:closetId/:itemName"
+                  element={<ProductPage />}
+                />
+                <Route
+                  path="/carrito"
+                  element={<Cart />}
+                />  
+                <Route
+                  path="/checkout"
+                  element={<Checkout />}
+                />  
+              </Routes>
+              <Footer />
+            </ThemeProvider>
+          </Router>
+        </CardContext>
       </FormContext>
     </ProdsContext>
   );
