@@ -8,3 +8,13 @@
         margin: 8px 0px !important;
     }
 }
+.screen1000-bannerCheck{
+    @include screen_1000{
+        display: block !important;
+    } 
+}
+.screen1000-bannerCheckMobile{
+    @include screen_1000{
+        display: none !important;
+    } 
+}

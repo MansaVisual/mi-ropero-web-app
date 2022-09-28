@@ -76,7 +76,7 @@ const Checkout = ()=>{
                     {typeNav !== "check" ?
                         <ResumeBox stateForm={true}/>
                     :   
-                        <div className="fotoBannerCheck"/>
+                        <div className="fotoBannerCheck screen1000-bannerCheck"/>
                     }
                 </Grid>
             </Grid>
