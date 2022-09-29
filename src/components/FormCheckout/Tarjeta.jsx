@@ -103,7 +103,7 @@ const Tarjeta = ({setTypeNav})=>{
                 <Button className="botonVolver" onClick={()=>setTypeNav("envio")}>
                     VOLVER
                 </Button>
-                <Button className="botonPagar">
+                <Button className="botonPagar" onClick={()=>setTypeNav("check")}>
                     IR A PAGAR
                 </Button>
                 <p className="botonVolverMobile" onClick={()=>setTypeNav("envio")}>VOLVER</p>
