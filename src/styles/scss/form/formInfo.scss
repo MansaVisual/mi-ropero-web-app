@@ -90,6 +90,11 @@
         color: #878787;
         margin-top: 8px;
         text-indent: 9px;
+        @include screen_601{
+            font-size: 12px;
+            text-align: start;
+            text-indent: 0px;
+        }
     }
     .AlturaPisoDepto{
         display: flex;
