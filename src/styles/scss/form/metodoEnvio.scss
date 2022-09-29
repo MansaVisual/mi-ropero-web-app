@@ -234,9 +234,11 @@
         }
         .cardContainer{
             max-height: 60vh;
+            min-height: 60vh;
             overflow-y: scroll;
             @include screen_601{
                 max-height: 45vh;
+                min-height: 45vh;
             }
             &::-webkit-scrollbar {
                 width: 8px;
@@ -341,6 +343,7 @@
         }
         .cardContainer{
             max-height: 40vh;
+            min-height: 40vh;
             overflow-y: scroll;
             display: flex;
             flex-direction: column;
