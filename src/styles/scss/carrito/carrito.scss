@@ -73,7 +73,7 @@
             color: $colorGrisaseo;
             margin: 19px 0px;
             font-size: 1.15vw;
-            padding-right: 10.4vw;
+            padding-right: 32px;
             font-size: 1.1vw;
             @include screen_1001{
                 max-width: 374px;
@@ -86,6 +86,7 @@
                 font-size: 13px;
                 max-width: none;
                 min-width: 170px;
+                padding-right: 48px;
             }
             h3{
                 color: #423B3C;
@@ -93,6 +94,7 @@
                 @include screen_1001{
                     min-height: 60px;
                     max-height: 60px;
+                    font-size: 14px;
                 }
                 @include screen_768{
                     min-height: 70px;
