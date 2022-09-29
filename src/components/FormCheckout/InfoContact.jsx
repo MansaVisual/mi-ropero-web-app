@@ -1,4 +1,4 @@
-import { Button, InputLabel, MenuItem, TextField } from "@mui/material"
+import { Button, Checkbox, FormControlLabel, InputLabel, MenuItem, TextField } from "@mui/material"
 import React, {useState,useContext} from "react"
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleClick, handleChangeForm, onFocus } from "./funciones";
@@ -15,6 +15,7 @@ const InfoContact=({setTypeNav,form,setForm})=>{
     const {FormAPI}=useContext(UseFormContext)
 
     const [currency, setCurrency] = useState('');
+    const [saveDirecc,setSaveDirecc]=useState(true)
 
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
@@ -68,7 +69,7 @@ const InfoContact=({setTypeNav,form,setForm})=>{
             alert("OKKKK")
         }
     }
-    
+
     return(
         <div className="formCheckout">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Datos de contacto</h2>
@@ -238,7 +239,7 @@ const InfoContact=({setTypeNav,form,setForm})=>{
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelCodigoPostal")}
                     ></TextField>
                 </div>
-                <a href="/">No sé mi código postal</a>
+                <a href="https://www.correoargentino.com.ar/formularios/cpa" target={"_blank"} rel="noreferrer">No sé mi código postal</a>
             </div>
 
             <div className="firstLine" style={{display:"flex",flexDirection:"column"}}>
@@ -255,7 +256,16 @@ const InfoContact=({setTypeNav,form,setForm})=>{
                 </div>
                 <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>
             </div>
-
+            
+            <div className="firstLine">
+                <FormControlLabel
+                    control={<Checkbox defaultChecked />}
+                    onChange={()=>setSaveDirecc(!saveDirecc)}
+                    label="Guardar esta dirección para volver a usarla en otra compra"
+                    className="checkDirecc"
+                />
+            </div>
+            
             <div className="botonEnvio">
                 <Button
                     onClick={()=>checkForm()}
