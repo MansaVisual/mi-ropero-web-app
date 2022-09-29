@@ -5,7 +5,7 @@ export const UseFormContext = createContext();
 export function FormContext ({children}) {
 
     const FormAPI = async(data,clase,metodo) =>{
-        let resFinal = false
+        let resFinal = ''
 
         await fetch(`https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
             method: 'POST',					
@@ -13,9 +13,7 @@ export function FormContext ({children}) {
         })
         .then((response) => response.json())
             .then((data) => {
-                if(data.status==="success"){
-                    resFinal=true
-                }
+                resFinal=data
             })
             .catch((error)=> {
                 console.log(error)
