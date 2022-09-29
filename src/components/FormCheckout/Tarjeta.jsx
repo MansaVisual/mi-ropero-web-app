@@ -64,7 +64,7 @@ const Tarjeta = ({setTypeNav})=>{
                         <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
-                    <Button className="boton" onClick={()=>setTypeNav("envio")}>
+                    <Button className="boton" onClick={()=>setTypeNav("info")}>
                         MODIFICAR
                     </Button>
                 </div>

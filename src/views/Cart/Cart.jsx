@@ -4,16 +4,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
-import DeleteIcon from '@mui/icons-material/Delete';
+import basura from "../../assets/img/basura.png"
+import cart from "../../assets/img/cartVacio.png"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import "../../styles/scss/styles.scss"
 import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 
 const products = [
     {
       id: 1,
-      title: "Buzo campera Fila aeroflat microfibra sie nuevo modelo 2022. Perfecto estado.",
+      title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
       description:"El ropero de Romialaniz",
       price: 280000,
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -28,7 +28,7 @@ const products = [
     {
       id: 3,
       description:"El ropero de Romialaniz",
-      title: "Remera negra 2022 de algodon y algunas tiras rojas y blancas a los costados y frente de las manguitas cortas",
+      title: "Remera negra 2022 de algodon y algunas tiras rojas",
       price: 3000,
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     },
@@ -36,7 +36,7 @@ const products = [
         id: 1,
         title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
         description:"El ropero de Romialaniz",
-        price: 280000,
+        price: 28000,
         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       },
       {
@@ -66,7 +66,7 @@ const Cart = () => {
     const pathnames = location.pathname.split("/").filter((x) => x)
     const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-    const isTablet = useMediaQuery(theme.breakpoints.up("md"));
+    // const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
     const handleEliminar = (prod)=>{
         setEliminar(true)
@@ -89,19 +89,12 @@ const Cart = () => {
                     {products.length !== 0 ?
                         <>
                             {products.map((prod,i)=>{
-                                const newTitle = isDesktop ? prod.title.slice(0,70) : isMobileBigScreen ? prod.title.slice(0,50) : isTablet ? prod.title.slice(0,50) : prod.title.slice(0,90)
                                 return(
                                     <div className="contenedorCarritoResumen">
                                         <div className="fotoTitle">
                                             <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
                                             <div className="titleDescription">
-                                                <h3>
-                                                    {newTitle}
-                                                    {prod.title.length > 70 && isDesktop && !isTablet && "..."}
-                                                    {prod.title.length > 50 && isTablet && "..."}
-                                                    {prod.title.length > 90 && !isTablet && !isMobileBigScreen && "..."}
-                                                    {prod.title.length > 50 && isMobileBigScreen && "..."}
-                                                </h3>
+                                                <h3>{prod.title}</h3>
                                                 <p className="description">
                                                     {prod.description}
                                                 </p>
@@ -123,7 +116,7 @@ const Cart = () => {
                                                 }}
                                                 onClick={()=>handleEliminar(prod)}
                                                 >
-                                                <DeleteIcon color="secondary"/>
+                                                <img src={basura} alt="BORRAR"/>
                                         </IconButton>
                                     </div>
                                 )
@@ -131,10 +124,10 @@ const Cart = () => {
                         </>
                         :
                         <div className="cartVacio">
-                            <ProductionQuantityLimitsIcon color="secondary"
-                                sx={{
+                            <img src={cart} alt="CART"
+                                style={{
                                     fontSize: "65px",
-                                    mt: "12px"
+                                    marginTop: "12px"
                                 }}
                             />
                             <p>Tu carrito esta vacío</p>
@@ -172,7 +165,7 @@ const Cart = () => {
                 <div className="cartElimianrPopUp">
                     <div className="fondoPopUp" onClick={()=>setEliminar(false)}></div>
                     <div className="popUp">
-                        <DeleteIcon color="secondary" sx={{fontSize:"32px",mt:"28px"}}/>
+                        <img src={basura} alt="BORRAR" style={{fontSize:"32px",marginTop:"28px"}}/>
                         <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
                         <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center",marginBottom:"24px"}}>
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>

@@ -1,7 +1,8 @@
 import { Button, Radio} from "@mui/material"
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
-import HomeIcon from '@mui/icons-material/Home';
-import StorefrontIcon from '@mui/icons-material/Storefront';
+import moto from "../../assets/img/moto.png"
+import motoDisabled from "../../assets/img/motoDisabled.png"
+import home from "../../assets/img/home.png"
+import shop from "../../assets/img/shop.png"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import oca from "../../assets/img/OCA.png"
 import React, {useState} from "react"
@@ -80,7 +81,7 @@ const MetodoEnvio=({setTypeNav})=>{
                         <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
-                    <Button className="boton">
+                    <Button className="boton" onClick={()=>setTypeNav("info")}>
                         MODIFICAR
                     </Button>
                 </div>
@@ -101,9 +102,9 @@ const MetodoEnvio=({setTypeNav})=>{
                             <Radio className="radio" disabled></Radio>
                         </>
                     }
-                    <TwoWheelerIcon color={`${envioMoto ? "primary" : "tertiary"}`} className="botonLogo"/>
+                    <img src={envioMoto ? moto : motoDisabled} alt="MOTO" color={`${envioMoto ? "primary" : "tertiary"}`} className="botonLogo"/>
                     <div>
-                        <TwoWheelerIcon color="primary" className="botonLogoMobile"/>
+                        <img src={moto} alt="MOTO" color="primary" className="botonLogoMobile"/>
                         <p className="title">Envío en moto (sólo disponible en CABA)</p>
                         {envioMoto ? 
                             <p className="subtitle">Tu compra llegará en 24hs hábiles. En fecha festivas o especiales pueden surgir demoras.<br/>
@@ -116,7 +117,7 @@ const MetodoEnvio=({setTypeNav})=>{
                         }
                         <p className="subtitle"></p>
                     </div>
-                    <p style={{whiteSpace:"nowrap"}} className="precio"></p>
+                    <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio"></p>
                 </div>
             </div>
             <div className="domicilioEntrega" onClick={()=>onClickCheck("ocaDomicilio")}>
@@ -127,9 +128,9 @@ const MetodoEnvio=({setTypeNav})=>{
                         id="radioButton2"
                         name="radioButton"
                     />
-                    <HomeIcon color="primary" className="botonLogo"/>
+                    <img src={home} alt="HOME" color="primary" className="botonLogo"/>
                     <div>
-                        <HomeIcon color="primary" className="botonLogoMobile"/>
+                        <img src={home} alt="HOME" color="primary" className="botonLogoMobile"/>
                         <p className="title">
                             <img src={oca} alt="OCA" />
                             Entrega a domicilio
@@ -151,9 +152,9 @@ const MetodoEnvio=({setTypeNav})=>{
                         id="radioButton3"
                         name="radioButton"
                     />
-                    <StorefrontIcon color="primary" className="botonLogo"/>
+                    <img src={shop} alt="SHOP" color="primary" className="botonLogo"/>
                     <div>
-                        <StorefrontIcon color="primary" className="botonLogoMobile"/>
+                        <img src={shop} alt="SHOP" color="primary" className="botonLogoMobile"/>
                         <p className="title">
                             <img src={oca} alt="OCA" />
                             Entrega en sucursal
