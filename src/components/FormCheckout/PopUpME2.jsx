@@ -1,6 +1,6 @@
 import React from "react"
 import CancelIcon from '@mui/icons-material/Cancel';
-import StorefrontIcon from '@mui/icons-material/Storefront';
+import shop from "../../assets/img/shop.png"
 import { Button, Radio } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
 
@@ -10,7 +10,7 @@ const PopUpSetSucursal = ({setSetSucursal,onClickCheckSucursal,defaultCheckSucur
             <div className="fondoPopUp" onClick={()=>{onClickCheckSucursal("")}}></div>
             <div className="popUp">
                 <CancelIcon color="tertiary" className="cross" onClick={()=>{onClickCheckSucursal("")}}/>
-                <StorefrontIcon color="primary" className="botonLogo"/>
+                <img src={shop} alt="SHOP" color="primary" className="botonLogo"/>
                 <img src={oca} alt="OCA" />
                 <p>Sucursales más próximas al domicilio elegido.</p>
                 <div className="cardContainer">
