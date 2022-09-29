@@ -6,12 +6,12 @@ import { UseFormContext } from "../../context/FormContext";
 
 
 const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
-                    'CORRIENTES','SAN JUAN','NEUQUÉN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT',
+                    'CORRIENTES','SAN JUAN','NEUQUÉN','SAN LUIS','CHUBUT',
                     'MISIONES','TIERRA DEL FUEGO','LA PAMPA','SANTA FE','CHACO','RÍO NEGRO',
                     'FORMOSA','SANTA CRUZ','LA RIOJA','CATAMARCA','SANTIAGO DEL ESTERO'
                     ]
 
-const InfoContact=({setTypeNav,form,setForm})=>{
+const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
     const {FormAPI}=useContext(UseFormContext)
 
     useEffect(() => {
@@ -54,12 +54,12 @@ const InfoContact=({setTypeNav,form,setForm})=>{
                 
             const formPhone = new FormData()
             formPhone.append('telefono', document.getElementById("telefono").value)
-            FormAPI(
+            await FormAPI(
                 formPhone,
                 "clientes",
                 "validate_phone"
             ).then((res)=>{
-                if(!res){
+                if(res.status==="error"){
                     resFinal = false
                     setErrorPhone(true)
                     document.getElementById("telefono").classList.add(clase)
@@ -68,6 +68,21 @@ const InfoContact=({setTypeNav,form,setForm})=>{
                         top: 0,
                         behavior: 'smooth'
                     })
+                }
+            })
+
+            const formCodPostal = new FormData()
+            formCodPostal.append('codigo_postal', document.getElementById("codigoPostal").value)
+            await FormAPI(
+                formCodPostal,
+                "operaciones",
+                "get_oca_offices"
+            ).then((res)=>{
+                if(res.status==="error"){
+                    resFinal = false
+                }else{
+                    console.log(res.result)
+                    setSucursales(res.result)
                 }
             })
         }

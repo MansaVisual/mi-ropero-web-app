@@ -9,11 +9,10 @@ import React, {useState} from "react"
 import PopUpSucursales from "./PopUpME";
 import PopUpSetSucursal from "./PopUpME2";
 
-const sucursaless = ['Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal']
 
-const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck})=>{
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck,sucursales})=>{
 
-    const [sucursales,setSucursales]=useState(false)
+    const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
 
     let envioMoto = true
@@ -43,7 +42,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
             setSucursalEntrega(type)
         }
     }
-
 
 
     const handleClickContinuar = ()=>{
@@ -155,7 +153,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
                         <p className="title">
                             <img src={oca} alt="OCA" />
                             Entrega en sucursal
-                            <span onClick={()=>{setSucursales(true)}}>Ver sucursales</span>
+                            <span onClick={()=>{setViewSucursales(true)}}>Ver sucursales</span>
                         </p>
                         <p className="subtitle">      
                             El pedido puede demorar de 5 a 10 días hábiles. Dependerá de la distancia entre las personas vendedoras y compradoras.<br/>
@@ -174,14 +172,13 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
 
 
 
-            {sucursales &&
-                <PopUpSucursales setSucursales={setSucursales} sucursaless={sucursaless}/>
+            {viewSucursales &&
+                <PopUpSucursales setViewSucursales={setViewSucursales} sucursales={sucursales}/>
             }
 
             {setSucursal &&
                 <PopUpSetSucursal
-                    setSetSucursal={setSucursales}
-                    sucursaless={sucursaless}
+                    sucursales={sucursales}
                     onClickCheckSucursal={onClickCheckSucursal}
                     defaultCheckSucursal={defaultCheckSucursal}
                     handleClickSetSucusarl={handleClickSetSucusarl}

@@ -23,6 +23,7 @@ const Checkout = ()=>{
     const [form,setForm]=useState([])
     const [check,setCheck]=useState("")
     const [sucursalEntrega,setSucursalEntrega]=useState("")
+    const [sucursales,setSucursales]=useState([])
 
 
     useEffect(() => {
@@ -63,16 +64,30 @@ const Checkout = ()=>{
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
-                    {typeNav === "info" ? <InfoContact setTypeNav={setTypeNav} form={form} setForm={setForm}/> : null}
+
+
+
+                    {typeNav === "info" ? <InfoContact
+                        setTypeNav={setTypeNav}
+                        form={form}
+                        setForm={setForm}
+                        setSucursales={setSucursales}
+                        /> : null}
+
                     {typeNav === "envio" ? <MetodoEnvio 
                         setTypeNav={setTypeNav} 
                         sucursalEntrega={sucursalEntrega} 
                         setSucursalEntrega={setSucursalEntrega} 
                         check={check} 
                         setCheck={setCheck}
+                        sucursales={sucursales}
                     /> : null}
+
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
+
+
+
 
                     {typeNav !== "tarjeta" && typeNav !== "check" &&
                     <p className="carritoVolver" 
