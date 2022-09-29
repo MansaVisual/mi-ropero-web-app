@@ -12,25 +12,25 @@ const NavBarForm = ({typeNav,onNextForm})=>{
 
     return(
         <div className="navForm">
-            <div style={{textAlign:"center",margin:"0px 3px"}} onClick={()=>onNextForm("info")}>
+            <div style={{textAlign:"center",margin:"0px 3px"}}>
                 <img src={typeNav==="info" ? info : info2} alt="INFO"
                     className={`${typeNav==="info" ? "navEnabled" : "navDisabled"}`}
                 />
                 <div className={`${typeNav==="info" ? "barraInferior" : "barraInferiorDisabled"}`}></div>
             </div>
-            <div style={{textAlign:"center",margin:"0px 6px"}} onClick={()=>onNextForm("envio")}>
+            <div style={{textAlign:"center",margin:"0px 6px"}}>
             <img src={typeNav==="envio" ? down : down2} alt="DOWN"
                     className={`${typeNav==="envio" ? "navEnabled" : "navDisabled"}`} 
                 />
                 <div className={`${typeNav==="envio" ? "barraInferior" : "barraInferiorDisabled"}`}></div>
             </div>
-            <div style={{textAlign:"center",margin:"0px 6px"}} onClick={()=>onNextForm("tarjeta")}>
+            <div style={{textAlign:"center",margin:"0px 6px"}}>
             <img src={typeNav==="tarjeta" ? tarjeta : tarjeta2} alt="INFO"
                     className={`${typeNav==="tarjeta" ? "navEnabled" : "navDisabled"}`} 
                 />
                 <div className={`${typeNav==="tarjeta" ? "barraInferior" : "barraInferiorDisabled"}`}></div>
             </div>
-            <div style={{textAlign:"center",margin:"0px 6px"}} onClick={()=>onNextForm("check")}>
+            <div style={{textAlign:"center",margin:"0px 6px"}}>
             <img src={typeNav==="check" ? check : check2} alt="INFO"
                     className={`${typeNav==="check" ? "navEnabled" : "navDisabled"}`} 
                 />
