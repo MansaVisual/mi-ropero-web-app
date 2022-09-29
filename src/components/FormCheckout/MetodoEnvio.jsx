@@ -11,15 +11,12 @@ import PopUpSetSucursal from "./PopUpME2";
 
 const sucursaless = ['Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Fagnano 3611, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal','Av. Nazca 4078, Capital Federal']
 
-const MetodoEnvio=({setTypeNav})=>{
-    const [check,setCheck]=useState("")
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck})=>{
 
     const [sucursales,setSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
-    const [sucursalEntrega,setSucursalEntrega]=useState("")
 
     let envioMoto = true
-
 
     const defaultCheck = (type) =>{
         if(check===""){
