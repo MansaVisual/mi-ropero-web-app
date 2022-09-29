@@ -1,6 +1,6 @@
 import { Grid, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system"
-import React,{useState} from "react"
+import React,{useState,useEffect} from "react"
 import { useLocation,useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import "../../styles/scss/styles.scss"
@@ -21,11 +21,28 @@ const Checkout = ()=>{
     
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
+    const [check,setCheck]=useState("")
+    const [sucursalEntrega,setSucursalEntrega]=useState("")
+
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }, [typeNav]);
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
     const onNextForm=(type)=>{
         setTypeNav(type)
+    }
+    const clickVolver = async(type)=>{
+        if(type==="carrito"){
+            navigate("/carrito")
+        }else{
+            setTypeNav(type)
+        }
     }
 
     
@@ -47,16 +64,22 @@ const Checkout = ()=>{
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
                     {typeNav === "info" ? <InfoContact setTypeNav={setTypeNav} form={form} setForm={setForm}/> : null}
-                    {typeNav === "envio" ? <MetodoEnvio setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "envio" ? <MetodoEnvio 
+                        setTypeNav={setTypeNav} 
+                        sucursalEntrega={sucursalEntrega} 
+                        setSucursalEntrega={setSucursalEntrega} 
+                        check={check} 
+                        setCheck={setCheck}
+                    /> : null}
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
 
                     {typeNav !== "tarjeta" && typeNav !== "check" &&
                     <p className="carritoVolver" 
-                        onClick={typeNav==="info" ? ()=>navigate("/carrito")
-                        : typeNav==="envio" ? ()=>setTypeNav("info")
-                        : typeNav==="tarjeta" ? ()=>setTypeNav("envio")
-                        : typeNav==="check" ? ()=>setTypeNav("tarjeta") : null
+                        onClick={typeNav==="info" ? ()=>clickVolver("carrito")
+                        : typeNav==="envio" ? ()=>clickVolver("info")
+                        : typeNav==="tarjeta" ? ()=>clickVolver("envio")
+                        : typeNav==="check" ? ()=>clickVolver("tarjeta") : null
                     }
                     >
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
