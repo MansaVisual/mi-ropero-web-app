@@ -97,8 +97,11 @@
                     font-size: 14px;
                 }
                 @include screen_768{
-                    min-height: 70px;
-                    max-height: 70px;
+                    min-height: 85px;
+                    max-height: 85px;
+                }
+                @include screen_601{
+
                 }
             }
             .description{
