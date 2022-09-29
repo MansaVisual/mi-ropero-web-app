@@ -1,11 +1,11 @@
 import { Button, Checkbox, FormControlLabel, InputLabel, MenuItem, TextField } from "@mui/material"
-import React, {useState,useContext} from "react"
+import React, {useState,useContext,useEffect} from "react"
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { handleClick, handleChangeForm, onFocus } from "./funciones";
+import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones";
 import { UseFormContext } from "../../context/FormContext";
 
 
-const currencies = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
+const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
                     'CORRIENTES','SAN JUAN','NEUQUÉN','TIERRA DEL FUEGO','SAN LUIS','CHUBUT',
                     'MISIONES','TIERRA DEL FUEGO','LA PAMPA','SANTA FE','CHACO','RÍO NEGRO',
                     'FORMOSA','SANTA CRUZ','LA RIOJA','CATAMARCA','SANTIAGO DEL ESTERO'
@@ -14,7 +14,13 @@ const currencies = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','
 const InfoContact=({setTypeNav,form,setForm})=>{
     const {FormAPI}=useContext(UseFormContext)
 
-    const [currency, setCurrency] = useState('');
+    useEffect(() => {
+        if(form.length!==0){
+            chargeForm(form,setProvincia)
+        }
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+    const [provincia, setProvincia] = useState('');
     const [saveDirecc,setSaveDirecc]=useState(true)
 
     let clase = "formObligatorio"
@@ -24,7 +30,7 @@ const InfoContact=({setTypeNav,form,setForm})=>{
     const [errorPhone,setErrorPhone]=useState(false)
 
     const handleChange = (event) => {
-        setCurrency(event.target.value)
+        setProvincia(event.target.value)
         setForm({...form,provincia:event.target.value})
     }
 
@@ -66,7 +72,7 @@ const InfoContact=({setTypeNav,form,setForm})=>{
             })
         }
         if(resFinal){
-            alert("OKKKK")
+            setTypeNav("envio")
         }
     }
 
@@ -173,17 +179,17 @@ const InfoContact=({setTypeNav,form,setForm})=>{
                         size="small"
                         select
                         defaultValue={"ejemplo"}
-                        value={currency===""?"ejemplo":currency}
+                        value={provincia===""?"ejemplo":provincia}
                         onChange={(e)=>{handleChange(e);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                         id="provincia"
                         className={`inputForm`}
-                        sx={{"& div":{fontSize:"14px",color:currency===""&&"#BABCBE"}}}
+                        sx={{"& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"}}}
                     >
                         <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
                             {"Ciudad Autónoma de Buenos Aires"}
                         </MenuItem>
-                        {currencies.sort().map((option) => (
+                        {provincias.sort().map((option) => (
                             <MenuItem key={option} value={option} sx={{fontSize:"14px",color:"#969696"}}>
                                 {option}
                             </MenuItem>
@@ -193,8 +199,8 @@ const InfoContact=({setTypeNav,form,setForm})=>{
                 <div className="margenInput">
                     <InputLabel className="labelForm" id="labelBarrioLocalidad">Localidad / Barrio *</InputLabel>
                     <TextField 
-                        placeholder={currency===""?"Primero debes ingresar una provincia":"Mar del Plata"}
-                        disabled={currency==="" ? true : false}
+                        placeholder={provincia===""?"Primero debes ingresar una provincia":"Mar del Plata"}
+                        disabled={provincia==="" ? true : false}
                         size="small"
                         className={`inputForm`}
                         id="barrioLocalidad"
