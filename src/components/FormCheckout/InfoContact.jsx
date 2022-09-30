@@ -330,7 +330,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>
             </div>
             
-            <div className="firstLine">
+            <div className="firstLine" style={{justifyContent:"flex-start"}}>
                 <FormControlLabel
                     control={<Checkbox defaultChecked />}
                     onChange={()=>setSaveDirecc(!saveDirecc)}
