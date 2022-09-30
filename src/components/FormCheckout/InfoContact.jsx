@@ -114,6 +114,11 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 setViewDireccion(true)
             }else{
                 setErrorDireccion(true)
+                throwError("calle","labelCalle")
+                throwError("alturaKM","labelAlturaKM")
+                throwError("provincia","labelProvincia")
+                throwError("barrioLocalidad","labelBarrioLocalidad")
+                throwError("codigoPostal","labelCodigoPostal")
                 scrollTop()
             }
         })
