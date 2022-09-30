@@ -154,7 +154,7 @@ const Cart = () => {
                         height:"100%",
                     }}
                     >
-                        <ResumeBox stateForm={false}/>
+                        <ResumeBox stateForm={true} botonPago={true}/>
                     </Grid>
                 }
 

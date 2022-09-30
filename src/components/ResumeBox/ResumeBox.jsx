@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material"
 import React,{useState} from "react"
 import { useNavigate } from "react-router-dom";
 
-const ResumeBox = ({stateForm})=>{
+const ResumeBox = ({stateForm,botonPago})=>{
     const navigate = useNavigate();
 
     const [codigo,setCodigo]=useState("")
@@ -60,7 +60,7 @@ const ResumeBox = ({stateForm})=>{
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>
-            {!stateForm && 
+            {botonPago && 
                 <div className="botonFinalizar">
                     <Button
                         onClick={()=>navigate("/checkout")}

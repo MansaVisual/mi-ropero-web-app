@@ -120,7 +120,7 @@ const Checkout = ()=>{
                 }}
                 >
                     {typeNav !== "check" ?
-                        <ResumeBox stateForm={true}/>
+                        <ResumeBox stateForm={typeNav==="tarjeta"?false:true} botonPago={false}/>
                     :   
                         <div className="fotoBannerCheck screen1000-bannerCheck"/>
                     }
