@@ -86,10 +86,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             validarDireccion()
         }else{
             setLoader(false)
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            })
+            scrollTop()
         }
     }
 
@@ -113,18 +110,12 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         ).then(async(res)=>{
             console.log(res)
             if(res.status==="success" && res.result[0].calle!=="" && res.result[0].numero!==""){
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                })
+                scrollTop()
                 await setResDirecciones(res.result)
                 setViewDireccion(true)
             }else{
                 setErrorDireccion(true)
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                })
+                scrollTop()
             }
         })
     }
@@ -132,6 +123,12 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         if(direccion!==""){
             setTypeNav("envio")
         }
+    }
+    const scrollTop = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
     }
 
     return(
