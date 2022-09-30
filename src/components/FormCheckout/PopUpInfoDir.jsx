@@ -4,13 +4,14 @@ import home from "../../assets/img/home.png"
 import { Button, Radio } from "@mui/material";
 
 const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm})=>{
+    console.log(direccion)
     return(
         <>
             {resDirecciones!==undefined &&
                 <div className="setSucursales">
-                    <div className="fondoPopUp" onClick={()=>{setViewDireccion(false)}}></div>
+                    <div className="fondoPopUp" onClick={()=>{setViewDireccion(false);setDireccion({})}}></div>
                     <div className="popUp">
-                        <CancelIcon color="tertiary" className="cross" onClick={()=>{setViewDireccion(false)}}/>
+                        <CancelIcon color="tertiary" className="cross" onClick={()=>{setViewDireccion(false);setDireccion({})}}/>
                         <img src={home} alt="SHOP" color="primary" className="botonLogo"/>
                         <p>Seleccione su domicilio.</p>
                         <div className="cardContainer">
@@ -31,7 +32,7 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                                 )
                             })}
                         </div>
-                        <Button className="botonContinuar" onClick={()=>handleFinForm()}>
+                        <Button className={Object.keys(direccion).length === 0?"botonContinuarDisabled":"botonContinuar"} disabled={Object.keys(direccion).length === 0?true:false} onClick={()=>handleFinForm()}>
                             CONTINUAR
                         </Button>
                     </div>

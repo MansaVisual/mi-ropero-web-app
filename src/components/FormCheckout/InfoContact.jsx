@@ -108,7 +108,6 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             "direcciones",
             "normalize"
         ).then(async(res)=>{
-            console.log(res)
             if(res.status==="success" && res.result[0].calle!=="" && res.result[0].numero!==""){
                 scrollTop()
                 await setResDirecciones(res.result)
@@ -119,16 +118,17 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             }
         })
     }
-    const handleFinForm = ()=>{
-        if(direccion!==""){
-            setTypeNav("envio")
-        }
-    }
     const scrollTop = ()=>{
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         })
+    }
+
+    const handleFinForm = ()=>{
+        if(direccion!==""){
+            setTypeNav("envio")
+        }
     }
 
     return(
@@ -196,7 +196,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         size="small"
                         className={`inputForm`}
                         id="calle"
-                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelCalle")}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
@@ -210,7 +210,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                             size="small"
                             className="inputFormEspecial"
                             id="alturaKM"
-                            onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
+                            onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
                             onFocus={(e)=>onFocus(e,clase,clase2,"labelAlturaKM")}
                             type="number"
                         ></TextField>
@@ -247,7 +247,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         select
                         defaultValue={"ejemplo"}
                         value={provincia===""?"ejemplo":provincia}
-                        onChange={(e)=>{handleChange(e);setCampoObligatorio(false)}}
+                        onChange={(e)=>{handleChange(e);setErrorDireccion(false);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                         id="provincia"
                         className={`inputForm`}
@@ -271,7 +271,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         size="small"
                         className={`inputForm`}
                         id="barrioLocalidad"
-                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelBarrioLocalidad")}
                     ></TextField>
                 </div>
@@ -308,7 +308,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         size="small"
                         className={`inputForm`}
                         id="codigoPostal"
-                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorCodPostal(false);setErrorDireccion(false);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelCodigoPostal")}
                     ></TextField>
                 </div>
