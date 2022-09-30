@@ -15,9 +15,10 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)
+    console.log(form)
 
     useEffect(() => {
-        if(form.provincia==="CABA"){
+        if(form.provincia==="1"){
             setEnvioMoto(true)
         }
     }, [form]);

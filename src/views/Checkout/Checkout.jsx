@@ -32,6 +32,7 @@ const Checkout = ()=>{
     // METODO OCA=>DOM = 345837
     // METODO OCA=>OCA = 345838
     const [metodoEnvio,setMetodoEnvio]=useState("")
+    const [codDesc,setCodDesc]=useState("")
 
 
     useEffect(() => {
@@ -98,7 +99,12 @@ const Checkout = ()=>{
                         setMetodoEnvio={setMetodoEnvio}
                     /> : null}
 
-                    {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "tarjeta" ? <Tarjeta
+                        setTypeNav={setTypeNav}
+                        codDesc={codDesc}
+                        setCodDesc={setCodDesc}
+                    /> : null}
+
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
 
 
@@ -128,7 +134,13 @@ const Checkout = ()=>{
                 }}
                 >
                     {typeNav !== "check" ?
-                        <ResumeBox stateForm={typeNav==="tarjeta"?false:true} botonPago={false}/>
+                        <ResumeBox
+                            stateForm={typeNav==="tarjeta"?false:true}
+                            botonPago={false}
+                            codDesc={codDesc}
+                            setCodDesc={setCodDesc}
+                            form={form}
+                        />
                     :   
                         <div className="fotoBannerCheck screen1000-bannerCheck"/>
                     }

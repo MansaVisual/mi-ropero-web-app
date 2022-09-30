@@ -1,15 +1,24 @@
 import { Button, TextField } from "@mui/material"
-import React,{useState} from "react"
+import React,{useState,useContext} from "react"
 import { useNavigate } from "react-router-dom";
+import { UseFormContext } from "../../context/FormContext";
 
-const ResumeBox = ({stateForm,botonPago})=>{
+const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
     const navigate = useNavigate();
+    const {FormAPI}=useContext(UseFormContext)
 
     const [codigo,setCodigo]=useState("")
     const [codigoValido,setCodigoValido]=useState(true)
 
-
     const handleChange= ()=>{
+        const formCodigo = new FormData()
+        formCodigo.append('idcliente', 1231)
+        formCodigo.append('codigo', document.getElementById("codigo").value)
+        formCodigo.append('monto', "1231")
+        formCodigo.append('provincia', form.provincia)
+        FormAPI(
+
+        )
         const cod = document.getElementById("codigo").value
         setCodigoValido(true)
         setCodigo(cod)
