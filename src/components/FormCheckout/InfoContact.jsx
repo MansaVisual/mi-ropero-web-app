@@ -31,6 +31,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const [campoObligatorio,setCampoObligatorio]=useState(false)
     const [errorPhone,setErrorPhone]=useState(false)
     const [errorCodPostal,setErrorCodPostal]=useState(false)
+    const [errorDireccion,setErrorDireccion]=useState(false)
 
     const [viewDireccion,setViewDireccion]=useState(false)
     const [resDirecciones,setResDirecciones]=useState([])
@@ -110,8 +111,21 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             "direcciones",
             "normalize"
         ).then(async(res)=>{
-            await setResDirecciones(res.result)
-            setViewDireccion(res.result)
+            console.log(res)
+            if(res.status==="success" && res.result[0].calle!=="" && res.result[0].numero!==""){
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
+                await setResDirecciones(res.result)
+                setViewDireccion(true)
+            }else{
+                setErrorDireccion(true)
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
+            }
         })
     }
     const handleFinForm = ()=>{
@@ -140,6 +154,12 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
                     <p>El código postal no se pudo validar. Vuelva a intentarlo</p>
+                </div>
+            }
+            {errorDireccion &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>No se encontró la direccion establecida.</p>
                 </div>
             }
 
