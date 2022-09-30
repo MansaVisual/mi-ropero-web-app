@@ -159,6 +159,18 @@
             background-color: #443988;
         }
     }
+    .botonContinuarDisabled{
+        border: 1px solid #998edb;
+        background: #998edb;
+        filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+        border-radius: 20px;
+        padding: 10px 32px;
+        color: #FFFFFF !important;
+        margin-top: 48px;
+        &:hover{
+            background-color: #998edb;
+        }
+    }
     .disabled{
         div p{
             color: #BABCBE !important;
