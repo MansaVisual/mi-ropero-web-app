@@ -2,7 +2,7 @@ import React from "react"
 
 const Loader = ()=>{
     return(
-        <div class="spinner"></div>
+        <div className="spinner"></div>
     )
 }
 export default Loader
