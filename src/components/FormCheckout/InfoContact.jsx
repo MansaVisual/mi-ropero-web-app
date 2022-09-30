@@ -85,24 +85,26 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             validarDireccion()
         }else{
             setLoader(false)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
         }
     }
 
     const throwError =(id1,id2)=>{
-        document.getElementById(id1,id2).classList.add(clase)
-        document.getElementById(id1,id2).classList.add(clase2)
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
+        if(!document.getElementById(id1).classList.contains(clase)){
+            document.getElementById(id1).classList.add(clase)
+            document.getElementById(id2).classList.add(clase2)
+        }
     }
     const validarDireccion=()=>{
         const formDireccion = new FormData()
-        formDireccion.append('calle',"hirigoyen")
-        formDireccion.append('numero',"300")
-        formDireccion.append('provincia',"BUENOS AIRES")
-        formDireccion.append('localidad',"Zarate")
-        formDireccion.append('codigo_postal',"2800")
+        formDireccion.append('calle',document.getElementById("calle").value)
+        formDireccion.append('numero',document.getElementById("alturaKM").value)
+        formDireccion.append('provincia',document.getElementById("provincia").nextSibling.value)
+        formDireccion.append('localidad',document.getElementById("barrioLocalidad").value)
+        formDireccion.append('codigo_postal',document.getElementById("codigoPostal").value)
         FormAPI(
             formDireccion,
             "direcciones",

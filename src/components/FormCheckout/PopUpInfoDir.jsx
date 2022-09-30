@@ -1,6 +1,6 @@
 import React from "react"
 import CancelIcon from '@mui/icons-material/Cancel';
-import shop from "../../assets/img/shop.png"
+import home from "../../assets/img/home.png"
 import { Button, Radio } from "@mui/material";
 
 const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm})=>{
@@ -11,7 +11,7 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                     <div className="fondoPopUp" onClick={()=>{setViewDireccion(false)}}></div>
                     <div className="popUp">
                         <CancelIcon color="tertiary" className="cross" onClick={()=>{setViewDireccion(false)}}/>
-                        <img src={shop} alt="SHOP" color="primary" className="botonLogo"/>
+                        <img src={home} alt="SHOP" color="primary" className="botonLogo"/>
                         <p>Seleccione su domicilio.</p>
                         <div className="cardContainer">
                             {resDirecciones.map((dir,i)=>{
