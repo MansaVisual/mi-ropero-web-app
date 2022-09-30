@@ -24,6 +24,7 @@ const Checkout = ()=>{
     const [check,setCheck]=useState("")
     const [sucursalEntrega,setSucursalEntrega]=useState("")
     const [sucursales,setSucursales]=useState([])
+    const [saveDirecc,setSaveDirecc]=useState(true)
 
 
     useEffect(() => {
@@ -73,6 +74,8 @@ const Checkout = ()=>{
                         form={form}
                         setForm={setForm}
                         setSucursales={setSucursales}
+                        saveDirecc={saveDirecc}
+                        setSaveDirecc={setSaveDirecc}
                         /> : null}
 
                     {typeNav === "envio" ? <MetodoEnvio 

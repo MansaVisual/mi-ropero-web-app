@@ -3,6 +3,7 @@ import React, {useState,useContext,useEffect} from "react"
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones";
 import { UseFormContext } from "../../context/FormContext";
+import Loader from "../Loader/Loader";
 
 
 const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
@@ -11,7 +12,7 @@ const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','
                     'FORMOSA','SANTA CRUZ','LA RIOJA','CATAMARCA','SANTIAGO DEL ESTERO'
                     ]
 
-const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
+const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc})=>{
     const {FormAPI}=useContext(UseFormContext)
     
     let clase = "formObligatorio"
@@ -24,8 +25,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const [provincia, setProvincia] = useState('');
-    const [saveDirecc,setSaveDirecc]=useState(true)
-
+    const [loader,setLoader]=useState(false)
 
     const [campoObligatorio,setCampoObligatorio]=useState(false)
     const [errorPhone,setErrorPhone]=useState(false)
@@ -37,9 +37,11 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
     }
 
     const checkForm = async()=>{
+        setLoader(true)
         const res = handleClick(setCampoObligatorio,clase,clase2)
         let resFinal = true
         if(res){
+            setLoader(false)
             return
         }else{
             // const formDireccion = new FormData()
@@ -95,7 +97,10 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
             })
         }
         if(resFinal){
+            setLoader(false)
             setTypeNav("envio")
+        }else{
+            setLoader(false)
         }
     }
 
@@ -301,13 +306,17 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
                 />
             </div>
             
-            <div className="botonEnvio">
-                <Button
-                    onClick={()=>checkForm()}
-                    >
-                    IR A ENVÍO
-                </Button>
-            </div>
+            {loader ?
+                <Loader/>
+            :
+                <div className="botonEnvio">
+                    <Button
+                        onClick={()=>checkForm()}
+                        >
+                        IR A ENVÍO
+                    </Button>
+                </div>
+            }
         </div>
     )
 }
