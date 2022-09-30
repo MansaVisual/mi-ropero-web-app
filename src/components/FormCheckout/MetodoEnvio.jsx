@@ -5,16 +5,12 @@ import home from "../../assets/img/home.png"
 import shop from "../../assets/img/shop.png"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import oca from "../../assets/img/OCA.png"
-import React, {useState,useEffect,useContext} from "react"
+import React, {useState,useEffect} from "react"
 import PopUpSucursales from "./PopUpME";
 import PopUpSetSucursal from "./PopUpME2";
-import { UseFormContext } from "../../context/FormContext"
 
 
-const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck,sucursales,form})=>{
-    const {FormAPI}=useContext(UseFormContext)
-
-    FormAPI("","operaciones","get_medios_envio").then(res=>console.log(res))
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio})=>{
 
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
@@ -27,9 +23,9 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
     }, [form]);
 
     const defaultCheck = (type) =>{
-        if(check===""){
+        if(metodoEnvio===""){
             return false
-        }else if(check===type){
+        }else if(metodoEnvio===type){
             return true
         }
     }
@@ -41,7 +37,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
         }
     }
     const onClickCheck = (type)=>{
-        setCheck(type)
+        setMetodoEnvio(type)
     }
     const onClickCheckSucursal = (type)=>{
         if(type===""){
@@ -54,9 +50,9 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
 
 
     const handleClickContinuar = ()=>{
-        if(check==="ocaSucursal"){
+        if(metodoEnvio==="345838"){
             setSetSucursal(true)
-        }else if(check===""){
+        }else if(metodoEnvio===""){
             alert("ELIJA UN METODO")
         }else{
             alert("APROBADO")
@@ -91,13 +87,13 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
                 </div>
             </div>
             
-            <div className={`domicilioEntrega ${!envioMoto && "disabled"}`} onClick={envioMoto ? ()=>onClickCheck("moto") : null}>
+            <div className={`domicilioEntrega ${!envioMoto && "disabled"}`} onClick={envioMoto ? ()=>onClickCheck("1") : null}>
                 <p className="domicilioTitle">Seleccione un método de envío *</p>
-                <div className={`card metodos ${check === "moto" && "radioSelected"}`}>
+                <div className={`card metodos ${metodoEnvio === "1" && "radioSelected"}`}>
                     {envioMoto ?
                         <Radio 
                             className="radio"
-                            checked={defaultCheck("moto")}
+                            checked={defaultCheck("1")}
                             id="radioButton1"
                             name="radioButton"
                         />
@@ -124,11 +120,11 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
                     <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio"></p>
                 </div>
             </div>
-            <div className="domicilioEntrega" onClick={()=>onClickCheck("ocaDomicilio")}>
-                <div className={`card metodos ${check === "ocaDomicilio" && "radioSelected"}`}>
+            <div className="domicilioEntrega" onClick={()=>onClickCheck("345837")}>
+                <div className={`card metodos ${metodoEnvio === "345837" && "radioSelected"}`}>
                     <Radio 
                         className="radio"
-                        checked={defaultCheck("ocaDomicilio")}
+                        checked={defaultCheck("345837")}
                         id="radioButton2"
                         name="radioButton"
                     />
@@ -148,11 +144,11 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck
                 </div>
             </div>
             
-            <div className="domicilioEntrega" onClick={()=>onClickCheck("ocaSucursal")}>
-                <div className={`card metodos ${check === "ocaSucursal" && "radioSelected"}`}>
+            <div className="domicilioEntrega" onClick={()=>onClickCheck("345838")}>
+                <div className={`card metodos ${metodoEnvio === "345838" && "radioSelected"}`}>
                     <Radio 
                         className="radio"
-                        checked={defaultCheck("ocaSucursal")}
+                        checked={defaultCheck("345838")}
                         id="radioButton3"
                         name="radioButton"
                     />

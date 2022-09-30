@@ -1,10 +1,9 @@
-import React from "react"
+import React, {Fragment} from "react"
 import CancelIcon from '@mui/icons-material/Cancel';
 import home from "../../assets/img/home.png"
 import { Button, Radio } from "@mui/material";
 
 const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm})=>{
-    console.log(direccion)
     return(
         <>
             {resDirecciones!==undefined &&
@@ -17,7 +16,7 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                         <div className="cardContainer">
                             {resDirecciones.map(dir=>{
                                 return(
-                                    <>
+                                    <Fragment key={dir.raw_data}>
                                         {dir.numero!=="" && dir.calle!=="" &&
                                             <div className={`cardSucursal ${direccion.raw_data===dir.raw_data && "selected"}`} onClick={()=>setDireccion(dir)}>
                                                 <Radio
@@ -28,7 +27,7 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                                                 {dir.calle} {dir.numero}, {dir.provincia}, {dir.localidad} {dir.codigo_postal}
                                             </div>
                                         }
-                                    </>
+                                    </Fragment>
                                 )
                             })}
                         </div>

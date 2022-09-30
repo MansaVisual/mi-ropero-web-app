@@ -22,12 +22,16 @@ const Checkout = ()=>{
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
 
-    const [check,setCheck]=useState("")
     const [sucursalEntrega,setSucursalEntrega]=useState("")
     const [sucursales,setSucursales]=useState([])
     const [provincias,setProvincias]=useState([])
     const [direccion,setDireccion]=useState({})
     const [saveDirecc,setSaveDirecc]=useState(true)
+
+    // METODO MOTO = 1
+    // METODO OCA=>DOM = 345837
+    // METODO OCA=>OCA = 345838
+    const [metodoEnvio,setMetodoEnvio]=useState("")
 
 
     useEffect(() => {
@@ -51,7 +55,6 @@ const Checkout = ()=>{
         }
     }
 
-    
     return(
         <>
             <Box container className="Breadcrumbs">
@@ -89,10 +92,10 @@ const Checkout = ()=>{
                         setTypeNav={setTypeNav} 
                         sucursalEntrega={sucursalEntrega} 
                         setSucursalEntrega={setSucursalEntrega} 
-                        check={check} 
-                        setCheck={setCheck}
                         sucursales={sucursales}
                         form={form}
+                        metodoEnvio={metodoEnvio}
+                        setMetodoEnvio={setMetodoEnvio}
                     /> : null}
 
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}
