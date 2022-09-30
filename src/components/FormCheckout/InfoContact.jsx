@@ -4,6 +4,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
+import PopUpInfoDir from "./PopUpInfoDir";
 
 
 const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
@@ -12,7 +13,7 @@ const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','
                     'FORMOSA','SANTA CRUZ','LA RIOJA','CATAMARCA','SANTIAGO DEL ESTERO'
                     ]
 
-const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc})=>{
+const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,direccion,setDireccion})=>{
     const {FormAPI}=useContext(UseFormContext)
     
     let clase = "formObligatorio"
@@ -31,12 +32,16 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const [errorPhone,setErrorPhone]=useState(false)
     const [errorCodPostal,setErrorCodPostal]=useState(false)
 
+    const [viewDireccion,setViewDireccion]=useState(false)
+    const [resDirecciones,setResDirecciones]=useState([])
+
     const handleChange = (event) => {
         setProvincia(event.target.value)
         setForm({...form,provincia:event.target.value})
     }
 
     const checkForm = async()=>{
+
         setLoader(true)
         const res = handleClick(setCampoObligatorio,clase,clase2)
         let resFinal = true
@@ -44,17 +49,6 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             setLoader(false)
             return
         }else{
-            // const formDireccion = new FormData()
-            // formDireccion.append('calle',"Alberti")
-            // formDireccion.append('numero',"961")
-            // formDireccion.append('provincia',"BUENOS AIRES")
-            // formDireccion.append('localidad',"Buenos Aires")
-            // formDireccion.append('codigo_postal',"2800")
-            // FormAPI(
-                //     formDireccion,
-                //     "direcciones",
-                //     "normalize"
-                // )
                 
             const formPhone = new FormData()
             formPhone.append('telefono', document.getElementById("telefono").value)
@@ -66,12 +60,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 if(res.status==="error"){
                     resFinal = false
                     setErrorPhone(true)
-                    document.getElementById("telefono").classList.add(clase)
-                    document.getElementById("labelTelefono").classList.add(clase2)
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    })
+                    throwError("telefono","labelTelefono")
                 }
             })
 
@@ -85,12 +74,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 if(res.status==="error"){
                     resFinal = false
                     setErrorCodPostal(true)
-                    document.getElementById("codigoPostal").classList.add(clase)
-                    document.getElementById("labelCodigoPostal").classList.add(clase2)
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    })
+                    throwError("codigoPostal","labelCodigoPostal")
                 }else{
                     setSucursales(res.result)
                 }
@@ -98,9 +82,39 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         }
         if(resFinal){
             setLoader(false)
-            setTypeNav("envio")
+            validarDireccion()
         }else{
             setLoader(false)
+        }
+    }
+
+    const throwError =(id1,id2)=>{
+        document.getElementById(id1,id2).classList.add(clase)
+        document.getElementById(id1,id2).classList.add(clase2)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+    const validarDireccion=()=>{
+        const formDireccion = new FormData()
+        formDireccion.append('calle',"hirigoyen")
+        formDireccion.append('numero',"300")
+        formDireccion.append('provincia',"BUENOS AIRES")
+        formDireccion.append('localidad',"Zarate")
+        formDireccion.append('codigo_postal',"2800")
+        FormAPI(
+            formDireccion,
+            "direcciones",
+            "normalize"
+        ).then(async(res)=>{
+            await setResDirecciones(res.result)
+            setViewDireccion(res.result)
+        })
+    }
+    const handleFinForm = ()=>{
+        if(direccion!==""){
+            setTypeNav("envio")
         }
     }
 
@@ -123,7 +137,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             {errorCodPostal &&
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
-                    <p>El código postal no es válido.</p>
+                    <p>El código postal no se pudo validar. Vuelva a intentarlo</p>
                 </div>
             }
 
@@ -317,6 +331,14 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                     </Button>
                 </div>
             }
+
+            {viewDireccion && <PopUpInfoDir
+                direccion={direccion}
+                setDireccion={setDireccion}
+                setViewDireccion={setViewDireccion}
+                resDirecciones={resDirecciones}
+                handleFinForm={handleFinForm}
+            />}
         </div>
     )
 }

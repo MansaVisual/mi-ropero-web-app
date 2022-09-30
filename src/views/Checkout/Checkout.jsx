@@ -24,6 +24,7 @@ const Checkout = ()=>{
     const [check,setCheck]=useState("")
     const [sucursalEntrega,setSucursalEntrega]=useState("")
     const [sucursales,setSucursales]=useState([])
+    const [direccion,setDireccion]=useState({})
     const [saveDirecc,setSaveDirecc]=useState(true)
 
 
@@ -76,6 +77,8 @@ const Checkout = ()=>{
                         setSucursales={setSucursales}
                         saveDirecc={saveDirecc}
                         setSaveDirecc={setSaveDirecc}
+                        direccion={direccion}
+                        setDireccion={setDireccion}
                         /> : null}
 
                     {typeNav === "envio" ? <MetodoEnvio 
