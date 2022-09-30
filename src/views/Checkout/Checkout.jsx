@@ -21,9 +21,11 @@ const Checkout = ()=>{
     
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
+
     const [check,setCheck]=useState("")
     const [sucursalEntrega,setSucursalEntrega]=useState("")
     const [sucursales,setSucursales]=useState([])
+    const [provincias,setProvincias]=useState([])
     const [direccion,setDireccion]=useState({})
     const [saveDirecc,setSaveDirecc]=useState(true)
 
@@ -79,6 +81,8 @@ const Checkout = ()=>{
                         setSaveDirecc={setSaveDirecc}
                         direccion={direccion}
                         setDireccion={setDireccion}
+                        provincias={provincias}
+                        setProvincias={setProvincias}
                         /> : null}
 
                     {typeNav === "envio" ? <MetodoEnvio 
@@ -88,6 +92,7 @@ const Checkout = ()=>{
                         check={check} 
                         setCheck={setCheck}
                         sucursales={sucursales}
+                        form={form}
                     /> : null}
 
                     {typeNav === "tarjeta" ? <Tarjeta setTypeNav={setTypeNav}/> : null}

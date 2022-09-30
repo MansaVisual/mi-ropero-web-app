@@ -7,19 +7,23 @@ import Loader from "../Loader/Loader";
 import PopUpInfoDir from "./PopUpInfoDir";
 
 
-const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','JUJUY','MENDOZA',
-                    'CORRIENTES','SAN JUAN','NEUQUÉN','SAN LUIS','CHUBUT',
-                    'MISIONES','TIERRA DEL FUEGO','LA PAMPA','SANTA FE','CHACO','RÍO NEGRO',
-                    'FORMOSA','SANTA CRUZ','LA RIOJA','CATAMARCA','SANTIAGO DEL ESTERO'
-                    ]
-
-const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,direccion,setDireccion})=>{
+const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,direccion,setDireccion,provincias,setProvincias})=>{
     const {FormAPI}=useContext(UseFormContext)
     
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
 
     useEffect(() => {
+        FormAPI(
+            "",
+            "direcciones",
+            "provincias"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setProvincias(res.result)
+            }
+        })
+
         if(form.length!==0){
             chargeForm(form,setProvincia)
         }
@@ -261,9 +265,9 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
                             {"Ciudad Autónoma de Buenos Aires"}
                         </MenuItem>
-                        {provincias.sort().map((option) => (
-                            <MenuItem key={option} value={option} sx={{fontSize:"14px",color:"#969696"}}>
-                                {option}
+                        {provincias.map((option) => (
+                            <MenuItem key={option.idprovincia} value={option.idprovincia} sx={{fontSize:"14px",color:"#969696"}}>
+                                {option.nombre}
                             </MenuItem>
                         ))}
                     </TextField>

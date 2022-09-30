@@ -5,17 +5,26 @@ import home from "../../assets/img/home.png"
 import shop from "../../assets/img/shop.png"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import oca from "../../assets/img/OCA.png"
-import React, {useState} from "react"
+import React, {useState,useEffect,useContext} from "react"
 import PopUpSucursales from "./PopUpME";
 import PopUpSetSucursal from "./PopUpME2";
+import { UseFormContext } from "../../context/FormContext"
 
 
-const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck,sucursales})=>{
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,check,setCheck,sucursales,form})=>{
+    const {FormAPI}=useContext(UseFormContext)
+
+    FormAPI("","operaciones","get_medios_envio").then(res=>console.log(res))
 
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
+    const [envioMoto,setEnvioMoto]=useState(false)
 
-    let envioMoto = true
+    useEffect(() => {
+        if(form.provincia==="CABA"){
+            setEnvioMoto(true)
+        }
+    }, [form]);
 
     const defaultCheck = (type) =>{
         if(check===""){
