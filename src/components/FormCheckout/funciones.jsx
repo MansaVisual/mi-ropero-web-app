@@ -34,7 +34,6 @@ export const handleChangeForm = async(setForm,form) => {
 export const onFocus=(event,clase,clase2,id)=>{
     if(event.target.id === "barrioLocalidad"){
         if(document.getElementById(id).classList.contains(clase2)){
-            console.log("SI")
             document.getElementById(id).classList.remove(clase2)
         }
     }

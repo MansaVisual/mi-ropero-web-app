@@ -38,6 +38,7 @@ const Checkout = ()=>{
     const onNextForm=(type)=>{
         setTypeNav(type)
     }
+    
     const clickVolver = async(type)=>{
         if(type==="carrito"){
             navigate("/carrito")

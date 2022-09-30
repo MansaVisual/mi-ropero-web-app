@@ -13,6 +13,9 @@ const provincias = ['BUENOS AIRES','CÓRDOBA','TUCUMÁN','ENTRE RÍOS','SALTA','
 
 const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
     const {FormAPI}=useContext(UseFormContext)
+    
+    let clase = "formObligatorio"
+    let clase2 = "formObligatorioTitle"
 
     useEffect(() => {
         if(form.length!==0){
@@ -23,11 +26,10 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
     const [provincia, setProvincia] = useState('');
     const [saveDirecc,setSaveDirecc]=useState(true)
 
-    let clase = "formObligatorio"
-    let clase2 = "formObligatorioTitle"
 
     const [campoObligatorio,setCampoObligatorio]=useState(false)
     const [errorPhone,setErrorPhone]=useState(false)
+    const [errorCodPostal,setErrorCodPostal]=useState(false)
 
     const handleChange = (event) => {
         setProvincia(event.target.value)
@@ -80,8 +82,14 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
             ).then((res)=>{
                 if(res.status==="error"){
                     resFinal = false
+                    setErrorCodPostal(true)
+                    document.getElementById("codigoPostal").classList.add(clase)
+                    document.getElementById("labelCodigoPostal").classList.add(clase2)
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    })
                 }else{
-                    console.log(res.result)
                     setSucursales(res.result)
                 }
             })
@@ -104,7 +112,13 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales})=>{
             {errorPhone &&
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
-                    <p>El número de telefono es inválido.</p>
+                    <p>El número de telefono no es válido.</p>
+                </div>
+            }
+            {errorCodPostal &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>El código postal no es válido.</p>
                 </div>
             }
 
