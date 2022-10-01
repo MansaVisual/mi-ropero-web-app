@@ -72,7 +72,7 @@ const Cart = () => {
             "carritos",
             "all"
         ).then((res)=>console.log(res))
-    }, []);
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     let descuento = true
 
