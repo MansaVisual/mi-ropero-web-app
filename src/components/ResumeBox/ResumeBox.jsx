@@ -11,19 +11,22 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
     const [codigoValido,setCodigoValido]=useState(true)
 
     const handleChange= ()=>{
-        const formCodigo = new FormData()
-        formCodigo.append('idcliente', 1231)
-        formCodigo.append('codigo', document.getElementById("codigo").value)
-        formCodigo.append('monto', "1231")
-        formCodigo.append('provincia', form.provincia)
-        FormAPI(
-
-        )
         const cod = document.getElementById("codigo").value
         setCodigoValido(true)
         setCodigo(cod)
     }
     const handleClick = ()=>{
+        const formCodigo = new FormData()
+
+        formCodigo.append('idcliente', 1231)
+        formCodigo.append('codigo', document.getElementById("codigo").value)
+        formCodigo.append('monto', 1231)
+        formCodigo.append('provincia', form.provincia)
+        FormAPI(
+            formCodigo,
+            "promociones",
+            "get_code"
+        )
         setCodigoValido(true)
         if(codigo!==""){
             alert(codigo)

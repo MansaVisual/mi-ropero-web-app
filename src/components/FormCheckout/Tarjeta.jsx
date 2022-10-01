@@ -34,7 +34,7 @@ const products = [
       },
 ]
 
-const Tarjeta = ({setTypeNav,codDesc,setCodDesc})=>{
+const Tarjeta = ({setTypeNav})=>{
     return(
         <div className="tarjetaContenedor">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Método de envío</h2>
@@ -44,7 +44,7 @@ const Tarjeta = ({setTypeNav,codDesc,setCodDesc})=>{
                 <div className="prodsContainer">
                     {products.map((prod,i)=>{
                         return(
-                            <div className="prodCard">
+                            <div className="prodCard" key={i}>
                                 <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
                                 <div>
                                     <p>{prod.title}</p>
