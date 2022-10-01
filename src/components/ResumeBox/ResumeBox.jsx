@@ -2,20 +2,24 @@ import { Button, TextField } from "@mui/material"
 import React,{useState,useContext} from "react"
 import { useNavigate } from "react-router-dom";
 import { UseFormContext } from "../../context/FormContext";
+import Loader from "../Loader/Loader";
 
 const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
     const navigate = useNavigate();
     const {FormAPI}=useContext(UseFormContext)
 
-    const [codigo,setCodigo]=useState("")
-    const [codigoValido,setCodigoValido]=useState(true)
+    const [errorCodigo,setErrorCodigo]=useState(false)
+    const [codigoValido,setCodigoValido]=useState(false)
+
+    const [loader,setLoader]=useState(false)
 
     const handleChange= ()=>{
         const cod = document.getElementById("codigo").value
-        setCodigoValido(true)
-        setCodigo(cod)
+        setCodDesc(cod)
     }
+
     const handleClick = ()=>{
+        setLoader(true)
         const formCodigo = new FormData()
 
         formCodigo.append('idcliente', 1231)
@@ -26,14 +30,17 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             formCodigo,
             "promociones",
             "get_code"
-        ).then((res)=>console.log(res))
-        setCodigoValido(true)
-        if(codigo!==""){
-            alert(codigo)
-        }else{
-            document.getElementById("codigo").focus()
-            setCodigoValido(false)
-        }
+        ).then((res)=>{
+            if(res.status==="error"){
+                setErrorCodigo(true)
+                setCodigoValido(false)
+                setLoader(false)
+            }else if(res.status==="success"){
+                setErrorCodigo(false)
+                setCodigoValido(true)
+                setLoader(false)
+            }
+        })
     }
 
     return(
@@ -48,20 +55,29 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             </div>
             {!stateForm && 
                 <div className="boxInput">
-                    <p className="subtitulo subtituloDesc">Código de descuento / Giftcard</p>
+                    <p className="subtitulo subtituloDesc" style={{color:errorCodigo && "#FF3F20"}}>Código de descuento / Giftcard</p>
                     <div className="inputButton">
                         <TextField placeholder="INGRESAR CÓDIGO"
                             size="small"
                             id="codigo"
-                            color={`${codigoValido ? "primary" : "secondary"}`}
                             onChangeCapture={()=>handleChange()}
-                            ></TextField>
-                        <Button
-                            className="screen1000-codigo"
-                            onClick={()=>handleClick()}
+                            onFocus={()=>setErrorCodigo(false)}
+                            className={errorCodigo ? "inputCodigoError" : codigoValido ? "inputValido" : "inputCodigo"}
+                            helperText={errorCodigo ? "Código incorrecto" : codigoValido ? "Código correcto" : null}
+                        ></TextField>
+                        {!loader ?
+                            <Button
+                                className="screen1000-codigo"
+                                onClick={()=>handleClick()}
+                                sx={{mt:errorCodigo ? "-20px" : codigoValido ? "-20px" : null}}
                             >
-                            VALIDAR
-                        </Button>
+                                VALIDAR
+                            </Button>
+                        :
+                            <div style={{marginLeft:"24px"}}>
+                                <Loader/>
+                            </div>
+                        }
                     </div>
                 </div>
             }
