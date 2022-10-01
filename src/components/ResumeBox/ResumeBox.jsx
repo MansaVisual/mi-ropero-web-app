@@ -21,12 +21,12 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
         formCodigo.append('idcliente', 1231)
         formCodigo.append('codigo', document.getElementById("codigo").value)
         formCodigo.append('monto', 1231)
-        formCodigo.append('provincia', form.provincia)
+        formCodigo.append('idprovincia', 1)
         FormAPI(
             formCodigo,
             "promociones",
             "get_code"
-        )
+        ).then((res)=>console.log(res))
         setCodigoValido(true)
         if(codigo!==""){
             alert(codigo)

@@ -37,7 +37,7 @@ const products = [
 const Tarjeta = ({setTypeNav})=>{
     return(
         <div className="tarjetaContenedor">
-            <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Método de envío</h2>
+            <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Resumen</h2>
 
             <div className="productos">
                 <p>Productos</p>

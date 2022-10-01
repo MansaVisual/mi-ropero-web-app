@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useContext,useEffect} from "react";
 import { Box, Button, Grid, IconButton, useMediaQuery } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
@@ -9,6 +9,7 @@ import cart from "../../assets/img/cartVacio.png"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import "../../styles/scss/styles.scss"
 import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
+import { UseCartContext } from "../../context/CartContext";
 
 const products = [
     {
@@ -58,7 +59,20 @@ const products = [
 const Cart = () => {
     const navigate = useNavigate();
 
+    const {CartAPI}=useContext(UseCartContext)
+
     const [eliminar,setEliminar]=useState(false)
+
+    useEffect(() => {
+        const formCart = new FormData()
+
+        formCart.append('idcliente', 36)
+        CartAPI(
+            formCart,
+            "carritos",
+            "all"
+        ).then((res)=>console.log(res))
+    }, []);
 
     let descuento = true
 

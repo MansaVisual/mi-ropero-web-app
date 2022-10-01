@@ -16,14 +16,14 @@ import Cart from "./views/Cart/Cart";
 import Checkout from "./views/Checkout/Checkout";
 import { FormContext } from "./context/FormContext";
 import { ProdsContext } from "./context/ProdsContext";
-import { CardContext } from "./context/CartContext";
+import { CartContext } from "./context/CartContext";
 
 
 function App() {
   return (
     <ProdsContext>
       <FormContext>
-        <CardContext>
+        <CartContext>
           <Router>
             <ThemeProvider theme={theme}>
               <NavBar />
@@ -51,7 +51,7 @@ function App() {
               <Footer />
             </ThemeProvider>
           </Router>
-        </CardContext>
+        </CartContext>
       </FormContext>
     </ProdsContext>
   );
