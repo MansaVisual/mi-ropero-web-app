@@ -36,8 +36,8 @@
     }
 }
 
-@mixin screen_328{
-  @media (max-width:328px) {
+@mixin screen_664{
+  @media (max-width:664px) {
       @content;
     }
 }
@@ -52,4 +52,10 @@
   @media (max-width:360px){
     @content
   }
+}
+
+@mixin screen_328{
+  @media (max-width:328px) {
+      @content;
+    }
 }
