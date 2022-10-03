@@ -28,8 +28,15 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            @include screen_1070{
+            @media (min-width:1000px){
+                align-items: center !important;
+            }
+            @include screen_1100{
                 flex-wrap: wrap;
+            }
+            .loader{
+                margin-left: 24px;
+                margin-top: -24px;
             }
             .inputCodigo{
                 input{
@@ -41,6 +48,9 @@
                     font-weight: 400;
                     font-size: 1vw;
                     line-height: 18px;
+                    @include screen_1100{
+                        width: 13vw;
+                    }
                     @include screen_1001{
                         width: 18vw;
                         font-size: 12px;
@@ -64,6 +74,9 @@
                     font-size: 1vw;
                     line-height: 18px;
                     color: #FF3F20;
+                    @include screen_1100{
+                        width: 13vw;
+                    }
                     @include screen_1001{
                         width: 18vw;
                         font-size: 12px;
@@ -93,6 +106,9 @@
                     font-weight: 400;
                     font-size: 1vw;
                     line-height: 18px;
+                    @include screen_1100{
+                        width: 13vw;
+                    }
                     @include screen_1001{
                         width: 18vw;
                         font-size: 12px;
@@ -120,14 +136,13 @@
                 background: #969696;
                 box-shadow: 0.878378px 0.878378px 17.5676px #F6F8F9;
                 border-radius: 4.39189px;
-                @include screen_1070{
+                @include screen_1100{
                     margin-top: 8px;
-                    margin-left: 0px !important;
+                    margin-left: 0px;
+                    font-size: 11px;
                 }
                 @include screen_1001{
-                    margin: 0px;
                     margin-left: 16px !important;
-                    font-size: 11px;
                 }
                 @include screen_389{
                     margin-top: 8px;

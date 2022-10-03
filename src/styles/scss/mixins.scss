@@ -19,8 +19,8 @@
 }
 
 // ESPECIALES
-@mixin screen_1070{
-  @media (max-width:1070px) {
+@mixin screen_1100{
+  @media (max-width:1100px) {
     @content;
   }
 }
