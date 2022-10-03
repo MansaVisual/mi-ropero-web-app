@@ -23,8 +23,10 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                                                     name="sucursal"
                                                     id={dir.raw_data}
                                                     checked={direccion.raw_data===dir.raw_data ? true : false}
-                                                    />
-                                                {dir.calle} {dir.numero}, {dir.provincia}, {dir.localidad} {dir.codigo_postal}
+                                                />
+                                                <label>
+                                                    {dir.calle} {dir.numero}, {dir.provincia}, {dir.localidad} {dir.codigo_postal}
+                                                </label>
                                             </div>
                                         }
                                     </Fragment>

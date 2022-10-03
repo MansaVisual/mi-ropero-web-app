@@ -3,7 +3,6 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { Button, useMediaQuery } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
 import theme from "../../styles/theme";
-import ResumeBox from "../ResumeBox/ResumeBox";
 
 const products = [
     {
