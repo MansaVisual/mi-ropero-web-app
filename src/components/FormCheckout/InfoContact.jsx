@@ -432,7 +432,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             }
             
             {loader ?
-                <Loader/>
+                <Loader spin={"spinnerG"}/>
                 :
                 <div className="botonEnvio">
                     <Button

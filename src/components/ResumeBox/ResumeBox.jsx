@@ -56,7 +56,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             {!stateForm && 
                 <div className="boxInput">
                     <p className="subtitulo subtituloDesc" style={{color:errorCodigo && "#FF3F20"}}>Código de descuento / Giftcard</p>
-                    <div className="inputButton">
+                    <div className="inputButton" style={{alignItems:errorCodigo ? "flex-start" : codigoValido ? "flex-start" : null}}>
                         <TextField placeholder="INGRESAR CÓDIGO"
                             size="small"
                             id="codigo"
@@ -74,9 +74,13 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
                                 VALIDAR
                             </Button>
                         :
-                            <div style={{marginLeft:"24px"}}>
-                                <Loader/>
-                            </div>
+                            <Button
+                                className="screen1000-codigo"
+                                onClick={()=>handleClick()}
+                                sx={{marginTop:errorCodigo ? "-20px" : codigoValido ? "-20px" : null,}}
+                            >
+                                <Loader spin={"spinnerS"} white={"spinnerWhite"}/>
+                            </Button>
                         }
                     </div>
                 </div>
