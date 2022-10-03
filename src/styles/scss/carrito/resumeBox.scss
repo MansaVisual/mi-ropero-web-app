@@ -48,7 +48,7 @@
                     @include screen_601{
                         width: 140px;
                     }
-                    @include screen_328{
+                    @include screen_389{
                         width: 160px;
                     }
                 }
@@ -71,7 +71,7 @@
                     @include screen_601{
                         width: 140px;
                     }
-                    @include screen_328{
+                    @include screen_389{
                         width: 160px;
                     }
                 }
@@ -100,7 +100,7 @@
                     @include screen_601{
                         width: 140px;
                     }
-                    @include screen_328{
+                    @include screen_389{
                         width: 160px;
                     }
                 }
@@ -129,6 +129,10 @@
                     margin-left: 16px !important;
                     font-size: 11px;
                 }
+                @include screen_389{
+                    margin-top: 8px;
+                    margin-left: 0px !important;
+                }
                 @include screen_328{
                     margin-top: 8px;
                     margin-left: 0px !important;
@@ -142,11 +146,13 @@
         border: 1px solid pink;
         border-radius: 8px;
         max-width: 300px;
+        margin-bottom: 8px;
         @include screen_1001{
             margin: auto;
+            margin-bottom: 16px;
         }
         @include screen_820{
-            margin: 0px 16px;
+            margin: 16px;
         }
     }
     .botonFinalizar{

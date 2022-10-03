@@ -1,4 +1,4 @@
-import { Grid, useMediaQuery } from "@mui/material";
+import { Button, Grid, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system"
 import React,{useState,useEffect} from "react"
 import { useLocation,useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ const Checkout = ()=>{
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     
-    const [typeNav,setTypeNav]=useState("info")
+    const [typeNav,setTypeNav]=useState("tarjeta")
     const [form,setForm]=useState([])
 
     const [sucursalEntrega,setSucursalEntrega]=useState("")
@@ -101,8 +101,10 @@ const Checkout = ()=>{
 
                     {typeNav === "tarjeta" ? <Tarjeta
                         setTypeNav={setTypeNav}
+                        type
                         codDesc={codDesc}
                         setCodDesc={setCodDesc}
+                        form={form}
                     /> : null}
 
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
@@ -133,7 +135,8 @@ const Checkout = ()=>{
                     height:"100%",
                 }}
                 >
-                    {typeNav !== "check" ?
+                    {
+                    typeNav !== "check" ?
                         <ResumeBox
                             stateForm={typeNav==="tarjeta"?false:true}
                             botonPago={false}
@@ -145,6 +148,22 @@ const Checkout = ()=>{
                         <div className="fotoBannerCheck screen1000-bannerCheck"/>
                     }
                 </Grid>
+                
+                {typeNav==="tarjeta" && !isDesktop &&
+                    <Grid xs={12}>
+                        <div className="botones">
+                            <Button className="botonVolver" onClick={()=>setTypeNav("envio")}>
+                                VOLVER
+                            </Button>
+                            <Button className="botonPagar" onClick={()=>setTypeNav("check")}>
+                                IR A PAGAR
+                            </Button>
+                            <p className="botonVolverMobile" onClick={()=>setTypeNav("envio")}>VOLVER</p>
+                        </div>
+                        <p className="terminos">Al oprimir IR A PAGAR se aceptan los <span className="terminosLink">términos y condiciones</span> de Mi Ropero</p>
+                    </Grid>
+                }
+
             </Grid>
         </>
     )

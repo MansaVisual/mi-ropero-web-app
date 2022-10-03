@@ -1,7 +1,9 @@
 import React from "react"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
+import theme from "../../styles/theme";
+import ResumeBox from "../ResumeBox/ResumeBox";
 
 const products = [
     {
@@ -34,7 +36,9 @@ const products = [
       },
 ]
 
-const Tarjeta = ({setTypeNav})=>{
+const Tarjeta = ({setTypeNav,codDesc,setCodDesc,form})=>{
+    const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
     return(
         <div className="tarjetaContenedor">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Resumen</h2>
@@ -99,16 +103,20 @@ const Tarjeta = ({setTypeNav})=>{
                 </div>
             </div>
 
-            <div className="botones">
-                <Button className="botonVolver" onClick={()=>setTypeNav("envio")}>
-                    VOLVER
-                </Button>
-                <Button className="botonPagar" onClick={()=>setTypeNav("check")}>
-                    IR A PAGAR
-                </Button>
-                <p className="botonVolverMobile" onClick={()=>setTypeNav("envio")}>VOLVER</p>
-            </div>
-            <p className="terminos">Al oprimir IR A PAGAR se aceptan los <span className="terminosLink">términos y condiciones</span> de Mi Ropero</p>
+            {isDesktop &&
+                <>
+                    <div className="botones">
+                        <Button className="botonVolver" onClick={()=>setTypeNav("envio")}>
+                            VOLVER
+                        </Button>
+                        <Button className="botonPagar" onClick={()=>setTypeNav("check")}>
+                            IR A PAGAR
+                        </Button>
+                        <p className="botonVolverMobile" onClick={()=>setTypeNav("envio")}>VOLVER</p>
+                    </div>
+                    <p className="terminos">Al oprimir IR A PAGAR se aceptan los <span className="terminosLink">términos y condiciones</span> de Mi Ropero</p>
+                </>
+            }
         </div>
     )
 }
