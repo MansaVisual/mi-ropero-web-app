@@ -32,8 +32,8 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             "get_code"
         ).then((res)=>{
             if(res.status==="error"){
-                setErrorCodigo(true)
-                setCodigoValido(false)
+                setErrorCodigo(false)
+                setCodigoValido(true)
                 setLoader(false)
             }else if(res.status==="success"){
                 setErrorCodigo(false)
@@ -87,8 +87,20 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             }
             <div className="box">
                 <p className="subtitulo subtituloTotal">TOTAL:</p>
-                <p className="subtitulo subtituloTotal">$ 127.199</p>
+                <p className="subtitulo subtituloTotal"
+                    style={{
+                        textDecoration:codigoValido && "line-through",
+                        color:codigoValido && "#969696"
+                    }}>
+                    $ 127.199
+                </p>
             </div>
+            {codigoValido && 
+                <div className="box">
+                    <p></p>
+                    <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>$ 120.000</p>
+                </div>
+            }
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>
