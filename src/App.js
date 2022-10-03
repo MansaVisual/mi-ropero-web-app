@@ -17,6 +17,7 @@ import Checkout from "./views/Checkout/Checkout";
 import { FormContext } from "./context/FormContext";
 import { ProdsContext } from "./context/ProdsContext";
 import { CartContext } from "./context/CartContext";
+import Login from "./views/Login/Login";
 
 
 function App() {
@@ -46,7 +47,11 @@ function App() {
                 <Route
                   path="/checkout"
                   element={<Checkout />}
-                />  
+                />
+                <Route
+                  path="/login"
+                  element={<Login />}
+                />
               </Routes>
               <Footer />
             </ThemeProvider>
