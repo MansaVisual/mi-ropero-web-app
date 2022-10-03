@@ -1,8 +1,8 @@
 import React from "react"
 
-const Loader = ()=>{
+const Loader = ({spin,white})=>{
     return(
-        <div className="spinner"></div>
+        <div className={`${spin} ${white}`}></div>
     )
 }
 export default Loader
