@@ -35,7 +35,7 @@ const products = [
       },
 ]
 
-const Tarjeta = ({setTypeNav,codDesc,setCodDesc,form})=>{
+const Tarjeta = ({setTypeNav})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
     return(
