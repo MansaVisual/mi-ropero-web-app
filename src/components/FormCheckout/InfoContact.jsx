@@ -41,7 +41,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const [resDirecciones,setResDirecciones]=useState([])
 
     const [stateDireccion,setStateDireccion]=useState("nuevaDir")
-    const [direccionCargada,setDireccionCargada]=useState("")
+    // const [direccionCargada,setDireccionCargada]=useState("")
 
     const handleChange = (event) => {
         setProvincia(event.target.value)
