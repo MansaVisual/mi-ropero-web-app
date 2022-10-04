@@ -12,68 +12,40 @@ import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import { UseCartContext } from "../../context/CartContext";
 import cruz from "../../assets/img/cruz.png";
 
-// const products = [
-//     {
-//       id: 1,
-//       title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
-//       description:"El ropero de Romialaniz",
-//       price: 280000,
-//       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//     },
-//     {
-//       id: 2,
-//       description:"El ropero de Romialaniz",
-//       title: "Pantalon nuevo 2022",
-//       price: 1200,
-//       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//     },
-//     {
-//       id: 3,
-//       description:"El ropero de Romialaniz",
-//       title: "Remera negra 2022 de algodon y algunas tiras rojas",
-//       price: 3000,
-//       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//     },
-//     {
-//         id: 1,
-//         title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
-//         description:"El ropero de Romialaniz",
-//         price: 28000,
-//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//       },
-//       {
-//         id: 2,
-//         description:"El ropero de Romialaniz",
-//         title: "Pantalon nuevo 2022",
-//         price: 1200,
-//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//       },
-//       {
-//         description:"El ropero de Romialaniz",
-//         id: 3,
-//         title: "Remera negra 2022",
-//         price: 3000,
-//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//       },
-// ]
-
 const Cart = () => {
     const navigate = useNavigate();
 
-    const {carrito}=useContext(UseCartContext)
+    const {CartAPI,carrito}=useContext(UseCartContext)
 
     const [eliminar,setEliminar]=useState(false)
+    const [prodEliminar,setProdEliminar]=useState(null)
 
-    let descuento = true
-
+    
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-    // const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
+    
     const handleEliminar = (prod)=>{
+        setProdEliminar(prod)
         setEliminar(true)
+    }
+
+    const handleEliminarFinal = async()=>{
+        const eliminar = new FormData()
+        eliminar.append('telefono', prodEliminar)
+        await CartAPI(
+            eliminar,
+            "carritos",
+            "delete"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setEliminar(false)
+            }else{
+                alert("Ocurrio un error")
+            }
+        })
     }
 
     return(
@@ -103,14 +75,14 @@ const Cart = () => {
                                                     {prod.description}
                                                 </p>
                                                 <div className="preciosDeleteMobile">
-                                                    {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
-                                                    <p className="precioProd">$ {prod.price}</p>
+                                                    {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
+                                                    <p className="precioProd">$ {prod.producto.precio}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="preciosDelete">
-                                            {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
-                                            <p className="precioProd">$ {prod.price}</p>
+                                            {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
+                                            <p className="precioProd">$ {prod.producto.precio}</p>
                                         </div>
                                         <IconButton
                                                 aria-label="delete"
@@ -118,7 +90,7 @@ const Cart = () => {
                                                 sx={{
                                                     fontSize: isDesktop ? "2.3vw" : isMobileBigScreen ? "30px" : "35px"
                                                 }}
-                                                onClick={()=>handleEliminar(prod)}
+                                                onClick={()=>handleEliminar(prod.producto_id)}
                                                 >
                                                 <img src={basura} alt="BORRAR"/>
                                         </IconButton>
@@ -173,7 +145,7 @@ const Cart = () => {
                         <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
                         <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center",marginBottom:"24px"}}>
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>
-                            <Button className="eliminar">ELIMINAR</Button>
+                            <Button className="eliminar" onClick={()=>handleEliminarFinal()}>ELIMINAR</Button>
                         </div>
                         <img src={cruz} alt="CRUZ" className="cruz" onClick={()=>setEliminar(false)}/>
                     </div>

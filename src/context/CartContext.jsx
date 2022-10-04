@@ -28,14 +28,13 @@ export const CartContext = ({children}) => {
     useEffect(() => {
         const CartID = new FormData()
 
-        CartID.append('idcliente', 3609)
+        CartID.append('idcliente', 62)
         CartAPI(
             CartID,
             "carritos",
             "all"
         ).then((res)=>{
             if(res.status==="success"){
-                console.log(res.result)
                 setCarrito(res.result)
             }
         })
