@@ -29,12 +29,15 @@ export const CartContext = ({children}) => {
     useEffect(() => {
         const CartID = new FormData()
 
-        CartID.append('idcliente', 32)
+        CartID.append('idcliente', 68)
+        CartID.append('idproducto',10610)
+        CartID.append('cantidad',1)
         CartAPI(
             CartID,
             "carritos",
-            "all"
+            "insert"
         ).then((res)=>{
+            console.log(res)
             if(res.status==="success"){
                 setCarrito(res.result)
                 setBuscandoCart(false)
