@@ -26,7 +26,7 @@ const NavBarForm = ({typeNav,onNextForm})=>{
             </div>
             <div style={{textAlign:"center",margin:"0px 6px"}}>
             <img src={typeNav==="tarjeta" ? tarjeta : tarjeta2} alt="INFO"
-                    className={`${typeNav==="tarjeta" ? "navEnabled" : "navDisabled"}`} 
+                    className={`${typeNav==="tarjeta" ? "navEnabled" : "navDisabled"}`}
                 />
                 <div className={`${typeNav==="tarjeta" ? "barraInferior" : "barraInferiorDisabled"}`}></div>
             </div>

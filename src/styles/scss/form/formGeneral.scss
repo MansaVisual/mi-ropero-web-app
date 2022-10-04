@@ -7,6 +7,12 @@
     @include screen_601{
         justify-content: center;
     }
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .barraInferior{
         width: 13vw;
         height: 8px;
@@ -37,14 +43,18 @@
     }
     .navEnabled{
         color: #443988;
-        font-size: 32px;
+        width: 28px;
+        height: 28px;
+        margin-bottom: 12px;
         @include screen_601{
             font-size: 38px;
         }
     }
     .navDisabled{
         color: #D9D9D9;
-        font-size: 32px;
+        width: 28px;
+        height: 28px;
+        margin-bottom: 12px;
         @include screen_601{
             font-size: 38px;
         }
