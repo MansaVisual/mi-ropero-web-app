@@ -76,7 +76,6 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
                         :
                             <Button
                                 className="screen1000-codigo"
-                                onClick={()=>handleClick()}
                                 sx={{marginTop:errorCodigo ? "0px" : codigoValido ? "0px" : null,}}
                             >
                                 <Loader spin={"spinnerS"} white={"spinnerWhite"}/>
