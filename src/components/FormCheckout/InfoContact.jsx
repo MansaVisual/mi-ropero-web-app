@@ -10,6 +10,9 @@ import PopUpInfoDir from "./PopUpInfoDir";
 const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,direccion,setDireccion,provincias,setProvincias})=>{
     const {FormAPI}=useContext(UseFormContext)
     
+    const [direccionesCargadas,setDireccionesCargadas]=useState([])
+    const [direccionCargada,setDireccionCargada]=useState(null)
+
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
 
@@ -21,6 +24,19 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         ).then((res)=>{
             if(res.status==="success"){
                 setProvincias(res.result)
+            }
+        })
+
+        const formDirecciones = new FormData()
+
+        formDirecciones.append('idcliente', 62)
+        FormAPI(
+            formDirecciones,
+            "direcciones",
+            "all"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setDireccionesCargadas(res.result)
             }
         })
 
@@ -208,7 +224,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             </div>
 
             <div className="selectorDireccion">
-                <div className="selectorContainer" onClick={()=>setLoadDireccion(!loadDireccion)}>
+                <div className="selectorContainer" onClick={()=>{setLoadDireccion(!loadDireccion);setDireccionCargada(null)}}>
                     <FormControlLabel
                         name="sucursal"
                         control={<Checkbox/>}
@@ -377,23 +393,24 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 </>
             :
                 <div className="contenedorDirecciones">
-                    <div className="cards">
-                        <Radio
-                            name="sucursal"
-                            id="nuevaDir"
-                            defaultChecked={true}
-                            checked={loadDireccion?true:false}
-                            value="direccionCargada"
-                            onClick={()=>setLoadDireccion(!loadDireccion)}
-                        />
-                        <p className="labelForm" for="nuevaDir">
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                        </p>
-                    </div>
+                    {direccionesCargadas.map(dir=>{
+                        return(
+                            <div className="cards" onClick={()=>setDireccionCargada(dir)}>
+                                <Radio
+                                    name="sucursal"
+                                    id="nuevaDir"
+                                    defaultChecked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
+                                    checked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
+                                    value={dir.iddireccion}
+                                />
+                                <p className="labelForm" for="nuevaDir">
+                                    {dir.calle} {dir.numero}. {dir.provincia === "Capital Federal" && "CABA"} {dir.localidad} ({dir.codigo_postal}).
+                                    {dir.entre_calle_1!=="" && "Entre"} {dir.entre_calle_1!==""&& dir.entre_calle_1} {dir.entre_calle_1!=="" && "y"} {dir.entre_calle_2!==""&& dir.entre_calle_2}
+                                    {dir.informacion_adicional}
+                                </p>
+                            </div>
+                        )
+                    })}
                 </div>
             }
             

@@ -261,6 +261,8 @@
     .cards{
         width: 48%;
         display: flex;
+        justify-content: flex-start;
+        align-items: center;
         background: #FDFEFF;
         box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
         border-radius: 6px;
@@ -278,9 +280,19 @@
             font-size: 13px;
             line-height: 21px;
             margin-right: 24px;
+            max-height: 111px;
+            min-height: 60px;
             @include screen_664{
                 margin-right: 12px;
             }
+        }
+        span{
+            margin-left: 24px;
+            margin-right: 24px;
+        }
+        span span{
+            margin-left: 0px;
+            margin-right: 0px;
         }
     }
 }
