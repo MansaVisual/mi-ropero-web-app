@@ -75,4 +75,39 @@
             color: #423B3C;
         }
     }
+    .botonIngresar{
+        color: #FFFFFF;
+        background: #FF3F20; 
+        box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        width: 450px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        padding: 10px 36px;
+        margin-top: 24px;
+        &:hover{
+            background-color: #FF3F20;
+        }
+    }
+    .botonRegistrate{
+        padding: 10px 36px;
+        width: 450px;
+        height: 36px;
+        background: #423B3C;
+        border: 1px solid #443988;
+        box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        color: #FFFFFF;
+        margin-top: 32px;
+        margin-bottom: 80px;
+        &:hover{
+            background-color: #423B3C;
+        }
+    }
 }
