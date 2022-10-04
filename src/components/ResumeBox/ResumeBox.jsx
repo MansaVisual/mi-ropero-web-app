@@ -23,8 +23,8 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
         const formCodigo = new FormData()
 
         formCodigo.append('idcliente', 1231)
-        formCodigo.append('codigo', document.getElementById("codigo").value)
-        formCodigo.append('monto', 1231)
+        formCodigo.append('codigo', codDesc)
+        formCodigo.append('monto', 1800)
         formCodigo.append('idprovincia', 1)
         FormAPI(
             formCodigo,
