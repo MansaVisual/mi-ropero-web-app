@@ -30,15 +30,15 @@ const BoxLogin = ()=>{
                         color="primary"
                         className="inputP"
                         size="small"
-                        placeholder=" ● ● ● ● ● ● ● ● ●"
+                        placeholder="● ● ● ● ● ● ● ● ● ● ●"
                         type={"password"}
                     />
-                    <p className="olvidoContraseña">Olvidé mi constraseña</p>
+                    <p className="olvidoContraseña">Olvidé mi contraseña</p>
                 </div>
             </div>
 
-            <Button />
-            <Button />
+            <Button className="botonIngresar">INGRESAR</Button>
+            <Button className="botonRegistrate">REGISTRATE</Button>
         </div>
     )
 }
