@@ -56,7 +56,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             {!stateForm && 
                 <div className="boxInput">
                     <p className="subtitulo subtituloDesc" style={{color:errorCodigo ? "#FF3F20" : codigoValido ? "#13b574" : null}}>Código de descuento / Giftcard</p>
-                    <div className="inputButton" style={{alignItems:errorCodigo ? "flex-start" : codigoValido ? "flex-start" : null}}>
+                    <div className="inputButton" style={{alignItems:errorCodigo ? "flex-start" : codigoValido ? "flex-start" : null,justifyContent:"space-between"}}>
                         <TextField placeholder="INGRESAR CÓDIGO"
                             size="small"
                             id="codigo"
@@ -69,7 +69,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
                             <Button
                                 className="screen1000-codigo"
                                 onClick={()=>handleClick()}
-                                sx={{mt:errorCodigo ? "-20px" : codigoValido ? "-20px" : null}}
+                                sx={{marginTop:errorCodigo ? "-20px" : codigoValido ? "-20px" : null}}
                             >
                                 VALIDAR
                             </Button>
@@ -77,7 +77,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
                             <Button
                                 className="screen1000-codigo"
                                 onClick={()=>handleClick()}
-                                sx={{marginTop:errorCodigo ? "-20px" : codigoValido ? "-20px" : null,}}
+                                sx={{marginTop:errorCodigo ? "0px" : codigoValido ? "0px" : null,}}
                             >
                                 <Loader spin={"spinnerS"} white={"spinnerWhite"}/>
                             </Button>

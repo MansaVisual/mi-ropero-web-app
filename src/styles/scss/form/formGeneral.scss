@@ -51,7 +51,7 @@
     }
 }
 .fotoBannerCheckMobile{
-    width: 21vw;
+    width: 22vw;
     height: 21vw;
     background-color: rgb(152, 192, 152);
     display: none;
@@ -64,8 +64,8 @@
     }
 }
 .fotoBannerCheck{
-    width: 21vw;
-    height: 21vw;
+    width: 22.5vw;
+    height: 22vw;
     background-color: rgb(152, 192, 152);
     @include screen_1001{
         display: none;

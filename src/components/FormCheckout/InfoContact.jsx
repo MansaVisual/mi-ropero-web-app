@@ -292,7 +292,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                                 onChange={(e)=>{handleChange(e);setErrorDireccion(false);setCampoObligatorio(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                                 id="provincia"
-                                className={`inputForm`}
+                                className={`inputForm selector`}
                                 sx={{"& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"}}}
                                 >
                                 <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>

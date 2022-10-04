@@ -31,7 +31,7 @@
             @media (min-width:1000px){
                 align-items: center !important;
             }
-            @include screen_1100{
+            @include screen_1190{
                 flex-wrap: wrap;
             }
             .loader{
@@ -43,17 +43,20 @@
                     background: #FFFFFF;
                     mix-blend-mode: normal;
                     border: 0.5px solid #969696;
-                    width: 11vw;
+                    width: 165px;
                     border-radius: 4px;
                     font-weight: 400;
-                    font-size: 1vw;
+                    font-size: 13px;
                     line-height: 18px;
-                    @include screen_1100{
+                    @include screen_1190{
                         width: 13vw;
                     }
                     @include screen_1001{
                         width: 18vw;
                         font-size: 12px;
+                    }
+                    @include screen_768{
+                        width: 20vw;
                     }
                     @include screen_601{
                         width: 140px;
@@ -68,18 +71,21 @@
                     background: #FFFFFF;
                     mix-blend-mode: normal;
                     border: 3px solid #FF3F20;
-                    width: 11vw;
+                    width: 165px;
                     border-radius: 4px;
                     font-weight: 400;
-                    font-size: 1vw;
+                    font-size: 13px;
                     line-height: 18px;
                     color: #FF3F20;
-                    @include screen_1100{
+                    @include screen_1190{
                         width: 13vw;
                     }
                     @include screen_1001{
                         width: 18vw;
                         font-size: 12px;
+                    }
+                    @include screen_768{
+                        width: 20vw;
                     }
                     @include screen_601{
                         width: 140px;
@@ -101,17 +107,20 @@
                     mix-blend-mode: normal;
                     border: 0.5px solid #13b574;
                     color: #13b574;
-                    width: 11vw;
+                    width: 165px;
                     border-radius: 4px;
                     font-weight: 400;
-                    font-size: 1vw;
+                    font-size: 13px;
                     line-height: 18px;
-                    @include screen_1100{
+                    @include screen_1190{
                         width: 13vw;
                     }
                     @include screen_1001{
                         width: 18vw;
                         font-size: 12px;
+                    }
+                    @include screen_768{
+                        width: 20vw;
                     }
                     @include screen_601{
                         width: 140px;
@@ -135,18 +144,22 @@
                 font-weight: 700;
                 background: #969696;
                 box-shadow: 0.878378px 0.878378px 17.5676px #F6F8F9;
-                border-radius: 4.39189px;
-                @include screen_1100{
+                border-radius: 4.4px;
+                height: 36px;
+                @include screen_1190{
                     margin-top: 8px;
                     margin-left: 0px;
                     font-size: 11px;
                 }
                 @include screen_1001{
-                    margin-left: 16px !important;
+                    margin-left: 16px;
+                    margin-top: 0px;
+                }
+                @include screen_664{
+                    margin-left: 0px !important;
                 }
                 @include screen_389{
                     margin-top: 8px;
-                    margin-left: 0px !important;
                 }
                 @include screen_328{
                     margin-top: 8px;

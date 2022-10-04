@@ -10,6 +10,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import "../../styles/scss/styles.scss"
 import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import { UseCartContext } from "../../context/CartContext";
+import cruz from "../../assets/img/cruz.png";
 
 const products = [
     {
@@ -179,12 +180,13 @@ const Cart = () => {
                 <div className="cartElimianrPopUp">
                     <div className="fondoPopUp" onClick={()=>setEliminar(false)}></div>
                     <div className="popUp">
-                        <img src={basura} alt="BORRAR" style={{fontSize:"32px",marginTop:"28px"}}/>
+                        <img src={basura} alt="BORRAR" style={{marginTop:"28px"}} className="basuraLogo"/>
                         <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
                         <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center",marginBottom:"24px"}}>
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>
                             <Button className="eliminar">ELIMINAR</Button>
                         </div>
+                        <img src={cruz} alt="CRUZ" className="cruz" onClick={()=>setEliminar(false)}/>
                     </div>
                 </div>
             }
