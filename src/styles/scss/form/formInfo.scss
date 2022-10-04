@@ -242,11 +242,10 @@
         align-items: center;
     }
     .selectorContainer{
-        margin-top: 4px;
-    }
-    .selectorContainer2{
-        margin-bottom: 16px;
-        width: fit-content;
+        margin-bottom: 24px;
+        label{
+            margin: 0px;
+        }
     }
 }
 

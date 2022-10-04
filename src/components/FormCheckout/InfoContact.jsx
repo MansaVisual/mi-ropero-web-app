@@ -40,7 +40,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const [viewDireccion,setViewDireccion]=useState(false)
     const [resDirecciones,setResDirecciones]=useState([])
 
-    const [stateDireccion,setStateDireccion]=useState("nuevaDir")
+    const [loadDireccion,setLoadDireccion]=useState(false)
     // const [direccionCargada,setDireccionCargada]=useState("")
 
     const handleChange = (event) => {
@@ -208,34 +208,21 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             </div>
 
             <div className="selectorDireccion">
-                <div className="selectorContainer">
-                    <Radio
+                <div className="selectorContainer" onClick={()=>setLoadDireccion(!loadDireccion)}>
+                    <FormControlLabel
                         name="sucursal"
+                        control={<Checkbox/>}
                         id="nuevaDir"
-                        defaultChecked={true}
-                        checked={stateDireccion==="nuevaDir"?true:false}
+                        checked={loadDireccion?true:false}
                         value="setDireccion"
-                        onClick={()=>setStateDireccion("nuevaDir")}
                     />
                     <label className="labelForm" for="nuevaDir" style={{cursor:"pointer"}}>
-                        Inscribir una nueva dirección
-                    </label>
-                </div>
-                <div className="selectorContainer2">
-                    <Radio
-                        name="sucursal"
-                        id="cargarDir"
-                        value="setDireccion"
-                        checked={stateDireccion==="cargarDir"?true:false}
-                        onClick={()=>setStateDireccion("cargarDir")}
-                    />
-                    <label className="labelForm" for="cargarDir" style={{cursor:"pointer"}}>
-                        Usar una dirección pre-cargada
+                        Utilizar una de mis direcciónes
                     </label>
                 </div>
             </div>
 
-            {stateDireccion==="nuevaDir" ? 
+            {!loadDireccion ? 
                 <>
                     <div className="firstLine">
                         <div className="margenInput margenInputEspecial">
@@ -395,9 +382,9 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                             name="sucursal"
                             id="nuevaDir"
                             defaultChecked={true}
-                            checked={stateDireccion==="nuevaDir"?true:false}
+                            checked={loadDireccion?true:false}
                             value="direccionCargada"
-                            onClick={()=>setStateDireccion("nuevaDir")}
+                            onClick={()=>setLoadDireccion(!loadDireccion)}
                         />
                         <p className="labelForm" for="nuevaDir">
                             Inscribir una nueva dirección
@@ -405,34 +392,6 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                             Inscribir una nueva dirección
                             Inscribir una nueva dirección
                             Inscribir una nueva dirección
-                        </p>
-                    </div>                    <div className="cards">
-                        <Radio
-                            name="sucursal"
-                            id="nuevaDir"
-                            defaultChecked={true}
-                            checked={stateDireccion==="nuevaDir"?true:false}
-                            value="direccionCargada"
-                            onClick={()=>setStateDireccion("nuevaDir")}
-                        />
-                        <p className="labelForm" for="nuevaDir">
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                            Inscribir una nueva dirección
-                        </p>
-                    </div>                    <div className="cards">
-                        <Radio
-                            name="sucursal"
-                            id="nuevaDir"
-                            defaultChecked={true}
-                            checked={stateDireccion==="nuevaDir"?true:false}
-                            value="direccionCargada"
-                            onClick={()=>setStateDireccion("nuevaDir")}
-                        />
-                        <p className="labelForm" for="nuevaDir">
-                            Inscribir una nueva direcci ónInscribir una nueva dirección Inscribir una nueva dirección Inscribir una nueva dirección fdg dfsg fdgsfd gInscribir una nueva dirección
                         </p>
                     </div>
                 </div>
