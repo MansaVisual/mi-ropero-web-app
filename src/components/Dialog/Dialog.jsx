@@ -19,7 +19,19 @@ import { IoCloseCircle } from "react-icons/io5";
 import Button from "../Button/Button";
 import theme from "../../styles/theme";
 
-const DialogComponent = ({ open, handleClose }) => {
+const DialogComponent = ({
+  open,
+  handleClose,
+  dialogType,
+  firstText,
+  firstDialogText,
+  title,
+  firstInputLabel,
+  secondInputLabel,
+  thirdInputLabel,
+  leftButtonText,
+  rightButtonText,
+}) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       amount: 0,
@@ -32,7 +44,9 @@ const DialogComponent = ({ open, handleClose }) => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const onSubmit = (data) => {
-    console.log(data);
+    if (!errorState && !errorStateComment && data.amount > 0 && data.comment) {
+      handleClose();
+    }
   };
 
   const handleError = (isTrue) => {
@@ -102,11 +116,17 @@ const DialogComponent = ({ open, handleClose }) => {
           }}
           onClose={handleClose}
         >
-          {errorState || errorStateComment ? (
+          {dialogType === "ofertar" && (errorState || errorStateComment) ? (
             <img src={error} alt="error" />
           ) : (
-            <img src={isologo} alt="logo-mi-ropero" />
+            dialogType === "ofertar" && <img src={isologo} alt="isologo" />
           )}
+
+          {dialogType === "comentar" && !errorStateComment ? (
+            <img src={isologo} alt="logo-mi-ropero" />
+          ) : errorStateComment && dialogType === "comentar" ? (
+            <img src={error} alt="error" />
+          ) : null}
 
           <Typography
             sx={{
@@ -116,7 +136,10 @@ const DialogComponent = ({ open, handleClose }) => {
               my: "8px",
             }}
           >
-            {errorState || errorStateComment ? "¡ERROR!" : "¡OFERTÁ!"}
+            {(dialogType === "ofertar" || dialogType === "comentar") &&
+            (errorState || errorStateComment)
+              ? "¡ERROR!"
+              : title}
           </Typography>
           <Typography
             sx={{
@@ -127,13 +150,16 @@ const DialogComponent = ({ open, handleClose }) => {
               textAlign: "center",
             }}
           >
-            {errorState
+            {dialogType === "ofertar" && errorState
               ? "El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor"
-              : "Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"}
+              : firstText}
             <br />
-            {errorStateComment
+            {dialogType === "ofertar" && errorStateComment
               ? "El comentario ingresado no es válido. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc"
               : null}
+            {dialogType === "comentar" && (
+              <Typography>{firstDialogText}</Typography>
+            )}
           </Typography>
         </MuiDialogTitle>
         <DialogContent
@@ -143,69 +169,71 @@ const DialogComponent = ({ open, handleClose }) => {
             alignItems: "center",
           }}
         >
-          <FormControl sx={{ mt: "24px" }}>
-            <DialogContentText sx={{ textAlign: "center" }}>
-              <Typography
-                component="label"
-                sx={{
-                  fontSize: theme.typography.fontSize[5],
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: theme.palette.quaternary.contrastText,
-                }}
-              >
-                Monto de la oferta*
-              </Typography>
-            </DialogContentText>
-
-            <Controller
-              name="amount"
-              control={control}
-              rules={{
-                required: true,
-                pattern: {
-                  value: /^[0-9]+$/,
-                },
-                validate: (value) => {
-                  if (value > 0 && value < 3600) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                },
-              }}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <TextField
-                  margin="dense"
-                  type="number"
-                  placeholder="$ Ingresar valor"
-                  onChange={onChange}
-                  value={value}
-                  error={
-                    error?.type === "required" ||
-                    error?.type === "pattern" ||
-                    error?.type === "validate"
-                      ? (handleError(true), true)
-                      : (handleError(false), false)
-                  }
+          {dialogType === "ofertar" && (
+            <FormControl sx={{ mt: "24px" }}>
+              <DialogContentText sx={{ textAlign: "center" }}>
+                <Typography
+                  component="label"
                   sx={{
-                    "& input": {
-                      padding: "4px 8px",
-                      height: "40px",
-                      boxSizing: "border-box",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      borderRadius: "8px",
-                      minWidth: "136px",
-                    },
+                    fontSize: theme.typography.fontSize[5],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.quaternary.contrastText,
                   }}
-                />
-              )}
-            />
-          </FormControl>
+                >
+                  {dialogType === "ofertar" && firstInputLabel}
+                </Typography>
+              </DialogContentText>
+
+              <Controller
+                name="amount"
+                control={control}
+                rules={{
+                  required: true,
+                  pattern: {
+                    value: /^[0-9]+$/,
+                  },
+                  validate: (value) => {
+                    if (value > 0 && value < 3600) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  },
+                }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    margin="dense"
+                    type="number"
+                    placeholder="$ Ingresar valor"
+                    onChange={onChange}
+                    value={value}
+                    error={
+                      error?.type === "required" ||
+                      error?.type === "pattern" ||
+                      error?.type === "validate"
+                        ? (handleError(true), true)
+                        : (handleError(false), false)
+                    }
+                    sx={{
+                      "& input": {
+                        padding: "4px 8px",
+                        height: "40px",
+                        boxSizing: "border-box",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        borderRadius: "8px",
+                        minWidth: "136px",
+                      },
+                    }}
+                  />
+                )}
+              />
+            </FormControl>
+          )}
           <FormControl sx={{ mt: "16px" }}>
             <DialogContentText sx={{ textAlign: "center" }}>
               <Typography
@@ -216,7 +244,8 @@ const DialogComponent = ({ open, handleClose }) => {
                   color: theme.palette.quaternary.contrastText,
                 }}
               >
-                Comentarios
+                {dialogType === "ofertar" && secondInputLabel}
+                {dialogType === "comentar" && thirdInputLabel}
               </Typography>
             </DialogContentText>
 
@@ -224,9 +253,12 @@ const DialogComponent = ({ open, handleClose }) => {
               name="comment"
               control={control}
               rules={{
-                required: true,
                 validate: (value) => {
-                  if (value.includes("@") || value.includes("http")) {
+                  if (
+                    value.includes("@") ||
+                    value.includes("http") ||
+                    value.match(/^[0-9]+$/)
+                  ) {
                     return false;
                   } else {
                     return true;
@@ -247,7 +279,11 @@ const DialogComponent = ({ open, handleClose }) => {
                       ? (handleErrorComment(true), true)
                       : (handleErrorComment(false), false)
                   }
-                  placeholder="Ingresar comentario"
+                  placeholder={
+                    dialogType === "ofertar"
+                      ? "Ingresar comentario"
+                      : "Ingresar mensaje"
+                  }
                   multiline
                   sx={{
                     minWidth: isMobile || isMobileBigScreen ? "245px" : "430px",
@@ -256,7 +292,6 @@ const DialogComponent = ({ open, handleClose }) => {
                       padding: "4px 8px",
                       height: "95px !important",
                       boxSizing: "border-box",
-                      whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       borderRadius: "8px",
@@ -282,7 +317,7 @@ const DialogComponent = ({ open, handleClose }) => {
         >
           <Button
             onClick={handleClose}
-            text="Cancelar"
+            text={leftButtonText}
             backgroundColor={theme.palette.secondary.contrastText}
             color={theme.palette.primary.main}
             border={`1px solid ${theme.palette.primary.main}`}
@@ -290,7 +325,7 @@ const DialogComponent = ({ open, handleClose }) => {
           />
           <Button
             onClick={handleSubmit(onSubmit)}
-            text="Hacer Oferta"
+            text={rightButtonText}
             backgroundColor={theme.palette.primary.main}
             color={theme.palette.secondary.contrastText}
             fullWidth

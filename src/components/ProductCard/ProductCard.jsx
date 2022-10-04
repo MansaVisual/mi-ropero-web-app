@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Divider,
   Box,
@@ -23,6 +23,14 @@ const ProductCard = ({
   onClick,
 }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const buttonRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    buttonRef.current.style.opacity = "1";
+  };
+  const handleMouseLeave = () => {
+    buttonRef.current.style.opacity = "0";
+  };
 
   return (
     <Card
@@ -35,7 +43,7 @@ const ProductCard = ({
         fontFamily: theme.typography.fontFamily,
       }}
     >
-      <Box>
+      <Box onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -43,7 +51,12 @@ const ProductCard = ({
             image={imageCard}
             alt="product"
             loading="lazy"
-            sx={{ objectFit: "cover", "&:hover": { filter: "blur(2px)" } }}
+            sx={{
+              objectFit: "cover",
+              "&:hover": {
+                filter: "blur(2px)",
+              },
+            }}
           />
         </CardActionArea>
 
@@ -61,15 +74,16 @@ const ProductCard = ({
             minWidth: "75%",
             minHeight: "36px",
             borderRadius: "20px",
-            top: "30%",
-            right: "20%",
+            top: "35%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             opacity: "0",
             "&:hover": {
               backgroundColor: theme.palette.primary.dark,
               color: theme.palette.secondary.contrastText,
-              opacity: "1",
             },
           }}
+          ref={buttonRef}
           onClick={onClick}
         >
           Comprar

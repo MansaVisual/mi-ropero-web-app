@@ -20,6 +20,11 @@ export const LikeButton = () => {
         size="small"
         onClick={onLike}
         disableRipple
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
         {!like ? (
           <AiOutlineHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
@@ -39,6 +44,9 @@ export const UpButton = () => {
         sx={{
           transform: "rotate(90deg)",
           backgroundColor: "hsl(320.2, 100%, 82.5%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <IoArrowUndoSharp fontSize="26px" color="hsl(0, 0%, 100%)" />
@@ -50,7 +58,15 @@ export const UpButton = () => {
 export const WspButton = () => {
   return (
     <Box>
-      <Fab size="small" sx={{ backgroundColor: "hsl(134.4, 100%, 36.7%)" }}>
+      <Fab
+        size="small"
+        sx={{
+          backgroundColor: "hsl(134.4, 100%, 36.7%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <FaWhatsapp fontSize="26px" color="hsl(0, 0%, 100%)" />
       </Fab>
     </Box>
@@ -60,8 +76,16 @@ export const WspButton = () => {
 export const CommentButton = ({ onClick }) => {
   return (
     <Box onClick={onClick}>
-      <Fab size="small" sx={{ backgroundColor: "hsla(248, 41%, 38%, 1)" }}>
-        <FaRegCommentAlt fontSize="19px" color="hsl(0, 0%, 100%)" />
+      <Fab
+        size="small"
+        sx={{
+          backgroundColor: "hsla(248, 41%, 38%, 1)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <FaRegCommentAlt fontSize="20px" color="hsl(0, 0%, 100%)" />
       </Fab>
     </Box>
   );
@@ -70,7 +94,15 @@ export const CommentButton = ({ onClick }) => {
 export const FilterButton = ({ onClick }) => {
   return (
     <Box onClick={onClick}>
-      <Fab size="small" sx={{ backgroundColor: "hsla(248, 41%, 38%, 1)" }}>
+      <Fab
+        size="small"
+        sx={{
+          backgroundColor: "hsla(248, 41%, 38%, 1)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <IoFilter fontSize="19px" color="hsl(0, 0%, 100%)" />
       </Fab>
     </Box>
