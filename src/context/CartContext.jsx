@@ -29,7 +29,7 @@ export const CartContext = ({children}) => {
     useEffect(() => {
         const CartID = new FormData()
 
-        CartID.append('idcliente', 62)
+        CartID.append('idcliente', 32)
         CartAPI(
             CartID,
             "carritos",

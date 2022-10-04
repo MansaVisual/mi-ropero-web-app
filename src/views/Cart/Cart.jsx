@@ -20,7 +20,7 @@ const Cart = () => {
 
     const [eliminar,setEliminar]=useState(false)
     const [prodEliminar,setProdEliminar]=useState(null)
-
+    const [load,setLoad]=useState(false)
     
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
@@ -34,8 +34,9 @@ const Cart = () => {
     }
 
     const handleEliminarFinal = async()=>{
+        setLoad(true)
         const eliminar = new FormData()
-        eliminar.append('telefono', prodEliminar)
+        eliminar.append('idcarrito', prodEliminar)
         await CartAPI(
             eliminar,
             "carritos",
@@ -43,8 +44,10 @@ const Cart = () => {
         ).then((res)=>{
             if(res.status==="success"){
                 setEliminar(false)
+                setLoad(false)
             }else{
                 alert("Ocurrio un error")
+                setLoad(false)
             }
         })
     }
@@ -91,7 +94,7 @@ const Cart = () => {
                                                 sx={{
                                                     fontSize: isDesktop ? "2.3vw" : isMobileBigScreen ? "30px" : "35px"
                                                 }}
-                                                onClick={()=>handleEliminar(prod.producto_id)}
+                                                onClick={()=>handleEliminar(prod.idcarrito)}
                                                 >
                                                 <img src={basura} alt="BORRAR"/>
                                         </IconButton>
@@ -152,6 +155,8 @@ const Cart = () => {
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>
                             <Button className="eliminar" onClick={()=>handleEliminarFinal()}>ELIMINAR</Button>
                         </div>
+                        {load && <Loader spin={"spinnerG"}/>}
+                        {load && <br/>}
                         <img src={cruz} alt="CRUZ" className="cruz" onClick={()=>setEliminar(false)}/>
                     </div>
                 </div>
