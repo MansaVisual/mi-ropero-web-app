@@ -11,11 +11,12 @@ import "../../styles/scss/styles.scss"
 import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import { UseCartContext } from "../../context/CartContext";
 import cruz from "../../assets/img/cruz.png";
+import Loader from "../../components/Loader/Loader";
 
 const Cart = () => {
     const navigate = useNavigate();
 
-    const {CartAPI,carrito}=useContext(UseCartContext)
+    const {CartAPI,carrito,buscandoCart}=useContext(UseCartContext)
 
     const [eliminar,setEliminar]=useState(false)
     const [prodEliminar,setProdEliminar]=useState(null)
@@ -99,20 +100,24 @@ const Cart = () => {
                             })}
                         </>
                         :
-                        <div className="cartVacio">
-                            <img src={cart} alt="CART"
-                                style={{
-                                    fontSize: "65px",
-                                    marginTop: "12px"
-                                }}
-                            />
-                            <p>Tu carrito esta vacío</p>
-                            <div className="seguirComprando">
-                                <Button onClick={()=>navigate("/")}>
-                                    SEGUIR COMPRANDO
-                                </Button>
-                            </div>
-                        </div>
+                            <>
+                                {buscandoCart ? <Loader spin={"spinnerG"}/> :
+                                    <div className="cartVacio">
+                                        <img src={cart} alt="CART"
+                                            style={{
+                                                fontSize: "65px",
+                                                marginTop: "12px"
+                                            }}
+                                            />
+                                        <p>Tu carrito esta vacío</p>
+                                        <div className="seguirComprando">
+                                            <Button onClick={()=>navigate("/")}>
+                                                SEGUIR COMPRANDO
+                                            </Button>
+                                        </div>
+                                    </div>
+                                }
+                            </>
                     }
                     <p className="carritoVolver" onClick={()=>navigate("/")}>
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>

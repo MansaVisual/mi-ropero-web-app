@@ -4,6 +4,7 @@ export const UseCartContext = createContext();
 
 export const CartContext = ({children}) => {
     const [carrito,setCarrito]=useState([])
+    const [buscandoCart,setBuscandoCart]=useState(true)
 
     const CartAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -36,12 +37,15 @@ export const CartContext = ({children}) => {
         ).then((res)=>{
             if(res.status==="success"){
                 setCarrito(res.result)
+                setBuscandoCart(false)
+            }else if(res.status==="error"){
+                setBuscandoCart(false)
             }
         })
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <UseCartContext.Provider value={{CartAPI,carrito}}>
+        <UseCartContext.Provider value={{CartAPI,carrito,buscandoCart}}>
             {children}
         </UseCartContext.Provider>
     )
