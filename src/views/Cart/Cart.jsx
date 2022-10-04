@@ -1,4 +1,4 @@
-import React, {useState,useContext,useEffect} from "react";
+import React, {useState,useContext} from "react";
 import { Box, Button, Grid, IconButton, useMediaQuery } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
@@ -12,68 +12,57 @@ import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import { UseCartContext } from "../../context/CartContext";
 import cruz from "../../assets/img/cruz.png";
 
-const products = [
-    {
-      id: 1,
-      title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
-      description:"El ropero de Romialaniz",
-      price: 280000,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 2,
-      description:"El ropero de Romialaniz",
-      title: "Pantalon nuevo 2022",
-      price: 1200,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 3,
-      description:"El ropero de Romialaniz",
-      title: "Remera negra 2022 de algodon y algunas tiras rojas",
-      price: 3000,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-        id: 1,
-        title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
-        description:"El ropero de Romialaniz",
-        price: 28000,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-      {
-        id: 2,
-        description:"El ropero de Romialaniz",
-        title: "Pantalon nuevo 2022",
-        price: 1200,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-      {
-        description:"El ropero de Romialaniz",
-        id: 3,
-        title: "Remera negra 2022",
-        price: 3000,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-]
+// const products = [
+//     {
+//       id: 1,
+//       title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
+//       description:"El ropero de Romialaniz",
+//       price: 280000,
+//       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//     },
+//     {
+//       id: 2,
+//       description:"El ropero de Romialaniz",
+//       title: "Pantalon nuevo 2022",
+//       price: 1200,
+//       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//     },
+//     {
+//       id: 3,
+//       description:"El ropero de Romialaniz",
+//       title: "Remera negra 2022 de algodon y algunas tiras rojas",
+//       price: 3000,
+//       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//     },
+//     {
+//         id: 1,
+//         title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
+//         description:"El ropero de Romialaniz",
+//         price: 28000,
+//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//       },
+//       {
+//         id: 2,
+//         description:"El ropero de Romialaniz",
+//         title: "Pantalon nuevo 2022",
+//         price: 1200,
+//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//       },
+//       {
+//         description:"El ropero de Romialaniz",
+//         id: 3,
+//         title: "Remera negra 2022",
+//         price: 3000,
+//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//       },
+// ]
 
 const Cart = () => {
     const navigate = useNavigate();
 
-    const {CartAPI}=useContext(UseCartContext)
+    const {carrito}=useContext(UseCartContext)
 
     const [eliminar,setEliminar]=useState(false)
-
-    useEffect(() => {
-        const formCart = new FormData()
-
-        formCart.append('idcliente', 36)
-        CartAPI(
-            formCart,
-            "carritos",
-            "all"
-        ).then((res)=>console.log(res))
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     let descuento = true
 
@@ -96,20 +85,20 @@ const Cart = () => {
                 container
                 className="gridContainer"
             >
-                <Grid item xs={12} sm={12} lg={products.length!== 0 ? 9 : 12} 
+                <Grid item xs={12} sm={12} lg={carrito.length!== 0 ? 9 : 12} 
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px"
                     }}>
                     <h2 className="TituloCartCheck">Carrito de  compras</h2>
-                    {products.length !== 0 ?
+                    {carrito.length !== 0 ?
                         <>
-                            {products.map((prod,i)=>{
+                            {carrito.map((prod,i)=>{
                                 return(
                                     <div className="contenedorCarritoResumen">
                                         <div className="fotoTitle">
-                                            <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
+                                            <div className="fotoProd" style={{backgroundImage:`url(${prod.producto_imagen})`}}/>
                                             <div className="titleDescription">
-                                                <h3>{prod.title}</h3>
+                                                <h3>{prod.producto_nombre}</h3>
                                                 <p className="description">
                                                     {prod.description}
                                                 </p>
@@ -159,7 +148,7 @@ const Cart = () => {
                     </p>
                 </Grid>
                 
-                {products.length !== 0 && 
+                {carrito.length !== 0 && 
                     <Grid item md={6} lg={3}
                     sx={{
                         margin: "0px auto",
