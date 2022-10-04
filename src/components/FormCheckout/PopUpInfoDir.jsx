@@ -15,14 +15,15 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                         <p>Seleccione su domicilio.</p>
                         <div className="cardContainer">
                             {resDirecciones.map(dir=>{
+                                console.log(dir)
                                 return(
                                     <Fragment key={dir.raw_data}>
                                         {dir.numero!=="" && dir.calle!=="" &&
-                                            <div className={`cardSucursal ${direccion.raw_data===dir.raw_data && "selected"}`} onClick={()=>setDireccion(dir)}>
+                                            <div className={`cardSucursal ${direccion.raw_data !== undefined && direccion.raw_data === dir.raw_data && "selected"}`} onClick={()=>setDireccion(dir)}>
                                                 <Radio
                                                     name="sucursal"
                                                     id={dir.raw_data}
-                                                    checked={direccion.raw_data===dir.raw_data ? true : false}
+                                                    checked={direccion.raw_data !== undefined && direccion.raw_data === dir.raw_data ? true : false}
                                                 />
                                                 <label>
                                                     {dir.calle} {dir.numero}, {dir.provincia}, {dir.localidad} {dir.codigo_postal}

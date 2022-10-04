@@ -5,22 +5,42 @@ import home from "../../assets/img/home.png"
 import shop from "../../assets/img/shop.png"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import oca from "../../assets/img/OCA.png"
-import React, {useState,useEffect} from "react"
+import React, {useState,useEffect,useContext} from "react"
 import PopUpSucursales from "./PopUpME";
 import PopUpSetSucursal from "./PopUpME2";
+import { UseFormContext } from "../../context/FormContext"
 
 
-const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio})=>{
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio,direccion})=>{
+    const {FormAPI}=useContext(UseFormContext)
 
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)
+    // const [costoSucDom,setCostoSucDom]=useState(false)
+    // const [costoSucSuc,setCostoSucSuc]=useState(false)
+
 
     useEffect(() => {
         if(form.provincia==="1"){
             setEnvioMoto(true)
         }
     }, [form]);
+
+    useEffect(()=>{
+        const formCostos = new FormData()
+        formCostos.append('idcliente', 62)
+        formCostos.append('address_shipping',direccion)
+        FormAPI(
+            formCostos,
+            "carritos",
+            "calc_shipping"
+        ).then((res)=>{
+            if(res.status==="success"){
+                console.log(res)
+            }
+        })
+    },[])// eslint-disable-line react-hooks/exhaustive-deps
 
     const defaultCheck = (type) =>{
         if(metodoEnvio===""){

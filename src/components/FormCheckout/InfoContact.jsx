@@ -28,7 +28,6 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         })
 
         const formDirecciones = new FormData()
-
         formDirecciones.append('idcliente', 62)
         FormAPI(
             formDirecciones,
@@ -44,6 +43,12 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             chargeForm(form,setProvincia)
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(()=>{
+        if(direccionCargada!==null){
+            setDireccion(direccionCargada)
+        }
+    },[direccionCargada])// eslint-disable-line react-hooks/exhaustive-deps
 
     const [provincia, setProvincia] = useState('');
     const [loader,setLoader]=useState(false)
