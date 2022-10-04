@@ -26,6 +26,7 @@ function App() {
       <FormContext>
         <CartContext>
           <Router>
+            
             <ThemeProvider theme={theme}>
               <NavBar />
               <Routes>
