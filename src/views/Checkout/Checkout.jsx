@@ -64,6 +64,7 @@ const Checkout = ()=>{
             <Grid
                 container
                 className="gridContainer"
+                style={{justifyContent: typeNav==="envio"?"space-between":null}}
             >
 
                 <Grid item xs={12} sm={12} lg={typeNav==="envio" ? 8 : 9} 
@@ -128,7 +129,7 @@ const Checkout = ()=>{
                 
                 <Grid item xs={typeNav !== "check" ? 10 : 12} sm={6} md={6} lg={3}
                 sx={{
-                    margin: "0px auto",
+                    margin: typeNav !== "envio" ? "0px auto" : "0px 0px 0px 70px",
                     boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
                     borderRadius:"10px 10px 20px 20px;",
                     backgroundColor:"#FDFEFF",
