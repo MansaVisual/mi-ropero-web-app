@@ -59,3 +59,18 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+.problemaMaxWidth{
+  @include screen_1366{
+    max-width: 760px !important;
+  }
+}
+.maxWidthResumeBox{
+  @include screen_1366{
+    max-width: 296px !important;
+  }
+  @include screen_1001{
+    margin-left: 0px !important;
+    margin-bottom: 32px;
+  }
+}

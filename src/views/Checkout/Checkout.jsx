@@ -19,7 +19,7 @@ const Checkout = ()=>{
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     
-    const [typeNav,setTypeNav]=useState("info")
+    const [typeNav,setTypeNav]=useState("envio")
     const [form,setForm]=useState([])
 
     const [sucursalEntrega,setSucursalEntrega]=useState("")
@@ -66,13 +66,14 @@ const Checkout = ()=>{
             <Grid
                 container
                 className="gridContainer"
-                style={{justifyContent: typeNav==="envio"?"space-between":null}}
+                style={{justifyContent: typeNav==="envio"?"center":null}}
             >
 
                 <Grid item xs={12} sm={12} lg={typeNav==="envio" ? 8 : 9} 
                     sx={{
-                        paddingRight: isDesktop ? "32px" : "0px"
+                        paddingRight: isDesktop ? "32px" : "0px",
                     }}
+                    className="problemaMaxWidth"
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
@@ -131,13 +132,14 @@ const Checkout = ()=>{
                 </Grid>
                 
                 <Grid item xs={typeNav !== "check" ? 10 : 12} sm={6} md={6} lg={3}
-                sx={{
-                    margin: typeNav !== "envio" ? "0px auto" : "0px 0px 0px 70px",
-                    boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
-                    borderRadius:"10px 10px 20px 20px;",
-                    backgroundColor:"#FDFEFF",
-                    height:"100%",
-                }}
+                    sx={{
+                        margin: typeNav !== "envio" ? "0px auto" : "0px 0px 0px 70px",
+                        boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
+                        borderRadius:"10px 10px 20px 20px;",
+                        backgroundColor:"#FDFEFF",
+                        height:"100%",
+                    }}
+                    className="maxWidthResumeBox"
                 >
                     {
                     typeNav !== "check" ?
