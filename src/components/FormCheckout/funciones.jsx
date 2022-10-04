@@ -37,6 +37,9 @@ export const onFocus=(event,clase,clase2,id)=>{
             document.getElementById(id).classList.remove(clase2)
         }
     }
+    if(id==="labelProvincia"){
+        document.getElementById(id).classList.remove(clase2)
+    }
     if(event.target.classList.contains(clase)){
         event.target.classList.remove(clase)
         document.getElementById(id).classList.remove(clase2)

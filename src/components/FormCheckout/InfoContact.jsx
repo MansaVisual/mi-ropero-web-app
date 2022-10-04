@@ -98,9 +98,16 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     }
 
     const throwError =(id1,id2)=>{
-        if(!document.getElementById(id1).classList.contains(clase)){
-            document.getElementById(id1).classList.add(clase)
-            document.getElementById(id2).classList.add(clase2)
+        if(id1==="provincia"){
+            if(!document.getElementById(id1).classList.contains(clase)){
+                document.getElementById(id1).parentNode.classList.add(clase)
+                document.getElementById(id2).classList.add(clase2)
+            }
+        }else{
+            if(!document.getElementById(id1).classList.contains(clase)){
+                document.getElementById(id1).classList.add(clase)
+                document.getElementById(id2).classList.add(clase2)
+            }
         }
     }
     const validarDireccion=()=>{
@@ -294,7 +301,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                                 id="provincia"
                                 className={`inputForm selector`}
                                 sx={{"& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"}}}
-                                >
+                            >
                                 <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
                                     {"Ciudad Autónoma de Buenos Aires"}
                                 </MenuItem>
