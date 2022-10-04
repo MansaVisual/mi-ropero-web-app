@@ -1,8 +1,9 @@
-import { createContext } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const UseCartContext = createContext();
 
 export const CartContext = ({children}) => {
+    const [carrito,setCarrito]=useState([])
 
     const CartAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -24,8 +25,24 @@ export const CartContext = ({children}) => {
         return resFinal
     }
 
+    useEffect(() => {
+        const CartID = new FormData()
+
+        CartID.append('idcliente', 3609)
+        CartAPI(
+            CartID,
+            "carritos",
+            "all"
+        ).then((res)=>{
+            if(res.status==="success"){
+                console.log(res.result)
+                setCarrito(res.result)
+            }
+        })
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
     return(
-        <UseCartContext.Provider value={{CartAPI}}>
+        <UseCartContext.Provider value={{CartAPI,carrito}}>
             {children}
         </UseCartContext.Provider>
     )
