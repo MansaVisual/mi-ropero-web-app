@@ -19,7 +19,7 @@ const Checkout = ()=>{
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     
-    const [typeNav,setTypeNav]=useState("info")
+    const [typeNav,setTypeNav]=useState("envio")
     const [form,setForm]=useState([])
 
     const [sucursalEntrega,setSucursalEntrega]=useState("")
@@ -66,7 +66,7 @@ const Checkout = ()=>{
                 className="gridContainer"
             >
 
-                <Grid item xs={12} sm={12} lg={9} 
+                <Grid item xs={12} sm={12} lg={typeNav==="envio" ? 8 : 9} 
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px"
                     }}
