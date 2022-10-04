@@ -32,8 +32,8 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
             "get_code"
         ).then((res)=>{
             if(res.status==="error"){
-                setErrorCodigo(false)
-                setCodigoValido(true)
+                setErrorCodigo(true)
+                setCodigoValido(false)
                 setLoader(false)
             }else if(res.status==="success"){
                 setErrorCodigo(false)
