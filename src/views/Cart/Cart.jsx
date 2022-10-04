@@ -1,75 +1,55 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import { Box, Button, Grid, IconButton, useMediaQuery } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ResumeBox from "../../components/ResumeBox/ResumeBox";
-import DeleteIcon from '@mui/icons-material/Delete';
+import basura from "../../assets/img/basura.png"
+import cart from "../../assets/img/cartVacio.png"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import "../../styles/scss/styles.scss"
 import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
-
-const products = [
-    {
-      id: 1,
-      title: "Buzo campera Fila aeroflat microfibra sie nuevo modelo 2022. Perfecto estado.",
-      description:"El ropero de Romialaniz",
-      price: 280000,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 2,
-      description:"El ropero de Romialaniz",
-      title: "Pantalon nuevo 2022",
-      price: 1200,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 3,
-      description:"El ropero de Romialaniz",
-      title: "Remera negra 2022 de algodon y algunas tiras rojas y blancas a los costados y frente de las manguitas cortas",
-      price: 3000,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-        id: 1,
-        title: "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado.",
-        description:"El ropero de Romialaniz",
-        price: 280000,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-      {
-        id: 2,
-        description:"El ropero de Romialaniz",
-        title: "Pantalon nuevo 2022",
-        price: 1200,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-      {
-        description:"El ropero de Romialaniz",
-        id: 3,
-        title: "Remera negra 2022",
-        price: 3000,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-]
+import { UseCartContext } from "../../context/CartContext";
+import cruz from "../../assets/img/cruz.png";
+import Loader from "../../components/Loader/Loader";
 
 const Cart = () => {
     const navigate = useNavigate();
 
+    const {CartAPI,carrito,buscandoCart}=useContext(UseCartContext)
+
     const [eliminar,setEliminar]=useState(false)
-
-    let descuento = true
-
+    const [prodEliminar,setProdEliminar]=useState(null)
+    const [load,setLoad]=useState(false)
+    
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-    const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
+    
     const handleEliminar = (prod)=>{
+        setProdEliminar(prod)
         setEliminar(true)
+    }
+
+    const handleEliminarFinal = async()=>{
+        setLoad(true)
+        const eliminar = new FormData()
+        eliminar.append('idcarrito', prodEliminar)
+        await CartAPI(
+            eliminar,
+            "carritos",
+            "delete"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setEliminar(false)
+                setLoad(false)
+            }else{
+                alert("Ocurrio un error")
+                setLoad(false)
+            }
+        })
     }
 
     return(
@@ -81,39 +61,32 @@ const Cart = () => {
                 container
                 className="gridContainer"
             >
-                <Grid item xs={12} sm={12} lg={products.length!== 0 ? 9 : 12} 
+                <Grid item xs={12} sm={12} lg={carrito.length!== 0 ? 9 : 12} 
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px"
                     }}>
                     <h2 className="TituloCartCheck">Carrito de  compras</h2>
-                    {products.length !== 0 ?
+                    {carrito.length !== 0 ?
                         <>
-                            {products.map((prod,i)=>{
-                                const newTitle = isDesktop ? prod.title.slice(0,70) : isMobileBigScreen ? prod.title.slice(0,50) : isTablet ? prod.title.slice(0,50) : prod.title.slice(0,90)
+                            {carrito.map((prod,i)=>{
                                 return(
                                     <div className="contenedorCarritoResumen">
                                         <div className="fotoTitle">
-                                            <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
+                                            <div className="fotoProd" style={{backgroundImage:`url(${prod.producto_imagen})`}}/>
                                             <div className="titleDescription">
-                                                <h3>
-                                                    {newTitle}
-                                                    {prod.title.length > 70 && isDesktop && !isTablet && "..."}
-                                                    {prod.title.length > 50 && isTablet && "..."}
-                                                    {prod.title.length > 90 && !isTablet && !isMobileBigScreen && "..."}
-                                                    {prod.title.length > 50 && isMobileBigScreen && "..."}
-                                                </h3>
+                                                <h3>{prod.producto_nombre}</h3>
                                                 <p className="description">
                                                     {prod.description}
                                                 </p>
                                                 <div className="preciosDeleteMobile">
-                                                    {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
-                                                    <p className="precioProd">$ {prod.price}</p>
+                                                    {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
+                                                    <p className="precioProd">$ {prod.producto.precio}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="preciosDelete">
-                                            {descuento ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
-                                            <p className="precioProd">$ {prod.price}</p>
+                                            {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
+                                            <p className="precioProd">$ {prod.producto.precio}</p>
                                         </div>
                                         <IconButton
                                                 aria-label="delete"
@@ -121,29 +94,33 @@ const Cart = () => {
                                                 sx={{
                                                     fontSize: isDesktop ? "2.3vw" : isMobileBigScreen ? "30px" : "35px"
                                                 }}
-                                                onClick={()=>handleEliminar(prod)}
+                                                onClick={()=>handleEliminar(prod.idcarrito)}
                                                 >
-                                                <DeleteIcon color="secondary"/>
+                                                <img src={basura} alt="BORRAR"/>
                                         </IconButton>
                                     </div>
                                 )
                             })}
                         </>
                         :
-                        <div className="cartVacio">
-                            <ProductionQuantityLimitsIcon color="secondary"
-                                sx={{
-                                    fontSize: "65px",
-                                    mt: "12px"
-                                }}
-                            />
-                            <p>Tu carrito esta vacío</p>
-                            <div className="seguirComprando">
-                                <Button onClick={()=>navigate("/")}>
-                                    SEGUIR COMPRANDO
-                                </Button>
-                            </div>
-                        </div>
+                            <>
+                                {buscandoCart ? <Loader spin={"spinnerG"}/> :
+                                    <div className="cartVacio">
+                                        <img src={cart} alt="CART"
+                                            style={{
+                                                fontSize: "65px",
+                                                marginTop: "12px"
+                                            }}
+                                            />
+                                        <p>Tu carrito esta vacío</p>
+                                        <div className="seguirComprando">
+                                            <Button onClick={()=>navigate("/checkout")}>
+                                                SEGUIR COMPRANDO
+                                            </Button>
+                                        </div>
+                                    </div>
+                                }
+                            </>
                     }
                     <p className="carritoVolver" onClick={()=>navigate("/")}>
                         <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
@@ -151,7 +128,7 @@ const Cart = () => {
                     </p>
                 </Grid>
                 
-                {products.length !== 0 && 
+                {carrito.length !== 0 && 
                     <Grid item md={6} lg={3}
                     sx={{
                         margin: "0px auto",
@@ -161,7 +138,7 @@ const Cart = () => {
                         height:"100%",
                     }}
                     >
-                        <ResumeBox stateForm={false}/>
+                        <ResumeBox stateForm={true} botonPago={true}/>
                     </Grid>
                 }
 
@@ -172,12 +149,15 @@ const Cart = () => {
                 <div className="cartElimianrPopUp">
                     <div className="fondoPopUp" onClick={()=>setEliminar(false)}></div>
                     <div className="popUp">
-                        <DeleteIcon color="secondary" sx={{fontSize:"32px",mt:"28px"}}/>
+                        <img src={basura} alt="BORRAR" style={{marginTop:"28px"}} className="basuraLogo"/>
                         <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
                         <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center",marginBottom:"24px"}}>
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>
-                            <Button className="eliminar">ELIMINAR</Button>
+                            <Button className="eliminar" onClick={()=>handleEliminarFinal()}>ELIMINAR</Button>
                         </div>
+                        {load && <Loader spin={"spinnerG"}/>}
+                        {load && <br/>}
+                        <img src={cruz} alt="CRUZ" className="cruz" onClick={()=>setEliminar(false)}/>
                     </div>
                 </div>
             }

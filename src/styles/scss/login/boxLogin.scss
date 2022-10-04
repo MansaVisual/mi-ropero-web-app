@@ -1,0 +1,113 @@
+.boxLoginContianer{
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .title{
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 34px;
+        color: #443988;
+    }
+    .boton{
+        border-radius: 20px;
+        padding: 8px 36px;
+        border: 5px solid;
+        margin-bottom: 8px;
+        margin-right: 6px;
+    }
+    .botonFB{
+        border: 1px solid #395185;
+        padding: 8px 36px;
+        filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+        border-radius: 20px;
+        margin-left: 6px;
+        margin-bottom: 8px;
+    }
+    .inputContainer{
+        display: flex;
+        .inputBox{
+            margin-right: 6px;
+            .input{
+                input{
+                    height: 25px;
+                    max-width: 370px;
+                    min-width: 300px;
+                    font-style: italic;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #BABCBE;
+                }
+            }
+        }
+        .inputBox2{
+            margin-left: 6px;
+            .olvidoContraseña{
+                font-weight: 600;
+                font-size: 13px;
+                line-height: 18px;
+                text-indent: 16px;
+                text-decoration-line: underline;
+                color: #443988;
+                margin-top: 8px;
+                cursor: pointer;
+            }
+            .inputP{
+                input{
+                    height: 25px;
+                    max-width: 370px;
+                    min-width: 300px;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 11px;
+                    letter-spacing: 0.1em;
+                    color: #969696;
+                }
+            }
+        }
+        .labelInput{
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 18px;
+            text-indent: 16px;
+            color: #423B3C;
+        }
+    }
+    .botonIngresar{
+        color: #FFFFFF;
+        background: #FF3F20; 
+        box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        width: 450px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        padding: 10px 36px;
+        margin-top: 24px;
+        &:hover{
+            background-color: #FF3F20;
+        }
+    }
+    .botonRegistrate{
+        padding: 10px 36px;
+        width: 450px;
+        height: 36px;
+        background: #423B3C;
+        border: 1px solid #443988;
+        box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        color: #FFFFFF;
+        margin-top: 32px;
+        margin-bottom: 80px;
+        &:hover{
+            background-color: #423B3C;
+        }
+    }
+}

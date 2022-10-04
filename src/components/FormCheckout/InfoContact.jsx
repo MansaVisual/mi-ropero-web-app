@@ -1,164 +1,477 @@
-import { Button, InputLabel, MenuItem, TextField } from "@mui/material"
-import React, {useState} from "react"
+import { Button, Checkbox, FormControlLabel, InputLabel, MenuItem, Radio, TextField } from "@mui/material"
+import React, {useState,useContext,useEffect} from "react"
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones";
+import { UseFormContext } from "../../context/FormContext";
+import Loader from "../Loader/Loader";
+import PopUpInfoDir from "./PopUpInfoDir";
 
-const currencies = ['BUENOS AIRES','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA','CORDOBA','TUCUMAN','ENTRE RIOS','SALTA','JUJUY','MENDOZA']
 
-const InfoContact=({typeForm})=>{
-    const [currency, setCurrency] = useState('');
+const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,direccion,setDireccion,provincias,setProvincias})=>{
+    const {FormAPI}=useContext(UseFormContext)
+    
+    const [direccionesCargadas,setDireccionesCargadas]=useState([])
+    const [direccionCargada,setDireccionCargada]=useState(null)
+
+    let clase = "formObligatorio"
+    let clase2 = "formObligatorioTitle"
+
+    useEffect(() => {
+        FormAPI(
+            "",
+            "direcciones",
+            "provincias"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setProvincias(res.result)
+            }
+        })
+
+        const formDirecciones = new FormData()
+        formDirecciones.append('idcliente', 62)
+        FormAPI(
+            formDirecciones,
+            "direcciones",
+            "all"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setDireccionesCargadas(res.result)
+            }
+        })
+
+        if(form.length!==0){
+            chargeForm(form,setProvincia)
+        }
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(()=>{
+        if(direccionCargada!==null){
+            setDireccion(direccionCargada)
+        }
+    },[direccionCargada])// eslint-disable-line react-hooks/exhaustive-deps
+
+    const [provincia, setProvincia] = useState('');
+    const [loader,setLoader]=useState(false)
+
+    const [campoObligatorio,setCampoObligatorio]=useState(false)
+    const [errorPhone,setErrorPhone]=useState(false)
+    const [errorCodPostal,setErrorCodPostal]=useState(false)
+    const [errorDireccion,setErrorDireccion]=useState(false)
+    const [errorDirCargada,setErrorDirCargada]=useState(false)
+
+    const [viewDireccion,setViewDireccion]=useState(false)
+    const [resDirecciones,setResDirecciones]=useState([])
+
+    const [loadDireccion,setLoadDireccion]=useState(false)
+    // const [direccionCargada,setDireccionCargada]=useState("")
 
     const handleChange = (event) => {
-      setCurrency(event.target.value)
+        setProvincia(event.target.value)
+        setForm({...form,provincia:event.target.value})
+    }
+
+    const checkForm = async()=>{
+
+        setLoader(true)
+        let res = false
+        let resFinal = true
+
+        if(loadDireccion && direccionCargada === null){
+            setErrorDirCargada(true)
+            setLoader(false)
+            scrollTop()
+            return
+        }
+        if(direccionCargada===null){
+            res = handleClick(setCampoObligatorio,clase,clase2)
+            resFinal = true
+        }
+        if(res){
+            setLoader(false)
+            return
+        }else{
+                
+            const formPhone = new FormData()
+            formPhone.append('telefono', document.getElementById("telefono").value)
+            await FormAPI(
+                formPhone,
+                "clientes",
+                "validate_phone"
+            ).then((res)=>{
+                if(res.status==="error"){
+                    resFinal = false
+                    setErrorPhone(true)
+                    throwError("telefono","labelTelefono")
+                }
+            })
+
+            const formCodPostal = new FormData()
+            if(direccionCargada !== null){
+                formCodPostal.append('codigo_postal', direccion.codigo_postal)
+            }else{
+                formCodPostal.append('codigo_postal', document.getElementById("codigoPostal").value)
+            }
+            await FormAPI(
+                formCodPostal,
+                "operaciones",
+                "get_oca_offices"
+            ).then((res)=>{
+                if(res.status==="error"){
+                    resFinal = false
+                    setErrorCodPostal(true)
+                    throwError("codigoPostal","labelCodigoPostal")
+                }else{
+                    setSucursales(res.result)
+                }
+            })
+        }
+        if(resFinal){
+            setLoader(false)
+            if(direccionCargada===null){
+                validarDireccion()
+            }else{
+                setTypeNav("envio")
+            }
+        }else{
+            setLoader(false)
+            scrollTop()
+        }
+    }
+
+    const throwError =(id1,id2)=>{
+        if(id1==="provincia"){
+            if(!document.getElementById(id1).classList.contains(clase)){
+                document.getElementById(id1).parentNode.classList.add(clase)
+                document.getElementById(id2).classList.add(clase2)
+            }
+        }else{
+            if(!document.getElementById(id1).classList.contains(clase)){
+                document.getElementById(id1).classList.add(clase)
+                document.getElementById(id2).classList.add(clase2)
+            }
+        }
+    }
+    const validarDireccion=()=>{
+        const formDireccion = new FormData()
+        if(direccionCargada!==null){
+            formDireccion.append('calle',direccion.calle)
+            formDireccion.append('numero',direccion.numero)
+            formDireccion.append('provincia',direccion.provincia)
+            formDireccion.append('localidad',direccion.localidad)
+            formDireccion.append('codigo_postal',direccion.codigo_postal)
+        }else{
+            formDireccion.append('calle',document.getElementById("calle").value)
+            formDireccion.append('numero',document.getElementById("alturaKM").value)
+            formDireccion.append('provincia',document.getElementById("provincia").nextSibling.value)
+            formDireccion.append('localidad',document.getElementById("barrioLocalidad").value)
+            formDireccion.append('codigo_postal',document.getElementById("codigoPostal").value)
+        }
+        FormAPI(
+            formDireccion,
+            "direcciones",
+            "normalize"
+        ).then(async(res)=>{
+            if(res.status==="success" && res.result[0].calle!=="" && res.result[0].numero!==""){
+                scrollTop()
+                await setResDirecciones(res.result)
+                setViewDireccion(true)
+            }else{
+                setErrorDireccion(true)
+                throwError("calle","labelCalle")
+                throwError("alturaKM","labelAlturaKM")
+                throwError("provincia","labelProvincia")
+                throwError("barrioLocalidad","labelBarrioLocalidad")
+                throwError("codigoPostal","labelCodigoPostal")
+                scrollTop()
+            }
+        })
+    }
+    const scrollTop = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
+    const handleFinForm = ()=>{
+        if(direccion!==""){
+            setTypeNav("envio")
+        }
     }
 
     return(
         <div className="formCheckout">
-            <h2 className="TituloCartCheck" style={{width:"100%"}}>Datos de contacto</h2>
+            <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Datos de contacto</h2>
             
-            <div className="firstLine">
+            {campoObligatorio &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Debe completar los campos obligatorios para avanzar</p>
+                </div>
+            }
+            {errorPhone &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>El número de telefono no es válido.</p>
+                </div>
+            }
+            {errorCodPostal &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>El código postal no se pudo validar. Vuelva a intentarlo</p>
+                </div>
+            }
+            {errorDireccion &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>No se encontró la direccion establecida.</p>
+                </div>
+            }
+            {errorDirCargada &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Debe seleccionar una dirección</p>
+                </div>
+            }
+
+            <div className="firstLine" style={{marginTop:"12px"}}>
                 <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Nombre y Apellido ¿A quién se entrega? *</InputLabel>
+                    <InputLabel className="labelForm" id="labelNombreApellido">Nombre y Apellido ¿A quién se entrega? *</InputLabel>
                     <TextField 
                         placeholder="Nombre Apellido"
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="nombreApellido"
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelNombreApellido")}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Como aparece en el DNI</InputLabel>
                 </div>
                 <div className="margenInput">
-                    <InputLabel className="labelForm">Telefono de contacto *</InputLabel>
+                    <InputLabel className="labelForm" id="labelTelefono">Telefono de contacto *</InputLabel>
                     <TextField 
-                        placeholder="+54 011 - 4417 - 8054"
+                        placeholder="011589210"
                         size="small"
-                        className="inputForm"
+                        className={`inputForm`}
+                        id="telefono"
+                        onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorPhone(false);setCampoObligatorio(false)}}
+                        onFocus={(e)=>onFocus(e,clase,clase2,"labelTelefono")}
+                        type="number"
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Llamarán a este número si hay algún problema con el envío</InputLabel>
                 </div>
             </div>
 
-            <div className="firstLine">
-                <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Calle</InputLabel>
-                    <TextField 
-                        placeholder="Nombre Apellido"
-                        size="small"
-                        className="inputForm"
-                    ></TextField>
-                    <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
+            <div className="selectorDireccion">
+                <div className="selectorContainer" onClick={()=>{setLoadDireccion(!loadDireccion);setDireccionCargada(null);setErrorDirCargada(false)}}>
+                    <FormControlLabel
+                        name="sucursal"
+                        control={<Checkbox/>}
+                        id="nuevaDir"
+                        checked={loadDireccion?true:false}
+                        value="setDireccion"
+                    />
+                    <label className="labelForm" for="nuevaDir" style={{cursor:"pointer"}}>
+                        Utilizar una de mis direcciónes
+                    </label>
                 </div>
+            </div>
 
-                <div className="AlturaPisoDepto margenInput">
-                    <div className="inputs">
-                        <InputLabel className="labelForm">Altura/Km *</InputLabel>
-                        <TextField 
-                            placeholder="1770"
-                            size="small"
-                            className="inputFormEspecial"
-                        ></TextField>
+            {!loadDireccion ? 
+                <>
+                    <div className="firstLine">
+                        <div className="margenInput margenInputEspecial">
+                            <InputLabel className="labelForm" id="labelCalle">Calle</InputLabel>
+                            <TextField 
+                                placeholder="Avenida Anta"
+                                size="small"
+                                className={`inputForm`}
+                                id="calle"
+                                onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
+                                onFocus={(e)=>onFocus(e,clase,clase2,"labelCalle")}
+                                ></TextField>
+                            <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
+                        </div>
+
+                        <div className="AlturaPisoDepto margenInput">
+                            <div className="inputs">
+                                <InputLabel className="labelForm" id="labelAlturaKM">Altura/Km *</InputLabel>
+                                <TextField 
+                                    placeholder="1770"
+                                    size="small"
+                                    className="inputFormEspecial"
+                                    id="alturaKM"
+                                    onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
+                                    onFocus={(e)=>onFocus(e,clase,clase2,"labelAlturaKM")}
+                                    type="number"
+                                    ></TextField>
+                            </div>
+                            <div className="inputs">
+                                <InputLabel className="labelForm">Piso</InputLabel>
+                                <TextField 
+                                    placeholder="5"
+                                    size="small"
+                                    className="inputFormEspecial"
+                                    id="piso"
+                                    onChangeCapture={()=>handleChangeForm(setForm,form)}
+                                    ></TextField>
+                            </div>
+                            <div className="inputs">
+                                <InputLabel className="labelForm">Dpto.</InputLabel>
+                                <TextField 
+                                    placeholder="C"
+                                    size="small"
+                                    className="inputFormEspecial"
+                                    id="depto"
+                                    onChangeCapture={()=>handleChangeForm(setForm,form)}
+                                    ></TextField>
+                            </div>
+                        </div>
                     </div>
-                    <div className="inputs">
-                        <InputLabel className="labelForm">Piso</InputLabel>
-                        <TextField 
-                            placeholder="5"
-                            size="small"
-                            className="inputFormEspecial"
-                        ></TextField>
+
+                    <div className="firstLine">
+                        <div className="margenInput margenInputEspecial">
+                            <InputLabel className="labelForm" id="labelProvincia">Provincia *</InputLabel>
+                            <TextField 
+                                placeholder="Ciudad Autónoma de Buenos Aires"
+                                size="small"
+                                select
+                                defaultValue={"ejemplo"}
+                                value={provincia===""?"ejemplo":provincia}
+                                onChange={(e)=>{handleChange(e);setErrorDireccion(false);setCampoObligatorio(false)}}
+                                onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
+                                id="provincia"
+                                className={`inputForm selector`}
+                                sx={{"& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"}}}
+                            >
+                                <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
+                                    {"Ciudad Autónoma de Buenos Aires"}
+                                </MenuItem>
+                                {provincias.map((option) => (
+                                    <MenuItem key={option.idprovincia} value={option.idprovincia} sx={{fontSize:"14px",color:"#969696"}}>
+                                        {option.nombre}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </div>
+                        <div className="margenInput">
+                            <InputLabel className="labelForm" id="labelBarrioLocalidad">Localidad / Barrio *</InputLabel>
+                            <TextField 
+                                placeholder={provincia===""?"Primero debes ingresar una provincia":"Mar del Plata"}
+                                disabled={provincia==="" ? true : false}
+                                size="small"
+                                className={`inputForm`}
+                                id="barrioLocalidad"
+                                onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
+                                onFocus={(e)=>onFocus(e,clase,clase2,"labelBarrioLocalidad")}
+                                ></TextField>
+                        </div>
                     </div>
-                    <div className="inputs">
-                        <InputLabel className="labelForm">Dpto.</InputLabel>
-                        <TextField 
-                            placeholder="C"
-                            size="small"
-                            className="inputFormEspecial"
-                        ></TextField>
+
+                    <div className="firstLine">
+                        <div className="margenInput margenInputEspecial">
+                            <InputLabel className="labelForm">Entrecalle 1</InputLabel>
+                            <TextField 
+                                placeholder="Avenida Callao"
+                                size="small"
+                                className="inputForm"
+                                id="entrecalle1"
+                                onChangeCapture={()=>handleChangeForm(setForm,form)}
+                                ></TextField>
+                        </div>
+                        <div className="margenInput">
+                            <InputLabel className="labelForm">Entrecalle 2</InputLabel>
+                            <TextField 
+                                placeholder="Rodriguez Peña"
+                                size="small"
+                                className="inputForm"
+                                id="entrecalle2"
+                                onChangeCapture={()=>handleChangeForm(setForm,form)}
+                                ></TextField>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div className="firstLine">
-                <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Provincia *</InputLabel>
-                    <TextField 
-                        placeholder="Ciudad Autónoma de Buenos Aires"
-                        size="small"
-                        select
-                        defaultValue={"ejemplo"}
-                        value={currency===""?"ejemplo":currency}
-                        onChange={handleChange}
-                        className="inputForm"
-                        sx={{"& div":{fontSize:"14px",color:currency===""&&"#BABCBE"}}}
-                    >
-                        <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
-                            {"Ciudad Autónoma de Buenos Aires"}
-                        </MenuItem>
-                        {currencies.map((option) => (
-                            <MenuItem key={option} value={option} sx={{fontSize:"14px",color:"#969696"}}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </div>
-                <div className="margenInput">
-                    <InputLabel className="labelForm">Localidad / Barrio *</InputLabel>
-                    <TextField 
-                        placeholder={currency===""?"Primero debes ingresar una provincia":"Mar del Plata"}
-                        disabled={currency==="" ? true : false}
-                        size="small"
-                        className="inputForm"
-                    ></TextField>
-                </div>
-            </div>
+                    <div className="firstLine codPostalContainer">
+                        <div className="codPostal">
+                            <InputLabel className="labelForm" id="labelCodigoPostal">Código Postal *</InputLabel>
+                            <TextField 
+                                placeholder="1428"
+                                size="small"
+                                className={`inputForm`}
+                                id="codigoPostal"
+                                onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorCodPostal(false);setErrorDireccion(false);setCampoObligatorio(false)}}
+                                onFocus={(e)=>onFocus(e,clase,clase2,"labelCodigoPostal")}
+                                ></TextField>
+                        </div>
+                        <a href="https://www.correoargentino.com.ar/formularios/cpa" target={"_blank"} rel="noreferrer">No sé mi código postal</a>
+                    </div>
 
-            <div className="firstLine">
-                <div className="margenInput margenInputEspecial">
-                    <InputLabel className="labelForm">Entrecalle 1</InputLabel>
-                    <TextField 
-                        placeholder="Avenida Callao"
-                        size="small"
-                        className="inputForm"
-                    ></TextField>
+                    <div className="firstLine" style={{display:"flex",flexDirection:"column"}}>
+                        <div className="contenedorTextarea">
+                            <InputLabel className="labelForm" sx={{marginTop:"24px",marginBottom:"12px"}}>Información adicional</InputLabel>
+                            <TextField 
+                                placeholder="Puerta roja, timbre blanco"
+                                size="small"
+                                className="inputForm textarea"
+                                id="comentario"
+                                onChangeCapture={()=>handleChangeForm(setForm,form)}
+                                inputProps={{ maxLength: 70 }}
+                                ></TextField>
+                        </div>
+                        <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>
+                    </div>
+                    
+                    <div className="firstLine" style={{justifyContent:"flex-start"}}>
+                        <FormControlLabel
+                            control={<Checkbox defaultChecked />}
+                            onChange={()=>setSaveDirecc(!saveDirecc)}
+                            label="Guardar esta dirección para volver a usarla en otra compra"
+                            className="checkDirecc"
+                            />
+                    </div>
+                </>
+            :
+                <div className="contenedorDirecciones">
+                    {direccionesCargadas.map(dir=>{
+                        return(
+                            <div className="cards" key={dir.iddireccion} onClick={()=>{setDireccionCargada(dir);setErrorDirCargada(false)}}>
+                                <Radio
+                                    name="sucursal"
+                                    id="nuevaDir"
+                                    defaultChecked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
+                                    checked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
+                                    value={dir.iddireccion}
+                                />
+                                <p className="labelForm" for="nuevaDir">
+                                    {dir.calle} {dir.numero}. {dir.provincia === "Capital Federal" && "CABA"} {dir.localidad} ({dir.codigo_postal}).
+                                    {dir.entre_calle_1!=="" && "Entre"} {dir.entre_calle_1!==""&& dir.entre_calle_1} {dir.entre_calle_1!=="" && "y"} {dir.entre_calle_2!==""&& dir.entre_calle_2}
+                                    {dir.informacion_adicional}
+                                </p>
+                            </div>
+                        )
+                    })}
                 </div>
-                <div className="margenInput">
-                    <InputLabel className="labelForm">Entrecalle 2</InputLabel>
-                    <TextField 
-                        placeholder="Rodriguez Peña"
-                        size="small"
-                        className="inputForm"
-                    ></TextField>
+            }
+            
+            {loader ?
+                <Loader spin={"spinnerG"}/>
+                :
+                <div className="botonEnvio">
+                    <Button
+                        onClick={()=>checkForm()}
+                        >
+                        IR A ENVÍO
+                    </Button>
                 </div>
-            </div>
+            }
 
-            <div className="firstLine codPostalContainer">
-                <div className="codPostal">
-                    <InputLabel className="labelForm">Código Postal *</InputLabel>
-                    <TextField 
-                        placeholder="1428"
-                        size="small"
-                        className="inputForm"
-                    ></TextField>
-                </div>
-                <a href="/">No sé mi código postal</a>
-            </div>
-
-            <div className="firstLine" style={{display:"flex",flexDirection:"column"}}>
-                <div className="contenedorTextarea">
-                    <InputLabel className="labelForm" sx={{marginTop:"24px",marginBottom:"12px"}}>Información adicional</InputLabel>
-                    <TextField 
-                        placeholder="Puerta roja, timbre blanco"
-                        size="small"
-                        className="inputForm textarea"
-                        inputProps={{ maxLength: 70 }}
-                    ></TextField>
-                </div>
-                <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>
-            </div>
-
-            <div className="botonEnvio">
-                <Button
-                    // onClick={()=>navigate("/checkout")}
-                    >
-                    IR A ENVÍO
-                </Button>
-            </div>
+            {viewDireccion && <PopUpInfoDir
+                direccion={direccion}
+                setDireccion={setDireccion}
+                setViewDireccion={setViewDireccion}
+                resDirecciones={resDirecciones}
+                handleFinForm={handleFinForm}
+            />}
         </div>
     )
 }
