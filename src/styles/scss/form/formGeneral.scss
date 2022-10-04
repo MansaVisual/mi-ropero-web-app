@@ -79,6 +79,8 @@
 .fotoBannerCheck{
     width: 22.5vw;
     height: 22vw;
+    max-width: 300px;
+    max-height: 275px;
     background-color: rgb(152, 192, 152);
     @include screen_1001{
         display: none;
