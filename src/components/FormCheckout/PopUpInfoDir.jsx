@@ -15,7 +15,6 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                         <p>Seleccione su domicilio.</p>
                         <div className="cardContainer">
                             {resDirecciones.map(dir=>{
-                                console.log(dir)
                                 return(
                                     <Fragment key={dir.raw_data}>
                                         {dir.numero!=="" && dir.calle!=="" &&

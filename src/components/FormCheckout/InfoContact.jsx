@@ -72,8 +72,13 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const checkForm = async()=>{
 
         setLoader(true)
-        const res = handleClick(setCampoObligatorio,clase,clase2)
+        let res = false
         let resFinal = true
+
+        if(direccionCargada===null){
+            res = handleClick(setCampoObligatorio,clase,clase2)
+            resFinal = true
+        }
         if(res){
             setLoader(false)
             return
@@ -94,7 +99,11 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             })
 
             const formCodPostal = new FormData()
-            formCodPostal.append('codigo_postal', document.getElementById("codigoPostal").value)
+            if(direccionCargada !== null){
+                formCodPostal.append('codigo_postal', direccion.codigo_postal)
+            }else{
+                formCodPostal.append('codigo_postal', document.getElementById("codigoPostal").value)
+            }
             await FormAPI(
                 formCodPostal,
                 "operaciones",
@@ -111,7 +120,11 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         }
         if(resFinal){
             setLoader(false)
-            validarDireccion()
+            if(direccionCargada===null){
+                validarDireccion()
+            }else{
+                setTypeNav("envio")
+            }
         }else{
             setLoader(false)
             scrollTop()
@@ -133,11 +146,19 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     }
     const validarDireccion=()=>{
         const formDireccion = new FormData()
-        formDireccion.append('calle',document.getElementById("calle").value)
-        formDireccion.append('numero',document.getElementById("alturaKM").value)
-        formDireccion.append('provincia',document.getElementById("provincia").nextSibling.value)
-        formDireccion.append('localidad',document.getElementById("barrioLocalidad").value)
-        formDireccion.append('codigo_postal',document.getElementById("codigoPostal").value)
+        if(direccionCargada!==null){
+            formDireccion.append('calle',direccion.calle)
+            formDireccion.append('numero',direccion.numero)
+            formDireccion.append('provincia',direccion.provincia)
+            formDireccion.append('localidad',direccion.localidad)
+            formDireccion.append('codigo_postal',direccion.codigo_postal)
+        }else{
+            formDireccion.append('calle',document.getElementById("calle").value)
+            formDireccion.append('numero',document.getElementById("alturaKM").value)
+            formDireccion.append('provincia',document.getElementById("provincia").nextSibling.value)
+            formDireccion.append('localidad',document.getElementById("barrioLocalidad").value)
+            formDireccion.append('codigo_postal',document.getElementById("codigoPostal").value)
+        }
         FormAPI(
             formDireccion,
             "direcciones",
@@ -400,7 +421,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 <div className="contenedorDirecciones">
                     {direccionesCargadas.map(dir=>{
                         return(
-                            <div className="cards" onClick={()=>setDireccionCargada(dir)}>
+                            <div className="cards" key={dir.iddireccion} onClick={()=>setDireccionCargada(dir)}>
                                 <Radio
                                     name="sucursal"
                                     id="nuevaDir"
