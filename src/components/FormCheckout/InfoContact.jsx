@@ -57,6 +57,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const [errorPhone,setErrorPhone]=useState(false)
     const [errorCodPostal,setErrorCodPostal]=useState(false)
     const [errorDireccion,setErrorDireccion]=useState(false)
+    const [errorDirCargada,setErrorDirCargada]=useState(false)
 
     const [viewDireccion,setViewDireccion]=useState(false)
     const [resDirecciones,setResDirecciones]=useState([])
@@ -75,6 +76,12 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         let res = false
         let resFinal = true
 
+        if(loadDireccion && direccionCargada === null){
+            setErrorDirCargada(true)
+            setLoader(false)
+            scrollTop()
+            return
+        }
         if(direccionCargada===null){
             res = handleClick(setCampoObligatorio,clase,clase2)
             resFinal = true
@@ -220,6 +227,12 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                     <p>No se encontró la direccion establecida.</p>
                 </div>
             }
+            {errorDirCargada &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Debe seleccionar una dirección</p>
+                </div>
+            }
 
             <div className="firstLine" style={{marginTop:"12px"}}>
                 <div className="margenInput margenInputEspecial">
@@ -250,7 +263,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             </div>
 
             <div className="selectorDireccion">
-                <div className="selectorContainer" onClick={()=>{setLoadDireccion(!loadDireccion);setDireccionCargada(null)}}>
+                <div className="selectorContainer" onClick={()=>{setLoadDireccion(!loadDireccion);setDireccionCargada(null);setErrorDirCargada(false)}}>
                     <FormControlLabel
                         name="sucursal"
                         control={<Checkbox/>}
@@ -421,7 +434,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                 <div className="contenedorDirecciones">
                     {direccionesCargadas.map(dir=>{
                         return(
-                            <div className="cards" key={dir.iddireccion} onClick={()=>setDireccionCargada(dir)}>
+                            <div className="cards" key={dir.iddireccion} onClick={()=>{setDireccionCargada(dir);setErrorDirCargada(false)}}>
                                 <Radio
                                     name="sucursal"
                                     id="nuevaDir"
