@@ -217,7 +217,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         value="setDireccion"
                         onClick={()=>setStateDireccion("nuevaDir")}
                     />
-                    <label className="labelForm" for="nuevaDir">
+                    <label className="labelForm" for="nuevaDir" style={{cursor:"pointer"}}>
                         Inscribir una nueva dirección
                     </label>
                 </div>
@@ -229,7 +229,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         checked={stateDireccion==="cargarDir"?true:false}
                         onClick={()=>setStateDireccion("cargarDir")}
                     />
-                    <label className="labelForm" for="cargarDir">
+                    <label className="labelForm" for="cargarDir" style={{cursor:"pointer"}}>
                         Usar una dirección pre-cargada
                     </label>
                 </div>
