@@ -1,12 +1,15 @@
 import { Button, TextField } from "@mui/material"
 import React,{useState,useContext} from "react"
 import { useNavigate } from "react-router-dom";
+import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 
-const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
+const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
     const navigate = useNavigate();
+
     const {FormAPI}=useContext(UseFormContext)
+    const {costoCarrito}=useContext(UseCartContext)
 
     const [errorCodigo,setErrorCodigo]=useState(false)
     const [codigoValido,setCodigoValido]=useState(false)
@@ -91,7 +94,11 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,form})=>{
                         textDecoration:codigoValido && "line-through",
                         color:codigoValido && "#969696"
                     }}>
-                    $ 127.199
+                    {costoCarrito === false ?
+                        <Loader spin={"spinnerS"}/>
+                    :
+                        `$ ${costoCarrito}`
+                    }
                 </p>
             </div>
             {codigoValido && 
