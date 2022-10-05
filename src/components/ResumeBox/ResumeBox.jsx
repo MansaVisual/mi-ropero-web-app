@@ -50,13 +50,13 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
         <div className="resumeBox">
             <div className="box firstBox">
                 <p className="subtitulo">{cantidadCarrito} Productos</p>
-                <p className="subtitulo p14">
-                    {costoCarrito === false ?
+                {costoCarrito === false ?
+                    <div className="subtitulo p14">
                         <Loader spin={"spinnerS"}/>
-                    :
-                        `$ ${costoCarrito}`
-                    }
-                </p>
+                    </div>
+                :
+                    <p className="subtitulo p14">$ {costoCarrito}</p>
+                }
             </div>
             <div className="box">
                 <p className="subtitulo">Envío</p>
@@ -95,17 +95,19 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
             }
             <div className="box">
                 <p className="subtitulo subtituloTotal">TOTAL:</p>
-                <p className="subtitulo subtituloTotal"
+                {costoCarrito === false ?
+                    <div className="subtitulo p14">
+                        <Loader spin={"spinnerS"}/>
+                    </div>
+                :
+                    <p className="subtitulo subtituloTotal"
                     style={{
                         textDecoration:codigoValido && "line-through",
                         color:codigoValido && "#969696"
                     }}>
-                    {costoCarrito === false ?
-                        <Loader spin={"spinnerS"}/>
-                    :
-                        `$ ${costoCarrito}`
-                    }
-                </p>
+                        $ {costoCarrito}
+                    </p>
+                }
             </div>
             {codigoValido && 
                 <div className="box">
