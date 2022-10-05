@@ -30,12 +30,12 @@ export const CartContext = ({children}) => {
         const CartID = new FormData()
 
         CartID.append('idcliente', 68)
-        CartID.append('idproducto',10610)
-        CartID.append('cantidad',1)
+        // CartID.append('idproducto',10610)
+        // CartID.append('cantidad',1)
         CartAPI(
             CartID,
             "carritos",
-            "insert"
+            "all"
         ).then((res)=>{
             console.log(res)
             if(res.status==="success"){
@@ -48,7 +48,7 @@ export const CartContext = ({children}) => {
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <UseCartContext.Provider value={{CartAPI,carrito,buscandoCart}}>
+        <UseCartContext.Provider value={{CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart}}>
             {children}
         </UseCartContext.Provider>
     )

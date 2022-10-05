@@ -16,7 +16,7 @@ import Loader from "../../components/Loader/Loader";
 const Cart = () => {
     const navigate = useNavigate();
 
-    const {CartAPI,carrito,buscandoCart}=useContext(UseCartContext)
+    const {CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart}=useContext(UseCartContext)
 
     const [eliminar,setEliminar]=useState(false)
     const [prodEliminar,setProdEliminar]=useState(null)
@@ -41,13 +41,35 @@ const Cart = () => {
             eliminar,
             "carritos",
             "delete"
-        ).then((res)=>{
+        ).then(async(res)=>{
             if(res.status==="success"){
+                await chargeCarrito()
                 setEliminar(false)
                 setLoad(false)
             }else{
                 alert("Ocurrio un error")
                 setLoad(false)
+            }
+        })
+    }
+
+    const chargeCarrito = () =>{
+        const CartID = new FormData()
+
+        CartID.append('idcliente', 68)
+        // CartID.append('idproducto',10610)
+        // CartID.append('cantidad',1)
+        CartAPI(
+            CartID,
+            "carritos",
+            "all"
+        ).then((res)=>{
+            console.log(res)
+            if(res.status==="success"){
+                setCarrito(res.result)
+                setBuscandoCart(false)
+            }else if(res.status==="error"){
+                setBuscandoCart(false)
             }
         })
     }
