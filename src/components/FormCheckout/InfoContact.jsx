@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControlLabel, InputLabel, MenuItem, Radio, TextField } from "@mui/material"
+import { Button, Checkbox, FormControlLabel, InputLabel, MenuItem, Radio, Select, TextField } from "@mui/material"
 import React, {useState,useContext,useEffect} from "react"
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones";
@@ -332,7 +332,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                     <div className="firstLine">
                         <div className="margenInput margenInputEspecial">
                             <InputLabel className="labelForm" id="labelProvincia">Provincia *</InputLabel>
-                            <TextField 
+                            <Select 
                                 placeholder="Ciudad Autónoma de Buenos Aires"
                                 size="small"
                                 select
@@ -341,18 +341,41 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                                 onChange={(e)=>{handleChange(e);setErrorDireccion(false);setCampoObligatorio(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                                 id="provincia"
-                                className={`inputForm selector`}
-                                sx={{"& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"}}}
+                                className={`inputForm selector `}
+                                sx={{
+                                    "& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"},
+                                    height:42,
+                                    " &::-webkit-scrollbar" :{
+                                        width:"8px !important",
+                                    },
+                                    "&::-webkit-scrollbar-thumb": {
+                                        background: "#000 !important",
+                                        borderRadius: "10px !important",
+                                    },
+                                    "&::-webkit-scrollbar-track": {
+                                        background: "transparent",
+                                    },                                                                                                            
+                                }}
+                                MenuProps={{
+                                    style: {
+                                       maxHeight: 150,
+                                    }                                           
+                                }} 
                             >
-                                <MenuItem disabled key={"ejemplo"} value={"ejemplo"} sx={{fontSize:"14px",color:"#969696"}}>
-                                    {"Ciudad Autónoma de Buenos Aires"}
+                                <MenuItem 
+                                    disabled 
+                                    key={"ejemplo"} 
+                                    value={"ejemplo"} 
+                                    sx={{fontSize:"14px",color:"#969696"}} 
+                                    >
+                                    {"Seleccioná una provincia"}
                                 </MenuItem>
                                 {provincias.map((option) => (
                                     <MenuItem key={option.idprovincia} value={option.idprovincia} sx={{fontSize:"14px",color:"#969696"}}>
                                         {option.nombre}
                                     </MenuItem>
                                 ))}
-                            </TextField>
+                            </Select>
                         </div>
                         <div className="margenInput">
                             <InputLabel className="labelForm" id="labelBarrioLocalidad">Localidad / Barrio *</InputLabel>
@@ -409,13 +432,15 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                     <div className="firstLine" style={{display:"flex",flexDirection:"column"}}>
                         <div className="contenedorTextarea">
                             <InputLabel className="labelForm" sx={{marginTop:"24px",marginBottom:"12px"}}>Información adicional</InputLabel>
-                            <TextField 
+                            <TextField
+                                multiline
+                                rows={4} 
                                 placeholder="Puerta roja, timbre blanco"
                                 size="small"
                                 className="inputForm textarea"
                                 id="comentario"
                                 onChangeCapture={()=>handleChangeForm(setForm,form)}
-                                inputProps={{ maxLength: 70 }}
+                               /*  inputProps={{ maxLength: 70 }} */
                                 ></TextField>
                         </div>
                         <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>

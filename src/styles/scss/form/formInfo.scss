@@ -81,7 +81,11 @@
             width: 100%;
         }
         .textarea div{
-            height: 40px;
+            height: 88px;
+            textarea{
+                position: relative;
+                top: 5px;
+            }
         }
     }
     .labelForm{
