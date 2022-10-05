@@ -13,14 +13,11 @@ import Loader from "../Loader/Loader"
 
 
 const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio,direccion})=>{
-    const {FormAPI}=useContext(UseFormContext)
+    const {costoSucDom,costoSucSuc,setCostos}=useContext(UseFormContext)
 
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)
-    const [costoSucDom,setCostoSucDom]=useState(false)
-    const [costoSucSuc,setCostoSucSuc]=useState(false)
-
 
     useEffect(() => {
         if(form.provincia==="1"){
@@ -29,19 +26,9 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     }, [form]);
 
     useEffect(()=>{
-        const formCostos = new FormData()
-        formCostos.append('idcliente', 68)
-        formCostos.append('address_shipping',JSON.stringify(direccion))
-        FormAPI(
-            formCostos,
-            "carritos",
-            "calc_shipping"
-        ).then((res)=>{
-            if(res.status==="success"){
-                setCostoSucDom(res.result.oca_suc_dom.precio)
-                setCostoSucSuc(res.result.oca_suc_suc.precio)
-            }
-        })
+        if(costoSucDom===false && costoSucSuc===false){
+            setCostos(direccion)
+        }
     },[])// eslint-disable-line react-hooks/exhaustive-deps
 
     const defaultCheck = (type) =>{
@@ -162,13 +149,13 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                             Una vez despachado te enviaremos el link de seguimiento.
                         </p>
                     </div>
-                    <p style={{whiteSpace:"nowrap"}} className="precio">
-                        {costoSucDom === false ?
+                    {costoSucDom === false ?
+                        <div className="precio">
                             <Loader spin={"spinnerS"}/>
-                        :
-                            `$ ${costoSucDom}`
-                        }
-                    </p>
+                        </div>
+                    :
+                        <p style={{whiteSpace:"nowrap"}} className="precio">$ {costoSucDom}</p>
+                    }
                 </div>
             </div>
             
@@ -193,13 +180,13 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                             Una vez despachado te enviaremos el link de seguimiento.
                         </p>
                     </div>
-                    <p style={{whiteSpace:"nowrap"}} className="precio">
-                        {costoSucSuc === false ?
+                    {costoSucSuc === false ?
+                        <div className="precio">
                             <Loader spin={"spinnerS"}/>
-                        :
-                            `$ ${costoSucSuc}`
-                        }
-                    </p>
+                        </div>
+                    :
+                        <p style={{whiteSpace:"nowrap"}} className="precio">$ {costoSucSuc}</p>
+                    }
                 </div>
             </div>
             

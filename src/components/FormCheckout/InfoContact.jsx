@@ -279,7 +279,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                         checked={loadDireccion?true:false}
                         value="setDireccion"
                     />
-                    <label className="labelForm" for="nuevaDir" style={{cursor:"pointer"}}>
+                    <label className="labelForm" htmlFor="nuevaDir" style={{cursor:"pointer"}}>
                         Utilizar una de mis direcciónes
                     </label>
                 </div>
@@ -353,17 +353,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                                 className={`inputForm selector `}
                                 sx={{
                                     "& div":{fontSize:"14px",color:provincia===""?"#BABCBE":"#423B3C"},
-                                    height:42,
-                                    " &::-webkit-scrollbar" :{
-                                        width:"8px !important",
-                                    },
-                                    "&::-webkit-scrollbar-thumb": {
-                                        background: "#000 !important",
-                                        borderRadius: "10px !important",
-                                    },
-                                    "&::-webkit-scrollbar-track": {
-                                        background: "transparent",
-                                    },                                                                                                            
+                                    height:42,                                                                                                       
                                 }}
                                 MenuProps={{
                                     style: {
@@ -476,7 +466,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                                     checked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
                                     value={dir.iddireccion}
                                 />
-                                <p className="labelForm" for="nuevaDir">
+                                <p className="labelForm" htmlFor="nuevaDir">
                                     {dir.calle} {dir.numero}. {dir.provincia === "Capital Federal" && "CABA"} {dir.localidad} ({dir.codigo_postal}).
                                     {dir.entre_calle_1!=="" && "Entre"} {dir.entre_calle_1!==""&& dir.entre_calle_1} {dir.entre_calle_1!=="" && "y"} {dir.entre_calle_2!==""&& dir.entre_calle_2}
                                     {dir.informacion_adicional}
