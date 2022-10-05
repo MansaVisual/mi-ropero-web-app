@@ -9,7 +9,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
     const navigate = useNavigate();
 
     const {FormAPI}=useContext(UseFormContext)
-    const {costoCarrito}=useContext(UseCartContext)
+    const {costoCarrito,cantidadCarrito}=useContext(UseCartContext)
 
     const [errorCodigo,setErrorCodigo]=useState(false)
     const [codigoValido,setCodigoValido]=useState(false)
@@ -49,8 +49,14 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
     return(
         <div className="resumeBox">
             <div className="box firstBox">
-                <p className="subtitulo">999 Productos</p>
-                <p className="subtitulo p14">$ 130.561</p>
+                <p className="subtitulo">{cantidadCarrito} Productos</p>
+                <p className="subtitulo p14">
+                    {costoCarrito === false ?
+                        <Loader spin={"spinnerS"}/>
+                    :
+                        `$ ${costoCarrito}`
+                    }
+                </p>
             </div>
             <div className="box">
                 <p className="subtitulo">Envío</p>

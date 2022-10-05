@@ -6,7 +6,7 @@ export const CartContext = ({children}) => {
     const [carrito,setCarrito]=useState([])
     const [buscandoCart,setBuscandoCart]=useState(true)
     const [costoCarrito,setCostoCarrito]=useState(false)
-    
+    const [cantidadCarrito,setCantidadCarrito]=useState(0)
 
     const CartAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -51,16 +51,19 @@ export const CartContext = ({children}) => {
 
     useEffect(()=>{
         let suma = 0
+        let cantidad = 0
         if(carrito.length!==0){
             for(let i=0;i<carrito.length;i++){
                 suma = suma + Number(carrito[i].producto.precio)
+                cantidad=cantidad+1
             }
         }
+        setCantidadCarrito(cantidad)
         setCostoCarrito(suma)
     },[carrito])// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <UseCartContext.Provider value={{CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart,costoCarrito}}>
+        <UseCartContext.Provider value={{CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart,costoCarrito,cantidadCarrito}}>
             {children}
         </UseCartContext.Provider>
     )
