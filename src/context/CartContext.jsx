@@ -37,7 +37,6 @@ export const CartContext = ({children}) => {
             "carritos",
             "all"
         ).then((res)=>{
-            console.log(res)
             if(res.status==="success"){
                 setCarrito(res.result)
                 setBuscandoCart(false)

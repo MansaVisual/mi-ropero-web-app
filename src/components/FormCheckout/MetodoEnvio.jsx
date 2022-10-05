@@ -9,6 +9,7 @@ import React, {useState,useEffect,useContext} from "react"
 import PopUpSucursales from "./PopUpME";
 import PopUpSetSucursal from "./PopUpME2";
 import { UseFormContext } from "../../context/FormContext"
+import Loader from "../Loader/Loader"
 
 
 const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio,direccion})=>{
@@ -17,8 +18,8 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)
-    // const [costoSucDom,setCostoSucDom]=useState(false)
-    // const [costoSucSuc,setCostoSucSuc]=useState(false)
+    const [costoSucDom,setCostoSucDom]=useState(false)
+    const [costoSucSuc,setCostoSucSuc]=useState(false)
 
 
     useEffect(() => {
@@ -29,15 +30,16 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
 
     useEffect(()=>{
         const formCostos = new FormData()
-        formCostos.append('idcliente', 62)
-        formCostos.append('address_shipping',direccion)
+        formCostos.append('idcliente', 68)
+        formCostos.append('address_shipping',JSON.stringify(direccion))
         FormAPI(
             formCostos,
             "carritos",
             "calc_shipping"
         ).then((res)=>{
             if(res.status==="success"){
-                console.log(res)
+                setCostoSucDom(res.result.oca_suc_dom.precio)
+                setCostoSucSuc(res.result.oca_suc_suc.precio)
             }
         })
     },[])// eslint-disable-line react-hooks/exhaustive-deps
@@ -160,7 +162,13 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                             Una vez despachado te enviaremos el link de seguimiento.
                         </p>
                     </div>
-                    <p style={{whiteSpace:"nowrap"}} className="precio">$ 908,83</p>
+                    <p style={{whiteSpace:"nowrap"}} className="precio">
+                        {costoSucDom === false ?
+                            <Loader spin={"spinnerS"}/>
+                        :
+                            `$ ${costoSucDom}`
+                        }
+                    </p>
                 </div>
             </div>
             
@@ -185,7 +193,13 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                             Una vez despachado te enviaremos el link de seguimiento.
                         </p>
                     </div>
-                    <p style={{whiteSpace:"nowrap"}} className="precio">$ 908,83</p>
+                    <p style={{whiteSpace:"nowrap"}} className="precio">
+                        {costoSucSuc === false ?
+                            <Loader spin={"spinnerS"}/>
+                        :
+                            `$ ${costoSucSuc}`
+                        }
+                    </p>
                 </div>
             </div>
             
