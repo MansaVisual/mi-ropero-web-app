@@ -1,8 +1,11 @@
-import { createContext } from "react";
+import { createContext,useState } from "react";
 
 export const UseFormContext = createContext();
 
 export function FormContext ({children}) {
+
+    const [costoSucDom,setCostoSucDom]=useState(false)
+    const [costoSucSuc,setCostoSucSuc]=useState(false)
 
     const FormAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -24,8 +27,24 @@ export function FormContext ({children}) {
         return resFinal
     }
 
+    const setCostos = (direccion)=>{
+        const formCostos = new FormData()
+        formCostos.append('idcliente', 68)
+        formCostos.append('address_shipping',JSON.stringify(direccion))
+        FormAPI(
+            formCostos,
+            "carritos",
+            "calc_shipping"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setCostoSucDom(res.result.oca_suc_dom.precio)
+                setCostoSucSuc(res.result.oca_suc_suc.precio)
+            }
+        })
+    }
+
     return(
-        <UseFormContext.Provider value={{FormAPI}}>
+        <UseFormContext.Provider value={{FormAPI,costoSucDom,costoSucSuc,setCostos}}>
             {children}
         </UseFormContext.Provider>
     )
