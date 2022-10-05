@@ -186,7 +186,15 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             }
         })
     }
-    const scrollTop = ()=>{
+    const scrollTop = (param)=>{
+        if(param!==undefined){
+            setTimeout(() => {
+                window.scrollTo({
+                    top: param,
+                    behavior: 'auto'
+                })
+            }, 0);
+        }
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -338,12 +346,13 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                                 select
                                 defaultValue={"ejemplo"}
                                 value={provincia===""?"ejemplo":provincia}
+                                onClickCapture={(e)=>scrollTop(e.clientY)}
                                 onChange={(e)=>{handleChange(e);setErrorDireccion(false);setCampoObligatorio(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelProvincia")}
                                 id="provincia"
                                 className={`inputForm selector `}
                                 sx={{
-                                    "& div":{fontSize:"14px",color:provincia===""&&"#BABCBE"},
+                                    "& div":{fontSize:"14px",color:provincia===""?"#BABCBE":"#423B3C"},
                                     height:42,
                                     " &::-webkit-scrollbar" :{
                                         width:"8px !important",

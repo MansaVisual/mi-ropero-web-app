@@ -300,3 +300,18 @@
         }
     }
 }
+#menu-{
+    .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+        min-height: 150px !important;
+        &::-webkit-scrollbar {
+            width: 8px !important;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #BABCBE !important;
+            border-radius: 10px !important;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent !important;
+        }
+    }
+}
