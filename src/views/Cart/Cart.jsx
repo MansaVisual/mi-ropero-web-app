@@ -136,7 +136,7 @@ const Cart = () => {
                                             />
                                         <p>Tu carrito esta vacío</p>
                                         <div className="seguirComprando">
-                                            <Button onClick={()=>navigate("/checkout")}>
+                                            <Button onClick={()=>navigate("/")}>
                                                 SEGUIR COMPRANDO
                                             </Button>
                                         </div>
