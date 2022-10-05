@@ -41,9 +41,7 @@ const Checkout = ()=>{
             behavior: 'smooth'
         })
     }, [typeNav]);
-    useEffect(() => {
-        console.log(direccion)
-    }, [direccion]);
+
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
     const onNextForm=(type)=>{
