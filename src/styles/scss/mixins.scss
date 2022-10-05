@@ -19,6 +19,12 @@
 }
 
 // ESPECIALES
+@mixin screen_1450{
+  @media (min-width:1450px) {
+    @content;
+  }
+}
+
 @mixin screen_1366{
   @media (min-width:1366px) {
     @content;
