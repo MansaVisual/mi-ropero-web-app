@@ -1,13 +1,19 @@
 import React, {useState} from "react"
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material"
+import { Button, InputAdornment, TextField } from "@mui/material"
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import RestorePopUp from "./RestorePopUp";
+import ValidationPopUp from "./ValidationPopUp";
+
 
 const BoxLogin = ()=>{
     const [showPassword, setShowPassword] = useState(false)
+    const [restorePassword, setRestorePassword] = useState(false)
+    const [confirmValidation, setconfirmValidation] = useState(true)
 
     return(
+    <>
         <div className="boxLoginContianer">
             <p className="title">Continuar con Google o Facebook</p>
             <div>
@@ -35,7 +41,7 @@ const BoxLogin = ()=>{
                         color="primary"
                         className="inputP"
                         size="small"
-                        placeholder="● ● ● ● ● ● ● ● ● ● ●"
+                        placeholder={showPassword ? "" : "● ● ● ● ● ● ● ● ● ● ●"}
                         type={showPassword ? 'text' : 'password'}
                         InputProps={{
                             endAdornment: (
@@ -48,15 +54,21 @@ const BoxLogin = ()=>{
                             ),
                             style: {fontSize: 15} 
                           }}
-                        
                     />
-                    <p className="olvidoContraseña">Olvidé mi contraseña</p>
+                    <p onClick={() => setRestorePassword(true)} className="olvidoContraseña">Olvidé mi contraseña</p>
                 </div>
             </div>
 
             <Button className="botonIngresar">INGRESAR</Button>
             <Button className="botonRegistrate">REGISTRATE</Button>
         </div>
+        {restorePassword &&
+                <RestorePopUp setRestorePassword={setRestorePassword}/>
+        }
+        {confirmValidation &&
+                <ValidationPopUp setconfirmValidation={setconfirmValidation}/>
+        }
+    </>
     )
 }
 
