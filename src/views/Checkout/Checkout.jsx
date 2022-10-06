@@ -112,6 +112,8 @@ const Checkout = ()=>{
                         codDesc={codDesc}
                         setCodDesc={setCodDesc}
                         form={form}
+                        direccion={direccion}
+                        setMetodoEnvio={setMetodoEnvio}
                     /> : null}
 
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
@@ -152,7 +154,6 @@ const Checkout = ()=>{
                             setCodDesc={setCodDesc}
                             form={form}
                             metodoEnvio={metodoEnvio}
-                            setMetodoEnvio={setMetodoEnvio}
                         />
                     :   
                         <div className="fotoBannerCheck screen1000-bannerCheck"/>

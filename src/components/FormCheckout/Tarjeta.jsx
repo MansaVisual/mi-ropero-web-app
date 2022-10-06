@@ -6,7 +6,7 @@ import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 
-const Tarjeta = ({setTypeNav,setMetodoEnvio})=>{
+const Tarjeta = ({setTypeNav,setMetodoEnvio,direccion})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const {carrito}=useContext(UseCartContext)
     const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
@@ -36,8 +36,15 @@ const Tarjeta = ({setTypeNav,setMetodoEnvio})=>{
                 <p className="title">Domicilio de entrega</p>
                 <div className="card">
                     <div>
-                        <h3>Cuenca 3440. CABA Comuna 17 (C1417). Entre Francisco Beiró y José P. Varela.</h3>
-                        <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
+                    <h3>
+                            {direccion.calle} {direccion.numero}. {direccion.provincia === "Capital Federal" ? "CABA" : direccion.provincia} {direccion.localidad} ({direccion.codigo_postal}). 
+                        </h3>
+                        <h3>
+                            {direccion.entre_calle_1!=="" && "Entre"} {direccion.entre_calle_1!==""&& direccion.entre_calle_1} {direccion.entre_calle_1!=="" && "y"} {direccion.entre_calle_2!==""&& direccion.entre_calle_2}
+                        </h3>
+                        <h3>
+                            {direccion.informacion_adicional}
+                        </h3>
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
                     <Button className="boton" onClick={()=>{setTypeNav("info");setMetodoEnvio("");setCostoSucDom(false);setCostoSucSuc(false)}}>
