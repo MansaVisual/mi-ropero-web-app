@@ -1,8 +1,9 @@
-import React from "react"
+import React, {useContext} from "react"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { Button, useMediaQuery } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
 import theme from "../../styles/theme";
+import { UseCartContext } from "../../context/CartContext";
 
 const products = [
     {
@@ -37,6 +38,7 @@ const products = [
 
 const Tarjeta = ({setTypeNav})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+    const {carrito}=useContext(UseCartContext)
 
     return(
         <div className="tarjetaContenedor">
@@ -45,12 +47,12 @@ const Tarjeta = ({setTypeNav})=>{
             <div className="productos">
                 <p>Productos</p>
                 <div className="prodsContainer">
-                    {products.map((prod,i)=>{
+                    {carrito.map((prod,i)=>{
                         return(
                             <div className="prodCard" key={i}>
-                                <div className="fotoProd" style={{backgroundImage:`url(${prod.image})`}}/>
+                                <div className="fotoProd" style={{backgroundImage:`url(${prod.producto_imagen})`}}/>
                                 <div>
-                                    <p>{prod.title}</p>
+                                    <p>{prod.producto_nombre}</p>
                                     <p className="roperoDe">{prod.description}</p>
                                 </div>
                             </div>
