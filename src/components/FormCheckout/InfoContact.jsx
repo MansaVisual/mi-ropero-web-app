@@ -343,7 +343,6 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
                             <Select 
                                 placeholder="Ciudad Autónoma de Buenos Aires"
                                 size="small"
-                                select
                                 defaultValue={"ejemplo"}
                                 value={provincia===""?"ejemplo":provincia}
                                 onClickCapture={(e)=>scrollTop(e.clientY)}
