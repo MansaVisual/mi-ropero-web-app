@@ -68,7 +68,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
         }else if(metodoEnvio===""){
             alert("ELIJA UN METODO")
         }else{
-            alert("APROBADO")
             setViewSucursales(false)
             setTypeNav("tarjeta")
         }
@@ -78,7 +77,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             alert("DEBE ELEGIR UNO")
         }else{
             setViewSucursales(false)
-            alert("OK")
             setTypeNav("tarjeta")
         }
     }
