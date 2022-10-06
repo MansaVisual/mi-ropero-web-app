@@ -186,6 +186,7 @@ const InfoContact=({
                 await setResDirecciones(res.result)
                 setViewDireccion(true)
             }else{
+                setLoader(false)
                 setErrorDireccion(true)
                 throwError("calle","labelCalle")
                 throwError("alturaKM","labelAlturaKM")

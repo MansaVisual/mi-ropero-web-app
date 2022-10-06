@@ -44,7 +44,7 @@ export function FormContext ({children}) {
     }
 
     return(
-        <UseFormContext.Provider value={{FormAPI,costoSucDom,costoSucSuc,setCostos}}>
+        <UseFormContext.Provider value={{FormAPI,costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc}}>
             {children}
         </UseFormContext.Provider>
     )

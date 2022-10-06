@@ -13,23 +13,23 @@ import Loader from "../Loader/Loader"
 
 
 const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio,direccion})=>{
-    const {costoSucDom,costoSucSuc,setCostos}=useContext(UseFormContext)
+    const {costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
 
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)
 
     useEffect(() => {
-        if(form.provincia==="1"){
+        if(direccion.idprovincia==="1"){
             setEnvioMoto(true)
         }
-    }, [form]);
+    }, [direccion,form]);
 
     useEffect(()=>{
         if(costoSucDom===false && costoSucSuc===false){
             setCostos(direccion)
         }
-    },[])// eslint-disable-line react-hooks/exhaustive-deps
+    },[costoSucDom,costoSucSuc])// eslint-disable-line react-hooks/exhaustive-deps
 
     const defaultCheck = (type) =>{
         if(metodoEnvio===""){
@@ -102,7 +102,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                         </h3>
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
-                    <Button className="boton" onClick={()=>setTypeNav("info")}>
+                    <Button className="boton" onClick={()=>{setTypeNav("info");setMetodoEnvio("");setCostoSucDom(false);setCostoSucSuc(false)}}>
                         MODIFICAR
                     </Button>
                 </div>
