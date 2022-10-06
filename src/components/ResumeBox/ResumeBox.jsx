@@ -49,6 +49,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 setLoader(false)
                 setCodigo("")
             }else if(res.status==="success"){
+                console.log(res)
                 setErrorCodigo(false)
                 setCodigoValido(true)
                 setLoader(false)
@@ -132,7 +133,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 <div className="box">
                     <p></p>
                     <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
-                        $ {codigo.result.tipo_descuento==="1"?costoFinal-codigo.result.monto:codigo.tipo_descuento==="2"&&costoFinal*codigo.result.monto/100}
+                        $ {codigo.result.tipo_descuento==="1"?costoFinal-codigo.result.monto:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
                     </p>
                 </div>
             }
