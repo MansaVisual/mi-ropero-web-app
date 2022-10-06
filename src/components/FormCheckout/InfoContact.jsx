@@ -289,7 +289,7 @@ const InfoContact=({
                 }}>
                     <FormControlLabel
                         name="sucursal"
-                        control={<Checkbox/>}
+                        control={<Checkbox sx={{fontSize:"24px"}}/>}
                         id="nuevaDir"
                         checked={usaDireccionCargada?true:false}
                         value="setDireccion"
@@ -461,7 +461,7 @@ const InfoContact=({
                     
                     <div className="firstLine" style={{justifyContent:"flex-start"}}>
                         <FormControlLabel
-                            control={<Checkbox defaultChecked />}
+                            control={<Checkbox defaultChecked sx={{fontSize:"24px"}}/>}
                             onChange={()=>setSaveDirecc(!saveDirecc)}
                             label="Guardar esta dirección para volver a usarla en otra compra"
                             className="checkDirecc"
