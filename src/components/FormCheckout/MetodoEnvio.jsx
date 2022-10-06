@@ -36,6 +36,8 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             return false
         }else if(metodoEnvio===type){
             return true
+        }else{
+            return false
         }
     }
     const defaultCheckSucursal = (type) =>{
@@ -43,6 +45,8 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             return false
         }else if(sucursalEntrega===type){
             return true
+        }else{
+            return false
         }
     }
     const onClickCheck = (type)=>{
@@ -58,20 +62,22 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     }
 
 
-    const handleClickContinuar = ()=>{
+    const handleClickContinuar =async ()=>{
         if(metodoEnvio==="345838"){
             setSetSucursal(true)
         }else if(metodoEnvio===""){
             alert("ELIJA UN METODO")
         }else{
             alert("APROBADO")
+            setViewSucursales(false)
             setTypeNav("tarjeta")
         }
     }
-    const handleClickSetSucusarl=()=>{
+    const handleClickSetSucusarl=async()=>{
         if(sucursalEntrega===""){
             alert("DEBE ELEGIR UNO")
         }else{
+            setViewSucursales(false)
             alert("OK")
             setTypeNav("tarjeta")
         }
@@ -124,14 +130,15 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                                 Este método de envío no está disponible para el domicilio de entrega.
                             </p>
                         }
-                        <p className="subtitle"></p>
+                        <p className="subtitle">$ 500</p>
                     </div>
                     <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio"></p>
                 </div>
             </div>
-            <div className="domicilioEntrega" onClick={()=>onClickCheck("345837")}>
+            <div className="domicilioEntrega" onClick={costoSucDom===false ? null : ()=>onClickCheck("345837")}>
                 <div className={`card metodos ${metodoEnvio === "345837" && "radioSelected"}`}>
-                    <Radio 
+                    <Radio
+                        disabled={costoSucDom===false?true:false}
                         className="radio"
                         checked={defaultCheck("345837")}
                         id="radioButton2"
@@ -159,9 +166,10 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                 </div>
             </div>
             
-            <div className="domicilioEntrega" onClick={()=>onClickCheck("345838")}>
+            <div className="domicilioEntrega" onClick={costoSucSuc===false ? null : ()=>onClickCheck("345838")}>
                 <div className={`card metodos ${metodoEnvio === "345838" && "radioSelected"}`}>
-                    <Radio 
+                    <Radio
+                        disabled={costoSucSuc===false?true:false}
                         className="radio"
                         checked={defaultCheck("345838")}
                         id="radioButton3"
