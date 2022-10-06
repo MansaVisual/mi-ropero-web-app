@@ -13,10 +13,9 @@ const ValidationPopUp = ({setconfirmValidation}) => {
                 <p className="popUpTitle">EL CÓDIGO DE VALIDACIÓN SE ENVIÓ CORRECTAMENTE</p>
                 <p className="popUpDescription">
                     Deberia llegarte en menos de 2 minutos en tu email, 
-                    sino luego de ese tiempo no lo recibiste hace click acá.
+                    sino luego de ese tiempo no lo recibiste hace <span className='spanLink'>click acá</span>.
                 </p>
-                <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center",marginBottom:"24px"}}>
-                    <Button className="volver" >CANCELAR</Button>
+                <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center"}}>
                     <Button className="recordar">CONTINUAR</Button>
                 </div>
                 <img

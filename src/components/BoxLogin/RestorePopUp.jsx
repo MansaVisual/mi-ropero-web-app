@@ -23,7 +23,7 @@ const RestorePopUp = ({setRestorePassword}) => {
                             style: {fontSize: 15} 
                             }}
                         />
-                    <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center",marginBottom:"24px"}}>
+                    <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center"}}>
                         <Button className="volver" >VOLVER</Button>
                         <Button className="recordar">RECORDAR</Button>
                     </div>

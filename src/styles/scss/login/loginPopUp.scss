@@ -31,7 +31,8 @@
         margin-top: 127px;
         z-index: 99999;
         position: relative;
-        width: 480px;
+        width: 432px;
+        padding: 24px;
         .popUpContainer{
             display: flex;
             flex-direction: column;
@@ -39,11 +40,10 @@
             .logoModal{
                 height: 32px;
                 width: 32px;
-                margin-top: 24px;
                 margin-bottom: 8px;
             }
             .popUpTextField{
-                width: 90%;
+                width: 100%;
                 border-radius: 8px;
                 margin-top: 24px;
                 color:#BABCBE;
@@ -59,11 +59,14 @@
                 text-align: center;
                 margin-top: 8px;
                 margin-bottom: 0px;
-                padding: 0px 24px;
                 font-weight: 700;
-                font-size: 15px;
+                font-size: 12px;
                 line-height: 20px;
                 color: #878787;
+                .spanLink{
+                    color: #443988;
+                    text-decoration: underline;
+                }
             }
             .volver{
                 background: #FFFFFF;
@@ -73,9 +76,9 @@
                 font-size: 13px;
                 border: 1px solid #443988;
                 margin-right: 8px;
-                margin-left: 18px;
                 margin-top: 24px;
                 height: 32px;
+                width: 208px;
                 @include screen_506{
                     margin: 8px 24px;
                     margin-top: 0px;
@@ -88,9 +91,9 @@
                 padding: 0px 69px;
                 color: #FFFFFF;
                 margin-left: 8px;
-                margin-right: 18px;
                 margin-top: 24px;
                 height: 32px;
+                width: 208px;
                 @include screen_506{
                     margin: 8px 24px;
                     margin-bottom: 0px;
