@@ -45,6 +45,9 @@ const InfoContact=({
 
         if(form.length!==0 && !usaDireccionCargada){
             chargeForm(form,setProvincia)
+        }else if(form.length!==0 && usaDireccionCargada){
+            document.getElementById("nombreApellido").value=form.nombreApellido
+            document.getElementById("telefono").value=form.telefono
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
