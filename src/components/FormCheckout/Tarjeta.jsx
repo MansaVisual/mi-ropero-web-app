@@ -4,10 +4,12 @@ import { Button, useMediaQuery } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
 import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
+import { UseFormContext } from "../../context/FormContext";
 
-const Tarjeta = ({setTypeNav})=>{
+const Tarjeta = ({setTypeNav,setMetodoEnvio})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const {carrito}=useContext(UseCartContext)
+    const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
 
     return(
         <div className="tarjetaContenedor">
@@ -38,7 +40,7 @@ const Tarjeta = ({setTypeNav})=>{
                         <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
-                    <Button className="boton" onClick={()=>setTypeNav("info")}>
+                    <Button className="boton" onClick={()=>{setTypeNav("info");setMetodoEnvio("");setCostoSucDom(false);setCostoSucSuc(false)}}>
                         MODIFICAR
                     </Button>
                 </div>

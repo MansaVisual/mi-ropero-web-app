@@ -22,7 +22,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     
     useEffect(() => {
         let costoEnv=metodoEnvio==="345837"?costoSucDom:metodoEnvio==="345838"?costoSucSuc:metodoEnvio==="1"?500:0
-        setCostoFinal(costoCarrito+costoEnv)
+        setCostoFinal(costoCarrito+Number(costoEnv))
     }, [metodoEnvio]);// eslint-disable-line react-hooks/exhaustive-deps
 
     const handleChange= ()=>{
@@ -124,7 +124,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                         {metodoEnvio===""?
                             costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${costoCarrito}`
                         :
-                            metodoEnvio!==""&&`$ ${costoFinal}`
+                            `$ ${costoFinal}`
                         }
                     </p>
                 }

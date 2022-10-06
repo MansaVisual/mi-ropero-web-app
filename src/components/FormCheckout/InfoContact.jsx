@@ -16,6 +16,7 @@ const InfoContact=({
     
     const [direccionesCargadas,setDireccionesCargadas]=useState([])
     const [direccionCargada,setDireccionCargada]=useState(null)
+    const [buscandoDir,setBuscandoDir]=useState(false)
 
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
@@ -65,6 +66,7 @@ const InfoContact=({
     const [errorCodPostal,setErrorCodPostal]=useState(false)
     const [errorDireccion,setErrorDireccion]=useState(false)
     const [errorDirCargada,setErrorDirCargada]=useState(false)
+    const [errorRecargarDir,setErrorRecargarDir]=useState(false)
 
     const [viewDireccion,setViewDireccion]=useState(false)
     const [resDirecciones,setResDirecciones]=useState([])
@@ -76,10 +78,11 @@ const InfoContact=({
     }
 
     const checkForm = async()=>{
-
+        setBuscandoDir(true)
         setLoader(true)
         let res = false
         let resFinal = true
+        setErrorRecargarDir(false)
 
         if(usaDireccionCargada && direccionCargada === null){
             setErrorDirCargada(true)
@@ -128,8 +131,12 @@ const InfoContact=({
             ).then((res)=>{
                 if(res.status==="error"){
                     resFinal = false
-                    setErrorCodPostal(true)
-                    throwError("codigoPostal","labelCodigoPostal")
+                    if(direccionCargada===null){
+                        setErrorCodPostal(true)
+                        throwError("codigoPostal","labelCodigoPostal")
+                    }else{
+                        setErrorRecargarDir(true)
+                    }
                 }else{
                     setSucursales(res.result)
                 }
@@ -250,6 +257,12 @@ const InfoContact=({
                 <div className="errorBox">
                     <CancelOutlinedIcon color="secondary" className="cruz"/>
                     <p>Debe seleccionar una dirección</p>
+                </div>
+            }
+            {errorRecargarDir &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Ocurrió un error de validación. Vuelva a intentarlo</p>
                 </div>
             }
 
@@ -473,8 +486,9 @@ const InfoContact=({
                 <div className="contenedorDirecciones">
                     {direccionesCargadas.map(dir=>{
                         return(
-                            <div className="cards" key={dir.iddireccion} onClick={()=>{setDireccionCargada(dir);setErrorDirCargada(false)}}>
+                            <div className="cards" key={dir.iddireccion} onClick={()=>{!buscandoDir && setDireccionCargada(dir);setErrorDirCargada(false)}}>
                                 <Radio
+                                    disabled={buscandoDir && true}
                                     name="sucursal"
                                     id="nuevaDir"
                                     checked={direccion!==null && direccion.iddireccion===dir.iddireccion ? true : false}

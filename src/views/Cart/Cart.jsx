@@ -73,7 +73,7 @@ const Cart = () => {
             }
         })
     }
-
+    console.log(carrito)
     return(
         <>
             <Box container className="Breadcrumbs">
@@ -98,7 +98,7 @@ const Cart = () => {
                                             <div className="titleDescription">
                                                 <h3>{prod.producto_nombre}</h3>
                                                 <p className="description">
-                                                    {prod.description}
+                                                    {prod.producto.tienda.nombre}
                                                 </p>
                                                 <div className="preciosDeleteMobile">
                                                     {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}

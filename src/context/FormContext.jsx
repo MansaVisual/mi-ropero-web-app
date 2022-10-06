@@ -39,6 +39,8 @@ export function FormContext ({children}) {
             if(res.status==="success"){
                 setCostoSucDom(res.result.oca_suc_dom.precio)
                 setCostoSucSuc(res.result.oca_suc_suc.precio)
+            }else{
+                setCostos(direccion)
             }
         })
     }

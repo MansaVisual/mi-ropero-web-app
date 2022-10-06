@@ -23,7 +23,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
         if(direccion.idprovincia==="1"){
             setEnvioMoto(true)
         }
-    }, [direccion,form]);
+            }, [direccion,form]);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{
         if(costoSucDom===false && costoSucSuc===false){
@@ -80,7 +80,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             setTypeNav("tarjeta")
         }
     }
-
     return(
         <div className="metodoEnvio">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Método de envío</h2>
