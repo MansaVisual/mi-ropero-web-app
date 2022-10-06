@@ -3,7 +3,11 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import home from "../../assets/img/home.png"
 import { Button, Radio } from "@mui/material";
 
-const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm})=>{
+const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm,form})=>{
+
+    const handleAccept=async(dir)=>{
+        setDireccion({...dir,informacion_adicional:form.comentario,entre_calle_1:form.entrecalle1,entre_calle_2:form.entre_calle_2})
+    }
     return(
         <>
             {resDirecciones!==undefined &&
@@ -18,7 +22,7 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                                 return(
                                     <Fragment key={dir.raw_data}>
                                         {dir.numero!=="" && dir.calle!=="" &&
-                                            <div className={`cardSucursal ${direccion.raw_data !== undefined && direccion.raw_data === dir.raw_data && "selected"}`} onClick={()=>setDireccion(dir)}>
+                                            <div className={`cardSucursal ${direccion.raw_data !== undefined && direccion.raw_data === dir.raw_data && "selected"}`} onClick={()=>handleAccept(dir)}>
                                                 <Radio
                                                     name="sucursal"
                                                     id={dir.raw_data}

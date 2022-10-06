@@ -508,6 +508,7 @@ const InfoContact=({
                 setViewDireccion={setViewDireccion}
                 resDirecciones={resDirecciones}
                 handleFinForm={handleFinForm}
+                form={form}
             />}
         </div>
     )
