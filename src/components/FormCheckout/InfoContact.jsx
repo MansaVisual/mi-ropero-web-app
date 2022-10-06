@@ -66,8 +66,6 @@ const InfoContact=({
     const [viewDireccion,setViewDireccion]=useState(false)
     const [resDirecciones,setResDirecciones]=useState([])
 
-    const [loadDireccion,setLoadDireccion]=useState(false)
-
 
     const handleChange = (event) => {
         setProvincia(event.target.value)
@@ -80,7 +78,7 @@ const InfoContact=({
         let res = false
         let resFinal = true
 
-        if(loadDireccion && direccionCargada === null){
+        if(usaDireccionCargada && direccionCargada === null){
             setErrorDirCargada(true)
             setLoader(false)
             scrollTop()
@@ -281,10 +279,10 @@ const InfoContact=({
 
             <div className="selectorDireccion">
                 <div className="selectorContainer" onClick={()=>{
-                    setLoadDireccion(!loadDireccion);
                     setUsaDireccionCargada(!usaDireccionCargada)
                     setDireccionCargada(null);
-                    setErrorDirCargada(false)
+                    setErrorDirCargada(false);
+                    setProvincia("")
                 }}>
                     <FormControlLabel
                         name="sucursal"
@@ -299,7 +297,7 @@ const InfoContact=({
                 </div>
             </div>
 
-            {!loadDireccion ? 
+            {!usaDireccionCargada ? 
                 <>
                     <div className="firstLine">
                         <div className="margenInput margenInputEspecial">
@@ -475,8 +473,7 @@ const InfoContact=({
                                 <Radio
                                     name="sucursal"
                                     id="nuevaDir"
-                                    defaultChecked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
-                                    checked={direccionCargada!==null && direccionCargada.iddireccion===dir.iddireccion ? true : false}
+                                    checked={direccion!==null && direccion.iddireccion===dir.iddireccion ? true : false}
                                     value={dir.iddireccion}
                                 />
                                 <p className="labelForm" htmlFor="nuevaDir">

@@ -82,8 +82,12 @@ export const handleClick=(setCampoObligatorio,clase,clase2)=>{
 const handleClickHelp = async(id,id2,clase,clase2,setCampoObligatorio)=>{
     await setCampoObligatorio(true)
 
-    document.getElementById(id).classList.add(clase)
-    document.getElementById(id2).classList.add(clase2)
+    if(id==="provincia"){
+        document.getElementById(id2).classList.add(clase2)
+    }else{
+        document.getElementById(id).classList.add(clase)
+        document.getElementById(id2).classList.add(clase2)
+    }
 
     window.scrollTo({
         top: 0,
