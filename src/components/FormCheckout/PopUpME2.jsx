@@ -18,7 +18,7 @@ const PopUpSetSucursal = ({onClickCheckSucursal,defaultCheckSucursal,handleClick
                         <div className="cardContainer">
                             {sucursales.map((sucursal,i)=>{
                                 return(
-                                    <div className={`cardSucursal ${sucursalEntrega===sucursal.IdCentroImposicion && "selected"}`} onClick={()=>onClickCheckSucursal(sucursal.IdCentroImposicion)}>
+                                    <div key={i} className={`cardSucursal ${sucursalEntrega===sucursal.IdCentroImposicion && "selected"}`} onClick={()=>onClickCheckSucursal(sucursal.IdCentroImposicion)}>
                                         <Radio
                                             name="sucursal"
                                             id={sucursal.IdCentroImposicion}
