@@ -17,6 +17,7 @@
         padding: 8px 16px;
         .p14{
             font-size: 14px;
+            font-weight: 600;
         }
     }
     .boxInput{
@@ -28,9 +29,9 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            @media (min-width:1000px){
-                align-items: center !important;
-            }
+            // @media (min-width:1000px){
+            //     align-items: center !important;
+            // }
             @include screen_1190{
                 flex-wrap: wrap;
             }
@@ -70,7 +71,7 @@
                 input{
                     background: #FFFFFF;
                     mix-blend-mode: normal;
-                    border: 3px solid #FF3F20;
+                    border: 0.5px solid #FF3F20;
                     width: 165px;
                     border-radius: 4px;
                     font-weight: 400;
@@ -187,7 +188,7 @@
         }
     }
     .botonFinalizar{
-        padding: 24px 16px;
+        padding: 16px 16px;
         button{
             background: #FFFC31;
             box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
@@ -213,5 +214,17 @@
     }
     .subtituloTotal{
         font-size: 17px;
+    }
+    .total{
+        font-weight: 600;
+    }
+    .editorResumeBox{
+        @include screen_768{
+            width: 40vw;
+        }
+        @include screen_601{
+            width: 50vw;
+            min-width: 300px;
+        }
     }
 }

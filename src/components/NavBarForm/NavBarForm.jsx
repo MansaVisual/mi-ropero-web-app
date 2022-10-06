@@ -16,7 +16,7 @@ const NavBarForm = ({typeNav,onNextForm})=>{
                 <img src={typeNav==="info" ? info : info2} alt="INFO"
                     className={`${typeNav==="info" ? "navEnabled" : "navDisabled"}`}
                 />
-                <div className={`${typeNav==="info" ? "barraInferior" : "barraInferiorDisabled"}`}></div>
+                <div className={`${typeNav==="info" ? "barraInferior" : "barraInferiorDisabled"}`} style={{borderRadius:"6px 0px 0px 6px"}}></div>
             </div>
             <div style={{textAlign:"center",margin:"0px 6px"}}>
             <img src={typeNav==="envio" ? down : down2} alt="DOWN"
@@ -34,7 +34,7 @@ const NavBarForm = ({typeNav,onNextForm})=>{
             <img src={typeNav==="check" ? check : check2} alt="INFO"
                     className={`${typeNav==="check" ? "navEnabled" : "navDisabled"}`} 
                 />
-                <div className={`${typeNav==="check" ? "barraInferior" : "barraInferiorDisabled"}`}></div>
+                <div className={`${typeNav==="check" ? "barraInferior" : "barraInferiorDisabled"}`} style={{borderRadius:"0px 6px 6px 0px"}}></div>
             </div>
         </div>
     )

@@ -217,7 +217,8 @@
         border-radius: 20px;
         padding: 10px 32px;
         color: #FFFFFF !important;
-        margin-top: 48px;
+        margin-top: 24px;
+        margin-bottom: 24px;
         &:hover{
             background-color: #443988;
         }
@@ -229,7 +230,8 @@
         border-radius: 20px;
         padding: 10px 32px;
         color: #FFFFFF !important;
-        margin-top: 48px;
+        margin-top: 24px;
+        margin-bottom: 24px;
         &:hover{
             background-color: #998edb;
         }
@@ -297,6 +299,10 @@
         span span{
             margin-left: 0px;
             margin-right: 0px;
+        }
+        p{
+            display: flex;
+            align-items: center;
         }
     }
 }

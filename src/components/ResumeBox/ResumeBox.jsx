@@ -62,9 +62,9 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
                 <p className="subtitulo">Envío</p>
                 <p className="subtitulo p14">GRATIS</p>
             </div>
-            {!stateForm && 
+            {!stateForm ?
                 <div className="boxInput">
-                    <p className="subtitulo subtituloDesc" style={{color:errorCodigo ? "#FF3F20" : codigoValido ? "#13b574" : null}}>Código de descuento / Giftcard</p>
+                    <p className="subtitulo subtituloDesc">Código de descuento / Giftcard</p>
                     <div className="inputButton" style={{alignItems:errorCodigo ? "flex-start" : codigoValido ? "flex-start" : null,justifyContent:"space-between"}}>
                         <TextField placeholder="INGRESAR CÓDIGO"
                             size="small"
@@ -78,7 +78,6 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
                             <Button
                                 className="screen1000-codigo"
                                 onClick={()=>handleClick()}
-                                sx={{marginTop:errorCodigo ? "-20px" : codigoValido ? "-20px" : null}}
                             >
                                 VALIDAR
                             </Button>
@@ -92,6 +91,8 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
                         }
                     </div>
                 </div>
+            :
+                <div className="editorResumeBox"></div>
             }
             <div className="box">
                 <p className="subtitulo subtituloTotal">TOTAL:</p>
@@ -100,7 +101,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
                         <Loader spin={"spinnerS"}/>
                     </div>
                 :
-                    <p className="subtitulo subtituloTotal"
+                    <p className="subtitulo subtituloTotal total"
                     style={{
                         textDecoration:codigoValido && "line-through",
                         color:codigoValido && "#969696"
