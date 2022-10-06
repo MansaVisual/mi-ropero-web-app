@@ -7,7 +7,11 @@ import Loader from "../Loader/Loader";
 import PopUpInfoDir from "./PopUpInfoDir";
 
 
-const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,direccion,setDireccion,provincias,setProvincias})=>{
+const InfoContact=({
+    setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,
+    direccion,setDireccion,provincias,setProvincias,usaDireccionCargada,setUsaDireccionCargada
+})=>{
+
     const {FormAPI}=useContext(UseFormContext)
     
     const [direccionesCargadas,setDireccionesCargadas]=useState([])
@@ -63,7 +67,7 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
     const [resDirecciones,setResDirecciones]=useState([])
 
     const [loadDireccion,setLoadDireccion]=useState(false)
-    // const [direccionCargada,setDireccionCargada]=useState("")
+
 
     const handleChange = (event) => {
         setProvincia(event.target.value)
@@ -85,12 +89,17 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
         if(direccionCargada===null){
             res = handleClick(setCampoObligatorio,clase,clase2)
             resFinal = true
+        }else if(document.getElementById("nombreApellido").value === ""){
+            throwError("nombreApellido","labelNombreApellido")
+            setLoader(false)
+            scrollTop()
+            setCampoObligatorio(true)
+            return
         }
         if(res){
             setLoader(false)
             return
         }else{
-                
             const formPhone = new FormData()
             formPhone.append('telefono', document.getElementById("telefono").value)
             await FormAPI(
@@ -271,12 +280,17 @@ const InfoContact=({setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDire
             </div>
 
             <div className="selectorDireccion">
-                <div className="selectorContainer" onClick={()=>{setLoadDireccion(!loadDireccion);setDireccionCargada(null);setErrorDirCargada(false)}}>
+                <div className="selectorContainer" onClick={()=>{
+                    setLoadDireccion(!loadDireccion);
+                    setUsaDireccionCargada(!usaDireccionCargada)
+                    setDireccionCargada(null);
+                    setErrorDirCargada(false)
+                }}>
                     <FormControlLabel
                         name="sucursal"
                         control={<Checkbox/>}
                         id="nuevaDir"
-                        checked={loadDireccion?true:false}
+                        checked={usaDireccionCargada?true:false}
                         value="setDireccion"
                     />
                     <label className="labelForm" htmlFor="nuevaDir" style={{cursor:"pointer"}}>

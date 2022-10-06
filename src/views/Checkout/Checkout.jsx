@@ -27,6 +27,7 @@ const Checkout = ()=>{
     const [provincias,setProvincias]=useState([])
     const [direccion,setDireccion]=useState({})
     const [saveDirecc,setSaveDirecc]=useState(true)
+    const [usaDireccionCargada,setUsaDireccionCargada]=useState(false)
 
     // METODO MOTO = 1
     // METODO OCA=>DOM = 345837
@@ -89,6 +90,8 @@ const Checkout = ()=>{
                         setDireccion={setDireccion}
                         provincias={provincias}
                         setProvincias={setProvincias}
+                        usaDireccionCargada={usaDireccionCargada}
+                        setUsaDireccionCargada={setUsaDireccionCargada}
                         /> : null}
 
                     {typeNav === "envio" ? <MetodoEnvio 
