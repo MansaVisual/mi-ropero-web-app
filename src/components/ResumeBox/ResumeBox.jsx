@@ -16,7 +16,9 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
 
     const [loader,setLoader]=useState(false)
 
+    const [codigo,setCodigo]=useState("")
     const [costoFinal,setCostoFinal]=useState(false)
+
     
     useEffect(() => {
         let costoEnv=metodoEnvio==="345837"?costoSucDom:metodoEnvio==="345838"?costoSucSuc:metodoEnvio==="1"?500:0
@@ -45,14 +47,15 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 setErrorCodigo(true)
                 setCodigoValido(false)
                 setLoader(false)
+                setCodigo("")
             }else if(res.status==="success"){
                 setErrorCodigo(false)
                 setCodigoValido(true)
                 setLoader(false)
+                setCodigo(res)
             }
         })
     }
-
     return(
         <div className="resumeBox">
             <div className="box firstBox">
@@ -128,7 +131,9 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             {codigoValido && 
                 <div className="box">
                     <p></p>
-                    <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>$ 120.000</p>
+                    <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
+                        $ {codigo.result.tipo_descuento==="1"?costoFinal-codigo.result.monto:codigo.tipo_descuento==="2"&&costoFinal*codigo.result.monto/100}
+                    </p>
                 </div>
             }
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
