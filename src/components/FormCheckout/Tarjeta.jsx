@@ -5,37 +5,6 @@ import oca from "../../assets/img/OCA.png"
 import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 
-const products = [
-    {
-      id: 1,
-      title: "Buzo campera Fila aeroflat microfibra sie nuevo modelo 2022. Perfecto estado.",
-      description:"El ropero de Romialaniz",
-      price: 280000,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 2,
-      description:"El ropero de Romialaniz",
-      title: "Pantalon nuevo 2022",
-      price: 1200,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-      {
-        id: 2,
-        description:"El ropero de Romialaniz",
-        title: "Pantalon nuevo 2022",
-        price: 1200,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-      {
-        description:"El ropero de Romialaniz",
-        id: 3,
-        title: "Remera negra 2022",
-        price: 3000,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      },
-]
-
 const Tarjeta = ({setTypeNav})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const {carrito}=useContext(UseCartContext)
