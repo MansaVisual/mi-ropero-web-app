@@ -82,7 +82,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             setTypeNav("tarjeta")
         }
     }
-
+    console.log(direccion)
     return(
         <div className="metodoEnvio">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Método de envío</h2>
@@ -91,9 +91,15 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                 <p className="domicilioTitle">Domicilio de entrega</p>
                 <div className="card firstCard">
                     <div>
-                        <h3>Cuenca 3440. CABA Comuna 17 (C1417).</h3>
-                        <h3>Entre Francisco Beiró y José P. Varela.</h3>
-                        <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
+                        <h3>
+                            {direccion.calle} {direccion.numero}. {direccion.provincia === "Capital Federal" ? "CABA" : direccion.provincia} {direccion.localidad} ({direccion.codigo_postal}). 
+                        </h3>
+                        <h3>
+                            {direccion.entre_calle_1!=="" && "Entre"} {direccion.entre_calle_1!==""&& direccion.entre_calle_1} {direccion.entre_calle_1!=="" && "y"} {direccion.entre_calle_2!==""&& direccion.entre_calle_2}
+                        </h3>
+                        <h3>
+                            {direccion.informacion_adicional}
+                        </h3>
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
                     <Button className="boton" onClick={()=>setTypeNav("info")}>
@@ -130,9 +136,9 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                                 Este método de envío no está disponible para el domicilio de entrega.
                             </p>
                         }
-                        <p className="subtitle">$ 500</p>
+                        <p className="subtitle"></p>
                     </div>
-                    <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio"></p>
+                    <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio">$ 500</p>
                 </div>
             </div>
             <div className="domicilioEntrega" onClick={costoSucDom===false ? null : ()=>onClickCheck("345837")}>

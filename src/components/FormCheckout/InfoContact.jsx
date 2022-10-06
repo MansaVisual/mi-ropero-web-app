@@ -480,7 +480,7 @@ const InfoContact=({
                                     value={dir.iddireccion}
                                 />
                                 <p className="labelForm" htmlFor="nuevaDir">
-                                    {dir.calle} {dir.numero}. {dir.provincia === "Capital Federal" && "CABA"} {dir.localidad} ({dir.codigo_postal}).
+                                    {dir.calle} {dir.numero}. {dir.provincia === "Capital Federal" ? "CABA" : dir.provincia}, {dir.localidad} ({dir.codigo_postal}).
                                     {dir.entre_calle_1!=="" && "Entre"} {dir.entre_calle_1!==""&& dir.entre_calle_1} {dir.entre_calle_1!=="" && "y"} {dir.entre_calle_2!==""&& dir.entre_calle_2}
                                     {dir.informacion_adicional}
                                 </p>
