@@ -114,6 +114,9 @@ const Checkout = ()=>{
                         form={form}
                         direccion={direccion}
                         setMetodoEnvio={setMetodoEnvio}
+                        metodoEnvio={metodoEnvio}
+                        sucursalEntrega={sucursalEntrega}
+                        sucursales={sucursales}
                     /> : null}
 
                     {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}

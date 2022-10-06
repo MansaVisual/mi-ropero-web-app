@@ -6,7 +6,7 @@ import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 
-const Tarjeta = ({setTypeNav,setMetodoEnvio,direccion})=>{
+const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const {carrito}=useContext(UseCartContext)
     const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
@@ -36,7 +36,7 @@ const Tarjeta = ({setTypeNav,setMetodoEnvio,direccion})=>{
                 <p className="title">Domicilio de entrega</p>
                 <div className="card">
                     <div>
-                    <h3>
+                        <h3>
                             {direccion.calle} {direccion.numero}. {direccion.provincia === "Capital Federal" ? "CABA" : direccion.provincia} {direccion.localidad} ({direccion.codigo_postal}). 
                         </h3>
                         <h3>
@@ -59,10 +59,38 @@ const Tarjeta = ({setTypeNav,setMetodoEnvio,direccion})=>{
                     <div>
                         <p>
                             <img src={oca} alt="OCA"/>
-                            Entrega a domicilio
+                            {metodoEnvio==="345837"?"Envío a domicilio":metodoEnvio==="345838"?"Envío a sucursal":metodoEnvio==="1"?"Envío en moto":""}
                         </p>
-                        <h3>Cuenca 3440. CABA Comuna 17 (C1417). Entre Francisco Beiró y José P. Varela.</h3>
-                        <h3>Puerta Violeta. Tocar fuerte el timbre.</h3>
+                        {metodoEnvio==="345837" &&
+                            <>
+                                <h3>
+                                    {direccion.calle} {direccion.numero}. {direccion.provincia === "Capital Federal" ? "CABA" : direccion.provincia} {direccion.localidad} ({direccion.codigo_postal}). 
+                                </h3>
+                                <h3>
+                                    {direccion.entre_calle_1!=="" && "Entre"} {direccion.entre_calle_1!==""&& direccion.entre_calle_1} {direccion.entre_calle_1!=="" && "y"} {direccion.entre_calle_2!==""&& direccion.entre_calle_2}
+                                </h3>
+                                <h3>
+                                    {direccion.informacion_adicional}
+                                </h3>
+                            </>
+                        }
+                        {metodoEnvio==="345838" &&
+                            <>
+                                {sucursales.map((suc,i)=>{
+                                    return(
+                                        <>
+                                            {suc.IdCentroImposicion===sucursalEntrega &&
+                                                <>
+                                                    <h3>{suc.Calle} {suc.Numero}. {suc.Provincia} {suc.Localidad} ({suc.CodigoPostal}).</h3>
+                                                    <h3>{suc.Telefono} - HORARIOS: {suc.HorarioAtencion}</h3>
+                                                    <h3>{suc.TipoAgencia}</h3>
+                                                </>
+                                            }
+                                        </>
+                                    )
+                                })}
+                            </>
+                        }
                     </div>
                     <BorderColorOutlinedIcon className="botonMobile"/>
                     <Button className="boton" onClick={()=>setTypeNav("envio")}>
