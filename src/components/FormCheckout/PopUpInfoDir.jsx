@@ -6,7 +6,13 @@ import { Button, Radio } from "@mui/material";
 const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm,form})=>{
 
     const handleAccept=async(dir)=>{
-        setDireccion({...dir,informacion_adicional:form.comentario,entre_calle_1:form.entrecalle1,entre_calle_2:form.entre_calle_2})
+        setDireccion({...dir,
+            informacion_adicional:form.comentario,
+            entre_calle_1:form.entrecalle1,
+            entre_calle_2:form.entrecalle2,
+            piso:form.piso,
+            departamento:form.depto
+        })
     }
     return(
         <>
@@ -16,7 +22,7 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
                     <div className="popUp">
                         <CancelIcon color="tertiary" className="cross" onClick={()=>{setViewDireccion(false);setDireccion({})}}/>
                         <img src={home} alt="SHOP" color="primary" className="botonLogo"/>
-                        <p>Seleccione su domicilio.</p>
+                        <p>Confirme su domicilio.</p>
                         <div className="cardContainer">
                             {resDirecciones.map(dir=>{
                                 return(
