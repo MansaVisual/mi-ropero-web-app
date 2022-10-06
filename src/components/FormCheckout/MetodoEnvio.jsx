@@ -205,7 +205,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             </div>
             
             <div style={{display:"flex",width:"100%",justifyContent:"center"}}>
-                <Button className="botonContinuar" onClick={()=>handleClickContinuar()}>
+                <Button className={metodoEnvio===""?"botonContinuarDisabled":"botonContinuar"} disabled={metodoEnvio===""?true:false} onClick={()=>handleClickContinuar()}>
                     CONTINUAR
                 </Button>
             </div>

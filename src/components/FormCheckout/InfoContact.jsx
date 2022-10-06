@@ -491,8 +491,10 @@ const InfoContact=({
             }
             
             {loader ?
-                <Loader spin={"spinnerG"}/>
-                :
+                <div style={{marginTop:"16px"}}>
+                    <Loader spin={"spinnerG"}/>
+                </div>
+            :
                 <div className="botonEnvio">
                     <Button
                         onClick={()=>checkForm()}
