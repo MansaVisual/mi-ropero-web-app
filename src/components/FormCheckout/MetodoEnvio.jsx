@@ -82,7 +82,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             setTypeNav("tarjeta")
         }
     }
-    console.log(direccion)
+
     return(
         <div className="metodoEnvio">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Método de envío</h2>

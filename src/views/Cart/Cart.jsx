@@ -92,7 +92,7 @@ const Cart = () => {
                         <>
                             {carrito.map((prod,i)=>{
                                 return(
-                                    <div className="contenedorCarritoResumen">
+                                    <div className="contenedorCarritoResumen" key={i}>
                                         <div className="fotoTitle">
                                             <div className="fotoProd" style={{backgroundImage:`url(${prod.producto_imagen})`}}/>
                                             <div className="titleDescription">
@@ -160,7 +160,7 @@ const Cart = () => {
                         height:"100%",
                     }}
                     >
-                        <ResumeBox stateForm={true} botonPago={true}/>
+                        <ResumeBox stateForm={true} botonPago={true} metodoEnvio={""}/>
                     </Grid>
                 }
 

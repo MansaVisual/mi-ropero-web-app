@@ -1,20 +1,27 @@
 import { Button, TextField } from "@mui/material"
-import React,{useState,useContext} from "react"
+import React,{useState,useContext,useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 
-const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
+const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const navigate = useNavigate();
 
-    const {FormAPI}=useContext(UseFormContext)
+    const {FormAPI,costoSucDom,costoSucSuc}=useContext(UseFormContext)
     const {costoCarrito,cantidadCarrito}=useContext(UseCartContext)
 
     const [errorCodigo,setErrorCodigo]=useState(false)
     const [codigoValido,setCodigoValido]=useState(false)
 
     const [loader,setLoader]=useState(false)
+
+    const [costoFinal,setCostoFinal]=useState(false)
+    
+    useEffect(() => {
+        let costoEnv=metodoEnvio==="345837"?costoSucDom:metodoEnvio==="345838"?costoSucSuc:metodoEnvio==="1"?500:0
+        setCostoFinal(costoCarrito+costoEnv)
+    }, [metodoEnvio]);// eslint-disable-line react-hooks/exhaustive-deps
 
     const handleChange= ()=>{
         const cod = document.getElementById("codigo").value
@@ -55,13 +62,17 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
                         <Loader spin={"spinnerS"}/>
                     </div>
                 :
-                    <p className="subtitulo p14">$ {costoCarrito}</p>
+                    <p className="subtitulo p14">
+                        {costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${costoCarrito}`}
+                    </p>
                 }
             </div>
-            <div className="box">
-                <p className="subtitulo">Envío</p>
-                <p className="subtitulo p14">GRATIS</p>
-            </div>
+            {metodoEnvio!=="" && 
+                <div className="box">
+                    <p className="subtitulo">Envío</p>
+                    <p className="subtitulo p14">$ {metodoEnvio==="345837"?costoSucDom: metodoEnvio==="345838"?costoSucSuc:"500"}</p>
+                </div>
+            }
             {!stateForm ?
                 <div className="boxInput">
                     <p className="subtitulo subtituloDesc">Código de descuento / Giftcard</p>
@@ -106,7 +117,11 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc})=>{
                         textDecoration:codigoValido && "line-through",
                         color:codigoValido && "#969696"
                     }}>
-                        $ {costoCarrito}
+                        {metodoEnvio===""?
+                            costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${costoCarrito}`
+                        :
+                            metodoEnvio!==""&&`$ ${costoFinal}`
+                        }
                     </p>
                 }
             </div>

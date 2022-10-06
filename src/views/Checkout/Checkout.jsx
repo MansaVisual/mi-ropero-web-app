@@ -57,6 +57,7 @@ const Checkout = ()=>{
         }
     }
 
+    
     return(
         <>
             <Box container className="Breadcrumbs">
@@ -150,6 +151,7 @@ const Checkout = ()=>{
                             codDesc={codDesc}
                             setCodDesc={setCodDesc}
                             form={form}
+                            metodoEnvio={metodoEnvio}
                         />
                     :   
                         <div className="fotoBannerCheck screen1000-bannerCheck"/>
