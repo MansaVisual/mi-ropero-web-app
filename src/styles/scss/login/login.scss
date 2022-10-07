@@ -34,6 +34,9 @@
     margin-right: 72px;
     margin-top: 32px;
     margin-bottom: 80px;
+    @include screen_1366{
+       min-height: 45vh;
+      }
     @include screen_601{
         margin: 0;
     }

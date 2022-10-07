@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { Button, InputAdornment, TextField } from "@mui/material"
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleLogo from '../../assets/img/google.png'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import RestorePopUp from "./RestorePopUp";
 import ValidationPopUp from "./ValidationPopUp";
@@ -17,7 +18,10 @@ const BoxLogin = ()=>{
         <div className="boxLoginContianer">
             <p className="title">Continuar con Google o Facebook</p>
             <div className="buttonWrapper">
-                <Button className="botonGoogle" endIcon={<GoogleIcon/>}>INGRESAR CON GOOGLE</Button>
+                <div>  
+                    <Button className="botonGoogle" /* endIcon={<GoogleIcon/> }*/>INGRESAR CON GOOGLE</Button>
+                    <img src={GoogleLogo} className="googleICon" alt="googleICon" /> 
+                </div>   
                 <Button className="botonFB" endIcon={<FacebookIcon/>}>INGRESAR CON FACEBOOK</Button>
             </div>
 
