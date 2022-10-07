@@ -26,6 +26,7 @@ const Cart = () => {
     const pathnames = location.pathname.split("/").filter((x) => x)
     const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+    const isDesktopBig = useMediaQuery(theme.breakpoints.up("xl"));
 
     
     const handleEliminar = (prod)=>{
@@ -82,11 +83,14 @@ const Cart = () => {
             <Grid
                 container
                 className="gridContainer"
+                style={{justifyContent: "center"}}
             >
                 <Grid item xs={12} sm={12} lg={carrito.length!== 0 ? 9 : 12} 
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px"
-                    }}>
+                    }}
+                    className="problemaMaxWidthCarrito"
+                >
                     <h2 className="TituloCartCheck">Carrito de  compras</h2>
                     {carrito.length !== 0 ?
                         <>
@@ -153,12 +157,15 @@ const Cart = () => {
                 {carrito.length !== 0 && 
                     <Grid item md={6} lg={3}
                     sx={{
-                        margin: "0px auto",
+                        margin: "0px",
                         boxShadow:"-10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);",
                         borderRadius:"10px 10px 20px 20px;",
                         backgroundColor:"#FDFEFF",
                         height:"100%",
+                        paddingRight:isDesktopBig?"16px":"0px",
+                        paddingLeft:isDesktopBig?"16px":"0px"
                     }}
+                    className="maxWidthResumeBox"
                     >
                         <ResumeBox stateForm={true} botonPago={true} metodoEnvio={""}/>
                     </Grid>

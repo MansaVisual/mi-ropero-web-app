@@ -73,7 +73,7 @@ const Checkout = ()=>{
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px",
                     }}
-                    className="problemaMaxWidth"
+                    className="problemaMaxWidthCheckout"
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
@@ -119,7 +119,13 @@ const Checkout = ()=>{
                         sucursales={sucursales}
                     /> : null}
 
-                    {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "check" ? <CheckForm 
+                        setTypeNav={setTypeNav}
+                        saveDirecc={saveDirecc}
+                        direccion={direccion}
+                        form={form}
+                        metodoEnvio={metodoEnvio}
+                    /> : null}
 
 
 
