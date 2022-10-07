@@ -18,6 +18,7 @@ import { FormContext } from "./context/FormContext";
 import { ProdsContext } from "./context/ProdsContext";
 import { CartContext } from "./context/CartContext";
 import Login from "./views/Login/Login";
+import Register from "./views/Register/Register";
 
 
 function App() {
@@ -52,6 +53,10 @@ function App() {
                 <Route
                   path="/login"
                   element={<Login />}
+                />
+                <Route
+                  path="/registro"
+                  element={<Register />}
                 />
               </Routes>
               <Footer />
