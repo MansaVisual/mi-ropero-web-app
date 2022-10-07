@@ -33,10 +33,22 @@
         position: relative;
         width: 432px;
         padding: 24px;
+        @include screen_601{
+            padding: 32px 16px 8px 16px;
+        }
         .popUpContainer{
             display: flex;
             flex-direction: column;
             align-items: center;
+            .buttonContainer{
+                display:flex;
+                flex-wrap: wrap;
+                justify-content:center;
+                align-items:center;
+                @include screen_601{
+                    flex-direction: column-reverse;
+                }
+            }
             .logoModal{
                 height: 32px;
                 width: 32px;
@@ -48,12 +60,16 @@
                 margin-top: 24px;
                 color:#BABCBE;
                 border-color: 1px solid #D9D9D9;
+                @include screen_601{
+                    margin-top: 8px;
+                }
             }
             .popUpTitle{
               font-size: 16px;  
               font-weight: 700;
               color: #423B3C;
               margin: 0;
+              text-align: center;
             }
             .popUpDescription{
                 text-align: center;
@@ -80,8 +96,10 @@
                 height: 32px;
                 width: 208px;
                 @include screen_506{
-                    margin: 8px 24px;
-                    margin-top: 0px;
+                    margin-right: 0;
+                    margin-top: 8px;
+                    border: 0;
+                    text-decoration: underline;
                 }
             }
             .recordar{
@@ -95,8 +113,23 @@
                 height: 32px;
                 width: 208px;
                 @include screen_506{
-                    margin: 8px 24px;
-                    margin-bottom: 0px;
+                    margin-left: 0;
+                    margin-top: 16px;
+                }
+            }
+            .continuar{
+                background: #443988;
+                border-radius: 20px;
+                font-size: 13px;
+                padding: 0px 69px;
+                color: #FFFFFF;
+                margin-left: 8px;
+                margin-top: 24px;
+                height: 32px;
+                width: 208px;
+                @include screen_506{
+                    margin-right: 0;
+                    margin-top: 16px;
                 }
             }
             .cruz{
