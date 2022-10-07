@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    @include screen_601{
+    @include screen_705{
         margin-top: 0px;
     }
     .registerTitle{
@@ -14,7 +14,7 @@
         font-size: 23px;
         line-height: 31.32px;
         text-align: center;
-        @include screen_601{
+        @include screen_705{
             text-align: left;
             width: 328px;
             font-size: 16px;
@@ -25,13 +25,13 @@
     }
     .inputContainer{
         display: flex;
-        @include screen_601{
+        @include screen_705{
             flex-direction: column;
           
         }
         .inputBox{
             margin-right: 6px;
-            @include screen_601{
+            @include screen_705{
                 margin-right: 0px;
             }
             .input{
@@ -56,21 +56,21 @@
                 font-size: 14px;
                 line-height: 19px;
                 color: #969696; 
-                @include screen_601{
+                @include screen_705{
                     height:auto;
                 }              
             }
             .labelInput{
                 font-size: 13px;
                 font-weight: 600;
-                @include screen_601{
+                @include screen_705{
                     margin-top: 16px;
                     margin-bottom: 8px;
                 }
             }
         }
         .inputBox2{
-            @include screen_601{
+            @include screen_705{
                 margin-left: 0px;
             }
             .input{
@@ -99,7 +99,7 @@
             .labelInput{
                 font-size: 13px;
                 font-weight: 600;
-                @include screen_601{
+                @include screen_705{
                     margin-top: 16px;
                     margin-bottom: 8px;
                 }
@@ -109,7 +109,7 @@
     .buttonContainer{
         display: flex;
         margin-top: 12px;
-        @include screen_601{
+        @include screen_705{
             flex-direction: column-reverse;
         }
         .left-button{
@@ -123,7 +123,7 @@
             margin-top: 24px;
             height: 32px;
             width: 208px;
-            @include screen_601{
+            @include screen_705{
                 margin-top: 0px;
                 margin-right: 0px;
                 margin-top: 8px;
@@ -141,7 +141,7 @@
             margin-top: 24px;
             height: 32px;
             width: 208px;
-            @include screen_601{
+            @include screen_705{
                 margin-bottom: 0px;
                 margin-left: 0px;
             }

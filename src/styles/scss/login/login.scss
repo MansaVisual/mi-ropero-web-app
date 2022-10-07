@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    @include screen_601{
+    @include screen_705{
         display: none;
     }
     .banner{
@@ -37,11 +37,14 @@
     @include screen_1366{
        min-height: 45vh;
       }
+    @include screen_705{
+        margin: 32px 0px 0px 0px;
+    }
     @include screen_601{
         margin: 0;
     }
     .loginBreadcrumbs{
-        @include screen_601{
+        @include screen_705{
             margin-left: 16px
         }
     }

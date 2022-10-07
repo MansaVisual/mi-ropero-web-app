@@ -2,11 +2,13 @@
     margin-left: 72px;
     margin-right: 72px;
     margin-top: 32px;
-    /* height: 100vh; */
     margin-bottom: 80px;
+    @include screen_705{
+        margin: 32px 0px 0px 0px;
+        padding: 0 16px;
+    }
     @include screen_601{
         margin: 0;
-        padding: 0 16px;
     }
 }
 
