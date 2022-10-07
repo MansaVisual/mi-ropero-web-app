@@ -1,6 +1,6 @@
 import { Button, Grid, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system"
-import React,{useState,useEffect} from "react"
+import React,{useState,useEffect,useContext} from "react"
 import { useLocation,useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import "../../styles/scss/styles.scss"
@@ -12,8 +12,10 @@ import InfoContact from "../../components/FormCheckout/InfoContact";
 import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
 import Tarjeta from "../../components/FormCheckout/Tarjeta";
 import CheckForm from "../../components/FormCheckout/Check";
+import { UseFormContext } from "../../context/FormContext";
 
 const Checkout = ()=>{
+    const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -133,7 +135,7 @@ const Checkout = ()=>{
                     {typeNav !== "tarjeta" && typeNav !== "check" &&
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>clickVolver("carrito")
-                        : typeNav==="envio" ? ()=>clickVolver("info")
+                        : typeNav==="envio" ? ()=>{clickVolver("info");setDireccion({})}
                         : typeNav==="tarjeta" ? ()=>clickVolver("envio")
                         : typeNav==="check" ? ()=>clickVolver("tarjeta") : null
                     }
