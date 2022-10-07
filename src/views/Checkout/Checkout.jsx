@@ -34,12 +34,14 @@ const Checkout = ()=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const [codDesc,setCodDesc]=useState("")
 
+    const [estadoCompra,setEstadoCompra]=useState(false)
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         })
+        setEstadoCompra(false)
     }, [typeNav]);
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -124,6 +126,7 @@ const Checkout = ()=>{
                         direccion={direccion}
                         form={form}
                         metodoEnvio={metodoEnvio}
+                        estadoCompra={estadoCompra}
                     /> : null}
 
 
