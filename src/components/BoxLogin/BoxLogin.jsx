@@ -16,8 +16,8 @@ const BoxLogin = ()=>{
     <>
         <div className="boxLoginContianer">
             <p className="title">Continuar con Google o Facebook</p>
-            <div>
-                <Button className="boton" endIcon={<GoogleIcon/>}>INGRESAR CON GOOGLE</Button>
+            <div className="buttonWrapper">
+                <Button className="botonGoogle" endIcon={<GoogleIcon/>}>INGRESAR CON GOOGLE</Button>
                 <Button className="botonFB" endIcon={<FacebookIcon/>}>INGRESAR CON FACEBOOK</Button>
             </div>
 
@@ -58,9 +58,10 @@ const BoxLogin = ()=>{
                     <p onClick={() => setRestorePassword(true)} className="olvidoContraseña">Olvidé mi contraseña</p>
                 </div>
             </div>
-
-            <Button className="botonIngresar">INGRESAR</Button>
-            <Button className="botonRegistrate">REGISTRATE</Button>
+            <div className="buttonContainer">
+                <Button className="botonIngresar">INGRESAR</Button>
+                <Button className="botonRegistrate">REGISTRATE</Button>          
+            </div>              
         </div>
         {restorePassword &&
                 <RestorePopUp setRestorePassword={setRestorePassword}/>

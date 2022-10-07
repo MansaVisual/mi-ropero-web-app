@@ -1,10 +1,13 @@
-.bannerLogin{
+.bannerLoginTop{
     width: 100%;
     margin-top: 18px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    @include screen_601{
+        display: none;
+    }
     .banner{
         width: 100%;
         z-index: 98;
@@ -30,8 +33,15 @@
     margin-left: 72px;
     margin-right: 72px;
     margin-top: 32px;
-    height: 100vh;
-    // background-color: aquamarine;
+    margin-bottom: 80px;
+    @include screen_601{
+        margin: 0;
+    }
+    .loginBreadcrumbs{
+        @include screen_601{
+            margin-left: 16px
+        }
+    }
 }
 
 @import "./boxLogin.scss";
