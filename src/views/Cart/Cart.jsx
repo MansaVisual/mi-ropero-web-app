@@ -74,7 +74,7 @@ const Cart = () => {
             }
         })
     }
-    console.log(carrito)
+
     return(
         <>
             <Box container className="Breadcrumbs">
