@@ -32,7 +32,7 @@ const MisOfertas = () =>{
                     VOLVER A MI PERFIl
                 </p>
             </div>
-            <PopUpNotis></PopUpNotis>
+            {/* <PopUpNotis></PopUpNotis> */}
         </div>
     )
 }

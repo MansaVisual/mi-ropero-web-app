@@ -1,17 +1,24 @@
+import React, { useState } from "react"
 import { Grid } from "@mui/material"
-import React from "react"
+import MiPerfil from "../../components/PerfilActions/MiPerfil";
 import MisOfertas from "../../components/PerfilActions/MisOfertas";
 
 const Perfil = ()=>{
 
+    const [typeNav, setTypeNav] = useState("miPerfil")
+
+
 
     return(
         <Grid
-            sx={{
-                padding:"0px 72px"
-            }}
+            className="gridContainer"
         >
-            <MisOfertas/>
+            {typeNav === "miPerfil" &&
+                <MiPerfil setTypeNav={setTypeNav}/>
+            }
+            {typeNav === "OFERTAS REALIZADAS" &&
+                <MisOfertas/> 
+            }
         </Grid>
     )
 }
