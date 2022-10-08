@@ -1,6 +1,5 @@
 import React, {useState} from "react"
 import { Button, InputAdornment, TextField } from "@mui/material"
-import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleLogo from '../../assets/img/google.png'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
