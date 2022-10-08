@@ -21,6 +21,7 @@ import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
 import { LoginContext } from "./context/LoginContext";
 import LoginValidation from "./views/LoginValidation/LoginValidation";
+import Perfil from "./views/Perfil/Perfil";
 
 
 function App() {
@@ -44,27 +45,31 @@ function App() {
                   <Route
                     path="/roperos/:keyword/:closetId/:itemName"
                     element={<ProductPage />}
-                    />
+                  />
                   <Route
                     path="/carrito"
                     element={<Cart />}
-                    />  
+                  />  
                   <Route
                     path="/checkout"
                     element={<Checkout />}
-                    />
+                  />
                   <Route
                     path="/login"
                     element={<Login />}
-                    />
+                  />
                   <Route
                     path="/registro"
                     element={<Register />}
-                    />
+                  />
                   <Route
                     path="/validacionLogin"
                     element={<LoginValidation />}
-                    />  
+                  />
+                  <Route
+                    path="/perfil"
+                    element={<Perfil />}
+                  />  
                 </Routes>
                 <Footer />
               </ThemeProvider>
