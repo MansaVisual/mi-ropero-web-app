@@ -20,6 +20,7 @@ import { CartContext } from "./context/CartContext";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
 import { LoginContext } from "./context/LoginContext";
+import LoginValidation from "./views/LoginValidation/LoginValidation";
 
 
 function App() {
@@ -60,6 +61,10 @@ function App() {
                     path="/registro"
                     element={<Register />}
                     />
+                  <Route
+                    path="/validacionLogin"
+                    element={<LoginValidation />}
+                    />  
                 </Routes>
                 <Footer />
               </ThemeProvider>
