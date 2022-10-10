@@ -18,7 +18,7 @@ const Checkout = ()=>{
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     
-    const [typeNav,setTypeNav]=useState("info")
+    const [typeNav,setTypeNav]=useState("envio")
     const [form,setForm]=useState([])
 
     const [sucursalEntrega,setSucursalEntrega]=useState("")
