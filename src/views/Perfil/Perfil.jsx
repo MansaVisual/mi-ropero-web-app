@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Grid } from "@mui/material"
 import MiPerfil from "../../components/PerfilActions/MiPerfil";
 import MisOfertas from "../../components/PerfilActions/MisOfertas";
+import MisDatos from "../../components/PerfilActions/MisDatos";
 
 const Perfil = ()=>{
 
@@ -18,6 +19,9 @@ const Perfil = ()=>{
             }
             {typeNav === "OFERTAS REALIZADAS" &&
                 <MisOfertas/> 
+            }
+            {typeNav === "MIS DATOS" &&
+                <MisDatos/> 
             }
         </Grid>
     )
