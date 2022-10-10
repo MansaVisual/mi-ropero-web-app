@@ -4,6 +4,7 @@ import MiPerfil from "../../components/PerfilActions/MiPerfil";
 import MisOfertas from "../../components/PerfilActions/MisOfertas";
 import MisDatos from "../../components/PerfilActions/MisDatos";
 import MisFavoritos from "../../components/PerfilActions/MisFavoritos";
+import MisDirecciones from "../../components/PerfilActions/MisDirecciones";
 
 const Perfil = ()=>{
 
@@ -26,6 +27,9 @@ const Perfil = ()=>{
             }
             {typeNav === "MIS FAVORITOS" &&
                 <MisFavoritos setTypeNav={setTypeNav}/> 
+            }
+            {typeNav === "MIS DIRECCIONES" &&
+                <MisDirecciones setTypeNav={setTypeNav}/> 
             }
         </Grid>
     )

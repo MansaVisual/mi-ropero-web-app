@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ProductCard from '../ProductCard/ProductCard';
