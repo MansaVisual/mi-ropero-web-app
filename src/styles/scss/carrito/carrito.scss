@@ -108,12 +108,10 @@
                 color: #423B3C;
                 overflow-y: hidden;
                 @include screen_1001{
-                    min-height: 60px;
                     max-height: 60px;
                     font-size: 14px;
                 }
                 @include screen_768{
-                    min-height: 85px;
                     max-height: 85px;
                 }
                 @include screen_601{
