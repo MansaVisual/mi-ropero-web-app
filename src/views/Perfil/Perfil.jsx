@@ -3,6 +3,7 @@ import { Grid } from "@mui/material"
 import MiPerfil from "../../components/PerfilActions/MiPerfil";
 import MisOfertas from "../../components/PerfilActions/MisOfertas";
 import MisDatos from "../../components/PerfilActions/MisDatos";
+import MisFavoritos from "../../components/PerfilActions/MisFavoritos";
 
 const Perfil = ()=>{
 
@@ -22,6 +23,9 @@ const Perfil = ()=>{
             }
             {typeNav === "MIS DATOS" &&
                 <MisDatos/> 
+            }
+            {typeNav === "MIS FAVORITOS" &&
+                <MisFavoritos setTypeNav={setTypeNav}/> 
             }
         </Grid>
     )
