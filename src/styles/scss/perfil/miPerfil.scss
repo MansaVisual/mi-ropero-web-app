@@ -1,0 +1,171 @@
+.gridContainer{
+    padding:"0px 72px";
+    @include screen_705{
+        padding:"0px 16px"
+    }
+}
+.miPerfilContainer{
+    margin-top: 40px;
+    @include screen_705{
+        margin-top: 24px;
+    }
+    .container{
+        .title{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 31px;
+            color: #443988;
+        }
+        .profileData{
+            display: flex;
+            .profilePicture{
+                height: 142px;
+                width: 142px;
+                margin-right: 24px;
+                @include screen_705{
+                    height: 72px;
+                    width: 72px;
+                    margin-right: 12px;
+                }
+            }
+            .profileText *{
+                margin: 0;
+            }
+            .profileText{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-weight: 600;
+                .hello{
+                    font-size: 24px;
+                    line-height: 32px;
+                    color: #423B3C;
+                    @include screen_705{
+                        font-size: 17px;
+                        line-height: 23px;
+                        margin-bottom: 6px;
+                    }
+                }
+                .name{
+                    font-size: 20px;
+                    line-height: 27px;
+                    color: #878787;  
+                    @include screen_705{
+                        font-size: 15px;
+                        line-height: 20px;
+                        margin-bottom: 2px;
+                    }
+                }
+                .email{
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #878787; 
+                    @include screen_705{
+                        font-size: 13px;
+                        line-height: 17px;
+                    }
+                }
+            }
+        }
+        .profileSections :not(:last-child) { 
+            margin-right: 6px;
+        }
+        .profileSections{
+            display: flex;
+            margin-top: 74px;
+            margin-bottom: 58px;
+            @include screen_705{
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 24px;
+                margin-bottom: 24px;
+            }
+            .section:first-child {
+                .imgBox{
+                    @include screen_389{
+                        width: 328px;
+                        height: 71px;
+                        border-radius: 6px;
+                        border: 1px solid #D9D9D9;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            } 
+            .section{
+                cursor: pointer;
+                @include screen_705{
+                    margin-top: 8px;
+                }
+                .imgBox{
+                    width: 142px;
+                    height: 71px;
+                    border-radius: 6px;
+                    border: 1px solid #D9D9D9;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    @include screen_705{
+                        flex-direction: column;
+                        height: 80px;
+                    }
+                }
+                .sectionTitleMobile{
+                    display: none;
+                    text-align: center;
+                    margin-top: 12px;
+                    font-weight: 700;
+                    font-size: 13px;
+                    line-height: 19px;
+                    color: #443988;
+                    @include screen_705{
+                        display: block;
+                        margin: 8px 0px 0px 0px;
+                    }
+                }
+                .sectionTitle{
+                    text-align: center;
+                    margin-top: 12px;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #443988;
+                    @include screen_705{
+                        display: none;
+                    }
+                }
+            }
+        }
+        .buttonsContainer{
+            margin-bottom: 80px;
+            @include screen_705{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 50px;
+            }
+            .bottomOptions :not(:last-child) { 
+             margin-bottom: 16px;
+            }
+            .bottomOptions{
+                display: inline-grid;
+                button{
+                    display: inline-block;
+                    text-align: left;
+                    border: 0;
+                    background-color: transparent;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #878787;
+                    cursor: pointer;
+                    @include screen_705{
+                        text-align: center;
+                    }
+                } 
+            } 
+        }
+    }
+}

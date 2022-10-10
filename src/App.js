@@ -18,48 +18,66 @@ import { FormContext } from "./context/FormContext";
 import { ProdsContext } from "./context/ProdsContext";
 import { CartContext } from "./context/CartContext";
 import Login from "./views/Login/Login";
+import Register from "./views/Register/Register";
+import { LoginContext } from "./context/LoginContext";
+import LoginValidation from "./views/LoginValidation/LoginValidation";
+import Perfil from "./views/Perfil/Perfil";
 
 
 function App() {
   return (
-    <ProdsContext>
-      <FormContext>
-        <CartContext>
-          <Router>
-            
-            <ThemeProvider theme={theme}>
-              <NavBar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route
-                  path="/productos/:keyword"
-                  element={<SearchProductsResults />}
-                />
-                <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
-                <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
-                <Route
-                  path="/roperos/:keyword/:closetId/:itemName"
-                  element={<ProductPage />}
-                />
-                <Route
-                  path="/carrito"
-                  element={<Cart />}
-                />  
-                <Route
-                  path="/checkout"
-                  element={<Checkout />}
-                />
-                <Route
-                  path="/login"
-                  element={<Login />}
-                />
-              </Routes>
-              <Footer />
-            </ThemeProvider>
-          </Router>
-        </CartContext>
-      </FormContext>
-    </ProdsContext>
+    <LoginContext>
+      <ProdsContext>
+        <FormContext>
+          <CartContext>
+            <Router>
+              
+              <ThemeProvider theme={theme}>
+                <NavBar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route
+                    path="/productos/:keyword"
+                    element={<SearchProductsResults />}
+                    />
+                  <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
+                  <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
+                  <Route
+                    path="/roperos/:keyword/:closetId/:itemName"
+                    element={<ProductPage />}
+                  />
+                  <Route
+                    path="/carrito"
+                    element={<Cart />}
+                  />  
+                  <Route
+                    path="/checkout"
+                    element={<Checkout />}
+                  />
+                  <Route
+                    path="/login"
+                    element={<Login />}
+                  />
+                  <Route
+                    path="/registro"
+                    element={<Register />}
+                  />
+                  <Route
+                    path="/validacionLogin"
+                    element={<LoginValidation />}
+                  />
+                  <Route
+                    path="/perfil"
+                    element={<Perfil />}
+                  />  
+                </Routes>
+                <Footer />
+              </ThemeProvider>
+            </Router>
+          </CartContext>
+        </FormContext>
+      </ProdsContext>
+    </LoginContext>
   );
 }
 

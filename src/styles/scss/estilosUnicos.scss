@@ -4,7 +4,7 @@
     @include screen_768{
         margin-left: 32px;
     }
-    @include screen_601{
+    @include screen_705{
         margin-left: 16px;
         margin-top: 16px;
     }
@@ -60,9 +60,14 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
-.problemaMaxWidth{
+.problemaMaxWidthCheckout{
   @include screen_1366{
     max-width: 760px !important;
+  }
+}
+.problemaMaxWidthCarrito{
+  @include screen_1366{
+    max-width: 895px !important;
   }
 }
 .maxWidthResumeBox{

@@ -9,7 +9,7 @@
     }
     .contenedorCarritoResumen{
         width: 100%;
-        min-height: 8.7vw;
+        min-height: 8.5vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -20,6 +20,10 @@
         box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
         border-radius: 6px;
         position: relative;
+        @include screen_1366{
+            max-height: 120px;
+            min-height: 120px;
+        }
         @include screen_1001{
             margin-top: 24px;
         }
@@ -40,6 +44,9 @@
             justify-content: flex-end;
             width: 15.5vw;
             margin-right: 2.9vw;
+            @include screen_1366{
+                width: 75px;
+            }
             @include screen_1001{
                 width: 212px;
             }
@@ -62,6 +69,12 @@
             background-repeat: no-repeat;
             background-position: center;
             margin: 1.7vw 2.3vw;
+            @include screen_1366{
+                width: 75px;
+                height: 75px;
+                min-width: none;
+                margin: 24px 32px;
+            }
             @include screen_1001{
                 min-width: 71px;
                 height: 71px;
@@ -75,6 +88,9 @@
             font-size: 1.15vw;
             padding-right: 32px;
             font-size: 1.1vw;
+            @include screen_1366{
+                font-size: 17px;
+            }
             @include screen_1001{
                 max-width: 374px;
                 margin: 10px 0px;
@@ -92,12 +108,10 @@
                 color: #423B3C;
                 overflow-y: hidden;
                 @include screen_1001{
-                    min-height: 60px;
                     max-height: 60px;
                     font-size: 14px;
                 }
                 @include screen_768{
-                    min-height: 85px;
                     max-height: 85px;
                 }
                 @include screen_601{
@@ -115,6 +129,9 @@
             text-align: center;
             white-space: nowrap;
             min-width: 5.2vw;
+            @include screen_1366{
+                font-size: 17px;
+            }
             @include screen_1001{
                 min-width: 52px;
                 font-size: 14px;
@@ -127,6 +144,9 @@
             text-align: center;
             white-space: nowrap;
             min-width: 5.2vw;
+            @include screen_1366{
+                font-size: 17px;
+            }
             @include screen_1001{
                 min-width: 52px;
                 font-size: 17px;

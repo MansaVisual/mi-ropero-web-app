@@ -15,8 +15,8 @@ const ValidationPopUp = ({setconfirmValidation}) => {
                     Deberia llegarte en menos de 2 minutos en tu email, 
                     sino luego de ese tiempo no lo recibiste hace <span className='spanLink'>click acá</span>.
                 </p>
-                <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center"}}>
-                    <Button className="recordar">CONTINUAR</Button>
+                <div className='buttonContainer'>
+                    <Button className="continuar">CONTINUAR</Button>
                 </div>
                 <img
                     onClick={() => setconfirmValidation(false)}

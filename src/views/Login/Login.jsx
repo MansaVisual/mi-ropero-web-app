@@ -12,22 +12,28 @@ const Login = ()=>{
     const pathnames = location.pathname.split("/").filter((x) => x)
 
     return(
-        <>
-            <Grid>
-                <div className="bannerLogin">
-                    <img src={banner} alt="banner" className="banner"/>
-                    <div className="container">
-                        <img src={logoRopero} alt="LOGO" className="logo"/>
-                        <p>VENDÉ LO QUE NO USÁS Y COMPRÁ LO QUE QUERÉS</p>
-                    </div>
+        <Grid>
+            <div className="bannerLoginTop">
+                <img src={banner} alt="banner" className="banner"/>
+                <div className="container">
+                    <img src={logoRopero} alt="LOGO" className="logo"/>
+                    <p>VENDÉ LO QUE NO USÁS Y COMPRÁ LO QUE QUERÉS</p>
                 </div>
-                <div className="loginContainer">
-                    <Breadcrumbs links={pathnames}/>
-
-                    <BoxLogin />
+            </div>
+            <div className="loginContainer">
+                <div className="loginBreadcrumbs">
+                <Breadcrumbs links={pathnames}/>
                 </div>
-            </Grid>
-        </>
+                <BoxLogin />
+            </div>
+            <div className="bannerLoginBottom">
+                <img src={banner} alt="banner" className="banner"/>
+                <div className="container">
+                    <img src={logoRopero} alt="LOGO" className="logo"/>
+                    <p>VENDÉ LO QUE NO USÁS Y COMPRÁ LO QUE QUERÉS</p>
+                </div>
+            </div>
+        </Grid>
     )
 }
 

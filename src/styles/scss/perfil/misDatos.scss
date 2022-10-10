@@ -1,0 +1,211 @@
+.misDatosContainer{
+    margin-top: 40px;
+    margin-bottom: 60px;
+    width: 758px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include screen_705{
+        margin-top: 24px;
+        width: 100%;
+    }
+    .title{
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 31px;
+        color: #443988;
+        margin-bottom: 0;
+    }
+    .subTitle{
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 20px;
+        color: #423B3C;
+        @include screen_705{
+            color: #878787;
+            font-size: 12px;
+        }
+    }
+    .inputContainer :not(:last-child) {
+        margin-right: 6px;
+    }
+    .inputContainer{
+        display: flex;
+        @include screen_820{
+            flex-direction: column;
+            align-items: center;
+        }
+        .inputBox{
+            margin-top: 24px;
+            @include screen_705{
+                margin-right: 0px;
+                display: flex;
+                flex-direction: column;
+                width: 370px;
+            }
+            .input{
+                color: #423B3C;
+                @include screen_705{
+                    width: calc(100% - 32px);
+                }
+                input{
+                    box-sizing: border-box;
+                    height: 40px;
+                    width: 370px;
+                    max-width: 370px;
+                    min-width: 300px;
+                    font-style: italic;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #BABCBE;
+                }
+
+            }
+            .selectInput{
+                color: #BABCBE;
+                box-sizing: border-box;
+                height: 40px;
+                width: 370px;
+                font-style: italic;
+                font-weight: 400;
+                @include screen_705{
+                    width: calc(100% - 32px);
+                }
+                @include screen_705{
+                    width: calc(100% - 32px);
+                }
+            }
+            .labelInput{
+                font-size: 13px;
+                font-weight: 600;
+                margin-top: 0;
+                @include screen_705{
+                    margin-top: 16px;
+                    margin-bottom: 8px;
+                }
+            }
+            .bottomText{
+                position: relative;
+                margin-bottom: 0;
+                left: 16px;
+                width: 348px;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 17px;
+                text-align: center;
+                color: #878787;
+                @include screen_705{
+                    left: 0px;
+                    text-align: left;
+                }
+            }
+        }
+        .inputBox2{
+            @include screen_705{
+                margin-left: 0px;
+            }
+            .input{
+                input{
+                    box-sizing: border-box;
+                    height: 40px;
+                    width: 370px;
+                    max-width: 370px;
+                    min-width: 300px;
+                    font-style: italic;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #BABCBE;               
+                }     
+            }
+            .labelInput{
+                font-size: 13px;
+                font-weight: 600;
+                @include screen_705{
+                    margin-top: 16px;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+    .textContainer{
+        display: flex;
+        flex-direction: column;
+        @include screen_820{
+            align-items: center;
+        }
+        @include screen_506{
+            align-items: unset;
+        }
+        .title{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 31px;
+            color: #443988;
+            margin-bottom: 0;
+        }
+        .subTitle{
+            font-weight: 700;
+            font-size: 15px;
+            line-height: 20px;
+            color: #423B3C;
+            @include screen_705{
+                color: #878787;
+                font-size: 12px;
+                width: 70%;
+                text-align: center;
+            }
+            @include screen_506{
+                width: unset;
+                text-align: left;
+            }
+        }
+    }
+    .buttonContainer{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:center;
+        align-items:center;
+        margin-top: 48px;
+        @include screen_705{
+            flex-direction: column-reverse;
+        }
+        .leftButton{
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 0px 48px;
+            color: #443988;
+            font-size: 13px;
+            line-height: 36px;
+            border: 1px solid #443988;
+            margin-right: 8px;
+            height: 32px;
+            width: 208px;
+            @include screen_705{
+                margin-right: 0;
+                margin-top: 8px;
+                border: 0;
+                text-decoration: underline;
+            }
+        }
+        .rightButton{
+            background: #443988;
+            border-radius: 20px;
+            font-weight: 700;
+            line-height: 36px;
+            font-size: 13px;
+            padding: 0px 45px;
+            color: #FFFFFF;
+            margin-left: 8px;
+            height: 32px;
+            width: 208px;
+            @include screen_705{
+                margin-right: 0;
+                margin-top: 16px;
+            }
+        }
+    }
+}

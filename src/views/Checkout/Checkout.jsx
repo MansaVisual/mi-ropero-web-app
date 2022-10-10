@@ -14,7 +14,6 @@ import Tarjeta from "../../components/FormCheckout/Tarjeta";
 import CheckForm from "../../components/FormCheckout/Check";
 
 const Checkout = ()=>{
-
     const navigate = useNavigate();
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
@@ -35,12 +34,14 @@ const Checkout = ()=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const [codDesc,setCodDesc]=useState("")
 
+    const [estadoCompra,setEstadoCompra]=useState(false)
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         })
+        setEstadoCompra(false)
     }, [typeNav]);
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -73,7 +74,7 @@ const Checkout = ()=>{
                     sx={{
                         paddingRight: isDesktop ? "32px" : "0px",
                     }}
-                    className="problemaMaxWidth"
+                    className="problemaMaxWidthCheckout"
                 >
                     <NavBarForm typeNav={typeNav} onNextForm={onNextForm} />
 
@@ -119,7 +120,14 @@ const Checkout = ()=>{
                         sucursales={sucursales}
                     /> : null}
 
-                    {typeNav === "check" ? <CheckForm setTypeNav={setTypeNav}/> : null}
+                    {typeNav === "check" ? <CheckForm 
+                        setTypeNav={setTypeNav}
+                        saveDirecc={saveDirecc}
+                        direccion={direccion}
+                        form={form}
+                        metodoEnvio={metodoEnvio}
+                        estadoCompra={estadoCompra}
+                    /> : null}
 
 
 
@@ -127,7 +135,7 @@ const Checkout = ()=>{
                     {typeNav !== "tarjeta" && typeNav !== "check" &&
                     <p className="carritoVolver" 
                         onClick={typeNav==="info" ? ()=>clickVolver("carrito")
-                        : typeNav==="envio" ? ()=>clickVolver("info")
+                        : typeNav==="envio" ? ()=>{clickVolver("info");setDireccion({})}
                         : typeNav==="tarjeta" ? ()=>clickVolver("envio")
                         : typeNav==="check" ? ()=>clickVolver("tarjeta") : null
                     }

@@ -86,6 +86,7 @@ const InfoContact=({
 
         if(usaDireccionCargada && direccionCargada === null){
             setErrorDirCargada(true)
+            setBuscandoDir(false)
             setLoader(false)
             scrollTop()
             return
@@ -98,10 +99,12 @@ const InfoContact=({
             setLoader(false)
             scrollTop()
             setCampoObligatorio(true)
+            setBuscandoDir(false)
             return
         }
         if(res){
             setLoader(false)
+            setBuscandoDir(false)
             return
         }else{
             const formPhone = new FormData()
@@ -115,6 +118,7 @@ const InfoContact=({
                     resFinal = false
                     setErrorPhone(true)
                     throwError("telefono","labelTelefono")
+                    setBuscandoDir(false)
                 }
             })
 
@@ -133,9 +137,11 @@ const InfoContact=({
                     resFinal = false
                     if(direccionCargada===null){
                         setErrorCodPostal(true)
+                        setBuscandoDir(false)
                         throwError("codigoPostal","labelCodigoPostal")
                     }else{
                         setErrorRecargarDir(true)
+                        setBuscandoDir(false)
                     }
                 }else{
                     setSucursales(res.result)
@@ -193,6 +199,7 @@ const InfoContact=({
                 await setResDirecciones(res.result)
                 setViewDireccion(true)
             }else{
+                setBuscandoDir(false)
                 setLoader(false)
                 setErrorDireccion(true)
                 throwError("calle","labelCalle")
