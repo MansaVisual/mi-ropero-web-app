@@ -11,6 +11,20 @@ const Breadcrumbs = ({ links }) => {
       aria-label="breadcrumb"
       separator={<img src={Separator} alt="" />}
     >
+      <Link
+        href="/"
+        sx={{
+          display: "flex",
+          fontSize: theme.typography.fontSize[2],
+          fontWeight: theme.typography.fontWeightRegular,
+          textTransform: "uppercase",
+          textDecoration: "none",
+          color: theme.palette.quaternary.contrastText,
+        }}
+      >
+        Inicio
+      </Link>
+
       {links.map((link, index) => {
         const last = index === links.length - 1;
         const to = `/${links.slice(0, index + 1).join("/")}`;

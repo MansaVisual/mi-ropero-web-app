@@ -120,7 +120,9 @@ const ViewCloset = () => {
               >
                 Ropero de Romina86
               </Typography>
-              <FilterButton onClick={() => setOpen(true)} />
+              <Box sx={{ ml: "25px" }}>
+                <FilterButton onClick={() => setOpen(true)} />
+              </Box>
               {open && (
                 <Modal
                   open={open}

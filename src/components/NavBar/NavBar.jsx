@@ -166,7 +166,6 @@ const NavBar = () => {
         </Box>
       ) : null}
       <AppBar
-        position="fixed"
         sx={{
           backgroundColor: "white",
           boxShadow: "0 1px 5px hsla(270, 1.5%, 25.9%, 0.1)",
@@ -184,16 +183,15 @@ const NavBar = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-between",
               height: "48px",
-              p: 0,
+              px: { sm: "90px" },
             }}
             maxWidth="xl"
           >
             <Box
               sx={{
                 flex: isMobileBigScreen ? 1 : null,
-                paddingRight: { xs: "50px", lg: "60px", xl: "225px" },
               }}
             >
               <Link href="/">
@@ -206,7 +204,7 @@ const NavBar = () => {
                   <SearchBar placeholder="Buscá por ropero, producto, marca o talle" />
                 </Box>
 
-                <Box sx={{ marginRight: "27px", paddingLeft: "36px" }}>
+                <Box>
                   <Button
                     sx={{
                       border: "1px solid black",

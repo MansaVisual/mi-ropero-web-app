@@ -102,6 +102,11 @@ const DialogComponent = ({
       open={open}
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
+      sx={{
+        "& .MuiPaper-root .MuiDialog-paper": {
+          margin: "32px",
+        },
+      }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <MuiDialogTitle

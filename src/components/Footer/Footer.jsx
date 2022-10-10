@@ -55,7 +55,11 @@ const Footer = () => {
         >
           <StyledInput
             placeholder="¡Ingresá tu mail para recibir las últimas novedades!"
-            sx={{ width: "347px", fontSize: "11px", padding: "0px 16px" }}
+            sx={{
+              width: isMobile ? "300px" : "347px",
+              fontSize: "11px",
+              padding: "0px 16px",
+            }}
           />
           <Button
             sx={{

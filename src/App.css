@@ -9,11 +9,8 @@ html {
 
 body {
   position: relative;
-  height: 100vh;
-}
-
-.slick-initialized .slick-slide {
-  width: unset !important;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .slick-slider {
@@ -22,6 +19,10 @@ body {
 
 .slick-list {
   margin: 0 20px;
+}
+
+.slick-slide.slick-active {
+  width: 10% !important;
 }
 
 .slick-slide > div {
@@ -124,6 +125,9 @@ body {
     width: 74px !important;
     height: 80px !important;
   }
+  .slick-slide.slick-active {
+    width: unset !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -151,5 +155,11 @@ body {
 
   .css-46bh2p-MuiCardContent-root {
     padding-left: 10px !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .MuiImageListItem-root.MuiImageListItem-root .MuiImageListItem-img {
+    width: 90px !important;
   }
 }

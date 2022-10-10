@@ -49,13 +49,12 @@ const ClosetImagesCard = ({
   const [like, setLike] = useState(false);
 
   return (
-    <Box>
+    <Box sx={{ flex: 1, maxWidth: { sm: "420px" } }}>
       <Box>
         <ImageList
           sx={{
-            width: isMobile || isMobileBigScreen ? "343px" : "420px",
-            height: isMobile || isMobileBigScreen ? "161px" : "226px",
             position: "relative",
+            boxSizing: "border-box",
             "&.MuiImageList-root": {
               overflow: "hidden",
               borderRadius: "12px",
@@ -85,6 +84,7 @@ const ClosetImagesCard = ({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
+                    flex: 1,
                   }}
                 >
                   <Box
@@ -137,19 +137,13 @@ const ClosetImagesCard = ({
                     </Box>
                   </Box>
 
-                  <Box
-                    sx={{
-                      ml:
-                        isMobile || isMobileBigScreen
-                          ? "calc(40% - 10px)"
-                          : "calc(75% - 10px)",
-                    }}
-                  >
+                  <Box>
                     <CardActionArea
                       onClick={() => setLike(!like)}
                       disableTouchRipple
                       sx={{
                         position: "relative",
+                        pr: "10px",
                       }}
                     >
                       {!like ? (
@@ -164,7 +158,7 @@ const ClosetImagesCard = ({
                               position: "absolute",
                               top: "50%",
                               left: "50%",
-                              transform: "translate(-50%, -65%)",
+                              transform: "translate(-100%, -65%)",
                               color: `${theme.palette.primary.main}`,
                               fontSize: "9px",
                               fontWeight: 700,
@@ -185,7 +179,7 @@ const ClosetImagesCard = ({
                               position: "absolute",
                               top: "50%",
                               left: "50%",
-                              transform: "translate(-50%, -65%)",
+                              transform: "translate(-100%, -65%)",
                               color: `${theme.palette.secondary.contrastText}`,
                               fontSize: "9px",
                               fontWeight: 700,
@@ -206,7 +200,11 @@ const ClosetImagesCard = ({
               <ImageListItem
                 sx={{
                   "&.MuiImageListItem-root .MuiImageListItem-img": {
-                    width: isMobile || isMobileBigScreen ? "110px" : "140px",
+                    width: isMobile
+                      ? "90px"
+                      : isMobileBigScreen
+                      ? "105px"
+                      : "140px",
                     height: "auto",
                   },
                 }}
