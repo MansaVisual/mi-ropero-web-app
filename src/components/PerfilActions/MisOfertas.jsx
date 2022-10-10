@@ -2,7 +2,9 @@ import React from "react"
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import { useLocation } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import PopUpNotis from "./PopUpNotis";
+// import PopUpEliminar from "./PopUpEliminar";
+// import PopUpNotis from "./PopUpNotis";
+// import PopUpSesion from "./PopUpSesion";
 
 const MisOfertas = () =>{
     const location = useLocation();
@@ -33,6 +35,8 @@ const MisOfertas = () =>{
                 </p>
             </div>
             {/* <PopUpNotis></PopUpNotis> */}
+            {/* <PopUpSesion></PopUpSesion> */}
+            {/* <PopUpEliminar></PopUpEliminar> */}
         </div>
     )
 }

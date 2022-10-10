@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/isologo.png'
 
-const PopUpNotis = () => {
+const PopUpSesion = () => {
 
   return (
     <div className="PopUpPerfil">
@@ -13,14 +13,13 @@ const PopUpNotis = () => {
             <div className="popUp">
                 <div className="popUpContainer">
                     <img src={MRlogoModal} alt="logo" className="logoModal"/>
-                    <p className="popUpTitle">¿Seguro querés dejar de recibir notificaciones?</p>
+                    <p className="popUpTitle">¿Seguro querés cerrar sesión?</p>
                     <p className="popUpDescription">
-                    Las notificaciones se usan para avisarte si hacés una venta, recibís mensajes, ofertas, etc.
-                    Si las desactivás no recibirás toda esta información.
+                        Luego podrás ingresar con tu cuenta de Mi Ropero, Google o Facebook.
                     </p>
                     <div className='buttonContainer'>
                         <Button className="volver" >CANCELAR</Button>
-                        <Button className="recordar">DEJAR DE RECIBIR</Button>
+                        <Button className="recordar">CERRAR SESIÓN</Button>
                     </div>
                     <img
                         // onClick={() => setRestorePassword(false)}
@@ -33,4 +32,4 @@ const PopUpNotis = () => {
   )
 }
 
-export default PopUpNotis
+export default PopUpSesion

@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/isologo.png'
 
-const PopUpNotis = () => {
+const PopUpEliminar = () => {
 
   return (
     <div className="PopUpPerfil">
@@ -13,10 +13,9 @@ const PopUpNotis = () => {
             <div className="popUp">
                 <div className="popUpContainer">
                     <img src={MRlogoModal} alt="logo" className="logoModal"/>
-                    <p className="popUpTitle">¿Seguro querés dejar de recibir notificaciones?</p>
+                    <p className="popUpTitle">¿Seguro querés eliminar tu cuenta?</p>
                     <p className="popUpDescription">
-                    Las notificaciones se usan para avisarte si hacés una venta, recibís mensajes, ofertas, etc.
-                    Si las desactivás no recibirás toda esta información.
+                        Se perderán todos los datos y no podrán ser recuperados luego.
                     </p>
                     <div className='buttonContainer'>
                         <Button className="volver" >CANCELAR</Button>
@@ -33,4 +32,4 @@ const PopUpNotis = () => {
   )
 }
 
-export default PopUpNotis
+export default PopUpEliminar
