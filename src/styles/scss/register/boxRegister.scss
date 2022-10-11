@@ -106,6 +106,54 @@
             }
         }
     }
+    .inputMailContainer{
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        @include screen_705{
+            justify-content: center;
+        }
+        .inputBox{
+            margin-right: 6px;
+            @include screen_705{
+                margin-right: 0px;
+            }
+            .input{
+                input{
+                    height: 25px;
+                    max-width: 370px;
+                    min-width: 300px;
+                    font-style: italic;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #BABCBE;
+                }
+            }
+            .passwordInput{
+                /* height: 25px; */
+                width: 328px;
+                max-width: 370px;
+                min-width: 300px;
+                font-style: italic;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 19px;
+                color: #969696; 
+                @include screen_705{
+                    height:auto;
+                }              
+            }
+            .labelInput{
+                font-size: 13px;
+                font-weight: 600;
+                @include screen_705{
+                    margin-top: 16px;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
     .buttonContainer{
         display: flex;
         margin-top: 12px;

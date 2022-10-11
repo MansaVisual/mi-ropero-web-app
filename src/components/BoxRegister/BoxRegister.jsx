@@ -111,12 +111,12 @@ const BoxRegister = () => {
         }
         <div className="inputContainer">
           <div className="inputBox">
-            <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Nombre y apellido *</p>
+            <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Nombre *</p>
               <TextField
                 color={campoObligatorio?"secondary":"primary"}
                 className="input"
                 size="small"
-                placeholder="Sabrina Godoy"
+                placeholder="Sabrina"
                 id="nombreApellido"
                 onChangeCapture={()=>setCampoObligatorio(false)}
                 inputProps={{
@@ -125,6 +125,27 @@ const BoxRegister = () => {
                 />
           </div>
           <div className="inputBox2">
+{/*             <p className="labelInput" style={{color:(campoObligatorio || errorNewMail)&&"#FF3F20"}}>Apellido *</p>
+ */}            <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Apellido *</p>
+
+            <TextField
+              /* color={(campoObligatorio || errorNewMail)?"secondary":"primary"} */
+              color={campoObligatorio?"secondary":"primary"}
+              className="input"
+              size="small"
+              placeholder="Godoy"
+              /* id="email" */
+              id="apellido"
+              onChangeCapture={()=>setCampoObligatorio(false)}
+              /* onChangeCapture={()=>{setCampoObligatorio(false);setErrorNewMail(false)}} */
+              inputProps={{
+                style:{border:(campoObligatorio || errorNewMail)&&"1px solid #FF3F20"}
+              }}
+            />
+          </div>
+        </div>
+        <div className="inputMailContainer">
+          <div className="inputBox">
             <p className="labelInput" style={{color:(campoObligatorio || errorNewMail)&&"#FF3F20"}}>Dirección de correo electrónico *</p>
             <TextField
               color={(campoObligatorio || errorNewMail)?"secondary":"primary"}
