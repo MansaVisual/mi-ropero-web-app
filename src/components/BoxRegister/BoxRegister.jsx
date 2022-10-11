@@ -132,13 +132,13 @@ const BoxRegister = () => {
           </div>
         </div>
         <div className="buttonContainer">
-          <Button className="left-button" onClick={()=>navigate("/login")}>VOLVER</Button>
+          <Button className="left-button" onClick={load?null:()=>navigate("/login")}>VOLVER</Button>
           {load ?
             <div style={{marginTop:"24px",marginLeft:"32px"}}>
                 <Loader spin={"spinnerM"}/>
             </div>
           :
-            <Button className="right-button" onClick={()=>handleRegistrar()}>REGISTRATE</Button>
+            <Button className="right-button" onClick={load?null:()=>handleRegistrar()}>REGISTRATE</Button>
           }
         </div>
         <p className='bottomText'>

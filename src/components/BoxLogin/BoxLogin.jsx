@@ -58,14 +58,14 @@ const BoxLogin = ()=>{
             <p className="title">Continuar con Google o Facebook</p>
             <div className="buttonWrapper">
                 <div>  
-                    <Button className="botonGoogle" /* endIcon={<GoogleIcon/> }*/>INGRESAR CON GOOGLE</Button>
+                    <Button className="botonGoogle">INGRESAR CON GOOGLE</Button>
                     <img src={GoogleLogo} className="googleICon" alt="googleICon" /> 
                 </div>   
                 <Button className="botonFB" endIcon={<FacebookIcon/>}>INGRESAR CON FACEBOOK</Button>
             </div>
 
             <p className="title">Continuar con tu email</p>
-            
+
             {error &&
                 <div style={{width:"672px"}}>
                     <div className="errorBox">
@@ -131,9 +131,9 @@ const BoxLogin = ()=>{
                         <Loader spin={"spinnerM"}/>
                     </div>
                 :
-                    <Button className="botonIngresar" onClick={()=>handleLogin()}>INGRESAR</Button>
+                    <Button className="botonIngresar" onClick={load?null:()=>handleLogin()}>INGRESAR</Button>
                 }
-                <Button className="botonRegistrate" onClick={()=>{
+                <Button className="botonRegistrate" onClick={load?null:()=>{
                     window.scrollTo({
                         top: 0,
                         behavior: 'auto'
