@@ -42,8 +42,8 @@ const BoxRegister = () => {
                   endAdornment: (
                     <InputAdornment position="end">
                       {showPassword ? 
-                      <Visibility sx={{fontSize:"20px"}} onClick={()=>setShowPassword(!showPassword)}/> 
-                      : <VisibilityOff sx={{fontSize:"20px"}} onClick={()=>setShowPassword(!showPassword)}/>
+                      <Visibility sx={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setShowPassword(!showPassword)}/> 
+                      : <VisibilityOff sx={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setShowPassword(!showPassword)}/>
                       }
                     </InputAdornment>
                   ),
@@ -63,8 +63,8 @@ const BoxRegister = () => {
                 endAdornment: (
                   <InputAdornment position="end">
                     {showPassword2 ? 
-                    <Visibility sx={{fontSize:"20px"}} onClick={()=>setShowPassword2(!showPassword2)}/> 
-                    : <VisibilityOff sx={{fontSize:"20px"}} onClick={()=>setShowPassword2(!showPassword2)}/>
+                    <Visibility sx={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setShowPassword2(!showPassword2)}/> 
+                    : <VisibilityOff sx={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setShowPassword2(!showPassword2)}/>
                     }
                   </InputAdornment>
                 ),
@@ -78,7 +78,7 @@ const BoxRegister = () => {
           <Button className="right-button">REGISTRATE</Button>
         </div>
         <p className='bottomText'>
-          Al oprimir REGISTRÁTE se aceptan los <span className='spanLink'>términos y condiciones</span> de Mi Ropero.
+          Al oprimir REGISTRÁTE se aceptan los <span className='spanLink' style={{cursor:"pointer"}}>términos y condiciones</span> de Mi Ropero.
         </p>
     </div>
   )

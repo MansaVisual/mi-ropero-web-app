@@ -24,7 +24,7 @@ const RestorePopUp = ({setRestorePassword}) => {
                             }}
                         />
                     <div className='buttonContainer'>
-                        <Button className="volver" >VOLVER</Button>
+                        <Button className="volver" onClick={() => setRestorePassword(false)}>VOLVER</Button>
                         <Button className="recordar">RECORDAR</Button>
                     </div>
                     <img
