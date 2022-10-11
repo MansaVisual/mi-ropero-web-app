@@ -232,6 +232,7 @@ const InfoContact=({
         }
     }
 
+
     return(
         <div className="formCheckout">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Datos de contacto</h2>
@@ -303,10 +304,13 @@ const InfoContact=({
 
             <div className="selectorDireccion">
                 <div className="selectorContainer" onClick={()=>{
-                    setUsaDireccionCargada(!usaDireccionCargada)
-                    setDireccionCargada(null);
-                    setErrorDirCargada(false);
-                    setProvincia("")
+                    if(!buscandoDir){
+                        setSaveDirecc(usaDireccionCargada)
+                        setUsaDireccionCargada(!usaDireccionCargada)
+                        setDireccionCargada(null);
+                        setErrorDirCargada(false);
+                        setProvincia("");
+                    }
                 }}>
                     <FormControlLabel
                         name="sucursal"
@@ -314,6 +318,7 @@ const InfoContact=({
                         id="nuevaDir"
                         checked={usaDireccionCargada?true:false}
                         value="setDireccion"
+                        disabled={buscandoDir ? true : false}
                     />
                     <label className="labelForm" htmlFor="nuevaDir" style={{cursor:"pointer"}}>
                         Utilizar una de mis direcciónes
@@ -473,7 +478,8 @@ const InfoContact=({
                                 size="small"
                                 className="inputForm textarea"
                                 id="comentario"
-                                onChangeCapture={()=>handleChangeForm(setForm,form)}
+                                disabled={buscandoDir?true:false}
+                                onChangeCapture={()=>{if(!buscandoDir){handleChangeForm(setForm,form)}}}
                                /*  inputProps={{ maxLength: 70 }} */
                                 ></TextField>
                         </div>
