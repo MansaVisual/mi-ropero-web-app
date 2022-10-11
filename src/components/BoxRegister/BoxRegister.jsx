@@ -146,7 +146,7 @@ const BoxRegister = () => {
                 color={(campoObligatorio || errorPass)?"secondary":"primary"}
                 className="passwordInput"
                 size="small"
-                placeholder={showPassword ? "" : "● ● ● ● ● ● ● ● ● ● ●"}
+                placeholder={showPassword ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false)}}
@@ -169,7 +169,7 @@ const BoxRegister = () => {
               color={(campoObligatorio || errorPass)?"secondary":"primary"}
               className="passwordInput"
               size="small"
-              placeholder={showPassword2 ? "" : "● ● ● ● ● ● ● ● ● ● ●"}
+              placeholder={showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
               id="password2"
               onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false)}}
               type={showPassword2 ? 'text' : 'password'}
