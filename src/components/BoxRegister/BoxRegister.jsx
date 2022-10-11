@@ -1,8 +1,11 @@
 import React,{ useState } from 'react'
 import { Button, InputAdornment, TextField } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { useNavigate } from "react-router-dom";
 
 const BoxRegister = () => {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
 
@@ -74,7 +77,7 @@ const BoxRegister = () => {
           </div>
         </div>
         <div className="buttonContainer">
-          <Button className="left-button">VOLVER</Button>
+          <Button className="left-button" onClick={()=>navigate("/login")}>VOLVER</Button>
           <Button className="right-button">REGISTRATE</Button>
         </div>
         <p className='bottomText'>
