@@ -16,6 +16,69 @@
         color: #443988;
         margin-bottom: 0;
     }
+    .comprasContainer{
+        .customTable{
+            max-width: 1066px;
+            width: 100%;
+            border-collapse: collapse; 
+            thead{
+                .titleRow {
+                    th{
+                        width: 20%;
+                        font-size: 17px;
+                        line-height: 23.15px;
+                        padding-top: 12px;
+                        padding-bottom: 12px;
+                        text-align: left;
+                        color:#423B3C;
+                    }
+                }
+            }
+            tbody .dataRow:not(:first-child){
+                border-top: 1px solid #E5E6E7;
+            }
+            tbody{
+                .dataRow{
+                    height: 72px;
+                    th{
+                        font-weight: 600;
+                        font-size: 15px;
+                        line-height: 20.43px;
+                        text-align: left;
+                        color: #878787;
+                    }
+                    .estatusColumn{
+                        display: flex;
+                        justify-items: center;
+                        flex-direction: column;
+                        font-size: 14px;
+                        }
+                        .estatusColumn :first-child{
+                            color:#423B3C;
+                            font-weight: 700;
+                        }
+                    }
+                    .tableButton{
+                        background: #FFFFFF;
+                        border-radius: 20px;
+                        padding: 0px 48px;
+                        color: #443988;
+                        font-size: 13px;
+                        line-height: 36px;
+                        border: 1px solid #443988;
+                        margin-right: 8px;
+                        height: 32px;
+                        width: 208px;
+                        @include screen_705{
+                            margin-right: 0;
+                            margin-top: 8px;
+                            border: 0;
+                            text-decoration: underline;
+                        }
+                    }
+            }
+        }
+  }
     .returnLink{
         display: flex;
         align-items: center;
