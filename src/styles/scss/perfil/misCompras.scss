@@ -20,7 +20,10 @@
         .customTable{
             max-width: 1066px;
             width: 100%;
-            border-collapse: collapse; 
+            border-collapse: collapse;
+            @include screen_950{
+                display: none;
+            } 
             thead{
                 .titleRow {
                     th{
@@ -56,12 +59,16 @@
                         .estatusColumn :first-child{
                             color:#423B3C;
                             font-weight: 700;
+                            display: flex;
+                            align-items: flex-end;
+                        }
+                        span{
+                            height: 35px;
                         }
                     }
                     .tableButton{
                         background: #FFFFFF;
                         border-radius: 20px;
-                        padding: 0px 48px;
                         color: #443988;
                         font-size: 13px;
                         line-height: 36px;
@@ -76,6 +83,50 @@
                             text-decoration: underline;
                         }
                     }
+            }
+        }
+        .responsiveData{
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 32px;
+            gap: 32px;
+            @include screen_950{
+                display: flex;
+            } 
+            .compra{
+                div:not(:last-child){
+                    margin-bottom: 12px;
+                }
+                div{
+                    font-weight: 600;
+                    font-size: 13px;
+                    line-height: 12px;
+                    span:nth-child(1){
+                        color: #423B3C;
+                        margin-right: 8px;
+                    }
+                    span:nth-child(2){
+                        color: #443988;
+                        margin-right: 8px;
+                    }
+                    span:last-child {
+                        color: #969696;
+                    }
+                } 
+                .comprasButton{
+                    background: #FFFFFF;
+                    border-radius: 20px;
+                    color: #443988;
+                    font-size: 13px;
+                    line-height: 36px;
+                    border: 1px solid #443988;
+                    margin-right: 8px;
+                    height: 32px;
+                    width: 100%;
+                    max-width: 328px;
+                }
             }
         }
   }
