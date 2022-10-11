@@ -179,29 +179,8 @@
             width: 100%;
         }
     }
-    .errorBox{
-        width: 100%;
-        margin: 12px 0px;
-        display: flex;
-        align-items: center;
-        background: #FDFEFF;
-        border: 1px solid #BABCBE;
-        box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
-        border-radius: 6px;
-        .cruz{
-            font-size: 24px;
-            margin-left: 32px;
-            margin-right: 24px;
-        }
-        p{
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 24px;
-            color: #878787;
-        }
-    }
     .formObligatorio{
-        border: 0.5px solid red !important;
+        border: 0.5px solid #FF3F20 !important;
         border-radius: 4px !important;
     }
     .formObligatorioTitle{
