@@ -65,11 +65,12 @@ const BoxLogin = ()=>{
             </div>
 
             <p className="title">Continuar con tu email</p>
+            
             {error &&
                 <div style={{width:"672px"}}>
                     <div className="errorBox">
                         <CancelOutlinedIcon color="secondary" className="cruz"/>
-                        <p>Usuario incorrecto.</p>
+                        <p>Usuario o contraseña incorrecta.</p>
                     </div>
                 </div>
             }
@@ -81,11 +82,12 @@ const BoxLogin = ()=>{
                     </div>
                 </div>
             }
+
             <div className="inputContainer">
                 <div className="inputBox">
                     <p className="labelInput" style={{color:(error || campoObligatorio) &&"#FF3F20"}}>Dirección de correo electrónico *</p>
                     <TextField
-                        color="primary"
+                        color={(error || campoObligatorio)?"secondary":"primary"}
                         className="input"
                         size="small"
                         placeholder="sabrinagodoy@gmail.com"
@@ -100,7 +102,7 @@ const BoxLogin = ()=>{
                 <div className="inputBox2">
                     <p className="labelInput" style={{color:(error || campoObligatorio)&&"#FF3F20"}}>Contraseña *</p>
                     <TextField
-                        color="primary"
+                        color={(error || campoObligatorio)?"secondary":"primary"}
                         className="inputP"
                         size="small"
                         placeholder={showPassword ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
