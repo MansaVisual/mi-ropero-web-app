@@ -6,10 +6,19 @@ import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 
-const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio})=>{
+const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc})=>{
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const {carrito}=useContext(UseCartContext)
     const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
+
+    const handlePagar=()=>{
+        console.log("ID A CONFIRMAR CON LOGEO")
+        console.log("CARRITO",carrito)
+        console.log("CODIGO DESCUENTO",codDesc)
+        console.log("DIRECCION",direccion)
+        console.log("MEDIO DE ENVIO",metodoEnvio)
+        console.log("MEDIO DE PAGO A CONFIRMAR")
+    }
 
     return(
         <div className="tarjetaContenedor">
@@ -116,7 +125,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
                         <Button className="botonVolver" onClick={()=>setTypeNav("envio")}>
                             VOLVER
                         </Button>
-                        <Button className="botonPagar" onClick={()=>setTypeNav("check")}>
+                        <Button className="botonPagar" onClick={()=>handlePagar()}>
                             IR A PAGAR
                         </Button>
                         <p className="botonVolverMobile" onClick={()=>setTypeNav("envio")}>VOLVER</p>
