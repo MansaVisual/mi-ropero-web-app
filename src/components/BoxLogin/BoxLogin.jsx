@@ -4,7 +4,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleLogo from '../../assets/img/google.png'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import RestorePopUp from "./RestorePopUp";
-import ValidationPopUp from "./ValidationPopUp";
 import { UseLoginContext } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
@@ -17,7 +16,6 @@ const BoxLogin = ()=>{
 
     const [showPassword, setShowPassword] = useState(false)
     const [restorePassword, setRestorePassword] = useState(false)
-    const [confirmValidation, setconfirmValidation] = useState(true)
 
     const [campoObligatorio,setCampoObligatorio]=useState(false)
     const [error,setError]=useState(false)
@@ -144,9 +142,6 @@ const BoxLogin = ()=>{
         </div>
         {restorePassword &&
                 <RestorePopUp setRestorePassword={setRestorePassword}/>
-        }
-        {confirmValidation &&
-                <ValidationPopUp setconfirmValidation={setconfirmValidation}/>
         }
     </>
     )

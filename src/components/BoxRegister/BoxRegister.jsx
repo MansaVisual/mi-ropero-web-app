@@ -1,21 +1,25 @@
-import React,{ useState } from 'react'
+import React,{ useState,useContext } from 'react'
 import { Button, InputAdornment, TextField } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import Loader from '../Loader/Loader';
+import { UseLoginContext } from '../../context/LoginContext';
 
 const BoxRegister = () => {
   const navigate = useNavigate();
+  const {LoginAPI}=useContext(UseLoginContext)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
 
   const [errorPass,setErrorPass]=useState(false)
   const [campoObligatorio,setCampoObligatorio]=useState(false)
+  const [errorNewMail,setErrorNewMail]=useState(false)
   const [load,setLoad]=useState(false)
 
-  const handleRegistrar=()=>{
+
+  const handleRegistrar=async()=>{
     setErrorPass(false)
     setCampoObligatorio(false)
     setLoad(true)
@@ -30,6 +34,51 @@ const BoxRegister = () => {
       setLoad(false)
       return
     }
+    // navigate("/validacionLogin")
+    const loginUser = new FormData()
+    loginUser.append('email', document.getElementById("email").value)
+    loginUser.append('clave', document.getElementById("password").value)
+    loginUser.append('nombre', document.getElementById("nombreApellido").value)
+    loginUser.append('apellido', "test")
+    await LoginAPI(
+      loginUser,
+      "clientes",
+      "insert"
+      ).then(async(res)=>{
+        console.log(res)
+        if(res.status==="success"){
+          const validateCod = new FormData()
+          validateCod.append("idcliente",res.result.idcliente)
+          await LoginAPI(
+            validateCod,
+            "clientes",
+            "validate_send"
+            ).then((res)=>{
+              setLoad(false)
+              if(res.status==="success"){
+              localStorage.setItem("sendCodMiRopero",res.result.idcliente)
+              navigate("/validacionLogin")
+            }else{
+              alert("Ocurrió un problema. Vuelva a intentarlo")
+            }
+          })
+        }else{
+          if(res.result==="El email ya se encuentra registrado"){
+            setErrorNewMail(true)
+            setLoad(false)
+          }
+        }
+    })
+
+    // const loginUserE = new FormData()
+    // loginUserE.append('idcliente', "24903")
+    // await LoginAPI(
+    //     loginUserE,
+    //     "clientes",
+    //     "delete"
+    // ).then((res)=>{
+    //     console.log(res)
+    // })
   }
 
   return (
@@ -52,7 +101,14 @@ const BoxRegister = () => {
               </div>
           </div>
         }
-
+        {errorNewMail &&
+          <div style={{width:"662px"}}>
+              <div className="errorBox">
+                  <CancelOutlinedIcon color="secondary" className="cruz"/>
+                  <p>El mail ya se encuentra en uso.</p>
+              </div>
+          </div>
+        }
         <div className="inputContainer">
           <div className="inputBox">
             <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Nombre y apellido *</p>
@@ -69,16 +125,16 @@ const BoxRegister = () => {
                 />
           </div>
           <div className="inputBox2">
-            <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Dirección de correo electrónico *</p>
+            <p className="labelInput" style={{color:(campoObligatorio || errorNewMail)&&"#FF3F20"}}>Dirección de correo electrónico *</p>
             <TextField
-              color={campoObligatorio?"secondary":"primary"}
+              color={(campoObligatorio || errorNewMail)?"secondary":"primary"}
               className="input"
               size="small"
               placeholder="nombre@dominio.com"
               id="email"
-              onChangeCapture={()=>setCampoObligatorio(false)}
+              onChangeCapture={()=>{setCampoObligatorio(false);setErrorNewMail(false)}}
               inputProps={{
-                style:{border:campoObligatorio&&"1px solid #FF3F20"}
+                style:{border:(campoObligatorio || errorNewMail)&&"1px solid #FF3F20"}
               }}
             />
           </div>
