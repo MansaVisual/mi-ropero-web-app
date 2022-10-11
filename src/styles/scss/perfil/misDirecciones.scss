@@ -57,7 +57,7 @@
     .cardContainer{
         margin-top: 24px;
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         flex-wrap: wrap;
         gap: 12px;
         @include screen_950{
