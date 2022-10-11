@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import profileTest from '../../assets/img/profileTest.png'
 import misCompras from '../../assets/img/misComprasIcon.png'
@@ -13,6 +13,7 @@ import miTienda from '../../assets/img/miTiendaIcon.png'
 const MiPerfil = ({ setTypeNav }) => {
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
+    const navigate = useNavigate();
 
     const testData={
         name: "Sabrina Godoy",
@@ -66,7 +67,7 @@ const MiPerfil = ({ setTypeNav }) => {
                 </div>
                 <p className='profileSections'>
                     {profileSections.map((section)=>{
-                        return <div className="section" onClick={()=> setTypeNav(section.name)}>
+                        return <div className="section" onClick={()=> navigate(`/perfil/${section.name}`)}>
                                     <div className="imgBox">
                                         <img src={section.icon} alt="icon" />
                                         <p className="sectionTitleMobile">{section.name}</p>

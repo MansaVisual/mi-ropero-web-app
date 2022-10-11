@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
 import { Button, MenuItem, Select, TextField } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const MisDatos = () => {
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x);
+    const navigate = useNavigate();
 
     const talles=[
         "sm",
@@ -294,7 +295,7 @@ const MisDatos = () => {
                 </div>
             </div>
             <div className='buttonContainer'>
-                <Button className="leftButton" >VOLVER</Button>
+                <Button className="leftButton" onClick={()=>navigate(`/perfil`)}>VOLVER</Button>
                 <Button className="rightButton">GRABAR CAMBIOS</Button>
             </div>               
     </div>

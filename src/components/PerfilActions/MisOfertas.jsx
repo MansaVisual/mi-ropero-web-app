@@ -1,6 +1,6 @@
 import React from "react"
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 // import PopUpEliminar from "./PopUpEliminar";
 // import PopUpNotis from "./PopUpNotis";
@@ -9,6 +9,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 const MisOfertas = () =>{
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
+    const navigate = useNavigate()
 
     return(
         <div className="misOfertasContainer">
@@ -29,7 +30,7 @@ const MisOfertas = () =>{
                         
                     </div>
                 </div>
-                <p className="volver">
+                <p className="volver" onClick={()=>navigate(`/perfil`)}>
                     <ArrowBackIosNew sx={{fontSize:"10px"}}/>
                     VOLVER A MI PERFIl
                 </p>

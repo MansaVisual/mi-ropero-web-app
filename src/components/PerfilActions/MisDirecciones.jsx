@@ -1,14 +1,15 @@
 import React,{useState} from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs'
 import leftArrow from '../../assets/img/leftArrow.png'
 import AdressCard from '../AddressCard/AdressCard';
 
 
-const MisDirecciones = ({setTypeNav}) => {
+const MisDirecciones = () => {
 
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+  const navigate = useNavigate();
 
   const [adressOption, setAdressOption] = useState(false)
 
@@ -74,7 +75,7 @@ const MisDirecciones = ({setTypeNav}) => {
                   />
         })}
       </div>
-      <div className="returnLink" onClick={() => setTypeNav("miPerfil")}>
+      <div className="returnLink" onClick={()=>navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
         <p>VOLVER A MI PERFIL</p>
       </div>

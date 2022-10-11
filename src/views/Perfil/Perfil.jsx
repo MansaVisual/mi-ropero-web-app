@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Grid } from "@mui/material"
 import MiPerfil from "../../components/PerfilActions/MiPerfil";
 import MisOfertas from "../../components/PerfilActions/MisOfertas";
@@ -6,34 +6,32 @@ import MisDatos from "../../components/PerfilActions/MisDatos";
 import MisFavoritos from "../../components/PerfilActions/MisFavoritos";
 import MisDirecciones from "../../components/PerfilActions/MisDirecciones";
 import MisCompras from "../../components/PerfilActions/MisCompras";
+import { useParams } from "react-router-dom";
 
 const Perfil = ()=>{
-
-    const [typeNav, setTypeNav] = useState("miPerfil")
-
-
+    const params = useParams()
 
     return(
         <Grid
             className="gridContainer"
         >
-            {typeNav === "miPerfil" &&
-                <MiPerfil setTypeNav={setTypeNav}/>
+            {params.perfilSeccion === undefined &&
+                <MiPerfil />
             }
-            {typeNav === "OFERTAS REALIZADAS" &&
-                <MisOfertas/> 
+            {params.perfilSeccion === "OFERTAS REALIZADAS" &&
+                <MisOfertas /> 
             }
-            {typeNav === "MIS DATOS" &&
-                <MisDatos/> 
+            {params.perfilSeccion === "MIS DATOS" &&
+                <MisDatos /> 
             }
-            {typeNav === "MIS FAVORITOS" &&
-                <MisFavoritos setTypeNav={setTypeNav}/> 
+            {params.perfilSeccion === "MIS FAVORITOS" &&
+                <MisFavoritos /> 
             }
-            {typeNav === "MIS DIRECCIONES" &&
-                <MisDirecciones setTypeNav={setTypeNav}/> 
+            {params.perfilSeccion === "MIS DIRECCIONES" &&
+                <MisDirecciones /> 
             }
-            {typeNav === "MIS COMPRAS" &&
-                <MisCompras setTypeNav={setTypeNav}/> 
+            {params.perfilSeccion === "MIS COMPRAS" &&
+                <MisCompras /> 
             }
         </Grid>
     )
