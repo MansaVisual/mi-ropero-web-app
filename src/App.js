@@ -69,7 +69,11 @@ function App() {
                   <Route
                     path="/perfil"
                     element={<Perfil />}
-                  />  
+                  />
+                  <Route
+                    path="perfil/:perfilSeccion"
+                    element={<Perfil />}
+                  />
                 </Routes>
                 <Footer />
               </ThemeProvider>
