@@ -1,23 +1,54 @@
-import React, {useContext} from "react"
+import React, {useContext,useState} from "react"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { Button, useMediaQuery } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
 import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
+import Loader from "../Loader/Loader";
 
-const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc})=>{
+const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc,form})=>{
+
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-    const {carrito}=useContext(UseCartContext)
+    const {carrito,CartAPI}=useContext(UseCartContext)
     const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
+    const [load,setLoad]=useState(false)
 
     const handlePagar=()=>{
-        console.log("ID A CONFIRMAR CON LOGEO")
-        console.log("CARRITO",carrito)
-        console.log("CODIGO DESCUENTO",codDesc)
-        console.log("DIRECCION",direccion)
-        console.log("MEDIO DE ENVIO",metodoEnvio)
-        console.log("MEDIO DE PAGO A CONFIRMAR")
+        setLoad(true)
+
+        let productos=[]
+        for(let i=0;i<carrito.length;i++){
+            if(carrito[i].producto.estado==="3"){
+                productos.push(carrito[i].producto_id)
+            }
+        }
+
+        const finalizarCompra=new FormData()
+        finalizarCompra.append("comprador_id",68)
+        finalizarCompra.append("telefono",form.telefono)
+        finalizarCompra.append("direccion_entrega",JSON.stringify(direccion))
+        finalizarCompra.append("productos",productos.join(","))
+        finalizarCompra.append("promocion_codigo",codDesc)
+        finalizarCompra.append("medio_envio",metodoEnvio)
+
+        CartAPI(
+            finalizarCompra,
+            "operaciones",
+            "insert"
+        ).then((res)=>{
+            console.log(res)
+            if(res.status==="success"){
+                setLoad(false)
+                if(res.result.init_point!==undefined){
+                    window.top.location.href=res.result.init_point
+                }else{
+                    setTypeNav("check")
+                }
+            }else{
+                setLoad(false)
+            }
+        })
     }
 
     return(
@@ -125,9 +156,15 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
                         <Button className="botonVolver" onClick={()=>setTypeNav("envio")}>
                             VOLVER
                         </Button>
-                        <Button className="botonPagar" onClick={()=>handlePagar()}>
-                            IR A PAGAR
-                        </Button>
+                        {load ?
+                            <div style={{marginTop:"4px",marginLeft:"32px"}}>
+                                <Loader spin={"spinnerM"}/>
+                            </div>
+                        :
+                            <Button className="botonPagar" onClick={()=>handlePagar()}>
+                                IR A PAGAR
+                            </Button>
+                        }
                         <p className="botonVolverMobile" onClick={()=>setTypeNav("envio")}>VOLVER</p>
                     </div>
                     <p className="terminos">Al oprimir IR A PAGAR se aceptan los <span className="terminosLink">términos y condiciones</span> de Mi Ropero</p>
