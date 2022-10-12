@@ -22,6 +22,8 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     useEffect(()=>{
         if(costoMoto.precio!==undefined){
             setEnvioMoto(true)
+        }else{
+            setEnvioMoto(false)
         }
         if(costoSucDom===false && costoSucSuc===false){
             setCostos(direccion)
@@ -60,6 +62,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
 
 
     const handleClickContinuar =async ()=>{
+        console.log(metodoEnvio)
         if(metodoEnvio==="345838"){
             setSetSucursal(true)
         }else if(metodoEnvio===""){
@@ -136,8 +139,14 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                         <div className="precio">
                             <Loader spin={"spinnerS"}/>
                         </div>
-                    :
-                        <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio">$ {costoMoto.precio}</p>
+                    :   
+                        <>
+                            {costoMoto.precio!==undefined ? 
+                                <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio">$ {costoMoto.precio}</p>
+                            :
+                                <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio"></p>  
+                            }
+                        </>
                     }
                     
                 </div>
