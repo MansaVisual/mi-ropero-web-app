@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 
 const CheckForm = ({setTypeNav,estadoCompra})=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
-    
+
     useEffect(() => {
         setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
 
@@ -16,7 +16,21 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
             
             if(saveDireccion){
                 const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
-                console.log(direccion)
+                const dir = new FormData()
+                dir.append("int",68)
+                dir.append("nombre",direccion.calle+" "+direccion.numero)
+                dir.append("codigo_postal",direccion.codigo_postal)
+                dir.append("provincia",direccion.provincia)
+                // dir.append("",direccion.)
+                // dir.append("",direccion.)
+                dir.append("calle",direccion.calle)
+                dir.append("numero",direccion.numero)
+                dir.append("piso",direccion.piso)
+                dir.append("departamento",direccion.departamento)
+                dir.append("entre_calle_1",direccion.entre_calle_1)
+                dir.append("entre_calle_2",direccion.entre_calle_2)
+                dir.append("informacion_adicional",direccion.informacion_adicional)
+                // dir.append("",direccion.)
             }
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
