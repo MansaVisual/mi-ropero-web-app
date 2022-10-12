@@ -58,7 +58,7 @@ function App() {
                     path="/checkout/:status"
                     element={<Checkout />}
                   /> */}
-                  <Route path="*" element={<h1>404</h1>}></Route>
+                  <Route path="*" element={<h1 style={{height:"50vh",marginLeft:"16px"}}>404 Page Not Found</h1>}></Route>
                   <Route
                     path="/login"
                     element={<Login />}
