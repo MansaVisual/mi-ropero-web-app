@@ -26,7 +26,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                 </>
             :
                 <>
-                    {estadoCompra==="failure" ?
+                    {estadoCompra==="error" ?
                         <>
                             <CancelOutlinedIcon className="botonError"/>
                             <p className="felicidades">¡Que lástima!</p>
@@ -53,7 +53,6 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                     }
                 </>
             }
-            
         </div>
     )
 }
