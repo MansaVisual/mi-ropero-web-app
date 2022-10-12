@@ -26,7 +26,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                 </>
             :
                 <>
-                    {estadoCompra==="error" ?
+                    {estadoCompra==="failure" ?
                         <>
                             <CancelOutlinedIcon className="botonError"/>
                             <p className="felicidades">¡Que lástima!</p>
