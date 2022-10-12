@@ -47,6 +47,7 @@ const Checkout = ()=>{
 
     useEffect(() => {
         let query = new URLSearchParams(window.location.search)
+        console.log(estadoCompra)
         console.log("PARAMS",query.get("status"))
         if(query.get("status")==="success"){
             setEstadoCompra("success")
