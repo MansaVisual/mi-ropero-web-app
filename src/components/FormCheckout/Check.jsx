@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useEffect} from "react"
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -6,7 +6,17 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 
 const CheckForm = ({setTypeNav,estadoCompra,metodoEnvio})=>{
-    console.log(metodoEnvio)
+    useEffect(() => {
+        if(estadoCompra==="success"){
+            const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
+            
+            if(saveDireccion){
+                const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
+                console.log(direccion)
+            }
+        }
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
     return(
         <div className="checkContainer">
             {estadoCompra==="success" ?
@@ -35,7 +45,7 @@ const CheckForm = ({setTypeNav,estadoCompra,metodoEnvio})=>{
                         <>
                             <CancelOutlinedIcon className="botonError"/>
                             <p className="felicidades">¡Que lástima!</p>
-                            <p>Algo no salió como esperabamos. Vuelva a intentarlo</p>
+                            <p>Algo no salió como esperabamos. Vuelva a intentarlo.</p>
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             
@@ -51,8 +61,8 @@ const CheckForm = ({setTypeNav,estadoCompra,metodoEnvio})=>{
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             
-                            <Button className="misComprasFail" onClick={()=>setTypeNav("tarjeta")}>
-                                VOLVER
+                            <Button className="misComprasFail">
+                                ACEPTAR
                             </Button>
                         </>
                     }
