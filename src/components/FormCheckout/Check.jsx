@@ -5,6 +5,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Button } from "@mui/material";
 
 const CheckForm = ({setTypeNav,estadoCompra})=>{
+    console.log(estadoCompra)
     return(
         <div className="checkContainer">
             {estadoCompra==="success" ?
