@@ -41,7 +41,6 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             "operaciones",
             "insert"
         ).then((res)=>{
-            console.log(res)
             if(res.status==="success"){
                 setLoad(false)
                 if(res.result.init_point!==undefined){
