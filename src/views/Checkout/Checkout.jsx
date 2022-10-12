@@ -35,7 +35,7 @@ const Checkout = ()=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const [codDesc,setCodDesc]=useState("")
 
-    const [estadoCompra,setEstadoCompra]=useState(false)
+    const [estadoCompra,setEstadoCompra]=useState("")
 
     useEffect(() => {
         window.scrollTo({
@@ -45,10 +45,20 @@ const Checkout = ()=>{
         setEstadoCompra(false)
     }, [typeNav]);
 
+
     useEffect(() => {
         console.log("Params",params)
-        
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+        if(params.status==="success"){
+            setEstadoCompra("success")
+            setTypeNav("check")
+        }else if(params.status==="pending"){
+            setEstadoCompra("pending")
+            setTypeNav("check")
+        }else if(params.status==="error"){
+            setEstadoCompra("error")
+            setTypeNav("check")
+        }
+    }, [params]);// eslint-disable-line react-hooks/exhaustive-deps
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
