@@ -5,13 +5,14 @@ import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones"
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 import PopUpInfoDir from "./PopUpInfoDir";
+import { useParams } from "react-router-dom";
 
 
 const InfoContact=({
     setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,
     direccion,setDireccion,provincias,setProvincias,usaDireccionCargada,setUsaDireccionCargada
 })=>{
-
+    const params = useParams()
     const {FormAPI}=useContext(UseFormContext)
     
     const [direccionesCargadas,setDireccionesCargadas]=useState([])
@@ -22,6 +23,7 @@ const InfoContact=({
     let clase2 = "formObligatorioTitle"
 
     useEffect(() => {
+        console.log("Params",params)
         FormAPI(
             "",
             "direcciones",
@@ -33,7 +35,7 @@ const InfoContact=({
         })
 
         const formDirecciones = new FormData()
-        formDirecciones.append('idcliente', 62)
+        formDirecciones.append('idcliente', 68)
         FormAPI(
             formDirecciones,
             "direcciones",
@@ -41,6 +43,8 @@ const InfoContact=({
         ).then((res)=>{
             if(res.status==="success"){
                 setDireccionesCargadas(res.result)
+            }else{
+                console.log("ARREGLAR ERROR NO TIENE DIRECCION")
             }
         })
 
@@ -539,6 +543,7 @@ const InfoContact=({
                 resDirecciones={resDirecciones}
                 handleFinForm={handleFinForm}
                 form={form}
+                setBuscandoDir={setBuscandoDir}
             />}
         </div>
     )
