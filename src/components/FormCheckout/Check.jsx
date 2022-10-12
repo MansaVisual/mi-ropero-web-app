@@ -2,10 +2,11 @@ import React from "react"
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 
-const CheckForm = ({setTypeNav,estadoCompra})=>{
-    console.log(estadoCompra)
+const CheckForm = ({setTypeNav,estadoCompra,metodoEnvio})=>{
+
     return(
         <div className="checkContainer">
             {estadoCompra==="success" ?
@@ -16,7 +17,10 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
 
                     <div className="card">
                         <WhatsAppIcon className="logoWhap"/>
-                        <p>Nos comunicaremos con vos por Whatsapp a la brevedad para coordinar la entrega.</p>
+                        <p>
+                            {metodoEnvio==="1"?"Nos comunicaremos con vos por Whatsapp a la brevedad para coordinar la entrega.":
+                            "En el detalle de tu compra podrás ir viendo el seguimiento de la entrega por OCA."}
+                        </p>
                     </div>
 
                     <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
@@ -41,9 +45,9 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                         </>
                     :
                         <>
-                            <CancelOutlinedIcon className="botonError"/>
+                            <InfoOutlinedIcon className="botonInfo"/>
                             <p className="felicidades">¡Te estamos esperando!</p>
-                            <p>La compra esta en estado "pendiente"</p>
+                            <p>La compra esta en estado "pendiente".</p>
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             

@@ -17,6 +17,13 @@
             font-size: 32px;
         }
     }
+    .botonInfo{
+        font-size: 48px;
+        color: #e4b020;
+        @include screen_601{
+            font-size: 32px;
+        }
+    }
     p{
         font-weight: 600;
         font-size: 15px;
