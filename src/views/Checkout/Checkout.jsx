@@ -1,7 +1,7 @@
 import { Button, Grid, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system"
 import React,{useState,useEffect} from "react"
-import { useLocation,useNavigate,useParams } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import "../../styles/scss/styles.scss"
 import theme from "../../styles/theme";
@@ -17,7 +17,6 @@ const Checkout = ()=>{
     const navigate = useNavigate();
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
-    const params = useParams()
 
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
@@ -47,18 +46,18 @@ const Checkout = ()=>{
 
 
     useEffect(() => {
-        console.log("Params",params)
-        if(params.status==="success"){
+        let query = new URLSearchParams(window.location.search)
+        if(query.status==="success"){
             setEstadoCompra("success")
             setTypeNav("check")
-        }else if(params.status==="pending"){
+        }else if(query.status==="pending"){
             setEstadoCompra("pending")
             setTypeNav("check")
-        }else if(params.status==="error"){
+        }else if(query.status==="error"){
             setEstadoCompra("error")
             setTypeNav("check")
         }
-    }, [params]);// eslint-disable-line react-hooks/exhaustive-deps
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
