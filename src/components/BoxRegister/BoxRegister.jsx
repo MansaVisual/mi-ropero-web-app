@@ -9,37 +9,64 @@ import { UseLoginContext } from '../../context/LoginContext';
 const BoxRegister = () => {
   const navigate = useNavigate();
   const {LoginAPI}=useContext(UseLoginContext)
+  const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
   const [showPassword, setShowPassword] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
 
   const [errorPass,setErrorPass]=useState(false)
+  const [errorMail,setErrorMail]=useState(false)
+  const [errorPassLength,setErrorPassLength]=useState(false)
   const [campoObligatorio,setCampoObligatorio]=useState(false)
   const [errorNewMail,setErrorNewMail]=useState(false)
   const [load,setLoad]=useState(false)
 
 
   const handleRegistrar=async()=>{
+    // const loginUserE = new FormData()
+    // loginUserE.append('idcliente', "24914")
+    // await LoginAPI(
+    //     loginUserE,
+    //     "clientes",
+    //     "delete"
+    // ).then((res)=>{
+    //     console.log(res)
+    // })
+
     setErrorPass(false)
     setCampoObligatorio(false)
     setLoad(true)
-    if(document.getElementById("nombreApellido").value==="" || document.getElementById("email").value===""
+    if(document.getElementById("nombre").value==="" || document.getElementById("apellido").value==="" || document.getElementById("email").value===""
     || document.getElementById("password").value==="" || document.getElementById("password2").value===""){
       setCampoObligatorio(true)
+      scrollTop()
       setLoad(false)
       return
     }
     if(document.getElementById("password").value!==document.getElementById("password2").value){
       setErrorPass(true)
+      scrollTop()
+      setLoad(false)
+      return
+    }else if(document.getElementById("password").value.length<7 || document.getElementById("password2").value.length<7){
+      setErrorPassLength(true)
+      scrollTop()
       setLoad(false)
       return
     }
-    // navigate("/validacionLogin")
+    if(emailRegex.test(document.getElementById("email").value)){
+    }else{
+      setErrorMail(true)
+      scrollTop()
+      setLoad(false)
+      return
+    }
+
     const loginUser = new FormData()
     loginUser.append('email', document.getElementById("email").value)
     loginUser.append('clave', document.getElementById("password").value)
-    loginUser.append('nombre', document.getElementById("nombreApellido").value)
-    loginUser.append('apellido', "test")
+    loginUser.append('nombre', document.getElementById("nombre").value)
+    loginUser.append('apellido', document.getElementById("apellido").value)
     await LoginAPI(
       loginUser,
       "clientes",
@@ -49,37 +76,35 @@ const BoxRegister = () => {
         if(res.status==="success"){
           const validateCod = new FormData()
           validateCod.append("idcliente",res.result.idcliente)
+          localStorage.setItem("sendCodMiRopero",JSON.stringify({id:res.result.idcliente,mail:res.result.email}))
           await LoginAPI(
             validateCod,
             "clientes",
             "validate_send"
             ).then((res)=>{
+              console.log(res)
               setLoad(false)
-              if(res.status==="success"){
-              localStorage.setItem("sendCodMiRopero",res.result.idcliente)
+              scrollTop()
               navigate("/validacionLogin")
-            }else{
-              alert("Ocurrió un problema. Vuelva a intentarlo")
             }
-          })
+          )
         }else{
           if(res.result==="El email ya se encuentra registrado"){
             setErrorNewMail(true)
             setLoad(false)
+            scrollTop()
           }
         }
     })
 
-    // const loginUserE = new FormData()
-    // loginUserE.append('idcliente', "24903")
-    // await LoginAPI(
-    //     loginUserE,
-    //     "clientes",
-    //     "delete"
-    // ).then((res)=>{
-    //     console.log(res)
-    // })
   }
+
+  const scrollTop = (param)=>{
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+}
 
   return (
     <div className='boxRegisterContainer'>
@@ -109,69 +134,85 @@ const BoxRegister = () => {
               </div>
           </div>
         }
+        {errorMail &&
+          <div style={{width:"662px"}}>
+              <div className="errorBox">
+                  <CancelOutlinedIcon color="secondary" className="cruz"/>
+                  <p>El mail no es correcto.</p>
+              </div>
+          </div>
+        }
+        {errorPassLength &&
+          <div style={{width:"662px"}}>
+              <div className="errorBox">
+                  <CancelOutlinedIcon color="secondary" className="cruz"/>
+                  <p>La contraseña debe tener al menos 7 caracteres.</p>
+              </div>
+          </div>
+        }
+
         <div className="inputContainer">
           <div className="inputBox">
-            <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Nombre *</p>
+            <p className="labelInput" style={{color:(campoObligatorio && document.getElementById("nombre").value==="")&&"#FF3F20"}}>Nombre *</p>
               <TextField
-                color={campoObligatorio?"secondary":"primary"}
+                color={(campoObligatorio && document.getElementById("nombre").value==="")?"secondary":"primary"}
                 className="input"
                 size="small"
                 placeholder="Sabrina"
-                id="nombreApellido"
+                id="nombre"
                 onChangeCapture={()=>setCampoObligatorio(false)}
                 inputProps={{
-                  style:{border:campoObligatorio&&"1px solid #FF3F20"}
+                  style:{border:(campoObligatorio && document.getElementById("nombre").value==="")&&"1px solid #FF3F20"}
                 }}
                 />
           </div>
           <div className="inputBox2">
-{/*             <p className="labelInput" style={{color:(campoObligatorio || errorNewMail)&&"#FF3F20"}}>Apellido *</p>
- */}            <p className="labelInput" style={{color:campoObligatorio&&"#FF3F20"}}>Apellido *</p>
+            <p className="labelInput" style={{color:(campoObligatorio && document.getElementById("apellido").value==="")&&"#FF3F20"}}>Apellido *</p>
 
             <TextField
-              /* color={(campoObligatorio || errorNewMail)?"secondary":"primary"} */
-              color={campoObligatorio?"secondary":"primary"}
+              color={(campoObligatorio && document.getElementById("apellido").value==="")?"secondary":"primary"}
               className="input"
               size="small"
               placeholder="Godoy"
-              /* id="email" */
               id="apellido"
               onChangeCapture={()=>setCampoObligatorio(false)}
-              /* onChangeCapture={()=>{setCampoObligatorio(false);setErrorNewMail(false)}} */
               inputProps={{
-                style:{border:(campoObligatorio || errorNewMail)&&"1px solid #FF3F20"}
+                style:{border:(campoObligatorio && document.getElementById("apellido").value==="")&&"1px solid #FF3F20"}
               }}
             />
           </div>
         </div>
         <div className="inputMailContainer">
           <div className="inputBox">
-            <p className="labelInput" style={{color:(campoObligatorio || errorNewMail)&&"#FF3F20"}}>Dirección de correo electrónico *</p>
+            <p className="labelInput"
+              style={{color:((campoObligatorio && document.getElementById("email").value==="") || errorNewMail || errorMail)&&"#FF3F20"}}
+            >Dirección de correo electrónico *</p>
             <TextField
-              color={(campoObligatorio || errorNewMail)?"secondary":"primary"}
+              color={((campoObligatorio && document.getElementById("email").value==="") || errorNewMail || errorMail)?"secondary":"primary"}
               className="input"
               size="small"
               placeholder="nombre@dominio.com"
               id="email"
-              onChangeCapture={()=>{setCampoObligatorio(false);setErrorNewMail(false)}}
+              onChangeCapture={()=>{setCampoObligatorio(false);setErrorNewMail(false);setErrorMail(false)}}
               inputProps={{
-                style:{border:(campoObligatorio || errorNewMail)&&"1px solid #FF3F20"}
+                style:{border:((campoObligatorio && document.getElementById("email").value==="") || errorNewMail || errorMail)&&"1px solid #FF3F20"}
               }}
             />
           </div>
         </div>
         <div className="inputContainer">
           <div className="inputBox">
-            <p className="labelInput" style={{color:(campoObligatorio || errorPass)&&"#FF3F20"}}>Contraseña *</p>
+            <p className="labelInput" style={{color:((campoObligatorio && document.getElementById("password").value==="") || errorPass || errorPassLength)&&"#FF3F20"}}>Contraseña *</p>
               <TextField
-                color={(campoObligatorio || errorPass)?"secondary":"primary"}
+                color={((campoObligatorio && document.getElementById("password").value==="") || errorPass || errorPassLength)?"secondary":"primary"}
                 className="passwordInput"
                 size="small"
                 placeholder={showPassword ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
                 type={showPassword ? 'text' : 'password'}
                 id="password"
-                onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false)}}
+                onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false);setErrorPassLength(false)}}
                 InputProps={{
+                  minLength:7,
                   endAdornment: (
                     <InputAdornment position="end">
                       {showPassword ? 
@@ -180,21 +221,22 @@ const BoxRegister = () => {
                       }
                     </InputAdornment>
                   ),
-                  style: {fontSize: 15,border:(campoObligatorio || errorPass)&&"1px solid #FF3F20"} 
+                  style: {fontSize: 15,border:((campoObligatorio && document.getElementById("password").value==="") || errorPass || errorPassLength)&&"1px solid #FF3F20"} 
               }}
                 />
           </div>
           <div className="inputBox2">
-            <p className="labelInput" style={{color:(campoObligatorio || errorPass)&&"#FF3F20"}}>Confirmar contraseña *</p>
+            <p className="labelInput" style={{color:((campoObligatorio && document.getElementById("password").value==="") || errorPass || errorPassLength)&&"#FF3F20"}}>Confirmar contraseña *</p>
             <TextField
-              color={(campoObligatorio || errorPass)?"secondary":"primary"}
+              color={((campoObligatorio && document.getElementById("password2").value==="") || errorPass || errorPassLength)?"secondary":"primary"}
               className="passwordInput"
               size="small"
               placeholder={showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
               id="password2"
-              onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false)}}
+              onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false);setErrorPassLength(false)}}
               type={showPassword2 ? 'text' : 'password'}
               InputProps={{
+                minLength:7,
                 endAdornment: (
                   <InputAdornment position="end">
                     {showPassword2 ? 
@@ -203,7 +245,7 @@ const BoxRegister = () => {
                     }
                   </InputAdornment>
                 ),
-                style: {fontSize: 15,border:(campoObligatorio || errorPass)&&"1px solid #FF3F20"} 
+                style: {fontSize: 15,border:((campoObligatorio && document.getElementById("password2").value==="") || errorPass || errorPassLength)&&"1px solid #FF3F20"} 
               }}
             />
           </div>
