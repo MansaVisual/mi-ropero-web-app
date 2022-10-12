@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import leftArrow from '../../assets/img/leftArrow.png';
-import { Button } from '@mui/material';
 import Sweater from '../../assets/img/Sweater.png';
 import Basura from '../../assets/img/basura.png';
 
