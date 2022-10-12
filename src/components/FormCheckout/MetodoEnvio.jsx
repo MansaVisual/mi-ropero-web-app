@@ -60,7 +60,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
         }
     }
 
-
     const handleClickContinuar =async ()=>{
         if(metodoEnvio==="345838"){
             setSetSucursal(true)

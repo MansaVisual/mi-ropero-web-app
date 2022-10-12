@@ -7,7 +7,7 @@ import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 
-const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc,form})=>{
+const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc,form,saveDirecc})=>{
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const {carrito,CartAPI}=useContext(UseCartContext)
@@ -24,10 +24,14 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             }
         }
 
+        if(metodoEnvio==="345838"){
+            direccion.sucursal_retiro=sucursalEntrega
+        }
+
         const finalizarCompra=new FormData()
         finalizarCompra.append("comprador_id",68)
         finalizarCompra.append("telefono",form.telefono)
-        finalizarCompra.append("direccion_entrega",JSON.stringify(direccion))
+        finalizarCompra.append("direccion_entrega",JSON.stringify({direccion}))
         finalizarCompra.append("productos",productos.join(","))
         finalizarCompra.append("promocion_codigo",codDesc)
         finalizarCompra.append("medio_envio",metodoEnvio)
@@ -41,6 +45,8 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             if(res.status==="success"){
                 setLoad(false)
                 if(res.result.init_point!==undefined){
+                    localStorage.setItem("saveDireccionMiRopero",JSON.stringify(saveDirecc))
+                    localStorage.setItem("newDireccionMiRopero",JSON.stringify(direccion))
                     window.top.location.href=res.result.init_point
                 }else{
                     setTypeNav("check")

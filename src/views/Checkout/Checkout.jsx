@@ -133,6 +133,7 @@ const Checkout = ()=>{
                         metodoEnvio={metodoEnvio}
                         sucursalEntrega={sucursalEntrega}
                         sucursales={sucursales}
+                        saveDirecc={saveDirecc}
                     /> : null}
 
                     {typeNav === "check" ? <CheckForm 
