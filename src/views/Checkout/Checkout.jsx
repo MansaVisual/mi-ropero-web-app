@@ -54,7 +54,7 @@ const Checkout = ()=>{
         }else if(query.get("status")==="pending"){
             setEstadoCompra("pending")
             setTypeNav("check")
-        }else if(query.get("status")==="error"){
+        }else if(query.get("status")==="failure"){
             setEstadoCompra("error")
             setTypeNav("check")
         }
