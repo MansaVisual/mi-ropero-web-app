@@ -20,6 +20,7 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     const [envioMoto,setEnvioMoto]=useState(false)
 
     useEffect(()=>{
+        // console.log(direccion)
         if(costoMoto.precio!==undefined){
             setEnvioMoto(true)
         }else{
