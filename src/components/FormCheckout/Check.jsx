@@ -6,7 +6,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 
 const CheckForm = ({setTypeNav,estadoCompra,metodoEnvio})=>{
-
+    console.log(metodoEnvio)
     return(
         <div className="checkContainer">
             {estadoCompra==="success" ?

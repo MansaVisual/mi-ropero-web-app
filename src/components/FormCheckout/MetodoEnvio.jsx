@@ -12,7 +12,7 @@ import { UseFormContext } from "../../context/FormContext"
 import Loader from "../Loader/Loader"
 
 
-const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio,direccion})=>{
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,setMetodoEnvio,direccion})=>{
     const {costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc,costoMoto}=useContext(UseFormContext)
 
     const [viewSucursales,setViewSucursales]=useState(false)
@@ -62,7 +62,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
 
 
     const handleClickContinuar =async ()=>{
-        console.log(metodoEnvio)
         if(metodoEnvio==="345838"){
             setSetSucursal(true)
         }else if(metodoEnvio===""){
