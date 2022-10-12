@@ -8,6 +8,7 @@ import MisDirecciones from '../../components/PerfilActions/MisDirecciones';
 import MisCompras from '../../components/PerfilActions/MisCompras';
 import { useParams } from 'react-router-dom';
 import DetalleCompra from '../../components/PerfilActions/DetalleCompra';
+import MisMensajes from '../../components/PerfilActions/MisMensajes';
 
 const Perfil = () => {
   const params = useParams();
@@ -21,6 +22,7 @@ const Perfil = () => {
       {params.perfilSeccion === 'MIS DIRECCIONES' && <MisDirecciones />}
       {params.perfilSeccion === 'MIS COMPRAS' && <MisCompras />}
       {params.perfilSeccion === 'MIS COMPRAS DETALLE' && <DetalleCompra />}
+      {params.perfilSeccion === 'MIS MENSAJES' && <MisMensajes />}
     </Grid>
   );
 };
