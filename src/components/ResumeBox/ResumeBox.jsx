@@ -8,7 +8,7 @@ import Loader from "../Loader/Loader";
 const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const navigate = useNavigate();
 
-    const {FormAPI,costoSucDom,costoSucSuc}=useContext(UseFormContext)
+    const {FormAPI,costoSucDom,costoSucSuc,costoMoto}=useContext(UseFormContext)
     const {costoCarrito,cantidadCarrito}=useContext(UseCartContext)
 
     const [errorCodigo,setErrorCodigo]=useState(false)
@@ -21,7 +21,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
 
     
     useEffect(() => {
-        let costoEnv=metodoEnvio==="345837"?costoSucDom:metodoEnvio==="345838"?costoSucSuc:metodoEnvio==="1"?500:0
+        let costoEnv=metodoEnvio==="345837"?costoSucDom:metodoEnvio==="345838"?costoSucSuc:metodoEnvio==="1"?costoMoto.precio:0
         setCostoFinal(costoCarrito+Number(costoEnv))
     }, [metodoEnvio]);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -74,7 +74,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             {metodoEnvio!=="" && 
                 <div className="box">
                     <p className="subtitulo">Envío</p>
-                    <p className="subtitulo p14">$ {metodoEnvio==="345837"?costoSucDom: metodoEnvio==="345838"?costoSucSuc:"500"}</p>
+                    <p className="subtitulo p14">$ {metodoEnvio==="345837"?costoSucDom: metodoEnvio==="345838"?costoSucSuc:costoMoto.precio}</p>
                 </div>
             }
             {!stateForm ?
