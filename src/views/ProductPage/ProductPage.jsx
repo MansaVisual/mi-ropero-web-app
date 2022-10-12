@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Box,
+  Container,
   Grid,
   Link,
   Rating,
@@ -70,7 +71,7 @@ const ProductPage = () => {
   };
 
   return (
-    <>
+    <Container maxWidth="xl">
       <Grid
         container
         sx={{
@@ -270,7 +271,7 @@ const ProductPage = () => {
           </Box>
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };
 
