@@ -536,6 +536,7 @@ const InfoContact=({
             {viewDireccion && <PopUpInfoDir
                 direccion={direccion}
                 setDireccion={setDireccion}
+                provincia={provincia}
                 setViewDireccion={setViewDireccion}
                 resDirecciones={resDirecciones}
                 handleFinForm={handleFinForm}

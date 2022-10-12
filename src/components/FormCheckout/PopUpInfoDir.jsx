@@ -3,7 +3,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import home from "../../assets/img/home.png"
 import { Button, Radio } from "@mui/material";
 
-const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm,form,setBuscandoDir})=>{
+const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm,form,setBuscandoDir,provincia})=>{
 
     const handleAccept=async(dir)=>{
         setDireccion({...dir,
@@ -11,7 +11,8 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
             entre_calle_1:form.entrecalle1,
             entre_calle_2:form.entrecalle2,
             piso:form.piso,
-            departamento:form.depto
+            departamento:form.depto,
+            idprovincia:provincia
         })
     }
     return(
