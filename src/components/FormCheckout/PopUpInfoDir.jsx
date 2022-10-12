@@ -3,7 +3,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import home from "../../assets/img/home.png"
 import { Button, Radio } from "@mui/material";
 
-const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm,form})=>{
+const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,handleFinForm,form,setBuscandoDir})=>{
 
     const handleAccept=async(dir)=>{
         setDireccion({...dir,
@@ -18,9 +18,9 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
         <>
             {resDirecciones!==undefined &&
                 <div className="setSucursales">
-                    <div className="fondoPopUp" onClick={()=>{setViewDireccion(false);setDireccion({})}}></div>
+                    <div className="fondoPopUp" onClick={()=>{setViewDireccion(false);setDireccion({});setBuscandoDir(false)}}></div>
                     <div className="popUp">
-                        <CancelIcon color="tertiary" className="cross" onClick={()=>{setViewDireccion(false);setDireccion({})}}/>
+                        <CancelIcon color="tertiary" className="cross" onClick={()=>{setViewDireccion(false);setDireccion({});setBuscandoDir(false)}}/>
                         <img src={home} alt="SHOP" color="primary" className="botonLogo"/>
                         <p>Confirme su domicilio.</p>
                         <div className="cardContainer">
