@@ -47,6 +47,7 @@ const Checkout = ()=>{
 
     useEffect(() => {
         let query = new URLSearchParams(window.location.search)
+        console.log("PARAMS",query)
         if(query.status==="success"){
             setEstadoCompra("success")
             setTypeNav("check")
