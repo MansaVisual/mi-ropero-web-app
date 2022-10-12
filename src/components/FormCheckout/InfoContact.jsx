@@ -5,14 +5,14 @@ import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones"
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 import PopUpInfoDir from "./PopUpInfoDir";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 
 const InfoContact=({
     setTypeNav,form,setForm,setSucursales,saveDirecc,setSaveDirecc,
     direccion,setDireccion,provincias,setProvincias,usaDireccionCargada,setUsaDireccionCargada
 })=>{
-    const params = useParams()
+    // const params = useParams()
     const {FormAPI}=useContext(UseFormContext)
     
     const [direccionesCargadas,setDireccionesCargadas]=useState([])
@@ -23,7 +23,7 @@ const InfoContact=({
     let clase2 = "formObligatorioTitle"
 
     useEffect(() => {
-        console.log("Params",params)
+        // console.log("Params",params)
         FormAPI(
             "",
             "direcciones",

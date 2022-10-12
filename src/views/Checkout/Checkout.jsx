@@ -47,6 +47,7 @@ const Checkout = ()=>{
 
     useEffect(() => {
         console.log("Params",params)
+        
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
