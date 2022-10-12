@@ -46,20 +46,24 @@ const Checkout = ()=>{
 
 
     useEffect(() => {
+        urlParams()
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+    const urlParams=async()=>{
         let query = new URLSearchParams(window.location.search)
         console.log(estadoCompra)
         console.log("PARAMS",query.get("status"))
         if(query.get("status")==="success"){
-            setEstadoCompra("success")
+            await setEstadoCompra("success")
             setTypeNav("check")
         }else if(query.get("status")==="pending"){
-            setEstadoCompra("pending")
+            await setEstadoCompra("pending")
             setTypeNav("check")
         }else if(query.get("status")==="failure"){
-            setEstadoCompra("error")
+            await setEstadoCompra("error")
             setTypeNav("check")
         }
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    }
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
