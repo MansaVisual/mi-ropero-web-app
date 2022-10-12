@@ -54,6 +54,10 @@ function App() {
                     path="/checkout"
                     element={<Checkout />}
                   />
+                  {/* <Route
+                    path="/checkout/:status"
+                    element={<Checkout />}
+                  /> */}
                   <Route
                     path="/login"
                     element={<Login />}
