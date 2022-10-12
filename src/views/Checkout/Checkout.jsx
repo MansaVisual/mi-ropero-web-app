@@ -140,7 +140,6 @@ const Checkout = ()=>{
                         saveDirecc={saveDirecc}
                         direccion={direccion}
                         form={form}
-                        metodoEnvio={metodoEnvio}
                         estadoCompra={estadoCompra}
                     /> : null}
 

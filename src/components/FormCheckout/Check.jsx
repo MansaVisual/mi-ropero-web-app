@@ -1,12 +1,16 @@
-import React,{useEffect} from "react"
+import React,{useEffect,useState} from "react"
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 
-const CheckForm = ({setTypeNav,estadoCompra,metodoEnvio})=>{
+const CheckForm = ({setTypeNav,estadoCompra})=>{
+    const [metodoEnvio,setMetodoEnvio]=useState("")
+    
     useEffect(() => {
+        setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
+
         if(estadoCompra==="success"){
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
             

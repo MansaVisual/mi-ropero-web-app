@@ -27,7 +27,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
         if(metodoEnvio==="345838"){
             direccion.sucursal_retiro=sucursalEntrega
         }
-
+        
         const finalizarCompra=new FormData()
         finalizarCompra.append("comprador_id",68)
         finalizarCompra.append("telefono",form.telefono)
@@ -47,6 +47,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
                 if(res.result.init_point!==undefined){
                     localStorage.setItem("saveDireccionMiRopero",JSON.stringify(saveDirecc))
                     localStorage.setItem("newDireccionMiRopero",JSON.stringify(direccion))
+                    localStorage.setItem("metodoEnvioMiRopero",JSON.stringify(metodoEnvio))
                     window.top.location.href=res.result.init_point
                 }else{
                     setTypeNav("check")
