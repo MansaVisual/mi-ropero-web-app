@@ -97,7 +97,10 @@ const MisCompras = ({setTypeNav}) => {
                     <span>{compra.estado.codigo}</span>
                     <span>{compra.estado.fecha}</span>
                   </div>
-                  <Button className="comprasButton" >VER COMPRA</Button>        
+                  <Button 
+                    className="comprasButton" 
+                    onClick={()=>navigate(`/perfil/MIS COMPRAS DETALLE`)}
+                  >VER COMPRA</Button>        
                 </div>
               )
             })}

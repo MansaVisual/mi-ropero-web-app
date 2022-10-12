@@ -1,0 +1,171 @@
+.detalleCompraContainer{
+    margin-top: 40px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include screen_705{
+        margin-top: 24px;
+        width: 100%;
+    }
+    .title{
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 31px;
+        color: #443988;
+        margin-bottom: 0;
+    }
+    .detailSection{
+        margin-top: 24px;
+        width: 100%;
+        max-width: 1119px;
+        .headerDetail{
+            width: 100%;
+            max-width: 915px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .headerTitle{
+                margin: 0;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 24px;
+                color: #423B3C;
+            }
+            .leftArrowSection{
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                width: 160px;
+                p{
+                    color: #BABCBE;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+                img{
+                    height: 7.94px;
+                    width: 4.24px;
+                    margin-right: 10px;
+                }
+            }
+            .rightArrowSection{
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                width: 160px;
+                p{
+                    color: #BABCBE;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+                img{
+                    height: 7.94px;
+                    width: 4.24px;
+                    margin-left: 10px;
+                }
+            }
+        }
+        .bodyDetail{
+            margin-top: 32px;
+            div:not(:last-child) { 
+                margin-bottom: 24px;
+              }
+            div{
+                display: flex;
+                p{
+                    margin: 0;
+                    font-size: 15px;
+                    font-weight: 700;
+                    line-height: 20.43px;
+                    color: #423B3C;
+                }
+            }
+            .fecha{
+                .separator{
+                    p{
+                        width: 230px;
+                    }
+                    span{
+                        width: 426px;
+                        /* color: $colorGrisaseo; */
+                        font-size: 15px;
+                        font-weight: 700;
+                        line-height: 20.43px;
+                    }
+                }
+            }
+            .id{
+                .separator{
+                    p{
+                        width: 230px;
+                    }
+                    span{
+                        width: 426px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        line-height: 20.43px;
+                        color: #878787
+                    }
+                }
+            }
+             .tienda{
+                .separator{
+                    p{
+                        width: 230px;
+                    }
+                    span{
+                        width: 426px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        line-height: 20.43px;
+                        color: #878787
+                    }
+                }
+            } 
+            .productos{
+                width: 100%;
+                .separator{
+                    p{
+                        width: 230px;
+                    }
+                    span{
+                        width: 426px;
+                        font-size: 15px;
+                        font-weight: 600;
+                        line-height: 20.43px;
+                        color: #878787
+                    }
+                    .productoContainer{
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        max-width: 680px;
+                        span:last-child{
+                            text-align: end;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .returnLink{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 130px;
+        margin-top: 24px;
+        p{
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+        }
+        img{
+            height: 7.94px;
+            width: 4.24px;
+            margin-right: 10px;
+        }
+    }
+}

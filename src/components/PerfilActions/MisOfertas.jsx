@@ -1,45 +1,96 @@
-import React from "react"
-import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
-import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowBackIosNew } from "@mui/icons-material";
-// import PopUpEliminar from "./PopUpEliminar";
-// import PopUpNotis from "./PopUpNotis";
-// import PopUpSesion from "./PopUpSesion";
+import React from 'react';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ArrowBackIosNew } from '@mui/icons-material';
+import Sweater from '../../assets/img/Sweater.png';
+import Basura from '../../assets/img/basura.png';
 
-const MisOfertas = () =>{
-    const location = useLocation();
-    const pathnames = location.pathname.split("/").filter((x) => x)
-    const navigate = useNavigate()
+const MisOfertas = () => {
+  const location = useLocation();
+  const pathnames = location.pathname.split('/').filter((x) => x);
+  const navigate = useNavigate();
 
-    return(
-        <div className="misOfertasContainer">
-            <Breadcrumbs links={pathnames}/>
-            <div className="container">
-                <p className="title">MIS OFERTAS</p>
-                <div className="cardsContainer">
-                    <div className="card">
-                        
-                    </div>
-                    <div className="card">
-                        
-                    </div>
-                    <div className="card">
-                        
-                    </div>
-                    <div className="card">
-                        
-                    </div>
+  const array = [
+    {
+      img: Sweater,
+      titulo:
+        'Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado',
+      fecha: 'Fecha: 21/7/2022 11:08:20',
+      estado: 'En proceso de evaluación',
+      oferta: 200,
+    },
+    {
+      img: Sweater,
+      titulo:
+        'Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado',
+      fecha: 'Fecha: 21/7/2022 11:08:20',
+      estado: 'En proceso de evaluación',
+      oferta: 200,
+    },
+    {
+      img: Sweater,
+      titulo:
+        'Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado',
+      fecha: 'Fecha: 21/7/2022 11:08:20',
+      estado: 'En proceso de evaluación',
+      oferta: 200,
+    },
+  ];
+
+  return (
+    <div className='misOfertasContainer'>
+      <Breadcrumbs links={pathnames} />
+      <div className='container'>
+        <p className='title'>MIS OFERTAS</p>
+        <div className='cardsContainer'>
+          {array.map((producto) => {
+            return (
+              <div className='desktopCard'>
+                <div className='productoData'>
+                  <img src={producto.img} alt='cardImage' />
+                  <div>
+                    <p className='productoTitle'>{producto.titulo}</p>
+                    <p className='productoDate'>{producto.fecha}</p>
+                    <p className='productoState'>{producto.estado}</p>
+                  </div>
                 </div>
-                <p className="volver" onClick={()=>navigate(`/perfil`)}>
-                    <ArrowBackIosNew sx={{fontSize:"10px"}}/>
-                    VOLVER A MI PERFIl
-                </p>
-            </div>
-            {/* <PopUpNotis></PopUpNotis> */}
-            {/* <PopUpSesion></PopUpSesion> */}
-            {/* <PopUpEliminar></PopUpEliminar> */}
+                <div className='ofertaData'>
+                  <p className='oferta'>OFERTA</p>
+                  <p className='monto'>${producto.oferta}</p>
+                  <img src={Basura} alt='BasuraIcon' />
+                </div>
+              </div>
+            );
+          })}
+          {array.map((producto) => {
+            return (
+              <div className='mobileCard'>
+                <img
+                  src={producto.img}
+                  className='productImg'
+                  alt='cardImage'
+                />
+                <div>
+                  <p className='productoTitle'>{producto.titulo}</p>
+                  <p className='productoDate'>{producto.fecha}</p>
+                  <div>
+                    <span className='firstSpan'>OFERTA</span>
+                    <span className='secondSpan'>${producto.oferta}</span>
+                  </div>
+                  <p className='productoState'>{producto.estado}</p>
+                </div>
+                <img src={Basura} className='trashICon' alt='basuraIcon' />
+              </div>
+            );
+          })}
         </div>
-    )
-}
+        <p className='volver' onClick={() => navigate(`/perfil`)}>
+          <ArrowBackIosNew sx={{ fontSize: '10px' }} />
+          VOLVER A MI PERFIl
+        </p>
+      </div>
+    </div>
+  );
+};
 
-export default MisOfertas
+export default MisOfertas;
