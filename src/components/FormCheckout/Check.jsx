@@ -21,7 +21,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                 dir.append("nombre",direccion.calle+" "+direccion.numero)
                 dir.append("codigo_postal",direccion.codigo_postal)
                 dir.append("provincia",direccion.provincia)
-                // dir.append("",direccion.)
+                dir.append("idprovincia",direccion.idprovincia)
                 // dir.append("",direccion.)
                 dir.append("calle",direccion.calle)
                 dir.append("numero",direccion.numero)
@@ -30,7 +30,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                 dir.append("entre_calle_1",direccion.entre_calle_1)
                 dir.append("entre_calle_2",direccion.entre_calle_2)
                 dir.append("informacion_adicional",direccion.informacion_adicional)
-                // dir.append("",direccion.)
+                dir.append("normalized",direccion)
             }
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
