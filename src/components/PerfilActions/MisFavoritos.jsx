@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ProductCard from '../ProductCard/ProductCard';
 import leftArrow from '../../assets/img/leftArrow.png'
@@ -7,6 +7,7 @@ import leftArrow from '../../assets/img/leftArrow.png'
 const MisFavoritos = ({setTypeNav}) => {
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x);
+    const navigate = useNavigate();
 
     const slides = [
         {
@@ -74,7 +75,7 @@ const MisFavoritos = ({setTypeNav}) => {
                     </div>
                 ))}                   
             </div>
-            <div className="returnLink" onClick={() => setTypeNav("miPerfil")}>
+            <div className="returnLink" onClick={()=>navigate(`/perfil`)}>
                 <img src={leftArrow} alt="leftArrow" />
                 <p>VOLVER A MI PERFIL</p>
             </div>

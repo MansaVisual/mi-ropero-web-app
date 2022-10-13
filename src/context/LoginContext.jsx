@@ -24,21 +24,13 @@ export const LoginContext = ({children}) => {
         return resFinal
     }
 
-    // useEffect(() => {
-    //     const eliminar = new FormData()
-    //     eliminar.append('email', "dg.palavecino@gmail.com")
-    //     eliminar.append('clave', "nuevaPass2022")
-    //     LoginAPI(
-    //         eliminar,
-    //         "clientes",
-    //         "login"
-    //     ).then(async(res)=>{
-    //         console.log(res)
-    //     })
-    // }, []);
+    const loginStorage=async()=>{
+        const res = await localStorage.getItem("idClienteMiRopero")
+        return res
+    }
 
     return(
-        <UseLoginContext.Provider value={{LoginAPI}}>
+        <UseLoginContext.Provider value={{LoginAPI,loginStorage}}>
             {children}
         </UseLoginContext.Provider>
     )

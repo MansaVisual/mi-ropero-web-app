@@ -177,7 +177,7 @@
         max-width: 300px;
         margin-bottom: 8px;
         @include screen_1450{
-            margin: 0px auto;
+            margin: 0px 16px;
         }
         @include screen_1001{
             margin: auto;

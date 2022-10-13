@@ -1,0 +1,130 @@
+.misDireccContainer{
+    margin-top: 40px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include screen_705{
+        margin-top: 24px;
+        width: 100%;
+    }
+    .titleContainer{
+        display: flex;
+        align-items: center;
+        margin-top: 24px;
+        .title{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 31px;
+            color: #443988;
+            margin: 0;
+        }
+        .addDirection{
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 17px;
+            margin: 0 0 0 60px;
+            color:#443988;
+            text-decoration: underline;
+        }
+    }
+    .direcSubtitle{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        color: #878787;
+        margin-bottom: 0;
+        margin-top: 24px;
+    }
+    .returnLink{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 130px;
+        margin-top: 24px;
+        p{
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+        }
+        img{
+            height: 7.94px;
+            width: 4.24px;
+            margin-right: 10px;
+        }
+    }
+    .cardContainer{
+        margin-top: 24px;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        @include screen_950{
+            justify-content: center;
+        }
+        .domicilioEntrega{
+            width: 373px;
+            padding: 24px, 32px, 24px, 32px;
+            @include screen_950{
+                width: 329px;
+                padding: 16px, 16px, 16px, 4px;
+                justify-content: center;
+            }
+            .domicilioTitle{
+                font-weight: 600;
+                font-size: 15px;
+                line-height: 24px;
+                color: #878787;
+            }
+            .checkedBorder{
+                border: 1px solid #443988 !important;
+            }
+            .direcCard{
+                background: #FDFEFF;
+                border: 1px solid #BABCBE;
+                border-radius: 6px;
+                padding: 24px 32px;
+                max-width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                p{
+                    font-weight: 600;
+                    font-size: 13px;
+                    line-height: 21px;
+                    width: 285px;
+                    margin: 0px;
+                    color: #878787;
+                    @include screen_950{
+                        font-weight: 400;
+                        font-size: 13px;
+                        line-height: 20px;
+                    }
+                }
+                .checkedText{
+                    p{
+                        color: #423B3C;
+                    }
+                }
+                .editICon{
+                    width: 16.48px;
+                    height: 14.58px;
+                    position: relative;
+                    bottom: 2.6rem;
+                    right: 0.8rem;
+                    cursor: pointer;
+                    @include screen_950{
+                        right: 3.4rem;
+                    }
+                }
+            }
+            .direccRadio{
+                height: 16px;
+                width: 16px;
+                margin-right: 24px;
+                color: #423B3C;
+            }
+        }
+    }
+}

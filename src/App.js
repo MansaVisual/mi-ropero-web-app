@@ -55,6 +55,11 @@ function App() {
                     element={<Checkout />}
                   />
                   <Route
+                    path="/checkout/:status"
+                    element={<Checkout />}
+                  />
+                  <Route path="*" element={<h1 style={{height:"50vh",marginLeft:"16px"}}>404 Page Not Found</h1>}></Route>
+                  <Route
                     path="/login"
                     element={<Login />}
                   />
@@ -69,7 +74,11 @@ function App() {
                   <Route
                     path="/perfil"
                     element={<Perfil />}
-                  />  
+                  />
+                  <Route
+                    path="perfil/:perfilSeccion"
+                    element={<Perfil />}
+                  />
                 </Routes>
                 <Footer />
               </ThemeProvider>

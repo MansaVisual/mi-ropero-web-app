@@ -17,7 +17,7 @@ const Checkout = ()=>{
     const navigate = useNavigate();
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
-    
+
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
 
@@ -34,15 +34,29 @@ const Checkout = ()=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const [codDesc,setCodDesc]=useState("")
 
-    const [estadoCompra,setEstadoCompra]=useState(false)
+    const [estadoCompra,setEstadoCompra]=useState("")
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         })
-        setEstadoCompra(false)
     }, [typeNav]);
+
+
+    useEffect(() => {
+        let query = new URLSearchParams(window.location.search)
+        if(query.get("status")==="success"){
+            setEstadoCompra("success")
+            setTypeNav("check")
+        }else if(query.get("status")==="pending"){
+            setEstadoCompra("pending")
+            setTypeNav("check")
+        }else if(query.get("status")==="failure"){
+            setEstadoCompra("error")
+            setTypeNav("check")
+        }
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -118,6 +132,7 @@ const Checkout = ()=>{
                         metodoEnvio={metodoEnvio}
                         sucursalEntrega={sucursalEntrega}
                         sucursales={sucursales}
+                        saveDirecc={saveDirecc}
                     /> : null}
 
                     {typeNav === "check" ? <CheckForm 
@@ -125,9 +140,9 @@ const Checkout = ()=>{
                         saveDirecc={saveDirecc}
                         direccion={direccion}
                         form={form}
-                        metodoEnvio={metodoEnvio}
                         estadoCompra={estadoCompra}
                     /> : null}
+
 
 
 

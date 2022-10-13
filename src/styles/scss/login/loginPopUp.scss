@@ -142,4 +142,16 @@
             }
         }
     }
+    .subLabelForm{
+        font-weight: 400;
+        font-size: 13px;
+        align-items: center;
+        color: #FF3F20;
+        margin-top: 8px;
+        @include screen_601{
+            font-size: 12px;
+            text-align: start;
+            text-indent: 0px;
+        }
+    }
 }

@@ -1,38 +1,30 @@
-import React, { useState } from "react"
-import { Grid } from "@mui/material"
-import MiPerfil from "../../components/PerfilActions/MiPerfil";
-import MisOfertas from "../../components/PerfilActions/MisOfertas";
-import MisDatos from "../../components/PerfilActions/MisDatos";
-import MisFavoritos from "../../components/PerfilActions/MisFavoritos";
-import MisDirecciones from "../../components/PerfilActions/MisDirecciones";
+import React from 'react';
+import { Grid } from '@mui/material';
+import MiPerfil from '../../components/PerfilActions/MiPerfil';
+import MisOfertas from '../../components/PerfilActions/MisOfertas';
+import MisDatos from '../../components/PerfilActions/MisDatos';
+import MisFavoritos from '../../components/PerfilActions/MisFavoritos';
+import MisDirecciones from '../../components/PerfilActions/MisDirecciones';
+import MisCompras from '../../components/PerfilActions/MisCompras';
+import { useParams } from 'react-router-dom';
+import DetalleCompra from '../../components/PerfilActions/DetalleCompra';
+import MisMensajes from '../../components/PerfilActions/MisMensajes';
 
-const Perfil = ()=>{
+const Perfil = () => {
+  const params = useParams();
 
-    const [typeNav, setTypeNav] = useState("miPerfil")
+  return (
+    <Grid className='gridContainer'>
+      {params.perfilSeccion === undefined && <MiPerfil />}
+      {params.perfilSeccion === 'OFERTAS REALIZADAS' && <MisOfertas />}
+      {params.perfilSeccion === 'MIS DATOS' && <MisDatos />}
+      {params.perfilSeccion === 'MIS FAVORITOS' && <MisFavoritos />}
+      {params.perfilSeccion === 'MIS DIRECCIONES' && <MisDirecciones />}
+      {params.perfilSeccion === 'MIS COMPRAS' && <MisCompras />}
+      {params.perfilSeccion === 'MIS COMPRAS DETALLE' && <DetalleCompra />}
+      {params.perfilSeccion === 'MIS MENSAJES' && <MisMensajes />}
+    </Grid>
+  );
+};
 
-
-
-    return(
-        <Grid
-            className="gridContainer"
-        >
-            {typeNav === "miPerfil" &&
-                <MiPerfil setTypeNav={setTypeNav}/>
-            }
-            {typeNav === "OFERTAS REALIZADAS" &&
-                <MisOfertas/> 
-            }
-            {typeNav === "MIS DATOS" &&
-                <MisDatos/> 
-            }
-            {typeNav === "MIS FAVORITOS" &&
-                <MisFavoritos setTypeNav={setTypeNav}/> 
-            }
-            {typeNav === "MIS DIRECCIONES" &&
-                <MisDirecciones setTypeNav={setTypeNav}/> 
-            }
-        </Grid>
-    )
-}
-
-export default Perfil
+export default Perfil;

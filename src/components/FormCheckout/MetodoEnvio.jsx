@@ -12,20 +12,19 @@ import { UseFormContext } from "../../context/FormContext"
 import Loader from "../Loader/Loader"
 
 
-const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,form,setMetodoEnvio,direccion})=>{
-    const {costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
-
+const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,setMetodoEnvio,direccion})=>{
+    const {costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc,costoMoto}=useContext(UseFormContext)
+    console.log(direccion)
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)
 
-    useEffect(() => {
-        if(direccion.idprovincia==="1"){
-            setEnvioMoto(true)
-        }
-            }, [direccion,form]);// eslint-disable-line react-hooks/exhaustive-deps
-
     useEffect(()=>{
+        if(costoMoto.precio!==undefined){
+            setEnvioMoto(true)
+        }else{
+            setEnvioMoto(false)
+        }
         if(costoSucDom===false && costoSucSuc===false){
             setCostos(direccion)
         }
@@ -60,7 +59,6 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
             setSucursalEntrega(type)
         }
     }
-
 
     const handleClickContinuar =async ()=>{
         if(metodoEnvio==="345838"){
@@ -135,7 +133,20 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
                         }
                         <p className="subtitle"></p>
                     </div>
-                    <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio">$ 500</p>
+                    {costoMoto === false ?
+                        <div className="precio">
+                            <Loader spin={"spinnerS"}/>
+                        </div>
+                    :   
+                        <>
+                            {costoMoto.precio!==undefined ? 
+                                <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio">$ {costoMoto.precio}</p>
+                            :
+                                <p style={{whiteSpace:"nowrap",width:"57px"}} className="precio"></p>  
+                            }
+                        </>
+                    }
+                    
                 </div>
             </div>
             <div className="domicilioEntrega" onClick={costoSucDom===false ? null : ()=>onClickCheck("345837")}>

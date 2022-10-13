@@ -3,6 +3,8 @@
     margin-right: 72px;
     margin-top: 32px;
     margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
     @include screen_705{
         margin: 32px 0px 0px 0px;
         padding: 0 16px;

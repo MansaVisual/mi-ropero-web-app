@@ -4,6 +4,7 @@ export const UseFormContext = createContext();
 
 export function FormContext ({children}) {
 
+    const [costoMoto,setCostoMoto]=useState(false)
     const [costoSucDom,setCostoSucDom]=useState(false)
     const [costoSucSuc,setCostoSucSuc]=useState(false)
 
@@ -39,6 +40,7 @@ export function FormContext ({children}) {
             if(res.status==="success"){
                 setCostoSucDom(res.result.oca_suc_dom.precio)
                 setCostoSucSuc(res.result.oca_suc_suc.precio)
+                setCostoMoto(res.result.moova)
             }else{
                 setCostos(direccion)
             }
@@ -46,7 +48,7 @@ export function FormContext ({children}) {
     }
 
     return(
-        <UseFormContext.Provider value={{FormAPI,costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc}}>
+        <UseFormContext.Provider value={{FormAPI,costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc,costoMoto}}>
             {children}
         </UseFormContext.Provider>
     )
