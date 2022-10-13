@@ -4,9 +4,11 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const CheckForm = ({setTypeNav,estadoCompra})=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
+    const navigate = useNavigate();
 
     useEffect(() => {
         setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
@@ -53,7 +55,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
 
                     <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
 
-                    <Button className="misCompras">
+                    <Button className="misCompras" onClick={()=>navigate("/perfil/MIS COMPRAS")}>
                         IR A MIS COMPRAS
                     </Button>
                 </>
@@ -67,7 +69,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             
-                            <Button className="misComprasFail" onClick={()=>setTypeNav("tarjeta")}>
+                            <Button className="misComprasFail" onClick={()=>navigate("/carrito")}>
                                 VOLVER
                             </Button>
                         </>
@@ -79,8 +81,8 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             
-                            <Button className="misComprasFail">
-                                ACEPTAR
+                            <Button className="misComprasFail" onClick={()=>navigate("/perfil/MIS COMPRAS")}>
+                                IR A MIS COMPRAS
                             </Button>
                         </>
                     }

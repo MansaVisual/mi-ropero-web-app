@@ -24,7 +24,7 @@ const BoxRegister = () => {
 
   const handleRegistrar=async()=>{
     // const loginUserE = new FormData()
-    // loginUserE.append('idcliente', "24914")
+    // loginUserE.append('idcliente', "24916")
     // await LoginAPI(
     //     loginUserE,
     //     "clientes",
