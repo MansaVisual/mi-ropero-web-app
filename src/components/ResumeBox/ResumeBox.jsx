@@ -19,11 +19,36 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const [codigo,setCodigo]=useState("")
     const [costoFinal,setCostoFinal]=useState(false)
 
-    
+    const [debe,setDebe]=useState(0)
+    const [haber,setHaber]=useState(0)
+    const [balance,setBalance]=useState(0)
+
+    useEffect(()=>{
+        const cuentaCorriente=new FormData()
+        cuentaCorriente.append("idcliente",68)
+        FormAPI(
+            cuentaCorriente,
+            "cuentascorrientes",
+            "balance"
+        ).then((res)=>{
+            if(res.status==="success"){
+                setDebe(res.result.debe)
+                setHaber(res.result.haber)
+            }
+        })
+    },[]);// eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(()=>{
+        setBalance(debe-haber)
+        console.log(balance)
+    },[debe,haber]);// eslint-disable-line react-hooks/exhaustive-deps
+
     useEffect(() => {
         let costoEnv=metodoEnvio==="345837"?costoSucDom:metodoEnvio==="345838"?costoSucSuc:metodoEnvio==="1"?costoMoto.precio:0
         setCostoFinal(costoCarrito+Number(costoEnv))
     }, [metodoEnvio]);// eslint-disable-line react-hooks/exhaustive-deps
+
+
 
     const handleChange= ()=>{
         const cod = document.getElementById("codigo").value
@@ -77,6 +102,12 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     <p className="subtitulo p14">$ {metodoEnvio==="345837"?costoSucDom: metodoEnvio==="345838"?costoSucSuc:costoMoto.precio}</p>
                 </div>
             }
+            {balance!==0 && !stateForm && 
+                <div className="box">
+                    <p className="subtitulo">Saldo disponible</p>
+                    <p className="subtitulo p14">$ {balance}</p>
+                </div>
+            }
             {!stateForm ?
                 <div className="boxInput">
                     <p className="subtitulo subtituloDesc">Código de descuento / Giftcard</p>
@@ -118,8 +149,8 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 :
                     <p className="subtitulo subtituloTotal total"
                     style={{
-                        textDecoration:codigoValido && "line-through",
-                        color:codigoValido && "#969696"
+                        textDecoration:(codigoValido || (balance!==0 && !stateForm)) && "line-through",
+                        color:(codigoValido || (balance!==0 && !stateForm)) && "#969696"
                     }}>
                         {metodoEnvio===""?
                             costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${costoCarrito}`
@@ -129,14 +160,60 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     </p>
                 }
             </div>
+
             {codigoValido && 
-                <div className="box">
-                    <p></p>
-                    <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
-                        $ {codigo.result.tipo_descuento==="1"?costoFinal-codigo.result.monto:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
+                <div className="box" style={{marginTop:"-12px"}}>
+                    <p style={{margin:"0px"}}>Descuento</p>
+                    <p className="subtitulo subtituloTotal" style={{textDecoration:"line-through",color:"#969696",fontWeight:"600"}}>
+                        $ {codigo.result.tipo_descuento==="1"?codigo.result.monto>costoFinal?costoFinal:costoFinal-codigo.result.monto:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
                     </p>
                 </div>
             }
+            {codigoValido && balance===0 && 
+                <div className="box">
+                    <p></p>
+                    <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
+                        $ {codigo.result.tipo_descuento==="1"?codigo.result.monto>costoFinal?costoFinal:costoFinal-codigo.result:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
+                    </p>
+                </div>
+            }
+            {balance!==0 && !stateForm && 
+                <div className="box" style={{marginTop:"-12px"}}>
+                    <p style={{margin:"0px"}}>Saldo usado</p>
+                    <p className="subtitulo subtituloTotal" style={{textDecoration:"line-through",color:"#969696",fontWeight:"600"}}>
+                        $ {codigoValido?
+                            codigo.result.tipo_descuento==="1"?
+                            (costoFinal-codigo.result.monto-balance).toFixed(2)<0?0:(costoFinal-codigo.result.monto-balance).toFixed(2):
+                            codigo.result.tipo_descuento==="2"
+                            &&(costoFinal-costoFinal*codigo.result.monto/100-balance).toFixed(2)<0?(costoFinal-(costoFinal-costoFinal*codigo.result.monto/100)).toFixed(2):(costoFinal-costoFinal*codigo.result.monto/100-balance).toFixed(2)
+                        
+                        :
+                            (balance-costoFinal)<0?balance:(costoFinal)
+                        }
+                    </p>
+                </div>
+            }
+            {balance!==0 && !stateForm && !codigoValido && 
+                <div className="box">
+                    <p></p>
+                    <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
+                        $ {(costoFinal-balance).toFixed(2)<0?0:(costoFinal-balance).toFixed(2)}
+                    </p>
+                </div>
+            }
+            {balance!==0 && !stateForm && codigoValido && 
+                <div className="box">
+                    <p></p>
+                    <p className="subtitulo subtituloTotal" style={{marginTop:"-40px"}}>
+                        $ {codigo.result.tipo_descuento==="1"?
+                            (costoFinal-codigo.result.monto-balance).toFixed(2)<0?0:(costoFinal-codigo.result.monto-balance).toFixed(2):
+                            codigo.result.tipo_descuento==="2"
+                            &&(costoFinal-costoFinal*codigo.result.monto/100-balance).toFixed(2)<0?0:(costoFinal-costoFinal*codigo.result.monto/100-balance).toFixed(2)
+                        }
+                    </p>
+                </div>
+            }
+
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>
