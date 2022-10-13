@@ -17,6 +17,11 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
             
             if(saveDireccion){
+
+                // 
+                // 
+                // 
+                
                 const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
                 const dir = new FormData()
                 dir.append("int",68)
@@ -32,7 +37,7 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                 dir.append("entre_calle_1",direccion.entre_calle_1)
                 dir.append("entre_calle_2",direccion.entre_calle_2)
                 dir.append("informacion_adicional",direccion.informacion_adicional)
-                dir.append("normalized",direccion)
+                dir.append("normalized",direccion.raw_data)
             }
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
@@ -65,19 +70,19 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                         <>
                             <CancelOutlinedIcon className="botonError"/>
                             <p className="felicidades">¡Que lástima!</p>
-                            <p>Algo no salió como esperabamos. Vuelva a intentarlo.</p>
+                            <p>Algo no salió como esperábamos. Volvé a intentarlo.</p>
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             
                             <Button className="misComprasFail" onClick={()=>navigate("/carrito")}>
-                                VOLVER
+                                VOLVER AL CARRITO
                             </Button>
                         </>
                     :
                         <>
                             <InfoOutlinedIcon className="botonInfo"/>
-                            <p className="felicidades">¡Te estamos esperando!</p>
-                            <p>La compra esta en estado "pendiente".</p>
+                            <p className="felicidades">¡Te esperamos!</p>
+                            <p>La compra se encuentra "pendiente" hasta que se realice el pago.</p>
                             
                             <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
                             
