@@ -92,8 +92,18 @@ const BoxLogin = ()=>{
                         disabled={load?true:false}
                         id="email"
                         onChangeCapture={()=>{setError(false);setCampoObligatorio(false)}}
+                        sx={{      
+                            "& .MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                              borderColor:(error || campoObligatorio)&& "#FF3F20"
+                            }
+                          }
+                        }}
                         InputProps={{
-                            style: {fontSize: 15,border:(error || campoObligatorio)&&"1px solid #FF3F20"} 
+                            style: {
+                                fontSize: 15,
+                                border:(error || campoObligatorio)&&"1px solid #FF3F20",
+                                } 
                           }}
                     />
                 </div>
@@ -108,6 +118,13 @@ const BoxLogin = ()=>{
                         type={showPassword ? 'text' : 'password'}
                         disabled={load?true:false}
                         onChangeCapture={()=>{setError(false);setCampoObligatorio(false)}}
+                        sx={{      
+                            "& .MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                              borderColor:(error || campoObligatorio)&& "#FF3F20"
+                            }
+                          }
+                        }}
                         InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
