@@ -160,11 +160,12 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     </p>
                 }
             </div>
+
             {codigoValido && 
                 <div className="box" style={{marginTop:"-12px"}}>
                     <p style={{margin:"0px"}}>Descuento</p>
                     <p className="subtitulo subtituloTotal" style={{textDecoration:"line-through",color:"#969696",fontWeight:"600"}}>
-                        $ {codigo.result.tipo_descuento==="1"?costoFinal-codigo.result.monto:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
+                        $ {codigo.result.tipo_descuento==="1"?codigo.result.monto>costoFinal?costoFinal:costoFinal-codigo.result.monto:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
                     </p>
                 </div>
             }
@@ -172,7 +173,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 <div className="box">
                     <p></p>
                     <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
-                        $ {codigo.result.tipo_descuento==="1"?costoFinal-codigo.result.monto:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
+                        $ {codigo.result.tipo_descuento==="1"?codigo.result.monto>costoFinal?costoFinal:costoFinal-codigo.result:codigo.result.tipo_descuento==="2"&&(costoFinal-costoFinal*codigo.result.monto/100).toFixed(2)}
                     </p>
                 </div>
             }
@@ -182,7 +183,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     <p className="subtitulo subtituloTotal" style={{textDecoration:"line-through",color:"#969696",fontWeight:"600"}}>
                         $ {codigoValido?
                             codigo.result.tipo_descuento==="1"?
-                            (costoFinal-codigo.result.monto-balance).toFixed(2)<0?(costoFinal-codigo.result.monto).toFixed(2):(costoFinal-codigo.result.monto-balance).toFixed(2):
+                            (costoFinal-codigo.result.monto-balance).toFixed(2)<0?0:(costoFinal-codigo.result.monto-balance).toFixed(2):
                             codigo.result.tipo_descuento==="2"
                             &&(costoFinal-costoFinal*codigo.result.monto/100-balance).toFixed(2)<0?(costoFinal-(costoFinal-costoFinal*codigo.result.monto/100)).toFixed(2):(costoFinal-costoFinal*codigo.result.monto/100-balance).toFixed(2)
                         
@@ -212,6 +213,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     </p>
                 </div>
             }
+
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>
