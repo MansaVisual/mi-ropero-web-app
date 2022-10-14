@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import {
   IconButton,
   MenuItem,
@@ -28,16 +28,24 @@ import { RiFilePaperLine } from "react-icons/ri";
 import { IoTrashOutline } from "react-icons/io5";
 import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const NavIcons = () => {
   const navigate = useNavigate();
 
+  const {userLog}=useContext(UseLoginContext)
+
   useEffect(() => {
     if(localStorage.getItem("idClienteMiRopero")!==null){
-      console.log(localStorage.getItem("idClienteMiRopero"))
       onLogIn()
     }
-  });
+  },[]);
+  
+  useEffect(() => {
+    if(userLog!==""){
+      onLogIn()
+    }
+  },[userLog]);
 
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);

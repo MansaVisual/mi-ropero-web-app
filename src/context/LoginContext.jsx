@@ -1,11 +1,17 @@
-import { createContext } from "react";
+import { createContext,useState } from "react";
 
 export const UseLoginContext = createContext();
 
 export const LoginContext = ({children}) => {
 
+    const [userLog,setUserLog]=useState("")
+
     const LoginAPI = async(data,clase,metodo) =>{
         let resFinal = ''
+        const res = localStorage.getItem("idClienteMiRopero")
+        if(res!==null){
+            setUserLog(res)
+        }
 
         await fetch(`https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
             method: 'POST',					
@@ -30,7 +36,7 @@ export const LoginContext = ({children}) => {
     }
 
     return(
-        <UseLoginContext.Provider value={{LoginAPI,loginStorage}}>
+        <UseLoginContext.Provider value={{LoginAPI,loginStorage,userLog}}>
             {children}
         </UseLoginContext.Provider>
     )
