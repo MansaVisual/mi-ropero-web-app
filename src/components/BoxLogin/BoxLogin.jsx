@@ -41,7 +41,7 @@ const BoxLogin = () => {
           top: 0,
           behavior: 'auto',
         });
-        window.location.replace('localhost:3000/');
+        window.location.replace('https://golden-cranachan-c2e38c.netlify.app');
       } else {
         setError(true);
       }
