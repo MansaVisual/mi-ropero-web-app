@@ -1,11 +1,15 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Avatar, Box, Rating, Typography } from "@mui/material";
 import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
   const navigate = useNavigate()
 
+  const {infoUser}=useContext(UseLoginContext)
+
+  // console.log(infoUser)
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>

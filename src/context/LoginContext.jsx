@@ -1,15 +1,16 @@
-import { createContext,useState } from "react";
+import { createContext,useState,useEffect } from "react";
 
 export const UseLoginContext = createContext();
 
 export const LoginContext = ({children}) => {
 
     const [userLog,setUserLog]=useState("")
+    const [infoUser,setInfoUser]=useState([])
 
     const LoginAPI = async(data,clase,metodo) =>{
         let resFinal = ''
         const res = localStorage.getItem("idClienteMiRopero")
-        if(res!==null){
+        if(res!==null && userLog!==""){
             setUserLog(res)
         }
 
@@ -35,8 +36,47 @@ export const LoginContext = ({children}) => {
         return res
     }
 
+    useEffect(() => {
+        console.log("USER",userLog)
+        if(userLog!==""){
+            const user = new FormData()
+            user.append("idcliente",userLog)
+            LoginAPI(
+                user,
+                "clientes",
+                "get"
+            ).then((res)=>{
+                console.log("HOLIS",res)
+
+                if(res.status==="success"){
+                    setInfoUser(res)
+                }else if(res.status==="error"){
+                    reBuscarInfo()
+                }
+            })
+        }
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
+
+    const reBuscarInfo=()=>{
+        if(userLog!==""){
+            const user = new FormData()
+            user.append("idcliente",userLog)
+            LoginAPI(
+                user,
+                "clientes",
+                "get"
+            ).then((res)=>{
+                if(res.status==="success"){
+                    setInfoUser(res)
+                }else if(res.status==="error"){
+                    reBuscarInfo()
+                }
+            })
+        }
+    }
+
     return(
-        <UseLoginContext.Provider value={{LoginAPI,loginStorage,userLog,setUserLog}}>
+        <UseLoginContext.Provider value={{LoginAPI,loginStorage,userLog,setUserLog,infoUser}}>
             {children}
         </UseLoginContext.Provider>
     )
