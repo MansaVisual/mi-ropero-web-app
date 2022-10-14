@@ -70,21 +70,29 @@
     }
     .profileSections :not(:last-child) {
       margin-right: 6px;
+      @include screen_705 {
+        margin-right: 0px;
+      }
     }
     .profileSections {
       display: flex;
       margin-top: 74px;
       margin-bottom: 58px;
-      @include screen_705 {
-        flex-wrap: wrap;
-        justify-content: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      @include screen_1190 {
+        width: 100%;
+        max-width: 750px;
+      }
+      @include screen_820 {
         margin-top: 24px;
         margin-bottom: 24px;
+        gap: 6px;
       }
       .section:first-child {
         .imgBox {
           @include screen_389 {
-            width: 328px;
+            width: 290px;
             height: 71px;
             border-radius: 6px;
             border: 1px solid #d9d9d9;
@@ -96,9 +104,6 @@
       }
       .section {
         cursor: pointer;
-        @include screen_705 {
-          margin-top: 8px;
-        }
         .imgBox {
           width: 142px;
           height: 71px;
