@@ -186,7 +186,7 @@ const TabsCategories = () => {
           >
             {Calzado.map((item, index) => {
               return (
-                <List>
+                <List key={index}>
                   {item.map((subItem, sindex) => {
                     return (
                       <ListItem key={sindex}>
@@ -220,7 +220,7 @@ const TabsCategories = () => {
           >
             {Accesorios.map((item, index) => {
               return (
-                <List>
+                <List key={index}>
                   {item.map((subItem, sindex) => {
                     return (
                       <ListItem key={sindex}>
@@ -254,7 +254,7 @@ const TabsCategories = () => {
           >
             {Belleza.map((item, index) => {
               return (
-                <List>
+                <List key={index}>
                   {item.map((subItem, sindex) => {
                     return (
                       <ListItem key={sindex}>
