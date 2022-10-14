@@ -14,7 +14,6 @@ import Loader from "../Loader/Loader"
 
 const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,setMetodoEnvio,direccion})=>{
     const {costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc,costoMoto}=useContext(UseFormContext)
-    console.log(direccion)
     const [viewSucursales,setViewSucursales]=useState(false)
     const [setSucursal,setSetSucursal]=useState(false)
     const [envioMoto,setEnvioMoto]=useState(false)

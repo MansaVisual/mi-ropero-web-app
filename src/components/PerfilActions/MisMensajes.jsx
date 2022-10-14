@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import leftArrow from '../../assets/img/leftArrow.png';
 import Sweater from '../../assets/img/Sweater.png';
 import Basura from '../../assets/img/basura.png';
+import { MenuItem, Select } from '@mui/material';
 
 const MisMensajes = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
+  const [typeMessage, setTypeMessage] = useState('ver no leídos');
+
+  const typeMessages = ['ver no leídos', 'ver leídos', 'ver todos'];
 
   const array = [
     {
@@ -40,7 +44,51 @@ const MisMensajes = () => {
   return (
     <div className='misMensajesContainer'>
       <Breadcrumbs links={pathnames} />
-      <p className='title'>MIS MENSAJES</p>
+      <div className='firstLine'>
+        <p className='title'>MIS MENSAJES</p>
+        <div className='inputBox'>
+          <Select
+            displayEmpty
+            color='primary'
+            className='selectInput'
+            size='small'
+            onChange={(e) => setTypeMessage(e.target.value)}
+            value={typeMessage}
+            renderValue={(selected) => {
+              if (selected === '') {
+                return <em>Seleccioná una opción</em>;
+              }
+              return selected;
+            }}
+            sx={{
+              '& div': {
+                fontSize: '14px',
+                fontWeight: '400',
+              },
+              height: 42,
+            }}
+          >
+            <MenuItem
+              disabled
+              value=''
+              className='selectOption'
+              sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
+            >
+              <em>Seleccioná una opción</em>
+            </MenuItem>
+            {typeMessages.map((option) => (
+              <MenuItem
+                key={option}
+                value={option}
+                sx={{ fontSize: '14px', color: '#969696' }}
+                className='selectOption'
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      </div>
       <div className='mensajesContainer'>
         {array.map((mensaje) => {
           return (
