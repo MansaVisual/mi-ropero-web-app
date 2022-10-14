@@ -54,6 +54,13 @@ const RestorePopUp = ({setRestorePassword}) => {
                         onChangeCapture={()=>{setCampoObligatorio(false);setErrorMail(false)}}
                         id="mail"
                         disabled={load?true:false}
+                        sx={{      
+                            "& .MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                              borderColor:(campoObligatorio)&& "#FF3F20"
+                            }
+                          }
+                        }}
                         InputProps={{
                             style: {fontSize: 15,border:campoObligatorio&&"1px solid #FF3F20"} 
                         }}

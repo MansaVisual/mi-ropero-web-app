@@ -161,6 +161,13 @@ const BoxRegister = () => {
                 placeholder="Sabrina"
                 id="nombre"
                 onChangeCapture={()=>setCampoObligatorio(false)}
+                sx={{      
+                    "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor:(campoObligatorio && document.getElementById("nombre").value==="")&& "#FF3F20"
+                    }
+                  }
+                }}
                 inputProps={{
                   style:{border:(campoObligatorio && document.getElementById("nombre").value==="")&&"1px solid #FF3F20"}
                 }}
@@ -176,6 +183,13 @@ const BoxRegister = () => {
               placeholder="Godoy"
               id="apellido"
               onChangeCapture={()=>setCampoObligatorio(false)}
+              sx={{      
+                  "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor:(campoObligatorio && document.getElementById("apellido").value==="")&& "#FF3F20"
+                  }
+                }
+              }}
               inputProps={{
                 style:{border:(campoObligatorio && document.getElementById("apellido").value==="")&&"1px solid #FF3F20"}
               }}
@@ -194,6 +208,13 @@ const BoxRegister = () => {
               placeholder="nombre@dominio.com"
               id="email"
               onChangeCapture={()=>{setCampoObligatorio(false);setErrorNewMail(false);setErrorMail(false)}}
+              sx={{      
+                  "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor:((campoObligatorio && document.getElementById("email").value==="") || errorNewMail || errorMail)&& "#FF3F20"
+                  }
+                }
+              }}
               inputProps={{
                 style:{border:((campoObligatorio && document.getElementById("email").value==="") || errorNewMail || errorMail)&&"1px solid #FF3F20"}
               }}
@@ -211,6 +232,13 @@ const BoxRegister = () => {
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false);setErrorPassLength(false)}}
+                sx={{      
+                    "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor:((campoObligatorio && document.getElementById("password").value==="") || errorPass || errorPassLength)&& "#FF3F20"
+                    }
+                  }
+                }}
                 InputProps={{
                   minLength:7,
                   endAdornment: (
@@ -235,6 +263,13 @@ const BoxRegister = () => {
               id="password2"
               onChangeCapture={()=>{setCampoObligatorio(false);setErrorPass(false);setErrorPassLength(false)}}
               type={showPassword2 ? 'text' : 'password'}
+              sx={{      
+                  "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor:((campoObligatorio && document.getElementById("password2").value==="") || errorPass || errorPassLength)&& "#FF3F20"
+                  }
+                }
+              }}
               InputProps={{
                 minLength:7,
                 endAdornment: (

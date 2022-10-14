@@ -119,6 +119,13 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                             onFocus={()=>setErrorCodigo(false)}
                             className={errorCodigo ? "inputCodigoError" : codigoValido ? "inputValido" : "inputCodigo"}
                             helperText={errorCodigo ? "Código incorrecto" : codigoValido ? "Código correcto" : null}
+                            sx={{      
+                                "& .MuiOutlinedInput-root:hover": {
+                                "& > fieldset": {
+                                  borderColor:((errorCodigo)&& "#FF3F20")
+                                }
+                              }
+                            }}
                         ></TextField>
                         {!loader ?
                             <Button

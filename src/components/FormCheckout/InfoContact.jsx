@@ -285,6 +285,13 @@ const InfoContact=({
                         id="nombreApellido"
                         onChangeCapture={()=>{handleChangeForm(setForm,form);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelNombreApellido")}
+                        sx={{      
+                            "& .MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                              borderColor:(campoObligatorio)&& "#FF3F20"
+                            }
+                          }
+                        }}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Como aparece en el DNI</InputLabel>
                 </div>
@@ -298,6 +305,13 @@ const InfoContact=({
                         onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorPhone(false);setCampoObligatorio(false)}}
                         onFocus={(e)=>onFocus(e,clase,clase2,"labelTelefono")}
                         type="number"
+                        sx={{      
+                            "& .MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                              borderColor:(campoObligatorio || errorPhone)&& "#FF3F20"
+                            }
+                          }
+                        }}
                     ></TextField>
                     <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Llamarán a este número si hay algún problema con el envío</InputLabel>
                 </div>
@@ -339,6 +353,13 @@ const InfoContact=({
                                 id="calle"
                                 onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelCalle")}
+                                sx={{      
+                                    "& .MuiOutlinedInput-root:hover": {
+                                    "& > fieldset": {
+                                      borderColor:(campoObligatorio || errorDireccion)&& "#FF3F20"
+                                    }
+                                  }
+                                }}
                                 ></TextField>
                             <InputLabel className="subLabelForm" sx={{whiteSpace:"wrap"}}>Domicilio de entrega</InputLabel>
                         </div>
@@ -354,6 +375,13 @@ const InfoContact=({
                                     onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
                                     onFocus={(e)=>onFocus(e,clase,clase2,"labelAlturaKM")}
                                     type="number"
+                                    sx={{      
+                                        "& .MuiOutlinedInput-root:hover": {
+                                        "& > fieldset": {
+                                          borderColor:(campoObligatorio || errorDireccion)&& "#FF3F20"
+                                        }
+                                      }
+                                    }}
                                     ></TextField>
                             </div>
                             <div className="inputs">
@@ -427,6 +455,13 @@ const InfoContact=({
                                 id="barrioLocalidad"
                                 onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelBarrioLocalidad")}
+                                sx={{      
+                                    "& .MuiOutlinedInput-root:hover": {
+                                    "& > fieldset": {
+                                      borderColor:(campoObligatorio || errorDireccion)&& "#FF3F20"
+                                    }
+                                  }
+                                }}
                                 ></TextField>
                         </div>
                     </div>
@@ -464,6 +499,13 @@ const InfoContact=({
                                 id="codigoPostal"
                                 onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorCodPostal(false);setErrorDireccion(false);setCampoObligatorio(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelCodigoPostal")}
+                                sx={{      
+                                    "& .MuiOutlinedInput-root:hover": {
+                                    "& > fieldset": {
+                                      borderColor:(campoObligatorio || errorCodPostal || errorDireccion)&& "#FF3F20"
+                                    }
+                                  }
+                                }}
                                 ></TextField>
                         </div>
                         <a href="https://www.correoargentino.com.ar/formularios/cpa" target={"_blank"} rel="noreferrer">No sé mi código postal</a>
