@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   Backdrop,
   Box,
+  Container,
   Fade,
   Grid,
   Link,
@@ -60,263 +61,270 @@ const SearchProductsResults = () => {
     <>
       {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
 
-      <Grid
-        container
-        sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", py: "40px" }}
-      >
-        <Grid item xs={12} sm={12} md={3}>
-          {isMobile || isMobileBigScreen ? (
-            <Box sx={{ mt: "16px" }}>
-              <Breadcrumbs links={pathnames} />
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
+      <Container maxWidth="xl">
+        <Grid
+          container
+          sx={{
+            px: isMobile || isMobileBigScreen ? "16px" : "74px",
+            py: "40px",
+          }}
+          spacing={8}
+        >
+          <Grid item xs={12} sm={12} md={3}>
+            {isMobile || isMobileBigScreen ? (
+              <Box sx={{ mt: "16px" }}>
+                <Breadcrumbs links={pathnames} />
+                <Box
                   sx={{
-                    fontSize: theme.typography.fontSize[9],
-                    fontWeight: theme.typography.fontWeightMedium,
-                    color: theme.palette.primary.main,
-                    textTransform: "capitalize",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  {keyword}
-                </Typography>
-                <FilterButton onClick={() => setOpen(true)} />
-              </Box>
-              {open && (
-                <Modal
-                  open={open}
-                  onClose={() => setOpen(false)}
-                  aria-labelledby="filter-modal-title"
-                  closeAfterTransition
-                  BackdropComponent={Backdrop}
-                  BackdropProps={{
-                    timeout: 500,
-                  }}
-                  sx={{ overflowY: "auto", m: "40px 0", borderRadius: "6px" }}
-                >
-                  <Fade in={open}>
-                    <Box sx={style}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          mt: "16px",
-                        }}
-                      >
-                        <Typography id="filter-modal-title" component="h2">
-                          Filtrar
-                        </Typography>
-                        <Typography
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[9],
+                      fontWeight: theme.typography.fontWeightMedium,
+                      color: theme.palette.primary.main,
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {keyword}
+                  </Typography>
+                  <FilterButton onClick={() => setOpen(true)} />
+                </Box>
+                {open && (
+                  <Modal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    aria-labelledby="filter-modal-title"
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                      timeout: 500,
+                    }}
+                    sx={{ overflowY: "auto", m: "40px 0", borderRadius: "6px" }}
+                  >
+                    <Fade in={open}>
+                      <Box sx={style}>
+                        <Box
                           sx={{
-                            fontSize: theme.typography.fontSize[2],
-                            fontWeight: theme.typography.fontWeightRegular,
-                            textDecoration: "underline",
-                            mt: "12px",
-                            mb: "16px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            mt: "16px",
                           }}
                         >
-                          Limpiar filtros
-                        </Typography>
-                        <Button
-                          backgroundColor={theme.palette.primary.main}
-                          color={theme.palette.secondary.contrastText}
-                          text="APLICAR"
-                          small
-                          notRounded
-                          disabled
-                        />
+                          <Typography id="filter-modal-title" component="h2">
+                            Filtrar
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: theme.typography.fontSize[2],
+                              fontWeight: theme.typography.fontWeightRegular,
+                              textDecoration: "underline",
+                              mt: "12px",
+                              mb: "16px",
+                            }}
+                          >
+                            Limpiar filtros
+                          </Typography>
+                          <Button
+                            backgroundColor={theme.palette.primary.main}
+                            color={theme.palette.secondary.contrastText}
+                            text="APLICAR"
+                            small
+                            notRounded
+                            disabled
+                          />
+                        </Box>
+                        <Filter />
                       </Box>
-                      <Filter />
-                    </Box>
-                  </Fade>
-                </Modal>
-              )}
-            </Box>
-          ) : (
-            <>
-              <Box>
-                <Breadcrumbs links={pathnames} />
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[9],
-                    fontWeight: theme.typography.fontWeightMedium,
-                    color: theme.palette.primary.main,
-                    textTransform: "capitalize",
-                    mb: "20px",
-                  }}
-                >
-                  {keyword}
-                </Typography>
+                    </Fade>
+                  </Modal>
+                )}
               </Box>
-              <Filter />
-            </>
-          )}
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={9}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              gap: "8px",
-              mb: "16px",
-            }}
-          >
-            {filteredProducts.length > 0 && keyword ? (
-              filteredProducts.map((product, index) => {
-                return (
-                  <ProductCard
-                    key={index}
-                    imageCard={product.img}
-                    productName={product.title}
-                    productPrice={product.price}
-                    tag={product.tag}
-                  />
-                );
-              })
             ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  mt: "16px",
-                }}
-              >
-                <Box sx={{ mr: "20px" }}>
-                  <img
-                    src={notFoundIcon}
-                    width={30}
-                    height={30}
-                    alt="not found icon"
-                  />
-                </Box>
+              <>
                 <Box>
+                  <Breadcrumbs links={pathnames} />
                   <Typography
                     sx={{
-                      fontSize: theme.typography.fontSize[6],
+                      fontSize: theme.typography.fontSize[9],
                       fontWeight: theme.typography.fontWeightMedium,
-                      color: theme.palette.secondary.main,
-                      textTransform: "uppercase",
-                      textAlign:
-                        isMobile || isMobileBigScreen ? "center" : "unset",
-                      mb: 4,
+                      color: theme.palette.primary.main,
+                      textTransform: "capitalize",
+                      mb: "20px",
                     }}
                   >
-                    No encontramos resultados para{" "}
-                    <Typography
-                      component="span"
-                      sx={{
-                        color: theme.palette.secondary.main,
-                        textTransform: "capitalize",
-                      }}
-                    >
-                      "{keyword}"
-                    </Typography>
+                    {keyword}
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: theme.typography.fontSize[6],
-                      fontWeight: theme.typography.fontWeightRegular,
-                      color: theme.palette.tertiary.main,
-                    }}
-                  >
-                    Revisá la ortografía de la palabra
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: theme.typography.fontSize[6],
-                      fontWeight: theme.typography.fontWeightMedium,
-                      color: theme.palette.tertiary.main,
-                    }}
-                  >
-                    Utilizá palabras más genéricas o menos palabras.
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: theme.typography.fontSize[6],
-                      fontWeight: theme.typography.fontWeightMedium,
-                      color: theme.palette.tertiary.main,
-                    }}
-                  >
-                    Navegá por las categorías para encontrar un producto similar
-                  </Typography>
-                  <StyledLink
-                    to="/"
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      cursor: "default",
-                    }}
-                  >
-                    <Typography
-                      component="span"
-                      sx={{
-                        boxSizing: "border-box",
-                        color: theme.palette.primary.main,
-                        fontSize: theme.typography.fontSize[2],
-                        fontWeight: theme.typography.fontWeightRegular,
-                        textTransform: "uppercase",
-                        padding: "10px 36px",
-                        height: "36px",
-                        width: "200px",
-                        textAlign: "center",
-                        border: "1px solid hsl(248.4, 40.9%, 37.8%)",
-                        borderRadius: "20px",
-                        mt: 4,
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      Ir al Inicio
-                    </Typography>
-                  </StyledLink>
                 </Box>
-              </Box>
+                <Filter />
+              </>
             )}
-          </Box>
-          {filteredProducts.length > 0 && keyword && (
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={9}>
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                justifyContent: "flex-start",
+                flexWrap: "wrap",
+                gap: "32px",
+                mb: "32px",
               }}
             >
-              <Pagination />
+              {filteredProducts.length > 0 && keyword ? (
+                filteredProducts.map((product, index) => {
+                  return (
+                    <ProductCard
+                      key={index}
+                      imageCard={product.img}
+                      productName={product.title}
+                      productPrice={product.price}
+                      tag={product.tag}
+                    />
+                  );
+                })
+              ) : (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mt: "16px",
+                  }}
+                >
+                  <Box sx={{ mr: "20px" }}>
+                    <img
+                      src={notFoundIcon}
+                      width={30}
+                      height={30}
+                      alt="not found icon"
+                    />
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: theme.typography.fontSize[6],
+                        fontWeight: theme.typography.fontWeightMedium,
+                        color: theme.palette.secondary.main,
+                        textTransform: "uppercase",
+                        textAlign:
+                          isMobile || isMobileBigScreen ? "center" : "unset",
+                        mb: 4,
+                      }}
+                    >
+                      No encontramos resultados para{" "}
+                      <Typography
+                        component="span"
+                        sx={{
+                          color: theme.palette.secondary.main,
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        "{keyword}"
+                      </Typography>
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: theme.typography.fontSize[6],
+                        fontWeight: theme.typography.fontWeightRegular,
+                        color: theme.palette.tertiary.main,
+                      }}
+                    >
+                      Revisá la ortografía de la palabra
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: theme.typography.fontSize[6],
+                        fontWeight: theme.typography.fontWeightMedium,
+                        color: theme.palette.tertiary.main,
+                      }}
+                    >
+                      Utilizá palabras más genéricas o menos palabras.
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: theme.typography.fontSize[6],
+                        fontWeight: theme.typography.fontWeightMedium,
+                        color: theme.palette.tertiary.main,
+                      }}
+                    >
+                      Navegá por las categorías para encontrar un producto
+                      similar
+                    </Typography>
+                    <StyledLink
+                      to="/"
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        cursor: "default",
+                      }}
+                    >
+                      <Typography
+                        component="span"
+                        sx={{
+                          boxSizing: "border-box",
+                          color: theme.palette.primary.main,
+                          fontSize: theme.typography.fontSize[2],
+                          fontWeight: theme.typography.fontWeightRegular,
+                          textTransform: "uppercase",
+                          padding: "10px 36px",
+                          height: "36px",
+                          width: "200px",
+                          textAlign: "center",
+                          border: "1px solid hsl(248.4, 40.9%, 37.8%)",
+                          borderRadius: "20px",
+                          mt: 4,
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        Ir al Inicio
+                      </Typography>
+                    </StyledLink>
+                  </Box>
+                </Box>
+              )}
             </Box>
-          )}
-        </Grid>
+            {filteredProducts.length > 0 && keyword && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Pagination />
+              </Box>
+            )}
+          </Grid>
 
-        <Grid item xs={12} sm={12} md={12}>
-          <Box sx={{ mt: "40px", textAlign: "center" }}>
-            <Chip primary>Productos relacionados</Chip>
-          </Box>
-          <Box sx={{ mt: "24px", mb: "28px" }}>
-            <SliderProd />
-          </Box>
-          <Box sx={{ textAlign: "center" }}>
-            <Link
-              sx={{
-                color: theme.palette.tertiary.main,
-                fontSize: theme.typography.fontSize[4],
-              }}
-            >
-              VER TODOS LOS PRODUCTOS RELACIONADOS
-            </Link>
-          </Box>
+          <Grid item xs={12} sm={12} md={12}>
+            <Box sx={{ mt: "40px", textAlign: "center" }}>
+              <Chip primary>Productos relacionados</Chip>
+            </Box>
+            <Box sx={{ mt: "24px", mb: "28px" }}>
+              <SliderProd />
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Link
+                sx={{
+                  color: theme.palette.tertiary.main,
+                  fontSize: theme.typography.fontSize[4],
+                }}
+              >
+                VER TODOS LOS PRODUCTOS RELACIONADOS
+              </Link>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </>
   );
 };

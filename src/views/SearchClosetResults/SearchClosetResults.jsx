@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Container, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useLocation, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import theme from "../../styles/theme";
@@ -42,98 +42,103 @@ const SearchClosetResults = () => {
     <>
       {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
 
-      <Grid
-        container
-        sx={{ px: isMobile || isMobileBigScreen ? "16px" : "74px", py: "40px" }}
-      >
-        <Grid item xs={12} sm={12} md={3}>
-          {isMobile || isMobileBigScreen ? (
-            <Box sx={{ mt: "16px" }}>
-              <Breadcrumbs links={pathnames} />
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[9],
-                  fontWeight: theme.typography.fontWeightBold,
-                  mb: "20px",
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                Top Roperos 🔥
-              </Typography>
-            </Box>
-          ) : (
-            <>
-              <Box sx={{ mb: "24px" }}>
+      <Container maxWidth="xl">
+        <Grid
+          container
+          sx={{
+            px: isMobile || isMobileBigScreen ? "16px" : "74px",
+            py: "40px",
+          }}
+          spacing={5}
+        >
+          <Grid item xs={12} sm={12} md={3}>
+            {isMobile || isMobileBigScreen ? (
+              <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[9],
+                    fontWeight: theme.typography.fontWeightBold,
+                    mb: "20px",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  Top Roperos 🔥
+                </Typography>
               </Box>
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[5],
-                  fontWeight: theme.typography.fontWeightRegular,
-                  color: theme.palette.tertiary.main,
-                }}
-              >
-                Busqueda de Roperos:
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[9],
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: theme.palette.primary.main,
-                  textTransform: "capitalize",
-                }}
-              >
-                {keyword}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[4],
-                  fontWeight: 400,
-                  color: theme.palette.tertiary.main,
-                  marginBottom: "30px",
-                  marginTop: "16px",
-                }}
-              >
-                Resultado: 3 roperos
-              </Typography>
+            ) : (
+              <>
+                <Box sx={{ mb: "24px" }}>
+                  <Breadcrumbs links={pathnames} />
+                </Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[5],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    color: theme.palette.tertiary.main,
+                  }}
+                >
+                  Busqueda de Roperos:
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[9],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.primary.main,
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {keyword}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[4],
+                    fontWeight: 400,
+                    color: theme.palette.tertiary.main,
+                    marginBottom: "30px",
+                    marginTop: "16px",
+                  }}
+                >
+                  Resultado: 3 roperos
+                </Typography>
 
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[9],
-                  fontWeight: theme.typography.fontWeightBold,
-                  mb: "20px",
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                Top Roperos 🔥
-              </Typography>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[9],
+                    fontWeight: theme.typography.fontWeightBold,
+                    mb: "20px",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  Top Roperos 🔥
+                </Typography>
 
-              <ClosetCard />
-              <ClosetCard />
-              <ClosetCard />
-            </>
-          )}
+                <ClosetCard />
+                <ClosetCard />
+                <ClosetCard />
+              </>
+            )}
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={9}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "16px",
+              }}
+            >
+              {contacts.map((contact, index) => (
+                <ClosetImagesCard
+                  key={index}
+                  contact={contact}
+                  keyword={keyword}
+                />
+              ))}
+            </Box>
+          </Grid>
         </Grid>
-
-        <Grid item xs={12} sm={12} md={9}>
-          <Box
-            sx={{
-              ml: isMobile || isMobileBigScreen ? 0 : "24px",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "30px",
-            }}
-          >
-            {contacts.map((contact, index) => (
-              <ClosetImagesCard
-                key={index}
-                contact={contact}
-                keyword={keyword}
-              />
-            ))}
-          </Box>
-        </Grid>
-      </Grid>
+      </Container>
     </>
   );
 };
