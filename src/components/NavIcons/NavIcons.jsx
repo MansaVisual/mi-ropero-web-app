@@ -33,19 +33,25 @@ import { UseLoginContext } from "../../context/LoginContext";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const {userLog}=useContext(UseLoginContext)
+  const {userLog,setUserLog}=useContext(UseLoginContext)
 
   useEffect(() => {
     if(localStorage.getItem("idClienteMiRopero")!==null){
       onLogIn()
     }
   },[]);
-  
+
   useEffect(() => {
     if(userLog!==""){
       onLogIn()
     }
   },[userLog]);
+
+  const handleCerrarSesion=()=>{
+    localStorage.clear("idClienteRopero")
+    setUserLog("")
+    closeSession()
+  }
 
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);
@@ -224,7 +230,7 @@ const NavIcons = () => {
               textDecoration: "none",
               cursor: "pointer",
             }}
-            onClick={closeSession}
+            onClick={()=>handleCerrarSesion()}
           >
             Cerrar Sesión
           </Link>

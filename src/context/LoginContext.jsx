@@ -36,7 +36,7 @@ export const LoginContext = ({children}) => {
     }
 
     return(
-        <UseLoginContext.Provider value={{LoginAPI,loginStorage,userLog}}>
+        <UseLoginContext.Provider value={{LoginAPI,loginStorage,userLog,setUserLog}}>
             {children}
         </UseLoginContext.Provider>
     )
