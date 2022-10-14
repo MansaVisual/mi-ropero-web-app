@@ -1,245 +1,233 @@
-.boxLoginContianer{
-    margin-top: 24px;
+.boxLoginContainer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  @include screen_705 {
+    margin: 24px 16px 0px 16px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 34px;
+    color: #443988;
+    @include screen_705 {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+  .buttonWrapper {
+    display: flex;
+    @include screen_705 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    div {
+      position: relative;
+      display: flex;
+      @include screen_705 {
+        margin-right: 0px;
+        margin-bottom: 0px;
+        max-width: 370px;
+        min-width: 288px;
+        width: 100%;
+      }
+      .botonGoogle {
+        border-radius: 20px;
+        padding: 8px 70px 8px 42px;
+        margin-bottom: 8px;
+        margin-right: 6px;
+        color: #443988;
+        box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+        border: solid 1px transparent;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0)
+          ),
+          linear-gradient(101deg, #ff2300, #d3ff00, #001aff);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        box-shadow: 2px 1000px 1px #fff inset;
+        @include screen_705 {
+          margin-right: 0px;
+          margin-bottom: 16px;
+          max-width: 370px;
+          min-width: 288px;
+          width: 100%;
+        }
+      }
+      .googleICon {
+        position: absolute;
+        right: 55px;
+        top: 14px;
+        @include screen_705 {
+          right: 95px;
+        }
+      }
+    }
+    .botonFB {
+      border: 1px solid #395185;
+      padding: 8px 36px;
+      filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+      border-radius: 20px;
+      margin-left: 6px;
+      margin-bottom: 8px;
+      @include screen_705 {
+        margin-left: 0px;
+        max-width: 370px;
+        min-width: 288px;
+        width: 100%;
+      }
+    }
+  }
+  .inputContainer {
+    display: flex;
+    width: 100%;
+    max-width: 752px;
+    @include screen_705 {
+      flex-direction: column;
+      align-items: center;
+    }
+    .inputBox {
+      width: 100%;
+      max-width: 370px;
+      margin-right: 6px;
+      @include screen_705 {
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+      }
+      .input {
+        width: 100%;
+        max-width: 370px;
+        input {
+          height: 25px;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+          color: #babcbe;
+        }
+      }
+      .olvidoContraseña {
+        width: fit-content;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 18px;
+        text-indent: 16px;
+        text-decoration-line: underline;
+        color: #443988;
+        margin-top: 8px;
+        cursor: pointer;
+      }
+    }
+    .labelInput {
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18px;
+      text-indent: 16px;
+      color: #423b3c;
+      @include screen_705 {
+        margin-bottom: 8px;
+        margin-top: 16px;
+      }
+    }
+  }
+  .buttonContainer {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    .title{
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 34px;
-        color: #443988;
-        @include screen_705{
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 21px;
-        }
+    @include screen_705 {
+      width: 100%;
     }
-    .buttonWrapper{
-        display: flex;
-        @include screen_705{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        
-         div{
-            position: relative; 
-            display: flex;
-            @include screen_705{
-                margin-right: 0px;
-                margin-bottom: 0px;
-                max-width: 370px;
-                min-width: 288px;
-                width: 100%;
-            }
-            .botonGoogle{
-                border-radius: 20px;
-                padding: 8px 70px 8px 42px;
-                margin-bottom: 8px;
-                margin-right: 6px;
-                color: #443988;
-                box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
-                border: solid 1px transparent;
-                background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), 
-                                    linear-gradient(101deg, #ff2300, #d3ff00, #001aff);
-                background-origin: border-box;
-                background-clip: content-box, border-box;
-                box-shadow: 2px 1000px 1px #fff inset;
-                @include screen_705{
-                    margin-right: 0px;
-                    margin-bottom: 16px;
-                    max-width: 370px;
-                    min-width: 288px;
-                    width: 100%;
-                }
-            }
-           .googleICon{
-                position: absolute;
-                right: 55px;
-                top: 14px;
-                @include screen_705{
-                    right: 95px;
-                }
-            }
-         }
-        .botonFB{
-            border: 1px solid #395185;
-            padding: 8px 36px;
-            filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
-            border-radius: 20px;
-            margin-left: 6px;
-            margin-bottom: 8px;
-            @include screen_705{
-                margin-left: 0px;
-                max-width: 370px;
-                min-width: 288px;
-                width: 100%;
-            }
-        }
+    .botonIngresar {
+      color: #ffffff;
+      background: #ff3f20;
+      box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 450px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      padding: 10px 36px;
+      margin-top: 24px;
+      &:hover {
+        background-color: #ff3f20;
+      }
+      @include screen_705 {
+        margin-right: 16px;
+        margin-left: 16px;
+      }
     }
-    .inputContainer{
-        display: flex;
-        @include screen_705{
-            flex-direction: column;
-            align-items: center;
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-        .inputBox{
-            margin-right: 6px;
-            @include screen_705{
-                margin-right: 0px;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-            .input{
-                input{
-                    height: 25px;
-                    max-width: 370px;
-                    min-width: 288px;
-                    font-style: italic;
-                    font-weight: 400;
-                    font-size: 14px;
-                    line-height: 19px;
-                    color: #BABCBE;
-                }
-            }
-        }
-        .inputBox2{
-            margin-left: 6px;
-            @include screen_705{
-                margin-left: 0px;
-            }
-            .olvidoContraseña{
-                width: fit-content;
-                font-weight: 600;
-                font-size: 13px;
-                line-height: 18px;
-                text-indent: 16px;
-                text-decoration-line: underline;
-                color: #443988;
-                margin-top: 8px;
-                cursor: pointer;
-            }
-            .inputP{
-                input{
-                    height: 25px;
-                    max-width: 370px;
-                    min-width: 288px;
-                    font-style: normal;
-                    font-weight: 400;
-                    letter-spacing: 0.1em;
-                    color: #969696;                 
-                }
-            }
-        }
-        .labelInput{
-            font-weight: 600;
-            font-size: 13px;
-            line-height: 18px;
-            text-indent: 16px;
-            color: #423B3C;
-            @include screen_705{
-                margin-bottom: 8px;
-                margin-top: 16px;
-            }
-        }
+    .botonRegistrate {
+      padding: 10px 36px;
+      width: 100%;
+      max-width: 450px;
+      height: 36px;
+      background: #423b3c;
+      border: 1px solid #443988;
+      box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      margin-top: 32px;
+      &:hover {
+        background-color: #423b3c;
+      }
+      @include screen_705 {
+        margin-right: 16px;
+        margin-left: 16px;
+        margin-top: 16px;
+      }
     }
-    .buttonContainer{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        @include screen_705{
-            width: 100%;
-        }
-        .botonIngresar{
-            color: #FFFFFF;
-            background: #FF3F20; 
-            box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
-            border-radius: 20px;
-            width: 450px;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 16px;
-            letter-spacing: 0.05em;
-            padding: 10px 36px;
-            margin-top: 24px;
-            &:hover{
-                background-color: #FF3F20;
-            }
-            @include screen_705{
-                margin-right: 16px;
-                margin-left: 16px;
-                max-width: 370px;
-                min-width: 288px;
-            }
-        }
-        .botonRegistrate{
-            padding: 10px 36px;
-            width: 450px;
-            height: 36px;
-            background: #423B3C;
-            border: 1px solid #443988;
-            box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 16px;
-            letter-spacing: 0.05em;
-            color: #FFFFFF;
-            margin-top: 32px;
-            &:hover{
-                background-color: #423B3C;
-            }
-            @include screen_705{
-                margin-right: 16px;
-                margin-left: 16px;
-                margin-top: 16px;
-                max-width: 370px;
-                min-width: 288px;
-            }
-        }
-    }
+  }
 }
 
-.bannerLoginBottom{
+.bannerLoginBottom {
+  width: 100%;
+  margin-top: 18px;
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  @include screen_705 {
+    display: flex;
+  }
+  .logo {
+    @include screen_705 {
+      width: 88px;
+      height: 24px;
+    }
+  }
+  .banner {
     width: 100%;
-    margin-top: 18px;
-    position: relative;
-    display: none;
+    z-index: 98;
+    min-height: 180px;
+  }
+  .container {
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    @include screen_705{
-        display: flex;
+    p {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 17.7px;
+      color: #ffffff;
+      margin-top: 40px;
     }
-    .logo{
-        @include screen_705{
-            width: 88px;
-            height: 24px;
-        }
-    }
-    .banner{
-        width: 100%;
-        z-index: 98;
-        min-height: 180px;
-    }
-    .container{
-        position: absolute;
-        z-index: 99;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        p{
-            font-weight: 700;
-            font-size: 13px;
-            line-height: 17.7px;
-            color: #FFFFFF;
-            margin-top: 40px;
-        }
-    }
+  }
 }
