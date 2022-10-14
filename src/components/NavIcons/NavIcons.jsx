@@ -90,30 +90,37 @@ const NavIcons = () => {
     {
       title: "Mi tienda",
       icon: <IoStorefrontOutline />,
+      url:"MI TIENDA"
     },
     {
       title: "Mis datos",
       icon: <HiOutlineUser />,
+      url:"MIS DATOS"
     },
     {
       title: "Mis favoritos",
       icon: <AiOutlineHeart />,
+      url:"MIS FAVORITOS"
     },
     {
       title: "Mis direcciones",
       icon: <IoLocationOutline />,
+      url:"MIS DIRECCIONES"
     },
     {
       title: "Mis compras",
       icon: <RiFilePaperLine />,
+      url:"MIS COMPRAS"
     },
     {
       title: "Mis ofertas realizadas",
       icon: <FaRegMoneyBillAlt />,
+      url:"OFERTAS REALIZADAS"
     },
     {
       title: "Mis mensajes",
       icon: <BiMessage />,
+      url:"MIS MENSAJES"
     },
   ];
 
@@ -216,6 +223,7 @@ const NavIcons = () => {
                   color: "white",
                 },
               }}
+              onClick={()=>navigate(`/perfil/${item.url}`)}
             >
               <Icon sx={{ fontSize: "15px" }}>{item.icon}</Icon>
               <Typography sx={{ pl: "15px" }}>{item.title}</Typography>
