@@ -1,12 +1,57 @@
 import { TextField } from '@mui/material'
-import React,{useContext} from 'react'
+import React,{useContext,useEffect,useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
 import { UseLoginContext } from '../../context/LoginContext';
 
 const BoxLoginValidate = () => {
   const {LoginAPI}=useContext(UseLoginContext)
-  const user = JSON.parse(localStorage.getItem("sendCodMiRopero"))
-  
+  const navigate = useNavigate()
+
+  const [user,setUser]=useState("")
+  const [load,setLoad]=useState(false)
+
+  useEffect(() => {
+    if(JSON.parse(localStorage.getItem("sendCodMiRopero"))!==null){
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      })
+      setUser(JSON.parse(localStorage.getItem("sendCodMiRopero")))
+    }else{
+      navigate("/login")
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleChange=()=>{
+    const cod = document.getElementById("codValidacion").value
+    if(cod.length===4){
+      setLoad(true)
+      const loginUser = new FormData()
+      loginUser.append('idcliente', Number(user.id))
+      loginUser.append('codigo', String(cod))
+      LoginAPI(
+          loginUser,
+          "clientes",
+          "validate_set"
+          ).then((res)=>{
+              console.log("HOLA",res)
+              if(res.status==="success"){
+                setLoad(false)
+                localStorage.setItem("idClienteMiRopero",user.id)
+              }else{
+                setLoad(false)
+                document.getElementById("codValidacion").value=""
+                alert("No se pudo enviar el código. Vuelva a intentarlo")
+              }
+          }
+      )
+    }
+  }
+
+
   const handleSendMail=()=>{
+    setLoad(true)
     const loginUser = new FormData()
     loginUser.append('idcliente', user.id)
     LoginAPI(
@@ -16,33 +61,47 @@ const BoxLoginValidate = () => {
         ).then((res)=>{
             console.log(res)
             if(res.status==="success"){
-                alert("Se envió el código")
+              setLoad(false)
+              alert("Se envió el código")
             }else{
-                alert("No se pudo enviar el código. Vuelva a intentarlo")
+              setLoad(false)
+              alert("No se pudo enviar el código. Vuelva a intentarlo")
             }
         }
     )
   }
+
   return (
-    <div className='boxValidateContainer'>
-      <p className='validateTitle'>VALIDÁ TU CUENTA</p>
-      <p className='descriptionText'>
-          Te mandamos un código a la dirección de 
-          email {user.mail} para que valides tu cuenta
-      </p>
-      <div className="inputBox">
-          <p className="labelInput">Código de validación</p>
-            <TextField
-              color="primary"
-              className="input"
-              size="small"
-              placeholder="● ● ● ●"
-              />
-      </div>
-      <p className='resendText' onClick={()=>handleSendMail()}>
-          Reenviar email de validación.
-      </p>
-    </div>
+    <>
+      {user!=="" &&
+        <div className='boxValidateContainer'>
+          <p className='validateTitle'>VALIDÁ TU CUENTA</p>
+          <p className='descriptionText'>
+              Te mandamos un código a la dirección de 
+              email {user.mail} para que valides tu cuenta
+          </p>
+          {load && <Loader spin={"spinnerG"}/>}
+          <div className="inputBox">
+              <p className="labelInput">Código de validación</p>
+                <TextField
+                  color="primary"
+                  className="input"
+                  size="small"
+                  placeholder="● ● ● ●"
+                  id="codValidacion"
+                  disabled={load?true:false}
+                  onChangeCapture={()=>handleChange()}
+                  inputProps={{
+                    maxLength:4
+                  }}
+                />
+          </div>
+          <p className='resendText' style={{cursor:"pointer"}} onClick={!load?()=>handleSendMail():null}>
+              Reenviar email de validación.
+          </p>
+        </div>
+      }
+    </>
   )
 }
 
