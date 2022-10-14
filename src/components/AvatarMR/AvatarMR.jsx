@@ -26,7 +26,7 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
           src={imgAvatar}
           onClick={()=>navigate('/perfil')}
         >
-          DB
+          {infoUser.length!==0 && `${(infoUser.nombre[0]).toUpperCase()}${(infoUser.apellido[0]).toUpperCase()}`}
         </Avatar>
         <Box sx={{ pl: !avatarCard ? "6px" : "10px" }}>
           {!avatarCard ? (
@@ -44,7 +44,7 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
             }}
             onClick={()=>navigate('/perfil')}
           >
-            {infoUser.length!==0 && infoUser.result.nombre}
+            {infoUser.length!==0 && infoUser.nombre}
           </Typography>
           {avatarCard ? (
             <Rating name="read-only" readOnly value={1} size="small" />
