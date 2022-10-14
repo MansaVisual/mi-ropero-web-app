@@ -53,10 +53,9 @@ const BoxLogin = () => {
       <div className='boxLoginContainer'>
         <p className='title'>Continuar con Google o Facebook</p>
         <div className='buttonWrapper'>
-          <div>
-            <Button className='botonGoogle'>INGRESAR CON GOOGLE</Button>
-            <img src={GoogleLogo} className='googleICon' alt='googleICon' />
-          </div>
+          <Button className='botonGoogle'>
+            INGRESAR CON GOOGLE <i className='googleIcon'></i>
+          </Button>
           <Button className='botonFB' endIcon={<FacebookIcon />}>
             INGRESAR CON FACEBOOK
           </Button>

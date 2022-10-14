@@ -74,7 +74,7 @@ const MisMensajes = () => {
               className='selectOption'
               sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
             >
-              <em>Seleccioná una opción</em>
+              <em>Seleccioná {/* una opción */}</em>
             </MenuItem>
             {typeMessages.map((option) => (
               <MenuItem
