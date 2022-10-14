@@ -1,9 +1,19 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Button } from '@mui/material';
 import cruz from '../../assets/img/cruz.png';
 import MRlogoModal from '../../assets/img/isologo.png';
+import { UseLoginContext } from '../../context/LoginContext';
 
 const PopUpSesion = ({ setCloseSession }) => {
+
+  const {setUserLog}=useContext(UseLoginContext)
+
+  const handleCerrarSesion=()=>{
+    localStorage.clear("idClienteRopero")
+    setUserLog("")
+    window.location.replace('https://golden-cranachan-c2e38c.netlify.app')
+  }
+
   return (
     <div className='PopUpPerfil'>
       <div className='fondoPopUp' onClick={() => setCloseSession(false)}></div>
@@ -18,7 +28,7 @@ const PopUpSesion = ({ setCloseSession }) => {
             <Button onClick={() => setCloseSession(false)} className='volver'>
               CANCELAR
             </Button>
-            <Button className='recordar'>CERRAR SESIÓN</Button>
+            <Button className='recordar' onClick={()=>handleCerrarSesion()}>CERRAR SESIÓN</Button>
           </div>
           <img
             onClick={() => setCloseSession(false)}

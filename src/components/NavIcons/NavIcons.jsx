@@ -51,6 +51,7 @@ const NavIcons = () => {
     localStorage.clear("idClienteRopero")
     setUserLog("")
     closeSession()
+    window.location.reload()
   }
 
   const [avatarMenu, setAvatarMenu] = useState(null);
