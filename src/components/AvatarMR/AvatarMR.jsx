@@ -9,7 +9,7 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
 
   const {infoUser}=useContext(UseLoginContext)
 
-  // console.log(infoUser)
+  console.log(infoUser)
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
