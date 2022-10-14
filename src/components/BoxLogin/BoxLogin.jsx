@@ -41,7 +41,7 @@ const BoxLogin = () => {
           top: 0,
           behavior: 'auto',
         });
-        navigate('/');
+        window.location.replace('localhost:3000/');
       } else {
         setError(true);
       }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   IconButton,
   MenuItem,
@@ -32,6 +32,12 @@ import { useNavigate } from "react-router-dom";
 const NavIcons = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(localStorage.getItem("idClienteMiRopero")!==null){
+      console.log(localStorage.getItem("idClienteMiRopero"))
+      onLogIn()
+    }
+  });
 
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);
@@ -145,7 +151,7 @@ const NavIcons = () => {
                 minHeight: "32px",
                 minWidth: "188px",
               }}
-              onClick={onLogIn}
+              onClick={()=>navigate("/login")}
             >
               Ingresar
             </Button>
@@ -185,8 +191,9 @@ const NavIcons = () => {
             alignItems: "flex-start",
           }}
         >
-          {optionUser.map((item) => (
+          {optionUser.map((item,i) => (
             <MenuItem
+              key={i}
               sx={{
                 width: "100%",
                 minHeight: "40px",
