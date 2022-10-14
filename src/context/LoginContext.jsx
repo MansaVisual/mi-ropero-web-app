@@ -7,6 +7,13 @@ export const LoginContext = ({children}) => {
     const [userLog,setUserLog]=useState("")
     const [infoUser,setInfoUser]=useState([])
 
+    useEffect(()=>{
+        const res = localStorage.getItem("idClienteMiRopero")
+        if(res!==null && userLog===""){
+            setUserLog(res)
+        }
+    },[])// eslint-disable-line react-hooks/exhaustive-deps
+
     const LoginAPI = async(data,clase,metodo) =>{
         let resFinal = ''
         const res = localStorage.getItem("idClienteMiRopero")
@@ -37,7 +44,6 @@ export const LoginContext = ({children}) => {
     }
 
     useEffect(() => {
-        console.log("USER",userLog)
         if(userLog!==""){
             const user = new FormData()
             user.append("idcliente",userLog)
@@ -46,8 +52,6 @@ export const LoginContext = ({children}) => {
                 "clientes",
                 "get"
             ).then((res)=>{
-                console.log("HOLIS",res)
-
                 if(res.status==="success"){
                     setInfoUser(res)
                 }else if(res.status==="error"){
@@ -68,8 +72,6 @@ export const LoginContext = ({children}) => {
             ).then((res)=>{
                 if(res.status==="success"){
                     setInfoUser(res)
-                }else if(res.status==="error"){
-                    reBuscarInfo()
                 }
             })
         }
