@@ -173,7 +173,7 @@ const NavIcons = () => {
                 minHeight: "32px",
                 minWidth: "188px",
               }}
-              onClick={()=>navigate("/login")}
+              onClick={()=>{handleCloseAvatar();navigate("/login")}}
             >
               Ingresar
             </Button>
@@ -191,6 +191,7 @@ const NavIcons = () => {
                 minHeight: "32px",
                 minWidth: "188px",
               }}
+              onClick={()=>{handleCloseAvatar();navigate("/registro")}}
             >
               Crear cuenta
             </Button>
@@ -387,7 +388,7 @@ const NavIcons = () => {
 
   return (
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
-      <IconButton onClick={handleClickNotif}>
+      <IconButton onClick={userLog!==""&&handleClickNotif}>
         <StyledBadge
           badgeContent={120}
           color="secondary"
@@ -496,7 +497,7 @@ const NavIcons = () => {
       >
         {getMenuAvatar()}
       </StyledMenu>
-      <IconButton onClick={handleClickCart}>
+      <IconButton onClick={userLog!==""&&handleClickCart}>
         <StyledBadge
           badgeContent={1}
           color="secondary"
