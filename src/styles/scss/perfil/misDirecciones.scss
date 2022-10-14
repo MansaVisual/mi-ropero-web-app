@@ -20,17 +20,20 @@
       color: #443988;
       margin: 0;
       @include screen_705 {
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 16px;
+        line-height: 22px;
+        min-width: 140px;
       }
     }
     .addDirection {
       font-weight: 600;
       font-size: 13px;
       line-height: 17px;
-      margin: 0 0 0 60px;
+      margin: 0;
+      width: 165px;
       color: #443988;
       text-decoration: underline;
+      text-align: right;
     }
   }
   .direcSubtitle {
