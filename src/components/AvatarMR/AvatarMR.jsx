@@ -1,4 +1,4 @@
-import React,{useContext,useEffect} from "react";
+import React,{useContext} from "react";
 import { Avatar, Box, Rating, Typography } from "@mui/material";
 import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +8,6 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
-
-  useEffect(() => {
-    console.log("USER",infoUser)
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
@@ -48,7 +44,7 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
             }}
             onClick={()=>navigate('/perfil')}
           >
-            {infoUser.result.nombre}
+            {infoUser.length!==0 && infoUser.result.nombre}
           </Typography>
           {avatarCard ? (
             <Rating name="read-only" readOnly value={1} size="small" />
