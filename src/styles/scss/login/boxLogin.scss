@@ -13,12 +13,10 @@
     line-height: 34px;
     color: #443988;
     margin: 0;
-
     @include screen_705 {
       font-weight: 700;
       font-size: 16px;
       line-height: 21px;
-      margin: 0;
     }
   }
   .buttonWrapper {
