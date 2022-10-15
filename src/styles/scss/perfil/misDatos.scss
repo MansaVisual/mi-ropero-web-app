@@ -1,7 +1,8 @@
 .misDatosContainer {
   margin-top: 40px;
   margin-bottom: 60px;
-  width: 758px;
+  max-width: 758px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,6 +17,11 @@
     line-height: 31px;
     color: #443988;
     margin-bottom: 0;
+    @include screen_705 {
+      font-size: 16px;
+      line-height: 22px;
+      min-width: 140px;
+    }
   }
   .subTitle {
     font-weight: 700;
@@ -32,7 +38,7 @@
   }
   .inputContainer {
     display: flex;
-    @include screen_820 {
+    @include screen_705 {
       flex-direction: column;
       align-items: center;
     }
@@ -87,11 +93,10 @@
         font-weight: 400;
         font-size: 13px;
         line-height: 17px;
-        text-align: center;
+        text-align: left;
         color: #878787;
         @include screen_705 {
           left: 0px;
-          text-align: left;
         }
       }
     }
