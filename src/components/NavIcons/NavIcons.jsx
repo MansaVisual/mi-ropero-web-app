@@ -258,7 +258,7 @@ const chargeCarrito = () =>{
         <Box
           sx={{ paddingLeft: "8px", paddingTop: "8px", paddingBottom: "8px" }}
         >
-          <AvatarMR></AvatarMR>
+          <AvatarMR handleCloseAvatar={handleCloseAvatar}></AvatarMR>
         </Box>
         <Box
           sx={{
@@ -279,7 +279,7 @@ const chargeCarrito = () =>{
                   color: "white",
                 },
               }}
-              onClick={()=>navigate(`/perfil/${item.url}`)}
+              onClick={()=>{handleCloseAvatar();navigate(`/perfil/${item.url}`)}}
             >
               <Icon sx={{ fontSize: "15px" }}>{item.icon}</Icon>
               <Typography sx={{ pl: "15px" }}>{item.title}</Typography>
@@ -382,7 +382,7 @@ const chargeCarrito = () =>{
                           backgroundColor: theme.palette.primary.main,
                         },
                       }}
-                      onClick={()=>navigate('/checkout')}
+                      onClick={()=>{handleCloseCart();navigate('/checkout')}}
                     >
                       Finalizar compra
                     </Button>
@@ -395,14 +395,13 @@ const chargeCarrito = () =>{
                         cursor: "pointer",
                         mt: "8px",
                       }}
-                      onClick={()=>navigate("/carrito")}
+                      onClick={()=>{handleCloseCart();navigate("/carrito")}}
                     >
                       IR AL CARRITO
                     </Link>
                   </Box>
                   <Box sx={{ pt: "10px" }}>
                       {carrito.map((prod,i)=>{
-                        console.log(prod)
                         return(
                           <Box sx={{ display: "flex", alignItems: "center", px: "8px" }} key={i}>
                             <Box
