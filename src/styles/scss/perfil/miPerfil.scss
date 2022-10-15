@@ -92,7 +92,7 @@
       .section:first-child {
         .imgBox {
           @include screen_389 {
-            width: 290px;
+            width: 282px;
             height: 71px;
             border-radius: 6px;
             border: 1px solid #d9d9d9;
@@ -105,7 +105,7 @@
       .section {
         cursor: pointer;
         .imgBox {
-          width: 142px;
+          width: 138px;
           height: 71px;
           border-radius: 6px;
           border: 1px solid #d9d9d9;
@@ -122,7 +122,7 @@
           text-align: center;
           margin-top: 12px;
           font-weight: 700;
-          font-size: 13px;
+          font-size: 12px;
           line-height: 19px;
           color: #443988;
           @include screen_705 {
