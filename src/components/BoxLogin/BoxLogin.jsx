@@ -64,7 +64,7 @@ const BoxLogin = () => {
         <p className='title'>Continuar con tu email</p>
 
         {error && (
-          <div style={{ width: '672px' }}>
+          <div className='errorBoxContainer'>
             <div className='errorBox'>
               <CancelOutlinedIcon color='secondary' className='cruz' />
               <p>Usuario o contraseña incorrecta.</p>
@@ -72,7 +72,7 @@ const BoxLogin = () => {
           </div>
         )}
         {campoObligatorio && (
-          <div style={{ width: '672px' }}>
+          <div className='errorBoxContainer'>
             <div className='errorBox'>
               <CancelOutlinedIcon color='secondary' className='cruz' />
               <p>Debe completar los campos.</p>

@@ -86,6 +86,11 @@
       }
     }
   }
+  .errorBoxContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   .inputContainer {
     display: flex;
     width: 100%;
