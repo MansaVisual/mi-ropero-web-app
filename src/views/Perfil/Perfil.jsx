@@ -18,11 +18,11 @@ const Perfil = () => {
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
 
-  /* useEffect(()=>{
+   useEffect(()=>{
     if(userLog===""){
       navigate("/login")
     }
-  },[]) */ // eslint-disable-line react-hooks/exhaustive-deps
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Grid className='gridContainer'>
