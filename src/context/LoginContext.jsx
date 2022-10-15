@@ -52,7 +52,6 @@ export const LoginContext = ({children}) => {
                 "clientes",
                 "get"
             ).then((res)=>{
-                console.log(res)
                 if(res.status==="success"){
                     setInfoUser(res.result)
                 }else if(res.status==="error"){

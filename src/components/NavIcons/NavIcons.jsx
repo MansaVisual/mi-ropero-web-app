@@ -382,6 +382,7 @@ const chargeCarrito = () =>{
                           backgroundColor: theme.palette.primary.main,
                         },
                       }}
+                      onClick={()=>navigate('/checkout')}
                     >
                       Finalizar compra
                     </Button>
