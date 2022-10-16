@@ -6,6 +6,7 @@ export const ProdsContext = ({children}) => {
 
     const [categorias,setCategorias]=useState([])
     const [nuevosIngresos,setNuevosIngresos]=useState([])
+    // const [ropa,setRopa]=useState([])
 
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -34,6 +35,9 @@ export const ProdsContext = ({children}) => {
         if(nuevosIngresos.length===0){
             handleNuevosIngresos()
         }
+        // if(ropa.length===0){
+        //     handleRopa()
+        // }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const handleNuevosIngresos=()=>{
@@ -49,7 +53,18 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){setNuevosIngresos(res.result.productos)}else{handleNuevosIngresos()}
         })
     }
-
+    // const handleRopa=()=>{
+    //     const ropaForm = new FormData()
+    //     ropaForm.append("bypage",8)
+    //     ropaForm.append("idcategoria",2)
+    //     ProdAPI(
+    //         ropaForm,
+    //         "productos",
+    //         "search"
+    //     ).then((res)=>{
+    //         if(res.status==="success"){setRopa(res.result.productos)}else{handleRopa()}
+    //     })
+    // }
     const handleCategorias=()=>{
         ProdAPI(
             categorias,

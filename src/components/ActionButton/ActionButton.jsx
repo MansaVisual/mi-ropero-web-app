@@ -1,16 +1,41 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import { Box, Fab } from "@mui/material";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoArrowUndoSharp } from "react-icons/io5";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
+import { UseProdsContext } from "../../context/ProdsContext";
 
-export const LikeButton = () => {
+export const LikeButton = ({idCliente,idProd}) => {
+  const {ProdAPI}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
+
+  useEffect(()=>{
+    const fav = new FormData()
+    fav.append("idcliente",idCliente)
+    ProdAPI(
+      fav,
+      "favoritos",
+      "all"
+    ).then((res)=>console.log(res))
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   const onLike = () => {
     setLike(!like);
+    const favAdd = new FormData()
+    favAdd.append("idcliente",idCliente)
+    favAdd.append("idproducto",idProd)
+    ProdAPI(
+      favAdd,
+      "favoritos",
+      "insert"
+    ).then((res)=>{
+      if(res.status==="error"){
+        setLike(!like)
+      }
+      console.log(res)
+    })
   };
 
   return (

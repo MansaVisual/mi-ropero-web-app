@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef,useContext } from "react";
 import {
   Divider,
   Box,
@@ -14,6 +14,7 @@ import { TagNewStyled } from "./styles";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const ProductCard = ({
   imageCard,
@@ -21,7 +22,10 @@ const ProductCard = ({
   productName,
   productPrice,
   onClick,
+  idProducto
 }) => {
+  const {userLog}=useContext(UseLoginContext)
+
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
 
@@ -64,7 +68,7 @@ const ProductCard = ({
           {tag}
         </TagNewStyled>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
-          <LikeButton />
+          <LikeButton idCliente={userLog} idProd={idProducto}/>
         </Box>
         <Button
           sx={{

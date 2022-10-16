@@ -110,7 +110,6 @@ export default class SimpleSlider extends Component {
       ],
     };
     const {contenido}=this.props
-
     return (
       <div>
         {contenido!==undefined && contenido.length===0? <Loader spin={"spinnerG"}/> :
@@ -121,6 +120,7 @@ export default class SimpleSlider extends Component {
                   imageCard={item.imagenes[0].imagen_vertical}
                   productName={item.nombre}
                   productPrice={item.precio}
+                  idProducto={item.idproducto}
                   tag="NUEVO"
                   />
               </Box>
