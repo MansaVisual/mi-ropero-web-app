@@ -53,7 +53,7 @@ export const LoginContext = ({children}) => {
                 "get"
             ).then((res)=>{
                 if(res.status==="success"){
-                    setInfoUser(res)
+                    setInfoUser(res.result)
                 }else if(res.status==="error"){
                     reBuscarInfo()
                 }
@@ -71,7 +71,9 @@ export const LoginContext = ({children}) => {
                 "get"
             ).then((res)=>{
                 if(res.status==="success"){
-                    setInfoUser(res)
+                    setInfoUser(res.result)
+                }else{
+                    reBuscarInfo()
                 }
             })
         }

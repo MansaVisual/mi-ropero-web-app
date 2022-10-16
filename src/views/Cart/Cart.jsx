@@ -1,4 +1,4 @@
-import React, {useState,useContext} from "react";
+import React, {useState,useContext,useEffect} from "react";
 import { Box, Button, Grid, IconButton, useMediaQuery } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
@@ -12,12 +12,14 @@ import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import { UseCartContext } from "../../context/CartContext";
 import cruz from "../../assets/img/cruz.png";
 import Loader from "../../components/Loader/Loader";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Cart = () => {
     const navigate = useNavigate();
-
+    const {userLog}=useContext(UseLoginContext)
     const {CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart}=useContext(UseCartContext)
-
+  
+    
     const [eliminar,setEliminar]=useState(false)
     const [prodEliminar,setProdEliminar]=useState(null)
     const [load,setLoad]=useState(false)
@@ -27,7 +29,12 @@ const Cart = () => {
     const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const isDesktopBig = useMediaQuery(theme.breakpoints.up("xl"));
-
+    
+    useEffect(()=>{
+      if(userLog===""){
+        navigate("/login")
+      }
+    },[])// eslint-disable-line react-hooks/exhaustive-deps
     
     const handleEliminar = (prod)=>{
         setProdEliminar(prod)

@@ -1,6 +1,6 @@
 import { Button, Grid, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system"
-import React,{useState,useEffect} from "react"
+import React,{useState,useEffect,useContext} from "react"
 import { useLocation,useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import "../../styles/scss/styles.scss"
@@ -12,11 +12,13 @@ import InfoContact from "../../components/FormCheckout/InfoContact";
 import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
 import Tarjeta from "../../components/FormCheckout/Tarjeta";
 import CheckForm from "../../components/FormCheckout/Check";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Checkout = ()=>{
     const navigate = useNavigate();
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
+    const {userLog}=useContext(UseLoginContext)
 
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
@@ -36,6 +38,8 @@ const Checkout = ()=>{
 
     const [estadoCompra,setEstadoCompra]=useState("")
 
+  
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -45,16 +49,20 @@ const Checkout = ()=>{
 
 
     useEffect(() => {
-        let query = new URLSearchParams(window.location.search)
-        if(query.get("status")==="success"){
-            setEstadoCompra("success")
-            setTypeNav("check")
-        }else if(query.get("status")==="pending"){
-            setEstadoCompra("pending")
-            setTypeNav("check")
-        }else if(query.get("status")==="failure"){
-            setEstadoCompra("error")
-            setTypeNav("check")
+        if(userLog===""){
+            navigate("/login")
+        }else{
+            let query = new URLSearchParams(window.location.search)
+            if(query.get("status")==="success"){
+                setEstadoCompra("success")
+                setTypeNav("check")
+            }else if(query.get("status")==="pending"){
+                setEstadoCompra("pending")
+                setTypeNav("check")
+            }else if(query.get("status")==="failure"){
+                setEstadoCompra("error")
+                setTypeNav("check")
+            }
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 

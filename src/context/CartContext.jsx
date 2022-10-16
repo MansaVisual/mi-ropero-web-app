@@ -1,8 +1,11 @@
 import { createContext, useState, useEffect } from "react";
+// import { UseLoginContext } from "./LoginContext";
 
 export const UseCartContext = createContext();
 
 export const CartContext = ({children}) => {
+    // const {userLog} = useContext(UseLoginContext)
+    
     const [carrito,setCarrito]=useState([])
     const [buscandoCart,setBuscandoCart]=useState(true)
     const [costoCarrito,setCostoCarrito]=useState(false)

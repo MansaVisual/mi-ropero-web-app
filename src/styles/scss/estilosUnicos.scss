@@ -1,31 +1,31 @@
-.Breadcrumbs{
-    margin-left: 74px;
-    margin-top: 56px;
-    @include screen_768{
-        margin-left: 32px;
-    }
-    @include screen_705{
-        margin-left: 16px;
-        margin-top: 16px;
-    }
+.Breadcrumbs {
+  margin-left: 74px;
+  margin-top: 56px;
+  @include screen_768 {
+    margin-left: 32px;
+  }
+  @include screen_705 {
+    margin-left: 16px;
+    margin-top: 16px;
+  }
 }
-.TituloCartCheck{
-    font-family: $fontFamily;
-    font-size: 25px;
-    font-weight: 700;
-    color: #443988;
-    margin-top: 0px;
+.TituloCartCheck {
+  font-family: $fontFamily;
+  font-size: 25px;
+  font-weight: 700;
+  color: #443988;
+  margin-top: 0px;
 }
 
 @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-  
-    100% {
-      transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
   }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .spinnerG {
   width: 36px;
   height: 36px;
@@ -50,54 +50,64 @@
   border-left-color: #7d47ff;
   animation: spin 1s ease infinite;
 }
-.spinnerWhite{
+.spinnerWhite {
   border-left-color: #dbd2f0 !important;
 }
-  
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.problemaMaxWidthCheckout{
-  @include screen_1366{
+.problemaMaxWidthCheckout {
+  @include screen_1366 {
     max-width: 760px !important;
   }
 }
-.problemaMaxWidthCarrito{
-  @include screen_1366{
+.problemaMaxWidthCarrito {
+  @include screen_1366 {
     max-width: 895px !important;
   }
 }
-.maxWidthResumeBox{
-  @include screen_1366{
+.maxWidthResumeBox {
+  @include screen_1366 {
     max-width: 296px !important;
   }
-  @include screen_1001{
+  @include screen_1001 {
     margin-left: 0px !important;
     margin-bottom: 32px !important;
   }
 }
 
-.errorBox{
+.errorBox {
+  max-width: 672px;
   width: 100%;
   margin: 12px 0px;
   display: flex;
   align-items: center;
-  background: #FDFEFF;
-  border: 1px solid #BABCBE;
-  box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25), 10px 10px 30px rgba(223, 229, 239, 0.25);
+  background: #fdfeff;
+  border: 1px solid #babcbe;
+  box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25),
+    10px 10px 30px rgba(223, 229, 239, 0.25);
   border-radius: 6px;
-  .cruz{
-      font-size: 24px;
-      margin-left: 32px;
-      margin-right: 24px;
+  @include screen_705 {
+    max-width: 370px;
+    width: 100%;
   }
-  p{
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      color: #878787;
+  .cruz {
+    font-size: 24px;
+    margin-left: 32px;
+    margin-right: 24px;
+    @include screen_389 {
+      margin-left: 24px;
+      margin-right: 16px;
+    }
+  }
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #878787;
   }
 }

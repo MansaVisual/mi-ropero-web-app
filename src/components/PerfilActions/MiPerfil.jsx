@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import profileTest from '../../assets/img/profileTest.png';
@@ -12,11 +12,14 @@ import miTienda from '../../assets/img/miTiendaIcon.png';
 import PopUpNotis from './PopUpNotis';
 import PopUpSesion from './PopUpSesion';
 import PopUpEliminar from './PopUpEliminar';
+import { UseLoginContext } from '../../context/LoginContext';
 
 const MiPerfil = ({ setTypeNav }) => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
+
+  const {infoUser}=useContext(UseLoginContext)
 
   const [notificationsOff, setNotificationsOff] = useState(false);
   const [closeSession, setCloseSession] = useState(false);
@@ -72,8 +75,8 @@ const MiPerfil = ({ setTypeNav }) => {
           />
           <div className='profileText'>
             <p className='hello'>HOLA!</p>
-            <p className='name'>{testData.name}</p>
-            <p className='email'>{testData.email}</p>
+            <p className='name'>{infoUser.length !==0 && `${infoUser.nombre} ${infoUser.apellido}`}</p>
+            <p className='email'>{infoUser.length !==0 && infoUser.email}</p>
           </div>
         </div>
         <p className='profileSections'>

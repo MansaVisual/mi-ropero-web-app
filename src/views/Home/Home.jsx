@@ -6,7 +6,7 @@ import {
   Button,
   useMediaQuery,
 } from "@mui/material";
-import React from "react";
+import React,{useContext} from "react";
 import {
   UpButton,
   WspButton,
@@ -16,10 +16,14 @@ import Chip from "../../components/Chip/Chip";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import SliderProd from "../../components/SliderProd/SliderProd";
 import YoutubeEmbed from "../../components/YoutubeEmbed/YoutubeEmbed";
+import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const {nuevosIngresos}=useContext(UseProdsContext)
+
   return (
     <>
       <Banner />
@@ -40,7 +44,7 @@ const Home = () => {
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link

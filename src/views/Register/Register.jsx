@@ -1,24 +1,36 @@
 import { Grid } from '@mui/material';
-import React from 'react'
-import { useLocation } from 'react-router-dom';
+import React,{useContext,useEffect} from 'react';
+import { useLocation,useNavigate } from 'react-router-dom';
 import BoxRegister from '../../components/BoxRegister/BoxRegister';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import { UseLoginContext } from '../../context/LoginContext';
 
 const Register = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const location = useLocation();
-    const pathnames = location.pathname.split("/").filter((x) => x)
+  const pathnames = location.pathname.split('/').filter((x) => x);
+  const {userLog}=useContext(UseLoginContext)
 
-    return (
-        <>
-            <Grid>
-                <div className="registerContainer">
-                    <Breadcrumbs links={pathnames}/>
-                    <BoxRegister />
-                </div>
-            </Grid>
-        </>
-    )
-}
+  useEffect(() => {
+    console.log("CD")
+    if(userLog!==""){
+      navigate('/')
+    }
+  }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
-export default Register
+  return (
+    <>
+      <Grid>
+        <div className='registerContainer'>
+          <div className='registerBreadcrumbs'>
+            <Breadcrumbs links={pathnames} />
+          </div>
+          <BoxRegister />
+        </div>
+      </Grid>
+    </>
+  );
+};
+
+export default Register;

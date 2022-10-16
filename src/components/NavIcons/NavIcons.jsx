@@ -13,7 +13,6 @@ import {
 import BellNotif from "../../assets/img/BellNotif.png";
 import Cart from "../../assets/img/Cart.png";
 import Avatar from "../../assets/img/Avatar.png";
-import fotoProd from "../../assets/img/fotoProd.png";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { StyledBadge, StyledMenu } from "./style";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -29,11 +28,27 @@ import { IoTrashOutline } from "react-icons/io5";
 import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
+import { UseCartContext } from "../../context/CartContext";
+import Loader from "../Loader/Loader";
+import basura from "../../assets/img/basura.png";
+import cruz from "../../assets/img/cruz.png";
 
 const NavIcons = () => {
   const navigate = useNavigate();
 
   const { userLog, setUserLog } = useContext(UseLoginContext);
+  const {
+    carrito,
+    costoCarrito,
+    CartAPI,
+    setCarrito,
+    buscandoCart,
+    setBuscandoCart,
+  } = useContext(UseCartContext);
+
+  const [load, setLoad] = useState(false);
+  const [eliminar, setEliminar] = useState(false);
+  const [prodEliminar, setProdEliminar] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("idClienteMiRopero") !== null) {
@@ -54,6 +69,44 @@ const NavIcons = () => {
     window.location.reload();
   };
 
+  const handleEliminar = (prod) => {
+    setProdEliminar(prod);
+    setEliminar(true);
+  };
+
+  const handleEliminarFinal = async () => {
+    setLoad(true);
+    const eliminar = new FormData();
+    eliminar.append("idcarrito", prodEliminar);
+    await CartAPI(eliminar, "carritos", "delete").then(async (res) => {
+      if (res.status === "success") {
+        await chargeCarrito();
+        setEliminar(false);
+        setLoad(false);
+      } else {
+        alert("Ocurrio un error");
+        setLoad(false);
+      }
+    });
+  };
+
+  const chargeCarrito = () => {
+    const CartID = new FormData();
+
+    CartID.append("idcliente", 68);
+    // CartID.append('idproducto',10610)
+    // CartID.append('cantidad',1)
+    CartAPI(CartID, "carritos", "all").then((res) => {
+      if (res.status === "success") {
+        setCarrito(res.result);
+        setBuscandoCart(false);
+      } else if (res.status === "error") {
+        setBuscandoCart(false);
+      }
+    });
+  };
+
+  // ----------------------------------------------------------------------------------------------------------------------------
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);
   const [notifMenu, setNotifMenu] = useState(null);
@@ -173,7 +226,10 @@ const NavIcons = () => {
                 minHeight: "32px",
                 minWidth: "188px",
               }}
-              onClick={() => navigate("/login")}
+              onClick={() => {
+                handleCloseAvatar();
+                navigate("/login");
+              }}
             >
               Ingresar
             </Button>
@@ -191,6 +247,10 @@ const NavIcons = () => {
                 minHeight: "32px",
                 minWidth: "188px",
               }}
+              onClick={() => {
+                handleCloseAvatar();
+                navigate("/registro");
+              }}
             >
               Crear cuenta
             </Button>
@@ -203,7 +263,7 @@ const NavIcons = () => {
         <Box
           sx={{ paddingLeft: "8px", paddingTop: "8px", paddingBottom: "8px" }}
         >
-          <AvatarMR></AvatarMR>
+          <AvatarMR handleCloseAvatar={handleCloseAvatar}></AvatarMR>
         </Box>
         <Box
           sx={{
@@ -224,7 +284,10 @@ const NavIcons = () => {
                   color: "white",
                 },
               }}
-              onClick={() => navigate(`/perfil/${item.url}`)}
+              onClick={() => {
+                handleCloseAvatar();
+                navigate(`/perfil/${item.url}`);
+              }}
             >
               <Icon sx={{ fontSize: "15px" }}>{item.icon}</Icon>
               <Typography sx={{ pl: "15px" }}>{item.title}</Typography>
@@ -250,150 +313,187 @@ const NavIcons = () => {
 
   const getMenuCart = () => {
     return (
-      // <Stack
-      //   justifyContent="center"
-      //   alignItems="center"
-      //   sx={{ paddingTop: "10px", paddingBottom: "10px" }}
-      // >
-      //   <Box sx={{ mb: "4px" }}>
-      //     <CgCloseO size={24} color="hsla(8, 100%, 56%, 1)" />
-      //   </Box>
-      //   <Box>
-      //     <Typography
-      //       sx={{
-      //         fontSize: theme.typography.fontSize[3],
-      //         fontWeight: theme.typography.fontWeightMedium,
-      //         color: "hsla(8, 100%, 56%, 1)",
-      //       }}
-      //     >
-      //       TU CARRITO ESTÁ VACÍO
-      //     </Typography>
-      //   </Box>
-      // </Stack>
-
-      <Stack>
-        <Box sx={{ overflowY: "auto", maxHeight: "186px" }}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              px: "20px",
-              mt: "15px",
-            }}
-          >
-            <Typography
-              sx={{
-                color: theme.palette.tertiary.main,
-                fontSize: theme.typography.fontSize[1],
-              }}
-            >
-              TOTAL (1 productos)
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: theme.typography.fontSize[2],
-                fontWeight: theme.typography.fontWeightMedium,
-              }}
-            >
-              $10500
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mt: "17px",
-              mb: "16px",
-            }}
-          >
-            <Button
-              sx={{
-                backgroundColor: theme.palette.secondary.main,
-                color: theme.palette.secondary.contrastText,
-                letterSpacing: "0.8px",
-                borderRadius: "20px",
-                width: "189px",
-                height: "36px",
-                fontSize: theme.typography.fontSize[2],
-                lineHeight: "16.34px",
-                fontWeight: theme.typography.fontWeightRegular,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.main,
-                },
-              }}
-            >
-              Finalizar compra
-            </Button>
-            <Link
-              sx={{
-                color: theme.palette.quaternary.contrastText,
-                fontSize: theme.typography.fontSize[1],
-                lineHeight: "14.98px",
-                fontWeight: theme.typography.fontWeightRegular,
-                cursor: "pointer",
-                mt: "8px",
-              }}
-              onClick={() => navigate("/carrito")}
-            >
-              IR AL CARRITO
-            </Link>
-          </Box>
-          <Box sx={{ pt: "10px" }}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                px: "8px",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "20px",
-                }}
+      <>
+        {buscandoCart ? (
+          <Loader spin={"spinnerM"} />
+        ) : (
+          <>
+            {carrito.length === 0 ? (
+              <Stack
+                justifyContent="center"
+                alignItems="center"
+                sx={{ paddingTop: "10px", paddingBottom: "10px" }}
               >
-                <img src={fotoProd} alt="" width={40} height={40} />
-              </Box>
-              <Box>
-                <Typography sx={{ fontSize: theme.typography.fontSize[2] }}>
-                  Campera Dama
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[0],
-                    color: theme.palette.tertiary.main,
-                  }}
-                >
-                  Romialaniz
-                </Typography>
-                <Typography
-                  sx={{ fontSize: theme.typography.fontSize[1], pt: "6px" }}
-                >
-                  $10500
-                </Typography>
-              </Box>
-              <Box>
-                <IconButton>
-                  <IoTrashOutline
-                    color={theme.palette.secondary.main}
-                    size={20}
-                  />
-                </IconButton>
-              </Box>
-            </Box>
-          </Box>
-          <Divider />
-        </Box>
-      </Stack>
+                <Box sx={{ mb: "4px" }}>
+                  <CgCloseO size={24} color="hsla(8, 100%, 56%, 1)" />
+                </Box>
+                <Box>
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[3],
+                      fontWeight: theme.typography.fontWeightMedium,
+                      color: "hsla(8, 100%, 56%, 1)",
+                    }}
+                  >
+                    TU CARRITO ESTÁ VACÍO
+                  </Typography>
+                </Box>
+              </Stack>
+            ) : (
+              <Stack>
+                <Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      px: "20px",
+                      mt: "15px",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: theme.palette.tertiary.main,
+                        fontSize: theme.typography.fontSize[1],
+                      }}
+                    >
+                      TOTAL ({carrito.length} productos)
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: theme.typography.fontSize[2],
+                        fontWeight: theme.typography.fontWeightMedium,
+                      }}
+                    >
+                      ${costoCarrito}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      mt: "17px",
+                      mb: "16px",
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        backgroundColor: theme.palette.secondary.main,
+                        color: theme.palette.secondary.contrastText,
+                        letterSpacing: "0.8px",
+                        borderRadius: "20px",
+                        width: "189px",
+                        height: "36px",
+                        fontSize: theme.typography.fontSize[2],
+                        lineHeight: "16.34px",
+                        fontWeight: theme.typography.fontWeightRegular,
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.main,
+                        },
+                      }}
+                      onClick={() => {
+                        handleCloseCart();
+                        navigate("/checkout");
+                      }}
+                    >
+                      Finalizar compra
+                    </Button>
+                    <Link
+                      sx={{
+                        color: theme.palette.quaternary.contrastText,
+                        fontSize: theme.typography.fontSize[1],
+                        lineHeight: "14.98px",
+                        fontWeight: theme.typography.fontWeightRegular,
+                        cursor: "pointer",
+                        mt: "8px",
+                      }}
+                      onClick={() => {
+                        handleCloseCart();
+                        navigate("/carrito");
+                      }}
+                    >
+                      IR AL CARRITO
+                    </Link>
+                  </Box>
+                  <Box sx={{ pt: "10px" }}>
+                    {carrito.map((prod, i) => {
+                      return (
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            px: "8px",
+                          }}
+                          key={i}
+                        >
+                          <Box
+                            sx={{
+                              width: "40px",
+                              height: "40px",
+                              borderRadius: "20px",
+                              pr: "16px",
+                            }}
+                          >
+                            <img
+                              src={prod.producto_imagen}
+                              alt=""
+                              width={40}
+                              height={40}
+                            />
+                          </Box>
+                          <Box>
+                            <Typography
+                              sx={{ fontSize: theme.typography.fontSize[2] }}
+                            >
+                              {prod.producto.nombre}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: theme.typography.fontSize[0],
+                                color: theme.palette.tertiary.main,
+                              }}
+                            >
+                              {prod.producto.tienda.nombre}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: theme.typography.fontSize[1],
+                                pt: "6px",
+                              }}
+                            >
+                              ${prod.producto.precio}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ pl: "68px" }}>
+                            <IconButton
+                              onClick={() => {
+                                handleCloseCart();
+                                handleEliminar(prod.idcarrito);
+                              }}
+                            >
+                              <IoTrashOutline
+                                color={theme.palette.secondary.main}
+                                size={20}
+                              />
+                            </IconButton>
+                          </Box>
+                        </Box>
+                      );
+                    })}
+                  </Box>
+                  <Divider />
+                </Box>
+              </Stack>
+            )}
+          </>
+        )}
+      </>
     );
   };
 
   return (
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
-      <IconButton onClick={handleClickNotif}>
+      <IconButton onClick={userLog !== "" && handleClickNotif}>
         <StyledBadge
           badgeContent={120}
           color="secondary"
@@ -502,9 +602,9 @@ const NavIcons = () => {
       >
         {getMenuAvatar()}
       </StyledMenu>
-      <IconButton onClick={handleClickCart}>
+      <IconButton onClick={userLog !== "" && handleClickCart}>
         <StyledBadge
-          badgeContent={1}
+          badgeContent={carrito.length}
           color="secondary"
           anchorOrigin={{
             vertical: "top",
@@ -564,6 +664,47 @@ const NavIcons = () => {
       >
         {getMenuCart()}
       </StyledMenu>
+      {eliminar && (
+        <div className="cartElimianrPopUp">
+          <div className="fondoPopUp" onClick={() => setEliminar(false)}></div>
+          <div className="popUp">
+            <img
+              src={basura}
+              alt="BORRAR"
+              style={{ marginTop: "28px" }}
+              className="basuraLogo"
+            />
+            <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "24px",
+              }}
+            >
+              <Button className="cancelar" onClick={() => setEliminar(false)}>
+                CANCELAR
+              </Button>
+              <Button
+                className="eliminar"
+                onClick={() => handleEliminarFinal()}
+              >
+                ELIMINAR
+              </Button>
+            </div>
+            {load && <Loader spin={"spinnerG"} />}
+            {load && <br />}
+            <img
+              src={cruz}
+              alt="CRUZ"
+              className="cruz"
+              onClick={() => setEliminar(false)}
+            />
+          </div>
+        </div>
+      )}
     </Stack>
   );
 };

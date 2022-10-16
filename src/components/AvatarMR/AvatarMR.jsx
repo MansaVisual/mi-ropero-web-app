@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
+const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar }) => {
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
@@ -24,13 +24,13 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
             cursor:"pointer"
           }}
           src={imgAvatar}
-          onClick={()=>navigate('/perfil')}
+          onClick={()=>{handleCloseAvatar();navigate('/perfil')}}
         >
-          DB
+          {infoUser.length!==0 && `${(infoUser.nombre[0]).toUpperCase()}${(infoUser.apellido[0]).toUpperCase()}`}
         </Avatar>
         <Box sx={{ pl: !avatarCard ? "6px" : "10px" }}>
           {!avatarCard ? (
-            <Typography sx={{ lineHeight: "16.34px", fontSize: "12px", cursor:"pointer" }} onClick={()=>navigate('/perfil')}>
+            <Typography sx={{ lineHeight: "16.34px", fontSize: "12px", cursor:"pointer" }} onClick={()=>{handleCloseAvatar();navigate('/perfil')}}>
               HOLA!
             </Typography>
           ) : null}
@@ -42,9 +42,9 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero }) => {
               fontWeight: theme.typography.fontWeightMedium,
               cursor:"pointer"
             }}
-            onClick={()=>navigate('/perfil')}
+            onClick={()=>{handleCloseAvatar();navigate('/perfil')}}
           >
-            {infoUser.length!==0 && infoUser.result.nombre}
+            {infoUser.length!==0 && infoUser.nombre}
           </Typography>
           {avatarCard ? (
             <Rating name="read-only" readOnly value={1} size="small" />

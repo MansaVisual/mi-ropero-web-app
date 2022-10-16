@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Button, InputAdornment, TextField } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleLogo from '../../assets/img/google.png';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import RestorePopUp from './RestorePopUp';
 import { UseLoginContext } from '../../context/LoginContext';
@@ -53,10 +52,9 @@ const BoxLogin = () => {
       <div className='boxLoginContainer'>
         <p className='title'>Continuar con Google o Facebook</p>
         <div className='buttonWrapper'>
-          <div>
-            <Button className='botonGoogle'>INGRESAR CON GOOGLE</Button>
-            <img src={GoogleLogo} className='googleICon' alt='googleICon' />
-          </div>
+          <Button className='botonGoogle'>
+            INGRESAR CON GOOGLE <i className='googleIcon'></i>
+          </Button>
           <Button className='botonFB' endIcon={<FacebookIcon />}>
             INGRESAR CON FACEBOOK
           </Button>
@@ -65,7 +63,7 @@ const BoxLogin = () => {
         <p className='title'>Continuar con tu email</p>
 
         {error && (
-          <div style={{ width: '672px' }}>
+          <div className='errorBoxContainer'>
             <div className='errorBox'>
               <CancelOutlinedIcon color='secondary' className='cruz' />
               <p>Usuario o contraseña incorrecta.</p>
@@ -73,7 +71,7 @@ const BoxLogin = () => {
           </div>
         )}
         {campoObligatorio && (
-          <div style={{ width: '672px' }}>
+          <div className='errorBoxContainer'>
             <div className='errorBox'>
               <CancelOutlinedIcon color='secondary' className='cruz' />
               <p>Debe completar los campos.</p>
