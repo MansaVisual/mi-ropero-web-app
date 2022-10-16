@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   IconButton,
   MenuItem,
@@ -33,26 +33,26 @@ import { UseLoginContext } from "../../context/LoginContext";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const {userLog,setUserLog}=useContext(UseLoginContext)
+  const { userLog, setUserLog } = useContext(UseLoginContext);
 
   useEffect(() => {
-    if(localStorage.getItem("idClienteMiRopero")!==null){
-      onLogIn()
+    if (localStorage.getItem("idClienteMiRopero") !== null) {
+      onLogIn();
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
-    if(userLog!==""){
-      onLogIn()
+    if (userLog !== "") {
+      onLogIn();
     }
-  },[userLog]);
+  }, [userLog]);
 
-  const handleCerrarSesion=()=>{
-    localStorage.clear("idClienteRopero")
-    setUserLog("")
-    closeSession()
-    window.location.reload()
-  }
+  const handleCerrarSesion = () => {
+    localStorage.clear("idClienteRopero");
+    setUserLog("");
+    closeSession();
+    window.location.reload();
+  };
 
   const [avatarMenu, setAvatarMenu] = useState(null);
   const [cartMenu, setCartMenu] = useState(null);
@@ -91,37 +91,37 @@ const NavIcons = () => {
     {
       title: "Mi tienda",
       icon: <IoStorefrontOutline />,
-      url:"MI TIENDA"
+      url: "MI TIENDA",
     },
     {
       title: "Mis datos",
       icon: <HiOutlineUser />,
-      url:"MIS DATOS"
+      url: "MIS DATOS",
     },
     {
       title: "Mis favoritos",
       icon: <AiOutlineHeart />,
-      url:"MIS FAVORITOS"
+      url: "MIS FAVORITOS",
     },
     {
       title: "Mis direcciones",
       icon: <IoLocationOutline />,
-      url:"MIS DIRECCIONES"
+      url: "MIS DIRECCIONES",
     },
     {
       title: "Mis compras",
       icon: <RiFilePaperLine />,
-      url:"MIS COMPRAS"
+      url: "MIS COMPRAS",
     },
     {
       title: "Mis ofertas realizadas",
       icon: <FaRegMoneyBillAlt />,
-      url:"OFERTAS REALIZADAS"
+      url: "OFERTAS REALIZADAS",
     },
     {
       title: "Mis mensajes",
       icon: <BiMessage />,
-      url:"MIS MENSAJES"
+      url: "MIS MENSAJES",
     },
   ];
 
@@ -173,7 +173,7 @@ const NavIcons = () => {
                 minHeight: "32px",
                 minWidth: "188px",
               }}
-              onClick={()=>navigate("/login")}
+              onClick={() => navigate("/login")}
             >
               Ingresar
             </Button>
@@ -213,7 +213,7 @@ const NavIcons = () => {
             alignItems: "flex-start",
           }}
         >
-          {optionUser.map((item,i) => (
+          {optionUser.map((item, i) => (
             <MenuItem
               key={i}
               sx={{
@@ -224,7 +224,7 @@ const NavIcons = () => {
                   color: "white",
                 },
               }}
-              onClick={()=>navigate(`/perfil/${item.url}`)}
+              onClick={() => navigate(`/perfil/${item.url}`)}
             >
               <Icon sx={{ fontSize: "15px" }}>{item.icon}</Icon>
               <Typography sx={{ pl: "15px" }}>{item.title}</Typography>
@@ -239,7 +239,7 @@ const NavIcons = () => {
               textDecoration: "none",
               cursor: "pointer",
             }}
-            onClick={()=>handleCerrarSesion()}
+            onClick={() => handleCerrarSesion()}
           >
             Cerrar Sesión
           </Link>
@@ -272,7 +272,7 @@ const NavIcons = () => {
       // </Stack>
 
       <Stack>
-        <Box>
+        <Box sx={{ overflowY: "auto", maxHeight: "186px" }}>
           <Box
             sx={{
               display: "flex",
@@ -334,19 +334,25 @@ const NavIcons = () => {
                 cursor: "pointer",
                 mt: "8px",
               }}
-              onClick={()=>navigate("/carrito")}
+              onClick={() => navigate("/carrito")}
             >
               IR AL CARRITO
             </Link>
           </Box>
           <Box sx={{ pt: "10px" }}>
-            <Box sx={{ display: "flex", alignItems: "center", px: "8px" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                px: "8px",
+              }}
+            >
               <Box
                 sx={{
                   width: "40px",
                   height: "40px",
                   borderRadius: "20px",
-                  pr: "16px",
                 }}
               >
                 <img src={fotoProd} alt="" width={40} height={40} />
@@ -369,7 +375,7 @@ const NavIcons = () => {
                   $10500
                 </Typography>
               </Box>
-              <Box sx={{ pl: "68px" }}>
+              <Box>
                 <IconButton>
                   <IoTrashOutline
                     color={theme.palette.secondary.main}

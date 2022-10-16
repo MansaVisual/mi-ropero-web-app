@@ -253,8 +253,13 @@ const ProductPage = () => {
         </Grid>
 
         <Grid item xs={12} sm={12}>
-          <Box sx={{ pt: "43px", textAlign: "center" }}>
-            <Chip>Mas productos del ropero</Chip>
+          <Box
+            sx={{
+              pt: "43px",
+              textAlign: "center",
+            }}
+          >
+            <Chip smallSize>Mas productos del ropero</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
             <SliderProd />

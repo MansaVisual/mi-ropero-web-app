@@ -1,8 +1,13 @@
 import { Box, styled } from "@mui/material";
 
 export const StyledChip = styled(Box)(({ theme }) => ({
+  boxSizing: "border-box",
   borderRadius: "100px",
-  height: "40px",
   whiteSpace: "nowrap",
-  display: "inline-block",
+  height: "40px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "fit-content",
+  margin: "0 auto",
 }));
