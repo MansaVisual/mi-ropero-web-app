@@ -118,7 +118,7 @@ export default class SimpleSlider extends Component {
             {contenido.map((item, index) => (
               <Box key={index}>
                 <ProductCard
-                  imageCard={item.imagenes[0].imagenes_vertical}
+                  imageCard={item.imagenes[0].imagen_vertical}
                   productName={item.nombre}
                   productPrice={item.precio}
                   tag="NUEVO"
