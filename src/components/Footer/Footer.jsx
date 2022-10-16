@@ -1,14 +1,14 @@
 import React from "react";
 import {
   Box,
-  Button,
+  // Button,
   Typography,
   Stack,
   useMediaQuery,
   Link,
 } from "@mui/material";
 import theme from "../../styles/theme";
-import { StyledInput } from "../SearchBar/styles";
+// import { StyledInput } from "../SearchBar/styles";
 import { Container } from "@mui/system";
 import fiscal from "../../assets/img/fiscal.png";
 import pdp from "../../assets/img/pdp.png";
@@ -38,7 +38,7 @@ const Footer = () => {
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
-      <Box
+      {/* <Box
         sx={{
           backgroundColor: theme.palette.primary.main,
           display: "flex",
@@ -77,7 +77,7 @@ const Footer = () => {
             SUSCRIBIRME
           </Button>
         </Stack>
-      </Box>
+      </Box> */}
       <Box
         sx={{
           backgroundColor: "#423B3C",

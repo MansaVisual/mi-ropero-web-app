@@ -51,6 +51,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
             >
               VER TODOS LOS INGRESOS
@@ -68,6 +69,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
             >
               VER TODOS ROPA
@@ -97,6 +99,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
             >
               VER TODOS CALZADO
@@ -114,6 +117,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
             >
               VER TODOS ACCESORIOS
@@ -194,6 +198,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
             >
               VER TODOS LOS PRODUCTOS RECOMENDADOS
@@ -210,6 +215,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
             >
               VER TODOS LOS MEJORES VENDEDORES
