@@ -39,14 +39,14 @@ export const ProdsContext = ({children}) => {
     const handleNuevosIngresos=()=>{
         const nuevosIngresosForm = new FormData()
         nuevosIngresosForm.append("order_type","desc")
-        nuevosIngresosForm.append("bypage",12)
+        nuevosIngresosForm.append("bypage",8)
         nuevosIngresosForm.append("order","fecha_aprobacion")
         ProdAPI(
             nuevosIngresosForm,
             "productos",
             "search"
         ).then((res)=>{
-            if(res.status==="success"){setNuevosIngresos(res.result)}else{handleNuevosIngresos()}
+            if(res.status==="success"){setNuevosIngresos(res.result.productos)}else{handleNuevosIngresos()}
         })
     }
 
