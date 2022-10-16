@@ -310,7 +310,7 @@ const SearchProductsResults = () => {
               <Chip primary>Productos relacionados</Chip>
             </Box>
             <Box sx={{ mt: "24px", mb: "28px" }}>
-              <SliderProd />
+              <SliderProd contenido={[]}/>
             </Box>
             <Box sx={{ textAlign: "center" }}>
               <Link

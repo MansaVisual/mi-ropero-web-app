@@ -257,7 +257,7 @@ const ProductPage = () => {
             <Chip>Mas productos del ropero</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={[]}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link

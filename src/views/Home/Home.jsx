@@ -61,7 +61,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -90,7 +90,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -107,7 +107,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -171,7 +171,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -187,7 +187,7 @@ const Home = () => {
             <Chip primary>Productos recomendados</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -203,7 +203,7 @@ const Home = () => {
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={nuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
