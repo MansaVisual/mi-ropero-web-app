@@ -341,7 +341,7 @@ const NavIcons = () => {
               </Stack>
             ) : (
               <Stack>
-                <Box>
+                <Box sx={{ overflowY: "auto", maxHeight: "186px" }}>
                   <Box
                     sx={{
                       display: "flex",
@@ -421,6 +421,7 @@ const NavIcons = () => {
                         <Box
                           sx={{
                             display: "flex",
+                            justifyContent: "space-between",
                             alignItems: "center",
                             px: "8px",
                           }}
@@ -431,7 +432,6 @@ const NavIcons = () => {
                               width: "40px",
                               height: "40px",
                               borderRadius: "20px",
-                              pr: "16px",
                             }}
                           >
                             <img
@@ -464,7 +464,7 @@ const NavIcons = () => {
                               ${prod.producto.precio}
                             </Typography>
                           </Box>
-                          <Box sx={{ pl: "68px" }}>
+                          <Box>
                             <IconButton
                               onClick={() => {
                                 handleCloseCart();
