@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import {
   Backdrop,
   Box,
@@ -24,6 +24,8 @@ import Button from "../../components/Button/Button";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
+import { UseProdsContext } from "../../context/ProdsContext";
+import Loader from "../../components/Loader/Loader";
 
 const style = {
   position: "absolute",
@@ -41,6 +43,7 @@ const style = {
 };
 
 const SearchProductsResults = () => {
+  const {categorias,ProdAPI}=useContext(UseProdsContext)
   const { keyword } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [open, setOpen] = useState(false);
@@ -48,14 +51,37 @@ const SearchProductsResults = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
+  
+  const [prods,setProds]=useState([])
+  const [buscandoProds,setBuscandoProds]=useState(true)
+  
   useEffect(() => {
     // filter products by keyword entered in search bar
     const filteredProd = slides.filter((product) => {
       return product.title.toLowerCase().includes(keyword.toLowerCase().trim());
     });
     setFilteredProducts(filteredProd);
-  }, [keyword]);
+    setBuscandoProds(true)
+    setProds([])
+    prodsCategoria()
+  }, [keyword]);// eslint-disable-line react-hooks/exhaustive-deps
+  
+  const prodsCategoria=()=>{
+    const idCat=categorias.find(e=>e.nombre===keyword.replaceAll("&","/"))
+    const catProd=new FormData()
+    catProd.append("idcategoria",idCat)
+    catProd.append("bypage",15)
+    ProdAPI(
+      catProd,
+      "productos",
+      "search"
+    ).then((res)=>{
+      setBuscandoProds(false)
+      if(res.status==="success"){
+        setProds(res.result.productos)
+      }
+    })
+  }
 
   return (
     <>
@@ -175,132 +201,137 @@ const SearchProductsResults = () => {
                 mb: "32px",
               }}
             >
-              {filteredProducts.length > 0 && keyword ? (
-                filteredProducts.map((product, index) => {
+              {prods.length !== 0 && keyword ? (
+                prods.map((product, index) => {console.log(product)
                   return (
                     <ProductCard
                       key={index}
-                      imageCard={product.img}
-                      productName={product.title}
-                      productPrice={product.price}
+                      imageCard={product.imagenes[0].imagen_vertical}
+                      productName={product.nombre}
+                      productPrice={product.precio}
                       tag={product.tag}
                     />
                   );
                 })
-              ) : (
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mt: "16px",
-                  }}
-                >
-                  <Box sx={{ mr: "20px" }}>
-                    <img
-                      src={notFoundIcon}
-                      width={30}
-                      height={30}
-                      alt="not found icon"
-                    />
-                  </Box>
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontSize: theme.typography.fontSize[6],
-                        fontWeight: theme.typography.fontWeightMedium,
-                        color: theme.palette.secondary.main,
-                        textTransform: "uppercase",
-                        textAlign:
-                          isMobile || isMobileBigScreen ? "center" : "unset",
-                        mb: 4,
-                      }}
-                    >
-                      No encontramos resultados para{" "}
-                      <Typography
-                        component="span"
-                        sx={{
-                          color: theme.palette.secondary.main,
-                          textTransform: "capitalize",
-                        }}
-                      >
-                        "{keyword}"
-                      </Typography>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: theme.typography.fontSize[6],
-                        fontWeight: theme.typography.fontWeightRegular,
-                        color: theme.palette.tertiary.main,
-                      }}
-                    >
-                      Revisá la ortografía de la palabra
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: theme.typography.fontSize[6],
-                        fontWeight: theme.typography.fontWeightMedium,
-                        color: theme.palette.tertiary.main,
-                      }}
-                    >
-                      Utilizá palabras más genéricas o menos palabras.
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: theme.typography.fontSize[6],
-                        fontWeight: theme.typography.fontWeightMedium,
-                        color: theme.palette.tertiary.main,
-                      }}
-                    >
-                      Navegá por las categorías para encontrar un producto
-                      similar
-                    </Typography>
-                    <StyledLink
-                      to="/"
-                      sx={{
+              ) : 
+                <>
+                  {buscandoProds?<Loader spin={"spinnerG"}/>:
+                    <Box
+                    sx={{
                         display: "flex",
-                        justifyContent: "center",
                         alignItems: "center",
-                        cursor: "default",
+                        justifyContent: "center",
+                        mt: "16px",
                       }}
-                    >
-                      <Typography
-                        component="span"
-                        sx={{
-                          boxSizing: "border-box",
-                          color: theme.palette.primary.main,
-                          fontSize: theme.typography.fontSize[2],
-                          fontWeight: theme.typography.fontWeightRegular,
-                          textTransform: "uppercase",
-                          padding: "10px 36px",
-                          height: "36px",
-                          width: "200px",
-                          textAlign: "center",
-                          border: "1px solid hsl(248.4, 40.9%, 37.8%)",
-                          borderRadius: "20px",
-                          mt: 4,
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
                       >
-                        Ir al Inicio
-                      </Typography>
-                    </StyledLink>
-                  </Box>
-                </Box>
-              )}
+                      <Box sx={{ mr: "20px" }}>
+                        <img
+                          src={notFoundIcon}
+                          width={30}
+                          height={30}
+                          alt="not found icon"
+                          />
+                      </Box>
+                      <Box>
+                        <Typography
+                          sx={{
+                            fontSize: theme.typography.fontSize[6],
+                            fontWeight: theme.typography.fontWeightMedium,
+                            color: theme.palette.secondary.main,
+                            textTransform: "uppercase",
+                            textAlign:
+                            isMobile || isMobileBigScreen ? "center" : "unset",
+                            mb: 4,
+                          }}
+                          >
+                          No encontramos resultados para{" "}
+                          <Typography
+                            component="span"
+                            sx={{
+                              color: theme.palette.secondary.main,
+                              textTransform: "capitalize",
+                            }}
+                            >
+                            "{keyword}"
+                          </Typography>
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: theme.typography.fontSize[6],
+                            fontWeight: theme.typography.fontWeightRegular,
+                            color: theme.palette.tertiary.main,
+                          }}
+                          >
+                          Revisá la ortografía de la palabra
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: theme.typography.fontSize[6],
+                            fontWeight: theme.typography.fontWeightMedium,
+                            color: theme.palette.tertiary.main,
+                          }}
+                          >
+                          Utilizá palabras más genéricas o menos palabras.
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: theme.typography.fontSize[6],
+                            fontWeight: theme.typography.fontWeightMedium,
+                            color: theme.palette.tertiary.main,
+                          }}
+                          >
+                          Navegá por las categorías para encontrar un producto
+                          similar
+                        </Typography>
+                        <StyledLink
+                          to="/"
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            cursor: "default",
+                          }}
+                          >
+                          <Typography
+                            component="span"
+                            sx={{
+                              boxSizing: "border-box",
+                              color: theme.palette.primary.main,
+                              fontSize: theme.typography.fontSize[2],
+                              fontWeight: theme.typography.fontWeightRegular,
+                              textTransform: "uppercase",
+                              padding: "10px 36px",
+                              height: "36px",
+                              width: "200px",
+                              textAlign: "center",
+                              border: "1px solid hsl(248.4, 40.9%, 37.8%)",
+                              borderRadius: "20px",
+                              mt: 4,
+                              cursor: "pointer",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                            onClick={()=>prodsCategoria()}
+                            >
+                            Ir al Inicio
+                          </Typography>
+                        </StyledLink>
+                      </Box>
+                    </Box>
+                  }
+                </>
+              }
             </Box>
             {filteredProducts.length > 0 && keyword && (
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
               >
-                <Pagination />
+              <Pagination />
               </Box>
             )}
           </Grid>
