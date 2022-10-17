@@ -1,5 +1,8 @@
 .misOfertasContainer {
   margin-top: 40px;
+  @include screen_705 {
+    margin-top: 0px;
+  }
   .container {
     .title {
       font-style: normal;
@@ -7,6 +10,10 @@
       font-size: 23px;
       line-height: 31px;
       color: #443988;
+      @include screen_705 {
+        font-size: 18px;
+        line-height: 24px;
+      }
     }
     .cardsContainer {
       width: 100%;
@@ -37,7 +44,7 @@
           }
           img {
             height: 70px;
-            width: 70px;
+            min-width: 70px;
             margin-right: 32px;
           }
           div {
@@ -96,13 +103,12 @@
         padding: 16px;
         max-width: 329px;
         display: flex;
-        gap: 16px;
         @include screen_768 {
           display: flex !important;
         }
         .productImg {
           height: 70px;
-          width: 70px;
+          min-width: 70px;
           margin-right: 16px;
         }
         .trashICon {
@@ -121,7 +127,7 @@
           span {
             margin: 0;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 18px;
           }
           .productoTitle {
