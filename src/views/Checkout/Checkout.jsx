@@ -49,6 +49,12 @@ const Checkout = ()=>{
 
     useEffect(() => {
         if(num!==1){
+        setNum(2)
+        }
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    
+    useEffect(()=>{
+        if(num!==1){
             if(userLog===""){
                 navigate("/login")
             }else{
@@ -64,12 +70,8 @@ const Checkout = ()=>{
                     setTypeNav("check")
                 }
             }
-          }else{
-            setNum(2)
         }
-
-
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+      },[num])// eslint-disable-line react-hooks/exhaustive-deps
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
