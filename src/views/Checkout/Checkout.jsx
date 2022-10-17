@@ -38,7 +38,7 @@ const Checkout = ()=>{
 
     const [estadoCompra,setEstadoCompra]=useState("")
 
-  
+    const [num,setNum]=useState(1)
 
     useEffect(() => {
         window.scrollTo({
@@ -47,23 +47,28 @@ const Checkout = ()=>{
         })
     }, [typeNav]);
 
-
     useEffect(() => {
-        if(userLog===""){
-            navigate("/login")
-        }else{
-            let query = new URLSearchParams(window.location.search)
-            if(query.get("status")==="success"){
-                setEstadoCompra("success")
-                setTypeNav("check")
-            }else if(query.get("status")==="pending"){
-                setEstadoCompra("pending")
-                setTypeNav("check")
-            }else if(query.get("status")==="failure"){
-                setEstadoCompra("error")
-                setTypeNav("check")
+        if(num!==1){
+            if(userLog===""){
+                navigate("/login")
+            }else{
+                let query = new URLSearchParams(window.location.search)
+                if(query.get("status")==="success"){
+                    setEstadoCompra("success")
+                    setTypeNav("check")
+                }else if(query.get("status")==="pending"){
+                    setEstadoCompra("pending")
+                    setTypeNav("check")
+                }else if(query.get("status")==="failure"){
+                    setEstadoCompra("error")
+                    setTypeNav("check")
+                }
             }
+          }else{
+            setNum(2)
         }
+
+
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));

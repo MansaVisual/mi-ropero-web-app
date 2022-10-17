@@ -30,11 +30,17 @@ const Cart = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const isDesktopBig = useMediaQuery(theme.breakpoints.up("xl"));
     
+    const [num,setNum]=useState(1)
+
     useEffect(()=>{
-      if(userLog===""){
-        navigate("/login")
-      }
-    },[])// eslint-disable-line react-hooks/exhaustive-deps
+     if(num!==1){
+       if(userLog===""){
+         navigate("/login")
+       }
+     }else{
+       setNum(2)
+     }
+   },[])// eslint-disable-line react-hooks/exhaustive-deps
     
     const handleEliminar = (prod)=>{
         setProdEliminar(prod)
