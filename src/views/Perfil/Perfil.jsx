@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import { Grid } from '@mui/material';
 import MiPerfil from '../../components/PerfilActions/MiPerfil';
 import MisOfertas from '../../components/PerfilActions/MisOfertas';
@@ -18,9 +18,15 @@ const Perfil = () => {
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
 
+  const [num,setNum]=useState(1)
+
    useEffect(()=>{
-    if(userLog===""){
-      navigate("/login")
+    if(num!==1){
+      if(userLog===""){
+        navigate("/login")
+      }
+    }else{
+      setNum(2)
     }
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
