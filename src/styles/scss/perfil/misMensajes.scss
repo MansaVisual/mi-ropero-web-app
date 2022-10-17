@@ -1,5 +1,8 @@
 .misMensajesContainer {
   margin-top: 40px;
+  @include screen_705 {
+    margin-top: 0px;
+  }
   .firstLine {
     display: flex;
     align-items: center;
@@ -59,7 +62,7 @@
         10px 10px 30px rgba(223, 229, 239, 0.25);
       border-radius: 6px;
       padding: 16px 40px 16px 32px;
-      @include screen_820 {
+      @include screen_705 {
         display: none;
       }
       .mensajeData {
@@ -128,13 +131,19 @@
       padding: 16px;
       max-width: 329px;
       display: flex;
-      @include screen_820 {
+      @include screen_705 {
         display: flex !important;
       }
       .productImg {
         height: 70px;
         width: 70px;
         margin-right: 16px;
+        @include screen_389 {
+          width: 100%;
+          max-width: 70px;
+          height: auto;
+          max-height: 70px;
+        }
       }
       .trashICon {
         position: relative;
@@ -144,7 +153,7 @@
         width: 14px;
       }
       div {
-        max-width: 190px;
+        max-width: 180px;
         p:not(:last-child) {
           margin-bottom: 8px;
         }
@@ -152,7 +161,7 @@
         span {
           margin: 0;
           font-weight: 600;
-          font-size: 13px;
+          font-size: 12px;
           line-height: 18px;
         }
         .messageTitle,

@@ -1,72 +1,73 @@
-.boxValidateContainer{
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    @include screen_705{
-        margin-top: 0px;
+.boxValidateContainer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  .validateTitle {
+    color: #443988;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 31.32px;
+    text-align: center;
+    margin: 0px;
+    @include screen_705 {
+      width: 328px;
+      font-size: 16px;
+      line-height: 22px;
     }
-    .validateTitle{
-        color:  #443988;
-        font-weight: 700;
-        font-size: 23px;
-        line-height: 31.32px;
-        text-align: center ;
-        @include screen_705{
-            width: 328px;
-            font-size: 16px;
-            line-height: 22px;
-            margin-top: 24px;
-            margin-bottom: 0;
-        }
+  }
+  .descriptionText {
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 28px;
+    color: #878787;
+    text-align: center;
+    width: 100%;
+    max-width: 550px;
+    @include screen_705 {
+      margin-top: 24px;
+      margin-bottom: 0px;
+      max-width: 300px;
+      font-size: 12px;
+      line-height: 20px;
     }
-    .descriptionText{
+  }
+  .inputBox {
+    width: 100%;
+    max-width: 370px;
+    .input {
+      width: 100%;
+      max-width: 370px;
+      input {
+        height: 25px;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        color: #969696;
+      }
+    }
+    .labelInput {
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: 12px;
+      @include screen_705 {
+        margin-top: 16px;
         margin-bottom: 12px;
-        font-weight: 700;
-        font-size: 17px;
-        line-height: 28px;
-        color: #878787;
-        text-align: center;
-        width: 550px;
-        @include screen_705{
-            width: 300px;
-            font-size: 12px;
-            line-height: 20px;
-        }
+      }
     }
-    .inputBox{
-        .input{
-            input{
-                height: 25px;
-                max-width: 370px;
-                min-width: 300px;
-                font-style: italic;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 19px;
-                color: #969696;
-            }
-        }
-        .labelInput{
-            font-size: 13px;
-            font-weight: 600;
-            margin-left: 12px;
-            @include screen_705{
-                margin-top: 16px;
-                margin-bottom: 12px;
-            }
-        }
-    }
-    .resendText{
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 17px;
-        text-decoration: underline;
-        color: #443988;
-    }
-    @include screen_705{
-        margin-bottom: 50px;
-    }
+  }
+  .resendText {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    text-decoration: underline;
+    color: #443988;
+  }
+  @include screen_705 {
+    margin-bottom: 50px;
+  }
 }
