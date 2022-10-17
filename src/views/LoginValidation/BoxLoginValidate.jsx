@@ -11,7 +11,7 @@ const BoxLoginValidate = () => {
   const [user, setUser] = useState('');
   const [load, setLoad] = useState(false);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     if (JSON.parse(localStorage.getItem('sendCodMiRopero')) !== null) {
       window.scrollTo({
         top: 0,
@@ -21,7 +21,7 @@ const BoxLoginValidate = () => {
     } else {
       navigate('/login');
     }
-  }, []); */ // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = () => {
     const cod = document.getElementById('codValidacion').value;
@@ -62,38 +62,38 @@ const BoxLoginValidate = () => {
 
   return (
     <>
-      {/* {user !== '' && ( */}
-      <div className='boxValidateContainer'>
-        <p className='validateTitle'>VALIDÁ TU CUENTA</p>
-        <p className='descriptionText'>
-          Te mandamos un código a la dirección de email {user.mail} para que
-          valides tu cuenta
-        </p>
-        {load && <Loader spin={'spinnerG'} />}
-        <div className='inputBox'>
-          <p className='labelInput'>Código de validación</p>
-          <TextField
-            color='primary'
-            className='input'
-            size='small'
-            placeholder='● ● ● ●'
-            id='codValidacion'
-            disabled={load ? true : false}
-            onChangeCapture={() => handleChange()}
-            inputProps={{
-              maxLength: 4,
-            }}
-          />
+      {user !== '' && (
+        <div className='boxValidateContainer'>
+          <p className='validateTitle'>VALIDÁ TU CUENTA</p>
+          <p className='descriptionText'>
+            Te mandamos un código a la dirección de email {user.mail} para que
+            valides tu cuenta
+          </p>
+          {load && <Loader spin={'spinnerG'} />}
+          <div className='inputBox'>
+            <p className='labelInput'>Código de validación</p>
+            <TextField
+              color='primary'
+              className='input'
+              size='small'
+              placeholder='● ● ● ●'
+              id='codValidacion'
+              disabled={load ? true : false}
+              onChangeCapture={() => handleChange()}
+              inputProps={{
+                maxLength: 4,
+              }}
+            />
+          </div>
+          <p
+            className='resendText'
+            style={{ cursor: 'pointer' }}
+            onClick={!load ? () => handleSendMail() : null}
+          >
+            Reenviar email de validación.
+          </p>
         </div>
-        <p
-          className='resendText'
-          style={{ cursor: 'pointer' }}
-          onClick={!load ? () => handleSendMail() : null}
-        >
-          Reenviar email de validación.
-        </p>
-      </div>
-      {/*    )} */}
+      )}
     </>
   );
 };
