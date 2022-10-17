@@ -512,7 +512,7 @@ const chargeCarrito = () =>{
       </StyledMenu>
       <IconButton onClick={handleClickAvatar}>
         <StyledBadge
-          badgeContent={3}
+          badgeContent={0}
           color="secondary"
           anchorOrigin={{
             vertical: "top",

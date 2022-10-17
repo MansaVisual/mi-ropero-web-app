@@ -18,7 +18,7 @@ export const LikeButton = ({idCliente,idProd}) => {
       fav,
       "favoritos",
       "all"
-    ).then((res)=>console.log(res))
+    ).then((res)=>{})
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   const onLike = () => {
@@ -34,7 +34,6 @@ export const LikeButton = ({idCliente,idProd}) => {
       if(res.status==="error"){
         setLike(!like)
       }
-      console.log(res)
     })
   };
 

@@ -117,7 +117,7 @@ const ProductCard = ({
             pl: "16px",
           }}
         >
-          {productPrice}
+          ${productPrice}
         </Typography>
       </CardContent>
     </Card>
