@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, MenuItem, TextField } from '@mui/material';
 import Select from '@mui/material/Select';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -9,11 +9,11 @@ const MisDatos = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
-  /*   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     console.log(menuOpen);
-  }, [menuOpen]); */
+  }, [menuOpen]);
 
   const talles = ['sm', 'md', 'lg'];
 
@@ -46,9 +46,9 @@ const MisDatos = () => {
     setValue(typeof value === 'string' ? value.split(',') : value);
   };
 
-  /* const [scroll, setScroll] = useState(0);
+  const [scroll, setScroll] = useState(0);
 
-  const [stopScroll, setStopScroll] = useState(false); */
+  const [stopScroll, setStopScroll] = useState(false);
 
   /*   useEffect(() => {
     if (stopScroll) {
@@ -315,8 +315,8 @@ const MisDatos = () => {
             size='small'
             value={tipoRopa}
             id='ropa'
-            /* onOpen={() => setStopScroll(true)}
-            onClose={() => setStopScroll(false)} */
+            onOpen={() => setStopScroll(true)}
+            onClose={() => setStopScroll(false)}
             onChange={(e) => handleMultipleSelect(e, setTipoRopa)}
             renderValue={(selected) => {
               if (selected.length === 0) {
