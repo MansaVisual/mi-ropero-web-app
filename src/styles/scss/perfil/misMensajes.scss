@@ -1,5 +1,8 @@
 .misMensajesContainer {
   margin-top: 40px;
+  @include screen_1450 {
+    max-width: 1120px;
+  }
   @include screen_705 {
     margin-top: 0px;
   }

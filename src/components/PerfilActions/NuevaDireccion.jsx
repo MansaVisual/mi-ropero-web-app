@@ -14,7 +14,9 @@ const NuevaDireccion = () => {
   return (
     <div className='nuevaDirecContainer'>
       <Breadcrumbs links={pathnames} />
-      <p className='title'>NUEVA DIRECCION</p>
+      <div className='titleSection'>
+        <p className='title'>NUEVA DIRECCION</p>
+      </div>
       <div className='inputContainer'>
         <div className='inputBox'>
           <p className='labelInput'>Alias</p>

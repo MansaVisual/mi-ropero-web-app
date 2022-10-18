@@ -1,92 +1,98 @@
 // SCREENS PREDETERMIANDAS
 
 @mixin screen_1001 {
-  @media (max-width:1001px) {
+  @media (max-width: 1001px) {
     @content;
   }
 }
 
-@mixin screen_768{
-  @media(max-width:768px){
+@mixin screen_768 {
+  @media (max-width: 768px) {
     @content;
   }
 }
 
-@mixin screen_601{
-  @media(max-width:601px){
+@mixin screen_601 {
+  @media (max-width: 601px) {
     @content;
   }
 }
 
 // ESPECIALES
-@mixin screen_1450{
-  @media (min-width:1450px) {
+@mixin screen_1450 {
+  @media (min-width: 1450px) {
     @content;
   }
 }
 
-@mixin screen_1366{
-  @media (min-width:1366px) {
+@mixin screen_1366 {
+  @media (min-width: 1366px) {
     @content;
   }
 }
 
-@mixin screen_1190{
-  @media (max-width:1190px) {
+@mixin screen_1190 {
+  @media (max-width: 1190px) {
     @content;
   }
 }
 
 @mixin screen_1000 {
-  @media (min-width:1000px) and (max-width:1001px){
+  @media (min-width: 1000px) and (max-width: 1001px) {
     @content;
   }
 }
 
-@mixin screen_950{
-  @media (max-width:950px) {
-      @content;
-    }
+@mixin screen_950 {
+  @media (max-width: 950px) {
+    @content;
+  }
 }
 
-@mixin screen_820{
-  @media (max-width:820px) {
-      @content;
-    }
+@mixin screen_820 {
+  @media (max-width: 820px) {
+    @content;
+  }
 }
 
-@mixin screen_705{
-  @media (max-width:705px) {
-      @content;
-    }
+@mixin screen_705 {
+  @media (max-width: 705px) {
+    @content;
+  }
 }
 
-@mixin screen_664{
-  @media (max-width:664px) {
-      @content;
-    }
+@mixin screen_664 {
+  @media (max-width: 664px) {
+    @content;
+  }
 }
 
 @mixin screen_506 {
-  @media (max-width:506px){
+  @media (max-width: 506px) {
     @content;
   }
 }
 
-@mixin screen_389{
-  @media (max-width:389px){
+@mixin screen_460 {
+  @media (max-width: 460px) {
+    @content;
+  }
+}
+
+@mixin screen_389 {
+  @media (max-width: 389px) {
     @content;
   }
 }
 
 @mixin screen_360 {
-  @media (max-width:360px){
+  @media (max-width: 360px) {
     @content;
   }
 }
 
-@mixin screen_328{
-  @media (max-width:328px) {
-      @content;
-    }
+@mixin screen_328 {
+  @media (max-width: 328px) {
+    @content;
+  }
 }
