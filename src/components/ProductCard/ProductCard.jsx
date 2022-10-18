@@ -24,7 +24,7 @@ const ProductCard = ({
   onClick,
   idProducto
 }) => {
-  const {userLog}=useContext(UseLoginContext)
+  const {userLog,infoUser}=useContext(UseLoginContext)
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
@@ -68,7 +68,7 @@ const ProductCard = ({
           {tag}
         </TagNewStyled>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
-          <LikeButton idCliente={userLog} idProd={idProducto}/>
+          <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto}/>
         </Box>
         <Button
           sx={{

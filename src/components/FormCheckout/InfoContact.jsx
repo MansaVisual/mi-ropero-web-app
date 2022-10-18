@@ -40,8 +40,6 @@ const InfoContact=({
         ).then((res)=>{
             if(res.status==="success"){
                 setDireccionesCargadas(res.result)
-            }else{
-                console.log("ARREGLAR ERROR NO TIENE DIRECCION")
             }
         })
 

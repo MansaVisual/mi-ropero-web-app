@@ -1,12 +1,17 @@
-import { createContext,useEffect,useState } from "react";
+import { createContext,useEffect,useState,useContext } from "react";
+import { UseLoginContext } from "./LoginContext";
 
 export const UseProdsContext = createContext();
 
 export const ProdsContext = ({children}) => {
 
+    const {userLog}=useContext(UseLoginContext)
+
     const [categorias,setCategorias]=useState([])
     const [nuevosIngresos,setNuevosIngresos]=useState([])
     const [ropa,setRopa]=useState([])
+    const [listFavs,setListFavs]=useState([])
+
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
@@ -37,7 +42,18 @@ export const ProdsContext = ({children}) => {
         if(ropa.length===0){
             handleRopa()
         }
+        if(listFavs.length===0){
+            handleListFavs()
+        }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        if(userLog!==""){
+            if(listFavs.length===0){
+                handleListFavs()
+            }
+        }
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     const handleNuevosIngresos=()=>{
         const nuevosIngresosForm = new FormData()
@@ -74,8 +90,18 @@ export const ProdsContext = ({children}) => {
         ).then((res)=>{if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
     }
 
+    const handleListFavs = ()=>{
+        const fav = new FormData()
+        fav.append("idcliente",userLog)
+        ProdAPI(
+          fav,
+          "favoritos",
+          "all"
+        ).then((res)=>{if(res.status==="success"){setListFavs(res.result)}else{handleListFavs()}})
+    }
+
     return(
-        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias}}>
+        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias,listFavs}}>
             {children}
         </UseProdsContext.Provider>
     )

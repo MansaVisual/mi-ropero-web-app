@@ -7,40 +7,58 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 import { UseProdsContext } from "../../context/ProdsContext";
 
-export const LikeButton = ({idCliente,idProd}) => {
-  const {ProdAPI}=useContext(UseProdsContext)
+
+export const LikeButton = ({idCliente,idProd,infoUser}) => {
+  const {ProdAPI,listFavs}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
 
-  useEffect(()=>{
-    const fav = new FormData()
-    fav.append("idcliente",idCliente)
-    ProdAPI(
-      fav,
-      "favoritos",
-      "all"
-    ).then((res)=>{})
-  },[])// eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
+      setLike(!like)
+    }
+  }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  const onLike = () => {
-    setLike(!like);
-    const favAdd = new FormData()
-    favAdd.append("idcliente",idCliente)
-    favAdd.append("idproducto",idProd)
-    ProdAPI(
-      favAdd,
-      "favoritos",
-      "insert"
-    ).then((res)=>{
-      if(res.status==="error"){
-        setLike(!like)
-      }
-    })
+  const onLike = async () => {
+    setLike(!like)
+    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
+      const idFavorito = listFavs.find(e=>e.producto_id===idProd)
+
+      const favAdd = new FormData()
+      favAdd.append("idcliente",idCliente)
+      favAdd.append("idproducto",idProd)
+      favAdd.append("idfavorito",idFavorito.idfavorito)
+      ProdAPI(
+        favAdd,
+        "favoritos",
+        "delete"
+      ).then((res)=>{
+        if(res.status==="error"){
+          alert("Surgió un error")
+        }
+      })
+      infoUser.productos_favoritos=await infoUser.productos_favoritos.filter(e=>e!==idProd)
+    }else{
+      const favAdd = new FormData()
+      favAdd.append("idcliente",idCliente)
+      favAdd.append("idproducto",idProd)
+      ProdAPI(
+        favAdd,
+        "favoritos",
+        "insert"
+      ).then((res)=>{
+        if(res.status==="error"){
+          alert("Surgió un error")
+        }
+      })
+
+      infoUser.productos_favoritos.push(idProd)
+    }
   };
 
   return (
     <Box>
       <Fab
-        color={!like ? "primary" : "secondary"}
+        color={like ? "secondary" : "primary"}
         size="small"
         onClick={onLike}
         disableRipple
@@ -50,10 +68,10 @@ export const LikeButton = ({idCliente,idProd}) => {
           alignItems: "center",
         }}
       >
-        {!like ? (
-          <AiOutlineHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
-        ) : (
-          <AiFillHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
+        {like ? (
+            <AiFillHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
+          ) : (
+            <AiOutlineHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
         )}
       </Fab>
     </Box>
