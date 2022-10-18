@@ -202,13 +202,14 @@ const SearchProductsResults = () => {
               }}
             >
               {prods.length !== 0 && keyword ? (
-                prods.map((product, index) => {console.log(product)
+                prods.map((product, index) => {
                   return (
                     <ProductCard
                       key={index}
                       imageCard={product.imagenes[0].imagen_vertical}
                       productName={product.nombre}
                       productPrice={product.precio}
+                      idProducto={product.idproducto}
                       tag={product.tag}
                     />
                   );
