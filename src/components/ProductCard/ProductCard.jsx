@@ -22,7 +22,8 @@ const ProductCard = ({
   productName,
   productPrice,
   onClick,
-  idProducto
+  idProducto,
+  datosTienda
 }) => {
   const {userLog,infoUser}=useContext(UseLoginContext)
 
@@ -105,7 +106,7 @@ const ProductCard = ({
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          <AvatarMR avatarCard />
+          <AvatarMR avatarCard datosTienda={datosTienda}/>
         </Box>
       </CardContent>
       <Divider />

@@ -121,6 +121,7 @@ export default class SimpleSlider extends Component {
                   productName={item.nombre}
                   productPrice={item.precio}
                   idProducto={item.idproducto}
+                  datosTienda={item.tienda}
                   tag="NUEVO"
                   />
               </Box>
