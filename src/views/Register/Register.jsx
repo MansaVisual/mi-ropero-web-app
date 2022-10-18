@@ -13,7 +13,6 @@ const Register = () => {
   const {userLog}=useContext(UseLoginContext)
 
   useEffect(() => {
-    console.log("CD")
     if(userLog!==""){
       navigate('/')
     }

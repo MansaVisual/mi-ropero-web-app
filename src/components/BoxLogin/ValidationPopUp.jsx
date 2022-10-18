@@ -16,7 +16,6 @@ const ValidationPopUp = ({setSendCod}) => {
             "clientes",
             "validate_send"
             ).then((res)=>{
-                console.log(res)
                 if(res.status==="success"){
                     alert("Se envió el código")
                 }else{

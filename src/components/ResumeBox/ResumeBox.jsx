@@ -82,7 +82,6 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 setLoader(false)
                 setCodigo("")
             }else if(res.status==="success"){
-                console.log(res)
                 setErrorCodigo(false)
                 setCodigoValido(true)
                 setLoader(false)

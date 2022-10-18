@@ -31,7 +31,6 @@ const BoxLoginValidate = () => {
       loginUser.append('idcliente', Number(user.id));
       loginUser.append('codigo', String(cod));
       LoginAPI(loginUser, 'clientes', 'validate_set').then((res) => {
-        console.log('HOLA', res);
         if (res.status === 'success') {
           setLoad(false);
           localStorage.setItem('idClienteMiRopero', user.id);
@@ -49,7 +48,6 @@ const BoxLoginValidate = () => {
     const loginUser = new FormData();
     loginUser.append('idcliente', user.id);
     LoginAPI(loginUser, 'clientes', 'validate_send').then((res) => {
-      console.log(res);
       if (res.status === 'success') {
         setLoad(false);
         alert('Se envió el código');
