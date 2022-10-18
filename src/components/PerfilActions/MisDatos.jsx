@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Button, MenuItem, Select, TextField } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Button, MenuItem, TextField } from '@mui/material';
+import Select from '@mui/material/Select';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
@@ -8,13 +9,29 @@ const MisDatos = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    console.log(menuOpen);
+  }, [menuOpen]);
+
   const talles = ['sm', 'md', 'lg'];
 
   const marcas = ['adidas', 'nike', 'puma'];
 
   const tipodeRopa = ['deportiva', 'casual', 'formal'];
 
-  const estilodeRopa = ['hippie', 'urbano', 'formal'];
+  const estilodeRopa = [
+    'hippie',
+    'urbano',
+    'formal',
+    'hippie',
+    'urbano',
+    'formal',
+    'hippie',
+    'urbano',
+    'formal',
+  ];
 
   const [genero, setGenero] = useState('');
   const [talleRopa, setTalleRopa] = useState('');
@@ -28,6 +45,38 @@ const MisDatos = () => {
     } = e;
     setValue(typeof value === 'string' ? value.split(',') : value);
   };
+
+  const [scroll, setScroll] = useState(0);
+
+  const [stopScroll, setStopScroll] = useState(false);
+
+  /*   useEffect(() => {
+    if (stopScroll) {
+      window.onscroll = () => window.scrollTo(0, 0);
+    } else {
+      window.onscroll = null;
+    }
+  }, [stopScroll]); */
+
+  /*   const onScroll = (e) => {
+         setScroll(e.target.documentElement.scrollTop);
+     
+
+    if (document.getElementById('ropa').getAttribute('aria-expanded')) {
+      if (document.getElementById('menu-') !== null) {
+        console.log('asdw');
+        console.log(document.getElementById('menu-'));
+        document.getElementById('menu-').style.display = 'none';
+      }
+     console.log('qwe');
+      console.log(document.getElementById('ropa').attributes);
+      document.getElementById('ropa').attributes[
+        'aria-expanded'
+      ].nodeValue = false; 
+    }
+  };
+
+  window.addEventListener('scroll', onScroll); */
 
   return (
     <div className='misDatosContainer'>
@@ -113,6 +162,7 @@ const MisDatos = () => {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </div>
+        <div className='inputBox' />
       </div>
       <div className='textContainer'>
         <p className='title'>Queremos saber más de vos</p>
@@ -264,6 +314,9 @@ const MisDatos = () => {
             className='selectInput'
             size='small'
             value={tipoRopa}
+            id='ropa'
+            onOpen={() => setStopScroll(true)}
+            onClose={() => setStopScroll(false)}
             onChange={(e) => handleMultipleSelect(e, setTipoRopa)}
             renderValue={(selected) => {
               if (selected.length === 0) {
@@ -279,6 +332,11 @@ const MisDatos = () => {
               },
               height: 42,
             }}
+            MenuProps={{
+              style: {
+                maxHeight: 150,
+              },
+            }}
           >
             <MenuItem
               disabled
@@ -288,9 +346,9 @@ const MisDatos = () => {
             >
               {'Seleccioná de 1 a 3 opciones'}
             </MenuItem>
-            {estilodeRopa.map((option) => (
+            {estilodeRopa.map((option, index) => (
               <MenuItem
-                key={option}
+                key={index}
                 value={option}
                 sx={{ fontSize: '14px', color: '#969696' }}
               >

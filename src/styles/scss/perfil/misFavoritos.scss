@@ -5,8 +5,9 @@
   flex-direction: column;
   justify-content: center;
   @include screen_705 {
-    margin-top: 24px;
+    margin-top: 16px;
     width: 100%;
+    margin-bottom: 65px;
   }
   .title {
     font-style: normal;
@@ -30,6 +31,9 @@
       justify-content: center;
       gap: 16px;
     }
+    @include screen_705 {
+      gap: 16px 8px;
+    }
   }
   .returnLink {
     display: flex;
@@ -41,6 +45,7 @@
       font-weight: 600;
       font-size: 12px;
       line-height: 16px;
+      margin: 0;
     }
     img {
       height: 7.94px;

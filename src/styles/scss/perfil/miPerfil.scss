@@ -86,7 +86,6 @@
       justify-content: center;
       @include screen_1190 {
         width: 100%;
-        max-width: 750px;
       }
       @include screen_820 {
         margin-top: 24px;
@@ -95,7 +94,7 @@
       }
       .section:first-child {
         .imgBox {
-          @include screen_389 {
+          @include screen_460 {
             width: 282px;
             height: 71px;
             border-radius: 6px;
