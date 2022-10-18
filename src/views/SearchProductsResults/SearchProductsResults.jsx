@@ -211,6 +211,7 @@ const SearchProductsResults = () => {
                       productPrice={product.precio}
                       idProducto={product.idproducto}
                       tag={product.tag}
+                      datosTienda={product.tienda}
                     />
                   );
                 })
