@@ -1,14 +1,18 @@
 import { Button } from '@mui/material';
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/MRlogoModal.png'
+import Loader from '../Loader/Loader';
 import { UseLoginContext } from '../../context/LoginContext';
 
 const ValidationPopUp = ({setSendCod}) => {
     const {LoginAPI}=useContext(UseLoginContext)
     const user = JSON.parse(localStorage.getItem("sendCodMiRopero"))
   
+    const [load,setLoad]=useState(false)
+
     const handleSendMail=()=>{
+        setLoad(true)
         const loginUser = new FormData()
         loginUser.append('idcliente', user.id)
         LoginAPI(
@@ -16,6 +20,7 @@ const ValidationPopUp = ({setSendCod}) => {
             "clientes",
             "validate_send"
             ).then((res)=>{
+                setLoad(false)
                 if(res.status==="success"){
                     alert("Se envió el código")
                 }else{
@@ -35,8 +40,9 @@ const ValidationPopUp = ({setSendCod}) => {
                         <p className="popUpDescription">
                             Deberia llegarte en menos de 2 minutos en tu email, 
                             si luego de ese tiempo no lo recibiste hace <span className='spanLink' style={{cursor:"pointer"}}
-                            onClick={()=>handleSendMail()}>click acá</span>.
+                            onClick={()=>{handleSendMail()}}>click acá</span>.
                         </p>
+                        {load?<Loader spin={"spinnerS"}/>:null}
                         <div className='buttonContainer'>
                             <Button className="continuar" onClick={()=>setSendCod(false)}>CONTINUAR</Button>
                         </div>
