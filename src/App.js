@@ -22,70 +22,73 @@ import Register from "./views/Register/Register";
 import { LoginContext } from "./context/LoginContext";
 import LoginValidation from "./views/LoginValidation/LoginValidation";
 import Perfil from "./views/Perfil/Perfil";
+import { ColeccionContext } from "./context/ColeccionesContext";
 
 
 function App() {
   return (
     <LoginContext>
-      <ProdsContext>
-        <FormContext>
-          <CartContext>
-            <Router>
-              
-              <ThemeProvider theme={theme}>
-                <NavBar />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route
-                    path="/productos/:keyword"
-                    element={<SearchProductsResults />}
+      <ColeccionContext>
+        <ProdsContext>
+          <FormContext>
+            <CartContext>
+              <Router>
+                
+                <ThemeProvider theme={theme}>
+                  <NavBar />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route
+                      path="/productos/:keyword"
+                      element={<SearchProductsResults />}
+                      />
+                    <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
+                    <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
+                    <Route
+                      path="/roperos/:keyword/:closetId/:itemName"
+                      element={<ProductPage />}
                     />
-                  <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
-                  <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
-                  <Route
-                    path="/roperos/:keyword/:closetId/:itemName"
-                    element={<ProductPage />}
-                  />
-                  <Route
-                    path="/carrito"
-                    element={<Cart />}
-                  />  
-                  <Route
-                    path="/checkout"
-                    element={<Checkout />}
-                  />
-                  <Route
-                    path="/checkout/:status"
-                    element={<Checkout />}
-                  />
-                  <Route path="*" element={<h1 style={{height:"50vh",marginLeft:"16px"}}>404 Page Not Found</h1>}></Route>
-                  <Route
-                    path="/login"
-                    element={<Login />}
-                  />
-                  <Route
-                    path="/registro"
-                    element={<Register />}
-                  />
-                  <Route
-                    path="/validacionLogin"
-                    element={<LoginValidation />}
-                  />
-                  <Route
-                    path="/perfil"
-                    element={<Perfil />}
-                  />
-                  <Route
-                    path="perfil/:perfilSeccion"
-                    element={<Perfil />}
-                  />
-                </Routes>
-                <Footer />
-              </ThemeProvider>
-            </Router>
-          </CartContext>
-        </FormContext>
-      </ProdsContext>
+                    <Route
+                      path="/carrito"
+                      element={<Cart />}
+                    />  
+                    <Route
+                      path="/checkout"
+                      element={<Checkout />}
+                    />
+                    <Route
+                      path="/checkout/:status"
+                      element={<Checkout />}
+                    />
+                    <Route path="*" element={<h1 style={{height:"50vh",marginLeft:"16px"}}>404 Page Not Found</h1>}></Route>
+                    <Route
+                      path="/login"
+                      element={<Login />}
+                    />
+                    <Route
+                      path="/registro"
+                      element={<Register />}
+                    />
+                    <Route
+                      path="/validacionLogin"
+                      element={<LoginValidation />}
+                    />
+                    <Route
+                      path="/perfil"
+                      element={<Perfil />}
+                    />
+                    <Route
+                      path="perfil/:perfilSeccion"
+                      element={<Perfil />}
+                    />
+                  </Routes>
+                  <Footer />
+                </ThemeProvider>
+              </Router>
+            </CartContext>
+          </FormContext>
+        </ProdsContext>
+      </ColeccionContext>
     </LoginContext>
   );
 }

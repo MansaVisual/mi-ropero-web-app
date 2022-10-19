@@ -17,6 +17,7 @@ import Chip from "../../components/Chip/Chip";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import SliderProd from "../../components/SliderProd/SliderProd";
 import YoutubeEmbed from "../../components/YoutubeEmbed/YoutubeEmbed";
+import { UseColeccionContext } from "../../context/ColeccionesContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
 
@@ -24,6 +25,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate=useNavigate()
   const {nuevosIngresos,ropa,calzado,accesorios,belleza}=useContext(UseProdsContext)
+  const {coleccionNuevosIngresos,coleccionRecomendados}=useContext(UseColeccionContext)
 
   useEffect(() => {
     window.scrollTo({
@@ -52,7 +54,7 @@ const Home = () => {
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={coleccionNuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -203,7 +205,7 @@ const Home = () => {
             <Chip primary>Productos recomendados</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={coleccionRecomendados}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
