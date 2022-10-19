@@ -42,9 +42,7 @@ export const ProdsContext = ({children}) => {
         if(ropa.length===0){
             handleRopa()
         }
-        if(listFavs.length===0){
-            handleListFavs()
-        }
+
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -71,14 +69,15 @@ export const ProdsContext = ({children}) => {
 
     const handleRopa=()=>{
         const ropaForm = new FormData()
-        ropaForm.append("bypage",8)
         ropaForm.append("idcategoria",6)
         ProdAPI(
             ropaForm,
             "productos",
-            "search"
+            "related"
         ).then((res)=>{
-            if(res.status==="success"){setRopa(res.result.productos)}else{handleRopa()}
+            if(res.status==="success"){setRopa(res.result.productos)}else{
+                // handleRopa()
+            }
         })
     }
 
