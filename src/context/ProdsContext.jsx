@@ -135,7 +135,7 @@ export const ProdsContext = ({children}) => {
             ropaForm,
             "productos",
             "related"
-        ).then((res)=>{console.log(res)
+        ).then((res)=>{
             if(res.status==="success"){setBelleza(res.result)}
         })
     }
