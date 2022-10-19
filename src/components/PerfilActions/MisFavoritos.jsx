@@ -27,7 +27,7 @@ const MisFavoritos = ({setTypeNav}) => {
                               imageCard={item.producto_imagen}
                               productName={item.producto_nombre}
                               idProducto={item.producto_id}
-                              listFavs={item}
+                              itemFav={item}
                               tag="NUEVO"
                           />
                       </div>

@@ -8,6 +8,8 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
+
+  console.log(datosTienda.calificaciones.sum/datosTienda.calificaciones.total)
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -22,13 +24,7 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
             margin: 0,
             cursor:"pointer",
           }}
-          src={datosTienda!==undefined?
-            datosTienda.icono!==undefined?
-              datosTienda.icono
-            :
-              datosTienda.length!==0 && datosTienda.tienda.icono
-          :
-            infoUser.avatar
+          src={datosTienda!==undefined?datosTienda.icono:infoUser.avatar
           }
           onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
         >
@@ -54,7 +50,7 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
             }
           </Typography>
           {avatarCard ? (
-            <Rating name="read-only" readOnly value={datosTienda.calificaiones!==undefined && Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))} size="small" />
+            <Rating name="read-only" readOnly value={datosTienda.calificaciones!==undefined && Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))} size="small" />
           ) : null}
         </Box>
       </Box>

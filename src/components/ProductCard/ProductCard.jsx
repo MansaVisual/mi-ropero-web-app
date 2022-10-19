@@ -1,4 +1,4 @@
-import React, { useRef,useContext,useEffect,useState } from "react";
+import React, { useRef,useContext } from "react";
 import {
   Divider,
   Box,
@@ -24,9 +24,9 @@ const ProductCard = ({
   onClick,
   idProducto,
   datosTienda,
-  listFavs
+  itemFav
 }) => {
-  const {userLog,infoUser,LoginAPI}=useContext(UseLoginContext)
+  const {userLog,infoUser}=useContext(UseLoginContext)
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
@@ -37,22 +37,7 @@ const ProductCard = ({
   const handleMouseLeave = () => {
     buttonRef.current.style.opacity = "0";
   };
-
-  const [fav,setFav]=useState([])
-  
-  useEffect(() => {
-    if(listFavs!==undefined){
-      const prodInfo=new FormData()
-      prodInfo.append("idcliente",Number(listFavs.idcliente))
-      prodInfo.append("idproducto",Number(listFavs.producto_id))
-      LoginAPI(
-        prodInfo,
-        "productos",
-        "details"
-      ).then((res)=>setFav(res.result))
-    }
-  }, [listFavs]);// eslint-disable-line react-hooks/exhaustive-deps
-
+  console.log(itemFav)
   return (
     <Card
       sx={{
@@ -124,7 +109,7 @@ const ProductCard = ({
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          <AvatarMR avatarCard datosTienda={datosTienda!==undefined?datosTienda:fav}/>
+          <AvatarMR avatarCard datosTienda={datosTienda!==undefined?datosTienda:itemFav.producto_tienda}/>
         </Box>
       </CardContent>
       <Divider />
@@ -136,7 +121,7 @@ const ProductCard = ({
             pl: "16px",
           }}
         >
-          ${productPrice!==undefined?productPrice:fav.precio}
+          ${productPrice!==undefined?productPrice:itemFav.producto_precio}
         </Typography>
       </CardContent>
     </Card>
