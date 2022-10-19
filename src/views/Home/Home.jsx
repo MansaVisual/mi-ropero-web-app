@@ -7,6 +7,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React,{useContext,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import {
   UpButton,
   WspButton,
@@ -21,7 +22,7 @@ import theme from "../../styles/theme";
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const navigate=useNavigate()
   const {nuevosIngresos}=useContext(UseProdsContext)
 
   useEffect(() => {
@@ -78,7 +79,8 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
-            >
+              onClick={()=>navigate(`/productos/ROPA`)}
+              >
               VER TODOS ROPA
             </Link>
           </Box>
@@ -108,7 +110,8 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
-            >
+              onClick={()=>navigate(`/productos/CALZADO`)}
+              >
               VER TODOS CALZADO
             </Link>
           </Box>
@@ -126,7 +129,8 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
-            >
+              onClick={()=>navigate(`/productos/ACCESORIOS`)}
+              >
               VER TODOS ACCESORIOS
             </Link>
           </Box>
@@ -190,7 +194,8 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
               }}
-            >
+              onClick={()=>navigate(`/productos/BELLEZA`)}
+              >
               VER TODOS BELLEZA
             </Link>
           </Box>
