@@ -4,11 +4,10 @@ import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) => {
+const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) => {
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
-
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -23,7 +22,14 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar, dato
             margin: 0,
             cursor:"pointer",
           }}
-          src={datosTienda!==undefined?datosTienda.icono:infoUser.avatar}
+          src={datosTienda!==undefined?
+            datosTienda.icono!==undefined?
+              datosTienda.icono
+            :
+              datosTienda.length!==0 && datosTienda.tienda.icono
+          :
+            infoUser.avatar
+          }
           onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
         >
         </Avatar>
@@ -48,7 +54,7 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar, dato
             }
           </Typography>
           {avatarCard ? (
-            <Rating name="read-only" readOnly value={Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))} size="small" />
+            <Rating name="read-only" readOnly value={datosTienda.calificaiones!==undefined && Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))} size="small" />
           ) : null}
         </Box>
       </Box>
