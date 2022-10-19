@@ -69,7 +69,9 @@ const ProductCard = ({
           {tag}
         </TagNewStyled>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
-          <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto}/>
+          {userLog!==""&&
+            <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto}/>
+          }
         </Box>
         <Button
           sx={{
