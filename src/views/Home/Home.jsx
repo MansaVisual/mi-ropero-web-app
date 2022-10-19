@@ -23,7 +23,7 @@ import theme from "../../styles/theme";
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate=useNavigate()
-  const {nuevosIngresos}=useContext(UseProdsContext)
+  const {nuevosIngresos,ropa,calzado,accesorios,belleza}=useContext(UseProdsContext)
 
   useEffect(() => {
     window.scrollTo({
@@ -70,7 +70,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={ropa}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -101,7 +101,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={calzado}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -120,7 +120,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={accesorios}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -186,7 +186,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={belleza}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link

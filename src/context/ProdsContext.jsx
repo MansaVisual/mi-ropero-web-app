@@ -8,8 +8,13 @@ export const ProdsContext = ({children}) => {
     const {userLog}=useContext(UseLoginContext)
 
     const [categorias,setCategorias]=useState([])
+    
     const [nuevosIngresos,setNuevosIngresos]=useState([])
     const [ropa,setRopa]=useState([])
+    const [calzado,setCalzado]=useState([])
+    const [belleza,setBelleza]=useState([])
+    const [accesorios,setAccesorios]=useState([])
+
     const [listFavs,setListFavs]=useState([])
 
     const ProdAPI = async(data,clase,metodo) =>{
@@ -42,7 +47,15 @@ export const ProdsContext = ({children}) => {
         if(ropa.length===0){
             handleRopa()
         }
-
+        if(calzado.length===0){
+            handleCalzado()
+        }
+        if(accesorios.length===0){
+            handleAccesorios()
+        }
+        if(belleza.length===0){
+            handleBelleza()
+        }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -66,18 +79,64 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){setNuevosIngresos(res.result.productos)}else{handleNuevosIngresos()}
         })
     }
+    
+    // colleciones all
+    // destacadas banner pirncipal
+    // primerscroll nuevosingresos
+    // segundoscroll recomendados
+    // segundoscroll recomendados
 
     const handleRopa=()=>{
         const ropaForm = new FormData()
-        ropaForm.append("idcategoria",6)
+        ropaForm.append("idcategoria",1)
+        ropaForm.append("idproducto",0)
+        ropaForm.append("limit",8)
         ProdAPI(
             ropaForm,
             "productos",
             "related"
         ).then((res)=>{
-            if(res.status==="success"){setRopa(res.result.productos)}else{
-                // handleRopa()
-            }
+            if(res.status==="success"){setRopa(res.result)}
+        })
+    }
+    const handleCalzado=()=>{
+        const ropaForm = new FormData()
+        ropaForm.append("idcategoria",2)
+        ropaForm.append("idproducto",0)
+        ropaForm.append("limit",8)
+        ProdAPI(
+            ropaForm,
+            "productos",
+            "related"
+        ).then((res)=>{
+            if(res.status==="success"){setCalzado(res.result)}
+        })
+    }
+    const handleAccesorios=()=>{
+        const ropaForm = new FormData()
+        ropaForm.append("idcategoria",3)
+        ropaForm.append("idproducto",0)
+        ropaForm.append("limit",8)
+        ProdAPI(
+            ropaForm,
+            "productos",
+            "related"
+        ).then((res)=>{
+            if(res.status==="success"){setAccesorios(res.result)}
+        })
+    }
+
+    const handleBelleza=()=>{
+        const ropaForm = new FormData()
+        ropaForm.append("idcategoria",1000018)
+        ropaForm.append("idproducto",0)
+        ropaForm.append("limit",8)
+        ProdAPI(
+            ropaForm,
+            "productos",
+            "related"
+        ).then((res)=>{console.log(res)
+            if(res.status==="success"){setBelleza(res.result)}
         })
     }
 
@@ -100,7 +159,7 @@ export const ProdsContext = ({children}) => {
     }
 
     return(
-        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias,listFavs}}>
+        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias,listFavs,ropa,accesorios,calzado,belleza}}>
             {children}
         </UseProdsContext.Provider>
     )
