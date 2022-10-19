@@ -20,12 +20,12 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar, dato
               ? "drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"
               : null,
             margin: 0,
-            cursor:"pointer"
+            cursor:"pointer",
           }}
-          src={imgAvatar}
+          src={datosTienda!==undefined?datosTienda.icono:imgAvatar}
           onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
         >
-          {infoUser.length!==0 && `${(infoUser.nombre[0]).toUpperCase()}${(infoUser.apellido[0]).toUpperCase()}`}
+          {datosTienda===undefined && infoUser.length!==0 && `${(infoUser.nombre[0]).toUpperCase()}${(infoUser.apellido[0]).toUpperCase()}`}
         </Avatar>
         <Box sx={{ pl: !avatarCard ? "6px" : "10px" }}>
           {!avatarCard ? (
