@@ -21,10 +21,21 @@ const Perfil = () => {
   const [num,setNum]=useState(1)
 
    useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     if(num===1){
       setNum(2)
     }
   },[])// eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  },[params])
 
   useEffect(()=>{
     if(num!==1){

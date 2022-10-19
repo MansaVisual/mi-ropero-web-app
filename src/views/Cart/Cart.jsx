@@ -33,18 +33,24 @@ const Cart = () => {
     const [num,setNum]=useState(1)
 
     useEffect(()=>{
-     if(num!==1){
-       setNum(2)
-     }
-   },[])// eslint-disable-line react-hooks/exhaustive-deps
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto',
+            });
+        }, 1000);
+        if(num!==1){
+            setNum(2)
+        }
+    },[])// eslint-disable-line react-hooks/exhaustive-deps
 
    useEffect(()=>{
-    if(num!==1){
-      if(userLog===""){
-        navigate("/login")
-      }
-    }
-  },[num])// eslint-disable-line react-hooks/exhaustive-deps
+        if(num!==1){
+            if(userLog===""){
+                navigate("/login")
+            }
+        }
+    },[num])// eslint-disable-line react-hooks/exhaustive-deps
     
     const handleEliminar = (prod)=>{
         setProdEliminar(prod)

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Box, Container, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useLocation, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
@@ -13,6 +13,13 @@ const SearchClosetResults = () => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  }, []);
 
   const contacts = [
     {

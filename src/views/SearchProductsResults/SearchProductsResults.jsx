@@ -57,6 +57,10 @@ const SearchProductsResults = () => {
   
   useEffect(() => {
     // filter products by keyword entered in search bar
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     const filteredProd = slides.filter((product) => {
       return product.title.toLowerCase().includes(keyword.toLowerCase().trim());
     });

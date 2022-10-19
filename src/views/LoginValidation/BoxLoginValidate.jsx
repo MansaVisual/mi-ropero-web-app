@@ -12,11 +12,11 @@ const BoxLoginValidate = () => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     if (JSON.parse(localStorage.getItem('sendCodMiRopero')) !== null) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'auto',
-      });
       setUser(JSON.parse(localStorage.getItem('sendCodMiRopero')));
     } else {
       navigate('/login');

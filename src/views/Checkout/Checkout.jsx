@@ -48,8 +48,12 @@ const Checkout = ()=>{
     }, [typeNav]);
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
         if(num!==1){
-        setNum(2)
+            setNum(2)
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
     

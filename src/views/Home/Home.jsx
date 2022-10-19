@@ -6,7 +6,7 @@ import {
   Button,
   useMediaQuery,
 } from "@mui/material";
-import React,{useContext} from "react";
+import React,{useContext,useEffect} from "react";
 import {
   UpButton,
   WspButton,
@@ -23,6 +23,13 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const {nuevosIngresos}=useContext(UseProdsContext)
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+  });
+  }, []);
 
   return (
     <>
