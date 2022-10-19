@@ -159,7 +159,7 @@ export const ProdsContext = ({children}) => {
     }
 
     return(
-        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias,listFavs,ropa,accesorios,calzado,belleza}}>
+        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias,listFavs,ropa,accesorios,calzado,belleza,handleListFavs}}>
             {children}
         </UseProdsContext.Provider>
     )
