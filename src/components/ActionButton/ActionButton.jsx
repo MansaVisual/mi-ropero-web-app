@@ -9,7 +9,7 @@ import { UseProdsContext } from "../../context/ProdsContext";
 
 
 export const LikeButton = ({idCliente,idProd,infoUser}) => {
-  const {ProdAPI,listFavs}=useContext(UseProdsContext)
+  const {ProdAPI,listFavs,handleListFavs}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export const LikeButton = ({idCliente,idProd,infoUser}) => {
           alert("Surgió un error")
         }
       })
+      handleListFavs()
       infoUser.productos_favoritos=await infoUser.productos_favoritos.filter(e=>e!==idProd)
     }else{
       const favAdd = new FormData()
@@ -50,7 +51,7 @@ export const LikeButton = ({idCliente,idProd,infoUser}) => {
           alert("Surgió un error")
         }
       })
-
+      handleListFavs()
       infoUser.productos_favoritos.push(idProd)
     }
   };
