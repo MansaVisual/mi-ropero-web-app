@@ -34,6 +34,7 @@ const BoxLoginValidate = () => {
         if (res.status === 'success') {
           setLoad(false);
           localStorage.setItem('idClienteMiRopero', user.id);
+          window.location.replace('https://golden-cranachan-c2e38c.netlify.app');
         } else {
           setLoad(false);
           document.getElementById('codValidacion').value = '';
