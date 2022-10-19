@@ -37,7 +37,7 @@ const ProductCard = ({
   const handleMouseLeave = () => {
     buttonRef.current.style.opacity = "0";
   };
-  console.log(itemFav)
+
   return (
     <Card
       sx={{

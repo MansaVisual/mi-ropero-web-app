@@ -9,7 +9,6 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
 
   const {infoUser}=useContext(UseLoginContext)
 
-  console.log(datosTienda.calificaciones.sum/datosTienda.calificaciones.total)
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
