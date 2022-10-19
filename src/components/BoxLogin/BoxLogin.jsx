@@ -7,6 +7,7 @@ import { UseLoginContext } from '../../context/LoginContext';
 import { useNavigate } from 'react-router-dom';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import Loader from '../Loader/Loader';
+import FacebookButton from '../FacebookButton.jsx/FacebookButton';
 
 const BoxLogin = () => {
   const navigate = useNavigate();
@@ -55,9 +56,10 @@ const BoxLogin = () => {
           <Button className='botonGoogle'>
             INGRESAR CON GOOGLE <i className='googleIcon'></i>
           </Button>
-          <Button className='botonFB' endIcon={<FacebookIcon />}>
+          <FacebookButton />
+          {/* <Button className='botonFB' endIcon={<FacebookIcon />}>
             INGRESAR CON FACEBOOK
-          </Button>
+          </Button> */}
         </div>
 
         <p className='title'>Continuar con tu email</p>
