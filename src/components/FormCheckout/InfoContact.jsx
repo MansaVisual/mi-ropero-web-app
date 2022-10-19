@@ -5,6 +5,8 @@ import { handleClick, handleChangeForm, onFocus, chargeForm } from "./funciones"
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 import PopUpInfoDir from "./PopUpInfoDir";
+import PopUpLocalidad from "./PopUpLocalidad";
+import { UseLoginContext } from "../../context/LoginContext";
 
 
 const InfoContact=({
@@ -12,6 +14,7 @@ const InfoContact=({
     direccion,setDireccion,provincias,setProvincias,usaDireccionCargada,setUsaDireccionCargada
 })=>{
     const {FormAPI}=useContext(UseFormContext)
+    const {userLog}=useContext(UseLoginContext)
     
     const [direccionesCargadas,setDireccionesCargadas]=useState([])
     const [direccionCargada,setDireccionCargada]=useState(null)
@@ -32,7 +35,7 @@ const InfoContact=({
         })
 
         const formDirecciones = new FormData()
-        formDirecciones.append('idcliente', 68)
+        formDirecciones.append('idcliente', userLog)
         FormAPI(
             formDirecciones,
             "direcciones",
@@ -57,23 +60,61 @@ const InfoContact=({
         }
     },[direccionCargada])// eslint-disable-line react-hooks/exhaustive-deps
 
+    
     const [provincia, setProvincia] = useState('');
     const [loader,setLoader]=useState(false)
-
+    
     const [campoObligatorio,setCampoObligatorio]=useState(false)
     const [errorPhone,setErrorPhone]=useState(false)
     const [errorCodPostal,setErrorCodPostal]=useState(false)
     const [errorDireccion,setErrorDireccion]=useState(false)
     const [errorDirCargada,setErrorDirCargada]=useState(false)
     const [errorRecargarDir,setErrorRecargarDir]=useState(false)
-
+    const [errorLocalidad,setErrorLocalidad]=useState(false)
+    
     const [viewDireccion,setViewDireccion]=useState(false)
     const [resDirecciones,setResDirecciones]=useState([])
-
-
+    
     const handleChange = (event) => {
         setProvincia(event.target.value)
         setForm({...form,provincia:event.target.value})
+    }
+
+    const [infoLoc,setInfoLoc]=useState([])
+    const [infoLocFinal,setInfoLocFinal]=useState([])
+    const [popLoc,setPopLoc]=useState(false)
+    const [changeLoc,setChangeLoc]=useState(false)
+
+    useEffect(()=>{
+        if(!popLoc && infoLocFinal.length!==0){
+            document.getElementById("codigoPostal").value=infoLocFinal.codigo_postal
+            document.getElementById("barrioLocalidad").value=infoLocFinal.nombre
+        }
+    },[popLoc])// eslint-disable-line react-hooks/exhaustive-deps
+    
+
+    const handleChangeLoc=()=>{
+        if((document.getElementById("barrioLocalidad").value).length>=3){
+                setInfoLocFinal([])
+                if(changeLoc){
+                    const localidad=new FormData()
+                    localidad.append("idprovincia",provincia)
+                    localidad.append("string", document.getElementById("barrioLocalidad").value)
+                    FormAPI(
+                        localidad,
+                        "direcciones",
+                        "localidades"
+                    ).then((res)=>{
+                        if(res.status==="error"){
+                            setErrorLocalidad(true)
+                            scrollTop()
+                        }else if(res.status==="success"){
+                            setPopLoc(true)
+                            setInfoLoc(res.result)
+                        }
+                    })
+                }
+        }
     }
 
     const checkForm = async()=>{
@@ -82,6 +123,13 @@ const InfoContact=({
         let res = false
         let resFinal = true
         setErrorRecargarDir(false)
+
+        if(infoLocFinal.length===0){
+            scrollTop()
+            setErrorLocalidad(true)
+            setLoader(false)
+            return
+        }
 
         if(usaDireccionCargada && direccionCargada === null){
             setErrorDirCargada(true)
@@ -272,6 +320,13 @@ const InfoContact=({
                     <p>Ocurrió un error de validación. Vuelva a intentarlo</p>
                 </div>
             }
+            {errorLocalidad &&
+                <div className="errorBox">
+                    <CancelOutlinedIcon color="secondary" className="cruz"/>
+                    <p>Localidad no encontrada. Vuelva a intentarlo</p>
+                </div>
+            }
+
 
             <div className="firstLine" style={{marginTop:"12px"}}>
                 <div className="margenInput margenInputEspecial">
@@ -451,16 +506,17 @@ const InfoContact=({
                                 size="small"
                                 className={`inputForm`}
                                 id="barrioLocalidad"
-                                onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false)}}
+                                onChangeCapture={()=>{handleChangeForm(setForm,form);setErrorDireccion(false);setCampoObligatorio(false);setChangeLoc(true);setErrorLocalidad(false)}}
                                 onFocus={(e)=>onFocus(e,clase,clase2,"labelBarrioLocalidad")}
-                                sx={{      
+                                onBlur={()=>handleChangeLoc()}
+                                sx={{
                                     "& .MuiOutlinedInput-root:hover": {
                                     "& > fieldset": {
-                                      borderColor:(campoObligatorio || errorDireccion)&& "#FF3F20"
+                                      borderColor:(campoObligatorio || errorDireccion || errorLocalidad)&& "#FF3F20"
                                     }
                                   }
                                 }}
-                                ></TextField>
+                            ></TextField>
                         </div>
                     </div>
 
@@ -582,6 +638,14 @@ const InfoContact=({
                 handleFinForm={handleFinForm}
                 form={form}
                 setBuscandoDir={setBuscandoDir}
+                infoLocFinal={infoLocFinal}
+            />}
+
+            {popLoc && <PopUpLocalidad
+                infoLoc={infoLoc}
+                setPopLoc={setPopLoc}
+                infoLocFinal={infoLocFinal}
+                setInfoLocFinal={setInfoLocFinal}
             />}
         </div>
     )
