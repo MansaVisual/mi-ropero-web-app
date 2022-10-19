@@ -6,52 +6,46 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { UseFormContext } from "../../context/FormContext";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const CheckForm = ({setTypeNav,estadoCompra})=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const navigate = useNavigate();
+
     const {FormAPI}=useContext(UseFormContext)
+    const {userLog}=useContext(UseLoginContext)
 
     useEffect(() => {
-        setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
-
-        if(estadoCompra==="success"){
+        if(userLog!==""){
+            setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
             
             if(saveDireccion){
                 const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
                 
-                const localidad=new FormData()
-                localidad.append("idprovincia", direccion.idprovincia)
-                localidad.append("string", direccion.localidad)
+                const dir = new FormData()
+                dir.append("idcliente",userLog)
+                dir.append("nombre",direccion.calle+" "+direccion.numero)
+                dir.append("codigo_postal",direccion.codigo_postal)
+                dir.append("provincia",direccion.provincia)
+                dir.append("idprovincia",direccion.idprovincia)
+                dir.append("idlocalidad",direccion.idlocalidad)
+                dir.append("calle",direccion.calle)
+                dir.append("numero",direccion.numero)
+                dir.append("piso",direccion.piso)
+                dir.append("departamento",direccion.departamento)
+                dir.append("entre_calle_1",direccion.entre_calle_1)
+                dir.append("entre_calle_2",direccion.entre_calle_2)
+                dir.append("informacion_adicional",direccion.informacion_adicional)
+                dir.append("normalized",direccion.raw_data)
                 FormAPI(
-                    localidad,
+                    dir,
                     "direcciones",
-                    "localidades"
-                ).then((res)=>{
-                    if(res.status==="success"){
-                        const dir = new FormData()
-                        dir.append("int",68)
-                        dir.append("nombre",direccion.calle+" "+direccion.numero)
-                        dir.append("codigo_postal",direccion.codigo_postal)
-                        dir.append("provincia",direccion.provincia)
-                        dir.append("idprovincia",direccion.idprovincia)
-                        dir.append("idlocalidad",res.result.idlocalidad)
-                        dir.append("calle",direccion.calle)
-                        dir.append("numero",direccion.numero)
-                        dir.append("piso",direccion.piso)
-                        dir.append("departamento",direccion.departamento)
-                        dir.append("entre_calle_1",direccion.entre_calle_1)
-                        dir.append("entre_calle_2",direccion.entre_calle_2)
-                        dir.append("informacion_adicional",direccion.informacion_adicional)
-                        dir.append("normalized",direccion.raw_data)
-                    }else{
-                        window.location.refresh()
-                    }
-                })
+                    "insert"
+                )
             }
         }
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <div className="checkContainer">
