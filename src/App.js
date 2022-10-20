@@ -42,6 +42,10 @@ function App() {
                       path="/productos/:keyword"
                       element={<SearchProductsResults />}
                       />
+                    <Route
+                      path="/productos/:search/:keyword"
+                      element={<SearchProductsResults />}
+                      />
                     <Route path="/roperos/:keyword" element={<SearchClosetResults />} />
                     <Route path="/roperos/:keyword/:closetId" element={<ViewCloset />} />
                     <Route
