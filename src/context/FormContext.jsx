@@ -1,9 +1,11 @@
-import { createContext,useState } from "react";
+import { createContext,useState,useContext } from "react";
+import { UseLoginContext } from "./LoginContext";
 
 export const UseFormContext = createContext();
 
 export function FormContext ({children}) {
 
+    const {userLog}=useContext(UseLoginContext)
     const [costoMoto,setCostoMoto]=useState(false)
     const [costoSucDom,setCostoSucDom]=useState(false)
     const [costoSucSuc,setCostoSucSuc]=useState(false)
@@ -30,7 +32,7 @@ export function FormContext ({children}) {
 
     const setCostos = (direccion)=>{
         const formCostos = new FormData()
-        formCostos.append('idcliente', 68)
+        formCostos.append('idcliente', userLog)
         formCostos.append('address_shipping',JSON.stringify(direccion))
         FormAPI(
             formCostos,

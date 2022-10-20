@@ -55,7 +55,7 @@ const Checkout = ()=>{
         if(num!==1){
             setNum(2)
         }
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
     
     useEffect(()=>{
         if(num!==1){

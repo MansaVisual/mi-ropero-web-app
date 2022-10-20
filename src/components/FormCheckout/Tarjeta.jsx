@@ -6,6 +6,7 @@ import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc,form,saveDirecc})=>{
 
@@ -13,6 +14,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
     const {carrito,CartAPI}=useContext(UseCartContext)
     const {setCostoSucDom,setCostoSucSuc}=useContext(UseFormContext)
     const [load,setLoad]=useState(false)
+    const {userLog}=useContext(UseLoginContext)
 
     const handlePagar=()=>{
         setLoad(true)
@@ -29,9 +31,9 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
         }
         
         const finalizarCompra=new FormData()
-        finalizarCompra.append("comprador_id",68)
+        finalizarCompra.append("comprador_id",userLog)
         finalizarCompra.append("telefono",form.telefono)
-        finalizarCompra.append("direccion_entrega",JSON.stringify({direccion}))
+        finalizarCompra.append("direccion_entrega",JSON.stringify(direccion))
         finalizarCompra.append("productos",productos.join(","))
         finalizarCompra.append("promocion_codigo",codDesc)
         finalizarCompra.append("medio_envio",metodoEnvio)
@@ -41,6 +43,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             "operaciones",
             "insert"
         ).then((res)=>{
+            console.log(res)
             if(res.status==="success"){
                 setLoad(false)
                 if(res.result.init_point!==undefined){

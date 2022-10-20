@@ -78,6 +78,9 @@ const InfoContact=({
     const handleChange = (event) => {
         setProvincia(event.target.value)
         setForm({...form,provincia:event.target.value})
+        if(event.target.value===1){
+            document.getElementById("barrioLocalidad").value="CAPITAL FEDERAL"
+        }
     }
 
     const [infoLoc,setInfoLoc]=useState([])
@@ -94,7 +97,8 @@ const InfoContact=({
     
 
     const handleChangeLoc=()=>{
-        if((document.getElementById("barrioLocalidad").value).length>=3){
+        if(document.getElementById("barrioLocalidad")!=="CAPITAL FEDERAL"){
+            if((document.getElementById("barrioLocalidad").value).length>=3){
                 setInfoLocFinal([])
                 if(changeLoc){
                     const localidad=new FormData()
@@ -114,6 +118,7 @@ const InfoContact=({
                         }
                     })
                 }
+            }
         }
     }
 
@@ -232,15 +237,23 @@ const InfoContact=({
         }else{
             formDireccion.append('calle',document.getElementById("calle").value)
             formDireccion.append('numero',document.getElementById("alturaKM").value)
-            formDireccion.append('provincia',document.getElementById("provincia").nextSibling.value)
+            formDireccion.append('provincia',document.getElementById("provincia").innerHTML)
             formDireccion.append('localidad',document.getElementById("barrioLocalidad").value)
             formDireccion.append('codigo_postal',document.getElementById("codigoPostal").value)
         }
+
+        console.log(document.getElementById("calle").value)
+        console.log(document.getElementById("alturaKM").value)
+        console.log(document.getElementById("provincia").innerHTML)
+        console.log(document.getElementById("barrioLocalidad").value)
+        console.log(document.getElementById("codigoPostal").value)
+
         FormAPI(
             formDireccion,
             "direcciones",
             "normalize"
         ).then(async(res)=>{
+            console.log(res)
             if(res.status==="success" && res.result[0].calle!=="" && res.result[0].numero!==""){
                 scrollTop()
                 await setResDirecciones(res.result)

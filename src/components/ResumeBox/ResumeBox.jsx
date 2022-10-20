@@ -3,11 +3,13 @@ import React,{useState,useContext,useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
+import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
 
 const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const navigate = useNavigate();
 
+    const {userLog}=useContext(UseLoginContext)
     const {FormAPI,costoSucDom,costoSucSuc,costoMoto}=useContext(UseFormContext)
     const {costoCarrito,cantidadCarrito}=useContext(UseCartContext)
 
@@ -27,7 +29,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
 
     useEffect(()=>{
         const cuentaCorriente=new FormData()
-        cuentaCorriente.append("idcliente",68)
+        cuentaCorriente.append("idcliente",userLog)
         FormAPI(
             cuentaCorriente,
             "cuentascorrientes",

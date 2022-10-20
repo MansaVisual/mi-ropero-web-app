@@ -90,7 +90,7 @@ const NavIcons = () => {
 const chargeCarrito = () =>{
   const CartID = new FormData()
 
-  CartID.append('idcliente', 68)
+  CartID.append('idcliente', userLog)
   // CartID.append('idproducto',10610)
   // CartID.append('cantidad',1)
   CartAPI(

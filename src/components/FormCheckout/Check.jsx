@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const CheckForm = ({setTypeNav,estadoCompra})=>{
+const CheckForm = ({estadoCompra})=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const navigate = useNavigate();
 
