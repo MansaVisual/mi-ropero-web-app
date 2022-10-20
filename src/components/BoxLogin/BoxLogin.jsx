@@ -48,14 +48,6 @@ const BoxLogin = () => {
     });
   };
 
-  const handleSocialLogin = (user) => {
-    console.log(user);
-  };
-
-  const handleSocialLoginFailure = (err) => {
-    console.error(err);
-  };
-
   return (
     <>
       <div className='boxLoginContainer'>
@@ -64,10 +56,7 @@ const BoxLogin = () => {
           <Button className='botonGoogle'>
             INGRESAR CON GOOGLE <i className='googleIcon'></i>
           </Button>
-          <FacebookButton />
-          {/* <Button className='botonFB' endIcon={<FacebookIcon />}>
-            INGRESAR CON FACEBOOK
-          </Button> */}
+          <FacebookButton /* className='botonFB' */ />
         </div>
 
         <p className='title'>Continuar con tu email</p>
