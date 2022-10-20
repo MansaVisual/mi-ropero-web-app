@@ -67,19 +67,21 @@ const SearchProductsResults = () => {
     setFilteredProducts(filteredProd);
     setBuscandoProds(true)
     setProds([])
-    prodsCategoria()
-  }, [keyword]);// eslint-disable-line react-hooks/exhaustive-deps
+    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined){
+      prodsCategoria()
+    }
+  }, [keyword,categorias]);// eslint-disable-line react-hooks/exhaustive-deps
   
   const prodsCategoria=()=>{
     const idCat=categorias.find(e=>e.nombre===keyword.replaceAll("&","/"))
     const catProd=new FormData()
-    catProd.append("idcategoria",idCat)
+    catProd.append("idcategoria",idCat.idcategoria)
     catProd.append("bypage",15)
     ProdAPI(
       catProd,
       "productos",
       "search"
-    ).then((res)=>{
+    ).then((res)=>{console.log(res)
       setBuscandoProds(false)
       if(res.status==="success"){
         setProds(res.result.productos)

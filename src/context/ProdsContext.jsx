@@ -9,10 +9,9 @@ export const ProdsContext = ({children}) => {
 
     const [categorias,setCategorias]=useState([])
     
-    const [ropa,setRopa]=useState([])
-    const [calzado,setCalzado]=useState([])
-    const [belleza,setBelleza]=useState([])
-    const [accesorios,setAccesorios]=useState([])
+    const [slider1,setSlider1]=useState([])
+    const [slider2,setSlider2]=useState([])
+    const [slider3,setSlider3]=useState([])
 
     const [listFavs,setListFavs]=useState([])
 
@@ -40,18 +39,16 @@ export const ProdsContext = ({children}) => {
         if(categorias.length===0){
             handleCategorias()
         }
-        if(ropa.length===0){
-            handleRopa()
+        if(slider1.length===0){
+            handleSlider1()
         }
-        if(calzado.length===0){
-            handleCalzado()
+        if(slider2.length===0){
+            handleSlider2()
         }
-        if(accesorios.length===0){
-            handleAccesorios()
+        if(slider3.length===0){
+            handleSlider3()
         }
-        if(belleza.length===0){
-            handleBelleza()
-        }
+
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -68,57 +65,40 @@ export const ProdsContext = ({children}) => {
     // segundoscroll recomendados
     // segundoscroll recomendados
 
-    const handleRopa=()=>{
-        const ropaForm = new FormData()
-        ropaForm.append("idcategoria",1)
-        ropaForm.append("idproducto",0)
-        ropaForm.append("limit",8)
+    const handleSlider1=()=>{
+        const slid1 = new FormData()
+        slid1.append("idcategoria",17)
+        slid1.append("bypage",8)
         ProdAPI(
-            ropaForm,
+            slid1,
             "productos",
-            "related"
+            "search"
         ).then((res)=>{
-            if(res.status==="success"){setRopa(res.result)}
+            if(res.status==="success"){setSlider1(res.result.productos)}
         })
     }
-    const handleCalzado=()=>{
-        const ropaForm = new FormData()
-        ropaForm.append("idcategoria",2)
-        ropaForm.append("idproducto",0)
-        ropaForm.append("limit",8)
+    const handleSlider2=()=>{
+        const slid2 = new FormData()
+        slid2.append("idcategoria",26)
+        slid2.append("bypage",8)
         ProdAPI(
-            ropaForm,
+            slid2,
             "productos",
-            "related"
+            "search"
         ).then((res)=>{
-            if(res.status==="success"){setCalzado(res.result)}
+            if(res.status==="success"){setSlider2(res.result.productos)}
         })
     }
-    const handleAccesorios=()=>{
-        const ropaForm = new FormData()
-        ropaForm.append("idcategoria",3)
-        ropaForm.append("idproducto",0)
-        ropaForm.append("limit",8)
+    const handleSlider3=()=>{
+        const slid3 = new FormData()
+        slid3.append("idcategoria",1000027)
+        slid3.append("bypage",8)
         ProdAPI(
-            ropaForm,
+            slid3,
             "productos",
-            "related"
+            "search"
         ).then((res)=>{
-            if(res.status==="success"){setAccesorios(res.result)}
-        })
-    }
-
-    const handleBelleza=()=>{
-        const ropaForm = new FormData()
-        ropaForm.append("idcategoria",1000018)
-        ropaForm.append("idproducto",0)
-        ropaForm.append("limit",8)
-        ProdAPI(
-            ropaForm,
-            "productos",
-            "related"
-        ).then((res)=>{
-            if(res.status==="success"){setBelleza(res.result)}
+            if(res.status==="success"){setSlider3(res.result.productos)}
         })
     }
 
@@ -127,7 +107,8 @@ export const ProdsContext = ({children}) => {
             categorias,
             "categorias",
             "all"
-        ).then((res)=>{if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
+        ).then((res)=>{
+            if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
     }
 
     const handleListFavs = ()=>{
@@ -141,7 +122,7 @@ export const ProdsContext = ({children}) => {
     }
 
     return(
-        <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,ropa,accesorios,calzado,belleza,handleListFavs}}>
+        <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,slider1,slider2,slider3,handleListFavs}}>
             {children}
         </UseProdsContext.Provider>
     )

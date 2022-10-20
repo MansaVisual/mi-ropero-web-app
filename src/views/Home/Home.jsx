@@ -24,7 +24,7 @@ import theme from "../../styles/theme";
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate=useNavigate()
-  const {ropa,calzado,accesorios,belleza}=useContext(UseProdsContext)
+  const {slider1,slider2,slider3}=useContext(UseProdsContext)
   const {coleccionNuevosIngresos,coleccionRecomendados}=useContext(UseColeccionContext)
 
   useEffect(() => {
@@ -68,11 +68,11 @@ const Home = () => {
             </Link>
           </Box>
           <Box sx={{ pt: "43px", textAlign: "center" }}>
-            <Chip>Ropa</Chip>
+            <Chip>Zapatillas</Chip>
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={ropa}/>
+            <SliderProd contenido={slider1}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -81,9 +81,9 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
-              onClick={()=>navigate(`/productos/ROPA`)}
+              onClick={()=>navigate(`/productos/Zapatillas`)}
               >
-              VER TODOS ROPA
+              VER TODOS ZAPATILLAS
             </Link>
           </Box>
           <Box
@@ -99,11 +99,11 @@ const Home = () => {
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Chip>Calzado</Chip>
+            <Chip>Remeras</Chip>
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={calzado}/>
+            <SliderProd contenido={slider2}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -112,17 +112,17 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
-              onClick={()=>navigate(`/productos/CALZADO`)}
+              onClick={()=>navigate(`/productos/Remeras`)}
               >
-              VER TODOS CALZADO
+              VER TODOS REMERAS
             </Link>
           </Box>
           <Box sx={{ pt: "43px", textAlign: "center" }}>
-            <Chip>Accesorios</Chip>
+            <Chip>Blusa/Top</Chip>
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={accesorios}/>
+            <SliderProd contenido={slider3}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -131,9 +131,9 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
-              onClick={()=>navigate(`/productos/ACCESORIOS`)}
+              onClick={()=>navigate(`/productos/Bluse&top`)}
               >
-              VER TODOS ACCESORIOS
+              VER TODOS BLUSA/TOP
             </Link>
           </Box>
         </Container>
@@ -183,25 +183,7 @@ const Home = () => {
           </Box>
         </Box>
         <Container maxWidth="xl">
-          <Box sx={{ textAlign: "center" }}>
-            <Chip>Belleza</Chip>
-          </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={belleza}/>
-          </Box>
-          <Box sx={{ pt: "27px", textAlign: "center" }}>
-            <Link
-              sx={{
-                color: "hsla(0, 0%, 53%, 1)",
-                fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
-              }}
-              onClick={()=>navigate(`/productos/BELLEZA`)}
-              >
-              VER TODOS BELLEZA
-            </Link>
-          </Box>
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Productos recomendados</Chip>
           </Box>
