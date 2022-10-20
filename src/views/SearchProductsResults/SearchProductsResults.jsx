@@ -73,7 +73,7 @@ const SearchProductsResults = () => {
   }, [keyword,categorias]);// eslint-disable-line react-hooks/exhaustive-deps
   
   const prodsCategoria=()=>{
-    const idCat=categorias.find(e=>e.nombre===keyword.replaceAll("&","/"))
+    const idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
     const catProd=new FormData()
     catProd.append("idcategoria",idCat.idcategoria)
     catProd.append("bypage",15)
