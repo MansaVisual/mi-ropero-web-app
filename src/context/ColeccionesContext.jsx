@@ -60,7 +60,7 @@ export const ColeccionContext = ({children}) => {
         ).then((res)=>{if(res.status==="success"){setColeccionRecomendados(res.result.productos)}})
     }, []);
 
-    console.log(coleccionNuevosIngresos)
+
     return(
         <UseColeccionContext.Provider value={{ColeccionAPI,coleccionNuevosIngresos,coleccionRecomendados}}>
             {children}

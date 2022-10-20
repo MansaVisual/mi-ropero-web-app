@@ -24,7 +24,7 @@ import theme from "../../styles/theme";
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate=useNavigate()
-  const {nuevosIngresos,ropa,calzado,accesorios,belleza}=useContext(UseProdsContext)
+  const {ropa,calzado,accesorios,belleza}=useContext(UseProdsContext)
   const {coleccionNuevosIngresos,coleccionRecomendados}=useContext(UseColeccionContext)
 
   useEffect(() => {
@@ -195,6 +195,7 @@ const Home = () => {
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
+                cursor:"pointer"
               }}
               onClick={()=>navigate(`/productos/BELLEZA`)}
               >
@@ -222,7 +223,7 @@ const Home = () => {
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={nuevosIngresos}/>
+            <SliderProd contenido={coleccionNuevosIngresos}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
