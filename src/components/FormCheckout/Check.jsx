@@ -21,14 +21,15 @@ const CheckForm = ({estadoCompra})=>{
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
             
             if(saveDireccion){
+
                 const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
-                
                 const dir = new FormData()
                 dir.append("idcliente",userLog)
                 dir.append("nombre",direccion.calle+" "+direccion.numero)
                 dir.append("codigo_postal",direccion.codigo_postal)
                 dir.append("provincia",direccion.provincia)
                 dir.append("idprovincia",direccion.idprovincia)
+                dir.append("localidad",direccion.localidad)
                 dir.append("idlocalidad",direccion.idlocalidad)
                 dir.append("calle",direccion.calle)
                 dir.append("numero",direccion.numero)
@@ -42,7 +43,7 @@ const CheckForm = ({estadoCompra})=>{
                     dir,
                     "direcciones",
                     "insert"
-                )
+                ).then((res)=>console.log(res))
             }
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
