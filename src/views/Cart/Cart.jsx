@@ -39,7 +39,7 @@ const Cart = () => {
                 behavior: 'auto',
             });
         }, 1000);
-        if(num!==1){
+        if(num===1){
             setNum(2)
         }
     },[])// eslint-disable-line react-hooks/exhaustive-deps

@@ -52,7 +52,7 @@ const Checkout = ()=>{
             top: 0,
             behavior: 'auto',
         });
-        if(num!==1){
+        if(num===1){
             setNum(2)
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
@@ -77,6 +77,7 @@ const Checkout = ()=>{
         }
       },[num])// eslint-disable-line react-hooks/exhaustive-deps
 
+    
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
     const onNextForm=(type)=>{
