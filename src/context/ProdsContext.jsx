@@ -9,7 +9,6 @@ export const ProdsContext = ({children}) => {
 
     const [categorias,setCategorias]=useState([])
     
-    const [nuevosIngresos,setNuevosIngresos]=useState([])
     const [ropa,setRopa]=useState([])
     const [calzado,setCalzado]=useState([])
     const [belleza,setBelleza]=useState([])
@@ -41,9 +40,6 @@ export const ProdsContext = ({children}) => {
         if(categorias.length===0){
             handleCategorias()
         }
-        if(nuevosIngresos.length===0){
-            handleNuevosIngresos()
-        }
         if(ropa.length===0){
             handleRopa()
         }
@@ -65,20 +61,6 @@ export const ProdsContext = ({children}) => {
             }
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
-
-    const handleNuevosIngresos=()=>{
-        const nuevosIngresosForm = new FormData()
-        nuevosIngresosForm.append("order_type","desc")
-        nuevosIngresosForm.append("bypage",8)
-        nuevosIngresosForm.append("order","fecha_aprobacion")
-        ProdAPI(
-            nuevosIngresosForm,
-            "productos",
-            "search"
-        ).then((res)=>{
-            if(res.status==="success"){setNuevosIngresos(res.result.productos)}else{handleNuevosIngresos()}
-        })
-    }
     
     // colleciones all
     // destacadas banner pirncipal
@@ -159,7 +141,7 @@ export const ProdsContext = ({children}) => {
     }
 
     return(
-        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos,categorias,listFavs,ropa,accesorios,calzado,belleza,handleListFavs}}>
+        <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,ropa,accesorios,calzado,belleza,handleListFavs}}>
             {children}
         </UseProdsContext.Provider>
     )
