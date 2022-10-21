@@ -592,7 +592,7 @@ const InfoContact=({
                                 id="comentario"
                                 disabled={buscandoDir?true:false}
                                 onChangeCapture={()=>{if(!buscandoDir){handleChangeForm(setForm,form)}}}
-                               /*  inputProps={{ maxLength: 70 }} */
+                                inputProps={{ maxLength: 50 }} 
                                 ></TextField>
                         </div>
                         <InputLabel className="subLabelForm" sx={{whiteSpace:"initial"}}>Agregar información útil para encontrar la dirección.</InputLabel>
