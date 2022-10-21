@@ -82,10 +82,9 @@ export const LoginContext = ({ children }) => {
         setInfoUser(res.result);
       } else if (res.status === 'error') {
         console.log('res', res);
-      } else if (
-        res.result === 'El social_login_id y/o social_login no existen'
-      ) {
-        FacebookRegister(loginData);
+        if (res.result === 'El social_login_id y/o social_login no existen') {
+          FacebookRegister(loginData);
+        }
       }
     });
   };
