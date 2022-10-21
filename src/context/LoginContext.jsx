@@ -1,10 +1,13 @@
 import { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const UseLoginContext = createContext();
 
 export const LoginContext = ({ children }) => {
   const [userLog, setUserLog] = useState('');
   const [infoUser, setInfoUser] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const res = localStorage.getItem('idClienteMiRopero');
@@ -80,6 +83,7 @@ export const LoginContext = ({ children }) => {
     await LoginAPI(log, 'clientes', 'login_social').then((res) => {
       if (res.status === 'success') {
         setInfoUser(res.result);
+        navigate('/');
       } else if (res.status === 'error') {
         console.log('res', res);
         if (res.result === 'El social_login_id y/o social_login no existen') {
@@ -100,11 +104,10 @@ export const LoginContext = ({ children }) => {
     console.log(log);
     await LoginAPI(log, 'clientes', 'insert_social').then((res) => {
       if (res.status === 'success') {
-        console.log(res);
+        setInfoUser(res.result);
+        navigate('/');
       } else if (res.status === 'error') {
-        console.log('res', res);
-        console.log('log', log);
-        console.log('loginData', loginData);
+        alert('Surgió un problema');
       }
     });
   };
