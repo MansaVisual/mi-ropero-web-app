@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,Fragment,useEffect } from "react";
 import {
   Divider,
   Box,
@@ -24,20 +24,31 @@ import theme from "../../styles/theme";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
-    sort: false,
-    brand: false,
-    material: false,
-    gender: false,
-    condition: false,
-    color: false,
-    origin: false,
-    style: false,
+    sort:false,
   });
+  const [putFilters,setPutFilters]=useState([])
 
+  const filtros=props.filtros.caracteristicas
+
+  useEffect(() => {
+    if(filtros!==undefined){
+      addFilters()
+    }
+  }, [filtros]);// eslint-disable-line react-hooks/exhaustive-deps
+  
+  const addFilters=()=>{
+    for(let i=0;i<filtros.length;i++){
+      setOpenFilter(currentState=>{
+        return {...currentState, [filtros[i].nombre]:false}
+      })
+    }
+  }
+  
   const handleClick = (filter) => {
     setOpenFilter({ ...openFilter, [filter]: !openFilter[filter] });
   };
 
+  console.log(putFilters)
   return (
     <List
       sx={{
@@ -104,69 +115,51 @@ const Filter = (props) => {
         </List>
       </Collapse>
       <Divider />
-
-      <ListItemStyled onClick={() => handleClick("brand")}>
-        <ListItemText primary="Marca" sx={ListItemTextStyled} />
-        {openFilter.brand ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.brand} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Giesso"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Sarkany"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Tascani"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Valdez"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Zara"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
+      {filtros!==undefined &&
+        filtros.map((res,i)=>{
+          return(
+          <Fragment key={i}>
+            <ListItemStyled onClick={() => handleClick(res.nombre)}>
+              <ListItemText primary={res.nombre} sx={ListItemTextStyled} />
+              {openFilter[res.nombre] ? <ExpandLess /> : <ExpandMore />}
+            </ListItemStyled>
+            <Collapse in={openFilter[res.nombre]} timeout="auto" unmountOnExit>
+              {res.valores.map((res2,i2)=>{
+                return(
+                  <List component="div" key={i2} >
+                    <FormControlLabel
+                      label={res2.valor}
+                      control={<Checkbox name={res2.valor} onClick={(e)=>{
+                        if(putFilters.length!==0){
+                          let oldArray=putFilters.filter(element=>element===e.target.name)
+                          let newArray=putFilters.filter(element=>element!==e.target.name)
+                          if(oldArray.length===0){
+                            setPutFilters([...putFilters,e.target.name])
+                          }else{
+                            setPutFilters(newArray)
+                          }
+                        }else{
+                          setPutFilters([...putFilters,e.target.name])
+                        }
+                      }}/>}
+                      sx={FormControlLabelStyled}
+                      
+                    />
+                  </List>
+                )
+              })}
+            </Collapse>
+            <Divider />
+          </Fragment>
+        )})
+      }
+{/* 
 
       <ListItemStyled onClick={() => handleClick("material")}>
         <ListItemText primary="Material" sx={ListItemTextStyled} />
         {openFilter.material ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
       <Collapse in={openFilter.material} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
         <List component="div">
           <FormControlLabel
             label="Cuero"
@@ -196,13 +189,6 @@ const Filter = (props) => {
         {openFilter.gender ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
       <Collapse in={openFilter.gender} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
         <List component="div">
           <FormControlLabel
             label="Genderless"
@@ -248,13 +234,6 @@ const Filter = (props) => {
       <Collapse in={openFilter.condition} timeout="auto" unmountOnExit>
         <List component="div">
           <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
             label="Nuevo"
             control={<Checkbox />}
             sx={FormControlLabelStyled}
@@ -282,13 +261,6 @@ const Filter = (props) => {
         {openFilter.color ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
       <Collapse in={openFilter.color} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
         <List component="div">
           <FormControlLabel
             label="Amarillo"
@@ -334,13 +306,6 @@ const Filter = (props) => {
       <Collapse in={openFilter.origin} timeout="auto" unmountOnExit>
         <List component="div">
           <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
             label="Nacional"
             control={<Checkbox />}
             sx={FormControlLabelStyled}
@@ -361,13 +326,7 @@ const Filter = (props) => {
         {openFilter.style ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
       <Collapse in={openFilter.style} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Todos"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
+
         <List component="div">
           <FormControlLabel
             label="Casual"
@@ -424,8 +383,8 @@ const Filter = (props) => {
             size="small"
           />
         </Box>
-      </List>
-      <Divider />
+      </List> */}
+      {/* <Divider /> */}
     </List>
   );
 };
