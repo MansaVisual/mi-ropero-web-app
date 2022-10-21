@@ -1,58 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import leftArrow from '../../assets/img/leftArrow.png';
 import AdressCard from '../AddressCard/AdressCard';
+import { UseLoginContext } from '../../context/LoginContext';
+import Loader from '../Loader/Loader';
+import { UsePerfilContext } from '../../context/PerfilContext';
 
 const MisDirecciones = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
-  const [adressOption, setAdressOption] = useState(false);
+  const { userLog } = useContext(UseLoginContext);
+  const { handleBuscarDirecciones, direccionesGuardadas } =
+    useContext(UsePerfilContext);
 
-  const array = [
-    {
-      calle: 'Cuenca',
-      numero: '4300',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: '3000',
-      entre_calle_1: 'Francisco veiro',
-      entre_calle_2: 'jose p varela',
-      informacion_adicional: 'puerta morada, toque timbre',
-    },
-    {
-      calle: 'Cuenca',
-      numero: '4300',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: '3000',
-      entre_calle_1: 'Francisco veiro',
-      entre_calle_2: 'jose p varela',
-      informacion_adicional: 'puerta morada, toque timbre',
-    },
-    {
-      calle: 'Cuenca',
-      numero: '4300',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: '3000',
-      entre_calle_1: 'Francisco veiro',
-      entre_calle_2: 'jose p varela',
-      informacion_adicional: 'puerta morada, toque timbre',
-    },
-    {
-      calle: 'Cuenca',
-      numero: '4300',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: '3000',
-      entre_calle_1: 'Francisco veiro',
-      entre_calle_2: 'jose p varela',
-      informacion_adicional: 'puerta morada, toque timbre',
-    },
-  ];
+  const [adressOption, setAdressOption] = useState(false);
+  const [direccionesUsuario, setDireccionesUsuario] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (userLog !== '') {
+      handleBuscarDirecciones(userLog);
+      setLoading(false);
+    }
+  }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className='misDireccContainer'>
@@ -68,17 +41,23 @@ const MisDirecciones = () => {
       </div>
       <p className='direcSubtitle'>Selecciona un domicilio *</p>
       <div className='cardContainer'>
-        {array.map((direccion, index) => {
-          return (
-            <AdressCard
-              key={index}
-              direccion={direccion}
-              setAdressOption={setAdressOption}
-              adressOption={adressOption}
-              index={index}
-            />
-          );
-        })}
+        {loading ? (
+          <Loader spin={'spinnerM'} />
+        ) : direccionesGuardadas ? (
+          direccionesGuardadas.map((direccion, index) => {
+            return (
+              <AdressCard
+                key={index}
+                direccion={direccion}
+                setAdressOption={setAdressOption}
+                adressOption={adressOption}
+                index={index}
+              />
+            );
+          })
+        ) : (
+          <p>no hay direcciones cargadas</p>
+        )}
       </div>
       <div className='returnLink' onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt='leftArrow' />

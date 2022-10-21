@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import MiPerfil from '../../components/PerfilActions/MiPerfil';
 import MisOfertas from '../../components/PerfilActions/MisOfertas';
@@ -18,32 +18,32 @@ const Perfil = () => {
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
 
-  const [num,setNum]=useState(1)
+  const [num, setNum] = useState(1);
 
-   useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'auto',
     });
-    if(num===1){
-      setNum(2)
+    if (num === 1) {
+      setNum(2);
     }
-  },[])// eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'auto',
     });
-  },[params])
+  }, [params]);
 
-  useEffect(()=>{
-    if(num!==1){
-      if(userLog===""){
-        navigate("/login")
+  useEffect(() => {
+    if (num !== 1) {
+      if (userLog === '') {
+        navigate('/login');
       }
     }
-  },[num])// eslint-disable-line react-hooks/exhaustive-deps
+  }, [num]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Grid className='gridContainer'>

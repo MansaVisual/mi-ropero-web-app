@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
@@ -18,12 +18,13 @@ const FacebookButton = () => {
     console.log(provider, data);
     navigate(`/`);
   };
+
   return (
     <div>
       <LoginSocialFacebook
         cookie='false'
         appId='793739778557335'
-        onLoginStart={onLoginStart}
+        /* onLoginStart={onLoginStart} */
         onResolve={({ provider, data }) => {
           setProvider(provider);
           setProfile(data);

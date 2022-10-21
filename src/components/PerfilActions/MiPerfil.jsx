@@ -19,7 +19,7 @@ const MiPerfil = ({ setTypeNav }) => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
-  const {infoUser}=useContext(UseLoginContext)
+  const { infoUser } = useContext(UseLoginContext);
 
   const [notificationsOff, setNotificationsOff] = useState(false);
   const [closeSession, setCloseSession] = useState(false);
@@ -75,8 +75,11 @@ const MiPerfil = ({ setTypeNav }) => {
           />
           <div className='profileText'>
             <p className='hello'>HOLA!</p>
-            <p className='name'>{infoUser.length !==0 && `${infoUser.nombre} ${infoUser.apellido}`}</p>
-            <p className='email'>{infoUser.length !==0 && infoUser.email}</p>
+            <p className='name'>
+              {infoUser.length !== 0 &&
+                `${infoUser.nombre} ${infoUser.apellido}`}
+            </p>
+            <p className='email'>{infoUser.length !== 0 && infoUser.email}</p>
           </div>
         </div>
         <p className='profileSections'>
