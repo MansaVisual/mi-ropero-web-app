@@ -84,6 +84,13 @@ const InfoContact = ({
 
   const [provincia, setProvincia] = useState('');
 
+  useEffect(() => {
+    if(provincia==="1"){
+      document.getElementById('barrioLocalidad').value = 'CAPITAL FEDERAL';
+    }
+  }, [provincia]);// eslint-disable-line react-hooks/exhaustive-deps
+
+
   const [loader, setLoader] = useState(false);
 
   const [campoObligatorio, setCampoObligatorio] = useState(false);
@@ -100,9 +107,6 @@ const InfoContact = ({
   const handleChange = (event) => {
     setProvincia(event.target.value);
     setForm({ ...form, provincia: event.target.value });
-    if (event.target.value === 1) {
-      document.getElementById('barrioLocalidad').value = 'CAPITAL FEDERAL';
-    }
   };
 
   const [infoLoc, setInfoLoc] = useState([]);
@@ -131,6 +135,7 @@ const InfoContact = ({
           );
           FormAPI(localidad, 'direcciones', 'localidades').then((res) => {
             if (res.status === 'error') {
+              throwError('barrioLocalidad', 'labelBarrioLocalidad');
               setErrorLocalidad(true);
               scrollTop();
             } else if (res.status === 'success') {
@@ -164,6 +169,7 @@ const InfoContact = ({
       scrollTop();
       return;
     }
+
     if (direccionCargada === null) {
       res = handleClick(setCampoObligatorio, clase, clase2);
       resFinal = true;
@@ -269,14 +275,7 @@ const InfoContact = ({
       );
     }
 
-    console.log(document.getElementById('calle').value);
-    console.log(document.getElementById('alturaKM').value);
-    console.log(document.getElementById('provincia').innerHTML);
-    console.log(document.getElementById('barrioLocalidad').value);
-    console.log(document.getElementById('codigoPostal').value);
-
     FormAPI(formDireccion, 'direcciones', 'normalize').then(async (res) => {
-      console.log(res);
       if (
         res.status === 'success' &&
         res.result[0].calle !== '' &&
@@ -558,6 +557,8 @@ const InfoContact = ({
                 value={provincia === '' ? 'ejemplo' : provincia}
                 onClickCapture={(e) => scrollTop(e.clientY)}
                 onChange={(e) => {
+                  setProvincia("")
+                  document.getElementById("barrioLocalidad").value=""
                   handleChange(e);
                   setErrorDireccion(false);
                   setCampoObligatorio(false);
@@ -603,9 +604,9 @@ const InfoContact = ({
               </InputLabel>
               <TextField
                 placeholder={
-                  provincia === '' && 'Primero debes ingresar una provincia'
+                  provincia === '' ? 'Primero debes ingresar una provincia' : "Mar del Plata"
                 }
-                disabled={provincia === '' ? true : false}
+                disabled={(provincia === '' || provincia==="1") ? true : false}
                 size='small'
                 className={`inputForm`}
                 id='barrioLocalidad'
