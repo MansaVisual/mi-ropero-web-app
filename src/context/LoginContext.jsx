@@ -74,7 +74,6 @@ export const LoginContext = ({ children }) => {
   };
 
   const FacebookLogin = (loginData) => {
-    console.log(loginData);
     const log = new FormData();
     log.append('social_login_type', 1);
     log.append('social_login_id', loginData.id);
@@ -84,6 +83,10 @@ export const LoginContext = ({ children }) => {
     LoginAPI(log, 'clientes', 'insert_social').then((res) => {
       if (res.status === 'success') {
         console.log(res);
+      } else if (res.status === 'error') {
+        console.log('res', res);
+        console.log('log', log);
+        console.log('loginData', loginData);
       }
     });
   };
