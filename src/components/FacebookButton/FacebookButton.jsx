@@ -1,21 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { Button } from 'reactstrap';
-/* import { useNavigate } from 'react-router-dom'; */
+import { UseLoginContext } from '../../context/LoginContext';
 
 const FacebookButton = () => {
-  /*   const navigate = useNavigate(); */
-  /*   const [provider, setProvider] = useState('');
-  const [profile, setProfile] = useState(null); */
-
-  /*   const onLoginStart = () => {
-    console.log(provider, profile);
-  }; */
-
-  /*   const onSuccess = () => {
-    console.log(provider, profile);
-    navigate(`/`);
-  }; */
+  const { FacebookLogin } = useContext(UseLoginContext);
 
   return (
     <div>
@@ -23,9 +12,8 @@ const FacebookButton = () => {
         cookie='false'
         appId='793739778557335'
         /*    onLoginStart={onLoginStart}  */
-        onResolve={({ provider, data }) => {
-          console.log('provider', provider);
-          console.log('data', data);
+        onResolve={({ data }) => {
+          FacebookLogin(data);
         }}
         onReject={(err) => {
           console.log(err);

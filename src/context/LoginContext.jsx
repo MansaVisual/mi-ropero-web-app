@@ -73,9 +73,31 @@ export const LoginContext = ({ children }) => {
     }
   };
 
+  const FacebookLogin = (loginData) => {
+    console.log(loginData);
+    const log = new FormData();
+    log.append('social_login_type', 1);
+    log.append('social_login_id', loginData.id);
+    log.append('nombre', loginData.first_name);
+    log.append('apellido', loginData.last_name);
+    log.append('avatar', loginData.picture.data.url);
+    LoginAPI(log, 'clientes', 'insert_social').then((res) => {
+      if (res.status === 'success') {
+        console.log(res);
+      }
+    });
+  };
+
   return (
     <UseLoginContext.Provider
-      value={{ LoginAPI, loginStorage, userLog, setUserLog, infoUser }}
+      value={{
+        LoginAPI,
+        loginStorage,
+        userLog,
+        setUserLog,
+        infoUser,
+        FacebookLogin,
+      }}
     >
       {children}
     </UseLoginContext.Provider>
