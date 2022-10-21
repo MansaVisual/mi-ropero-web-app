@@ -104,7 +104,7 @@ const ProductCard = ({
             fontSize: isMobile ? "11px" : "16px",
             lineHeight: "20px",
             textAlign: isMobile ? null : "start",
-            maxHeight:"18px",
+            maxHeight:"20px",
             overflowY:"hidden"
           }}
         >
