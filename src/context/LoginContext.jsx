@@ -105,7 +105,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === 'success') {
         FacebookLogin(loginData);
       } else if (res.status === 'error') {
-        alert('Surgió un problema');
+        alert('Surgió un problema. Volvé a intentarlo');
       }
     });
   };

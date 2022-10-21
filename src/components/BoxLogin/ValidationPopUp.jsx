@@ -24,7 +24,7 @@ const ValidationPopUp = ({setSendCod}) => {
                 if(res.status==="success"){
                     alert("Se envió el código")
                 }else{
-                    alert("No se pudo enviar el código. Vuelva a intentarlo")
+                    alert("No se pudo enviar el código. Volvé a intentarlo")
                 }
             }
         )

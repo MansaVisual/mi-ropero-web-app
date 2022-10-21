@@ -33,7 +33,7 @@ export const LikeButton = ({idCliente,idProd,infoUser}) => {
         "delete"
       ).then((res)=>{
         if(res.status==="error"){
-          alert("Surgió un error")
+          alert("Surgió un error al borrar el producto. Volvé a intentarlo")
         }
       })
       handleListFavs()
@@ -48,7 +48,7 @@ export const LikeButton = ({idCliente,idProd,infoUser}) => {
         "insert"
       ).then((res)=>{
         if(res.status==="error"){
-          alert("Surgió un error")
+          alert("Surgió un error al agregar a favoritos. Volvé a intentarlo")
         }
       })
       handleListFavs()
