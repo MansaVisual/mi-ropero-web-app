@@ -81,7 +81,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === 'success') {
         console.log(res);
         setInfoUser(res.result);
-        localStorage.setItem('idClienteMiRopero', res.idcliente);
+        localStorage.setItem('idClienteMiRopero', res.result.idcliente);
         window.location.replace('https://mi-ropero-web-app.vercel.app/');
       } else if (res.status === 'error') {
         console.log('res', res);
