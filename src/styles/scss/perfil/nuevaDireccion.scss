@@ -32,6 +32,14 @@
     }
   }
 
+  .formObligatorio {
+    border: 0.5px solid #ff3f20 !important;
+    border-radius: 4px !important;
+  }
+  .formObligatorioTitle {
+    color: #ff3f20 !important;
+  }
+
   .inputContainer {
     display: flex;
     max-width: 758px;

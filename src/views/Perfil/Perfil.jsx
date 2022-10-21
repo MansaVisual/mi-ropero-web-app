@@ -9,7 +9,7 @@ import MisCompras from '../../components/PerfilActions/MisCompras';
 import { useParams, useNavigate } from 'react-router-dom';
 import DetalleCompra from '../../components/PerfilActions/DetalleCompra';
 import MisMensajes from '../../components/PerfilActions/MisMensajes';
-import NuevaDireccion from '../../components/PerfilActions/NuevaDireccion';
+import NuevaDireccion from '../../components/PerfilActions/NuevaDireccion/NuevaDireccion';
 import EditarDireccion from '../../components/PerfilActions/EditarDireccion';
 import { UseLoginContext } from '../../context/LoginContext';
 
