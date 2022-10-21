@@ -11,6 +11,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Checkbox,
+  Button,
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -24,11 +25,13 @@ import theme from "../../styles/theme";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
-    sort:false,
+    sort:true,
   });
   
   const putFilters=props.putFilters
   const setPutFilters=props.setPutFilters
+  const putSort=props.putSort
+  const setPutSort=props.setPutSort
   const filtros=props.filtros.caracteristicas
 
   useEffect(() => {
@@ -49,6 +52,11 @@ const Filter = (props) => {
     setOpenFilter({ ...openFilter, [filter]: !openFilter[filter] });
   };
 
+  const handleChangeSort=(e)=>{
+    setPutSort(e.target.value)
+  }
+
+  
   return (
     <List
       sx={{
@@ -73,8 +81,16 @@ const Filter = (props) => {
         >
           {props.children}
         </ListSubheader>
-      }
+      } 
     >
+      <Button className='botonAplicarFiltros' disabled={(putSort==="" && putFilters.length===0)?true:false}
+        sx={{
+          background:(putSort==="" && putFilters.length===0)?"#998edb":"#443988",
+        }}
+      >
+        Aplicar
+      </Button>
+      
       <Divider />
       <ListItemStyled onClick={() => handleClick("sort")}>
         <ListItemText primary="Ordenar por" sx={ListItemTextStyled} />
@@ -86,27 +102,32 @@ const Filter = (props) => {
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="Mas relevante primero"
             name="radio-buttons-group"
+            onChangeCapture={(e)=>handleChangeSort(e)}
           >
             <FormControlLabel
               value="Mas relevante primero"
+              checked={putSort==="Mas relevante primero"?true:false}
               control={<Radio />}
               label="Mas relevante primero"
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
               value="Menos relevante primero"
+              checked={putSort==="Menos relevante primero"?true:false}
               control={<Radio />}
               label="Menos relevante primero"
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
               value="Mayor precio primero"
+              checked={putSort==="Mayor precio primero"?true:false}
               control={<Radio />}
               label="Mayor precio primero"
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
               value="Menor precio primero"
+              checked={putSort==="Menor precio primero"?true:false}
               control={<Radio />}
               label="Menor precio primero"
               sx={FormControlLabelStyled}

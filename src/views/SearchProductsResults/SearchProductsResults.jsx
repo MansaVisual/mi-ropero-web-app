@@ -58,6 +58,7 @@ const SearchProductsResults = () => {
   const [totalPages,setTotalPages]=useState(0)
 
   const [putFilters,setPutFilters]=useState([])
+  const [putSort,setPutSort]=useState("")
   
   useEffect(() => {
     // filter products by keyword entered in search bar
@@ -75,6 +76,7 @@ const SearchProductsResults = () => {
       prodsCategoria(false)
     }
   }, [keyword,categorias]);// eslint-disable-line react-hooks/exhaustive-deps
+
   
   const prodsCategoria=(paramSearch)=>{
     const catProd=new FormData()
@@ -254,7 +256,7 @@ const SearchProductsResults = () => {
                     </>
                   )
                 })}
-                <Filter filtros={filtrosCategoria} setPutFilters={setPutFilters} putFilters={putFilters}/>
+                <Filter filtros={filtrosCategoria} setPutFilters={setPutFilters} putFilters={putFilters} putSort={putSort} setPutSort={setPutSort}/>
               </>
             )}
           </Grid>
