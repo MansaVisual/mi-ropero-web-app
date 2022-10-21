@@ -33,8 +33,8 @@ const AdressCard = ({ direccion, adressOption, setAdressOption, index }) => {
             {direccion.entre_calle_2 !== '' && `${direccion.entre_calle_2}.`}{' '}
           </p>
           <p>
-            {direccion.entre_calle_1 !== '' &&
-              `${direccion.informacion_adicional}`}
+            {direccion.informacion_adicional !== '' &&
+              `${direccion.informacion_adicional}.`}
           </p>
         </div>
         <img

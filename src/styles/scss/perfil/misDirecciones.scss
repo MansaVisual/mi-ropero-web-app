@@ -27,6 +27,7 @@
       }
     }
     .addDirection {
+      cursor: pointer;
       font-weight: 600;
       font-size: 13px;
       line-height: 17px;
@@ -79,11 +80,15 @@
         border-radius: 6px;
         padding: 24px 32px;
         max-width: 100%;
+        min-height: 63px;
+        max-height: 63px;
+        overflow-y: hidden;
         display: flex;
         justify-content: space-between;
         align-items: center;
         @include screen_950 {
           padding: 16px;
+          min-height: 96px;
         }
         p {
           font-weight: 600;
