@@ -84,6 +84,7 @@ const SearchProductsResults = () => {
     }else{
       const idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
       catProd.append("idcategoria",idCat.idcategoria)
+      catProd.append("bypage",15)
 
       const catFilters=new FormData()
       catFilters.append("idcategoria",idCat.idcategoria)
@@ -187,7 +188,7 @@ const SearchProductsResults = () => {
                             disabled
                           />
                         </Box>
-                        <Filter />
+                        <Filter filtros={filtrosCategoria}/>
                       </Box>
                     </Fade>
                   </Modal>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import {
   Box,
   Drawer,
@@ -18,77 +18,21 @@ import CloseIcon from "@mui/icons-material/Close";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FiMenu } from "react-icons/fi";
+import { UseProdsContext } from "../../context/ProdsContext";
+import { useNavigate } from 'react-router-dom';
 
-const Ropa = [
-  "Abrigos (185)",
-  "Bermuda / Short (198)",
-  "Blazers (64)",
-  "Blusa / top (346)",
-  "Buzos (132)",
-  "Calzas (67)",
-  "Camisas (232)",
-  "Camperas (279)",
-  "Chalecos (59)",
-  "Chombas (13)",
-  "Jeans (238)",
-  "Monos (46)",
-  "Pantalones (246)",
-  "Piloto / Trench (17)",
-  "Polleras (176)",
-  "Remeras (590)",
-  "Ropa de dormir (25)",
-  "Ropa interior (37)",
-  "Sacos (41)",
-  "Tejidos (148)",
-  "Trajes (12)",
-  "Trajes de baño (55)",
-  "Vestidos (273)",
-  "Vestidos / Fiesta / Coctel (157)",
-  "VER TODOS",
-];
-
-const Calzado = [
-  "Botas / Borcegos (171)",
-  "Ojotas / Slides / Flats (36)",
-  "Plataforma (29)",
-  "Sandalias (100)",
-  "Zapatillas (241)",
-  "Zuecos (24)",
-  "VER TODOS",
-];
-
-const Accesorios = [
-  "Abrigos (185)",
-  "Aros (10)",
-  "Barbijos (4)v",
-  "Billeteras (15)",
-  "Bufandas / pashminas (22)",
-  "Carteras (134)",
-  "Cinturones (6)",
-  "Collares (25)",
-  "Corbatas (0)",
-  "Gorras (10)",
-  "Medias (1)",
-  "Mochilas / Riñoneras (13)",
-  "Pulseras (17)",
-  "VER TODOS",
-];
-
-const Belleza = ["Esmaltes (3)", "Perfumes (33)", "VER TODOS"];
 
 const NavMenu = () => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState({
     right: false,
   });
 
+  const {categorias}=useContext(UseProdsContext)
+
   const [open, setOpen] = useState(true);
   const [clothes, setClothes] = useState("");
-  const [categories] = useState({
-    Ropa,
-    Calzado,
-    Accesorios,
-    Belleza,
-  });
 
   const toggleDrawer = (anchor, open) => () => {
     setState({ ...state, [anchor]: open });
@@ -96,21 +40,37 @@ const NavMenu = () => {
   };
 
   const showItems = (category) => {
-    if (!open && categories[category] && clothes === category) {
-      return categories[category].map((item, index) => (
-        <ListItem key={index} disablePadding>
-          <ListItemButton>
-            <ListItemText
-              primary={item}
-              sx={{
-                fontSize: theme.typography.fontSize[4],
-                fontWeight: theme.typography.fontWeightRegular,
-                color: "hsla(210, 3%, 74%, 1)",
-              }}
-            />
-          </ListItemButton>
-        </ListItem>
-      ));
+
+    let idCatPadre = ""
+    if(category==="Ropa"){
+      idCatPadre="1"
+    }else if(category==="Calzado"){
+      idCatPadre="2"
+    }else if(category==="Accesorios"){
+      idCatPadre="3"
+    }else if(category==="Belleza"){
+      idCatPadre="1000018"
+    }
+    if (!open) {
+      return categorias.map((item, index) => {
+        return(
+          <>
+            {item.idcategoriapadre===idCatPadre &&
+              <ListItem key={index} disablePadding onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}>
+                <ListItemButton>
+                  <ListItemText
+                    primary={item.nombre}
+                    sx={{
+                      fontSize: theme.typography.fontSize[4],
+                      fontWeight: theme.typography.fontWeightRegular,
+                      color: "hsla(210, 3%, 74%, 1)",
+                    }}
+                    />
+                </ListItemButton>
+              </ListItem>
+            }
+          </>
+      )});
     }
   };
 
@@ -178,7 +138,7 @@ const NavMenu = () => {
         </>
       ) : (
         <List sx={{ flex: 1 }}>
-          {["Ropa", "Calzado", "Accesorios", "Belleza"].map((text, index) => (
+          {["Ropa", "Calzado", "Accesorios", "Belleza"].map((text, index) => {return(
             <ListItem key={text} disablePadding>
               <ListItemButton
                 onClick={() => {
@@ -198,7 +158,7 @@ const NavMenu = () => {
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
-          ))}
+          )})}
           <ListItem
             sx={{
               color: theme.palette.secondary.main,
