@@ -8,15 +8,24 @@ import { IoFilter } from "react-icons/io5";
 import { UseProdsContext } from "../../context/ProdsContext";
 
 
-export const LikeButton = ({idCliente,idProd,infoUser}) => {
+export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
   const {ProdAPI,listFavs,handleListFavs}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
 
   useEffect(() => {
-    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
-      setLike(!like)
+    if(itemFav===undefined){
+      if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
+        setLike(!like)
+      }
     }
   }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if(itemFav!==undefined){
+      setLike(true)
+    }
+  }, [itemFav]);// eslint-disable-line react-hooks/exhaustive-deps
+  
 
   const onLike = async () => {
     setLike(!like)
@@ -36,8 +45,7 @@ export const LikeButton = ({idCliente,idProd,infoUser}) => {
           alert("Surgió un error al borrar el producto. Volvé a intentarlo")
         }
       })
-      handleListFavs()
-      infoUser.productos_favoritos=await infoUser.productos_favoritos.filter(e=>e!==idProd)
+      await handleListFavs()
     }else{
       const favAdd = new FormData()
       favAdd.append("idcliente",idCliente)
@@ -51,7 +59,7 @@ export const LikeButton = ({idCliente,idProd,infoUser}) => {
           alert("Surgió un error al agregar a favoritos. Volvé a intentarlo")
         }
       })
-      handleListFavs()
+      await handleListFavs()
       infoUser.productos_favoritos.push(idProd)
     }
   };

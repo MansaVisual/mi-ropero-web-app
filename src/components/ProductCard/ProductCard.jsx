@@ -38,8 +38,6 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-
-
   return (
     <Card
       sx={{
@@ -73,7 +71,7 @@ const ProductCard = ({
         </TagNewStyled>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
           {userLog!==""&&
-            <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto}/>
+            <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto} itemFav={itemFav}/>
           }
         </Box>
         <Button
