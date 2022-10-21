@@ -73,15 +73,16 @@ export const LoginContext = ({ children }) => {
     }
   };
 
-  const FacebookLogin = async (loginData) => {
+  const FacebookLogin = (loginData) => {
     const log = new FormData();
     log.append('social_login_type', 1);
     log.append('social_login_id', loginData.id);
-    await LoginAPI(log, 'clientes', 'login_social').then((res) => {
+    LoginAPI(log, 'clientes', 'login_social').then((res) => {
       if (res.status === 'success') {
         console.log(res);
         setInfoUser(res.result);
-        /*   window.location.replace('https://mi-ropero-web-app.vercel.app/'); */
+        localStorage.setItem('idClienteMiRopero', res.idcliente);
+        window.location.replace('https://mi-ropero-web-app.vercel.app/');
       } else if (res.status === 'error') {
         console.log('res', res);
         if (res.result === 'El social_login_id y/o social_login no existen') {
@@ -91,7 +92,7 @@ export const LoginContext = ({ children }) => {
     });
   };
 
-  const FacebookRegister = async (loginData) => {
+  const FacebookRegister = (loginData) => {
     const log = new FormData();
     log.append('social_login_type', 1);
     log.append('social_login_id', loginData.id);
@@ -100,10 +101,9 @@ export const LoginContext = ({ children }) => {
     log.append('apellido', loginData.last_name);
     log.append('avatar', loginData.picture.data.url);
     console.log(log);
-    await LoginAPI(log, 'clientes', 'insert_social').then((res) => {
+    LoginAPI(log, 'clientes', 'insert_social').then((res) => {
       if (res.status === 'success') {
-        setInfoUser(res.result);
-        window.location.replace('https://mi-ropero-web-app.vercel.app/');
+        FacebookLogin(loginData);
       } else if (res.status === 'error') {
         alert('Surgió un problema');
       }
