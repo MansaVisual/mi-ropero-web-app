@@ -12,10 +12,8 @@ const FacebookButton = () => {
     console.log(provider, profile);
   };
 
-  const onSuccess = (provider, data) => {
-    setProvider(provider);
-    setProfile(data);
-    console.log(provider, data);
+  const onSuccess = () => {
+    console.log(provider, profile);
     navigate(`/`);
   };
 
