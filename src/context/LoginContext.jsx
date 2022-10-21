@@ -73,16 +73,16 @@ export const LoginContext = ({ children }) => {
     }
   };
 
-  const FacebookLogin = (loginData) => {
+  const FacebookLogin = async (loginData) => {
     const log = new FormData();
     log.append('social_login_type', 1);
     log.append('social_login_id', loginData.id);
     log.append('nombre', loginData.first_name);
     log.append('apellido', loginData.last_name);
     log.append('avatar', loginData.picture.data.url);
-    LoginAPI(log, 'clientes', 'insert_social').then(async (res) => {
+    await LoginAPI(log, 'clientes', 'insert_social').then((res) => {
       if (res.status === 'success') {
-        await console.log(res);
+        console.log(res);
       } else if (res.status === 'error') {
         console.log('res', res);
         console.log('log', log);
