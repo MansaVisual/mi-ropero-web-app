@@ -26,8 +26,9 @@ const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort:false,
   });
-  const [putFilters,setPutFilters]=useState([])
-
+  
+  const putFilters=props.putFilters
+  const setPutFilters=props.setPutFilters
   const filtros=props.filtros.caracteristicas
 
   useEffect(() => {
@@ -132,7 +133,7 @@ const Filter = (props) => {
                   <List component="div" key={i2} >
                     <FormControlLabel
                       label={res2.valor}
-                      control={<Checkbox name={res2.valor} onClick={(e)=>{
+                      control={<Checkbox checked={putFilters.find(element=>element===res2.valor)} name={res2.valor} onClick={(e)=>{
                         if(putFilters.length!==0){
                           let oldArray=putFilters.filter(element=>element===e.target.name)
                           let newArray=putFilters.filter(element=>element!==e.target.name)

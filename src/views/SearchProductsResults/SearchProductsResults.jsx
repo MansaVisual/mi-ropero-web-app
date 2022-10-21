@@ -15,7 +15,6 @@ import Onboarding from "../../components/Onboarding/Onboarding";
 import Filter from "../../components/Filter/Filter";
 import Chip from "../../components/Chip/Chip";
 import SliderProd from "../../components/SliderProd/SliderProd";
-import { slides } from "../../components/SliderProd/SliderProd";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { StyledLink } from "../../components/Footer/styles";
 import notFoundIcon from "../../assets/img/notFoundIcon.svg";
@@ -45,16 +44,20 @@ const style = {
 const SearchProductsResults = () => {
   const {categorias,ProdAPI}=useContext(UseProdsContext)
   const { keyword,search } = useParams();
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [load,setLoad]=useState(false)
   
   const [prods,setProds]=useState([])
   const [buscandoProds,setBuscandoProds]=useState(true)
   const [filtrosCategoria,setFiltrosCategoria]=useState([])
+
+  const [totalPages,setTotalPages]=useState(0)
+
+  const [putFilters,setPutFilters]=useState([])
   
   useEffect(() => {
     // filter products by keyword entered in search bar
@@ -62,10 +65,7 @@ const SearchProductsResults = () => {
       top: 0,
       behavior: 'auto',
     });
-    const filteredProd = slides.filter((product) => {
-      return product.title.toLowerCase().includes(keyword.toLowerCase().trim());
-    });
-    setFilteredProducts(filteredProd);
+
     setBuscandoProds(true)
     setProds([])
     if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search!==undefined){
@@ -78,23 +78,55 @@ const SearchProductsResults = () => {
   
   const prodsCategoria=(paramSearch)=>{
     const catProd=new FormData()
+    let idCat = ""
+
     if(paramSearch){
       catProd.append("text",keyword)
-      catProd.append("bypage",15)
+      
     }else{
-      const idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
+      idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
       catProd.append("idcategoria",idCat.idcategoria)
-      catProd.append("bypage",15)
-
+      
       const catFilters=new FormData()
       catFilters.append("idcategoria",idCat.idcategoria)
       ProdAPI(
         catFilters,
         "categorias",
         "get"
-      ).then((res)=>{
-        if(res.status==="success"){setFiltrosCategoria(res.result[0])}})
+        ).then((res)=>{
+          if(res.status==="success"){setFiltrosCategoria(res.result[0])}})
+        }
+    catProd.append("bypage",15)
+    catProd.append("page",1)
+    ProdAPI(
+      catProd,
+      "productos",
+      "search"
+    ).then((res)=>{
+      setBuscandoProds(false)
+      if(res.status==="success"){
+        setProds(res.result.productos)
+        setTotalPages(res.result.total_paginas)
+      }
+    })
+  }
+
+  const buscarPage=(paramSearch,value)=>{
+    setLoad(true)
+    const catProd=new FormData()
+    let idCat = ""
+    if(paramSearch){
+      catProd.append("text",keyword)
+      catProd.append("bypage",15)
+
+    }else{
+      idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
+      catProd.append("idcategoria",idCat.idcategoria)
+      catProd.append("bypage",15)
     }
+
+    catProd.append("page",value)
+
     ProdAPI(
       catProd,
       "productos",
@@ -104,6 +136,11 @@ const SearchProductsResults = () => {
       if(res.status==="success"){
         setProds(res.result.productos)
       }
+      setLoad(false)
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto',
+      });
     })
   }
 
@@ -210,7 +247,14 @@ const SearchProductsResults = () => {
                     {keyword}
                   </Typography>
                 </Box>
-                <Filter filtros={filtrosCategoria}/>
+                {putFilters.map((res,i)=>{
+                  return(
+                    <>
+
+                    </>
+                  )
+                })}
+                <Filter filtros={filtrosCategoria} setPutFilters={setPutFilters} putFilters={putFilters}/>
               </>
             )}
           </Grid>
@@ -349,7 +393,8 @@ const SearchProductsResults = () => {
                 </>
               }
             </Box>
-            {filteredProducts.length > 0 && keyword && (
+            {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
+            {prods.length!==0 && totalPages>1 && keyword && (
               <Box
               sx={{
                 display: "flex",
@@ -357,7 +402,7 @@ const SearchProductsResults = () => {
                 alignItems: "center",
               }}
               >
-              <Pagination />
+              <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
               </Box>
             )}
           </Grid>
