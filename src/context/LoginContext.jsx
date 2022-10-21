@@ -80,9 +80,9 @@ export const LoginContext = ({ children }) => {
     log.append('nombre', loginData.first_name);
     log.append('apellido', loginData.last_name);
     log.append('avatar', loginData.picture.data.url);
-    LoginAPI(log, 'clientes', 'insert_social').then((res) => {
+    LoginAPI(log, 'clientes', 'insert_social').then(async (res) => {
       if (res.status === 'success') {
-        console.log(res);
+        await console.log(res);
       } else if (res.status === 'error') {
         console.log('res', res);
         console.log('log', log);
