@@ -23,9 +23,9 @@ const FacebookButton = () => {
         cookie='false'
         appId='793739778557335'
         /* onLoginStart={onLoginStart} */
-        onResolve={({ provider, data }) => {
-          setProvider(provider);
-          setProfile(data);
+        onResolve={async ({ provider, data }) => {
+          await setProvider(provider);
+          await setProfile(data);
           onSuccess();
         }}
         onReject={(err) => {
