@@ -81,7 +81,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === 'success') {
         console.log(res);
         setInfoUser(res.result);
-        window.location.replace('https://mi-ropero-web-app.vercel.app/');
+        /*   window.location.replace('https://mi-ropero-web-app.vercel.app/'); */
       } else if (res.status === 'error') {
         console.log('res', res);
         if (res.result === 'El social_login_id y/o social_login no existen') {
