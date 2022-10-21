@@ -79,7 +79,7 @@ export const LoginContext = ({ children }) => {
     log.append('social_login_id', loginData.id);
     await LoginAPI(log, 'clientes', 'login_social').then((res) => {
       if (res.status === 'success') {
-        console.log(res);
+        setInfoUser(res.result);
       } else if (res.status === 'error') {
         console.log('res', res);
         console.log('log', log);
