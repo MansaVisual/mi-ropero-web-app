@@ -77,6 +77,21 @@ export const LoginContext = ({ children }) => {
     const log = new FormData();
     log.append('social_login_type', 1);
     log.append('social_login_id', loginData.id);
+    await LoginAPI(log, 'clientes', 'login_social').then((res) => {
+      if (res.status === 'success') {
+        console.log(res);
+      } else if (res.status === 'error') {
+        console.log('res', res);
+        console.log('log', log);
+        console.log('loginData', loginData);
+      }
+    });
+  };
+
+  const FacebookRegister = async (loginData) => {
+    const log = new FormData();
+    log.append('social_login_type', 1);
+    log.append('social_login_id', loginData.id);
     log.append('nombre', loginData.first_name);
     log.append('email', loginData.email);
     log.append('apellido', loginData.last_name);
