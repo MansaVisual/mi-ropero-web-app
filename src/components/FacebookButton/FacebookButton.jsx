@@ -1,32 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { Button } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom'; */
 
 const FacebookButton = () => {
-  const navigate = useNavigate();
-  const [provider, setProvider] = useState('');
-  const [profile, setProfile] = useState(null);
+  /*   const navigate = useNavigate(); */
+  /*   const [provider, setProvider] = useState('');
+  const [profile, setProfile] = useState(null); */
 
-  const onLoginStart = () => {
+  /*   const onLoginStart = () => {
     console.log(provider, profile);
-  };
+  }; */
 
-  const onSuccess = () => {
+  /*   const onSuccess = () => {
     console.log(provider, profile);
     navigate(`/`);
-  };
+  }; */
 
   return (
     <div>
       <LoginSocialFacebook
         cookie='false'
         appId='793739778557335'
-        /* onLoginStart={onLoginStart} */
-        onResolve={async ({ provider, data }) => {
-          await setProvider(provider);
-          await setProfile(data);
-          onSuccess();
+        /*    onLoginStart={onLoginStart}  */
+        onResolve={({ provider, data }) => {
+          console.log('provider', provider);
+          console.log('data', data);
         }}
         onReject={(err) => {
           console.log(err);
