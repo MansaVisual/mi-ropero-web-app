@@ -44,7 +44,7 @@ const style = {
 
 const SearchProductsResults = () => {
   const {categorias,ProdAPI}=useContext(UseProdsContext)
-  const { keyword } = useParams();
+  const { keyword,search } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -54,6 +54,7 @@ const SearchProductsResults = () => {
   
   const [prods,setProds]=useState([])
   const [buscandoProds,setBuscandoProds]=useState(true)
+  const [filtrosCategoria,setFiltrosCategoria]=useState([])
   
   useEffect(() => {
     // filter products by keyword entered in search bar
@@ -67,21 +68,37 @@ const SearchProductsResults = () => {
     setFilteredProducts(filteredProd);
     setBuscandoProds(true)
     setProds([])
-    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined){
-      prodsCategoria()
+    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search!==undefined){
+      prodsCategoria(true)
+    }
+    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search===undefined){
+      prodsCategoria(false)
     }
   }, [keyword,categorias]);// eslint-disable-line react-hooks/exhaustive-deps
   
-  const prodsCategoria=()=>{
-    const idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
+  const prodsCategoria=(paramSearch)=>{
     const catProd=new FormData()
-    catProd.append("idcategoria",idCat.idcategoria)
-    catProd.append("bypage",15)
+    if(paramSearch){
+      catProd.append("text",keyword)
+      catProd.append("bypage",15)
+    }else{
+      const idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
+      catProd.append("idcategoria",idCat.idcategoria)
+
+      const catFilters=new FormData()
+      catFilters.append("idcategoria",idCat.idcategoria)
+      ProdAPI(
+        catFilters,
+        "categorias",
+        "get"
+      ).then((res)=>{
+        if(res.status==="success"){setFiltrosCategoria(res.result[0])}})
+    }
     ProdAPI(
       catProd,
       "productos",
       "search"
-    ).then((res)=>{console.log(res)
+    ).then((res)=>{
       setBuscandoProds(false)
       if(res.status==="success"){
         setProds(res.result.productos)
@@ -192,7 +209,7 @@ const SearchProductsResults = () => {
                     {keyword}
                   </Typography>
                 </Box>
-                <Filter />
+                <Filter filtros={filtrosCategoria}/>
               </>
             )}
           </Grid>

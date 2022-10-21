@@ -26,7 +26,7 @@ const SearchBar = () => {
   const handleSubmit = (evt, route) => {
     evt.preventDefault();
     setOpenSearch(false);
-    navigate(`/${route}/${keyword}`);
+    navigate(`/${route}/search/${keyword}`);
     setKeyword("");
   };
 
