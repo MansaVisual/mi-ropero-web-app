@@ -79,6 +79,7 @@ export const LoginContext = ({ children }) => {
     log.append('social_login_id', loginData.id);
     await LoginAPI(log, 'clientes', 'login_social').then((res) => {
       if (res.status === 'success') {
+        console.log(res);
         setInfoUser(res.result);
         window.location.replace('https://mi-ropero-web-app.vercel.app/');
       } else if (res.status === 'error') {
