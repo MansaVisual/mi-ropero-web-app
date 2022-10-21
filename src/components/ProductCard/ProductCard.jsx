@@ -38,6 +38,8 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
+
+
   return (
     <Card
       sx={{
@@ -103,7 +105,9 @@ const ProductCard = ({
           sx={{
             fontSize: isMobile ? "11px" : "16px",
             lineHeight: "20px",
-            textAlign: isMobile ? null : "center",
+            textAlign: isMobile ? null : "start",
+            maxHeight:"18px",
+            overflowY:"hidden"
           }}
         >
           {productName}
