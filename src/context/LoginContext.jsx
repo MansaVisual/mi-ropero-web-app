@@ -78,6 +78,7 @@ export const LoginContext = ({ children }) => {
     log.append('social_login_type', 1);
     log.append('social_login_id', loginData.id);
     log.append('nombre', loginData.first_name);
+    log.append('email', loginData.email);
     log.append('apellido', loginData.last_name);
     log.append('avatar', loginData.picture.data.url);
     console.log(log);
