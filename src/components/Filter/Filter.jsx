@@ -1,8 +1,8 @@
 import React, { useState,Fragment,useEffect } from "react";
 import {
   Divider,
-  Box,
-  TextField,
+  // Box,
+  // TextField,
   Collapse,
   ListItemText,
   List,
@@ -16,7 +16,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import {
   FormControlLabelStyled,
-  ListItemPriceRangeStyled,
+  // ListItemPriceRangeStyled,
   ListItemStyled,
   ListItemTextStyled,
 } from "./styles";
