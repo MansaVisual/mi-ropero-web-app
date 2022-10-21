@@ -127,23 +127,6 @@ const TabsCategories = () => {
                 })}
               </>
             }
-            <List>
-              <ListItem>
-                <Link
-                  sx={{
-                    color: "hsla(351, 6%, 25%, 1)",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    "&:hover": { textDecoration: "underline" },
-                  }}
-                  onClick={()=>navigate(`/productos/ROPA`)}
-                  >
-                    {categorias.length!==0&&
-                      "VER TODOS"
-                    }
-                </Link>
-              </ListItem>
-            </List>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -183,23 +166,6 @@ const TabsCategories = () => {
                 })}
               </>
             }
-            <List>
-              <ListItem>
-                <Link
-                  sx={{
-                    color: "hsla(351, 6%, 25%, 1)",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    "&:hover": { textDecoration: "underline" },
-                  }}
-                  onClick={()=>navigate(`/productos/CALZADO`)}
-                  >
-                    {categorias.length!==0&&
-                      "VER TODOS"
-                    }
-                </Link>
-              </ListItem>
-            </List>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={2}>
@@ -239,23 +205,6 @@ const TabsCategories = () => {
                 })}
               </>
             }
-            <List>
-              <ListItem>
-                <Link
-                  sx={{
-                    color: "hsla(351, 6%, 25%, 1)",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    "&:hover": { textDecoration: "underline" },
-                  }}
-                  onClick={()=>navigate(`/productos/ACCESORIOS`)}
-                  >
-                    {categorias.length!==0&&
-                      "VER TODOS"
-                    }
-                </Link>
-              </ListItem>
-            </List>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={3}>
@@ -295,23 +244,6 @@ const TabsCategories = () => {
                 })}
               </>
             }
-            <List>
-              <ListItem>
-                <Link
-                  sx={{
-                    color: "hsla(351, 6%, 25%, 1)",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    "&:hover": { textDecoration: "underline" },
-                  }}
-                  onClick={()=>navigate(`/productos/BELLEZA`)}
-                  >
-                    {categorias.length!==0&&
-                      "VER TODOS"
-                    }
-                </Link>
-              </ListItem>
-            </List>
           </Box>
         </TabPanel>
       </Box>
