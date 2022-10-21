@@ -48,7 +48,6 @@ const Filter = (props) => {
     setOpenFilter({ ...openFilter, [filter]: !openFilter[filter] });
   };
 
-  console.log(putFilters)
   return (
     <List
       sx={{
@@ -123,7 +122,11 @@ const Filter = (props) => {
               <ListItemText primary={res.nombre} sx={ListItemTextStyled} />
               {openFilter[res.nombre] ? <ExpandLess /> : <ExpandMore />}
             </ListItemStyled>
-            <Collapse in={openFilter[res.nombre]} timeout="auto" unmountOnExit>
+            <Collapse in={openFilter[res.nombre]} timeout="auto" unmountOnExit className="scrollFilter" sx={{
+              maxHeight:"60vh",
+              overflowY:"scroll",
+
+            }}>
               {res.valores.map((res2,i2)=>{
                 return(
                   <List component="div" key={i2} >

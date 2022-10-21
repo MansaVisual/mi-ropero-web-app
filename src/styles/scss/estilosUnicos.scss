@@ -111,3 +111,16 @@ input[type='number']::-webkit-outer-spin-button {
     color: #878787;
   }
 }
+
+.scrollFilter{
+  &::-webkit-scrollbar {
+    width: 8px;
+}
+&::-webkit-scrollbar-thumb {
+    background: #BABCBE;
+    border-radius: 10px;
+}
+&::-webkit-scrollbar-track {
+    background: transparent;
+}
+}
