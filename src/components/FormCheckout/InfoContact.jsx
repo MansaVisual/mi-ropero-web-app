@@ -20,6 +20,8 @@ const InfoContact=({
     const [direccionCargada,setDireccionCargada]=useState(null)
     const [buscandoDir,setBuscandoDir]=useState(false)
 
+    const [loader2,setLoader2]=useState(true)
+
     let clase = "formObligatorio"
     let clase2 = "formObligatorioTitle"
 
@@ -34,18 +36,6 @@ const InfoContact=({
             }
         })
 
-        const formDirecciones = new FormData()
-        formDirecciones.append('idcliente', userLog)
-        FormAPI(
-            formDirecciones,
-            "direcciones",
-            "all"
-        ).then((res)=>{
-            if(res.status==="success"){
-                setDireccionesCargadas(res.result)
-            }
-        })
-
         if(form.length!==0 && !usaDireccionCargada){
             chargeForm(form,setProvincia)
         }else if(form.length!==0 && usaDireccionCargada){
@@ -55,6 +45,23 @@ const InfoContact=({
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{
+        if(userLog!==""){
+            const formDirecciones = new FormData()
+            formDirecciones.append('idcliente', userLog)
+            FormAPI(
+                formDirecciones,
+                "direcciones",
+                "all"
+            ).then((res)=>{
+                setLoader2(false)
+                if(res.status==="success"){
+                    setDireccionesCargadas(res.result)
+                }
+            })
+        }
+    },[userLog])// eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(()=>{
         if(direccionCargada!==null){
             setDireccion(direccionCargada)
         }
@@ -62,6 +69,7 @@ const InfoContact=({
 
     
     const [provincia, setProvincia] = useState('');
+
     const [loader,setLoader]=useState(false)
     
     const [campoObligatorio,setCampoObligatorio]=useState(false)
@@ -129,7 +137,7 @@ const InfoContact=({
         let resFinal = true
         setErrorRecargarDir(false)
 
-        if(infoLocFinal.length===0){
+        if(infoLocFinal.length===0 && !usaDireccionCargada){
             scrollTop()
             setErrorLocalidad(true)
             setLoader(false)
@@ -383,6 +391,7 @@ const InfoContact=({
                 </div>
             </div>
 
+            {loader2 && <><Loader spin={"spinnerM"}/><br/></>}
             {direccionesCargadas.length!==0 &&
                 <div className="selectorDireccion">
                     <div className="selectorContainer" onClick={()=>{
@@ -516,7 +525,7 @@ const InfoContact=({
                         <div className="margenInput">
                             <InputLabel className="labelForm" id="labelBarrioLocalidad">Localidad / Barrio *</InputLabel>
                             <TextField 
-                                placeholder={provincia===""?"Primero debes ingresar una provincia":"Mar del Plata"}
+                                placeholder={provincia===""&&"Primero debes ingresar una provincia"}
                                 disabled={provincia==="" ? true : false}
                                 size="small"
                                 className={`inputForm`}
