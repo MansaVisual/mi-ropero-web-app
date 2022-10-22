@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import { Button, MenuItem, TextField } from '@mui/material';
 import Select from '@mui/material/Select';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import { UseLoginContext } from "../../context/LoginContext";
+import { UsePerfilContext } from "../../context/PerfilContext";
+import Loader from '../Loader/Loader';
 
 const MisDatos = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
-  /*   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(menuOpen);
-  }, [menuOpen]); */
+  const {infoUser}=useContext(UseLoginContext)
+  const {PerfilAPI}=useContext(UsePerfilContext)
 
   const talles = ['sm', 'md', 'lg'];
 
@@ -33,6 +33,8 @@ const MisDatos = () => {
     'formal',
   ];
 
+  const [arrayGeneros,setArrayGeneros]=useState([])
+
   const [genero, setGenero] = useState('');
   const [talleRopa, setTalleRopa] = useState('');
   const [marcasPreferidas, setMarcasPreferidas] = useState([]);
@@ -45,6 +47,19 @@ const MisDatos = () => {
     } = e;
     setValue(typeof value === 'string' ? value.split(',') : value);
   };
+
+
+  useEffect(() => {
+    PerfilAPI("","clientes","get_sexos").then((res)=>{
+      if(res.status==="success"){
+        let array=[]
+        for(const gen in res.result){
+          array.push(res.result[gen])
+        }
+        setArrayGeneros(array)
+      }
+    })
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   /*   const [scroll, setScroll] = useState(0);
 
@@ -77,11 +92,12 @@ const MisDatos = () => {
   };
 
   window.addEventListener('scroll', onScroll); */
-
   return (
     <div className='misDatosContainer'>
       <Breadcrumbs links={pathnames} />
       <p className='title'>MIS DATOS</p>
+      {infoUser.length===0 ? <div style={{height:"50vh",marginTop:"18px"}}><Loader spin={"spinnerM"}/></div> :
+      <>
       <div className='inputContainer'>
         <div className='inputBox'>
           <p className='labelInput'>Nombre *</p>
@@ -90,6 +106,7 @@ const MisDatos = () => {
             className='input'
             size='small'
             placeholder='Sabrina'
+            defaultValue={infoUser.nombre}
           />
         </div>
         <div className='inputBox'>
@@ -99,6 +116,7 @@ const MisDatos = () => {
             className='input'
             size='small'
             placeholder='Godoy'
+            defaultValue={infoUser.apellido}
           />
         </div>
       </div>
@@ -111,6 +129,7 @@ const MisDatos = () => {
             size='small'
             placeholder='sabrinagodoy@gmail.com'
             type='email'
+            defaultValue={infoUser.email}
           />
           <p className='bottomText'>
             Te registraste en el sitio utilizando Facebook, y es por eso que la
@@ -125,6 +144,7 @@ const MisDatos = () => {
             size='small'
             placeholder='+54  011 - 4417 - 8005'
             type='number'
+            defaultValue={infoUser.email!==undefined?infoUser.email:""}
           />
           <p className='bottomText'>
             Llamarán a este número si hay algún problema con el envío.
@@ -157,9 +177,11 @@ const MisDatos = () => {
             >
               {'Seleccione una opción'}
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {arrayGeneros.length!==0 && arrayGeneros.map((res,i)=>{
+              return(
+                <MenuItem value={res}>{res}</MenuItem>
+              )
+            })}
           </Select>
         </div>
         <div className='inputBox' />
@@ -364,6 +386,7 @@ const MisDatos = () => {
         </Button>
         <Button className='rightButton'>GRABAR CAMBIOS</Button>
       </div>
+    </>}
     </div>
   );
 };
