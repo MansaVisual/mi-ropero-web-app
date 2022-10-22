@@ -24,6 +24,7 @@ import LoginValidation from './views/LoginValidation/LoginValidation';
 import Perfil from './views/Perfil/Perfil';
 import { ColeccionContext } from './context/ColeccionesContext';
 import { PerfilContext } from './context/PerfilContext';
+import SearchColeccionesResults from './views/SearchColeccionesResults/SearchColeccionesResults';
 
 function App() {
   return (
@@ -57,6 +58,10 @@ function App() {
                       <Route
                         path='/roperos/:keyword/:closetId/:itemName'
                         element={<ProductPage />}
+                      />
+                      <Route
+                        path='/colecciones/:coleccionName'
+                        element={<SearchColeccionesResults />}
                       />
                       <Route path='/carrito' element={<Cart />} />
                       <Route path='/checkout' element={<Checkout />} />

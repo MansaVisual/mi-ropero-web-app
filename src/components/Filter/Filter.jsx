@@ -26,6 +26,7 @@ import theme from "../../styles/theme";
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort:true,
+    categoriasCol:false,
   });
   
   const putFilters=props.putFilters
@@ -33,6 +34,10 @@ const Filter = (props) => {
   const putSort=props.putSort
   const setPutSort=props.setPutSort
   const filtros=props.filtros.caracteristicas
+
+  const coleccion=props.coleccion
+  const putCategory=props.putCategory
+  const setPutCategory=props.setPutCategory
 
   useEffect(() => {
     if(filtros!==undefined){
@@ -56,7 +61,6 @@ const Filter = (props) => {
     setPutSort(e.target.value)
   }
 
-  
   return (
     <List
       sx={{
@@ -83,9 +87,9 @@ const Filter = (props) => {
         </ListSubheader>
       } 
     >
-      <Button className='botonAplicarFiltros' disabled={(putSort==="" && putFilters.length===0)?true:false}
+      <Button className='botonAplicarFiltros' disabled={(putSort==="" && putFilters.length===0 && putCategory==="")?true:false}
         sx={{
-          background:(putSort==="" && putFilters.length===0)?"#998edb":"#443988",
+          background:(putSort==="" && putFilters.length===0 && putCategory===0)?"#998edb":"#443988",
         }}
       >
         Aplicar
@@ -136,7 +140,41 @@ const Filter = (props) => {
         </List>
       </Collapse>
       <Divider />
-      {filtros!==undefined &&
+
+      {coleccion!==null && coleccion.length!==0 &&
+        <Fragment >
+          <ListItemStyled onClick={() => handleClick("categoriasCol")}>
+            <ListItemText primary="Categorias" sx={ListItemTextStyled} />
+            {openFilter.categoriasCol ? <ExpandLess /> : <ExpandMore />}
+          </ListItemStyled>
+          <Collapse in={openFilter.categoriasCol} timeout="auto" unmountOnExit className="scrollFilter" sx={{
+            maxHeight:"60vh",
+            overflowY:"scroll",
+
+          }}>
+              {coleccion.productos_categorias.map((res2,i2)=>{
+                return(
+                  <Fragment key={i2}>
+                    {res2.nombre!=="ROPA" && res2.nombre!=="CALZADO" && res2.nombre!=="ACCESORIOS" && res2.nombre!=="BELLEZA" && 
+                      <List component="div" sx={{paddingLeft:"4px"}}>
+                          <FormControlLabel
+                          label={res2.nombre}
+                          control={<Radio checked={putCategory===res2.nombre?true:false} name={res2.valor} onClick={(e)=>{
+                            setPutCategory(res2.nombre)
+                          }}/>}
+                          sx={FormControlLabelStyled}
+                          />
+                      </List>
+                    }
+                  </Fragment>
+                )
+              })}
+          </Collapse>
+          <Divider />
+        </Fragment>
+      }
+
+      {filtros!==undefined && coleccion===undefined &&
         filtros.map((res,i)=>{
           return(
           <Fragment key={i}>
@@ -178,6 +216,48 @@ const Filter = (props) => {
           </Fragment>
         )})
       }
+      {/* {filtros!==undefined && coleccion!==undefined &&
+        filtros.map((res,i)=>{
+          return(
+          <Fragment key={i}>
+            <ListItemStyled onClick={() => handleClick(res.nombre)}>
+              <ListItemText primary={res.nombre} sx={ListItemTextStyled} />
+              {openFilter[res.nombre] ? <ExpandLess /> : <ExpandMore />}
+            </ListItemStyled>
+            <Collapse in={openFilter[res.nombre]} timeout="auto" unmountOnExit className="scrollFilter" sx={{
+              maxHeight:"60vh",
+              overflowY:"scroll",
+
+            }}>
+              {res.valores.map((res2,i2)=>{
+                return(
+                  <List component="div" key={i2} >
+                    <FormControlLabel
+                      label={res2.valor}
+                      control={<Checkbox checked={putFilters.find(element=>element===res2.valor)} name={res2.valor} onClick={(e)=>{
+                        if(putFilters.length!==0){
+                          let oldArray=putFilters.filter(element=>element===e.target.name)
+                          let newArray=putFilters.filter(element=>element!==e.target.name)
+                          if(oldArray.length===0){
+                            setPutFilters([...putFilters,e.target.name])
+                          }else{
+                            setPutFilters(newArray)
+                          }
+                        }else{
+                          setPutFilters([...putFilters,e.target.name])
+                        }
+                      }}/>}
+                      sx={FormControlLabelStyled}
+                      
+                    />
+                  </List>
+                )
+              })}
+            </Collapse>
+            <Divider />
+          </Fragment>
+        )})
+      } */}
 {/* 
 
       <ListItemStyled onClick={() => handleClick("material")}>

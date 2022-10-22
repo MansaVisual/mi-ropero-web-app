@@ -48,7 +48,7 @@ export const ColeccionContext = ({children}) => {
             col,
             "colecciones",
             "detail"
-        ).then((res)=>{if(res.status==="success"){setColeccionNuevosIngresos(res.result.productos)}})
+        ).then((res)=>{;if(res.status==="success"){setColeccionNuevosIngresos(res.result.productos)}})
 
         const col2=new FormData()
         col2.append("idcoleccion",73)
@@ -59,7 +59,6 @@ export const ColeccionContext = ({children}) => {
             "detail"
         ).then((res)=>{if(res.status==="success"){setColeccionRecomendados(res.result.productos)}})
     }, []);
-
 
     return(
         <UseColeccionContext.Provider value={{ColeccionAPI,coleccionNuevosIngresos,coleccionRecomendados}}>

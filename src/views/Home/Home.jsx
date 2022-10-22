@@ -54,7 +54,7 @@ const Home = () => {
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionNuevosIngresos}/>
+            <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -63,6 +63,7 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
+              onClick={()=>navigate("/colecciones/NuevosIngresos")}
             >
               VER TODOS LOS INGRESOS
             </Link>
@@ -188,7 +189,7 @@ const Home = () => {
             <Chip primary>Productos recomendados</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionRecomendados}/>
+            <SliderProd contenido={coleccionRecomendados} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -197,6 +198,7 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
+              onClick={()=>navigate("/colecciones/Recomendados")}
             >
               VER TODOS LOS PRODUCTOS RECOMENDADOS
             </Link>
@@ -205,7 +207,7 @@ const Home = () => {
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionNuevosIngresos}/>
+            <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
@@ -214,6 +216,7 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor:"pointer"
               }}
+              onClick={()=>navigate("/colecciones/MejoresVendedores")}
             >
               VER TODOS LOS MEJORES VENDEDORES
             </Link>
