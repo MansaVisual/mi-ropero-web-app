@@ -25,6 +25,7 @@ import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
+import banner from "../../assets/img/bannermvp4.png"
 
 const style = {
   position: "absolute",
@@ -58,6 +59,7 @@ const SearchProductsResults = () => {
   const [totalPages,setTotalPages]=useState(0)
 
   const [coleccion,setColeccion]=useState([])
+  const [prodsColeccion,setProdsColeccion]=useState([])
 
   const [putCategory,setPutCategory]=useState("")
   const [putFilters,setPutFilters]=useState([])
@@ -76,7 +78,6 @@ const SearchProductsResults = () => {
       behavior: 'auto',
     });
 
-    setBuscandoProds(true)
     setProds([])
 
     let numCol=0
@@ -91,83 +92,87 @@ const SearchProductsResults = () => {
 
     const col=new FormData()
     col.append("idcoleccion",numCol)
+    col.append("bypage",15)
+    col.append("page",1)
 
     ColeccionAPI(
         col,
         "colecciones",
         "detail"
-    ).then((res)=>{setBuscandoProds(false);if(res.status==="success"){setColeccion(res.result)}})
-
+    ).then((res)=>{
+      if(res.status==="success"){
+        setColeccion(res.result)
+        setProds(res.result.productos)
+        setTotalPages(res.result.total_paginas)
+      }
+  })
   }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
 
+
+  useEffect(() => {
+    if(putCategory!==""){
+      let numCol=0
+      if(coleccionName==="NuevosIngresos"){
+        numCol=71
+      }else if(coleccionName==="Recomendados"){
+          numCol="73"
+      }else if(coleccionName==="MejoresVendedores"){
+          numCol="73"
+      }
+
+      
+      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+      idCat=idCat[0].idcategoria
+
+      const col=new FormData()
+      col.append("idcoleccion",numCol)
+      col.append("idcategoria",idCat)
+      col.append("bypage",1)
+      col.append("page",1)
   
-//   const prodsCategoria=(paramSearch)=>{
-//     const catProd=new FormData()
-//     let idCat = ""
+      ColeccionAPI(
+          col,
+          "colecciones",
+          "detail"
+      ).then((res)=>{
+        if(res.status==="success"){console.log(res.result)
+          setProds(res.result.productos)
+          setFiltrosCategoria(res.result)
+        }
+      })
 
-//     if(paramSearch){
-//       catProd.append("text",keyword)
       
-//     }else{
-//       idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
-//       catProd.append("idcategoria",idCat.idcategoria)
-      
-//       const catFilters=new FormData()
-//       catFilters.append("idcategoria",idCat.idcategoria)
-//       ProdAPI(
-//         catFilters,
-//         "categorias",
-//         "get"
-//         ).then((res)=>{
-//           if(res.status==="success"){setFiltrosCategoria(res.result[0])}})
-//         }
-//     catProd.append("bypage",15)
-//     catProd.append("page",1)
-//     ProdAPI(
-//       catProd,
-//       "productos",
-//       "search"
-//     ).then((res)=>{
-//       setBuscandoProds(false)
-//       if(res.status==="success"){
-//         setProds(res.result.productos)
-//         setTotalPages(res.result.total_paginas)
-//       }
-//     })
-//   }
+    }
+  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
-//   const buscarPage=(paramSearch,value)=>{
-//     setLoad(true)
-//     const catProd=new FormData()
-//     let idCat = ""
-//     if(paramSearch){
-//       catProd.append("text",keyword)
-//       catProd.append("bypage",15)
 
-//     }else{
-//       idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
-//       catProd.append("idcategoria",idCat.idcategoria)
-//       catProd.append("bypage",15)
-//     }
+  const buscarPage=(value)=>{
+    setLoad(true)
+    const catProd=new FormData()
 
-//     catProd.append("page",value)
+    let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+    idCat=idCat[0].idcategoria
 
-//     ProdAPI(
-//       catProd,
-//       "productos",
-//       "search"
-//     ).then((res)=>{
-//       setBuscandoProds(false)
-//       if(res.status==="success"){
-//         setProds(res.result.productos)
-//       }
-//       setLoad(false)
-//       window.scrollTo({
-//         top: 0,
-//         behavior: 'auto',
-//       });
-//     })
-//   }
+    catProd.append("idcategoria",idCat.idcategoria)
+    catProd.append("bypage",15)
+    catProd.append("page",value)
+
+    ColeccionAPI(
+      catProd,
+      "productos",
+      "search"
+    ).then((res)=>{
+      setBuscandoProds(false)
+      if(res.status==="success"){
+        setProds(res.result.productos)
+      }
+      setLoad(false)
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto',
+      });
+    })
+  }
 
   return (
     <>
@@ -279,7 +284,16 @@ const SearchProductsResults = () => {
                     </>
                   )
                 })}
-                <Filter setPutCategory={setPutCategory} putCategory={putCategory} filtros={filtrosCategoria} setPutFilters={setPutFilters} putFilters={putFilters} putSort={putSort} setPutSort={setPutSort} coleccion={coleccion}/>
+                <Filter 
+                  setPutCategory={setPutCategory} 
+                  putCategory={putCategory} 
+                  filtros={filtrosCategoria} 
+                  setPutFilters={setPutFilters} 
+                  putFilters={putFilters} 
+                  putSort={putSort} 
+                  setPutSort={setPutSort} 
+                  coleccion={coleccion}
+                />
               </>
             )}
           </Grid>
@@ -310,111 +324,7 @@ const SearchProductsResults = () => {
                 })
               ) : 
                 <>
-                  {buscandoProds?<Loader spin={"spinnerG"}/>:
-                    <Box
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        mt: "16px",
-                      }}
-                      >
-                      <Box sx={{ mr: "20px" }}>
-                        <img
-                          src={notFoundIcon}
-                          width={30}
-                          height={30}
-                          alt="not found icon"
-                          />
-                      </Box>
-                      <Box>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.secondary.main,
-                            textTransform: "uppercase",
-                            textAlign:
-                            isMobile || isMobileBigScreen ? "center" : "unset",
-                            mb: 4,
-                          }}
-                          >
-                          No encontramos resultados para{" "}
-                          <Typography
-                            component="span"
-                            sx={{
-                              color: theme.palette.secondary.main,
-                              textTransform: "capitalize",
-                            }}
-                            >
-                            "{coleccionName}"
-                          </Typography>
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightRegular,
-                            color: theme.palette.tertiary.main,
-                          }}
-                          >
-                          Revisá la ortografía de la palabra
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.tertiary.main,
-                          }}
-                          >
-                          Utilizá palabras más genéricas o menos palabras.
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.tertiary.main,
-                          }}
-                          >
-                          Navegá por las categorías para encontrar un producto
-                          similar
-                        </Typography>
-                        <StyledLink
-                          to="/"
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            cursor: "default",
-                          }}
-                          >
-                          <Typography
-                            component="span"
-                            sx={{
-                              boxSizing: "border-box",
-                              color: theme.palette.primary.main,
-                              fontSize: theme.typography.fontSize[2],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              textTransform: "uppercase",
-                              padding: "10px 36px",
-                              height: "36px",
-                              width: "200px",
-                              textAlign: "center",
-                              border: "1px solid hsl(248.4, 40.9%, 37.8%)",
-                              borderRadius: "20px",
-                              mt: 4,
-                              cursor: "pointer",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                            // onClick={()=>prodsCategoria()}
-                            >
-                            Ir al Inicio
-                          </Typography>
-                        </StyledLink>
-                      </Box>
-                    </Box>
-                  }
+                  {buscandoProds?<Loader spin={"spinnerG"}/>:null}
                 </>
               }
             </Box>
@@ -427,7 +337,7 @@ const SearchProductsResults = () => {
                 alignItems: "center",
               }}
               >
-              {/* <Pagination cantidad={totalPages} buscarPage={buscarPage}/> */}
+                <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
               </Box>
             )}
           </Grid>

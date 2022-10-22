@@ -25,8 +25,8 @@ import theme from "../../styles/theme";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
-    sort:true,
-    categoriasCol:false,
+    sort:false,
+    categoriasCol:true,
   });
   
   const putFilters=props.putFilters
@@ -34,7 +34,7 @@ const Filter = (props) => {
   const putSort=props.putSort
   const setPutSort=props.setPutSort
   const filtros=props.filtros.caracteristicas
-
+console.log(props.filtros)
   const coleccion=props.coleccion
   const putCategory=props.putCategory
   const setPutCategory=props.setPutCategory
@@ -89,7 +89,7 @@ const Filter = (props) => {
     >
       <Button className='botonAplicarFiltros' disabled={(putSort==="" && putFilters.length===0 && putCategory==="")?true:false}
         sx={{
-          background:(putSort==="" && putFilters.length===0 && putCategory===0)?"#998edb":"#443988",
+          background:(putSort==="" && putFilters.length===0 && putCategory==="")?"#998edb":"#443988",
         }}
       >
         Aplicar
@@ -141,7 +141,7 @@ const Filter = (props) => {
       </Collapse>
       <Divider />
 
-      {coleccion!==null && coleccion.length!==0 &&
+      {coleccion!==undefined && coleccion.length!==0 &&
         <Fragment >
           <ListItemStyled onClick={() => handleClick("categoriasCol")}>
             <ListItemText primary="Categorias" sx={ListItemTextStyled} />
@@ -206,7 +206,6 @@ const Filter = (props) => {
                         }
                       }}/>}
                       sx={FormControlLabelStyled}
-                      
                     />
                   </List>
                 )
@@ -216,7 +215,7 @@ const Filter = (props) => {
           </Fragment>
         )})
       }
-      {/* {filtros!==undefined && coleccion!==undefined &&
+      {filtros!==undefined && coleccion!==undefined &&
         filtros.map((res,i)=>{
           return(
           <Fragment key={i}>
@@ -257,7 +256,7 @@ const Filter = (props) => {
             <Divider />
           </Fragment>
         )})
-      } */}
+      }
 {/* 
 
       <ListItemStyled onClick={() => handleClick("material")}>
