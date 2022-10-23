@@ -6,7 +6,7 @@ import {
   Button,
   useMediaQuery,
 } from "@mui/material";
-import React,{useContext,useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   UpButton,
@@ -23,15 +23,16 @@ import theme from "../../styles/theme";
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const navigate=useNavigate()
-  const {slider1,slider2,slider3}=useContext(UseProdsContext)
-  const {coleccionNuevosIngresos,coleccionRecomendados}=useContext(UseColeccionContext)
+  const navigate = useNavigate();
+  const { slider1, slider2, slider3 } = useContext(UseProdsContext);
+  const { coleccionNuevosIngresos, coleccionRecomendados } =
+    useContext(UseColeccionContext);
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
-  });
+      behavior: "auto",
+    });
   }, []);
 
   return (
@@ -40,6 +41,7 @@ const Home = () => {
       <Onboarding />
       <Box
         sx={{
+          position: "relative",
           backgroundColor: "#FBFBFB",
           display: "flex",
           flexDirection: "column",
@@ -54,14 +56,14 @@ const Home = () => {
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionNuevosIngresos}/>
+            <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
+                cursor: "pointer",
               }}
             >
               VER TODOS LOS INGRESOS
@@ -72,17 +74,17 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={slider1}/>
+            <SliderProd contenido={slider1} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
+                cursor: "pointer",
               }}
-              onClick={()=>navigate(`/productos/Zapatillas`)}
-              >
+              onClick={() => navigate(`/productos/Zapatillas`)}
+            >
               VER TODOS ZAPATILLAS
             </Link>
           </Box>
@@ -103,17 +105,17 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={slider2}/>
+            <SliderProd contenido={slider2} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
+                cursor: "pointer",
               }}
-              onClick={()=>navigate(`/productos/Remeras`)}
-              >
+              onClick={() => navigate(`/productos/Remeras`)}
+            >
               VER TODOS REMERAS
             </Link>
           </Box>
@@ -122,17 +124,17 @@ const Home = () => {
           </Box>
 
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={slider3}/>
+            <SliderProd contenido={slider3} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
+                cursor: "pointer",
               }}
-              onClick={()=>navigate(`/productos/Bluse&top`)}
-              >
+              onClick={() => navigate(`/productos/Bluse&top`)}
+            >
               VER TODOS BLUSA/TOP
             </Link>
           </Box>
@@ -183,19 +185,18 @@ const Home = () => {
           </Box>
         </Box>
         <Container maxWidth="xl">
-
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Productos recomendados</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionRecomendados}/>
+            <SliderProd contenido={coleccionRecomendados} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
+                cursor: "pointer",
               }}
             >
               VER TODOS LOS PRODUCTOS RECOMENDADOS
@@ -205,22 +206,22 @@ const Home = () => {
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionNuevosIngresos}/>
+            <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
               sx={{
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
-                cursor:"pointer"
+                cursor: "pointer",
               }}
             >
               VER TODOS LOS MEJORES VENDEDORES
             </Link>
           </Box>
         </Container>
-        <Box sx={{ position: "absolute", right: isMobile ? 20 : 60 }}>
-          <Box sx={{ paddingBottom: "16px" }}>
+        <Box sx={{ position: "absolute", right: 10 }}>
+          <Box sx={{ marginBottom: "16px" }}>
             <UpButton />
           </Box>
           <Box>

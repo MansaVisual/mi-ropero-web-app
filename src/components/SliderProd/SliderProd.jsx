@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import ProductCard from "../ProductCard/ProductCard";
 import { Box } from "@mui/material";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Loader from '../Loader/Loader';
+import Loader from "../Loader/Loader";
 
 export const slides = [
   {
@@ -77,10 +77,12 @@ const NextArrow = (props) => {
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
+      dots: false,
       infinite: false,
       speed: 500,
       slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
+      centerPadding: "20px",
       initialSlide: 0,
       swipeToSlide: true,
       prevArrow: <PrevArrow />,
@@ -109,10 +111,12 @@ export default class SimpleSlider extends Component {
         },
       ],
     };
-    const {contenido}=this.props
+    const { contenido } = this.props;
     return (
       <div>
-        {contenido!==undefined && contenido.length===0? <Loader spin={"spinnerG"}/> :
+        {contenido !== undefined && contenido.length === 0 ? (
+          <Loader spin={"spinnerG"} />
+        ) : (
           <Slider {...settings}>
             {contenido.map((item, index) => (
               <Box key={index}>
@@ -123,11 +127,11 @@ export default class SimpleSlider extends Component {
                   idProducto={item.idproducto}
                   datosTienda={item.tienda}
                   tag="NUEVO"
-                  />
+                />
               </Box>
             ))}
           </Slider>
-        }
+        )}
       </div>
     );
   }
