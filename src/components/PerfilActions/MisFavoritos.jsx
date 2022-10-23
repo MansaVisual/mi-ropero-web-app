@@ -13,7 +13,6 @@ const MisFavoritos = ({setTypeNav}) => {
 
     const {listFavs}=useContext(UseProdsContext)
 
-    console.log(listFavs)
     return (
       <>
         {listFavs.length===0? <Loader spin={"spinnerM"}/> :
