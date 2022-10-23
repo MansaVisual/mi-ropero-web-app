@@ -12,8 +12,10 @@ const MisDatos = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
-  const {infoUser}=useContext(UseLoginContext)
+  const {infoUser,userLog}=useContext(UseLoginContext)
   const {PerfilAPI}=useContext(UsePerfilContext)
+
+  const [caracteristicasFavs,setCaracteristicasFavs]=useState([])
 
   const talles = ['sm', 'md', 'lg'];
 
@@ -35,7 +37,7 @@ const MisDatos = () => {
 
   const [arrayGeneros,setArrayGeneros]=useState([])
 
-  const [genero, setGenero] = useState('');
+  const [genero, setGenero] = useState('0');
   const [talleRopa, setTalleRopa] = useState('');
   const [marcasPreferidas, setMarcasPreferidas] = useState([]);
   const [estiloRopa, setEstiloRopa] = useState([]);
@@ -48,7 +50,6 @@ const MisDatos = () => {
     setValue(typeof value === 'string' ? value.split(',') : value);
   };
 
-
   useEffect(() => {
     PerfilAPI("","clientes","get_sexos").then((res)=>{
       if(res.status==="success"){
@@ -59,7 +60,18 @@ const MisDatos = () => {
         setArrayGeneros(array)
       }
     })
+    PerfilAPI("","clientes","get_caracteristicas_favoritas").then((res)=>{
+      if(res.status==="success"){
+        setCaracteristicasFavs(res.result)
+      }
+    })
   }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if(infoUser.length!==0){
+      setGenero(infoUser.sexo)
+    }
+  }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
 
   /*   const [scroll, setScroll] = useState(0);
 
@@ -92,6 +104,51 @@ const MisDatos = () => {
   };
 
   window.addEventListener('scroll', onScroll); */
+
+  const handleGrabarCambios=()=>{
+    if(document.getElementById("nombre").value===""){
+      ScrollTop()
+      alert("Debe completar el campo Nombre")
+      return
+    }
+    if(document.getElementById("apellido").value===""){
+      ScrollTop()
+      alert("Debe completar el campo Apellido")
+      return
+    }
+    if(document.getElementById("email").value===""){
+      ScrollTop()
+      alert("Debe completar el campo Email")
+      return
+    }
+
+    const formPhone = new FormData();
+    formPhone.append('telefono', document.getElementById('telefono').value);
+    PerfilAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
+      if (res.status === 'error') {
+        alert("Error en la validación de telefono")
+        return
+      }
+    });
+    
+    const mail=new FormData()
+    mail.append("idcliente",userLog)
+    mail.append("nombre",document.getElementById("nombre").value)
+    mail.append("apellido",document.getElementById("apellido").value)
+    mail.append("email_old",infoUser.email_old)
+    mail.append("email",document.getElementById("email").value)
+    mail.append("telefono",document.getElementById("telefono").value)
+    mail.append("sexo",genero)
+
+  }
+
+  const ScrollTop=()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
   return (
     <div className='misDatosContainer'>
       <Breadcrumbs links={pathnames} />
@@ -106,6 +163,7 @@ const MisDatos = () => {
             className='input'
             size='small'
             placeholder='Sabrina'
+            id="nombre"
             defaultValue={infoUser.nombre}
           />
         </div>
@@ -116,6 +174,7 @@ const MisDatos = () => {
             className='input'
             size='small'
             placeholder='Godoy'
+            id="apellido"
             defaultValue={infoUser.apellido}
           />
         </div>
@@ -129,6 +188,7 @@ const MisDatos = () => {
             size='small'
             placeholder='sabrinagodoy@gmail.com'
             type='email'
+            id="email"
             defaultValue={infoUser.email}
           />
           <p className='bottomText'>
@@ -144,6 +204,7 @@ const MisDatos = () => {
             size='small'
             placeholder='+54  011 - 4417 - 8005'
             type='number'
+            id="telefono"
             defaultValue={infoUser.email!==undefined?infoUser.email:""}
           />
           <p className='bottomText'>
@@ -159,7 +220,8 @@ const MisDatos = () => {
             className='selectInput'
             size='small'
             onChange={(e) => setGenero(e.target.value)}
-            value={genero === '' ? 'ejemplo' : genero}
+            value={genero==='0'?'ejemplo': genero}
+            defaultValue={genero==='0'?'ejemplo': genero}
             sx={{
               '& div': {
                 fontSize: '14px',
@@ -171,15 +233,15 @@ const MisDatos = () => {
           >
             <MenuItem
               disabled
-              key={'ejemplo'}
-              value={'ejemplo'}
+              key='ejemplo'
+              value='ejemplo'
               sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
             >
               {'Seleccione una opción'}
             </MenuItem>
-            {arrayGeneros.length!==0 && arrayGeneros.map((res,i)=>{
+            {arrayGeneros.length!==0 && arrayGeneros.map((res,i)=>{console.log(res)
               return(
-                <MenuItem value={res}>{res}</MenuItem>
+                <MenuItem value={res} key={i}>{res}</MenuItem>
               )
             })}
           </Select>
@@ -384,7 +446,7 @@ const MisDatos = () => {
         <Button className='leftButton' onClick={() => navigate(`/perfil`)}>
           VOLVER
         </Button>
-        <Button className='rightButton'>GRABAR CAMBIOS</Button>
+        <Button className='rightButton' onClick={()=>handleGrabarCambios()}>GRABAR CAMBIOS</Button>
       </div>
     </>}
     </div>
