@@ -1,4 +1,4 @@
-import React, { useState,useContext,useEffect } from 'react';
+import React, { useState,useContext,useEffect,Fragment } from 'react';
 import { Button, MenuItem, TextField } from '@mui/material';
 import Select from '@mui/material/Select';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -16,10 +16,6 @@ const MisDatos = () => {
   const {PerfilAPI}=useContext(UsePerfilContext)
 
   const [caracteristicasFavs,setCaracteristicasFavs]=useState([])
-
-  const talles = ['sm', 'md', 'lg'];
-
-  const marcas = ['adidas', 'nike', 'puma'];
 
   const tipodeRopa = ['deportiva', 'casual', 'formal'];
 
@@ -44,6 +40,7 @@ const MisDatos = () => {
   const [tipoRopa, setTipoRopa] = useState([]);
 
   const handleMultipleSelect = (e, setValue) => {
+    console.log(e)
     const {
       target: { value },
     } = e;
@@ -72,7 +69,7 @@ const MisDatos = () => {
       setGenero(infoUser.sexo)
     }
   }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
-
+console.log(caracteristicasFavs)
   /*   const [scroll, setScroll] = useState(0);
 
   const [stopScroll, setStopScroll] = useState(false); */
@@ -230,6 +227,11 @@ const MisDatos = () => {
               },
               height: 42,
             }}
+            MenuProps={{
+              style: {
+                maxHeight: 250,
+              },
+            }}
           >
             <MenuItem
               disabled
@@ -239,7 +241,7 @@ const MisDatos = () => {
             >
               {'Seleccione una opción'}
             </MenuItem>
-            {arrayGeneros.length!==0 && arrayGeneros.map((res,i)=>{console.log(res)
+            {arrayGeneros.length!==0 && arrayGeneros.map((res,i)=>{
               return(
                 <MenuItem value={res} key={i}>{res}</MenuItem>
               )
@@ -263,7 +265,6 @@ const MisDatos = () => {
             color='primary'
             className='selectInput'
             size='small'
-            onChange={(e) => setTalleRopa(e.target.value)}
             value={talleRopa}
             renderValue={(selected) => {
               if (selected === '') {
@@ -279,6 +280,11 @@ const MisDatos = () => {
               },
               height: 42,
             }}
+            MenuProps={{
+              style: {
+                maxHeight: 250,
+              },
+            }}
           >
             <MenuItem
               disabled
@@ -287,17 +293,19 @@ const MisDatos = () => {
             >
               <em>Seleccioná una opción</em>
             </MenuItem>
-            {talles.map((option) => (
+            {caracteristicasFavs.length!==0 && caracteristicasFavs[0].valores.map((option,i) => (
               <MenuItem
-                key={option}
-                value={option}
-                sx={{ fontSize: '14px', color: '#969696' }}
+              key={i}
+              value={option.valor}
+              sx={{ fontSize: '14px', color: '#969696' }}
+              onClick={()=>setTalleRopa(option.valor)}
               >
-                {option}
+                {option.valor}
               </MenuItem>
             ))}
           </Select>
         </div>
+
         <div className='inputBox'>
           <p className='labelInput'>
             ¿Cuáles son tus marcas de ropa preferidas?
@@ -309,7 +317,6 @@ const MisDatos = () => {
             className='selectInput'
             size='small'
             value={marcasPreferidas}
-            onChange={(e) => handleMultipleSelect(e, setMarcasPreferidas)}
             renderValue={(selected) => {
               if (selected.length === 0) {
                 return <em>Seleccioná de 1 a 3 opciones</em>;
@@ -324,6 +331,11 @@ const MisDatos = () => {
               },
               height: 42,
             }}
+            MenuProps={{
+              style: {
+                maxHeight: 250,
+              },
+            }}
           >
             <MenuItem
               disabled
@@ -332,13 +344,14 @@ const MisDatos = () => {
             >
               <em>Seleccioná una opción</em>
             </MenuItem>
-            {marcas.map((option) => (
+            {caracteristicasFavs.length!==0 && caracteristicasFavs[1].valores.map((option,i) => (
               <MenuItem
-                key={option}
-                value={option}
+                key={i}
+                value={option.valor}
                 sx={{ fontSize: '14px', color: '#969696' }}
+                onClick={()=>handleMultipleSelect(option.valor, setMarcasPreferidas)}
               >
-                {option}
+                {option.valor}
               </MenuItem>
             ))}
           </Select>
@@ -354,7 +367,6 @@ const MisDatos = () => {
             className='selectInput'
             size='small'
             value={estiloRopa}
-            onChange={(e) => handleMultipleSelect(e, setEstiloRopa)}
             renderValue={(selected) => {
               if (selected.length === 0) {
                 return <em>Seleccioná de 1 a 3 opciones</em>;
@@ -369,6 +381,11 @@ const MisDatos = () => {
               },
               height: 42,
             }}
+            MenuProps={{
+              style: {
+                maxHeight: 250,
+              },
+            }}
           >
             <MenuItem
               disabled
@@ -378,13 +395,14 @@ const MisDatos = () => {
             >
               {'Seleccioná de 1 a 3 opciones'}
             </MenuItem>
-            {tipodeRopa.map((option) => (
+            {caracteristicasFavs.length!==0 && caracteristicasFavs[2].valores.map((option,i) => (
               <MenuItem
-                key={option}
-                value={option}
+                key={i}
+                value={option.valor}
                 sx={{ fontSize: '14px', color: '#969696' }}
+                onClick={()=>handleMultipleSelect(option.valor, setEstiloRopa)}
               >
-                {option}
+                {option.valor}
               </MenuItem>
             ))}
           </Select>
@@ -398,10 +416,6 @@ const MisDatos = () => {
             className='selectInput'
             size='small'
             value={tipoRopa}
-            id='ropa'
-            /*             onOpen={() => setStopScroll(true)}
-            onClose={() => setStopScroll(false)} */
-            onChange={(e) => handleMultipleSelect(e, setTipoRopa)}
             renderValue={(selected) => {
               if (selected.length === 0) {
                 return <em>Seleccioná de 1 a 3 opciones</em>;
@@ -430,13 +444,14 @@ const MisDatos = () => {
             >
               {'Seleccioná de 1 a 3 opciones'}
             </MenuItem>
-            {estilodeRopa.map((option, index) => (
+            {caracteristicasFavs.length!==0 && caracteristicasFavs[3].valores.map((option, i) => (
               <MenuItem
-                key={index}
-                value={option}
+                key={i}
+                value={option.valor}
                 sx={{ fontSize: '14px', color: '#969696' }}
+                onClick={()=>handleMultipleSelect(option.valor, setTipoRopa)}
               >
-                {option}
+                {option.valor}
               </MenuItem>
             ))}
           </Select>

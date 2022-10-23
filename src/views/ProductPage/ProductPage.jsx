@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import {
   Box,
   Container,
@@ -8,7 +8,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ImageGallery from "react-image-gallery";
 import ProductBuyBox from "../../components/ProductBuyBox/ProductBuyBox";
@@ -23,6 +23,7 @@ import {
 } from "../../components/ActionButton/ActionButton";
 import Accordion from "../../components/Accordion/Accordion";
 import DialogComponent from "../../components/Dialog/Dialog";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const data = [
   {
@@ -60,6 +61,10 @@ const ProductPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  const {itemID}=useParams()
+
+  const {infoUser,userLog}=useContext(UseLoginContext)
+
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -171,7 +176,11 @@ const ProductPage = () => {
                     justifyContent: "space-evenly",
                   }}
                 >
-                  <LikeButton />
+                  <LikeButton 
+                    idCliente={userLog}
+                    infoUser={infoUser}
+                    idProd={itemID}
+                  />
                   <CommentButton onClick={handleClickOpen} />
                 </Box>
               </Box>
