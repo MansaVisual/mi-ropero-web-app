@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Radio } from '@mui/material';
 import editIcon from '../../assets/img/editIcon.png';
 import { useNavigate } from 'react-router-dom';
+import { UsePerfilContext } from '../../context/PerfilContext';
 
 const AdressCard = ({ direccion, adressOption, setAdressOption, index }) => {
   const navigate = useNavigate();
+
+  const { setDireccionSelecc } = useContext(UsePerfilContext);
 
   return (
     <div className='domicilioEntrega' onClick={() => setAdressOption(index)}>
@@ -41,7 +44,10 @@ const AdressCard = ({ direccion, adressOption, setAdressOption, index }) => {
           src={editIcon}
           alt='editIcon'
           className='editICon'
-          onClick={() => navigate(`/perfil/EDITAR DIRECCION`)}
+          onClick={() => {
+            setDireccionSelecc(direccion);
+            navigate(`/perfil/EDITAR DIRECCION`);
+          }}
         />
       </div>
     </div>

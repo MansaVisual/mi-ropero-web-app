@@ -15,6 +15,23 @@ export const handleInputChange = (form, setForm) => {
   });
 };
 
+export const chargeForm = async (form, setProvincia) => {
+  document.getElementById('nombreApellido').value = form.nombreApellido;
+  document.getElementById('telefono').value = form.telefono;
+  document.getElementById('calle').value = form.calle;
+  document.getElementById('alturaKM').value = form.alturaKM;
+  document.getElementById('piso').value = form.piso;
+  document.getElementById('depto').value = form.depto;
+  document.getElementById('barrioLocalidad').value = form.barrioLocalidad;
+  document.getElementById('entrecalle1').value = form.entrecalle1;
+  document.getElementById('entrecalle2').value = form.entrecalle2;
+  document.getElementById('codigoPostal').value = form.codigoPostal;
+  document.getElementById('comentario').value = form.comentario;
+  if (form.provincia !== '') {
+    setProvincia(form.provincia);
+  }
+};
+
 export const onFocus = (event, clase, clase2, id) => {
   if (event.target.id === 'barrioLocalidad') {
     if (document.getElementById(id).classList.contains(clase2)) {

@@ -5,6 +5,7 @@ export const UsePerfilContext = createContext();
 export const PerfilContext = ({ children }) => {
   const [direccionesGuardadas, setDireccionesGuardadas] = useState([]);
   const [direccionSelecc, setDireccionSelecc] = useState(false);
+  const [comprasRealizadas, setComprasRealizadas] = useState([]);
 
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = '';
@@ -40,13 +41,34 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleComprasRealizadas = (userLog) => {
-    const dir = new FormData();
-    dir.append('idcliente', userLog);
-    PerfilAPI(dir, 'direcciones', 'all').then((res) => {
-      if (res.status === 'success') {
-        setDireccionesGuardadas(res.result);
-      }
-    });
+    const estados = [
+      '',
+      'Sin definir',
+      'En borrador',
+      'En proceso',
+      'Pendiente de pago',
+      'Pago realizado',
+      'Error en pago',
+      'Borrado',
+      'Pago devuelto',
+      'Compra BLOQUEADA',
+      'Plazo de pago vencido',
+      'En calificacion',
+      'Finalizada',
+    ];
+
+    for (let i = 0; i < estados.length; i++) {
+      const dir = new FormData();
+      dir.append('comprador_id', userLog);
+      dir.append('estado', i + 1);
+      console.log(dir);
+      PerfilAPI(dir, 'operaciones', 'all_buyer').then((res) => {
+        console.log(res);
+        if (res.status === 'success') {
+          setComprasRealizadas(comprasRealizadas.push(res.result));
+        }
+      });
+    }
   };
 
   return (
@@ -56,6 +78,9 @@ export const PerfilContext = ({ children }) => {
         handleBuscarDirecciones,
         direccionesGuardadas,
         setDireccionSelecc,
+        handleComprasRealizadas,
+        comprasRealizadas,
+        direccionSelecc,
       }}
     >
       {children}

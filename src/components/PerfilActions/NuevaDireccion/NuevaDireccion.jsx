@@ -7,6 +7,9 @@ import { Button, MenuItem, Select, TextField } from '@mui/material';
 import { UseFormContext } from '../../../context/FormContext';
 import { UseLoginContext } from '../../../context/LoginContext';
 import { handleInputChange, onFocus } from './direccFunciones';
+import PopUpLocalidad from '../../FormCheckout/PopUpLocalidad';
+import PopUpFinalDir from './PopUpFinalDir';
+import { UsePerfilContext } from '../../../context/PerfilContext';
 
 const NuevaDireccion = () => {
   const location = useLocation();
@@ -14,6 +17,8 @@ const NuevaDireccion = () => {
   const navigate = useNavigate();
 
   const { FormAPI } = useContext(UseFormContext);
+  const { setDireccionesGuardadas, direccionesGuardadas } =
+    useContext(UsePerfilContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [form, setForm] = useState([]);
@@ -27,21 +32,6 @@ const NuevaDireccion = () => {
         setProvincias(res.result);
       }
     });
-
-    /* const formDirecciones = new FormData();
-    formDirecciones.append('idcliente', userLog);
-    FormAPI(formDirecciones, 'direcciones', 'all').then((res) => {
-      if (res.status === 'success') {
-        setDireccionesCargadas(res.result);
-      }
-    });
-
-    if (form.length !== 0 && !usaDireccionCargada) {
-      chargeForm(form, setProvincia);
-    } else if (form.length !== 0 && usaDireccionCargada) {
-      document.getElementById('nombreApellido').value = form.nombreApellido;
-      document.getElementById('telefono').value = form.telefono;
-    } */
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [provincias, setProvincias] = useState([]);
@@ -57,13 +47,25 @@ const NuevaDireccion = () => {
 
   const [viewDireccion, setViewDireccion] = useState(false);
   const [resDirecciones, setResDirecciones] = useState([]);
-
+  const [guardarDireccion, setGuardarDireccion] = useState(false);
   const [provincia, setProvincia] = useState([]);
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
   const [popLoc, setPopLoc] = useState(false);
   const [changeLoc, setChangeLoc] = useState(false);
+
+  useEffect(() => {
+    if (!popLoc && infoLocFinal.length !== 0) {
+      document.getElementById('codigoPostal').value =
+        infoLocFinal.codigo_postal;
+      document.getElementById('barrioLocalidad').value = infoLocFinal.nombre;
+    }
+  }, [popLoc]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [direccion, setDireccion] = useState({});
+  const [buscandoDir, setBuscandoDir] = useState(false);
+  const [sucursales, setSucursales] = useState([]);
 
   const handleProvinciaInput = (event) => {
     setProvincia(event.target.value);
@@ -104,12 +106,14 @@ const NuevaDireccion = () => {
       setLoader(false);
       scrollTop();
       setCampoObligatorio(true);
+      return;
     }
     if (document.getElementById('telefono').value === '') {
       throwError('telefono', 'labelTelefono');
       setLoader(false);
       scrollTop();
       setCampoObligatorio(true);
+      return;
     } else {
       const formPhone = new FormData();
       formPhone.append('telefono', document.getElementById('telefono').value);
@@ -120,8 +124,7 @@ const NuevaDireccion = () => {
           throwError('telefono', 'labelTelefono');
           /* setBuscandoDir(false) */
           scrollTop();
-        } else {
-          console.log('telefono valido');
+          return;
         }
       });
     }
@@ -137,7 +140,134 @@ const NuevaDireccion = () => {
       scrollTop();
       setCampoObligatorio(true);
     }
+    if (infoLocFinal.length === 0) {
+      throwError('barrioLocalidad', 'labelBarrioLocalidad');
+      scrollTop();
+      setErrorLocalidad(true);
+      setLoader(false);
+      return;
+    }
+    const formCodPostal = new FormData();
+
+    formCodPostal.append(
+      'codigo_postal',
+      document.getElementById('codigoPostal').value,
+    );
+    await FormAPI(formCodPostal, 'operaciones', 'get_oca_offices').then(
+      (res) => {
+        if (res.status === 'error') {
+          setErrorCodPostal(true);
+          setBuscandoDir(false);
+          throwError('codigoPostal', 'labelCodigoPostal');
+          scrollTop();
+          return;
+        } else {
+          setSucursales(res.result);
+        }
+      },
+    );
+    validarDireccion();
   };
+
+  const validarDireccion = () => {
+    console.log('validando');
+    const formDireccion = new FormData();
+    formDireccion.append('calle', document.getElementById('calle').value);
+    formDireccion.append('numero', document.getElementById('alturaKM').value);
+    formDireccion.append(
+      'provincia',
+      document.getElementById('provincia').innerHTML,
+    );
+    formDireccion.append(
+      'localidad',
+      document.getElementById('barrioLocalidad').value,
+    );
+    formDireccion.append(
+      'codigo_postal',
+      document.getElementById('codigoPostal').value,
+    );
+
+    FormAPI(formDireccion, 'direcciones', 'normalize').then(async (res) => {
+      if (
+        res.status === 'success' &&
+        res.result[0].calle !== '' &&
+        res.result[0].numero !== ''
+      ) {
+        scrollTop();
+        await setResDirecciones(res.result);
+        setViewDireccion(true);
+      } else {
+        setBuscandoDir(false);
+        setLoader(false);
+        setErrorDireccion(true);
+        throwError('calle', 'labelCalle');
+        throwError('alturaKM', 'labelAlturaKM');
+        throwError('provincia', 'labelProvincia');
+        throwError('barrioLocalidad', 'labelBarrioLocalidad');
+        throwError('codigoPostal', 'labelCodigoPostal');
+        scrollTop();
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (guardarDireccion) {
+      console.log('validando');
+      const formDireccion = new FormData();
+      formDireccion.append('idcliente', userLog);
+      formDireccion.append('nombre', document.getElementById('alias').value);
+      formDireccion.append('calle', document.getElementById('calle').value);
+      formDireccion.append('numero', document.getElementById('alturaKM').value);
+      formDireccion.append(
+        'provincia',
+        document.getElementById('provincia').innerHTML,
+      );
+      formDireccion.append(
+        'localidad',
+        document.getElementById('barrioLocalidad').value,
+      );
+      formDireccion.append('idprovincia', Number(infoLocFinal.idprovincia));
+      formDireccion.append('idlocalidad', Number(infoLocFinal.idlocalidad));
+      formDireccion.append('piso', document.getElementById('piso').value);
+      formDireccion.append(
+        'departamento',
+        document.getElementById('depto').value,
+      );
+      formDireccion.append(
+        'codigo_postal',
+        document.getElementById('codigoPostal').value,
+      );
+      formDireccion.append(
+        'entre_calle_1',
+        document.getElementById('entrecalle1').value,
+      );
+      formDireccion.append(
+        'entre_calle_2',
+        document.getElementById('entrecalle2').value,
+      );
+      formDireccion.append(
+        'informacion_adicional',
+        document.getElementById('infoAdicional').value,
+      );
+      formDireccion.append('normalized', direccion.raw_data);
+      FormAPI(formDireccion, 'direcciones', 'insert').then(async (res) => {
+        console.log(res);
+        if (res.status === 'success') {
+          navigate(`/perfil/MIS DIRECCIONES`);
+        } else {
+          setBuscandoDir(false);
+          setLoader(false);
+          setErrorDireccion(true);
+          throwError('calle', 'labelCalle');
+          throwError('alturaKM', 'labelAlturaKM');
+          throwError('provincia', 'labelProvincia');
+          throwError('barrioLocalidad', 'labelBarrioLocalidad');
+          throwError('codigoPostal', 'labelCodigoPostal');
+          scrollTop();
+        }
+      });
+    }
+  }, [guardarDireccion]);
 
   const scrollTop = (param) => {
     if (param !== undefined) {
@@ -155,6 +285,7 @@ const NuevaDireccion = () => {
   };
 
   const throwError = (id1, id2) => {
+    console.log(id1, id2);
     if (id1 === 'provincia') {
       if (!document.getElementById(id1).classList.contains(clase)) {
         document.getElementById(id1).parentNode.classList.add(clase);
@@ -287,6 +418,14 @@ const NuevaDireccion = () => {
               setCampoObligatorio(false);
               setErrorDireccion(false);
             }}
+            onFocus={(e) => onFocus(e, clase, clase2, 'labelCalle')}
+            sx={{
+              '& .MuiOutlinedInput-root:hover': {
+                '& > fieldset': {
+                  borderColor: campoObligatorio && '#FF3F20',
+                },
+              },
+            }}
           />
           <p className='bottomText'>Domicilio de entrega </p>
         </div>
@@ -301,10 +440,18 @@ const NuevaDireccion = () => {
               size='small'
               id='alturaKM'
               placeholder='5'
-              onChangeCapture={(e) => {
+              onChangeCapture={() => {
                 handleInputChange(form, setForm);
                 setCampoObligatorio(false);
                 setErrorDireccion(false);
+              }}
+              onFocus={(e) => onFocus(e, clase, clase2, 'labelAlturaKM')}
+              sx={{
+                '& .MuiOutlinedInput-root:hover': {
+                  '& > fieldset': {
+                    borderColor: campoObligatorio && '#FF3F20',
+                  },
+                },
               }}
             />
           </div>
@@ -340,18 +487,22 @@ const NuevaDireccion = () => {
       </div>
       <div className='inputContainer'>
         <div className='inputBox'>
-          <p className='labelInput'>Provincia *</p>
+          <p className='labelInput' id='labelProvincia'>
+            Provincia *
+          </p>
           <Select
-            color='primary'
             className='selectInput'
             placeholder='Ciudad Autónoma de Buenos Aires'
             size='small'
-            onChange={(e) => {
-              handleProvinciaInput(e);
+            defaultValue={'ejemplo'}
+            id='provincia'
+            value={provincia === '' ? 'ejemplo' : provincia}
+            onClickCapture={(e) => scrollTop(e.clientY)}
+            onChange={(event) => {
+              handleProvinciaInput(event);
               setErrorDireccion(false);
               setCampoObligatorio(false);
             }}
-            value={provincia === '' ? '' : provincia}
             onFocus={(e) => onFocus(e, clase, clase2, 'labelProvincia')}
             sx={{
               '& div': {
@@ -361,14 +512,19 @@ const NuevaDireccion = () => {
               },
               height: 42,
             }}
+            MenuProps={{
+              style: {
+                maxHeight: 150,
+              },
+            }}
           >
             <MenuItem
               disabled
-              key={''}
-              value={''}
+              key={'ejemplo'}
+              value={'ejemplo'}
               sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
             >
-              {'Seleccione una opción'}
+              {'Seleccioná una provincia'}
             </MenuItem>
             {provincias.map((option) => (
               <MenuItem
@@ -390,11 +546,10 @@ const NuevaDireccion = () => {
               provincia === '' && 'Primero debes ingresar una provincia'
             }
             disabled={provincia === '' ? true : false}
-            color='primary'
             className='input'
             size='small'
             id='barrioLocalidad'
-            onChangeCapture={(e) => {
+            onChangeCapture={() => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
               setErrorDireccion(false);
@@ -403,6 +558,15 @@ const NuevaDireccion = () => {
             }}
             onFocus={(e) => onFocus(e, clase, clase2, 'labelBarrioLocalidad')}
             onBlur={() => handleChangeLoc()}
+            sx={{
+              '& .MuiOutlinedInput-root:hover': {
+                '& > fieldset': {
+                  borderColor:
+                    (campoObligatorio || errorDireccion || errorLocalidad) &&
+                    '#FF3F20',
+                },
+              },
+            }}
           />
         </div>
       </div>
@@ -450,8 +614,15 @@ const NuevaDireccion = () => {
                 setErrorDireccion(false);
                 setCampoObligatorio(false);
               }}
+              onFocus={(e) => onFocus(e, clase, clase2, 'labelTelefono')}
             />
-            <span>No sé mi código postal</span>
+            <a
+              href='https://www.correoargentino.com.ar/formularios/cpa'
+              target={'_blank'}
+              rel='noreferrer'
+            >
+              No sé mi código postal
+            </a>
           </div>
         </div>
       </div>
@@ -469,7 +640,6 @@ const NuevaDireccion = () => {
             placeholder='Ejemplo: Barrio Privado San Martín, Puerta roja, etc.'
             onChangeCapture={() => {
               handleInputChange(form, setForm);
-              setCampoObligatorio(false);
             }}
             inputProps={{ maxLength: 50 }}
           />
@@ -491,6 +661,27 @@ const NuevaDireccion = () => {
         <img src={leftArrow} alt='leftArrow' />
         <p>VOLVER A MI PERFIL</p>
       </div>
+      {viewDireccion && (
+        <PopUpFinalDir
+          direccion={direccion}
+          setDireccion={setDireccion}
+          provincia={provincia}
+          setViewDireccion={setViewDireccion}
+          resDirecciones={resDirecciones}
+          form={form}
+          setBuscandoDir={setBuscandoDir}
+          setGuardarDireccion={setGuardarDireccion}
+          infoLocFinal={infoLocFinal}
+        />
+      )}
+      {popLoc && (
+        <PopUpLocalidad
+          infoLoc={infoLoc}
+          setPopLoc={setPopLoc}
+          infoLocFinal={infoLocFinal}
+          setInfoLocFinal={setInfoLocFinal}
+        />
+      )}
     </div>
   );
 };

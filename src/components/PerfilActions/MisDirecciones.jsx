@@ -13,50 +13,12 @@ const MisDirecciones = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleBuscarDirecciones, direccionesGuardadas } =
+  const { handleBuscarDirecciones, direccionesGuardadas, setDireccionSelecc } =
     useContext(UsePerfilContext);
 
   const [adressOption, setAdressOption] = useState(false);
   const [direccionesUsuario, setDireccionesUsuario] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  let prueba = [
-    {
-      calle: 'Francisco Beiró',
-      numero: '2440',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: 'C1417',
-      entre_calle_1: 'Francisco Beiró ',
-      entre_calle_2: 'José P. Varela',
-      informacion_adicional:
-        'Tocar fuerte el timbre hola holaaaa a  aaaaa eeeee',
-    },
-    {
-      calle: 'cuenca',
-      numero: '2440',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: 'C1417',
-      entre_calle_1: '',
-      entre_calle_2: '',
-      informacion_adicional: 'Tocar fuerte el timbre',
-    },
-    {
-      calle: 'cuenca',
-      numero: '2440',
-      provincia: 'Capital Federal',
-      localidad: 'Comuna 11',
-      codigo_postal: 'C1417',
-      entre_calle_1: 'Francisco Beiró',
-      entre_calle_2: 'José P. Varela',
-      informacion_adicional: '',
-    },
-  ];
-
-  /*   Cuenca 3440. CABA Comuna 11 (C1417).
-Entre Francisco Beiró y José P. Varela.
-Puerta violeta. Tocar fuerte el timbre. */
 
   useEffect(() => {
     if (userLog !== '') {
@@ -81,8 +43,8 @@ Puerta violeta. Tocar fuerte el timbre. */
       <div className='cardContainer'>
         {loading ? (
           <Loader spin={'spinnerM'} />
-        ) : prueba.length > 0 ? (
-          prueba.map((direccion, index) => {
+        ) : direccionesGuardadas.length > 0 ? (
+          direccionesGuardadas.map((direccion, index) => {
             return (
               <AdressCard
                 key={index}

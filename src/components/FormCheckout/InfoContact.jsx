@@ -85,11 +85,10 @@ const InfoContact = ({
   const [provincia, setProvincia] = useState('');
 
   useEffect(() => {
-    if(provincia==="1"){
+    if (provincia === '1') {
       document.getElementById('barrioLocalidad').value = 'CAPITAL FEDERAL';
     }
-  }, [provincia]);// eslint-disable-line react-hooks/exhaustive-deps
-
+  }, [provincia]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [loader, setLoader] = useState(false);
 
@@ -156,6 +155,7 @@ const InfoContact = ({
     setErrorRecargarDir(false);
 
     if (infoLocFinal.length === 0 && !usaDireccionCargada) {
+      throwError('barrioLocalidad', 'labelBarrioLocalidad');
       scrollTop();
       setErrorLocalidad(true);
       setLoader(false);
@@ -557,8 +557,8 @@ const InfoContact = ({
                 value={provincia === '' ? 'ejemplo' : provincia}
                 onClickCapture={(e) => scrollTop(e.clientY)}
                 onChange={(e) => {
-                  setProvincia("")
-                  document.getElementById("barrioLocalidad").value=""
+                  setProvincia('');
+                  document.getElementById('barrioLocalidad').value = '';
                   handleChange(e);
                   setErrorDireccion(false);
                   setCampoObligatorio(false);
@@ -604,9 +604,11 @@ const InfoContact = ({
               </InputLabel>
               <TextField
                 placeholder={
-                  provincia === '' ? 'Primero debes ingresar una provincia' : "Mar del Plata"
+                  provincia === ''
+                    ? 'Primero debes ingresar una provincia'
+                    : 'Mar del Plata'
                 }
-                disabled={(provincia === '' || provincia==="1") ? true : false}
+                disabled={provincia === '' || provincia === '1' ? true : false}
                 size='small'
                 className={`inputForm`}
                 id='barrioLocalidad'

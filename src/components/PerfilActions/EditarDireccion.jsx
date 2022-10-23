@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import leftArrow from '../../assets/img/leftArrow.png';
 import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { UsePerfilContext } from '../../context/PerfilContext';
 
 const EditarDireccion = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
+
+  const { direccionSelecc } = useContext(UsePerfilContext);
+
+  console.log(direccionSelecc);
 
   const [provincia, setProvincia] = useState('');
 
