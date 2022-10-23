@@ -15,18 +15,19 @@ import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import { UseLoginContext } from "../../context/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({
   imageCard,
   tag,
   productName,
   productPrice,
-  onClick,
   idProducto,
   datosTienda,
   itemFav,
 }) => {
   const { userLog, infoUser } = useContext(UseLoginContext);
+  const navigate=useNavigate()
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
@@ -98,7 +99,7 @@ const ProductCard = ({
             },
           }}
           ref={buttonRef}
-          onClick={onClick}
+          onClick={()=>navigate(`/productoCard/${idProducto}`)}
         >
           Comprar
         </Button>
