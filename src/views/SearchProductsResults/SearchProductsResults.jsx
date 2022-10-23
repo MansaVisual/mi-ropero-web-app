@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Backdrop,
   Box,
@@ -7,6 +7,7 @@ import {
   Grid,
   Link,
   Modal,
+  Stack,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -25,6 +26,7 @@ import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
+import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 
 const style = {
   position: "absolute",
@@ -42,109 +44,111 @@ const style = {
 };
 
 const SearchProductsResults = () => {
-  const {categorias,ProdAPI}=useContext(UseProdsContext)
-  const { keyword,search } = useParams();
+  const { categorias, ProdAPI } = useContext(UseProdsContext);
+  const { keyword, search } = useParams();
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const [load,setLoad]=useState(false)
-  
-  const [prods,setProds]=useState([])
-  const [buscandoProds,setBuscandoProds]=useState(true)
-  const [filtrosCategoria,setFiltrosCategoria]=useState([])
+  const [load, setLoad] = useState(false);
 
-  const [totalPages,setTotalPages]=useState(0)
+  const [prods, setProds] = useState([]);
+  const [buscandoProds, setBuscandoProds] = useState(true);
+  const [filtrosCategoria, setFiltrosCategoria] = useState([]);
 
-  const [putFilters,setPutFilters]=useState([])
-  const [putSort,setPutSort]=useState("")
-  
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [putFilters, setPutFilters] = useState([]);
+  const [putSort, setPutSort] = useState("");
+
   useEffect(() => {
     // filter products by keyword entered in search bar
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
 
-    setBuscandoProds(true)
-    setProds([])
-    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search!==undefined){
-      prodsCategoria(true)
+    setBuscandoProds(true);
+    setProds([]);
+    if (
+      categorias !== undefined &&
+      categorias.length !== 0 &&
+      keyword !== undefined &&
+      search !== undefined
+    ) {
+      prodsCategoria(true);
     }
-    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search===undefined){
-      prodsCategoria(false)
+    if (
+      categorias !== undefined &&
+      categorias.length !== 0 &&
+      keyword !== undefined &&
+      search === undefined
+    ) {
+      prodsCategoria(false);
     }
-  }, [keyword,categorias]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [keyword, categorias]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  
-  const prodsCategoria=(paramSearch)=>{
-    const catProd=new FormData()
-    let idCat = ""
+  const prodsCategoria = (paramSearch) => {
+    const catProd = new FormData();
+    let idCat = "";
 
-    if(paramSearch){
-      catProd.append("text",keyword)
-      
-    }else{
-      idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
-      catProd.append("idcategoria",idCat.idcategoria)
-      
-      const catFilters=new FormData()
-      catFilters.append("idcategoria",idCat.idcategoria)
-      ProdAPI(
-        catFilters,
-        "categorias",
-        "get"
-        ).then((res)=>{
-          if(res.status==="success"){setFiltrosCategoria(res.result[0])}})
+    if (paramSearch) {
+      catProd.append("text", keyword);
+    } else {
+      idCat = categorias.find(
+        (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
+      );
+      catProd.append("idcategoria", idCat.idcategoria);
+
+      const catFilters = new FormData();
+      catFilters.append("idcategoria", idCat.idcategoria);
+      ProdAPI(catFilters, "categorias", "get").then((res) => {
+        if (res.status === "success") {
+          setFiltrosCategoria(res.result[0]);
         }
-    catProd.append("bypage",15)
-    catProd.append("page",1)
-    ProdAPI(
-      catProd,
-      "productos",
-      "search"
-    ).then((res)=>{
-      setBuscandoProds(false)
-      if(res.status==="success"){
-        setProds(res.result.productos)
-        setTotalPages(res.result.total_paginas)
+      });
+    }
+    catProd.append("bypage", 15);
+    catProd.append("page", 1);
+    ProdAPI(catProd, "productos", "search").then((res) => {
+      setBuscandoProds(false);
+      if (res.status === "success") {
+        setProds(res.result.productos);
+        setTotalPages(res.result.total_paginas);
       }
-    })
-  }
+    });
+  };
 
-  const buscarPage=(paramSearch,value)=>{
-    setLoad(true)
-    const catProd=new FormData()
-    let idCat = ""
-    if(paramSearch){
-      catProd.append("text",keyword)
-      catProd.append("bypage",15)
-
-    }else{
-      idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
-      catProd.append("idcategoria",idCat.idcategoria)
-      catProd.append("bypage",15)
+  const buscarPage = (paramSearch, value) => {
+    setLoad(true);
+    const catProd = new FormData();
+    let idCat = "";
+    if (paramSearch) {
+      catProd.append("text", keyword);
+      catProd.append("bypage", 15);
+    } else {
+      idCat = categorias.find(
+        (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
+      );
+      catProd.append("idcategoria", idCat.idcategoria);
+      catProd.append("bypage", 15);
     }
 
-    catProd.append("page",value)
+    catProd.append("page", value);
 
-    ProdAPI(
-      catProd,
-      "productos",
-      "search"
-    ).then((res)=>{
-      setBuscandoProds(false)
-      if(res.status==="success"){
-        setProds(res.result.productos)
+    ProdAPI(catProd, "productos", "search").then((res) => {
+      setBuscandoProds(false);
+      if (res.status === "success") {
+        setProds(res.result.productos);
       }
-      setLoad(false)
+      setLoad(false);
       window.scrollTo({
         top: 0,
-        behavior: 'auto',
+        behavior: "auto",
       });
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -157,9 +161,9 @@ const SearchProductsResults = () => {
             px: isMobile || isMobileBigScreen ? "16px" : "74px",
             py: "40px",
           }}
-          spacing={8}
+          spacing={6}
         >
-          <Grid item xs={12} sm={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
@@ -227,7 +231,7 @@ const SearchProductsResults = () => {
                             disabled
                           />
                         </Box>
-                        <Filter filtros={filtrosCategoria}/>
+                        <Filter filtros={filtrosCategoria} putSort={putSort} />
                       </Box>
                     </Fade>
                   </Modal>
@@ -249,19 +253,28 @@ const SearchProductsResults = () => {
                     {keyword}
                   </Typography>
                 </Box>
-                {putFilters.map((res,i)=>{
-                  return(
-                    <>
-
-                    </>
-                  )
+                {putFilters.map((res, index) => {
+                  return (
+                    <Stack direction="row" spacing={1}>
+                      <ChipFilterCategories
+                        filteredCategory={res}
+                        key={index}
+                      />
+                    </Stack>
+                  );
                 })}
-                <Filter filtros={filtrosCategoria} setPutFilters={setPutFilters} putFilters={putFilters} putSort={putSort} setPutSort={setPutSort}/>
+                <Filter
+                  filtros={filtrosCategoria}
+                  setPutFilters={setPutFilters}
+                  putFilters={putFilters}
+                  putSort={putSort}
+                  setPutSort={setPutSort}
+                />
               </>
             )}
           </Grid>
 
-          <Grid item xs={12} sm={12} md={9}>
+          <Grid item xs={12} sm={6} md={9}>
             <Box
               sx={{
                 display: "flex",
@@ -280,29 +293,31 @@ const SearchProductsResults = () => {
                       productName={product.nombre}
                       productPrice={product.precio}
                       idProducto={product.idproducto}
-                      tag={product.tag}
+                      tag="NUEVO"
                       datosTienda={product.tienda}
                     />
                   );
                 })
-              ) : 
+              ) : (
                 <>
-                  {buscandoProds?<Loader spin={"spinnerG"}/>:
+                  {buscandoProds ? (
+                    <Loader spin={"spinnerG"} />
+                  ) : (
                     <Box
-                    sx={{
+                      sx={{
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         mt: "16px",
                       }}
-                      >
+                    >
                       <Box sx={{ mr: "20px" }}>
                         <img
                           src={notFoundIcon}
                           width={30}
                           height={30}
                           alt="not found icon"
-                          />
+                        />
                       </Box>
                       <Box>
                         <Typography
@@ -312,10 +327,12 @@ const SearchProductsResults = () => {
                             color: theme.palette.secondary.main,
                             textTransform: "uppercase",
                             textAlign:
-                            isMobile || isMobileBigScreen ? "center" : "unset",
+                              isMobile || isMobileBigScreen
+                                ? "center"
+                                : "unset",
                             mb: 4,
                           }}
-                          >
+                        >
                           No encontramos resultados para{" "}
                           <Typography
                             component="span"
@@ -323,7 +340,7 @@ const SearchProductsResults = () => {
                               color: theme.palette.secondary.main,
                               textTransform: "capitalize",
                             }}
-                            >
+                          >
                             "{keyword}"
                           </Typography>
                         </Typography>
@@ -333,7 +350,7 @@ const SearchProductsResults = () => {
                             fontWeight: theme.typography.fontWeightRegular,
                             color: theme.palette.tertiary.main,
                           }}
-                          >
+                        >
                           Revisá la ortografía de la palabra
                         </Typography>
                         <Typography
@@ -342,7 +359,7 @@ const SearchProductsResults = () => {
                             fontWeight: theme.typography.fontWeightMedium,
                             color: theme.palette.tertiary.main,
                           }}
-                          >
+                        >
                           Utilizá palabras más genéricas o menos palabras.
                         </Typography>
                         <Typography
@@ -351,7 +368,7 @@ const SearchProductsResults = () => {
                             fontWeight: theme.typography.fontWeightMedium,
                             color: theme.palette.tertiary.main,
                           }}
-                          >
+                        >
                           Navegá por las categorías para encontrar un producto
                           similar
                         </Typography>
@@ -363,7 +380,7 @@ const SearchProductsResults = () => {
                             alignItems: "center",
                             cursor: "default",
                           }}
-                          >
+                        >
                           <Typography
                             component="span"
                             sx={{
@@ -384,27 +401,38 @@ const SearchProductsResults = () => {
                               alignItems: "center",
                               justifyContent: "center",
                             }}
-                            onClick={()=>prodsCategoria()}
-                            >
+                            onClick={() => prodsCategoria()}
+                          >
                             Ir al Inicio
                           </Typography>
                         </StyledLink>
                       </Box>
                     </Box>
-                  }
+                  )}
                 </>
-              }
+              )}
             </Box>
-            {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
-            {prods.length!==0 && totalPages>1 && keyword && (
-              <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+            {load && (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "16px",
+                }}
               >
-              <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
+                <Loader spin={"spinnerM"} />
+              </div>
+            )}
+            {prods.length !== 0 && totalPages > 1 && keyword && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Pagination cantidad={totalPages} buscarPage={buscarPage} />
               </Box>
             )}
           </Grid>
@@ -414,7 +442,7 @@ const SearchProductsResults = () => {
               <Chip primary>Productos relacionados</Chip>
             </Box>
             <Box sx={{ mt: "24px", mb: "28px" }}>
-              <SliderProd contenido={[]}/>
+              <SliderProd contenido={[]} />
             </Box>
             <Box sx={{ textAlign: "center" }}>
               <Link

@@ -1,4 +1,4 @@
-import React, { useState,useContext,Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import {
   Box,
   ClickAwayListener,
@@ -11,7 +11,7 @@ import {
 import { AntTab, AntTabs } from "./styles";
 import theme from "../../styles/theme";
 import { UseProdsContext } from "../../context/ProdsContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
 
 export const TabPanel = (props) => {
@@ -27,9 +27,15 @@ export const TabPanel = (props) => {
     >
       {value === index && (
         <Paper
-          sx={{ p: 3, maxHeight: "328px", position: "absolute", width: "100%" }}
+          sx={{
+            p: 3,
+            maxHeight: "328px",
+            position: "absolute",
+            width: "100%",
+            overflow: "hidden",
+          }}
         >
-          <Container maxWidth="xl">{children}</Container>
+          {children}
         </Paper>
       )}
     </div>
@@ -39,9 +45,8 @@ export const TabPanel = (props) => {
 const TabsCategories = () => {
   const navigate = useNavigate();
 
-
   const [value, setValue] = useState(undefined);
-  const {categorias}=useContext(UseProdsContext)
+  const { categorias } = useContext(UseProdsContext);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,7 +68,13 @@ const TabsCategories = () => {
             width: "100%",
           }}
         >
-          <Container sx={{ justifyContent: "center", display: "flex" }}>
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <AntTabs
               value={value}
               onChange={handleChange}
@@ -94,18 +105,22 @@ const TabsCategories = () => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+            {categorias.length === 0 ? (
+              <Loader spin={"spinnerM"} />
+            ) : (
               <>
                 {categorias.map((item, index) => {
                   return (
                     <Fragment key={index}>
-                      {item.idcategoriapadre==="1" &&
+                      {item.idcategoriapadre === "1" && (
                         <List>
                           <ListItem>
                             <Link
@@ -115,36 +130,47 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
-                              >
+                              onClick={() =>
+                                navigate(
+                                  `/productos/${item.nombre.replaceAll(
+                                    "/",
+                                    "&"
+                                  )}`
+                                )
+                              }
+                            >
                               {item.nombre}
                             </Link>
                           </ListItem>
                         </List>
-                      }
+                      )}
                     </Fragment>
                   );
                 })}
               </>
-            }
+            )}
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+            {categorias.length === 0 ? (
+              <Loader spin={"spinnerM"} />
+            ) : (
               <>
                 {categorias.map((item, index) => {
                   return (
                     <Fragment key={index}>
-                      {item.idcategoriapadre==="2" &&
+                      {item.idcategoriapadre === "2" && (
                         <List key={index}>
                           <ListItem>
                             <Link
@@ -154,36 +180,47 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
-                              >
+                              onClick={() =>
+                                navigate(
+                                  `/productos/${item.nombre.replaceAll(
+                                    "/",
+                                    "&"
+                                  )}`
+                                )
+                              }
+                            >
                               {item.nombre}
                             </Link>
                           </ListItem>
                         </List>
-                      }
+                      )}
                     </Fragment>
                   );
                 })}
               </>
-            }
+            )}
           </Box>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+            {categorias.length === 0 ? (
+              <Loader spin={"spinnerM"} />
+            ) : (
               <>
                 {categorias.map((item, index) => {
                   return (
                     <Fragment key={index}>
-                      {item.idcategoriapadre==="3" &&
+                      {item.idcategoriapadre === "3" && (
                         <List>
                           <ListItem>
                             <Link
@@ -193,36 +230,47 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
-                              >
+                              onClick={() =>
+                                navigate(
+                                  `/productos/${item.nombre.replaceAll(
+                                    "/",
+                                    "&"
+                                  )}`
+                                )
+                              }
+                            >
                               {item.nombre}
                             </Link>
                           </ListItem>
                         </List>
-                      }
+                      )}
                     </Fragment>
                   );
                 })}
               </>
-            }
+            )}
           </Box>
         </TabPanel>
         <TabPanel value={value} index={3}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+            {categorias.length === 0 ? (
+              <Loader spin={"spinnerM"} />
+            ) : (
               <>
                 {categorias.map((item, index) => {
                   return (
                     <Fragment key={index}>
-                      {item.idcategoriapadre==="1000018" &&
+                      {item.idcategoriapadre === "1000018" && (
                         <List key={index}>
                           <ListItem>
                             <Link
@@ -232,18 +280,25 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
-                              >
+                              onClick={() =>
+                                navigate(
+                                  `/productos/${item.nombre.replaceAll(
+                                    "/",
+                                    "&"
+                                  )}`
+                                )
+                              }
+                            >
                               {item.nombre}
                             </Link>
                           </ListItem>
                         </List>
-                      }
+                      )}
                     </Fragment>
                   );
                 })}
               </>
-            }
+            )}
           </Box>
         </TabPanel>
       </Box>

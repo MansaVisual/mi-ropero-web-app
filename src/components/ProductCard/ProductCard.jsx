@@ -1,4 +1,4 @@
-import React, { useRef,useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   Divider,
   Box,
@@ -24,12 +24,13 @@ const ProductCard = ({
   onClick,
   idProducto,
   datosTienda,
-  itemFav
+  itemFav,
 }) => {
-  const {userLog,infoUser}=useContext(UseLoginContext)
+  const { userLog, infoUser } = useContext(UseLoginContext);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
+  const [isOnSale] = useState(false);
 
   const handleMouseEnter = () => {
     buttonRef.current.style.opacity = "1";
@@ -64,15 +65,20 @@ const ProductCard = ({
               },
             }}
           />
-        </CardActionArea>
 
-        <TagNewStyled sx={{ bottom: isMobile ? "145px" : "157px" }}>
-          {tag}
-        </TagNewStyled>
+          <TagNewStyled sx={{ bottom: 0, left: 0 }}>
+            {isOnSale ? "15% OFF" : tag}
+          </TagNewStyled>
+        </CardActionArea>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
-          {userLog!==""&&
-            <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto} itemFav={itemFav}/>
-          }
+          {userLog !== "" && (
+            <LikeButton
+              idCliente={userLog}
+              infoUser={infoUser}
+              idProd={idProducto}
+              itemFav={itemFav}
+            />
+          )}
         </Box>
         <Button
           sx={{
@@ -104,27 +110,66 @@ const ProductCard = ({
             fontSize: isMobile ? "11px" : "16px",
             lineHeight: "20px",
             textAlign: isMobile ? null : "start",
-            maxHeight:"20px",
-            overflowY:"hidden"
+            maxHeight: "20px",
+            overflowY: "hidden",
           }}
         >
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          <AvatarMR avatarCard datosTienda={datosTienda!==undefined?datosTienda:itemFav.producto_tienda}/>
+          <AvatarMR
+            avatarCard
+            datosTienda={
+              datosTienda !== undefined ? datosTienda : itemFav.producto_tienda
+            }
+          />
         </Box>
       </CardContent>
       <Divider />
       <CardContent sx={{ display: "flex", alignItems: "center", padding: 0 }}>
-        <Typography
-          sx={{
-            lineHeight: "40px",
-            fontSize: isMobile ? "13px" : "20px",
-            pl: "16px",
-          }}
-        >
-          ${productPrice!==undefined?productPrice:itemFav.producto_precio}
-        </Typography>
+        {isOnSale ? (
+          <>
+            <Typography
+              sx={{
+                lineHeight: "40px",
+                fontSize: isMobile ? "13px" : "20px",
+                fontWeight: theme.typography.fontWeightRegular,
+                pl: "16px",
+                color: theme.palette.quaternary.contrastText,
+                textDecoration: `${theme.palette.secondary.main} line-through`,
+                opacity: "0.5",
+              }}
+            >
+              ${productPrice}
+            </Typography>
+            <Typography
+              component="span"
+              sx={{
+                lineHeight: "40px",
+                fontSize: isMobile ? "13px" : "20px",
+                fontWeight: theme.typography.fontWeightRegular,
+                pl: "16px",
+                color: theme.palette.secondary.main,
+              }}
+            >
+              ${productPrice}
+            </Typography>
+          </>
+        ) : (
+          <Typography
+            sx={{
+              lineHeight: "40px",
+              fontSize: isMobile ? "13px" : "20px",
+              fontWeight: theme.typography.fontWeightMedium,
+              pl: "16px",
+            }}
+          >
+            $
+            {productPrice !== undefined
+              ? productPrice
+              : itemFav.producto_precio}
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
