@@ -252,11 +252,6 @@ const ViewCloset = () => {
                   productPrice={card.price}
                   imageCard={card.img}
                   tag={card.tag}
-                  onClick={() => {
-                    navigate(
-                      `/${pathnames[0]}/${pathnames[1]}/${pathnames[2]}/${card.title}`
-                    );
-                  }}
                 />
               </Grid>
             ))}
