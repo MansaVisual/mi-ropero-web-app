@@ -79,7 +79,6 @@ const BoxRegister = () => {
     loginUser.append('nombre', document.getElementById('nombre').value);
     loginUser.append('apellido', document.getElementById('apellido').value);
     await LoginAPI(loginUser, 'clientes', 'insert').then(async (res) => {
-      console.log(res);
       if (res.status === 'success') {
         const validateCod = new FormData();
         validateCod.append('idcliente', res.result.idcliente);
@@ -88,7 +87,6 @@ const BoxRegister = () => {
           JSON.stringify({ id: res.result.idcliente, mail: res.result.email }),
         );
         await LoginAPI(validateCod, 'clientes', 'validate_send').then((res) => {
-          console.log(res);
           setLoad(false);
           scrollTop();
           navigate('/validacionLogin');

@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @include screen_1450 {
+    min-width: 1120px;
+  }
   @include screen_705 {
     margin-top: 24px;
     margin-bottom: 60px;
@@ -211,7 +214,7 @@
       .descuentos {
         display: flex;
         justify-content: space-between;
-        @include screen_705 {
+        @include screen_506 {
           justify-content: unset;
         }
         span {

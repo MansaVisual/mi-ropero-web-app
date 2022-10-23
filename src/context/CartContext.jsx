@@ -1,10 +1,10 @@
-import { createContext, useState, useEffect } from "react";
-// import { UseLoginContext } from "./LoginContext";
+import { createContext, useState, useEffect,useContext } from "react";
+import { UseLoginContext } from "./LoginContext";
 
 export const UseCartContext = createContext();
 
 export const CartContext = ({children}) => {
-    // const {userLog} = useContext(UseLoginContext)
+    const {userLog} = useContext(UseLoginContext)
     
     const [carrito,setCarrito]=useState([])
     const [buscandoCart,setBuscandoCart]=useState(true)
@@ -32,24 +32,26 @@ export const CartContext = ({children}) => {
     }
 
     useEffect(() => {
-        const CartID = new FormData()
-
-        CartID.append('idcliente', 68)
-        // CartID.append('idproducto',10277)
-        // CartID.append('cantidad',1)
-        CartAPI(
-            CartID,
-            "carritos",
-            "all"
-        ).then((res)=>{
-            if(res.status==="success"){
-                setCarrito(res.result)
-                setBuscandoCart(false)
-            }else if(res.status==="error"){
-                setBuscandoCart(false)
-            }
-        })
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+        if(userLog!==""){
+            const CartID = new FormData()
+    
+            CartID.append('idcliente', userLog)
+            // CartID.append('idproducto',10277)
+            // CartID.append('cantidad',1)
+            CartAPI(
+                CartID,
+                "carritos",
+                "all"
+            ).then((res)=>{
+                if(res.status==="success"){
+                    setCarrito(res.result)
+                    setBuscandoCart(false)
+                }else if(res.status==="error"){
+                    setBuscandoCart(false)
+                }
+            })
+        }
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{
         let suma = 0

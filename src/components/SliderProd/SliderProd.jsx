@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import ProductCard from "../ProductCard/ProductCard";
 import { Box } from "@mui/material";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Loader from '../Loader/Loader';
 
 export const slides = [
   {
@@ -108,20 +109,25 @@ export default class SimpleSlider extends Component {
         },
       ],
     };
+    const {contenido}=this.props
     return (
       <div>
-        <Slider {...settings}>
-          {slides.map((item, index) => (
-            <Box key={index}>
-              <ProductCard
-                imageCard={item.img}
-                productName={item.title}
-                productPrice={item.price}
-                tag="NUEVO"
-              />
-            </Box>
-          ))}
-        </Slider>
+        {contenido!==undefined && contenido.length===0? <Loader spin={"spinnerG"}/> :
+          <Slider {...settings}>
+            {contenido.map((item, index) => (
+              <Box key={index}>
+                <ProductCard
+                  imageCard={item.imagenes[0].imagen_vertical}
+                  productName={item.nombre}
+                  productPrice={item.precio}
+                  idProducto={item.idproducto}
+                  datosTienda={item.tienda}
+                  tag="NUEVO"
+                  />
+              </Box>
+            ))}
+          </Slider>
+        }
       </div>
     );
   }

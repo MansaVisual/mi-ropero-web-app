@@ -13,7 +13,10 @@ const Register = () => {
   const {userLog}=useContext(UseLoginContext)
 
   useEffect(() => {
-    console.log("CD")
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     if(userLog!==""){
       navigate('/')
     }

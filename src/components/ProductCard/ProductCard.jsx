@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef,useContext } from "react";
 import {
   Divider,
   Box,
@@ -14,6 +14,7 @@ import { TagNewStyled } from "./styles";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const ProductCard = ({
   imageCard,
@@ -21,7 +22,12 @@ const ProductCard = ({
   productName,
   productPrice,
   onClick,
+  idProducto,
+  datosTienda,
+  itemFav
 }) => {
+  const {userLog,infoUser}=useContext(UseLoginContext)
+
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
 
@@ -64,7 +70,9 @@ const ProductCard = ({
           {tag}
         </TagNewStyled>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
-          <LikeButton />
+          {userLog!==""&&
+            <LikeButton idCliente={userLog} infoUser={infoUser} idProd={idProducto} itemFav={itemFav}/>
+          }
         </Box>
         <Button
           sx={{
@@ -95,13 +103,15 @@ const ProductCard = ({
           sx={{
             fontSize: isMobile ? "11px" : "16px",
             lineHeight: "20px",
-            textAlign: isMobile ? null : "center",
+            textAlign: isMobile ? null : "start",
+            maxHeight:"20px",
+            overflowY:"hidden"
           }}
         >
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          <AvatarMR avatarCard />
+          <AvatarMR avatarCard datosTienda={datosTienda!==undefined?datosTienda:itemFav.producto_tienda}/>
         </Box>
       </CardContent>
       <Divider />
@@ -113,7 +123,7 @@ const ProductCard = ({
             pl: "16px",
           }}
         >
-          {productPrice}
+          ${productPrice!==undefined?productPrice:itemFav.producto_precio}
         </Typography>
       </CardContent>
     </Card>

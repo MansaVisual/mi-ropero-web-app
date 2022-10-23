@@ -14,7 +14,9 @@ const EditarDireccion = () => {
   return (
     <div className='nuevaDirecContainer'>
       <Breadcrumbs links={pathnames} />
-      <p className='title'>EDITAR DIRECCION</p>
+      <div className='titleSection'>
+        <p className='title'>EDITAR DIRECCION</p>
+      </div>
       <div className='inputContainer'>
         <div className='inputBox'>
           <p className='labelInput'>Alias</p>

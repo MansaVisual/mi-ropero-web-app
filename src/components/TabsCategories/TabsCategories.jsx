@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext,Fragment } from "react";
 import {
   Box,
   ClickAwayListener,
@@ -10,6 +10,9 @@ import {
 } from "@mui/material";
 import { AntTab, AntTabs } from "./styles";
 import theme from "../../styles/theme";
+import { UseProdsContext } from "../../context/ProdsContext";
+import { useNavigate } from 'react-router-dom';
+import Loader from "../Loader/Loader";
 
 export const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -34,7 +37,11 @@ export const TabPanel = (props) => {
 };
 
 const TabsCategories = () => {
+  const navigate = useNavigate();
+
+
   const [value, setValue] = useState(undefined);
+  const {categorias}=useContext(UseProdsContext)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -43,63 +50,6 @@ const TabsCategories = () => {
   const handleClickAway = () => {
     setValue(undefined);
   };
-
-  const Ropa = [
-    [
-      "Abrigos (185)",
-      "Buzos (132)",
-      "Chalecos (59)",
-      "Pantalones (246)",
-      "Ropa de dormir (25)",
-      "Trajes (12)",
-      "VER TODOS",
-    ],
-    [
-      "Bermuda / Short (198)",
-      "Calzas (67)",
-      "Chombas (13)",
-      "Piloto / Trench (17)",
-      "Ropa interior (37)",
-      "Trajes de baño (55)",
-    ],
-    [
-      "Blazers (64)",
-      "Camisas (232)",
-      "Jeans (238)",
-      "Polleras (176)",
-      "Sacos (41)",
-      "Vestidos (273)",
-    ],
-    [
-      "Blusa / top (346)",
-      "Camperas (279)",
-      "Monos (46)",
-      "Remeras (590)",
-      "Tejidos (148)",
-      "Vestidos / Fiesta / Coctel (157)",
-    ],
-  ];
-
-  const Calzado = [
-    ["Botas / Borcegos (171)", "Zapatillas (241)"],
-    ["Ojotas / Slides / Flats (36)", "Zapatos (225)"],
-    ["Plataforma (29)", "Zuecos (24)"],
-    ["Sandalias (100)", "VER TODOS"],
-  ];
-
-  const Accesorios = [
-    [
-      "Abrigos (185)",
-      "Bufandas / pashminas (22)",
-      "Corbatas (0)",
-      "Pulseras (17)",
-    ],
-    ["Aros (10)", "Carteras (134)", "Gorras (10)", "VER TODOS"],
-    ["Barbijos (4)", "Cinturones (6)", "Medias (1)"],
-    ["Billeteras (15)", "Collares (25)", "Mochilas / Riñoneras (13)"],
-  ];
-
-  const Belleza = [["Esmaltes (3)"], ["Perfumes (33)"], ["VER TODOS"]];
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
@@ -150,28 +100,33 @@ const TabsCategories = () => {
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {Ropa.map((item, index) => {
-              return (
-                <List key={index}>
-                  {item.map((subItem, sindex) => {
-                    return (
-                      <ListItem key={sindex}>
-                        <Link
-                          sx={{
-                            color: "hsla(351, 6%, 25%, 1)",
-                            cursor: "pointer",
-                            textDecoration: "none",
-                            "&:hover": { textDecoration: "underline" },
-                          }}
-                        >
-                          {subItem}
-                        </Link>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              );
-            })}
+            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+              <>
+                {categorias.map((item, index) => {
+                  return (
+                    <Fragment key={index}>
+                      {item.idcategoriapadre==="1" &&
+                        <List>
+                          <ListItem>
+                            <Link
+                              sx={{
+                                color: "hsla(351, 6%, 25%, 1)",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": { textDecoration: "underline" },
+                              }}
+                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
+                              >
+                              {item.nombre}
+                            </Link>
+                          </ListItem>
+                        </List>
+                      }
+                    </Fragment>
+                  );
+                })}
+              </>
+            }
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -184,28 +139,33 @@ const TabsCategories = () => {
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {Calzado.map((item, index) => {
-              return (
-                <List key={index}>
-                  {item.map((subItem, sindex) => {
-                    return (
-                      <ListItem key={sindex}>
-                        <Link
-                          sx={{
-                            color: "hsla(351, 6%, 25%, 1)",
-                            cursor: "pointer",
-                            textDecoration: "none",
-                            "&:hover": { textDecoration: "underline" },
-                          }}
-                        >
-                          {subItem}
-                        </Link>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              );
-            })}
+            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+              <>
+                {categorias.map((item, index) => {
+                  return (
+                    <Fragment key={index}>
+                      {item.idcategoriapadre==="2" &&
+                        <List key={index}>
+                          <ListItem>
+                            <Link
+                              sx={{
+                                color: "hsla(351, 6%, 25%, 1)",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": { textDecoration: "underline" },
+                              }}
+                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
+                              >
+                              {item.nombre}
+                            </Link>
+                          </ListItem>
+                        </List>
+                      }
+                    </Fragment>
+                  );
+                })}
+              </>
+            }
           </Box>
         </TabPanel>
         <TabPanel value={value} index={2}>
@@ -218,28 +178,33 @@ const TabsCategories = () => {
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {Accesorios.map((item, index) => {
-              return (
-                <List key={index}>
-                  {item.map((subItem, sindex) => {
-                    return (
-                      <ListItem key={sindex}>
-                        <Link
-                          sx={{
-                            color: "hsla(351, 6%, 25%, 1)",
-                            cursor: "pointer",
-                            textDecoration: "none",
-                            "&:hover": { textDecoration: "underline" },
-                          }}
-                        >
-                          {subItem}
-                        </Link>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              );
-            })}
+            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+              <>
+                {categorias.map((item, index) => {
+                  return (
+                    <Fragment key={index}>
+                      {item.idcategoriapadre==="3" &&
+                        <List>
+                          <ListItem>
+                            <Link
+                              sx={{
+                                color: "hsla(351, 6%, 25%, 1)",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": { textDecoration: "underline" },
+                              }}
+                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
+                              >
+                              {item.nombre}
+                            </Link>
+                          </ListItem>
+                        </List>
+                      }
+                    </Fragment>
+                  );
+                })}
+              </>
+            }
           </Box>
         </TabPanel>
         <TabPanel value={value} index={3}>
@@ -252,28 +217,33 @@ const TabsCategories = () => {
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
-            {Belleza.map((item, index) => {
-              return (
-                <List key={index}>
-                  {item.map((subItem, sindex) => {
-                    return (
-                      <ListItem key={sindex}>
-                        <Link
-                          sx={{
-                            color: "hsla(351, 6%, 25%, 1)",
-                            cursor: "pointer",
-                            textDecoration: "none",
-                            "&:hover": { textDecoration: "underline" },
-                          }}
-                        >
-                          {subItem}
-                        </Link>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              );
-            })}
+            {categorias.length===0?<Loader spin={"spinnerM"}/>:
+              <>
+                {categorias.map((item, index) => {
+                  return (
+                    <Fragment key={index}>
+                      {item.idcategoriapadre==="1000018" &&
+                        <List key={index}>
+                          <ListItem>
+                            <Link
+                              sx={{
+                                color: "hsla(351, 6%, 25%, 1)",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": { textDecoration: "underline" },
+                              }}
+                              onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}
+                              >
+                              {item.nombre}
+                            </Link>
+                          </ListItem>
+                        </List>
+                      }
+                    </Fragment>
+                  );
+                })}
+              </>
+            }
           </Box>
         </TabPanel>
       </Box>

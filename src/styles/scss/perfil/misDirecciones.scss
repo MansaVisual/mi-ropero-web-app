@@ -7,6 +7,7 @@
   @include screen_705 {
     margin-top: 24px;
     width: 100%;
+    margin-bottom: 65px;
   }
   .titleContainer {
     display: flex;
@@ -26,6 +27,7 @@
       }
     }
     .addDirection {
+      cursor: pointer;
       font-weight: 600;
       font-size: 13px;
       line-height: 17px;
@@ -44,23 +46,6 @@
     margin-bottom: 0;
     margin-top: 24px;
   }
-  .returnLink {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: 130px;
-    margin-top: 24px;
-    p {
-      font-weight: 600;
-      font-size: 12px;
-      line-height: 16px;
-    }
-    img {
-      height: 7.94px;
-      width: 4.24px;
-      margin-right: 10px;
-    }
-  }
   .cardContainer {
     margin-top: 24px;
     display: flex;
@@ -71,10 +56,12 @@
       justify-content: center;
     }
     .domicilioEntrega {
-      width: 373px;
+      width: 100%;
+      max-width: 373px;
       padding: 24px, 32px, 24px, 32px;
+      cursor: pointer;
       @include screen_950 {
-        width: 329px;
+        max-width: 288px;
         padding: 16px, 16px, 16px, 4px;
         justify-content: center;
       }
@@ -93,20 +80,30 @@
         border-radius: 6px;
         padding: 24px 32px;
         max-width: 100%;
+        min-height: 63px;
+        max-height: 63px;
+        overflow-y: hidden;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @include screen_950 {
+          padding: 16px;
+          min-height: 96px;
+        }
         p {
           font-weight: 600;
           font-size: 13px;
           line-height: 21px;
-          width: 285px;
+          width: 100%;
+          max-width: 285px;
           margin: 0px;
           color: #878787;
           @include screen_950 {
+            max-width: 232px;
             font-weight: 400;
             font-size: 13px;
             line-height: 20px;
+            display: inline;
           }
         }
         .checkedText {
@@ -119,10 +116,11 @@
           height: 14.58px;
           position: relative;
           bottom: 2.6rem;
-          right: 0.8rem;
+          left: 1.2rem;
           cursor: pointer;
           @include screen_950 {
-            right: 3.4rem;
+            left: 0.3rem;
+            bottom: 3rem;
           }
         }
       }
@@ -131,7 +129,27 @@
         width: 16px;
         margin-right: 24px;
         color: #423b3c;
+        @include screen_705 {
+          margin-right: 16px;
+        }
       }
+    }
+  }
+  .returnLink {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 130px;
+    margin-top: 24px;
+    p {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+    }
+    img {
+      height: 7.94px;
+      width: 4.24px;
+      margin-right: 10px;
     }
   }
 }

@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar }) => {
+const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) => {
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
@@ -21,16 +21,16 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar }) =>
               ? "drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"
               : null,
             margin: 0,
-            cursor:"pointer"
+            cursor:"pointer",
           }}
-          src={imgAvatar}
-          onClick={()=>{handleCloseAvatar();navigate('/perfil')}}
+          src={datosTienda!==undefined?datosTienda.icono:infoUser.avatar
+          }
+          onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
         >
-          {infoUser.length!==0 && `${(infoUser.nombre[0]).toUpperCase()}${(infoUser.apellido[0]).toUpperCase()}`}
         </Avatar>
         <Box sx={{ pl: !avatarCard ? "6px" : "10px" }}>
           {!avatarCard ? (
-            <Typography sx={{ lineHeight: "16.34px", fontSize: "12px", cursor:"pointer" }} onClick={()=>{handleCloseAvatar();navigate('/perfil')}}>
+            <Typography sx={{ lineHeight: "16.34px", fontSize: "12px", cursor:"pointer" }} onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}>
               HOLA!
             </Typography>
           ) : null}
@@ -42,12 +42,14 @@ const AvatarMR = ({ imgAvatar, avatarCard, avatarRopero, handleCloseAvatar }) =>
               fontWeight: theme.typography.fontWeightMedium,
               cursor:"pointer"
             }}
-            onClick={()=>{handleCloseAvatar();navigate('/perfil')}}
+            onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
           >
-            {infoUser.length!==0 && infoUser.nombre}
+            {avatarCard ? datosTienda.nombre :
+              infoUser.length!==0 && infoUser.nombre
+            }
           </Typography>
           {avatarCard ? (
-            <Rating name="read-only" readOnly value={1} size="small" />
+            <Rating name="read-only" readOnly value={datosTienda.calificaciones!==undefined && Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))} size="small" />
           ) : null}
         </Box>
       </Box>

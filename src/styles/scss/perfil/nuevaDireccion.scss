@@ -6,17 +6,40 @@
   justify-content: center;
   @include screen_705 {
     margin-top: 24px;
+    margin-bottom: 50px;
     width: 100%;
   }
-  .title {
-    margin-top: 24px;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 23px;
-    line-height: 31px;
-    color: #443988;
-    margin-bottom: 0;
+  .titleSection {
+    @include screen_705 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .title {
+      margin-top: 24px;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      margin-bottom: 0;
+      @include screen_705 {
+        font-size: 16px;
+        line-height: 22px;
+        width: 100%;
+        max-width: 370px;
+      }
+    }
   }
+
+  .formObligatorio {
+    border: 0.5px solid #ff3f20 !important;
+    border-radius: 4px !important;
+  }
+  .formObligatorioTitle {
+    color: #ff3f20 !important;
+  }
+
   .inputContainer {
     display: flex;
     max-width: 758px;
@@ -39,7 +62,7 @@
         margin-right: 0px;
         display: flex;
         flex-direction: column;
-        /* width: 370px; */
+        margin-top: 8px;
       }
       .input:not(:last-child) {
         margin-right: 12px;
@@ -70,13 +93,14 @@
         margin-top: 0;
         margin-left: 12px;
         @include screen_705 {
-          margin-top: 16px;
+          margin-top: 8px;
           margin-bottom: 8px;
         }
       }
       .bottomText {
         position: relative;
         margin-bottom: 0;
+        margin-top: 8px;
         left: 16px;
         width: 348px;
         font-weight: 400;
@@ -87,6 +111,9 @@
         @include screen_705 {
           left: 0px;
           text-align: left;
+          width: 100%;
+          min-width: 288px;
+          margin-top: 8px;
         }
       }
     }
@@ -95,10 +122,12 @@
       width: 100%;
       max-width: 370px;
       display: flex;
+      gap: 4px;
       @include screen_705 {
         margin-right: 0px;
         display: flex;
-        flex-direction: column;
+        gap: 4px;
+        margin-top: 16px;
       }
       .locationInput :not(:first-child) {
         max-width: 96px;
@@ -123,7 +152,7 @@
         margin-left: 12px;
 
         @include screen_705 {
-          margin-top: 16px;
+          margin-top: 0px;
           margin-bottom: 8px;
         }
       }
@@ -136,12 +165,6 @@
       max-width: 370px;
       font-style: italic;
       font-weight: 400;
-      @include screen_705 {
-        width: calc(100% - 32px);
-      }
-      @include screen_705 {
-        width: calc(100% - 32px);
-      }
     }
     .postalCode {
       display: flex;
@@ -149,6 +172,9 @@
       .input {
         width: 100%;
         max-width: 176px !important;
+        @include screen_705 {
+          max-width: 128px !important;
+        }
       }
       span {
         font-weight: 600;
@@ -156,12 +182,18 @@
         list-style: 17;
         color: #443988;
         cursor: pointer;
+        @include screen_705 {
+          margin-left: 8px;
+        }
       }
     }
     .textAreaBox {
       margin-top: 24px;
       width: 100%;
       max-width: 758px;
+      @include screen_820 {
+        max-width: 370px;
+      }
       .label1 {
         font-size: 13px;
         font-weight: 600;
@@ -207,6 +239,7 @@
       .bottomText {
         position: relative;
         margin-bottom: 0;
+        margin-top: 8px;
         left: 16px;
         width: 348px;
         font-weight: 400;
@@ -243,7 +276,7 @@
       height: 32px;
       width: 100%;
       max-width: 208px;
-      @include screen_506 {
+      @include screen_705 {
         margin-left: 0;
         margin-top: 16px;
       }
@@ -256,8 +289,8 @@
       margin-left: 8px;
       width: 100%;
       max-width: 208px;
-      @include screen_506 {
-        margin-right: 0;
+      @include screen_705 {
+        margin-left: 0;
         margin-top: 16px;
       }
     }

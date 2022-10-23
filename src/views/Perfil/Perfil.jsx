@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import MiPerfil from '../../components/PerfilActions/MiPerfil';
 import MisOfertas from '../../components/PerfilActions/MisOfertas';
@@ -9,7 +9,7 @@ import MisCompras from '../../components/PerfilActions/MisCompras';
 import { useParams, useNavigate } from 'react-router-dom';
 import DetalleCompra from '../../components/PerfilActions/DetalleCompra';
 import MisMensajes from '../../components/PerfilActions/MisMensajes';
-import NuevaDireccion from '../../components/PerfilActions/NuevaDireccion';
+import NuevaDireccion from '../../components/PerfilActions/NuevaDireccion/NuevaDireccion';
 import EditarDireccion from '../../components/PerfilActions/EditarDireccion';
 import { UseLoginContext } from '../../context/LoginContext';
 
@@ -18,11 +18,32 @@ const Perfil = () => {
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
 
-   useEffect(()=>{
-    if(userLog===""){
-      navigate("/login")
+  const [num, setNum] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+    if (num === 1) {
+      setNum(2);
     }
-  },[])// eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  }, [params]);
+
+  useEffect(() => {
+    if (num !== 1) {
+      if (userLog === '') {
+        navigate('/login');
+      }
+    }
+  }, [num]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Grid className='gridContainer'>

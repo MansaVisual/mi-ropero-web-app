@@ -23,8 +23,9 @@ import Button from "../../components/Button/Button";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
-import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
+import { UseColeccionContext } from "../../context/ColeccionesContext";
+import banner from "../../assets/img/bannermvp4.png"
 
 const style = {
   position: "absolute",
@@ -42,8 +43,8 @@ const style = {
 };
 
 const SearchProductsResults = () => {
-  const {categorias,ProdAPI}=useContext(UseProdsContext)
-  const { keyword,search } = useParams();
+  const { coleccionName } = useParams();
+  const {ColeccionAPI}=useContext(UseColeccionContext)
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -57,9 +58,19 @@ const SearchProductsResults = () => {
 
   const [totalPages,setTotalPages]=useState(0)
 
+  const [coleccion,setColeccion]=useState([])
+  const [prodsColeccion,setProdsColeccion]=useState([])
+
+  const [putCategory,setPutCategory]=useState("")
   const [putFilters,setPutFilters]=useState([])
   const [putSort,setPutSort]=useState("")
-  
+
+    // colleciones all
+    // destacadas banner pirncipal id=66
+    // primerscroll nuevosingresos id=71
+    // segundoscroll recomendados id=73
+    // segundoscroll recomendados 
+
   useEffect(() => {
     // filter products by keyword entered in search bar
     window.scrollTo({
@@ -67,69 +78,86 @@ const SearchProductsResults = () => {
       behavior: 'auto',
     });
 
-    setBuscandoProds(true)
     setProds([])
-    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search!==undefined){
-      prodsCategoria(true)
-    }
-    if(categorias!==undefined && categorias.length!==0 && keyword!==undefined && search===undefined){
-      prodsCategoria(false)
-    }
-  }, [keyword,categorias]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  
-  const prodsCategoria=(paramSearch)=>{
-    const catProd=new FormData()
-    let idCat = ""
+    let numCol=0
 
-    if(paramSearch){
-      catProd.append("text",keyword)
-      
-    }else{
-      idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
-      catProd.append("idcategoria",idCat.idcategoria)
-      
-      const catFilters=new FormData()
-      catFilters.append("idcategoria",idCat.idcategoria)
-      ProdAPI(
-        catFilters,
-        "categorias",
-        "get"
-        ).then((res)=>{
-          if(res.status==="success"){setFiltrosCategoria(res.result[0])}})
-        }
-    catProd.append("bypage",15)
-    catProd.append("page",1)
-    ProdAPI(
-      catProd,
-      "productos",
-      "search"
+    if(coleccionName==="NuevosIngresos"){
+        numCol=71
+    }else if(coleccionName==="Recomendados"){
+        numCol="73"
+    }else if(coleccionName==="MejoresVendedores"){
+        numCol="73"
+    }
+
+    const col=new FormData()
+    col.append("idcoleccion",numCol)
+    col.append("bypage",15)
+    col.append("page",1)
+
+    ColeccionAPI(
+        col,
+        "colecciones",
+        "detail"
     ).then((res)=>{
-      setBuscandoProds(false)
       if(res.status==="success"){
+        setColeccion(res.result)
         setProds(res.result.productos)
         setTotalPages(res.result.total_paginas)
       }
-    })
-  }
+  })
+  }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  const buscarPage=(paramSearch,value)=>{
+
+  useEffect(() => {
+    if(putCategory!==""){
+      let numCol=0
+      if(coleccionName==="NuevosIngresos"){
+        numCol=71
+      }else if(coleccionName==="Recomendados"){
+          numCol="73"
+      }else if(coleccionName==="MejoresVendedores"){
+          numCol="73"
+      }
+
+      
+      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+      idCat=idCat[0].idcategoria
+
+      const col=new FormData()
+      col.append("idcoleccion",numCol)
+      col.append("idcategoria",idCat)
+      col.append("bypage",1)
+      col.append("page",1)
+  
+      ColeccionAPI(
+          col,
+          "colecciones",
+          "detail"
+      ).then((res)=>{
+        if(res.status==="success"){console.log(res.result)
+          setProds(res.result.productos)
+          setFiltrosCategoria(res.result)
+        }
+      })
+
+      
+    }
+  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
+
+
+  const buscarPage=(value)=>{
     setLoad(true)
     const catProd=new FormData()
-    let idCat = ""
-    if(paramSearch){
-      catProd.append("text",keyword)
-      catProd.append("bypage",15)
 
-    }else{
-      idCat=categorias.find(e=>e.nombre.toString().trim()===keyword.replaceAll("&","/"))
-      catProd.append("idcategoria",idCat.idcategoria)
-      catProd.append("bypage",15)
-    }
+    let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+    idCat=idCat[0].idcategoria
 
+    catProd.append("idcategoria",idCat.idcategoria)
+    catProd.append("bypage",15)
     catProd.append("page",value)
 
-    ProdAPI(
+    ColeccionAPI(
       catProd,
       "productos",
       "search"
@@ -178,7 +206,7 @@ const SearchProductsResults = () => {
                       textTransform: "capitalize",
                     }}
                   >
-                    {keyword}
+                    {coleccionName}
                   </Typography>
                   <FilterButton onClick={() => setOpen(true)} />
                 </Box>
@@ -246,7 +274,7 @@ const SearchProductsResults = () => {
                       mb: "20px",
                     }}
                   >
-                    {keyword}
+                    {coleccionName}
                   </Typography>
                 </Box>
                 {putFilters.map((res,i)=>{
@@ -256,7 +284,16 @@ const SearchProductsResults = () => {
                     </>
                   )
                 })}
-                <Filter filtros={filtrosCategoria} setPutFilters={setPutFilters} putFilters={putFilters} putSort={putSort} setPutSort={setPutSort}/>
+                <Filter 
+                  setPutCategory={setPutCategory} 
+                  putCategory={putCategory} 
+                  filtros={filtrosCategoria} 
+                  setPutFilters={setPutFilters} 
+                  putFilters={putFilters} 
+                  putSort={putSort} 
+                  setPutSort={setPutSort} 
+                  coleccion={coleccion}
+                />
               </>
             )}
           </Grid>
@@ -271,7 +308,7 @@ const SearchProductsResults = () => {
                 mb: "32px",
               }}
             >
-              {prods.length !== 0 && keyword ? (
+              {prods.length !== 0 && coleccionName ? (
                 prods.map((product, index) => {
                   return (
                     <ProductCard
@@ -287,116 +324,12 @@ const SearchProductsResults = () => {
                 })
               ) : 
                 <>
-                  {buscandoProds?<Loader spin={"spinnerG"}/>:
-                    <Box
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        mt: "16px",
-                      }}
-                      >
-                      <Box sx={{ mr: "20px" }}>
-                        <img
-                          src={notFoundIcon}
-                          width={30}
-                          height={30}
-                          alt="not found icon"
-                          />
-                      </Box>
-                      <Box>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.secondary.main,
-                            textTransform: "uppercase",
-                            textAlign:
-                            isMobile || isMobileBigScreen ? "center" : "unset",
-                            mb: 4,
-                          }}
-                          >
-                          No encontramos resultados para{" "}
-                          <Typography
-                            component="span"
-                            sx={{
-                              color: theme.palette.secondary.main,
-                              textTransform: "capitalize",
-                            }}
-                            >
-                            "{keyword}"
-                          </Typography>
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightRegular,
-                            color: theme.palette.tertiary.main,
-                          }}
-                          >
-                          Revisá la ortografía de la palabra
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.tertiary.main,
-                          }}
-                          >
-                          Utilizá palabras más genéricas o menos palabras.
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[6],
-                            fontWeight: theme.typography.fontWeightMedium,
-                            color: theme.palette.tertiary.main,
-                          }}
-                          >
-                          Navegá por las categorías para encontrar un producto
-                          similar
-                        </Typography>
-                        <StyledLink
-                          to="/"
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            cursor: "default",
-                          }}
-                          >
-                          <Typography
-                            component="span"
-                            sx={{
-                              boxSizing: "border-box",
-                              color: theme.palette.primary.main,
-                              fontSize: theme.typography.fontSize[2],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              textTransform: "uppercase",
-                              padding: "10px 36px",
-                              height: "36px",
-                              width: "200px",
-                              textAlign: "center",
-                              border: "1px solid hsl(248.4, 40.9%, 37.8%)",
-                              borderRadius: "20px",
-                              mt: 4,
-                              cursor: "pointer",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                            onClick={()=>prodsCategoria()}
-                            >
-                            Ir al Inicio
-                          </Typography>
-                        </StyledLink>
-                      </Box>
-                    </Box>
-                  }
+                  {buscandoProds?<Loader spin={"spinnerG"}/>:null}
                 </>
               }
             </Box>
             {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
-            {prods.length!==0 && totalPages>1 && keyword && (
+            {prods.length!==0 && totalPages>1 && coleccionName && (
               <Box
               sx={{
                 display: "flex",
@@ -404,7 +337,7 @@ const SearchProductsResults = () => {
                 alignItems: "center",
               }}
               >
-              <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
+                <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
               </Box>
             )}
           </Grid>

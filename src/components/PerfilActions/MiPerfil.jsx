@@ -8,7 +8,7 @@ import misDirecc from '../../assets/img/misDireccIcon.png';
 import misFavs from '../../assets/img/misFavsIcon.png';
 import misMensajes from '../../assets/img/misMensajesIcon.png';
 import misOfertas from '../../assets/img/misOfertasIcon.png';
-import miTienda from '../../assets/img/miTiendaIcon.png';
+// import miTienda from '../../assets/img/miTiendaIcon.png';
 import PopUpNotis from './PopUpNotis';
 import PopUpSesion from './PopUpSesion';
 import PopUpEliminar from './PopUpEliminar';
@@ -19,7 +19,7 @@ const MiPerfil = ({ setTypeNav }) => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
-  const {infoUser}=useContext(UseLoginContext)
+  const { infoUser } = useContext(UseLoginContext);
 
   const [notificationsOff, setNotificationsOff] = useState(false);
   const [closeSession, setCloseSession] = useState(false);
@@ -32,10 +32,10 @@ const MiPerfil = ({ setTypeNav }) => {
   };
 
   const profileSections = [
-    {
-      name: 'MI TIENDA',
-      icon: miTienda,
-    },
+    // {
+    //   name: 'MI TIENDA',
+    //   icon: miTienda,
+    // },
     {
       name: 'MIS DATOS',
       icon: misDatos,
@@ -75,8 +75,11 @@ const MiPerfil = ({ setTypeNav }) => {
           />
           <div className='profileText'>
             <p className='hello'>HOLA!</p>
-            <p className='name'>{infoUser.length !==0 && `${infoUser.nombre} ${infoUser.apellido}`}</p>
-            <p className='email'>{infoUser.length !==0 && infoUser.email}</p>
+            <p className='name'>
+              {infoUser.length !== 0 &&
+                `${infoUser.nombre} ${infoUser.apellido}`}
+            </p>
+            <p className='email'>{infoUser.length !== 0 && infoUser.email}</p>
           </div>
         </div>
         <p className='profileSections'>

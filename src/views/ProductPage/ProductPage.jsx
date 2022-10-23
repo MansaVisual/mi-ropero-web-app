@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Box,
   Container,
@@ -69,6 +69,13 @@ const ProductPage = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  }, []);
 
   return (
     <Container maxWidth="xl">
@@ -262,7 +269,7 @@ const ProductPage = () => {
             <Chip smallSize>Mas productos del ropero</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd />
+            <SliderProd contenido={[]}/>
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link

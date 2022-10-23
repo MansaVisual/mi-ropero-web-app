@@ -1,35 +1,36 @@
-import React,{useEffect,useState} from "react"
+import React,{useEffect,useState,useContext} from "react"
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { UseFormContext } from "../../context/FormContext";
+import { UseLoginContext } from "../../context/LoginContext";
 
-const CheckForm = ({setTypeNav,estadoCompra})=>{
+const CheckForm = ({estadoCompra})=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
+    const {FormAPI}=useContext(UseFormContext)
+    const {userLog}=useContext(UseLoginContext)
 
-        if(estadoCompra==="success"){
+    useEffect(() => {
+        if(userLog!==""){
+            setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
             
             if(saveDireccion){
 
-                // 
-                // 
-                // 
-                
                 const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
                 const dir = new FormData()
-                dir.append("int",68)
+                dir.append("idcliente",userLog)
                 dir.append("nombre",direccion.calle+" "+direccion.numero)
                 dir.append("codigo_postal",direccion.codigo_postal)
                 dir.append("provincia",direccion.provincia)
                 dir.append("idprovincia",direccion.idprovincia)
-                // dir.append("",direccion.)
+                dir.append("localidad",direccion.localidad)
+                dir.append("idlocalidad",direccion.idlocalidad)
                 dir.append("calle",direccion.calle)
                 dir.append("numero",direccion.numero)
                 dir.append("piso",direccion.piso)
@@ -38,9 +39,14 @@ const CheckForm = ({setTypeNav,estadoCompra})=>{
                 dir.append("entre_calle_2",direccion.entre_calle_2)
                 dir.append("informacion_adicional",direccion.informacion_adicional)
                 dir.append("normalized",direccion.raw_data)
+                FormAPI(
+                    dir,
+                    "direcciones",
+                    "insert"
+                ).then((res)=>console.log(res))
             }
         }
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <div className="checkContainer">

@@ -30,11 +30,27 @@ const Cart = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
     const isDesktopBig = useMediaQuery(theme.breakpoints.up("xl"));
     
+    const [num,setNum]=useState(1)
+
     useEffect(()=>{
-      if(userLog===""){
-        navigate("/login")
-      }
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto',
+            });
+        }, 1000);
+        if(num===1){
+            setNum(2)
+        }
     },[])// eslint-disable-line react-hooks/exhaustive-deps
+
+   useEffect(()=>{
+        if(num!==1){
+            if(userLog===""){
+                navigate("/login")
+            }
+        }
+    },[num])// eslint-disable-line react-hooks/exhaustive-deps
     
     const handleEliminar = (prod)=>{
         setProdEliminar(prod)
@@ -64,7 +80,7 @@ const Cart = () => {
     const chargeCarrito = () =>{
         const CartID = new FormData()
 
-        CartID.append('idcliente', 68)
+        CartID.append('idcliente', userLog)
         // CartID.append('idproducto',10610)
         // CartID.append('cantidad',1)
         CartAPI(

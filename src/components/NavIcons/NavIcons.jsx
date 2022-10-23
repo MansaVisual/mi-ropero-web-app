@@ -18,7 +18,10 @@ import { StyledBadge, StyledMenu } from "./style";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { CgCloseO } from "react-icons/cg";
-import { IoStorefrontOutline, IoLocationOutline } from "react-icons/io5";
+import {
+  // IoStorefrontOutline,
+  IoLocationOutline,
+} from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiMessage } from "react-icons/bi";
@@ -84,7 +87,7 @@ const NavIcons = () => {
         setEliminar(false);
         setLoad(false);
       } else {
-        alert("Ocurrio un error");
+        alert("Ocurrio un error al borrar el producto. Volvé a intentarlo.");
         setLoad(false);
       }
     });
@@ -93,7 +96,7 @@ const NavIcons = () => {
   const chargeCarrito = () => {
     const CartID = new FormData();
 
-    CartID.append("idcliente", 68);
+    CartID.append("idcliente", userLog);
     // CartID.append('idproducto',10610)
     // CartID.append('cantidad',1)
     CartAPI(CartID, "carritos", "all").then((res) => {
@@ -141,11 +144,11 @@ const NavIcons = () => {
   };
 
   const optionUser = [
-    {
-      title: "Mi tienda",
-      icon: <IoStorefrontOutline />,
-      url: "MI TIENDA",
-    },
+    // {
+    //   title: "Mi tienda",
+    //   icon: <IoStorefrontOutline />,
+    //   url:"MI TIENDA"
+    // },
     {
       title: "Mis datos",
       icon: <HiOutlineUser />,
@@ -548,7 +551,7 @@ const NavIcons = () => {
       </StyledMenu>
       <IconButton onClick={handleClickAvatar}>
         <StyledBadge
-          badgeContent={3}
+          badgeContent={0}
           color="secondary"
           anchorOrigin={{
             vertical: "top",

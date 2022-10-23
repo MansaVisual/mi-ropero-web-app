@@ -1,11 +1,19 @@
-import { createContext,useEffect,useState } from "react";
+import { createContext,useEffect,useState,useContext } from "react";
+import { UseLoginContext } from "./LoginContext";
 
 export const UseProdsContext = createContext();
 
 export const ProdsContext = ({children}) => {
 
+    const {userLog}=useContext(UseLoginContext)
+
     const [categorias,setCategorias]=useState([])
-    const [nuevosIngresos,setNuevosIngresos]=useState([])
+    
+    const [slider1,setSlider1]=useState([])
+    const [slider2,setSlider2]=useState([])
+    const [slider3,setSlider3]=useState([])
+
+    const [listFavs,setListFavs]=useState([])
 
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -31,22 +39,66 @@ export const ProdsContext = ({children}) => {
         if(categorias.length===0){
             handleCategorias()
         }
-        if(nuevosIngresos.length===0){
-            handleNuevosIngresos()
+        if(slider1.length===0){
+            handleSlider1()
         }
+        if(slider2.length===0){
+            handleSlider2()
+        }
+        if(slider3.length===0){
+            handleSlider3()
+        }
+
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
-    const handleNuevosIngresos=()=>{
-        const nuevosIngresosForm = new FormData()
-        nuevosIngresosForm.append("order_type","desc")
-        nuevosIngresosForm.append("bypage",12)
-        nuevosIngresosForm.append("order","fecha_aprobacion")
+    useEffect(() => {
+        if(userLog!==""){
+            if(listFavs.length===0){
+                handleListFavs()
+            }
+        }
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
+    
+    // colleciones all
+    // destacadas banner pirncipal
+    // primerscroll nuevosingresos
+    // segundoscroll recomendados
+    // segundoscroll recomendados
+
+    const handleSlider1=()=>{
+        const slid1 = new FormData()
+        slid1.append("idcategoria",17)
+        slid1.append("bypage",8)
         ProdAPI(
-            nuevosIngresosForm,
+            slid1,
             "productos",
             "search"
         ).then((res)=>{
-            if(res.status==="success"){setNuevosIngresos(res.result)}else{handleNuevosIngresos()}
+            if(res.status==="success"){setSlider1(res.result.productos)}
+        })
+    }
+    const handleSlider2=()=>{
+        const slid2 = new FormData()
+        slid2.append("idcategoria",26)
+        slid2.append("bypage",8)
+        ProdAPI(
+            slid2,
+            "productos",
+            "search"
+        ).then((res)=>{
+            if(res.status==="success"){setSlider2(res.result.productos)}
+        })
+    }
+    const handleSlider3=()=>{
+        const slid3 = new FormData()
+        slid3.append("idcategoria",1000027)
+        slid3.append("bypage",8)
+        ProdAPI(
+            slid3,
+            "productos",
+            "search"
+        ).then((res)=>{
+            if(res.status==="success"){setSlider3(res.result.productos)}
         })
     }
 
@@ -55,11 +107,22 @@ export const ProdsContext = ({children}) => {
             categorias,
             "categorias",
             "all"
-        ).then((res)=>{if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
+        ).then((res)=>{
+            if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
+    }
+
+    const handleListFavs = ()=>{
+        const fav = new FormData()
+        fav.append("idcliente",userLog)
+        ProdAPI(
+          fav,
+          "favoritos",
+          "all"
+        ).then((res)=>{if(res.status==="success"){setListFavs(res.result)}else{handleListFavs()}})
     }
 
     return(
-        <UseProdsContext.Provider value={{ProdAPI,nuevosIngresos}}>
+        <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,slider1,slider2,slider3,handleListFavs}}>
             {children}
         </UseProdsContext.Provider>
     )

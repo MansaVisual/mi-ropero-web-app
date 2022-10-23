@@ -15,12 +15,12 @@ const Login = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     loginStorage().then((res) => {
       if (res !== null) {
-        window.scrollTo({
-          top: 0,
-          behavior: 'auto',
-        });
         navigate('/');
       }
     });
