@@ -65,6 +65,7 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
               }}
+              onClick={()=>navigate("/colecciones/NuevosIngresos")}
             >
               VER TODOS LOS INGRESOS
             </Link>
@@ -198,6 +199,7 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
               }}
+              onClick={()=>navigate("/colecciones/Recomendados")}
             >
               VER TODOS LOS PRODUCTOS RECOMENDADOS
             </Link>
@@ -215,6 +217,7 @@ const Home = () => {
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
               }}
+              onClick={()=>navigate("/colecciones/MejoresVendedores")}
             >
               VER TODOS LOS MEJORES VENDEDORES
             </Link>
