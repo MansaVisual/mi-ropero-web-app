@@ -344,7 +344,23 @@ const NavIcons = () => {
               </Stack>
             ) : (
               <Stack>
-                <Box sx={{ overflowY: "auto", maxHeight: "186px" }}>
+                <Box
+                  sx={{
+                    overflowY: "auto",
+                    maxHeight: "186px",
+                    "&::-webkit-scrollbar": {
+                      width: "8px",
+                      backgroundColor: "transparent",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      backgroundColor: "hsl(210, 3%, 73.7%)",
+                      borderRadius: "10px",
+                    },
+                    "&::-webkit-scrollbar-track": {
+                      backgroundColor: "transparent",
+                    },
+                  }}
+                >
                   <Box
                     sx={{
                       display: "flex",
