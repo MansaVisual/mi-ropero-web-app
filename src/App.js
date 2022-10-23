@@ -56,7 +56,7 @@ function App() {
                         element={<ViewCloset />}
                       />
                       <Route
-                        path='/roperos/:keyword/:closetId/:itemName'
+                        path='/productoCard/:itemID'
                         element={<ProductPage />}
                       />
                       <Route
