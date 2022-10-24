@@ -21,6 +21,7 @@ import theme from "../../styles/theme";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
 import { UseCartContext } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductBuyBox = ({prod,itemID}) => {
   // const location = useLocation();
@@ -29,6 +30,7 @@ const ProductBuyBox = ({prod,itemID}) => {
   const [openCommentDialog, setOpenCommentDialog] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const navigate=useNavigate()
 
   const [load,setLoad]=useState(false)
   const [load2,setLoad2]=useState(false)
@@ -453,13 +455,13 @@ const ProductBuyBox = ({prod,itemID}) => {
           }}
         >
           <Button
-          backgroundColor="hsla(59, 100%, 60%, 1)"
-          color="hsla(351, 6%, 25%, 1)"
-          text={load?<Loader spin={"spinnerM"}/>:"Comprar"}
-          endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
-          onClick={()=>handleAgregarCarrito()}
-          fullWidth
-          height
+            backgroundColor="hsla(59, 100%, 60%, 1)"
+            color="hsla(351, 6%, 25%, 1)"
+            text={load?<Loader spin={"spinnerM"}/>:"Comprar"}
+            endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
+            onClick={userLog===""?navigate("/login"):()=>handleAgregarCarrito()}
+            fullWidth
+            height
           />
         </Box>
       </Box>
