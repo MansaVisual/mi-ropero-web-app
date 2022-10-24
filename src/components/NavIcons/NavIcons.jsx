@@ -347,7 +347,7 @@ const NavIcons = () => {
                 <Box
                   sx={{
                     overflowY: "auto",
-                    maxHeight: "186px",
+                    maxHeight: "280px",
                     "&::-webkit-scrollbar": {
                       width: "8px",
                       backgroundColor: "transparent",
