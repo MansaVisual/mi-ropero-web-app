@@ -56,7 +56,7 @@ const MisDirecciones = () => {
             );
           })
         ) : (
-          <p>no hay direcciones cargadas</p>
+          <p>No hay direcciones cargadas</p>
         )}
       </div>
       <div className='returnLink' onClick={() => navigate(`/perfil`)}>

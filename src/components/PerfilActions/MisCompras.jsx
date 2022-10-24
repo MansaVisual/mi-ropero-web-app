@@ -92,7 +92,7 @@ const MisCompras = () => {
                 );
               })
             ) : (
-              <p>no hay compras</p>
+              <p>No hay compras</p>
             )}
           </tbody>
         </table>
