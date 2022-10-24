@@ -17,39 +17,22 @@ import theme from "../../styles/theme";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-const itemData = [
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calzas",
-    author: "@bkristastucchio",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calzas",
-    author: "@rollelflex_graphy726",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calzas",
-    author: "@helloimnik",
-  },
-];
-
 const ClosetImagesCard = ({
-  contact: { name, avatar, products, rating, img },
+  ropero: { nombre, icono, productos, rating, img },
   keyword,
 }) => {
+
   const navigate = useNavigate();
   const handleClick = (event) => {
     event.preventDefault();
-    navigate(`/roperos/${keyword}/${name}`);
+    navigate(`/roperos/${keyword}/${nombre}`);
   };
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [like, setLike] = useState(false);
 
   return (
-    <Box sx={{ flex: 1, maxWidth: { sm: "420px" } }}>
+    <Box sx={{ flex: 1, maxWidth: { sm: "420px" },minWidth: { sm: "420px" } }}>
       <Box>
         <ImageList
           sx={{
@@ -102,7 +85,7 @@ const ClosetImagesCard = ({
                         height: "32px",
                       }}
                     >
-                      {avatar}
+                      {icono}
                     </Avatar>
                     <Box>
                       <Typography
@@ -111,7 +94,7 @@ const ClosetImagesCard = ({
                           fontWeight: theme.typography.fontWeightRegular,
                         }}
                       >
-                        {name}
+                        {nombre}
                       </Typography>
                       <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Typography
@@ -125,7 +108,7 @@ const ClosetImagesCard = ({
                             mr: "5px",
                           }}
                         >
-                          {products} productos
+                          {productos.length} {productos.length===1?"producto":"productos"}
                         </Typography>
                         <Rating
                           name="read-only"
@@ -195,7 +178,7 @@ const ClosetImagesCard = ({
               </CardContent>
             </Card>
           </ImageListItem>
-          {itemData.map((item, index) => (
+          {productos.map((item, index) => (
             <Grid key={index}>
               <ImageListItem
                 sx={{
@@ -210,8 +193,8 @@ const ClosetImagesCard = ({
                 }}
               >
                 <img
-                  src={item.img}
-                  alt={item.title}
+                  src={item.imagenes[0].imagen_vertical}
+                  alt={item.nombre}
                   width="140px"
                   height="150px"
                   loading="lazy"
@@ -232,7 +215,7 @@ const ClosetImagesCard = ({
               textTransform: "uppercase",
             }}
           >
-            Ver Ropero de {name}
+            Ver Ropero de {nombre}
           </Link>
         </Box>
       </Box>

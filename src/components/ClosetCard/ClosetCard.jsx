@@ -11,7 +11,7 @@ import {
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import theme from "../../styles/theme";
 
-const ClosetCard = () => {
+const ClosetCard = (ropero) => {
   const [like, setLike] = useState(false);
 
   return (
@@ -54,8 +54,8 @@ const ClosetCard = () => {
                 width: "32px",
                 height: "32px",
               }}
+              src={ropero.ropero.icono}
             >
-              SG
             </Avatar>
             <Box>
               <Typography
@@ -64,7 +64,7 @@ const ClosetCard = () => {
                   fontWeight: theme.typography.fontWeightRegular,
                 }}
               >
-                Sabrina Gomez
+                {ropero.ropero.nombre}
               </Typography>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Typography
@@ -78,7 +78,7 @@ const ClosetCard = () => {
                     mr: "5px",
                   }}
                 >
-                  142 productos
+                  {ropero.ropero.productos.length} {ropero.ropero.productos.length===1?"producto":"productos"}
                 </Typography>
                 <Rating
                   name="read-only"
@@ -90,7 +90,7 @@ const ClosetCard = () => {
             </Box>
           </Box>
 
-          <Box sx={{ ml: { xs: 0, md: "10px", xl: "10px" } }}>
+          {/* <Box sx={{ ml: { xs: 0, md: "10px", xl: "10px" } }}>
             <CardActionArea
               onClick={() => setLike(!like)}
               disableTouchRipple
@@ -137,7 +137,7 @@ const ClosetCard = () => {
                 </>
               )}
             </CardActionArea>
-          </Box>
+          </Box> */}
         </Box>
       </CardContent>
     </Card>

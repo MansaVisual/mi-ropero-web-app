@@ -11,10 +11,10 @@ const Pagination = ({cantidad,buscarPage}) => {
   const handleChange = (event, value) => {
     setPage(value);
     if(search!==undefined){
-      buscarPage(true,value)
+      buscarPage(true,value-1)
     }
     if(search===undefined){
-      buscarPage(false,value)
+      buscarPage(false,value-1)
     }
   };
 

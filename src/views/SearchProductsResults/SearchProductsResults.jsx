@@ -110,7 +110,7 @@ const SearchProductsResults = () => {
       });
     }
     catProd.append("bypage", 15);
-    catProd.append("page", 1);
+    catProd.append("page", 0);
     ProdAPI(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
       if (res.status === "success") {

@@ -52,6 +52,10 @@ function App() {
                         element={<SearchClosetResults />}
                       />
                       <Route
+                        path='/roperos/search/:keyword'
+                        element={<SearchClosetResults />}
+                      />
+                      <Route
                         path='/roperos/:keyword/:closetId'
                         element={<ViewCloset />}
                       />

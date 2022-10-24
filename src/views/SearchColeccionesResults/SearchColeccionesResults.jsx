@@ -128,7 +128,7 @@ const SearchProductsResults = () => {
       col.append("idcoleccion",numCol)
       col.append("idcategoria",idCat)
       col.append("bypage",15)
-      col.append("page",1)
+      col.append("page",0)
       // col.append("caracteristicas","12:764, 1:37")
 
       ColeccionAPI(
@@ -146,7 +146,7 @@ const SearchProductsResults = () => {
   }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
-  const buscarPage=(value)=>{
+  const buscarPage=(paramSearch,value)=>{
     setLoad(true)
     const catProd=new FormData()
 
