@@ -8,6 +8,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import OCA from "../../assets/img/OCA.png"
 import { BiRightArrow } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
 import { CommentButton } from "../ActionButton/ActionButton";
@@ -30,6 +31,10 @@ const ProductBuyBox = ({prod,itemID}) => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [load,setLoad]=useState(false)
+  const [load2,setLoad2]=useState(false)
+
+  const [costoEnvio,setCostoEnvio]=useState([])
+  const [CP,setCP]=useState("")
 
   const {userLog}=useContext(UseLoginContext)
   const {CartAPI,setCarrito}=useContext(UseCartContext)
@@ -78,6 +83,28 @@ const ProductBuyBox = ({prod,itemID}) => {
       }
     })
   }
+
+  const handleCostoEnvio=()=>{
+    setLoad2(true)
+    setCP("")
+    setCostoEnvio([])
+    const envio=new FormData()
+    envio.append("idproducto",itemID)
+    envio.append("codigo_postal",document.getElementById("outlined-number").value)
+    CartAPI(
+      envio,
+      "productos",
+      "check_shipping_cost"
+    ).then((res)=>{console.log(res)
+      setLoad2(false)
+      if(res.status==="success"){
+        setCostoEnvio(res.result)
+        setCP(document.getElementById("outlined-number").value)
+      }
+    })
+  }
+
+  console.log(costoEnvio)
 
   return (
     <>
@@ -214,7 +241,8 @@ const ProductBuyBox = ({prod,itemID}) => {
                   }}
                   variant="outlined"
                 />
-                <IconButton
+                {load2 ? <div style={{marginTop:"4px"}}><Loader spin={"spinnerS"}/></div>:
+                  <IconButton
                   style={{
                     width: "40px",
                     height: "40px",
@@ -223,14 +251,16 @@ const ProductBuyBox = ({prod,itemID}) => {
                     border: "1px solid hsla(210, 3%, 74%, 1)",
                     backgroundColor: "hsla(210, 3%, 74%, 1)",
                   }}
-                >
-                  <BiRightArrow
-                    style={{
-                      fontSize: "32px",
-                      color: "hsla(0, 0%, 100%, 1)",
-                    }}
-                  />
-                </IconButton>
+                  onClick={()=>handleCostoEnvio()}
+                  >
+                    <BiRightArrow
+                      style={{
+                        fontSize: "32px",
+                        color: "hsla(0, 0%, 100%, 1)",
+                      }}
+                      />
+                  </IconButton>
+                }
               </Box>
             </Box>
           </>
@@ -242,7 +272,7 @@ const ProductBuyBox = ({prod,itemID}) => {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 mt: "24px",
-                mb: "80px",
+                mb: "32px",
               }}
             >
               <Box>
@@ -311,23 +341,26 @@ const ProductBuyBox = ({prod,itemID}) => {
                     }}
                     variant="outlined"
                   />
-                  <IconButton
+                  {load2 ? <div style={{marginTop:"4px"}}><Loader spin={"spinnerS"}/></div>:
+                    <IconButton
                     style={{
                       width: "32px",
                       height: "32px",
                       marginLeft: "8px",
                       borderRadius: "3px",
-                      border: "1px solid hsla(210, 3%, 74%, 1)",
-                      backgroundColor: "hsla(210, 3%, 74%, 1)",
-                    }}
-                  >
-                    <BiRightArrow
-                      style={{
-                        fontSize: "32px",
-                        color: "hsla(0, 0%, 100%, 1)",
+                        border: "1px solid hsla(210, 3%, 74%, 1)",
+                        backgroundColor: "hsla(210, 3%, 74%, 1)",
                       }}
-                    />
-                  </IconButton>
+                      onClick={()=>handleCostoEnvio()}
+                    >
+                      <BiRightArrow
+                        style={{
+                          fontSize: "32px",
+                          color: "hsla(0, 0%, 100%, 1)",
+                        }}
+                        />
+                    </IconButton>
+                  }
                 </Box>
                 <Typography sx={{ mt: "8px" }}>
                   <Link
@@ -349,60 +382,69 @@ const ProductBuyBox = ({prod,itemID}) => {
           </>
         )}
 
-        {/* <Box>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[2],
-              fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.quaternary.contrastText,
-              mb: "18px",
-            }}
-          >
-            Costo de envío a CP 1416
-            <Link
-              sx={{
-                fontSize: theme.typography.fontSize[1],
-                fontWeight: theme.typography.fontWeightRegular,
-                color: theme.palette.primary.main,
-                ml: "16px",
-              }}
-            >
-              Cambiar
-            </Link>
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[2],
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.tertiary.main,
-              mb: "18px",
-            }}
-          >
-            $500 moto a domicilio
-          </Typography>
-          <Box>
-            <img src={OCA} alt="OCA Logo" />
-          </Box>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[2],
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.tertiary.main,
-            }}
-          >
-            $908,83 a domicilio
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[2],
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.tertiary.main,
-            }}
-          >
-            $599,71 a sucursal
-          </Typography>
-        </Box> */}
-        {/* </Box> */}
+        {costoEnvio.length!==0 &&
+          <>
+            <Box>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[2],
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: theme.palette.quaternary.contrastText,
+                  mb: "18px",
+                }}
+              >
+                Costo de envío a CP {CP}
+                <Link
+                  sx={{
+                    fontSize: theme.typography.fontSize[1],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    color: theme.palette.primary.main,
+                    ml: "16px",
+                    cursor:"pointer"
+                  }}
+                  onClick={()=>document.getElementById("outlined-number").focus()}
+                >
+                  Cambiar
+                </Link>
+              </Typography>
+              {costoEnvio.moova.status!=="error" &&
+                <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[2],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.tertiary.main,
+                    mb: "18px",
+                  }}
+                >
+                  $500 moto a domicilio
+                </Typography>
+              }
+              <Box>
+                <img src={OCA} alt="OCA Logo" />
+              </Box>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[2],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.tertiary.main,
+                }}
+              >
+                $ {(Number(costoEnvio.oca_suc_dom.NewDataSet.Table.Precio)).toFixed(2)} a domicilio
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[2],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.tertiary.main,
+                }}
+              >
+                $ {(Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio)).toFixed(2)} a sucursal
+              </Typography>
+            </Box>
+            <Box sx={{height:"40px"}}/>
+          </>
+        }
+
 
         <Box
           sx={{
