@@ -61,6 +61,10 @@ const SearchProductsResults = () => {
 
   const [putFilters, setPutFilters] = useState([]);
   const [putSort, setPutSort] = useState("");
+  const [putFiltersId, setPutFiltersId] = useState([]);
+
+  const [filtrosFin,setFiltrosFin]=useState(false)
+
 
   useEffect(() => {
     // filter products by keyword entered in search bar
@@ -88,6 +92,10 @@ const SearchProductsResults = () => {
       prodsCategoria(false);
     }
   }, [keyword, categorias]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // useEffect(() => {
+  //   if(putFilters.length)
+  // }, [putFilters,putSort]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const prodsCategoria = (paramSearch) => {
     const catProd = new FormData();
@@ -149,6 +157,18 @@ const SearchProductsResults = () => {
       });
     });
   };
+
+  const handleAplicarFiltros=()=>{
+    if(putFilters.length!==0 || putSort!==""){
+      setFiltrosFin(true)
+      if(putSort!==""){
+        const prod=new FormData()
+        prod.append("bypage",15)
+        prod.append("page",0)
+        ProdAPI()
+      }
+    }
+  }
 
   return (
     <>
@@ -231,7 +251,17 @@ const SearchProductsResults = () => {
                             disabled
                           />
                         </Box>
-                        <Filter filtros={filtrosCategoria} putSort={putSort} />
+                        <Filter
+                          filtros={filtrosCategoria}
+                          setPutFilters={setPutFilters}
+                          putFilters={putFilters}
+                          putSort={putSort}
+                          setPutSort={setPutSort}
+                          setPutFiltersId={setPutFiltersId}
+                          putFiltersId={putFiltersId}
+                          handleAplicarFiltros={handleAplicarFiltros}
+                        />
+                          
                       </Box>
                     </Fade>
                   </Modal>
@@ -259,6 +289,10 @@ const SearchProductsResults = () => {
                       <ChipFilterCategories
                         filteredCategory={res}
                         key={index}
+                        putFilters={putFilters}
+                        putFiltersId={putFiltersId}
+                        setPutFilters={setPutFilters}
+                        setPutFiltersId={setPutFiltersId}
                       />
                     </Stack>
                   );
@@ -269,6 +303,9 @@ const SearchProductsResults = () => {
                   putFilters={putFilters}
                   putSort={putSort}
                   setPutSort={setPutSort}
+                  setPutFiltersId={setPutFiltersId}
+                  putFiltersId={putFiltersId}
+                  handleAplicarFiltros={handleAplicarFiltros}
                 />
               </>
             )}

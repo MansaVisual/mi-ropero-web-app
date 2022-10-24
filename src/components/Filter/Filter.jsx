@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect,useContext } from "react";
 import {
   Divider,
   // Box,
@@ -23,12 +23,15 @@ import {
   ListItemTextStyled,
 } from "./styles";
 import theme from "../../styles/theme";
+import { UseProdsContext } from "../../context/ProdsContext";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort: false,
     categoriasCol: true,
   });
+
+  const {ProdAPI}=useContext(UseProdsContext)
 
   const putFilters = props.putFilters;
   const setPutFilters = props.setPutFilters;
@@ -38,6 +41,7 @@ const Filter = (props) => {
   const coleccion = props.coleccion;
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
+  const handleAplicarFiltros = props.handleAplicarFiltros
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -100,6 +104,7 @@ const Filter = (props) => {
               ? "#998edb"
               : "#443988",
         }}
+        onClick={()=>handleAplicarFiltros()}
       >
         Aplicar
       </Button>
@@ -113,7 +118,7 @@ const Filter = (props) => {
         <List component="div">
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="Mas relevante primero"
+            defaultValue=""
             name="radio-buttons-group"
             onChangeCapture={(e) => handleChangeSort(e)}
           >
@@ -237,24 +242,24 @@ const Filter = (props) => {
                         control={
                           <Checkbox
                             checked={putFilters.find(
-                              (element) => element === res2.valor
+                              (element) => element.nombre === res2.valor
                             )}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element === e.target.name
+                                  (element) => element.nombre === e.target.name
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element !== e.target.name
+                                  (element) => element.nombre !== e.target.name
                                 );
                                 if (oldArray.length === 0) {
-                                  setPutFilters([...putFilters, e.target.name]);
+                                  setPutFilters([...newArray,{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
                                 } else {
                                   setPutFilters(newArray);
                                 }
                               } else {
-                                setPutFilters([...putFilters, e.target.name]);
+                                setPutFilters([{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
                               }
                             }}
                           />
@@ -296,24 +301,24 @@ const Filter = (props) => {
                         control={
                           <Checkbox
                             checked={putFilters.find(
-                              (element) => element === res2.valor
+                              (element) => element.nombre === res2.valor
                             )}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element === e.target.name
+                                  (element) => element.nombre === e.target.name
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element !== e.target.name
+                                  (element) => element.nombre !== e.target.name
                                 );
                                 if (oldArray.length === 0) {
-                                  setPutFilters([...putFilters, e.target.name]);
+                                  setPutFilters([...newArray,{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
                                 } else {
                                   setPutFilters(newArray);
                                 }
                               } else {
-                                setPutFilters([...putFilters, e.target.name]);
+                                setPutFilters([{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
                               }
                             }}
                           />

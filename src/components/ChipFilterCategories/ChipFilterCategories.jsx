@@ -2,8 +2,12 @@ import React from "react";
 import { Chip, ListItem } from "@mui/material";
 import theme from "../../styles/theme";
 
-const ChipFilterCategories = ({ filteredCategory, key }) => {
-  const handleDelete = (chipToDelete) => () => {};
+const ChipFilterCategories = ({ filteredCategory, key, putFilters,putFiltersId,setPutFilters,setPutFiltersId }) => {
+  const handleDelete = () => {
+    // let newArrayId = putFiltersId.filter(
+    //   (element) => element !== key
+    // );
+  };
 
   return (
     <ListItem
@@ -15,8 +19,8 @@ const ChipFilterCategories = ({ filteredCategory, key }) => {
       }}
     >
       <Chip
-        label={filteredCategory}
-        onDelete={(filteredCategory) => handleDelete(filteredCategory)}
+        label={filteredCategory.nombre}
+        onDelete={() => handleDelete()}
         sx={{
           backgroundColor: "hsla(248, 84%, 93%, 1)",
           color: "hsla(351, 6%, 25%, 1)",
