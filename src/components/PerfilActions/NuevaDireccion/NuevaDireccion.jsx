@@ -36,11 +36,10 @@ const NuevaDireccion = () => {
   const [loader, setLoader] = useState(false);
 
   const [campoObligatorio, setCampoObligatorio] = useState(false);
-  const [errorPhone, setErrorPhone] = useState(false);
   const [errorCodPostal, setErrorCodPostal] = useState(false);
   const [errorDireccion, setErrorDireccion] = useState(false);
-  const [errorDirCargada, setErrorDirCargada] = useState(false);
-  const [errorRecargarDir, setErrorRecargarDir] = useState(false);
+  /*   const [errorDirCargada, setErrorDirCargada] = useState(false);
+  const [errorRecargarDir, setErrorRecargarDir] = useState(false); */
   const [errorLocalidad, setErrorLocalidad] = useState(false);
 
   const [viewDireccion, setViewDireccion] = useState(false);
@@ -136,7 +135,7 @@ const NuevaDireccion = () => {
       (res) => {
         if (res.status === 'error') {
           setErrorCodPostal(true);
-          setBuscandoDir(false);
+          /* setBuscandoDir(false); */
           throwError('codigoPostal', 'labelCodigoPostal');
           scrollTop();
           setLoader(false);
@@ -177,7 +176,7 @@ const NuevaDireccion = () => {
         await setResDirecciones(res.result);
         setViewDireccion(true);
       } else {
-        setBuscandoDir(false);
+        /*  setBuscandoDir(false); */
         setLoader(false);
         setErrorDireccion(true);
         throwError('calle', 'labelCalle');
@@ -235,7 +234,7 @@ const NuevaDireccion = () => {
         if (res.status === 'success') {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
-          setBuscandoDir(false);
+          /*   setBuscandoDir(false); */
           setLoader(false);
           setErrorDireccion(true);
           throwError('calle', 'labelCalle');
@@ -291,12 +290,6 @@ const NuevaDireccion = () => {
           <p>Debe completar los campos obligatorios para avanzar</p>
         </div>
       )}
-      {errorPhone && (
-        <div className='errorBox'>
-          <CancelOutlinedIcon color='secondary' className='cruz' />
-          <p>El número de telefono no es válido.</p>
-        </div>
-      )}
       {errorCodPostal && (
         <div className='errorBox'>
           <CancelOutlinedIcon color='secondary' className='cruz' />
@@ -309,7 +302,7 @@ const NuevaDireccion = () => {
           <p>No se encontró la direccion establecida.</p>
         </div>
       )}
-      {errorDirCargada && (
+      {/*       {errorDirCargada && (
         <div className='errorBox'>
           <CancelOutlinedIcon color='secondary' className='cruz' />
           <p>Debe seleccionar una dirección</p>
@@ -320,7 +313,7 @@ const NuevaDireccion = () => {
           <CancelOutlinedIcon color='secondary' className='cruz' />
           <p>Ocurrió un error de validación. Vuelva a intentarlo</p>
         </div>
-      )}
+      )} */}
       {errorLocalidad && (
         <div className='errorBox'>
           <CancelOutlinedIcon color='secondary' className='cruz' />

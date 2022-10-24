@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect } from 'react';
 import {
   Divider,
   // Box,
@@ -13,16 +13,16 @@ import {
   Checkbox,
   Button,
   Typography,
-} from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import {
   FormControlLabelStyled,
   // ListItemPriceRangeStyled,
   ListItemStyled,
   ListItemTextStyled,
-} from "./styles";
-import theme from "../../styles/theme";
+} from './styles';
+import theme from '../../styles/theme';
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
@@ -38,7 +38,7 @@ const Filter = (props) => {
   const coleccion = props.coleccion;
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
-  const handleAplicarFiltros = props.handleAplicarFiltros
+  const handleAplicarFiltros = props.handleAplicarFiltros;
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -65,22 +65,22 @@ const Filter = (props) => {
   return (
     <List
       sx={{
-        width: "100%",
+        width: '100%',
         maxWidth: 297,
-        bgcolor: "transparent",
+        bgcolor: 'transparent',
         fontFamily: theme.typography.fontFamily,
       }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
+      component='nav'
+      aria-labelledby='nested-list-subheader'
       subheader={
         <ListSubheader
-          component="div"
-          id="nested-list-subheader"
+          component='div'
+          id='nested-list-subheader'
           sx={{
-            bgcolor: "transparent",
+            bgcolor: 'transparent',
             fontSize: theme.typography.fontSize[9],
             paddingLeft: 0,
-            paddingBottom: "22px",
+            paddingBottom: '22px',
             fontFamily: theme.typography.fontFamily,
           }}
         >
@@ -89,68 +89,68 @@ const Filter = (props) => {
       }
     >
       <Button
-        className="botonAplicarFiltros"
+        className='botonAplicarFiltros'
         disabled={
-          putSort === "" && putFilters.length === 0 && putCategory === ""
+          putSort === '' && putFilters.length === 0 && putCategory === ''
             ? true
             : false
         }
         sx={{
           background:
-            putSort === "" && putFilters.length === 0 && putCategory === ""
-              ? "#998edb"
-              : "#443988",
+            putSort === '' && putFilters.length === 0 && putCategory === ''
+              ? '#998edb'
+              : '#443988',
         }}
-        onClick={()=>handleAplicarFiltros()}
+        onClick={() => handleAplicarFiltros()}
       >
         Aplicar
       </Button>
 
       <Divider />
-      <ListItemStyled onClick={() => handleClick("sort")}>
-        <ListItemText primary="Ordenar por" sx={ListItemTextStyled} />
+      <ListItemStyled onClick={() => handleClick('sort')}>
+        <ListItemText primary='Ordenar por' sx={ListItemTextStyled} />
         {openFilter.sort ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={openFilter.sort} timeout="auto" unmountOnExit>
-        <List component="div">
+      <Collapse in={openFilter.sort} timeout='auto' unmountOnExit>
+        <List component='div'>
           <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue=""
-            name="radio-buttons-group"
+            aria-labelledby='demo-radio-buttons-group-label'
+            defaultValue=''
+            name='radio-buttons-group'
             onChangeCapture={(e) => handleChangeSort(e)}
           >
             <FormControlLabel
-              value="Mas relevante primero"
-              checked={putSort === "Mas relevante primero" ? true : false}
+              value='Mas relevante primero'
+              checked={putSort === 'Mas relevante primero' ? true : false}
               control={<Radio />}
-              label="Mas relevante primero"
+              label='Mas relevante primero'
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
-              value="Menos relevante primero"
-              checked={putSort === "Menos relevante primero" ? true : false}
+              value='Menos relevante primero'
+              checked={putSort === 'Menos relevante primero' ? true : false}
               control={<Radio />}
-              label="Menos relevante primero"
+              label='Menos relevante primero'
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
-              value="Mayor precio primero"
-              checked={putSort === "Mayor precio primero" ? true : false}
+              value='Mayor precio primero'
+              checked={putSort === 'Mayor precio primero' ? true : false}
               control={<Radio />}
-              label="Mayor precio primero"
+              label='Mayor precio primero'
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
-              value="Menor precio primero"
-              checked={putSort === "Menor precio primero" ? true : false}
+              value='Menor precio primero'
+              checked={putSort === 'Menor precio primero' ? true : false}
               control={<Radio />}
-              label="Menor precio primero"
+              label='Menor precio primero'
               sx={FormControlLabelStyled}
             />
           </RadioGroup>
         </List>
       </Collapse>
-      {putSort !== "" && (
+      {putSort !== '' && (
         <Typography
           sx={{
             fontSize: theme.typography.fontSize[3],
@@ -165,28 +165,29 @@ const Filter = (props) => {
 
       {coleccion !== undefined && coleccion.length !== 0 && (
         <Fragment>
-          <ListItemStyled onClick={() => handleClick("categoriasCol")}>
-            <ListItemText primary="Categorias" sx={ListItemTextStyled} />
+          <ListItemStyled onClick={() => handleClick('categoriasCol')}>
+            <ListItemText primary='Categorias' sx={ListItemTextStyled} />
             {openFilter.categoriasCol ? <ExpandLess /> : <ExpandMore />}
           </ListItemStyled>
           <Collapse
             in={openFilter.categoriasCol}
-            timeout="auto"
+            timeout='auto'
             unmountOnExit
-            className="scrollFilter"
+            className='scrollFilter'
             sx={{
-              maxHeight: "60vh",
-              overflowY: "scroll",
+              maxHeight: '60vh',
+              overflowY: 'scroll',
             }}
           >
             {coleccion.productos_categorias.map((res2, i2) => {
+              console.log(res2);
               return (
                 <Fragment key={i2}>
-                  {res2.nombre !== "ROPA" &&
-                    res2.nombre !== "CALZADO" &&
-                    res2.nombre !== "ACCESORIOS" &&
-                    res2.nombre !== "BELLEZA" && (
-                      <List component="div" sx={{ paddingLeft: "4px" }}>
+                  {res2.nombre !== 'ROPA' &&
+                    res2.nombre !== 'CALZADO' &&
+                    res2.nombre !== 'ACCESORIOS' &&
+                    res2.nombre !== 'BELLEZA' && (
+                      <List component='div' sx={{ paddingLeft: '4px' }}>
                         <FormControlLabel
                           label={res2.nombre}
                           control={
@@ -223,40 +224,53 @@ const Filter = (props) => {
               </ListItemStyled>
               <Collapse
                 in={openFilter[res.nombre]}
-                timeout="auto"
+                timeout='auto'
                 unmountOnExit
-                className="scrollFilter"
+                className='scrollFilter'
                 sx={{
-                  maxHeight: "60vh",
-                  overflowY: "scroll",
+                  maxHeight: '60vh',
+                  overflowY: 'scroll',
                 }}
               >
                 {res.valores.map((res2, i2) => {
                   return (
-                    <List component="div" key={i2}>
+                    <List component='div' key={i2}>
                       <FormControlLabel
                         label={res2.valor}
                         control={
                           <Checkbox
                             checked={putFilters.find(
-                              (element) => element.nombre === res2.valor
+                              (element) => element.nombre === res2.valor,
                             )}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element.nombre === e.target.name
+                                  (element) => element.nombre === e.target.name,
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element.nombre !== e.target.name
+                                  (element) => element.nombre !== e.target.name,
                                 );
                                 if (oldArray.length === 0) {
-                                  setPutFilters([...newArray,{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
+                                  setPutFilters([
+                                    ...newArray,
+                                    {
+                                      nombre: e.target.name,
+                                      id: res2.idcaracteristicavalor,
+                                      idName: res2.idcaracteristica,
+                                    },
+                                  ]);
                                 } else {
                                   setPutFilters(newArray);
                                 }
                               } else {
-                                setPutFilters([{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
+                                setPutFilters([
+                                  {
+                                    nombre: e.target.name,
+                                    id: res2.idcaracteristicavalor,
+                                    idName: res2.idcaracteristica,
+                                  },
+                                ]);
                               }
                             }}
                           />
@@ -282,40 +296,53 @@ const Filter = (props) => {
               </ListItemStyled>
               <Collapse
                 in={openFilter[res.nombre]}
-                timeout="auto"
+                timeout='auto'
                 unmountOnExit
-                className="scrollFilter"
+                className='scrollFilter'
                 sx={{
-                  maxHeight: "60vh",
-                  overflowY: "scroll",
+                  maxHeight: '60vh',
+                  overflowY: 'scroll',
                 }}
               >
                 {res.valores.map((res2, i2) => {
                   return (
-                    <List component="div" key={i2}>
+                    <List component='div' key={i2}>
                       <FormControlLabel
                         label={res2.valor}
                         control={
                           <Checkbox
                             checked={putFilters.find(
-                              (element) => element.nombre === res2.valor
+                              (element) => element.nombre === res2.valor,
                             )}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element.nombre === e.target.name
+                                  (element) => element.nombre === e.target.name,
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element.nombre !== e.target.name
+                                  (element) => element.nombre !== e.target.name,
                                 );
                                 if (oldArray.length === 0) {
-                                  setPutFilters([...newArray,{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
+                                  setPutFilters([
+                                    ...newArray,
+                                    {
+                                      nombre: e.target.name,
+                                      id: res2.idcaracteristicavalor,
+                                      idName: res2.idcaracteristica,
+                                    },
+                                  ]);
                                 } else {
                                   setPutFilters(newArray);
                                 }
                               } else {
-                                setPutFilters([{"nombre": e.target.name,"id":res2.idcaracteristicavalor}]);
+                                setPutFilters([
+                                  {
+                                    nombre: e.target.name,
+                                    id: res2.idcaracteristicavalor,
+                                    idName: res2.idcaracteristica,
+                                  },
+                                ]);
                               }
                             }}
                           />

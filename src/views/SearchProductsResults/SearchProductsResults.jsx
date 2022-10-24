@@ -158,9 +158,10 @@ const SearchProductsResults = () => {
   };
 
   const handleAplicarFiltros = () => {
+    console.log(putFilters);
     let array = [];
     for (let i = 0; i < putFilters.length; i++) {
-      array.push(putFilters[i].id);
+      array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
     }
     console.log(array.toString());
 
