@@ -17,20 +17,6 @@ const MisDatos = () => {
 
   const [caracteristicasFavs, setCaracteristicasFavs] = useState([]);
 
-  const tipodeRopa = ['deportiva', 'casual', 'formal'];
-
-  const estilodeRopa = [
-    'hippie',
-    'urbano',
-    'formal',
-    'hippie',
-    'urbano',
-    'formal',
-    'hippie',
-    'urbano',
-    'formal',
-  ];
-
   const [arrayGeneros, setArrayGeneros] = useState([]);
 
   const [genero, setGenero] = useState('0');

@@ -10,7 +10,6 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { TagNewStyled } from "./styles";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
