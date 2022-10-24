@@ -15,7 +15,10 @@ const MisFavoritos = ({setTypeNav}) => {
 
     return (
       <>
-        {listFavs.length===0? <Loader spin={"spinnerM"}/> :
+        {listFavs.length===0? 
+        <div style={{ height: '50vh', marginTop: '18px' }}>
+          <Loader spin={'spinnerM'} />
+        </div> :
           <div className="misFavsContainer">
               <Breadcrumbs links={pathnames}/>
               <p className="title">MIS FAVORITOS</p>
@@ -28,6 +31,7 @@ const MisFavoritos = ({setTypeNav}) => {
                               productName={item.producto_nombre}
                               idProducto={item.producto_id}
                               itemFav={item}
+                              precioOferta={item.precio_oferta}
                               tag="NUEVO"
                           />
                       </div>

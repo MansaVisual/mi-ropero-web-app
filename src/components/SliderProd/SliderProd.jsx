@@ -118,18 +118,20 @@ export default class SimpleSlider extends Component {
           <Loader spin={"spinnerG"} />
         ) : (
           <Slider {...settings}>
-            {contenido.map((item, index) => (
-              <Box key={index}>
-                <ProductCard
-                  imageCard={item.imagenes[0].imagen_vertical}
-                  productName={item.nombre}
-                  productPrice={item.precio}
-                  idProducto={item.idproducto}
-                  datosTienda={item.tienda}
-                  tag="NUEVO"
-                />
-              </Box>
-            ))}
+            {contenido.map((item, index) => {console.log(item)
+              return(
+                <Box key={index}>
+                  <ProductCard
+                    imageCard={item.imagenes[0].imagen_vertical}
+                    productName={item.nombre}
+                    productPrice={item.precio}
+                    idProducto={item.idproducto}
+                    datosTienda={item.tienda}
+                    precioOferta={item.precio_oferta}
+                    tag="NUEVO"
+                  />
+                </Box>
+            )})}
           </Slider>
         )}
       </div>

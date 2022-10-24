@@ -295,6 +295,7 @@ const SearchProductsResults = () => {
                       idProducto={product.idproducto}
                       tag="NUEVO"
                       datosTienda={product.tienda}
+                      precioOferta={product.precio_oferta}
                     />
                   );
                 })

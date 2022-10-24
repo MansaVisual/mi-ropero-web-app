@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext,useEffect } from "react";
 import {
   Divider,
   Box,
@@ -25,13 +25,14 @@ const ProductCard = ({
   idProducto,
   datosTienda,
   itemFav,
+  precioOferta
 }) => {
   const { userLog, infoUser } = useContext(UseLoginContext);
   const navigate=useNavigate()
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
-  const [isOnSale] = useState(false);
+  const [isOnSale,setIsOnSale] = useState(false);
 
   const handleMouseEnter = () => {
     buttonRef.current.style.opacity = "1";
@@ -39,6 +40,13 @@ const ProductCard = ({
   const handleMouseLeave = () => {
     buttonRef.current.style.opacity = "0";
   };
+
+  useEffect(() => {
+    if(precioOferta!=="0.00"){
+      setIsOnSale(true)
+    }
+  }, [precioOferta]);// eslint-disable-line react-hooks/exhaustive-deps
+
 
   return (
     <Card
@@ -66,10 +74,6 @@ const ProductCard = ({
               },
             }}
           />
-
-          <TagNewStyled sx={{ bottom: 0, left: 0 }}>
-            {isOnSale ? "15% OFF" : tag}
-          </TagNewStyled>
         </CardActionArea>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
           {userLog !== "" && (
@@ -153,7 +157,7 @@ const ProductCard = ({
                 color: theme.palette.secondary.main,
               }}
             >
-              ${productPrice}
+              ${precioOferta}
             </Typography>
           </>
         ) : (
