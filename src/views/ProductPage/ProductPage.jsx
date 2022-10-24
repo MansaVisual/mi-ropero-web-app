@@ -96,7 +96,11 @@ const ProductPage = () => {
         prod,
         "productos",
         "get"
-      ).then((res)=>{console.log(res.result);if(res.status==="success"){setProd(res.result)}})
+      ).then((res)=>{
+        if(res.status==="success"){
+          setProd(res.result)
+        }
+      })
     }
   }, [itemID,tiendaID]);// eslint-disable-line react-hooks/exhaustive-deps
 

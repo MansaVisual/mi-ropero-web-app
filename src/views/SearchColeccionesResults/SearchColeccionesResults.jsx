@@ -85,9 +85,9 @@ const SearchProductsResults = () => {
     if(coleccionName==="NuevosIngresos"){
         numCol=71
     }else if(coleccionName==="Recomendados"){
-        numCol="73"
+        numCol=73
     }else if(coleccionName==="MejoresVendedores"){
-        numCol="73"
+        numCol=73
     }
 
     const col=new FormData()
@@ -100,10 +100,10 @@ const SearchProductsResults = () => {
         "colecciones",
         "detail"
     ).then((res)=>{
-      if(res.status==="success"){
+      if(res.status==="success"){console.log(res)
         setColeccion(res.result)
         setProds(res.result.productos)
-        setTotalPages(res.result.total_paginas)
+        setTotalPages(res.result.productos_total_paginas)
       }
   })
   }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
@@ -127,9 +127,10 @@ const SearchProductsResults = () => {
       const col=new FormData()
       col.append("idcoleccion",numCol)
       col.append("idcategoria",idCat)
-      col.append("bypage",1)
+      col.append("bypage",15)
       col.append("page",1)
-  
+      // col.append("caracteristicas","12:764, 1:37")
+
       ColeccionAPI(
           col,
           "colecciones",
@@ -138,10 +139,9 @@ const SearchProductsResults = () => {
         if(res.status==="success"){console.log(res.result)
           setProds(res.result.productos)
           setFiltrosCategoria(res.result)
+          setTotalPages(res.result.productos_total_paginas)
         }
       })
-
-      
     }
   }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -320,7 +320,8 @@ const SearchProductsResults = () => {
                       tag={product.tag}
                       datosTienda={product.tienda}
                       tiendaID={product.idtienda}
-                    />
+                      precioOferta={product.precio_oferta}
+                      />
                   );
                 })
               ) : 
