@@ -2,11 +2,11 @@ export const handleInputChange = (form, setForm) => {
   setForm({
     ...form,
     alias: document.getElementById('alias').value,
-    telefono: document.getElementById('telefono').value,
     calle: document.getElementById('calle').value,
     alturaKM: document.getElementById('alturaKM').value,
     piso: document.getElementById('piso').value,
     depto: document.getElementById('depto').value,
+    provincia: document.getElementById('provincia').value,
     barrioLocalidad: document.getElementById('barrioLocalidad').value,
     entrecalle1: document.getElementById('entrecalle1').value,
     entrecalle2: document.getElementById('entrecalle2').value,
@@ -17,7 +17,6 @@ export const handleInputChange = (form, setForm) => {
 
 export const chargeForm = async (form, setProvincia) => {
   document.getElementById('nombreApellido').value = form.nombreApellido;
-  document.getElementById('telefono').value = form.telefono;
   document.getElementById('calle').value = form.calle;
   document.getElementById('alturaKM').value = form.alturaKM;
   document.getElementById('piso').value = form.piso;

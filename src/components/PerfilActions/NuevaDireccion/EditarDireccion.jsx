@@ -6,20 +6,37 @@ import leftArrow from '../../../assets/img/leftArrow.png';
 import { Button, MenuItem, Select, TextField } from '@mui/material';
 import { UseFormContext } from '../../../context/FormContext';
 import { UseLoginContext } from '../../../context/LoginContext';
+import { UsePerfilContext } from '../../../context/PerfilContext';
 import { handleInputChange, onFocus } from './direccFunciones';
 import PopUpLocalidad from '../../FormCheckout/PopUpLocalidad';
 import PopUpFinalDir from './PopUpFinalDir';
 import Loader from '../../Loader/Loader';
 
-const NuevaDireccion = () => {
+const EditarDireccion = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
   const { FormAPI } = useContext(UseFormContext);
   const { userLog } = useContext(UseLoginContext);
+  const { direccionSelecc } = useContext(UsePerfilContext);
 
-  const [form, setForm] = useState([]);
+  const [form, setForm] = useState({
+    alias: '',
+    telefono: '',
+    calle: '',
+    alturaKM: '',
+    piso: '',
+    depto: '',
+    provincia: '',
+    barrioLocalidad: '',
+    codigo_postal: '',
+    entrecalle1: '',
+    entrecalle2: '',
+    infoAdicional: '',
+  });
+
+  console.log(form, direccionSelecc);
 
   let clase = 'formObligatorio';
   let clase2 = 'formObligatorioTitle';
@@ -31,6 +48,29 @@ const NuevaDireccion = () => {
       }
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (direccionSelecc) {
+      console.log('first');
+      setForm({
+        iddireccion: direccionSelecc.iddireccion,
+        alias: direccionSelecc.nombre,
+        calle: direccionSelecc.calle,
+        alturaKM: direccionSelecc.numero,
+        piso: direccionSelecc.piso,
+        depto: direccionSelecc.departamento,
+        provincia: direccionSelecc.provincia,
+        barrioLocalidad: direccionSelecc.localidad,
+        codigoPostal: direccionSelecc.codigo_postal,
+        entrecalle1: direccionSelecc.entre_calle_1,
+        entrecalle2: direccionSelecc.entre_calle_2,
+        infoAdicional: direccionSelecc.informacion_adicional,
+      });
+    }
+  }, [direccionSelecc]);
+
+  const [direccGuardada, setDireccGuardada] = useState(false);
+  const [formGuardado, setFormGuardado] = useState({});
 
   const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -47,6 +87,8 @@ const NuevaDireccion = () => {
   const [resDirecciones, setResDirecciones] = useState([]);
   const [guardarDireccion, setGuardarDireccion] = useState(false);
   const [provincia, setProvincia] = useState([]);
+
+  console.log(provincia);
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -135,11 +177,12 @@ const NuevaDireccion = () => {
     await FormAPI(formCodPostal, 'operaciones', 'get_oca_offices').then(
       (res) => {
         if (res.status === 'error') {
+          console.log('loader false');
+          setLoader(false);
           setErrorCodPostal(true);
           setBuscandoDir(false);
           throwError('codigoPostal', 'labelCodigoPostal');
           scrollTop();
-          setLoader(false);
           return;
         } else {
           setSucursales(res.result);
@@ -194,7 +237,7 @@ const NuevaDireccion = () => {
     if (guardarDireccion) {
       console.log('validando');
       const formDireccion = new FormData();
-      formDireccion.append('idcliente', userLog);
+      formDireccion.append('iddireccion', form.iddireccion);
       formDireccion.append('nombre', document.getElementById('alias').value);
       formDireccion.append('calle', document.getElementById('calle').value);
       formDireccion.append('numero', document.getElementById('alturaKM').value);
@@ -230,7 +273,7 @@ const NuevaDireccion = () => {
         document.getElementById('infoAdicional').value,
       );
       formDireccion.append('normalized', direccion.raw_data);
-      FormAPI(formDireccion, 'direcciones', 'insert').then(async (res) => {
+      FormAPI(formDireccion, 'direcciones', 'update').then(async (res) => {
         console.log(res);
         if (res.status === 'success') {
           navigate(`/perfil/MIS DIRECCIONES`);
@@ -283,7 +326,7 @@ const NuevaDireccion = () => {
     <div className='nuevaDirecContainer'>
       <Breadcrumbs links={pathnames} />
       <div className='titleSection'>
-        <p className='title'>NUEVA DIRECCION</p>
+        <p className='title'>EDITAR DIRECCION</p>
       </div>
       {campoObligatorio && (
         <div className='errorBox'>
@@ -339,7 +382,8 @@ const NuevaDireccion = () => {
             size='small'
             id='alias'
             placeholder='Casa, trabajo, etc.'
-            onChangeCapture={(e) => {
+            value={form.alias}
+            onChangeCapture={() => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
             }}
@@ -353,34 +397,7 @@ const NuevaDireccion = () => {
             }}
           />
         </div>
-        <div className='inputBox'>
-          {/* <p className='labelInput' id='labelTelefono'>
-            Teléfono de contacto *
-          </p>
-          <TextField
-            color='primary'
-            className='input'
-            size='small'
-            id='telefono'
-            placeholder='+54  11 - 4417 - 8005'
-            onChangeCapture={() => {
-              handleInputChange(form, setForm);
-              setCampoObligatorio(false);
-              setErrorPhone(false);
-            }}
-            onFocus={(e) => onFocus(e, clase, clase2, 'labelTelefono')}
-            sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
-                  borderColor: campoObligatorio && '#FF3F20',
-                },
-              },
-            }}
-          />
-          <p className='bottomText'>
-            Llamarán a este número si hay algún problema con el envío.
-          </p> */}
-        </div>
+        <div className='inputBox'></div>
       </div>
       <div className='inputContainer'>
         <div className='inputBox'>
@@ -393,6 +410,7 @@ const NuevaDireccion = () => {
             size='small'
             id='calle'
             placeholder='123'
+            value={form.calle}
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
@@ -420,6 +438,7 @@ const NuevaDireccion = () => {
               size='small'
               id='alturaKM'
               placeholder='5'
+              value={form.alturaKM}
               onChangeCapture={() => {
                 handleInputChange(form, setForm);
                 setCampoObligatorio(false);
@@ -442,6 +461,7 @@ const NuevaDireccion = () => {
               className='locationInput'
               size='small'
               id='piso'
+              value={form.piso}
               placeholder='3'
               onChangeCapture={() => {
                 handleInputChange(form, setForm);
@@ -457,6 +477,7 @@ const NuevaDireccion = () => {
               size='small'
               id='depto'
               placeholder='2'
+              value={form.depto}
               onChangeCapture={(e) => {
                 handleInputChange(form, setForm);
                 setCampoObligatorio(false);
@@ -475,7 +496,7 @@ const NuevaDireccion = () => {
             placeholder='Ciudad Autónoma de Buenos Aires'
             size='small'
             id='provincia'
-            value={provincia === '' ? 'ejemplo' : provincia}
+            value={provincia}
             onChange={(event) => {
               handleProvinciaInput(event);
               setErrorDireccion(false);
@@ -520,13 +541,12 @@ const NuevaDireccion = () => {
             Localidad / Barrio *
           </p>
           <TextField
-            placeholder={
-              /* provincia === '' && */ 'Primero debes ingresar una provincia'
-            }
+            placeholder={'Primero debes ingresar una provincia'}
             disabled={provincia === '' ? true : false}
             className='input'
             size='small'
             id='barrioLocalidad'
+            value={form.barrioLocalidad}
             onChangeCapture={() => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
@@ -557,6 +577,7 @@ const NuevaDireccion = () => {
             size='small'
             id='entrecalle1'
             placeholder='Avenida Callao'
+            value={form.entrecalle1}
             onChangeCapture={() => {
               handleInputChange(form, setForm);
             }}
@@ -570,6 +591,7 @@ const NuevaDireccion = () => {
             size='small'
             id='entrecalle2'
             placeholder='Rodríguez Peña'
+            value={form.entrecalle2}
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
             }}
@@ -578,9 +600,7 @@ const NuevaDireccion = () => {
       </div>
       <div className='inputContainer'>
         <div className='inputBox'>
-          <p className='labelInput' id='labelCodigoPostal'>
-            Código postal *
-          </p>
+          <p className='labelInput'>Código postal *</p>
           <div className='postalCode'>
             <TextField
               color='primary'
@@ -588,13 +608,14 @@ const NuevaDireccion = () => {
               size='small'
               id='codigoPostal'
               placeholder='1428'
+              value={form.codigoPostal}
               onChangeCapture={(e) => {
                 handleInputChange(form, setForm);
                 setErrorCodPostal(false);
                 setErrorDireccion(false);
                 setCampoObligatorio(false);
               }}
-              onFocus={(e) => onFocus(e, clase, clase2, 'labelCodigoPostal')}
+              onFocus={(e) => onFocus(e, clase, clase2, 'labelTelefono')}
             />
             <a
               href='https://www.correoargentino.com.ar/formularios/cpa'
@@ -618,6 +639,7 @@ const NuevaDireccion = () => {
             className='textArea'
             size='small'
             placeholder='Ejemplo: Barrio Privado San Martín, Puerta roja, etc.'
+            value={form.infoAdicional}
             onChangeCapture={() => {
               handleInputChange(form, setForm);
             }}
@@ -672,4 +694,4 @@ const NuevaDireccion = () => {
   );
 };
 
-export default NuevaDireccion;
+export default EditarDireccion;

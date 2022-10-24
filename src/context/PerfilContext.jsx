@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 export const UsePerfilContext = createContext();
 
@@ -61,6 +61,8 @@ export const PerfilContext = ({ children }) => {
       const dir = new FormData();
       dir.append('comprador_id', userLog);
       dir.append('estado', i + 1);
+      dir.append('page', 1);
+      dir.append('bypage', 10);
       console.log(dir);
       PerfilAPI(dir, 'operaciones', 'all_buyer').then((res) => {
         console.log(res);

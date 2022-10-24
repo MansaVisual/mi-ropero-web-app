@@ -10,8 +10,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import DetalleCompra from '../../components/PerfilActions/DetalleCompra';
 import MisMensajes from '../../components/PerfilActions/MisMensajes';
 import NuevaDireccion from '../../components/PerfilActions/NuevaDireccion/NuevaDireccion';
-import EditarDireccion from '../../components/PerfilActions/EditarDireccion';
 import { UseLoginContext } from '../../context/LoginContext';
+import EditarDireccion from '../../components/PerfilActions/NuevaDireccion/EditarDireccion';
 
 const Perfil = () => {
   const params = useParams();
