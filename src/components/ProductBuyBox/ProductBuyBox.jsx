@@ -95,7 +95,7 @@ const ProductBuyBox = ({prod,itemID}) => {
       envio,
       "productos",
       "check_shipping_cost"
-    ).then((res)=>{console.log(res)
+    ).then((res)=>{
       setLoad2(false)
       if(res.status==="success"){
         setCostoEnvio(res.result)
@@ -103,8 +103,6 @@ const ProductBuyBox = ({prod,itemID}) => {
       }
     })
   }
-
-  console.log(costoEnvio)
 
   return (
     <>

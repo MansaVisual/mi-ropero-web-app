@@ -35,7 +35,6 @@ const Filter = (props) => {
   const putSort = props.putSort;
   const setPutSort = props.setPutSort;
   const filtros = props.filtros.caracteristicas;
-  console.log(props.filtros);
   const coleccion = props.coleccion;
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
