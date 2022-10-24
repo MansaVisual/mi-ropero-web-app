@@ -32,6 +32,7 @@ const MisFavoritos = ({setTypeNav}) => {
                               idProducto={item.producto_id}
                               itemFav={item}
                               precioOferta={item.precio_oferta}
+                              tiendaID={item.idtienda}
                               tag="NUEVO"
                           />
                       </div>

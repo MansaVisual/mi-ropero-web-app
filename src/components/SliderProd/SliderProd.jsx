@@ -118,7 +118,7 @@ export default class SimpleSlider extends Component {
           <Loader spin={"spinnerG"} />
         ) : (
           <Slider {...settings}>
-            {contenido.map((item, index) => {console.log(item)
+            {contenido.map((item, index) => {
               return(
                 <Box key={index}>
                   <ProductCard
@@ -128,6 +128,7 @@ export default class SimpleSlider extends Component {
                     idProducto={item.idproducto}
                     datosTienda={item.tienda}
                     precioOferta={item.precio_oferta}
+                    tiendaID={item.idtienda}
                     tag="NUEVO"
                   />
                 </Box>

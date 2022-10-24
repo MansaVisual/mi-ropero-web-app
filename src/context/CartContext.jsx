@@ -65,6 +65,7 @@ export const CartContext = ({children}) => {
         setCantidadCarrito(cantidad)
         setCostoCarrito(suma)
     },[carrito])// eslint-disable-line react-hooks/exhaustive-deps
+    
 
     return(
         <UseCartContext.Provider value={{CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart,costoCarrito,cantidadCarrito}}>

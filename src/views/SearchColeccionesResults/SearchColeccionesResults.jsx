@@ -319,6 +319,7 @@ const SearchProductsResults = () => {
                       idProducto={product.idproducto}
                       tag={product.tag}
                       datosTienda={product.tienda}
+                      tiendaID={product.idtienda}
                     />
                   );
                 })

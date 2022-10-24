@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 // import { useLocation } from "react-router-dom";
 import {
   Box,
@@ -17,14 +17,23 @@ import DialogComponent from "../Dialog/Dialog";
 import ofertIcon from "../../assets/img/OfertIcon.svg";
 // import OCA from "../../assets/img/OCA.png";
 import theme from "../../styles/theme";
+import { UseLoginContext } from "../../context/LoginContext";
+import Loader from "../Loader/Loader";
+import { UseCartContext } from "../../context/CartContext";
 
-const ProductBuyBox = () => {
+const ProductBuyBox = ({prod,itemID}) => {
   // const location = useLocation();
   // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
   const [openCommentDialog, setOpenCommentDialog] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [load,setLoad]=useState(false)
+
+  const {userLog}=useContext(UseLoginContext)
+  const {CartAPI,setCarrito}=useContext(UseCartContext)
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,6 +50,34 @@ const ProductBuyBox = () => {
   const handleCloseCommentDialog = () => {
     setOpenCommentDialog(false);
   };
+
+  const handleAgregarCarrito=()=>{
+    setLoad(true)
+    const add=new FormData()
+    add.append("idcliente",userLog)
+    add.append("idproducto",itemID)
+    add.append("cantidad",1)
+    CartAPI(
+      add,
+      "carritos",
+      "insert"
+    ).then((res)=>{console.log(res)
+      if(res.result==="El producto se agrego correctamente al carrito"){
+        const CartID = new FormData();
+        CartID.append("idcliente", userLog);
+        CartAPI(CartID, "carritos", "all").then((res) => {
+          if (res.status === "success") {
+            setCarrito(res.result);
+          } else if (res.status === "error") {
+          }
+        });
+        setLoad(false)
+      }else if(res.result==="El producto ya existe en el carrito"){
+        alert("El producto ya se encuentra en tu carrito")
+        setLoad(false)
+      }
+    })
+  }
 
   return (
     <>
@@ -59,9 +96,7 @@ const ProductBuyBox = () => {
               mt: "16px",
             }}
           >
-            Campera deportiva Adidad rosa pastel sin uso, como nueva, talle L
-            mangas largas, su calidad es excelente, algodón super suave, tela
-            impermedable. Adicolor Colorblock 2022. Edición limitada.
+            {prod.descripcion}
           </Typography>
         </Box>
 
@@ -84,7 +119,7 @@ const ProductBuyBox = () => {
                     color: theme.palette.quaternary.contrastText,
                   }}
                 >
-                  $23.600,00
+                  ${prod.precio}
                 </Typography>
               </Box>
               <Box sx={{ maxWidth: "120px" }}>
@@ -218,7 +253,7 @@ const ProductBuyBox = () => {
                     color: theme.palette.primary.main,
                   }}
                 >
-                  $23.600,00
+                  ${prod.precio}
                 </Typography>
                 <Box sx={{ mt: "16px" }}>
                   <Button
@@ -378,12 +413,13 @@ const ProductBuyBox = () => {
           }}
         >
           <Button
-            backgroundColor="hsla(59, 100%, 60%, 1)"
-            color="hsla(351, 6%, 25%, 1)"
-            text="Comprar"
-            endIcon={<FiShoppingCart style={{ fontSize: "18px" }} />}
-            fullWidth
-            height
+          backgroundColor="hsla(59, 100%, 60%, 1)"
+          color="hsla(351, 6%, 25%, 1)"
+          text={load?<Loader spin={"spinnerM"}/>:"Comprar"}
+          endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
+          onClick={()=>handleAgregarCarrito()}
+          fullWidth
+          height
           />
         </Box>
       </Box>

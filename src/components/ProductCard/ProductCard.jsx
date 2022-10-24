@@ -24,7 +24,8 @@ const ProductCard = ({
   idProducto,
   datosTienda,
   itemFav,
-  precioOferta
+  precioOferta,
+  tiendaID
 }) => {
   const { userLog, infoUser } = useContext(UseLoginContext);
   const navigate=useNavigate()
@@ -102,7 +103,7 @@ const ProductCard = ({
             },
           }}
           ref={buttonRef}
-          onClick={()=>navigate(`/productoCard/${idProducto}`)}
+          onClick={()=>navigate(`/productoCard/${idProducto}/${tiendaID}`)}
         >
           Comprar
         </Button>

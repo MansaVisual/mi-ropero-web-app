@@ -56,7 +56,7 @@ function App() {
                         element={<ViewCloset />}
                       />
                       <Route
-                        path='/productoCard/:itemID'
+                        path='/productoCard/:itemID/:tiendaID'
                         element={<ProductPage />}
                       />
                       <Route
