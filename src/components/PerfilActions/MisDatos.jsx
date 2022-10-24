@@ -25,19 +25,28 @@ const MisDatos = () => {
   const [estiloRopa, setEstiloRopa] = useState([]);
   const [tipoRopa, setTipoRopa] = useState([]);
 
-  const handleMultipleSelect = (value, setValue, prevArray) => {
+  const [idTalleRopa, setIdTalleRopa] = useState('');
+  const [idMarcasPreferidas, setIdMarcasPreferidas] = useState([]);
+  const [idEstiloRopa, setIdEstiloRopa] = useState([]);
+  const [idTipoRopa, setIdTipoRopa] = useState([]);
+
+  const [caracteristicasFin, setCaracteristicasFin] = useState([]);
+
+  const handleMultipleSelect = (value, setValue, prevArray, value2, setValue2, prevArray2) => {
     if (prevArray.length === 0) {
       setValue([...prevArray, value]);
+      setValue2([...prevArray2, value2]);
     }
     if (prevArray.length > 0) {
       for (let i = 0; i < prevArray.length; i++) {
         if (value === prevArray[i]) {
-          console.log(value, prevArray[i]);
           setValue(prevArray.filter((item) => item !== prevArray[i]));
+          setValue2(prevArray2.filter((item) => item !== prevArray2[i]));
           return;
         } else {
           if (prevArray.length < 3) {
             setValue([...prevArray, value]);
+            setValue2([...prevArray2, value2]);
           }
         }
       }
@@ -66,6 +75,16 @@ const MisDatos = () => {
       setGenero(infoUser.sexo);
     }
   }, [infoUser]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const coma1=idMarcasPreferidas.length!==0?",":""
+    const coma2=idTipoRopa.length!==0?",":""
+    const coma3=idEstiloRopa.length!==0?",":""
+
+    setCaracteristicasFin(idTalleRopa+coma1+idMarcasPreferidas+coma2+idTipoRopa+coma3+idEstiloRopa)
+  }, [talleRopa,marcasPreferidas,tipoRopa,estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // console.log(caracteristicasFin)
   /*   const [scroll, setScroll] = useState(0);
 
   const [stopScroll, setStopScroll] = useState(false); */
@@ -128,10 +147,11 @@ const MisDatos = () => {
     mail.append('idcliente', userLog);
     mail.append('nombre', document.getElementById('nombre').value);
     mail.append('apellido', document.getElementById('apellido').value);
-    mail.append('email_old', infoUser.email_old);
     mail.append('email', document.getElementById('email').value);
+    mail.append('email_old', infoUser.email_old);
     mail.append('telefono', document.getElementById('telefono').value);
     mail.append('sexo', genero);
+    mail.append("caracteristicas_favoritas",caracteristicasFin)
   };
 
   const ScrollTop = () => {
@@ -217,7 +237,7 @@ const MisDatos = () => {
                 color='primary'
                 className='selectInput'
                 size='small'
-                onChange={(e) => setGenero(e.target.value)}
+                onChange={(e) => {setGenero(e.target.value)}}
                 value={genero === '0' ? 'ejemplo' : genero}
                 defaultValue={genero === '0' ? 'ejemplo' : genero}
                 sx={{
@@ -298,16 +318,16 @@ const MisDatos = () => {
                   <em>Seleccioná una opción</em>
                 </MenuItem>
                 {caracteristicasFavs.length !== 0 &&
-                  caracteristicasFavs[0].valores.map((option, i) => (
+                  caracteristicasFavs[0].valores.map((option, i) => {return(
                     <MenuItem
                       key={i}
                       value={option.valor}
                       sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() => setTalleRopa(option.valor)}
+                      onClick={() => {setTalleRopa(option.valor);setIdTalleRopa(option.idcaracteristicavalor)}}
                     >
                       {option.valor}
                     </MenuItem>
-                  ))}
+                  )})}
               </Select>
             </div>
 
@@ -356,12 +376,15 @@ const MisDatos = () => {
                       key={i}
                       value={option.valor}
                       sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() =>
+                      onClick={() =>{
                         handleMultipleSelect(
                           option.valor,
                           setMarcasPreferidas,
                           marcasPreferidas,
-                        )
+                          option.idcaracteristicavalor,
+                          setIdMarcasPreferidas,
+                          idMarcasPreferidas
+                        )}
                       }
                     >
                       {option.valor}
@@ -414,12 +437,15 @@ const MisDatos = () => {
                       key={i}
                       value={option.valor}
                       sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() =>
+                      onClick={() =>{
                         handleMultipleSelect(
                           option.valor,
                           setEstiloRopa,
                           estiloRopa,
-                        )
+                          option.idcaracteristicavalor,
+                          setIdEstiloRopa,
+                          idEstiloRopa
+                        )}
                       }
                     >
                       {option.valor}
@@ -438,7 +464,7 @@ const MisDatos = () => {
                 value={tipoRopa}
                 renderValue={(selected) => {
                   if (selected.length === 0) {
-                    return <em>Seleccioná de 1 a 3 opciones</em>;
+                    return <em>Seleccioná de 1 a 2 opciones</em>;
                   }
                   return selected.join(', ');
                 }}
@@ -470,12 +496,15 @@ const MisDatos = () => {
                       key={i}
                       value={option.valor}
                       sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() =>
+                      onClick={() =>{
                         handleMultipleSelect(
                           option.valor,
                           setTipoRopa,
                           tipoRopa,
-                        )
+                          option.idcaracteristicavalor,
+                          setIdTipoRopa,
+                          idTipoRopa
+                        )}
                       }
                     >
                       {option.valor}
