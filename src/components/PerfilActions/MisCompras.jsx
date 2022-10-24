@@ -22,7 +22,7 @@ const MisCompras = () => {
       handleComprasRealizadas(userLog);
       setLoading(false);
     }
-  }, [userLog]);
+  }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
   console.log(comprasRealizadas);
 
