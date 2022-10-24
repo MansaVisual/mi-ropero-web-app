@@ -160,13 +160,13 @@ const SearchProductsResults = () => {
 
   const handleAplicarFiltros=()=>{
     if(putFilters.length!==0 || putSort!==""){
-      setFiltrosFin(true)
-      if(putSort!==""){
-        const prod=new FormData()
-        prod.append("bypage",15)
-        prod.append("page",0)
-        ProdAPI()
-      }
+      // setFiltrosFin(true)
+      // if(putSort!==""){
+      //   const prod=new FormData()
+      //   prod.append("bypage",15)
+      //   prod.append("page",0)
+      //   ProdAPI()
+      // }
     }
   }
 

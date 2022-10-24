@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect,useContext } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import {
   Divider,
   // Box,
@@ -23,15 +23,12 @@ import {
   ListItemTextStyled,
 } from "./styles";
 import theme from "../../styles/theme";
-import { UseProdsContext } from "../../context/ProdsContext";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort: false,
     categoriasCol: true,
   });
-
-  const {ProdAPI}=useContext(UseProdsContext)
 
   const putFilters = props.putFilters;
   const setPutFilters = props.setPutFilters;

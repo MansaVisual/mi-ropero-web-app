@@ -459,7 +459,7 @@ const ProductBuyBox = ({prod,itemID}) => {
             color="hsla(351, 6%, 25%, 1)"
             text={load?<Loader spin={"spinnerM"}/>:"Comprar"}
             endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
-            onClick={userLog===""?navigate("/login"):()=>handleAgregarCarrito()}
+            onClick={userLog===""?()=>navigate("/login"):()=>handleAgregarCarrito()}
             fullWidth
             height
           />
