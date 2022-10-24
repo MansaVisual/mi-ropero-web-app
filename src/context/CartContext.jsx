@@ -51,6 +51,13 @@ export const CartContext = ({children}) => {
                 }
             })
         }
+        // const deletey=new FormData()
+        // deletey.append("iddireccion",1969)
+        // CartAPI(
+        //     deletey,
+        //     "direcciones",
+        //     "delete"
+        // ).then((res)=>console.log(res))
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(()=>{

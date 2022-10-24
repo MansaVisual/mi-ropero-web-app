@@ -158,13 +158,11 @@ const SearchProductsResults = () => {
   };
 
   const handleAplicarFiltros = () => {
-    console.log(putFilters);
     let array = [];
     for (let i = 0; i < putFilters.length; i++) {
       array.push(putFilters[i].id);
     }
-    array.toString();
-    console.log(array);
+    console.log(array.toString());
 
     if (putFilters.length !== 0 || putSort !== '') {
       // setFiltrosFin(true)

@@ -36,8 +36,6 @@ const EditarDireccion = () => {
     infoAdicional: '',
   });
 
-  console.log(form, direccionSelecc);
-
   let clase = 'formObligatorio';
   let clase2 = 'formObligatorioTitle';
 
@@ -49,9 +47,9 @@ const EditarDireccion = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  
   useEffect(() => {
     if (direccionSelecc) {
-      console.log('first');
       setForm({
         iddireccion: direccionSelecc.iddireccion,
         alias: direccionSelecc.nombre,
@@ -66,15 +64,17 @@ const EditarDireccion = () => {
         entrecalle2: direccionSelecc.entre_calle_2,
         infoAdicional: direccionSelecc.informacion_adicional,
       });
+    }else if(!direccionSelecc){
+      navigate("/perfil/MIS DIRECCIONES")
     }
-  }, [direccionSelecc]);
-
+  }, [direccionSelecc]);// eslint-disable-line react-hooks/exhaustive-deps
+  
   const [direccGuardada, setDireccGuardada] = useState(false);
   const [formGuardado, setFormGuardado] = useState({});
-
+  
   const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
-
+  
   const [campoObligatorio, setCampoObligatorio] = useState(false);
   const [errorPhone, setErrorPhone] = useState(false);
   const [errorCodPostal, setErrorCodPostal] = useState(false);
@@ -82,13 +82,26 @@ const EditarDireccion = () => {
   const [errorDirCargada, setErrorDirCargada] = useState(false);
   const [errorRecargarDir, setErrorRecargarDir] = useState(false);
   const [errorLocalidad, setErrorLocalidad] = useState(false);
-
+  
   const [viewDireccion, setViewDireccion] = useState(false);
   const [resDirecciones, setResDirecciones] = useState([]);
   const [guardarDireccion, setGuardarDireccion] = useState(false);
   const [provincia, setProvincia] = useState([]);
+  
+  // console.log(provincia)
 
-  console.log(provincia);
+  useEffect(() => {
+    if(provincias.length!==0 && direccionSelecc){
+      const provGuardada = provincias.find(e=>e.nombre===direccionSelecc.provincia)
+      setProvincia(provGuardada.idprovincia)
+    }
+  }, [provincias,direccionSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (provincia === '1') {
+      document.getElementById('barrioLocalidad').value = 'CAPITAL FEDERAL';
+    }
+  }, [provincia]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -177,7 +190,6 @@ const EditarDireccion = () => {
     await FormAPI(formCodPostal, 'operaciones', 'get_oca_offices').then(
       (res) => {
         if (res.status === 'error') {
-          console.log('loader false');
           setLoader(false);
           setErrorCodPostal(true);
           setBuscandoDir(false);
@@ -193,7 +205,6 @@ const EditarDireccion = () => {
   };
 
   const validarDireccion = () => {
-    console.log('validando');
     const formDireccion = new FormData();
     formDireccion.append('calle', document.getElementById('calle').value);
     formDireccion.append('numero', document.getElementById('alturaKM').value);
@@ -235,7 +246,6 @@ const EditarDireccion = () => {
 
   useEffect(() => {
     if (guardarDireccion) {
-      console.log('validando');
       const formDireccion = new FormData();
       formDireccion.append('iddireccion', form.iddireccion);
       formDireccion.append('nombre', document.getElementById('alias').value);
@@ -274,7 +284,6 @@ const EditarDireccion = () => {
       );
       formDireccion.append('normalized', direccion.raw_data);
       FormAPI(formDireccion, 'direcciones', 'update').then(async (res) => {
-        console.log(res);
         if (res.status === 'success') {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
@@ -308,7 +317,6 @@ const EditarDireccion = () => {
   };
 
   const throwError = (id1, id2) => {
-    console.log(id1, id2);
     if (id1 === 'provincia') {
       if (!document.getElementById(id1).classList.contains(clase)) {
         document.getElementById(id1).parentNode.classList.add(clase);
