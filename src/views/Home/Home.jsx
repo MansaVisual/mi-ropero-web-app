@@ -25,7 +25,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { coleccionNuevosIngresos, coleccionRecomendados } =
+  const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV } =
     useContext(UseColeccionContext);
 
   useEffect(() => {
@@ -208,7 +208,7 @@ const Home = () => {
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
           <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
-            <SliderProd contenido={coleccionNuevosIngresos} />
+            <SliderProd contenido={coleccionMejoresV} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
             <Link
