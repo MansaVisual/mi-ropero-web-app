@@ -53,6 +53,7 @@ const MisDatos = () => {
     }
   };
 
+
   useEffect(() => {
     PerfilAPI('', 'clientes', 'get_sexos').then((res) => {
       if (res.status === 'success') {

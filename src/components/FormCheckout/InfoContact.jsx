@@ -37,7 +37,7 @@ const InfoContact = ({
   setUsaDireccionCargada,
 }) => {
   const { FormAPI } = useContext(UseFormContext);
-  const { userLog } = useContext(UseLoginContext);
+  const { userLog,infoUser } = useContext(UseLoginContext);
 
   const [direccionesCargadas, setDireccionesCargadas] = useState([]);
   const [direccionCargada, setDireccionCargada] = useState(null);
@@ -376,6 +376,7 @@ const InfoContact = ({
             placeholder='Nombre Apellido'
             size='small'
             className={`inputForm`}
+            defaultValue={infoUser!==undefined?infoUser.nombre+" "+infoUser.apellido:""}
             id='nombreApellido'
             onChangeCapture={() => {
               handleChangeForm(setForm, form);
@@ -403,6 +404,7 @@ const InfoContact = ({
             size='small'
             className={`inputForm`}
             id='telefono'
+            defaultValue={infoUser!==undefined?infoUser.telefono:""}
             onChangeCapture={() => {
               handleChangeForm(setForm, form);
               setErrorPhone(false);
