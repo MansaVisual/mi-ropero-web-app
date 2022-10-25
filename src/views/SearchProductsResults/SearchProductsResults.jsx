@@ -93,10 +93,6 @@ const SearchProductsResults = () => {
     }
   }, [keyword, categorias]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // useEffect(() => {
-  //   if(putFilters.length)
-  // }, [putFilters,putSort]);// eslint-disable-line react-hooks/exhaustive-deps
-
   const prodsCategoria = (paramSearch) => {
     const catProd = new FormData();
     let idCat = '';
@@ -111,6 +107,7 @@ const SearchProductsResults = () => {
 
       const catFilters = new FormData();
       catFilters.append('idcategoria', idCat.idcategoria);
+
       ProdAPI(catFilters, 'categorias', 'get').then((res) => {
         if (res.status === 'success') {
           setFiltrosCategoria(res.result[0]);
@@ -119,7 +116,7 @@ const SearchProductsResults = () => {
     }
     catProd.append('bypage', 15);
     catProd.append('page', 0);
-    ProdAPI(catProd, 'productos', 'search').then((res) => {
+    ProdAPI(catProd, 'productos', 'search').then((res) => {console.log(res)
       setBuscandoProds(false);
       if (res.status === 'success') {
         setProds(res.result.productos);
@@ -132,9 +129,18 @@ const SearchProductsResults = () => {
     setLoad(true);
     const catProd = new FormData();
     let idCat = '';
-    if(putSort!==""){
+    if(putSort==="Mas relevante primero"){
       catProd.append("order_type","desc")
       catProd.append("order","relevancia")
+    }else if(putSort==="Menos relevante primero"){
+      catProd.append("order_type","asc")
+      catProd.append("order","relevancia")
+    }else if(putSort==="Mayor precio primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","precio")
+    }else if(putSort==="Menor precio primero"){
+      catProd.append("order_type","asc")
+      catProd.append("order","precio")
     }
     if(putFilters.length!==0){
       catProd.append("caracteristicas",filtrosFin)
@@ -187,10 +193,21 @@ const SearchProductsResults = () => {
 
         prod.append("bypage",15)
         prod.append("page",0)
-        if(putSort!==""){
+
+        if(putSort==="Mas relevante primero"){
           prod.append("order_type","desc")
           prod.append("order","relevancia")
+        }else if(putSort==="Menos relevante primero"){
+          prod.append("order_type","asc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Mayor precio primero"){
+          prod.append("order_type","desc")
+          prod.append("order","precio")
+        }else if(putSort==="Menor precio primero"){
+          prod.append("order_type","asc")
+          prod.append("order","precio")
         }
+
         if(putFilters.length!==0){
           prod.append("caracteristicas",array.toString())
         }
@@ -207,6 +224,7 @@ const SearchProductsResults = () => {
         })
     }
   };
+
 
   return (
     <>
