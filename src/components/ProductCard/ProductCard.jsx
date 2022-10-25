@@ -27,12 +27,12 @@ const ProductCard = ({
   precioOferta,
   tiendaID
 }) => {
+  console.log("OFERTAAAA",precioOferta)
   const { userLog, infoUser } = useContext(UseLoginContext);
   const navigate=useNavigate()
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
-  const [isOnSale,setIsOnSale] = useState(false);
 
   const handleMouseEnter = () => {
     buttonRef.current.style.opacity = "1";
@@ -41,11 +41,7 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-  useEffect(() => {
-    if(precioOferta!=="0.00"){
-      setIsOnSale(true)
-    }
-  }, [precioOferta]);// eslint-disable-line react-hooks/exhaustive-deps
+
 
 
   return (
@@ -132,7 +128,7 @@ const ProductCard = ({
       </CardContent>
       <Divider />
       <CardContent sx={{ display: "flex", alignItems: "center", padding: 0 }}>
-        {isOnSale ? (
+        {precioOferta!=="0.00" ? (
           <>
             <Typography
               sx={{

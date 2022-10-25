@@ -391,7 +391,7 @@ const SearchProductsResults = () => {
                 }}
               >
                 {prods.length !== 0 && keyword ? (
-                  prods.map((product, index) => {
+                  prods.map((product, index) => {console.log(product)
                     return (
                       <ProductCard
                         key={index}
