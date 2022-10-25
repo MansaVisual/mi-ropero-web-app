@@ -204,7 +204,7 @@ const NavBar = () => {
                   <SearchBar placeholder="Buscá por ropero, producto, marca o talle" />
                 </Box>
 
-                <Box>
+                {/* <Box>
                   <Button
                     sx={{
                       border: "1px solid black",
@@ -218,7 +218,7 @@ const NavBar = () => {
                   >
                     Vender
                   </Button>
-                </Box>
+                </Box> */}
               </>
             ) : null}
 
