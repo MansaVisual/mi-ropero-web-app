@@ -317,6 +317,10 @@ const SearchProductsResults = () => {
                           putSort={putSort}
                           setPutSort={setPutSort}
                           handleAplicarFiltros={handleAplicarFiltros}
+                          categorias={categorias}
+                          ProdAPI={ProdAPI}
+                          setProds={setProds}
+                          setTotalPages={setTotalPages}
                         />
                       </Box>
                     </Fade>
@@ -362,7 +366,10 @@ const SearchProductsResults = () => {
                   putSort={putSort}
                   setPutSort={setPutSort}
                   handleAplicarFiltros={handleAplicarFiltros}
-                  search={search}
+                  categorias={categorias}
+                  ProdAPI={ProdAPI}
+                  setProds={setProds}
+                  setTotalPages={setTotalPages}
                 />
               </>
             )}

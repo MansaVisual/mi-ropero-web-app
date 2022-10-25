@@ -23,12 +23,15 @@ import {
   ListItemTextStyled,
 } from './styles';
 import theme from '../../styles/theme';
+import { useParams } from 'react-router-dom';
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort: false,
     categoriasCol: true,
   });
+
+  const { keyword, search } = useParams();
 
   const putFilters = props.putFilters;
   const setPutFilters = props.setPutFilters;
@@ -39,7 +42,10 @@ const Filter = (props) => {
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
   const handleAplicarFiltros = props.handleAplicarFiltros;
-  const search = props.search
+  const ProdAPI=props.ProdAPI
+  const setProds=props.setProds
+  const categorias=props.categorias
+  const setTotalPages=props.setTotalPages
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -62,7 +68,6 @@ const Filter = (props) => {
   const handleChangeSort = (e) => {
     setPutSort(e.target.value);
   };
-
   
   return (
     <List
@@ -262,6 +267,23 @@ const Filter = (props) => {
                                     },
                                   ]);
                                 } else {
+                                  
+                                  if(newArray.length===0){
+                                    const catProd = new FormData();
+                                    let idCat = '';
+                                    idCat = categorias.find(
+                                      (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
+                                    );
+                                    catProd.append('idcategoria', idCat.idcategoria);
+                                    catProd.append('bypage', 15);
+                                    catProd.append('page', 0);
+                                    ProdAPI(catProd, 'productos', 'search').then((res) => {console.log(res)
+                                      if (res.status === 'success') {
+                                        setProds(res.result.productos);
+                                        setTotalPages(res.result.total_paginas);
+                                      }
+                                    });
+                                  }
                                   setPutFilters(newArray);
                                 }
                               } else {
@@ -359,216 +381,6 @@ const Filter = (props) => {
           );
         })}
       {/* 
-
-      <ListItemStyled onClick={() => handleClick("material")}>
-        <ListItemText primary="Material" sx={ListItemTextStyled} />
-        {openFilter.material ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.material} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Cuero"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Ecocuero"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Lona"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
-
-      <ListItemStyled onClick={() => handleClick("gender")}>
-        <ListItemText primary="Género" sx={ListItemTextStyled} />
-        {openFilter.gender ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.gender} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Genderless"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Hombre"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Mujer"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Niñez"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Unisex"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
-
-      <ListItemStyled onClick={() => handleClick("condition")}>
-        <ListItemText primary="Condición" sx={ListItemTextStyled} />
-        {openFilter.condition ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.condition} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Nuevo"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Nuevo con etiqueta"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Usado"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
-
-      <ListItemStyled onClick={() => handleClick("color")}>
-        <ListItemText primary="Color/es" sx={ListItemTextStyled} />
-        {openFilter.color ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.color} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Amarillo"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Azul"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Azul claro"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Beige"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Blanco"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
-
-      <ListItemStyled onClick={() => handleClick("origin")}>
-        <ListItemText primary="Origen" sx={ListItemTextStyled} />
-        {openFilter.origin ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.origin} timeout="auto" unmountOnExit>
-        <List component="div">
-          <FormControlLabel
-            label="Nacional"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Importado"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
-
-      <ListItemStyled onClick={() => handleClick("style")}>
-        <ListItemText primary="Estilo" sx={ListItemTextStyled} />
-        {openFilter.style ? <ExpandLess /> : <ExpandMore />}
-      </ListItemStyled>
-      <Collapse in={openFilter.style} timeout="auto" unmountOnExit>
-
-        <List component="div">
-          <FormControlLabel
-            label="Casual"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Clasico"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Deportivo"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Fiesta"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-        <List component="div">
-          <FormControlLabel
-            label="Vintage"
-            control={<Checkbox />}
-            sx={FormControlLabelStyled}
-          />
-        </List>
-      </Collapse>
-      <Divider />
 
       <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
         <ListItemText primary="Rango de precio" sx={ListItemPriceRangeStyled} />
