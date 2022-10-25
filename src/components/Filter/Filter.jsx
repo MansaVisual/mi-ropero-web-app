@@ -39,6 +39,7 @@ const Filter = (props) => {
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
   const handleAplicarFiltros = props.handleAplicarFiltros;
+  const search = props.search
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -164,7 +165,7 @@ const Filter = (props) => {
       )}
       <Divider />
 
-      {coleccion !== undefined && coleccion.length !== 0 && (
+      {coleccion !== undefined && coleccion.length !== 0 && search===undefined (
         <Fragment>
           <ListItemStyled onClick={() => handleClick('categoriasCol')}>
             <ListItemText primary='Categorias' sx={ListItemTextStyled} />
@@ -181,7 +182,6 @@ const Filter = (props) => {
             }}
           >
             {coleccion.productos_categorias.map((res2, i2) => {
-              console.log(res2);
               return (
                 <Fragment key={i2}>
                   {res2.nombre !== 'ROPA' &&
@@ -214,7 +214,7 @@ const Filter = (props) => {
         </Fragment>
       )}
 
-      {filtros !== undefined &&
+      {filtros !== undefined && search===undefined &&
         coleccion === undefined &&
         filtros.map((res, i) => {
           return (
@@ -286,7 +286,7 @@ const Filter = (props) => {
             </Fragment>
           );
         })}
-      {filtros !== undefined &&
+      {filtros !== undefined && search===undefined &&
         coleccion !== undefined &&
         filtros.map((res, i) => {
           return (
