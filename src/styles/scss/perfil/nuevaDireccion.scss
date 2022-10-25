@@ -84,7 +84,6 @@
           font-weight: 400;
           font-size: 14px;
           line-height: 19px;
-          color: #babcbe;
         }
       }
       .labelInput {
@@ -140,7 +139,6 @@
           font-weight: 400;
           font-size: 14px;
           line-height: 19px;
-          color: #babcbe;
         }
       }
       .labelInput {
@@ -220,18 +218,13 @@
         width: 100%;
         height: 88px;
         margin-top: 8px;
-        /*         @include screen_705 {
-          width: calc(100% - 32px);
-        } */
         textarea {
           box-sizing: border-box;
-          /*           height: 88px;
- */
+
           font-style: italic;
           font-weight: 400;
           font-size: 14px;
           line-height: 19px;
-          color: #babcbe;
         }
       }
       .bottomText {

@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowBackIosNew } from '@mui/icons-material';
 import Sweater from '../../assets/img/Sweater.png';
 import Basura from '../../assets/img/basura.png';
+import { UsePerfilContext } from '../../context/PerfilContext';
+import { UseLoginContext } from '../../context/LoginContext';
 
 const MisOfertas = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
 
+  const { userLog } = useContext(UseLoginContext);
+  const { handleOfertasRealizadas, ofertasRealizadas } =
+    useContext(UsePerfilContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (userLog !== '') {
+      handleOfertasRealizadas(userLog);
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userLog]);
+
+  console.log(ofertasRealizadas);
   const array = [
     {
       img: Sweater,
@@ -43,25 +59,26 @@ const MisOfertas = () => {
       <div className='container'>
         <p className='title'>MIS OFERTAS</p>
         <div className='cardsContainer'>
-          {array.map((producto) => {
-            return (
-              <div className='desktopCard'>
-                <div className='productoData'>
-                  <img src={producto.img} alt='cardImage' />
-                  <div>
-                    <p className='productoTitle'>{producto.titulo}</p>
-                    <p className='productoDate'>{producto.fecha}</p>
-                    <p className='productoState'>{producto.estado}</p>
+          {array &&
+            array?.map((producto) => {
+              return (
+                <div className='desktopCard'>
+                  <div className='productoData'>
+                    <img src={producto.img} alt='cardImage' />
+                    <div>
+                      <p className='productoTitle'>{producto.titulo}</p>
+                      <p className='productoDate'>{producto.fecha}</p>
+                      <p className='productoState'>{producto.estado}</p>
+                    </div>
+                  </div>
+                  <div className='ofertaData'>
+                    <p className='oferta'>OFERTA</p>
+                    <p className='monto'>${producto.oferta}</p>
+                    <img src={Basura} alt='BasuraIcon' />
                   </div>
                 </div>
-                <div className='ofertaData'>
-                  <p className='oferta'>OFERTA</p>
-                  <p className='monto'>${producto.oferta}</p>
-                  <img src={Basura} alt='BasuraIcon' />
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
           {array.map((producto) => {
             return (
               <div className='mobileCard'>
