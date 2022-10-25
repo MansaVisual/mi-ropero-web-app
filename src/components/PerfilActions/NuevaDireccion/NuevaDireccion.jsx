@@ -32,7 +32,7 @@ const NuevaDireccion = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [provincias, setProvincias] = useState([]);
+  const [provincias, setProvincias] = useState("");
   const [loader, setLoader] = useState(false);
 
   const [campoObligatorio, setCampoObligatorio] = useState(false);
@@ -464,7 +464,7 @@ const NuevaDireccion = () => {
             placeholder='Ciudad Autónoma de Buenos Aires'
             size='small'
             id='provincia'
-            value={provincia === '' ? 'ejemplo' : provincia}
+            value={provincia}
             onChange={(event) => {
               handleProvinciaInput(event);
               setErrorDireccion(false);
@@ -512,7 +512,7 @@ const NuevaDireccion = () => {
             placeholder={
               /* provincia === '' && */ 'Primero debes ingresar una provincia'
             }
-            disabled={provincia === '' ? true : false}
+            disabled={provincia === '' || provincia === '1' ? true : false}
             className='input'
             size='small'
             id='barrioLocalidad'

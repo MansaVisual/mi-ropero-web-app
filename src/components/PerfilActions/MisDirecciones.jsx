@@ -13,11 +13,10 @@ const MisDirecciones = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleBuscarDirecciones, direccionesGuardadas, setDireccionSelecc } =
+  const { handleBuscarDirecciones, direccionesGuardadas } =
     useContext(UsePerfilContext);
 
   const [adressOption, setAdressOption] = useState(false);
-  const [direccionesUsuario, setDireccionesUsuario] = useState([]);
   const [loading, setLoading] = useState(true);
 
 

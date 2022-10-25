@@ -111,6 +111,7 @@ const EditarDireccion = () => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById('codigoPostal').value =
         infoLocFinal.codigo_postal;
+        setForm((prevState)=> ({codigoPostal: infoLocFinal.codigo_postal}))
       document.getElementById('barrioLocalidad').value = infoLocFinal.nombre;
     }
   }, [popLoc]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -246,7 +247,7 @@ const EditarDireccion = () => {
   useEffect(() => {
     if (guardarDireccion) {
       const formDireccion = new FormData();
-      formDireccion.append('iddireccion', form.iddireccion);
+      formDireccion.append('iddireccion', direccionSelecc.iddireccion);
       formDireccion.append('nombre', document.getElementById('alias').value);
       formDireccion.append('calle', document.getElementById('calle').value);
       formDireccion.append('numero', document.getElementById('alturaKM').value);
@@ -607,7 +608,7 @@ const EditarDireccion = () => {
       </div>
       <div className='inputContainer'>
         <div className='inputBox'>
-          <p className='labelInput'>Código postal *</p>
+          <p className='labelInput' id='labelCodigoPostal'>Código postal *</p>
           <div className='postalCode'>
             <TextField
               color='primary'
@@ -622,7 +623,7 @@ const EditarDireccion = () => {
                 setErrorDireccion(false);
                 setCampoObligatorio(false);
               }}
-              onFocus={(e) => onFocus(e, clase, clase2, 'labelTelefono')}
+              onFocus={(e) => onFocus(e, clase, clase2, 'labelCodigoPostal')}
             />
             <a
               href='https://www.correoargentino.com.ar/formularios/cpa'
