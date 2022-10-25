@@ -7,6 +7,7 @@ import {
   Grid,
   Link,
   Modal,
+  Stack,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -16,8 +17,6 @@ import Filter from "../../components/Filter/Filter";
 import Chip from "../../components/Chip/Chip";
 import SliderProd from "../../components/SliderProd/SliderProd";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { StyledLink } from "../../components/Footer/styles";
-import notFoundIcon from "../../assets/img/notFoundIcon.svg";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import Button from "../../components/Button/Button";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
@@ -26,7 +25,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
 import {UseProdsContext} from "../../context/ProdsContext"
-import banner from "../../assets/img/bannermvp4.png"
+import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 
 const style = {
   position: "absolute",
@@ -85,6 +84,7 @@ const SearchProductsResults = () => {
     });
 
     setProds([])
+    setPags(1)
 
     let numCol=0
 
@@ -115,20 +115,32 @@ const SearchProductsResults = () => {
   }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    setPutSort("")
+    setPutFilters([])
+    setPags(1)
     if(putCategory!==""){
+      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+      idCat=idCat[0].idcategoria
+
+      const catFilters = new FormData();
+      catFilters.append('idcategoria', Number(idCat));
+
+      ProdAPI(catFilters, 'categorias', 'get').then((res) => {
+        if (res.status === 'success') {
+          setFiltrosCategoria(res.result[0]);
+        }
+      });
+
+
       let numCol=0
       if(coleccionName==="NuevosIngresos"){
         numCol=71
       }else if(coleccionName==="Recomendados"){
-          numCol="73"
+          numCol=73
       }else if(coleccionName==="MejoresVendedores"){
-          numCol="73"
+          numCol=73
       }
 
-      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
-      idCat=idCat[0].idcategoria
-
-      console.log(idCat)
       const col=new FormData()
       col.append("idcoleccion",numCol)
       col.append("idcategoria",idCat)
@@ -141,9 +153,8 @@ const SearchProductsResults = () => {
           "colecciones",
           "detail"
       ).then((res)=>{
-        if(res.status==="success"){console.log(res.result)
+        if(res.status==="success"){
           setProds(res.result.productos)
-          setFiltrosCategoria(res.result)
           setTotalPages(res.result.productos_total_paginas)
         }
       })
@@ -157,9 +168,9 @@ const SearchProductsResults = () => {
     if(coleccionName==="NuevosIngresos"){
       numCol=71
     }else if(coleccionName==="Recomendados"){
-        numCol="73"
+        numCol=73
     }else if(coleccionName==="MejoresVendedores"){
-        numCol="73"
+        numCol=73
     }
 
     const catProd=new FormData()
@@ -167,17 +178,35 @@ const SearchProductsResults = () => {
     if(putCategory!==""){
       let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
       idCat=idCat[0].idcategoria
-      catProd.append("idcategoria",idCat.idcategoria)
+      catProd.append("idcategoria",Number(idCat))
     }
 
     catProd.append("idcoleccion",numCol)
     catProd.append("bypage",15)
     catProd.append("page",value)
 
+    if(putSort==="Mas relevante primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","relevancia")
+    }else if(putSort==="Menos relevante primero"){
+      catProd.append("order_type","asc")
+      catProd.append("order","relevancia")
+    }else if(putSort==="Mayor precio primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","precio")
+    }else if(putSort==="Menor precio primero"){
+      catProd.append("order_type","asc")
+      catProd.append("order","precio")
+    }
+
+    if(putFilters.length!==0){
+      catProd.append("caracteristicas",filtrosFin)
+    }
+
     ColeccionAPI(
       catProd,
-      "productos",
-      "search"
+      "colecciones",
+      "detail"
     ).then((res)=>{
       if(res.status==="success"){
         setProds(res.result.productos)
@@ -201,16 +230,23 @@ const SearchProductsResults = () => {
 
     if (putFilters.length !== 0 || putSort !== '') {
         const prod=new FormData()
-        let idCat=[]
 
-        if(search !== undefined){
-          prod.append("text",keyword)
-        }else{
-          idCat = categorias.find(
-            (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
-          );
-          prod.append('idcategoria', idCat.idcategoria);
+        let numCol=0
+        if(coleccionName==="NuevosIngresos"){
+          numCol=71
+        }else if(coleccionName==="Recomendados"){
+            numCol=73
+        }else if(coleccionName==="MejoresVendedores"){
+            numCol=73
         }
+
+        if(putCategory!==""){
+          let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+          idCat=idCat[0].idcategoria
+          prod.append("idcategoria",Number(idCat))
+        }
+
+        prod.append("idcoleccion",numCol)
 
         prod.append("bypage",15)
         prod.append("page",0)
@@ -232,15 +268,16 @@ const SearchProductsResults = () => {
         if(putFilters.length!==0){
           prod.append("caracteristicas",array.toString())
         }
+
         ProdAPI(
           prod,
-          "productos",
-          "search"
-        ).then((res)=>{
+          "colecciones",
+          "detail"
+        ).then((res)=>{console.log(res)
           setLoad2(false)
           if (res.status === 'success') {
             setProds(res.result.productos);
-            setTotalPages(res.result.total_paginas);
+            setTotalPages(res.result.productos_total_paginas);
           }
         })
     }
@@ -349,14 +386,23 @@ const SearchProductsResults = () => {
                     {coleccionName}
                   </Typography>
                 </Box>
-                {putFilters.map((res,i)=>{
-                  return(
-                    <>
-
-                    </>
-                  )
+                {putFilters.map((res, index) => {
+                  return (
+                    <Stack direction='row' spacing={1}>
+                      <ChipFilterCategories
+                        filteredCategory={res}
+                        key={index}
+                        putFilters={putFilters}
+                        setPutFilters={setPutFilters}
+                        setProds={setProds}
+                        ProdAPI={ProdAPI}
+                        setTotalPages={setTotalPages}
+                        categorias={categorias}
+                      />
+                    </Stack>
+                  );
                 })}
-                {/* <Filter 
+                <Filter 
                   setPutCategory={setPutCategory} 
                   putCategory={putCategory} 
                   filtros={filtrosCategoria} 
@@ -366,7 +412,7 @@ const SearchProductsResults = () => {
                   setPutSort={setPutSort} 
                   coleccion={coleccion}
                   handleAplicarFiltros={handleAplicarFiltros}
-                /> */}
+                />
               </>
             )}
           </Grid>
@@ -383,19 +429,23 @@ const SearchProductsResults = () => {
                 }}
               >
                 {prods.length !== 0 && coleccionName ? (
-                  prods.map((product, index) => {
+                  prods.map((product, index) => {console.log(product)
                     return (
-                      <ProductCard
-                        key={index}
-                        imageCard={product.imagenes[0].imagen_vertical}
-                        productName={product.nombre}
-                        productPrice={product.precio}
-                        idProducto={product.idproducto}
-                        tag={product.tag}
-                        datosTienda={product.tienda}
-                        tiendaID={product.idtienda}
-                        precioOferta={product.precio_oferta}
-                        />
+                      <>
+                        {product.imagenes.length !== 0 &&
+                          <ProductCard
+                          key={index}
+                          imageCard={product.imagenes[0].imagen_vertical}
+                          productName={product.nombre}
+                          productPrice={product.precio}
+                          idProducto={product.idproducto}
+                          tag={product.tag}
+                          datosTienda={product.tienda}
+                          tiendaID={product.idtienda}
+                          precioOferta={product.precio_oferta}
+                          />
+                        }
+                      </>
                     );
                   })
                 ) : 

@@ -68,7 +68,7 @@ const Filter = (props) => {
   const handleChangeSort = (e) => {
     setPutSort(e.target.value);
   };
-console.log(coleccion)
+
   return (
     <List
       sx={{
@@ -100,13 +100,13 @@ console.log(coleccion)
         disabled={
           putSort === '' && putFilters.length === 0 && putCategory===undefined
             ? true
-            : putCategory===""?true:false
+            : false
         }
         sx={{
           background:
             putSort === '' && putFilters.length === 0 && putCategory===undefined
               ? '#998edb'
-              : putCategory===""?"#998edb":"#443988",
+              : "#443988",
         }}
         onClick={() => handleAplicarFiltros()}
       >
@@ -170,7 +170,7 @@ console.log(coleccion)
       )}
       <Divider />
 
-      {coleccion !== undefined && coleccion.length !== 0 (
+      {coleccion !== undefined && coleccion.length !== 0 && (
         <Fragment>
           <ListItemStyled onClick={() => handleClick('categoriasCol')}>
             <ListItemText primary='Categorias' sx={ListItemTextStyled} />
