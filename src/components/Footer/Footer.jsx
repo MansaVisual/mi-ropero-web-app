@@ -25,7 +25,7 @@ import {
 
 const footerContent = {
   products: {
-    text: ["Accesorios", "Belleza", "Calzado", "Ropa"],
+    text: ["Ropa", "Calzado", "Accesorios", "Belleza"],
   },
   section: {
     text: ["FAQ's", "Términos y condiciones"],
