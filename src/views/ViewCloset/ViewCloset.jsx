@@ -108,10 +108,10 @@ const ViewCloset = () => {
       ProdAPI(
         ropero,
         "tiendas",
-        "get"
+        "detail"
       ).then((res)=>console.log(res))
     }
-  }, [closetId]);
+  }, [closetId]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     window.scrollTo({
