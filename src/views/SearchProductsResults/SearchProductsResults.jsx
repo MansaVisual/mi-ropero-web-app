@@ -77,6 +77,10 @@ const SearchProductsResults = () => {
 
     setBuscandoProds(true);
     setProds([]);
+    setPutFilters([])
+    setPutSort("")
+    setTotalPages(0)
+    
     if (
       categorias !== undefined &&
       categorias.length !== 0 &&

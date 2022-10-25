@@ -68,7 +68,7 @@ const Filter = (props) => {
   const handleChangeSort = (e) => {
     setPutSort(e.target.value);
   };
-  
+console.log(coleccion)
   return (
     <List
       sx={{
@@ -170,7 +170,7 @@ const Filter = (props) => {
       )}
       <Divider />
 
-      {coleccion !== undefined && coleccion.length !== 0 && search===undefined (
+      {coleccion !== undefined && coleccion.length !== 0 (
         <Fragment>
           <ListItemStyled onClick={() => handleClick('categoriasCol')}>
             <ListItemText primary='Categorias' sx={ListItemTextStyled} />
@@ -267,7 +267,6 @@ const Filter = (props) => {
                                     },
                                   ]);
                                 } else {
-                                  
                                   if(newArray.length===0){
                                     const catProd = new FormData();
                                     let idCat = '';
@@ -277,7 +276,7 @@ const Filter = (props) => {
                                     catProd.append('idcategoria', idCat.idcategoria);
                                     catProd.append('bypage', 15);
                                     catProd.append('page', 0);
-                                    ProdAPI(catProd, 'productos', 'search').then((res) => {console.log(res)
+                                    ProdAPI(catProd, 'productos', 'search').then((res) => {
                                       if (res.status === 'success') {
                                         setProds(res.result.productos);
                                         setTotalPages(res.result.total_paginas);

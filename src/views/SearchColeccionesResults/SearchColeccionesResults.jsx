@@ -25,6 +25,7 @@ import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
+import {UseProdsContext} from "../../context/ProdsContext"
 import banner from "../../assets/img/bannermvp4.png"
 
 const style = {
@@ -50,20 +51,24 @@ const SearchProductsResults = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const { categorias, ProdAPI } = useContext(UseProdsContext);
+
+  const { keyword, search } = useParams();
+
   const [load,setLoad]=useState(false)
+  const [load2, setLoad2] = useState(false);
   
   const [prods,setProds]=useState([])
-  const [buscandoProds,setBuscandoProds]=useState(true)
   const [filtrosCategoria,setFiltrosCategoria]=useState([])
 
   const [totalPages,setTotalPages]=useState(0)
 
   const [coleccion,setColeccion]=useState([])
-  const [prodsColeccion,setProdsColeccion]=useState([])
 
   const [putCategory,setPutCategory]=useState("")
   const [putFilters,setPutFilters]=useState([])
   const [putSort,setPutSort]=useState("")
+  const [filtrosFin, setFiltrosFin] = useState("");
 
   const [pags,setPags]=useState(1)
 
@@ -74,7 +79,6 @@ const SearchProductsResults = () => {
     // segundoscroll recomendados 
 
   useEffect(() => {
-    // filter products by keyword entered in search bar
     window.scrollTo({
       top: 0,
       behavior: 'auto',
@@ -109,7 +113,6 @@ const SearchProductsResults = () => {
       }
   })
   }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
-
 
   useEffect(() => {
     if(putCategory!==""){
@@ -186,6 +189,62 @@ const SearchProductsResults = () => {
       });
     })
   }
+
+  const handleAplicarFiltros = () => {
+    setPags(1)
+    setLoad2(true)
+    let array = [];
+    for (let i = 0; i < putFilters.length; i++) {
+      array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
+    }
+    setFiltrosFin(array.toString());
+
+    if (putFilters.length !== 0 || putSort !== '') {
+        const prod=new FormData()
+        let idCat=[]
+
+        if(search !== undefined){
+          prod.append("text",keyword)
+        }else{
+          idCat = categorias.find(
+            (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
+          );
+          prod.append('idcategoria', idCat.idcategoria);
+        }
+
+        prod.append("bypage",15)
+        prod.append("page",0)
+
+        if(putSort==="Mas relevante primero"){
+          prod.append("order_type","desc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Menos relevante primero"){
+          prod.append("order_type","asc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Mayor precio primero"){
+          prod.append("order_type","desc")
+          prod.append("order","precio")
+        }else if(putSort==="Menor precio primero"){
+          prod.append("order_type","asc")
+          prod.append("order","precio")
+        }
+
+        if(putFilters.length!==0){
+          prod.append("caracteristicas",array.toString())
+        }
+        ProdAPI(
+          prod,
+          "productos",
+          "search"
+        ).then((res)=>{
+          setLoad2(false)
+          if (res.status === 'success') {
+            setProds(res.result.productos);
+            setTotalPages(res.result.total_paginas);
+          }
+        })
+    }
+  };
 
   return (
     <>
@@ -297,7 +356,7 @@ const SearchProductsResults = () => {
                     </>
                   )
                 })}
-                <Filter 
+                {/* <Filter 
                   setPutCategory={setPutCategory} 
                   putCategory={putCategory} 
                   filtros={filtrosCategoria} 
@@ -306,43 +365,46 @@ const SearchProductsResults = () => {
                   putSort={putSort} 
                   setPutSort={setPutSort} 
                   coleccion={coleccion}
-                />
+                  handleAplicarFiltros={handleAplicarFiltros}
+                /> */}
               </>
             )}
           </Grid>
 
           <Grid item xs={12} sm={12} md={9}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                gap: "32px",
-                mb: "32px",
-              }}
-            >
-              {prods.length !== 0 && coleccionName ? (
-                prods.map((product, index) => {
-                  return (
-                    <ProductCard
-                      key={index}
-                      imageCard={product.imagenes[0].imagen_vertical}
-                      productName={product.nombre}
-                      productPrice={product.precio}
-                      idProducto={product.idproducto}
-                      tag={product.tag}
-                      datosTienda={product.tienda}
-                      tiendaID={product.idtienda}
-                      precioOferta={product.precio_oferta}
-                      />
-                  );
-                })
-              ) : 
-                <>
-                  {buscandoProds?<Loader spin={"spinnerG"}/>:null}
-                </>
-              }
-            </Box>
+            {load2 ? <Loader spin={"spinnerG"}/>:
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  flexWrap: "wrap",
+                  gap: "32px",
+                  mb: "32px",
+                }}
+              >
+                {prods.length !== 0 && coleccionName ? (
+                  prods.map((product, index) => {
+                    return (
+                      <ProductCard
+                        key={index}
+                        imageCard={product.imagenes[0].imagen_vertical}
+                        productName={product.nombre}
+                        productPrice={product.precio}
+                        idProducto={product.idproducto}
+                        tag={product.tag}
+                        datosTienda={product.tienda}
+                        tiendaID={product.idtienda}
+                        precioOferta={product.precio_oferta}
+                        />
+                    );
+                  })
+                ) : 
+                  <>
+                    <Loader spin={"spinnerG"}/>
+                  </>
+                }
+              </Box>
+            } 
             {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
             {prods.length!==0 && totalPages>1 && coleccionName && (
               <Box
