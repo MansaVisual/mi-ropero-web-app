@@ -2,11 +2,12 @@ import React from "react";
 import { Chip, ListItem } from "@mui/material";
 import theme from "../../styles/theme";
 
-const ChipFilterCategories = ({ filteredCategory, key, putFilters,putFiltersId,setPutFilters,setPutFiltersId }) => {
+const ChipFilterCategories = ({ filteredCategory, key, putFilters,setPutFilters }) => {
   const handleDelete = () => {
-    // let newArrayId = putFiltersId.filter(
-    //   (element) => element !== key
-    // );
+    let newArrayId = putFilters.filter(
+      (element) => element.id !== filteredCategory.id
+    );
+    setPutFilters(newArrayId)
   };
 
   return (
