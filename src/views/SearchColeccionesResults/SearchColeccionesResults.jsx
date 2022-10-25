@@ -433,7 +433,6 @@ const SearchProductsResults = () => {
                           idProducto={product.idproducto}
                           tag={product.tag}
                           datosTienda={product.tienda}
-                          tiendaID={product.idtienda}
                           precioOferta={product.precio_oferta}
                           />
                         }

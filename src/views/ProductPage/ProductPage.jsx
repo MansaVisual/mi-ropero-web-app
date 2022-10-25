@@ -27,35 +27,6 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 
-const data = [
-  {
-    original: require("../../assets/img/Sweater.png"),
-    thumbnail: require("../../assets/img/SweaterSmall.png"),
-  },
-  {
-    original: require("../../assets/img/Sweater.png"),
-    thumbnail: require("../../assets/img/SweaterSmall.png"),
-  },
-  {
-    original: require("../../assets/img/Sweater.png"),
-    thumbnail: require("../../assets/img/SweaterSmall.png"),
-  },
-];
-
-const productDetails = [
-  {
-    genero: "Unisex",
-    talle: "L",
-    colores: "Rosa",
-    marca: "Adidas",
-    condicion: "Nuevo",
-    "tipo de tela": "Silver",
-    estampado: "Combinado con texturas",
-    temporada: "Media estacion",
-    estilo: "Deportivo",
-    origen: "Importado",
-  },
-];
 
 const ProductPage = () => {
   const location = useLocation();
@@ -63,7 +34,7 @@ const ProductPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
-  const {itemID,tiendaID}=useParams()
+  const {itemID}=useParams()
 
   const {infoUser,userLog}=useContext(UseLoginContext)
   const {ProdAPI}=useContext(UseProdsContext)
@@ -72,6 +43,7 @@ const ProductPage = () => {
 
   const [prod,setProd]=useState([])
   const [prodFotos,setProdFotos]=useState([])
+  const [prodCaracteristicas,setProdCaracteristicas]=useState([])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -89,14 +61,14 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-    if(itemID!==undefined && tiendaID!==undefined){
+    if(itemID!==undefined){
       const prod=new FormData()
       prod.append("idproducto",itemID)
-      prod.append("idtienda",tiendaID)
+      prod.append("idcliente",userLog)
       ProdAPI(
         prod,
         "productos",
-        "get"
+        "details"
       ).then((res)=>{
         if(res.status==="success"){
           let arrayFotos=[]
@@ -105,10 +77,11 @@ const ProductPage = () => {
           }
           setProdFotos(arrayFotos)
           setProd(res.result)
+          setProdCaracteristicas(res.result.caracteristicas)
         }
       })
     }
-  }, [itemID,tiendaID]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [itemID]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container maxWidth="xl">
@@ -248,8 +221,8 @@ const ProductPage = () => {
                 >
                   Características del producto
                 </Typography>
-                {Object.entries(productDetails[0]).map(([key, value]) => (
-                  <ProductDetails key={key} title={key} content={value} />
+                {prodCaracteristicas.map((carac,index) => (
+                  <ProductDetails key={index} carac={carac}/>
                 ))}
               </>
             )}
@@ -279,10 +252,10 @@ const ProductPage = () => {
                     mb: "16px",
                   }}
                 >
-                  El Ropero de Susana Domingo
+                  {prod.length!==0&&prod.tienda.nombre}
                 </Typography>
                 <Rating name="read-only" readOnly value={4} />
-                <Typography
+                {/* <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[4],
                     fontWeight: theme.typography.fontWeightMedium,
@@ -291,8 +264,8 @@ const ProductPage = () => {
                   }}
                 >
                   La tienda aún no tiene calificaciones
-                </Typography>
-                <IconGroupText />
+                </Typography> */}
+                <IconGroupText prod={prod}/>
               </Box>
             </Box>
           </Grid>

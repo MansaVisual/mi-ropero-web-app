@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
 
-const ProductDetails = ({ title, content }) => {
+
+const ProductDetails = ({ carac }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -34,7 +35,7 @@ const ProductDetails = ({ title, content }) => {
             flex: 0.4,
           }}
         >
-          {title}
+          {carac.caracteristica}
         </Typography>
         <Typography
           component="span"
@@ -53,7 +54,7 @@ const ProductDetails = ({ title, content }) => {
             flex: 0.6,
           }}
         >
-          {content}
+          {carac.valores}
         </Typography>
       </Box>
       <Divider light />
