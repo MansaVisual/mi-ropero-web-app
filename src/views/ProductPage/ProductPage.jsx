@@ -71,6 +71,7 @@ const ProductPage = () => {
   const [open, setOpen] = useState(false);
 
   const [prod,setProd]=useState([])
+  const [prodFotos,setProdFotos]=useState([])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -96,8 +97,14 @@ const ProductPage = () => {
         prod,
         "productos",
         "get"
-      ).then((res)=>{
+      ).then((res)=>{console.log(res)
         if(res.status==="success"){
+          let arrayFotos=[]
+          for(const i in res.result.imagenes){
+            console.log(res.result.imagenes[i])
+            arrayFotos=[...arrayFotos,{original:res.result.imagenes[i].imagen_vertical,thumbnail:res.result.imagenes[i].imagen_chica}]
+          }
+          setProdFotos(arrayFotos)
           setProd(res.result)
         }
       })
@@ -133,7 +140,7 @@ const ProductPage = () => {
                   </Typography>
                 </Box>
                 <ImageGallery
-                  items={data}
+                  items={prodFotos}
                   showIndex={false}
                   showNav={true}
                   showThumbnails={true}
@@ -153,7 +160,7 @@ const ProductPage = () => {
                   <Breadcrumbs links={pathnames} />
                 </Box>
                 <ImageGallery
-                  items={data}
+                  items={prodFotos}
                   showIndex={false}
                   showNav={true}
                   showThumbnails={true}

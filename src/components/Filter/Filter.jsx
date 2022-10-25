@@ -94,13 +94,13 @@ const Filter = (props) => {
         disabled={
           putSort === '' && putFilters.length === 0 && putCategory===undefined
             ? true
-            : false
+            : putCategory===""?true:false
         }
         sx={{
           background:
-            putSort === '' && putFilters.length === 0
+            putSort === '' && putFilters.length === 0 && putCategory===undefined
               ? '#998edb'
-              : '#443988',
+              : putCategory===""?"#998edb":"#443988",
         }}
         onClick={() => handleAplicarFiltros()}
       >
