@@ -31,6 +31,9 @@ const SearchClosetResults = () => {
 
   const [bestRoperos,setBestRoperos]=useState([])
 
+  const [pags,setPags]=useState(1)
+
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -303,7 +306,7 @@ const SearchClosetResults = () => {
                   marginTop:"32px"
                 }}
                 >
-                  <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
+                  <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
                 </Box>
             )}
           </Grid>

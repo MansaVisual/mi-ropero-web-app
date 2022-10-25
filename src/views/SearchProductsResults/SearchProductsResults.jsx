@@ -66,6 +66,8 @@ const SearchProductsResults = () => {
 
   const [filtrosFin, setFiltrosFin] = useState("");
 
+  const [pags,setPags]=useState(1)
+
   useEffect(() => {
     // filter products by keyword entered in search bar
     window.scrollTo({
@@ -171,6 +173,7 @@ const SearchProductsResults = () => {
   };
 
   const handleAplicarFiltros = () => {
+    setPags(1)
     setLoad2(true)
     let array = [];
     for (let i = 0; i < putFilters.length; i++) {
@@ -344,6 +347,10 @@ const SearchProductsResults = () => {
                         key={index}
                         putFilters={putFilters}
                         setPutFilters={setPutFilters}
+                        setProds={setProds}
+                        ProdAPI={ProdAPI}
+                        setTotalPages={setTotalPages}
+                        categorias={categorias}
                       />
                     </Stack>
                   );
@@ -355,6 +362,7 @@ const SearchProductsResults = () => {
                   putSort={putSort}
                   setPutSort={setPutSort}
                   handleAplicarFiltros={handleAplicarFiltros}
+                  search={search}
                 />
               </>
             )}
@@ -522,7 +530,7 @@ const SearchProductsResults = () => {
                   alignItems: 'center',
                 }}
               >
-                <Pagination cantidad={totalPages} buscarPage={buscarPage} />
+                <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
               </Box>
             )}
           </Grid>

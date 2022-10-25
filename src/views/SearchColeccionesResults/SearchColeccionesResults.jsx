@@ -65,6 +65,8 @@ const SearchProductsResults = () => {
   const [putFilters,setPutFilters]=useState([])
   const [putSort,setPutSort]=useState("")
 
+  const [pags,setPags]=useState(1)
+
     // colleciones all
     // destacadas banner pirncipal id=66
     // primerscroll nuevosingresos id=71
@@ -93,14 +95,14 @@ const SearchProductsResults = () => {
     const col=new FormData()
     col.append("idcoleccion",numCol)
     col.append("bypage",15)
-    col.append("page",1)
+    col.append("page",0)
 
     ColeccionAPI(
         col,
         "colecciones",
         "detail"
     ).then((res)=>{
-      if(res.status==="success"){console.log(res)
+      if(res.status==="success"){
         setColeccion(res.result)
         setProds(res.result.productos)
         setTotalPages(res.result.productos_total_paginas)
@@ -120,10 +122,10 @@ const SearchProductsResults = () => {
           numCol="73"
       }
 
-      
       let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
       idCat=idCat[0].idcategoria
 
+      console.log(idCat)
       const col=new FormData()
       col.append("idcoleccion",numCol)
       col.append("idcategoria",idCat)
@@ -148,12 +150,24 @@ const SearchProductsResults = () => {
 
   const buscarPage=(paramSearch,value)=>{
     setLoad(true)
+    let numCol=0
+    if(coleccionName==="NuevosIngresos"){
+      numCol=71
+    }else if(coleccionName==="Recomendados"){
+        numCol="73"
+    }else if(coleccionName==="MejoresVendedores"){
+        numCol="73"
+    }
+
     const catProd=new FormData()
 
-    let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
-    idCat=idCat[0].idcategoria
+    if(putCategory!==""){
+      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+      idCat=idCat[0].idcategoria
+      catProd.append("idcategoria",idCat.idcategoria)
+    }
 
-    catProd.append("idcategoria",idCat.idcategoria)
+    catProd.append("idcoleccion",numCol)
     catProd.append("bypage",15)
     catProd.append("page",value)
 
@@ -162,7 +176,6 @@ const SearchProductsResults = () => {
       "productos",
       "search"
     ).then((res)=>{
-      setBuscandoProds(false)
       if(res.status==="success"){
         setProds(res.result.productos)
       }
@@ -339,7 +352,7 @@ const SearchProductsResults = () => {
                 alignItems: "center",
               }}
               >
-                <Pagination cantidad={totalPages} buscarPage={buscarPage}/>
+                <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
               </Box>
             )}
           </Grid>
