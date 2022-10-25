@@ -25,7 +25,7 @@ import {
 
 const footerContent = {
   products: {
-    text: ["Accesorios", "Belleza", "Calzado", "Ropa", "Ver todos"],
+    text: ["Accesorios", "Belleza", "Calzado", "Ropa"],
   },
   section: {
     text: ["FAQ's", "Términos y condiciones"],
@@ -114,7 +114,7 @@ const Footer = () => {
               ))}
             </Box>
             <Box sx={{ pt: isMobile ? "78px" : null, lineHeight: "18px" }}>
-              <StyledLink>VENDER</StyledLink>
+              {/* <StyledLink>VENDER</StyledLink> */}
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 {footerContent.section.text.map((item, key) => (
                   <StyledLink
@@ -152,6 +152,7 @@ const Footer = () => {
                   href="https://apps.apple.com/us/app/mi-ropero/id1515990319"
                   color="inherit"
                   underline="none"
+                  target={"_blank"}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -166,6 +167,7 @@ const Footer = () => {
                   href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero"
                   color="inherit"
                   underline="none"
+                  target={"_blank"}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -188,6 +190,7 @@ const Footer = () => {
                   href="https://www.facebook.com/miroperoapp"
                   color="inherit"
                   underline="none"
+                  target={"_blank"}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -202,6 +205,7 @@ const Footer = () => {
                   href="https://www.youtube.com/channel/UCAFGxJMe8rJQ9LXYd26tnPQ"
                   color="inherit"
                   underline="none"
+                  target={"_blank"}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -216,6 +220,7 @@ const Footer = () => {
                   href="https://www.instagram.com/miroperoapp/"
                   color="inherit"
                   underline="none"
+                  target={"_blank"}
                   sx={{
                     display: "flex",
                     alignItems: "center",
