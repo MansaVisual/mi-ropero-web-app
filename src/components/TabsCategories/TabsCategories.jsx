@@ -94,7 +94,7 @@ const TabsCategories = () => {
                   cursor: "pointer",
                   lineHeight: "19.07px",
                 }}
-                href="#"
+                onClick={()=>navigate("/roperos")}
               >
                 Roperos
               </Link>
