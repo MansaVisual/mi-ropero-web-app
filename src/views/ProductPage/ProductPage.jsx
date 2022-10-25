@@ -97,11 +97,10 @@ const ProductPage = () => {
         prod,
         "productos",
         "get"
-      ).then((res)=>{console.log(res)
+      ).then((res)=>{
         if(res.status==="success"){
           let arrayFotos=[]
           for(const i in res.result.imagenes){
-            console.log(res.result.imagenes[i])
             arrayFotos=[...arrayFotos,{original:res.result.imagenes[i].imagen_vertical,thumbnail:res.result.imagenes[i].imagen_chica}]
           }
           setProdFotos(arrayFotos)

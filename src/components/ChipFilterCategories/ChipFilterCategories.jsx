@@ -20,7 +20,7 @@ const ChipFilterCategories = ({ filteredCategory, key, putFilters,setPutFilters,
         catProd.append('idcategoria', idCat.idcategoria);
         catProd.append('bypage', 15);
         catProd.append('page', 0);
-        ProdAPI(catProd, 'productos', 'search').then((res) => {console.log(res)
+        ProdAPI(catProd, 'productos', 'search').then((res) => {
           if (res.status === 'success') {
             setProds(res.result.productos);
             setTotalPages(res.result.total_paginas);

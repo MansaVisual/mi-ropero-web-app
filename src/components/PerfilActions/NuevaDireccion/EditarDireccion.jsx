@@ -88,7 +88,6 @@ const EditarDireccion = () => {
   const [guardarDireccion, setGuardarDireccion] = useState(false);
   const [provincia, setProvincia] = useState([]);
   
-  // console.log(provincia)
 
   useEffect(() => {
     if(provincias.length!==0 && direccionSelecc){

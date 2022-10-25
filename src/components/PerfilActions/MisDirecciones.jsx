@@ -20,7 +20,6 @@ const MisDirecciones = () => {
   const [direccionesUsuario, setDireccionesUsuario] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(direccionesGuardadas);
 
   useEffect(() => {
     if (userLog !== '') {

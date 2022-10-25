@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext,useEffect } from "react";
+import React, { useRef, useContext } from "react";
 import {
   Divider,
   Box,
@@ -27,7 +27,7 @@ const ProductCard = ({
   precioOferta,
   tiendaID
 }) => {
-  console.log("OFERTAAAA",precioOferta)
+
   const { userLog, infoUser } = useContext(UseLoginContext);
   const navigate=useNavigate()
 

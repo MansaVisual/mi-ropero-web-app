@@ -149,7 +149,6 @@ const NuevaDireccion = () => {
   };
 
   const validarDireccion = () => {
-    console.log('validando');
     const formDireccion = new FormData();
     formDireccion.append('calle', document.getElementById('calle').value);
     formDireccion.append('numero', document.getElementById('alturaKM').value);
@@ -191,7 +190,6 @@ const NuevaDireccion = () => {
 
   useEffect(() => {
     if (guardarDireccion) {
-      console.log('validando');
       const formDireccion = new FormData();
       formDireccion.append('idcliente', userLog);
       formDireccion.append('nombre', document.getElementById('alias').value);
@@ -230,7 +228,6 @@ const NuevaDireccion = () => {
       );
       formDireccion.append('normalized', direccion.raw_data);
       FormAPI(formDireccion, 'direcciones', 'insert').then(async (res) => {
-        console.log(res);
         if (res.status === 'success') {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
@@ -264,7 +261,6 @@ const NuevaDireccion = () => {
   };
 
   const throwError = (id1, id2) => {
-    console.log(id1, id2);
     if (id1 === 'provincia') {
       if (!document.getElementById(id1).classList.contains(clase)) {
         document.getElementById(id1).parentNode.classList.add(clase);

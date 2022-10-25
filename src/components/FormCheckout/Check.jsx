@@ -43,7 +43,7 @@ const CheckForm = ({estadoCompra})=>{
                     dir,
                     "direcciones",
                     "insert"
-                ).then((res)=>console.log(res))
+                )
             }
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps

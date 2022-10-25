@@ -52,8 +52,6 @@ const SearchProductsResults = () => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { categorias, ProdAPI } = useContext(UseProdsContext);
 
-  const { keyword, search } = useParams();
-
   const [load,setLoad]=useState(false)
   const [load2, setLoad2] = useState(false);
   
@@ -70,12 +68,6 @@ const SearchProductsResults = () => {
   const [filtrosFin, setFiltrosFin] = useState("");
 
   const [pags,setPags]=useState(1)
-
-    // colleciones all
-    // destacadas banner pirncipal id=66
-    // primerscroll nuevosingresos id=71
-    // segundoscroll recomendados id=73
-    // segundoscroll recomendados 
 
   useEffect(() => {
     window.scrollTo({
@@ -273,7 +265,7 @@ const SearchProductsResults = () => {
           prod,
           "colecciones",
           "detail"
-        ).then((res)=>{console.log(res)
+        ).then((res)=>{
           setLoad2(false)
           if (res.status === 'success') {
             setProds(res.result.productos);
@@ -429,7 +421,7 @@ const SearchProductsResults = () => {
                 }}
               >
                 {prods.length !== 0 && coleccionName ? (
-                  prods.map((product, index) => {console.log(product)
+                  prods.map((product, index) => {
                     return (
                       <>
                         {product.imagenes.length !== 0 &&

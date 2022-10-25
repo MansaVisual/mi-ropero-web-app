@@ -122,7 +122,7 @@ const SearchProductsResults = () => {
     }
     catProd.append('bypage', 15);
     catProd.append('page', 0);
-    ProdAPI(catProd, 'productos', 'search').then((res) => {console.log(res)
+    ProdAPI(catProd, 'productos', 'search').then((res) => {
       setBuscandoProds(false);
       if (res.status === 'success') {
         setProds(res.result.productos);
@@ -391,7 +391,7 @@ const SearchProductsResults = () => {
                 }}
               >
                 {prods.length !== 0 && keyword ? (
-                  prods.map((product, index) => {console.log(product)
+                  prods.map((product, index) => {
                     return (
                       <ProductCard
                         key={index}

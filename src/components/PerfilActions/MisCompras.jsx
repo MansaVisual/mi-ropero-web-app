@@ -24,8 +24,6 @@ const MisCompras = () => {
     }
   }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(comprasRealizadas);
-
   const compras = [
     {
       fecha: '15 / 03 / 2017',

@@ -63,9 +63,7 @@ export const PerfilContext = ({ children }) => {
       dir.append('estado', i + 1);
       dir.append('page', 1);
       dir.append('bypage', 10);
-      console.log(dir);
       PerfilAPI(dir, 'operaciones', 'all_buyer').then((res) => {
-        console.log(res);
         if (res.status === 'success') {
           setComprasRealizadas(comprasRealizadas.push(res.result));
         }

@@ -109,7 +109,7 @@ const ViewCloset = () => {
         ropero,
         "tiendas",
         "detail"
-      ).then((res)=>console.log(res))
+      )
     }
   }, [closetId]);// eslint-disable-line react-hooks/exhaustive-deps
 

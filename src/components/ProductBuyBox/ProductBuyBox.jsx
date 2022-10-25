@@ -68,7 +68,7 @@ const ProductBuyBox = ({prod,itemID}) => {
       add,
       "carritos",
       "insert"
-    ).then((res)=>{console.log(res)
+    ).then((res)=>{
       if(res.result==="El producto se agrego correctamente al carrito"){
         const CartID = new FormData();
         CartID.append("idcliente", userLog);
