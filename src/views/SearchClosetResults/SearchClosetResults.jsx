@@ -27,7 +27,7 @@ const SearchClosetResults = () => {
   const [load,setLoad]=useState(false)
 
   const [totalPages,setTotalPages]=useState(0)
-
+  const [totalProds,setTotalProds]=useState(0)
 
   const [bestRoperos,setBestRoperos]=useState([])
 
@@ -47,32 +47,38 @@ const SearchClosetResults = () => {
       "tiendas",
       "search"
     ).then((res)=>{if(res.status==="success"){setBestRoperos(res.result)}})
+
+    setLoad(true)
+    const busqueda=new FormData()
+    busqueda.append("page",0)
+    busqueda.append("bypage",10)
+
     if(keyword!==undefined){
-      setLoad(true)
-      const busqueda=new FormData()
       busqueda.append("text",keyword)
-      busqueda.append("bypage",10)
-      busqueda.append("page",0)
-      ProdAPI(
-        busqueda,
-        "tiendas",
-        "search"
-      ).then((res)=>{
-        if(res.status==="success"){
-          setRoperos(res.result.tiendas)
-          setTotalPages(res.result.total_paginas)
-          setLoad(false)
-        }
-        setBuscandoRoperos(false)
-      })
     }
+    ProdAPI(
+      busqueda,
+      "tiendas",
+      "search"
+    ).then((res)=>{
+      if(res.status==="success"){
+        setTotalProds(res.result.total)
+        setRoperos(res.result.tiendas)
+        setTotalPages(res.result.total_paginas)
+        setLoad(false)
+      }
+      setBuscandoRoperos(false)
+    })
   },[keyword])// eslint-disable-line react-hooks/exhaustive-deps
 
   const buscarPage=(paramSearch,value)=>{
 
     setLoad(true)
     const newPage=new FormData()
-    newPage.append("text",keyword)
+    if(keyword!==undefined){
+      newPage.append("text",keyword)
+    }
+
     newPage.append("bypage",10)
     newPage.append("page",value)
 
@@ -80,7 +86,7 @@ const SearchClosetResults = () => {
       newPage,
       "tiendas",
       "search"
-    ).then((res)=>{console.log(res)
+    ).then((res)=>{
       if(res.status==="success"){
         setRoperos(res.result.tiendas)
       }
@@ -91,6 +97,7 @@ const SearchClosetResults = () => {
       });
     })
   }
+
 
   return (
     <>
@@ -153,7 +160,7 @@ const SearchClosetResults = () => {
                     marginTop: "16px",
                   }}
                 >
-                  Resultado: {roperos!==undefined && roperos.length} {roperos!==undefined && roperos.length===1?"ropero":"roperos"}
+                  Resultado: {totalProds!==undefined && totalProds} {totalProds!==undefined && totalProds===1?"ropero":"roperos"}
                 </Typography>
 
                 <Typography
@@ -276,13 +283,14 @@ const SearchClosetResults = () => {
                 gap: "16px",
               }}
               >
-                {roperos.map((ropero, index) => (
+                {roperos.map((ropero, index) => {return(
                   <ClosetImagesCard
                   key={index}
                   ropero={ropero}
                   keyword={keyword}
                   />
-                  ))}
+                  )})
+                }
               </Box>
             }
             {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}

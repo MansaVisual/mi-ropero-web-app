@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import {
   Grid,
   Typography,
@@ -13,13 +13,14 @@ import {
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Pagination from "../../components/Pagination/Pagination";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import Button from "../../components/Button/Button";
+import { UseProdsContext } from "../../context/ProdsContext";
 
 export const cards = [
   {
@@ -94,6 +95,23 @@ const ViewCloset = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
+
+  const {ProdAPI}=useContext(UseProdsContext)
+
+  const {closetId, nombre}=useParams()
+
+
+  useEffect(() => {
+    if(closetId!==undefined){
+      const ropero = new FormData()
+      ropero.append("idtienda",closetId)
+      ProdAPI(
+        ropero,
+        "tiendas",
+        "get"
+      ).then((res)=>console.log(res))
+    }
+  }, [closetId]);
 
   useEffect(() => {
     window.scrollTo({

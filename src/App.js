@@ -48,6 +48,10 @@ function App() {
                         element={<SearchProductsResults />}
                       />
                       <Route
+                        path='/roperos'
+                        element={<SearchClosetResults />}
+                      />
+                      <Route
                         path='/roperos/:keyword'
                         element={<SearchClosetResults />}
                       />
@@ -56,7 +60,7 @@ function App() {
                         element={<SearchClosetResults />}
                       />
                       <Route
-                        path='/roperos/:keyword/:closetId'
+                        path='/roperos/:closetId/:nombre'
                         element={<ViewCloset />}
                       />
                       <Route

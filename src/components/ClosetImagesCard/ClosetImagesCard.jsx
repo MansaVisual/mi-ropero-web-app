@@ -18,14 +18,14 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const ClosetImagesCard = ({
-  ropero: { nombre, icono, productos, rating, img },
+  ropero: { nombre, icono, productos, rating, img, idtienda },
   keyword,
 }) => {
-
+  
   const navigate = useNavigate();
   const handleClick = (event) => {
     event.preventDefault();
-    navigate(`/roperos/${keyword}/${nombre}`);
+    navigate(`/roperos/${idtienda}/${nombre}`);
   };
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -215,7 +215,7 @@ const ClosetImagesCard = ({
               textTransform: "uppercase",
             }}
           >
-            Ver Ropero de {nombre}
+            Ver {nombre}
           </Link>
         </Box>
       </Box>
