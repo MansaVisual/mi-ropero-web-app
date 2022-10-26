@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({
   imageCard,
-  tag,
   productName,
   productPrice,
   idProducto,

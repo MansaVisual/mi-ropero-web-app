@@ -23,16 +23,15 @@ const MisFavoritos = ({setTypeNav}) => {
               <Breadcrumbs links={pathnames}/>
               <p className="title">MIS FAVORITOS</p>
               <div className="cardContainer">
-                  {listFavs.map((item, index) => {
+                  {listFavs.map((item, index) => {console.log(item)
                     return(
                       <div key={index}>
                           <ProductCard
                               imageCard={item.producto_imagen}
-                              productName={item.producto_nombre}
+                              productName={item.producto_precio}
                               idProducto={item.producto_id}
                               itemFav={item}
-                              precioOferta={item.precio_oferta}
-                              tag="NUEVO"
+                              precioOferta={item.producto_precio_oferta}
                           />
                       </div>
                   )})}                   
