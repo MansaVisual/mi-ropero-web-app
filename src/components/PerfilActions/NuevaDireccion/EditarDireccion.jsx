@@ -72,11 +72,8 @@ const EditarDireccion = () => {
   const [loader, setLoader] = useState(false);
 
   const [campoObligatorio, setCampoObligatorio] = useState(false);
-  const [errorPhone, setErrorPhone] = useState(false);
   const [errorCodPostal, setErrorCodPostal] = useState(false);
   const [errorDireccion, setErrorDireccion] = useState(false);
-  const [errorDirCargada, setErrorDirCargada] = useState(false);
-  const [errorRecargarDir, setErrorRecargarDir] = useState(false);
   const [errorLocalidad, setErrorLocalidad] = useState(false);
 
   const [viewDireccion, setViewDireccion] = useState(false);
@@ -98,8 +95,10 @@ const EditarDireccion = () => {
   useEffect(() => {
     if (provincia === "1") {
       document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
+
     }
   }, [provincia]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -116,13 +115,10 @@ const EditarDireccion = () => {
   }, [popLoc]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [direccion, setDireccion] = useState({});
-  const [buscandoDir, setBuscandoDir] = useState(false);
-  const [sucursales, setSucursales] = useState([]);
 
   const handleProvinciaInput = (event) => {
     setProvincia(event.target.value);
     setForm({ ...form, provincia: event.target.value });
-    console.log(event.target.value)
     if (event.target.value === 1) {
        /* document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";  */
       setForm({ codigoPostal: "",barrioLocalidad:"CAPITAL FEDERAL" });
@@ -194,20 +190,6 @@ const EditarDireccion = () => {
       "codigo_postal",
       document.getElementById("codigoPostal").value
     );
-    await FormAPI(formCodPostal, "operaciones", "get_oca_offices").then(
-      (res) => {
-        if (res.status === "error") {
-          setLoader(false);
-          setErrorCodPostal(true);
-          setBuscandoDir(false);
-          throwError("codigoPostal", "labelCodigoPostal");
-          scrollTop();
-          return;
-        } else {
-          setSucursales(res.result);
-        }
-      }
-    );
     validarDireccion();
   };
 
@@ -238,7 +220,6 @@ const EditarDireccion = () => {
         await setResDirecciones(res.result);
         setViewDireccion(true);
       } else {
-        setBuscandoDir(false);
         setLoader(false);
         setErrorDireccion(true);
         throwError("calle", "labelCalle");
@@ -294,7 +275,6 @@ const EditarDireccion = () => {
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
-          setBuscandoDir(false);
           setLoader(false);
           setErrorDireccion(true);
           throwError("calle", "labelCalle");
@@ -306,7 +286,7 @@ const EditarDireccion = () => {
         }
       });
     }
-  }, [guardarDireccion]);
+  }, [guardarDireccion]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = (param) => {
     if (param !== undefined) {
@@ -349,12 +329,7 @@ const EditarDireccion = () => {
           <p>Debe completar los campos obligatorios para avanzar</p>
         </div>
       )}
-      {errorPhone && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>El número de telefono no es válido.</p>
-        </div>
-      )}
+
       {errorCodPostal && (
         <div className="errorBox">
           <CancelOutlinedIcon color="secondary" className="cruz" />
@@ -365,18 +340,6 @@ const EditarDireccion = () => {
         <div className="errorBox">
           <CancelOutlinedIcon color="secondary" className="cruz" />
           <p>No se encontró la direccion establecida.</p>
-        </div>
-      )}
-      {errorDirCargada && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>Debe seleccionar una dirección</p>
-        </div>
-      )}
-      {errorRecargarDir && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>Ocurrió un error de validación. Vuelva a intentarlo</p>
         </div>
       )}
       {errorLocalidad && (
@@ -517,6 +480,7 @@ const EditarDireccion = () => {
               setCambioProvincia(true);
               setErrorDireccion(false);
               setCampoObligatorio(false);
+              setErrorLocalidad(false)
             }}
             onFocus={(e) => onFocus(e, clase, clase2, "labelProvincia")}
             sx={{
@@ -562,7 +526,7 @@ const EditarDireccion = () => {
             className="input"
             size="small"
             id="barrioLocalidad"
-            value={form.barrioLocalidad}
+            value={provincia==="1"?"CAPITAL FEDERAL":form.barrioLocalidad}
             onChangeCapture={() => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
@@ -695,7 +659,6 @@ const EditarDireccion = () => {
           setViewDireccion={setViewDireccion}
           resDirecciones={resDirecciones}
           form={form}
-          setBuscandoDir={setBuscandoDir}
           setGuardarDireccion={setGuardarDireccion}
           infoLocFinal={infoLocFinal}
         />
