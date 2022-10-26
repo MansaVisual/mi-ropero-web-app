@@ -3,7 +3,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useLocation, useNavigate } from 'react-router-dom';
 import leftArrow from '../../../assets/img/leftArrow.png';
-import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { Button, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { UseFormContext } from '../../../context/FormContext';
 import { UseLoginContext } from '../../../context/LoginContext';
 import { handleInputChange, onFocus } from './direccFunciones';
@@ -32,9 +32,11 @@ const NuevaDireccion = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [provincias, setProvincias] = useState("");
+  
+  
+  const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
-
+  
   const [campoObligatorio, setCampoObligatorio] = useState(false);
   const [errorCodPostal, setErrorCodPostal] = useState(false);
   const [errorDireccion, setErrorDireccion] = useState(false);
@@ -45,7 +47,7 @@ const NuevaDireccion = () => {
   const [viewDireccion, setViewDireccion] = useState(false);
   const [resDirecciones, setResDirecciones] = useState([]);
   const [guardarDireccion, setGuardarDireccion] = useState(false);
-  const [provincia, setProvincia] = useState([]);
+  const [provincia, setProvincia] = useState("");
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -67,8 +69,9 @@ const NuevaDireccion = () => {
   const handleProvinciaInput = (event) => {
     setProvincia(event.target.value);
     setForm({ ...form, provincia: event.target.value });
-    if (event.target.value === 1) {
+    if (event.target.value === '1') {
       document.getElementById('barrioLocalidad').value = 'CAPITAL FEDERAL';
+      setForm({ ...form, barrioLocalidad: 'CAPITAL FEDERAL' });
     }
   };
 
@@ -343,32 +346,6 @@ const NuevaDireccion = () => {
           />
         </div>
         <div className='inputBox'>
-          {/* <p className='labelInput' id='labelTelefono'>
-            Teléfono de contacto *
-          </p>
-          <TextField
-            color='primary'
-            className='input'
-            size='small'
-            id='telefono'
-            placeholder='+54  11 - 4417 - 8005'
-            onChangeCapture={() => {
-              handleInputChange(form, setForm);
-              setCampoObligatorio(false);
-              setErrorPhone(false);
-            }}
-            onFocus={(e) => onFocus(e, clase, clase2, 'labelTelefono')}
-            sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
-                  borderColor: campoObligatorio && '#FF3F20',
-                },
-              },
-            }}
-          />
-          <p className='bottomText'>
-            Llamarán a este número si hay algún problema con el envío.
-          </p> */}
         </div>
       </div>
       <div className='inputContainer'>
@@ -409,6 +386,7 @@ const NuevaDireccion = () => {
               size='small'
               id='alturaKM'
               placeholder='5'
+              value={form.barrioLocalidad}
               onChangeCapture={() => {
                 handleInputChange(form, setForm);
                 setCampoObligatorio(false);
@@ -460,11 +438,14 @@ const NuevaDireccion = () => {
             Provincia *
           </p>
           <Select
+            displayEmpty 
             className='selectInput'
             placeholder='Ciudad Autónoma de Buenos Aires'
             size='small'
             id='provincia'
-            value={provincia}
+            value={provincia===""?"ejemplo":provincia}
+
+           /*  value={provincia} */
             onChange={(event) => {
               handleProvinciaInput(event);
               setErrorDireccion(false);
@@ -485,7 +466,7 @@ const NuevaDireccion = () => {
               },
             }}
           >
-            <MenuItem
+             <MenuItem
               disabled
               key={'ejemplo'}
               value={'ejemplo'}
@@ -493,7 +474,7 @@ const NuevaDireccion = () => {
             >
               {'Seleccioná una provincia'}
             </MenuItem>
-            {provincias.map((option) => (
+            {provincias.length > 0 && provincias.map((option) => (
               <MenuItem
                 key={option.idprovincia}
                 value={option.idprovincia}
@@ -501,7 +482,7 @@ const NuevaDireccion = () => {
               >
                 {option.nombre}
               </MenuItem>
-            ))}
+            ))} 
           </Select>
         </div>
         <div className='inputBox'>

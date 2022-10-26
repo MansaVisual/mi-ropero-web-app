@@ -6,6 +6,7 @@ export const PerfilContext = ({ children }) => {
   const [direccionesGuardadas, setDireccionesGuardadas] = useState([]);
   const [direccionSelecc, setDireccionSelecc] = useState(false);
   const [comprasRealizadas, setComprasRealizadas] = useState([]);
+  const [ofertasRealizadas, setOfertasRealizadas] = useState([])
 
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = '';
@@ -64,12 +65,44 @@ export const PerfilContext = ({ children }) => {
       dir.append('page', 1);
       dir.append('bypage', 10);
       PerfilAPI(dir, 'operaciones', 'all_buyer').then((res) => {
+        console.log(res.result)
         if (res.status === 'success') {
-          setComprasRealizadas(comprasRealizadas.push(res.result));
-        }
+           //setComprasRealizadas(prevState=> prevState.push(res.result));
+         }
       });
     }
   };
+
+
+  const handleOfertasRealizadas=(userLog)=>{
+    const estados=[
+      'Sin definir',
+      'en proceso de evaluacion',
+      'Rechazada por el vendedor',
+      'Cancelada por el comprador',
+      'Aceptado',
+      'vencida'
+    ]
+
+    let array=[]
+
+     /* for (let i = 1; i < estados.length; i++) { */
+      const dir = new FormData();
+      dir.append('idcliente', userLog);
+      dir.append('estado', [1,2,3,4,5] ); 
+      PerfilAPI(dir, 'ofertas', 'all').then((res) => {
+        console.log(res.result)
+        if (res.status === 'success') {
+          //setOfertasRealizadas(prevState=> [...prevState,...res.result]);
+          for(const ii in res.result){
+            array= array.push(res.result[ii])
+          }
+         }
+      });
+     /* }  */
+     console.log(array)
+    setOfertasRealizadas(array);
+  }
 
   return (
     <UsePerfilContext.Provider
@@ -81,6 +114,8 @@ export const PerfilContext = ({ children }) => {
         handleComprasRealizadas,
         comprasRealizadas,
         direccionSelecc,
+        handleOfertasRealizadas,
+        ofertasRealizadas
       }}
     >
       {children}

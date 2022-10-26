@@ -25,7 +25,6 @@ const MisOfertas = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog]);
 
-  console.log(ofertasRealizadas);
   const array = [
     {
       img: Sweater,
@@ -53,22 +52,31 @@ const MisOfertas = () => {
     },
   ];
 
+  const estados=[
+    'Sin definir',
+    'en proceso de evaluacion',
+    'Rechazada por el vendedor',
+    'Cancelada por el comprador',
+    'Aceptado',
+    'vencida'
+  ]
+
   return (
     <div className='misOfertasContainer'>
       <Breadcrumbs links={pathnames} />
       <div className='container'>
         <p className='title'>MIS OFERTAS</p>
         <div className='cardsContainer'>
-          {array &&
-            array?.map((producto) => {
+          {ofertasRealizadas &&
+            ofertasRealizadas?.map((producto) => {
               return (
                 <div className='desktopCard'>
                   <div className='productoData'>
-                    <img src={producto.img} alt='cardImage' />
+                    <img src={producto.producto.imagenes[0].imagen_cuadrada} alt='cardImage' />
                     <div>
-                      <p className='productoTitle'>{producto.titulo}</p>
+                      <p className='productoTitle'>{producto.producto.nombre}</p>
                       <p className='productoDate'>{producto.fecha}</p>
-                      <p className='productoState'>{producto.estado}</p>
+                      <p className='productoState'>{producto.estado_text}</p>
                     </div>
                   </div>
                   <div className='ofertaData'>

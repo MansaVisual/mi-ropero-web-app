@@ -69,8 +69,8 @@ const EditarDireccion = () => {
     }
   }, [direccionSelecc]);// eslint-disable-line react-hooks/exhaustive-deps
   
-  const [direccGuardada, setDireccGuardada] = useState(false);
-  const [formGuardado, setFormGuardado] = useState({});
+/*   const [direccGuardada, setDireccGuardada] = useState(false);
+  const [formGuardado, setFormGuardado] = useState({}); */
   
   const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -87,6 +87,8 @@ const EditarDireccion = () => {
   const [resDirecciones, setResDirecciones] = useState([]);
   const [guardarDireccion, setGuardarDireccion] = useState(false);
   const [provincia, setProvincia] = useState([]);
+
+
   
 
   useEffect(() => {
@@ -101,6 +103,7 @@ const EditarDireccion = () => {
       document.getElementById('barrioLocalidad').value = 'CAPITAL FEDERAL';
     }
   }, [provincia]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -550,7 +553,7 @@ const EditarDireccion = () => {
           </p>
           <TextField
             placeholder={'Primero debes ingresar una provincia'}
-            disabled={provincia === '' ? true : false}
+            disabled={provincia === '' || provincia === "1"? true : false}
             className='input'
             size='small'
             id='barrioLocalidad'

@@ -18,6 +18,7 @@ const MisDatos = () => {
   const [caracteristicasFavs, setCaracteristicasFavs] = useState([]);
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   
   const [genero, setGenero] = useState('');
@@ -87,9 +88,8 @@ const MisDatos = () => {
     setCaracteristicasFin(idTalleRopa+coma1+idMarcasPreferidas+coma2+idTipoRopa+coma3+idEstiloRopa)
   }, [talleRopa,marcasPreferidas,tipoRopa,estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(infoUser)
-
   const handleGrabarCambios = () => {
+    setLoading(true)
     if (document.getElementById('nombre').value === '') {
       ScrollTop();
       alert('Debe completar el campo Nombre');
@@ -127,17 +127,18 @@ const MisDatos = () => {
     mail.append('sexo', genero.toString());
     mail.append('clave', "prueba");
     mail.append("caracteristicas_favoritas",caracteristicasFin)
-    console.log(Object.fromEntries(mail))
 
     PerfilAPI(mail, 'clientes', 'update').then((res) => {
 
       if (res.status === 'success') {
-        console.log(res)
-        /* navigate(`/perfil`) */
+        setLoading(false)
+         navigate(`/perfil`) 
       } else{
         if(res.result==="El campo sexo es necesario"){
+          setLoading(false)
           alert("Seleccioná tu género")
         }else if(res.result==="El campo telefono es necesario"){
+          setLoading(false)
           alert("Completá tu número de teléfono")
         }
       }
@@ -504,7 +505,12 @@ const MisDatos = () => {
               </Select>
             </div>
           </div>
-          <div className='buttonContainer'>
+          {loading ? (
+        <div style={{ marginTop: '16px' }}>
+          <Loader spin={'spinnerG'} />
+        </div>
+      ) : (
+        <div className='buttonContainer'>
             <Button className='leftButton' onClick={() => navigate(`/perfil`)}>
               VOLVER
             </Button>
@@ -515,6 +521,7 @@ const MisDatos = () => {
               GRABAR CAMBIOS
             </Button>
           </div>
+      )}
         </>
       )}
     </div>
