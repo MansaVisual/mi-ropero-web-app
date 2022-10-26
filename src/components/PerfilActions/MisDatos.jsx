@@ -213,10 +213,12 @@ const MisDatos = () => {
                 id="email"
                 defaultValue={infoUser.email}
               />
-              <p className="bottomText">
-                Te registraste en el sitio utilizando Facebook, y es por eso que
-                la dirección de email no puede modificarse.
-              </p>
+              {infoUser.social_login === "1" ? (
+                <p className="bottomText">
+                  Te registraste en el sitio utilizando redes sociales, y es por
+                  eso que la dirección de email no puede modificarse.
+                </p>
+              ) : null}
             </div>
             <div className="inputBox">
               <p className="labelInput">Teléfono *</p>
