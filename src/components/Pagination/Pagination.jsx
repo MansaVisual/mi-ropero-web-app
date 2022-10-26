@@ -27,7 +27,7 @@ const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
       renderItem={(item) => (
         <PaginationItem
           component={Link}
-          to={`${pathname}?page=${item.page}`}
+          to={`${pathname}`}
           {...item}
         />
       )}
