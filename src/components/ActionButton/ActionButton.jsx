@@ -50,7 +50,7 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
       const favAdd = new FormData()
       favAdd.append("idcliente",idCliente)
       favAdd.append("idproducto",idProd)
-      ProdAPI(
+      await ProdAPI(
         favAdd,
         "favoritos",
         "insert"

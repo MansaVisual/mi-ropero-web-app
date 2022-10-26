@@ -125,12 +125,12 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){
                 setListFavs(res.result)
             }else{
-                handleListFavs()
+                setListFavs([])
             }
         })
     }
 
-    
+
     return(
         <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,slider1,slider2,slider3,handleListFavs,listFavFinBusqueda}}>
             {children}

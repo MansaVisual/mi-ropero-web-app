@@ -40,8 +40,6 @@ const ProductCard = ({
   };
 
 
-
-
   return (
     <Card
       sx={{

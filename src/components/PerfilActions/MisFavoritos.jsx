@@ -19,21 +19,11 @@ const MisFavoritos = ({setTypeNav}) => {
       <div className="misFavsContainer">
           <Breadcrumbs links={pathnames}/>
           <p className="title">MIS FAVORITOS</p>
-          {listFavFinBusqueda ? 
-            <div className='perfilVacio'>
-              <div>
-                <img src={vacio} alt="LOGO" />
-                <p>Aún no tienes productos favoritos</p>
-                <Button onClick={()=>navigate("/")}>
-                  VER PRODUCTOS
-                </Button>
-              </div>
-            </div>
-          :
-            listFavs.length===0? 
+          {!listFavFinBusqueda ? 
               <div style={{ height: '50vh', marginTop: '42px', width:"100%",display:"flex",justifyContent:"center" }}>
                 <Loader spin={'spinnerM'} />
-              </div> :
+              </div>
+              :listFavs.length!==0? 
               <div className="cardContainer">
                   {listFavs.map((item, index) => {
                     return(
@@ -48,6 +38,16 @@ const MisFavoritos = ({setTypeNav}) => {
                       </div>
                   )})}                   
               </div>
+            :
+            <div className='perfilVacio'>
+              <div>
+                <img src={vacio} alt="LOGO" />
+                <p>Aún no tienes productos favoritos</p>
+                <Button onClick={()=>navigate("/")}>
+                  VER PRODUCTOS
+                </Button>
+              </div>
+            </div>
           }
           <div className="returnLink" onClick={()=>navigate(`/perfil`)}>
               <img src={leftArrow} alt="leftArrow" />

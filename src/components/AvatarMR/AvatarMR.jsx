@@ -25,7 +25,7 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
           }}
           src={datosTienda!==undefined?datosTienda.icono:infoUser.avatar
           }
-          onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
+          onClick={avatarCard?()=>navigate(`/roperos/${datosTienda.idcliente}/${datosTienda.nombre}`):()=>{handleCloseAvatar();navigate('/perfil')}}
         >
         </Avatar>
         <Box sx={{ pl: !avatarCard ? "6px" : "10px" }}>
@@ -42,7 +42,7 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
               fontWeight: theme.typography.fontWeightMedium,
               cursor:"pointer"
             }}
-            onClick={avatarCard?null:()=>{handleCloseAvatar();navigate('/perfil')}}
+            onClick={avatarCard?()=>navigate(`/roperos/${datosTienda.idcliente}/${datosTienda.nombre}`):()=>{handleCloseAvatar();navigate('/perfil')}}
           >
             {avatarCard ? datosTienda.nombre :
               infoUser.length!==0 && infoUser.nombre
