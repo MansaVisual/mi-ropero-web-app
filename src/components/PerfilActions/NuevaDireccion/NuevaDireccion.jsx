@@ -332,7 +332,7 @@ const NuevaDireccion = () => {
             className='input'
             size='small'
             id='calle'
-            placeholder='123'
+            placeholder='Avenida Anta'
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
