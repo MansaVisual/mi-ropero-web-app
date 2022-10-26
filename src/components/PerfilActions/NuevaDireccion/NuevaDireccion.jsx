@@ -3,7 +3,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useLocation, useNavigate } from 'react-router-dom';
 import leftArrow from '../../../assets/img/leftArrow.png';
-import { Button, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import { UseFormContext } from '../../../context/FormContext';
 import { UseLoginContext } from '../../../context/LoginContext';
 import { handleInputChange, onFocus } from './direccFunciones';
@@ -40,8 +40,6 @@ const NuevaDireccion = () => {
   const [campoObligatorio, setCampoObligatorio] = useState(false);
   const [errorCodPostal, setErrorCodPostal] = useState(false);
   const [errorDireccion, setErrorDireccion] = useState(false);
-  /*   const [errorDirCargada, setErrorDirCargada] = useState(false);
-  const [errorRecargarDir, setErrorRecargarDir] = useState(false); */
   const [errorLocalidad, setErrorLocalidad] = useState(false);
 
   const [viewDireccion, setViewDireccion] = useState(false);
@@ -66,8 +64,6 @@ const NuevaDireccion = () => {
   }, [popLoc]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [direccion, setDireccion] = useState({});
-  const [buscandoDir, setBuscandoDir] = useState(false);
-  const [sucursales, setSucursales] = useState([]);
 
   const handleProvinciaInput = (event) => {
     setProvincia(event.target.value);
@@ -139,20 +135,6 @@ const NuevaDireccion = () => {
       'codigo_postal',
       document.getElementById('codigoPostal').value,
     );
-    await FormAPI(formCodPostal, 'operaciones', 'get_oca_offices').then(
-      (res) => {
-        if (res.status === 'error') {
-          setErrorCodPostal(true);
-          /* setBuscandoDir(false); */
-          throwError('codigoPostal', 'labelCodigoPostal');
-          scrollTop();
-          setLoader(false);
-          return;
-        } else {
-          setSucursales(res.result);
-        }
-      },
-    );
     validarDireccion();
   };
 
@@ -183,7 +165,6 @@ const NuevaDireccion = () => {
         await setResDirecciones(res.result);
         setViewDireccion(true);
       } else {
-        /*  setBuscandoDir(false); */
         setLoader(false);
         setErrorDireccion(true);
         throwError('calle', 'labelCalle');
@@ -239,7 +220,6 @@ const NuevaDireccion = () => {
         if (res.status === 'success') {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
-          /*   setBuscandoDir(false); */
           setLoader(false);
           setErrorDireccion(true);
           throwError('calle', 'labelCalle');
@@ -251,7 +231,7 @@ const NuevaDireccion = () => {
         }
       });
     }
-  }, [guardarDireccion]);
+  }, [guardarDireccion]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = (param) => {
     if (param !== undefined) {
@@ -306,18 +286,7 @@ const NuevaDireccion = () => {
           <p>No se encontró la direccion establecida.</p>
         </div>
       )}
-      {/*       {errorDirCargada && (
-        <div className='errorBox'>
-          <CancelOutlinedIcon color='secondary' className='cruz' />
-          <p>Debe seleccionar una dirección</p>
-        </div>
-      )}
-      {errorRecargarDir && (
-        <div className='errorBox'>
-          <CancelOutlinedIcon color='secondary' className='cruz' />
-          <p>Ocurrió un error de validación. Vuelva a intentarlo</p>
-        </div>
-      )} */}
+
       {errorLocalidad && (
         <div className='errorBox'>
           <CancelOutlinedIcon color='secondary' className='cruz' />
@@ -629,7 +598,6 @@ const NuevaDireccion = () => {
           setViewDireccion={setViewDireccion}
           resDirecciones={resDirecciones}
           form={form}
-          setBuscandoDir={setBuscandoDir}
           setGuardarDireccion={setGuardarDireccion}
           infoLocFinal={infoLocFinal}
         />
