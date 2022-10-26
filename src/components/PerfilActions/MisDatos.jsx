@@ -87,6 +87,7 @@ const MisDatos = () => {
     setCaracteristicasFin(idTalleRopa+coma1+idMarcasPreferidas+coma2+idTipoRopa+coma3+idEstiloRopa)
   }, [talleRopa,marcasPreferidas,tipoRopa,estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(infoUser)
 
   const handleGrabarCambios = () => {
     if (document.getElementById('nombre').value === '') {
@@ -105,14 +106,16 @@ const MisDatos = () => {
       return;
     }
 
-    const formPhone = new FormData();
-    formPhone.append('telefono', document.getElementById('telefono').value);
-    PerfilAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
-      if (res.status === 'error') {
-        alert('Error en la validación de telefono');
-        return;
-      }
-    });
+    if(document.getElementById("telefono").value!==""){
+      const formPhone = new FormData();
+      formPhone.append('telefono', document.getElementById('telefono').value);
+      PerfilAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
+        if (res.status === 'error') {
+          alert('Error en la validación de telefono');
+          return;
+        }
+      });
+    }
 
     const mail = new FormData();
     mail.append('idcliente', userLog);
@@ -132,7 +135,11 @@ const MisDatos = () => {
         console.log(res)
         /* navigate(`/perfil`) */
       } else{
-        console.log(res)
+        if(res.result==="El campo sexo es necesario"){
+          alert("Seleccioná tu género")
+        }else if(res.result==="El campo telefono es necesario"){
+          alert("Completá tu número de teléfono")
+        }
       }
     });
   };
@@ -219,9 +226,7 @@ const MisDatos = () => {
                 className='selectInput'
                 size='small'
                 onChange={(e) => setGenero(arrayGeneros.indexOf(e.target.value))}
-                //value={infoUser.genero === '0' ? 'ejemplo' : genero}
-                value={genero!==""?arrayGeneros[Number(genero)]:null}
-                /* defaultValue={infoUser.genero === '0' ? 'ejemplo' : genero} */
+                value={genero==="0"?"ejemplo":genero!==""?arrayGeneros[Number(genero)]:null}
                 sx={{
                   '& div': {
                     fontSize: '14px',
