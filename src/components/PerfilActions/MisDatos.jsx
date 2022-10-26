@@ -19,6 +19,7 @@ const MisDatos = () => {
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
 
+  
   const [genero, setGenero] = useState('0');
   const [talleRopa, setTalleRopa] = useState('');
   const [marcasPreferidas, setMarcasPreferidas] = useState([]);
@@ -54,6 +55,7 @@ const MisDatos = () => {
   };
 
 
+
   useEffect(() => {
     PerfilAPI('', 'clientes', 'get_sexos').then((res) => {
       if (res.status === 'success') {
@@ -73,7 +75,7 @@ const MisDatos = () => {
 
   useEffect(() => {
     if (infoUser.length !== 0) {
-      setGenero(infoUser.sexo);
+      setGenero(infoUser.sexo );
     }
   }, [infoUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -149,11 +151,27 @@ const MisDatos = () => {
     mail.append('nombre', document.getElementById('nombre').value);
     mail.append('apellido', document.getElementById('apellido').value);
     mail.append('email', document.getElementById('email').value);
-    mail.append('email_old', infoUser.email_old);
+    mail.append('email_old', infoUser.email);
     mail.append('telefono', document.getElementById('telefono').value);
-    mail.append('sexo', genero);
+    mail.append('sexo', genero/* arrayGeneros.indexOf(genero) */);
+    mail.append('clave', "prueba");
     mail.append("caracteristicas_favoritas",caracteristicasFin)
+    console.log(Object.fromEntries(mail))
+
+
+    PerfilAPI(mail, 'clientes', 'update').then((res) => {
+
+       if (res.status === 'success') {
+        console.log(res)
+        /* navigate(`/perfil`) */
+      } else{
+        console.log(res)
+      }
+    });
   };
+
+
+  console.log(infoUser)
 
   const ScrollTop = () => {
     window.scrollTo({
@@ -222,9 +240,7 @@ const MisDatos = () => {
                 placeholder='+54  011 - 4417 - 8005'
                 type='number'
                 id='telefono'
-                defaultValue={
-                  infoUser.email !== undefined ? infoUser.email : ''
-                }
+                defaultValue={infoUser.telefono}
               />
               <p className='bottomText'>
                 Llamarán a este número si hay algún problema con el envío.
@@ -238,13 +254,14 @@ const MisDatos = () => {
                 color='primary'
                 className='selectInput'
                 size='small'
-                onChange={(e) => {setGenero(e.target.value)}}
-                value={genero === '0' ? 'ejemplo' : genero}
-                defaultValue={genero === '0' ? 'ejemplo' : genero}
+                onChange={(e) => setGenero(arrayGeneros.indexOf(e.target.value))}
+                //value={infoUser.genero === '0' ? 'ejemplo' : genero}
+                value={arrayGeneros[Number(genero)]}
+                /* defaultValue={infoUser.genero === '0' ? 'ejemplo' : genero} */
                 sx={{
                   '& div': {
                     fontSize: '14px',
-                    color: genero === '' ? '#BABCBE' : '#423B3C',
+                    color: infoUser.genero === '' ? '#BABCBE' : '#423B3C',
                     fontWeight: '400',
                   },
                   height: 42,
