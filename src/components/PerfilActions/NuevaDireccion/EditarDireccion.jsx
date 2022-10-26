@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../../assets/img/leftArrow.png";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import { UseFormContext } from "../../../context/FormContext";
-import { UseLoginContext } from "../../../context/LoginContext";
 import { UsePerfilContext } from "../../../context/PerfilContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../../FormCheckout/PopUpLocalidad";
@@ -18,7 +17,6 @@ const EditarDireccion = () => {
   const navigate = useNavigate();
 
   const { FormAPI } = useContext(UseFormContext);
-  const { userLog } = useContext(UseLoginContext);
   const { direccionSelecc } = useContext(UsePerfilContext);
 
   const [form, setForm] = useState({
