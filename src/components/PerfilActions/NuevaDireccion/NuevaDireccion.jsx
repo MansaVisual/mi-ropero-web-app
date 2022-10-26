@@ -54,6 +54,9 @@ const NuevaDireccion = () => {
   const [popLoc, setPopLoc] = useState(false);
   const [changeLoc, setChangeLoc] = useState(false);
 
+  const [cambioProvincia, setCambioProvincia] = useState(false)
+
+
   useEffect(() => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById('codigoPostal').value =
@@ -121,13 +124,15 @@ const NuevaDireccion = () => {
       scrollTop();
       setCampoObligatorio(true);
     }
-    if (infoLocFinal.length === 0) {
-      throwError('barrioLocalidad', 'labelBarrioLocalidad');
-      scrollTop();
-      setErrorLocalidad(true);
-      setLoader(false);
-      return;
-    }
+    if (infoLocFinal.length === 0 && cambioProvincia ) {
+      if (document.getElementById('barrioLocalidad').value !== "CAPITAL FEDERAL") {
+        throwError('barrioLocalidad', 'labelBarrioLocalidad'); 
+        scrollTop();
+        setErrorLocalidad(true);
+        setLoader(false);
+        return;
+      }
+    } 
     const formCodPostal = new FormData();
 
     formCodPostal.append(
@@ -444,9 +449,8 @@ const NuevaDireccion = () => {
             size='small'
             id='provincia'
             value={provincia===""?"ejemplo":provincia}
-
-           /*  value={provincia} */
             onChange={(event) => {
+              setCambioProvincia(true)
               handleProvinciaInput(event);
               setErrorDireccion(false);
               setCampoObligatorio(false);
