@@ -385,7 +385,7 @@ const EditarDireccion = () => {
             className="input"
             size="small"
             id="calle"
-            placeholder="123"
+            placeholder="Avenida Anta"
             value={form.calle}
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
