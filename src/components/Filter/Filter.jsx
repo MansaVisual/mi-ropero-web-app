@@ -69,6 +69,7 @@ const Filter = (props) => {
     setPutSort(e.target.value);
   };
 
+  
   return (
     <List
       sx={{
@@ -98,13 +99,13 @@ const Filter = (props) => {
       <Button
         className='botonAplicarFiltros'
         disabled={
-          putSort === '' && putFilters.length === 0 && putCategory===undefined
+          putSort === '' && putFilters.length === 0
             ? true
             : false
         }
         sx={{
           background:
-            putSort === '' && putFilters.length === 0 && putCategory===undefined
+            putSort === '' && putFilters.length === 0
               ? '#998edb'
               : "#443988",
         }}

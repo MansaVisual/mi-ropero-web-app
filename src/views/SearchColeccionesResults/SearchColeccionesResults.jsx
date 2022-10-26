@@ -18,7 +18,6 @@ import Chip from "../../components/Chip/Chip";
 import SliderProd from "../../components/SliderProd/SliderProd";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import Button from "../../components/Button/Button";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
@@ -336,27 +335,35 @@ const SearchProductsResults = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: theme.typography.fontSize[2],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              textDecoration: "underline",
-                              mt: "12px",
-                              mb: "16px",
-                            }}
-                          >
-                            Limpiar filtros
-                          </Typography>
-                          <Button
-                            backgroundColor={theme.palette.primary.main}
-                            color={theme.palette.secondary.contrastText}
-                            text="APLICAR"
-                            small
-                            notRounded
-                            disabled
-                          />
+
                         </Box>
-                        <Filter filtros={filtrosCategoria}/>
+                        {putFilters.map((res, index) => {
+                          return (
+                            <Stack direction='row' spacing={1}>
+                              <ChipFilterCategories
+                                filteredCategory={res}
+                                key={index}
+                                putFilters={putFilters}
+                                setPutFilters={setPutFilters}
+                                setProds={setProds}
+                                ProdAPI={ProdAPI}
+                                setTotalPages={setTotalPages}
+                                categorias={categorias}
+                              />
+                            </Stack>
+                          );
+                        })}
+                        <Filter 
+                          setPutCategory={setPutCategory} 
+                          putCategory={putCategory} 
+                          filtros={filtrosCategoria} 
+                          setPutFilters={setPutFilters} 
+                          putFilters={putFilters} 
+                          putSort={putSort} 
+                          setPutSort={setPutSort} 
+                          coleccion={coleccion}
+                          handleAplicarFiltros={handleAplicarFiltros}
+                        />
                       </Box>
                     </Fade>
                   </Modal>

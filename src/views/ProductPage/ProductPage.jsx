@@ -152,7 +152,7 @@ const ProductPage = () => {
           <Grid item xs={12} sm={12} md={4} xl={6} position="relative">
             {isMobile || isMobileBigScreen ? (
               <>
-                <ProductBuyBox />
+                <ProductBuyBox prod={prod} itemID={itemID} />
               </>
             ) : (
               <>
@@ -206,7 +206,7 @@ const ProductPage = () => {
           <Grid item xs={12} sm={12} md={8} xl={6}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "32px" }}>
-                <Accordion title="Características del producto" />
+                <Accordion title="Características del producto" prodCaracteristicas={prodCaracteristicas}/>
               </Box>
             ) : (
               <>
@@ -221,7 +221,7 @@ const ProductPage = () => {
                 >
                   Características del producto
                 </Typography>
-                {prodCaracteristicas.map((carac,index) => (
+                {prodCaracteristicas !== undefined && prodCaracteristicas.map((carac,index) => (
                   <ProductDetails key={index} carac={carac}/>
                 ))}
               </>

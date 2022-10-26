@@ -192,7 +192,7 @@ const ProductBuyBox = ({prod,itemID}) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                mb: "72px",
+                mb: isMobileBigScreen? costoEnvio.length===0?"72px":"24px":"72px",
               }}
             >
               <Box>
@@ -384,13 +384,16 @@ const ProductBuyBox = ({prod,itemID}) => {
 
         {costoEnvio.length!==0 &&
           <>
-            <Box>
+            <Box
+              sx={{
+                mb: isMobileBigScreen?"32px":"18px",
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[2],
                   fontWeight: theme.typography.fontWeightMedium,
                   color: theme.palette.quaternary.contrastText,
-                  mb: "18px",
                 }}
               >
                 Costo de envío a CP {CP}
