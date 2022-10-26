@@ -35,22 +35,6 @@ const MisOfertas = () => {
       estado: 'En proceso de evaluación',
       oferta: 200,
     },
-    {
-      img: Sweater,
-      titulo:
-        'Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado',
-      fecha: 'Fecha: 21/7/2022 11:08:20',
-      estado: 'En proceso de evaluación',
-      oferta: 200,
-    },
-    {
-      img: Sweater,
-      titulo:
-        'Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado',
-      fecha: 'Fecha: 21/7/2022 11:08:20',
-      estado: 'En proceso de evaluación',
-      oferta: 200,
-    },
   ];
 
   const estados=[
@@ -61,6 +45,8 @@ const MisOfertas = () => {
     'Aceptado',
     'vencida'
   ]
+
+  console.log(ofertasRealizadas)
 
   return (
     <div className='misOfertasContainer'>

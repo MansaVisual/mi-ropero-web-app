@@ -12,6 +12,7 @@ import MisMensajes from '../../components/PerfilActions/MisMensajes';
 import NuevaDireccion from '../../components/PerfilActions/NuevaDireccion/NuevaDireccion';
 import { UseLoginContext } from '../../context/LoginContext';
 import EditarDireccion from '../../components/PerfilActions/NuevaDireccion/EditarDireccion';
+import MiChat from '../../components/PerfilActions/MiChat';
 
 const Perfil = () => {
   const params = useParams();
@@ -57,6 +58,7 @@ const Perfil = () => {
       {params.perfilSeccion === 'MIS MENSAJES' && <MisMensajes />}
       {params.perfilSeccion === 'NUEVA DIRECCION' && <NuevaDireccion />}
       {params.perfilSeccion === 'EDITAR DIRECCION' && <EditarDireccion />}
+      {params.perfilSeccion === 'MI CHAT' && <MiChat />}
     </Grid>
   );
 };

@@ -74,7 +74,7 @@ const MisMensajes = () => {
               className='selectOption'
               sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
             >
-              <em>Seleccioná {/* una opción */}</em>
+              <em>Seleccioná </em>
             </MenuItem>
             {typeMessages.map((option) => (
               <MenuItem
@@ -92,7 +92,7 @@ const MisMensajes = () => {
       <div className='mensajesContainer'>
         {array.map((mensaje) => {
           return (
-            <div className='desktopCard'>
+            <div className='desktopCard' onClick={() => navigate(`/perfil/MI CHAT`)}>
               <div className='mensajeData'>
                 <img src={mensaje.img} alt='cardImage' />
                 <div>
