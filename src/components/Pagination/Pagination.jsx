@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation,useParams } from "react-router-dom";
 import MuiPagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 
 const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
   const { pathname } = useLocation();
-  const [page, setPage] = useState(1);
   const { search } = useParams();
 
   const handleChange = (event, value) => {
-    setPage(value);
     setPags(value)
     if(search!==undefined){
       buscarPage(true,value-1)
@@ -27,7 +25,7 @@ const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
       renderItem={(item) => (
         <PaginationItem
           component={Link}
-          to={`${pathname}?page=${item.page}`}
+          to={`${pathname}`}
           {...item}
         />
       )}
