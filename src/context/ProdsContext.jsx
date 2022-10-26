@@ -15,6 +15,8 @@ export const ProdsContext = ({children}) => {
 
     const [listFavs,setListFavs]=useState([])
 
+    const [listFavFinBusqueda,setListFavFinBusqueda]=useState(false)
+
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
@@ -118,11 +120,19 @@ export const ProdsContext = ({children}) => {
           fav,
           "favoritos",
           "all"
-        ).then((res)=>{if(res.status==="success"){setListFavs(res.result)}else{handleListFavs()}})
+        ).then((res)=>{
+            setListFavFinBusqueda(true)
+            if(res.status==="success"){
+                setListFavs(res.result)
+            }else{
+                handleListFavs()
+            }
+        })
     }
 
+    
     return(
-        <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,slider1,slider2,slider3,handleListFavs}}>
+        <UseProdsContext.Provider value={{ProdAPI,categorias,listFavs,slider1,slider2,slider3,handleListFavs,listFavFinBusqueda}}>
             {children}
         </UseProdsContext.Provider>
     )

@@ -8,6 +8,10 @@ export const PerfilContext = ({ children }) => {
   const [comprasRealizadas, setComprasRealizadas] = useState([]);
   const [ofertasRealizadas, setOfertasRealizadas] = useState([])
 
+  const [dirFinBusqueda,setDirFinBusqueda]=useState(false)
+  const [ofertasFinBusqueda,setOfertasFinBusqueda]=useState(false)
+  const [comprasFinBusqueda,setComprasFinBusqueda]=useState(false)
+
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = '';
 
@@ -35,6 +39,7 @@ export const PerfilContext = ({ children }) => {
     const dir = new FormData();
     dir.append('idcliente', userLog);
     PerfilAPI(dir, 'direcciones', 'all').then((res) => {
+      setDirFinBusqueda(true)
       if (res.status === 'success') {
         setDireccionesGuardadas(res.result);
       }
@@ -65,7 +70,7 @@ export const PerfilContext = ({ children }) => {
       dir.append('page', 1);
       dir.append('bypage', 10);
       PerfilAPI(dir, 'operaciones', 'all_buyer').then((res) => {
-        console.log(res.result)
+        setComprasFinBusqueda(true)
         if (res.status === 'success') {
            //setComprasRealizadas(prevState=> prevState.push(res.result));
          }
@@ -91,7 +96,7 @@ export const PerfilContext = ({ children }) => {
       dir.append('idcliente', userLog);
       dir.append('estado', [1,2,3,4,5] ); 
       PerfilAPI(dir, 'ofertas', 'all').then((res) => {
-        console.log(res.result)
+        setOfertasFinBusqueda(true)
         if (res.status === 'success') {
           //setOfertasRealizadas(prevState=> [...prevState,...res.result]);
           for(const ii in res.result){
@@ -100,7 +105,6 @@ export const PerfilContext = ({ children }) => {
          }
       });
      /* }  */
-     console.log(array)
     setOfertasRealizadas(array);
   }
 
@@ -109,13 +113,16 @@ export const PerfilContext = ({ children }) => {
       value={{
         PerfilAPI,
         handleBuscarDirecciones,
+        dirFinBusqueda,
         direccionesGuardadas,
         setDireccionSelecc,
         handleComprasRealizadas,
+        comprasFinBusqueda,
         comprasRealizadas,
         direccionSelecc,
         handleOfertasRealizadas,
-        ofertasRealizadas
+        ofertasRealizadas,
+        ofertasFinBusqueda
       }}
     >
       {children}

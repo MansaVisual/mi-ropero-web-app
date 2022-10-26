@@ -6,6 +6,9 @@ import Sweater from '../../assets/img/Sweater.png';
 import Basura from '../../assets/img/basura.png';
 import { UsePerfilContext } from '../../context/PerfilContext';
 import { UseLoginContext } from '../../context/LoginContext';
+import Loader from '../Loader/Loader';
+import { Button } from '@mui/material';
+import vacio from "../../assets/img/ofertasVacio.png"
 
 const MisOfertas = () => {
   const location = useLocation();
@@ -13,14 +16,12 @@ const MisOfertas = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleOfertasRealizadas, ofertasRealizadas } =
+  const { handleOfertasRealizadas, ofertasRealizadas,ofertasFinBusqueda } =
     useContext(UsePerfilContext);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (userLog !== '') {
       handleOfertasRealizadas(userLog);
-      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog]);
@@ -67,7 +68,11 @@ const MisOfertas = () => {
       <div className='container'>
         <p className='title'>MIS OFERTAS</p>
         <div className='cardsContainer'>
-          {ofertasRealizadas &&
+          {!ofertasFinBusqueda ? (
+            <div style={{ height: '50vh', marginTop: '42px', width:"100%",display:"flex",justifyContent:"center" }}>
+              <Loader spin={'spinnerM'} />
+            </div> 
+          ) : ofertasRealizadas.length > 0 ?
             ofertasRealizadas?.map((producto) => {
               return (
                 <div className='desktopCard'>
@@ -86,7 +91,18 @@ const MisOfertas = () => {
                   </div>
                 </div>
               );
-            })}
+            })
+          :
+            <div className='perfilVacio'>
+              <div>
+                <img src={vacio} alt="LOGO" />
+                <p>Aún no tienes ofertas realizadas</p>
+                <Button onClick={()=>navigate(`/`)}>
+                  VER PRODUCTOS
+                </Button>
+              </div>
+            </div>
+          }
           {array.map((producto) => {
             return (
               <div className='mobileCard'>
