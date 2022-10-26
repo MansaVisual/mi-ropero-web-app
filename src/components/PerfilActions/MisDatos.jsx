@@ -20,7 +20,7 @@ const MisDatos = () => {
   const [arrayGeneros, setArrayGeneros] = useState([]);
 
   
-  const [genero, setGenero] = useState('0');
+  const [genero, setGenero] = useState('');
   const [talleRopa, setTalleRopa] = useState('');
   const [marcasPreferidas, setMarcasPreferidas] = useState([]);
   const [estiloRopa, setEstiloRopa] = useState([]);
@@ -59,7 +59,7 @@ const MisDatos = () => {
   useEffect(() => {
     PerfilAPI('', 'clientes', 'get_sexos').then((res) => {
       if (res.status === 'success') {
-        let array = [];
+        let array = [""];
         for (const gen in res.result) {
           array.push(res.result[gen]);
         }
@@ -87,38 +87,6 @@ const MisDatos = () => {
     setCaracteristicasFin(idTalleRopa+coma1+idMarcasPreferidas+coma2+idTipoRopa+coma3+idEstiloRopa)
   }, [talleRopa,marcasPreferidas,tipoRopa,estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // console.log(caracteristicasFin)
-  /*   const [scroll, setScroll] = useState(0);
-
-  const [stopScroll, setStopScroll] = useState(false); */
-
-  /*   useEffect(() => {
-    if (stopScroll) {
-      window.onscroll = () => window.scrollTo(0, 0);
-    } else {
-      window.onscroll = null;
-    }
-  }, [stopScroll]); */
-
-  /*   const onScroll = (e) => {
-         setScroll(e.target.documentElement.scrollTop);
-     
-
-    if (document.getElementById('ropa').getAttribute('aria-expanded')) {
-      if (document.getElementById('menu-') !== null) {
-        console.log('asdw');
-        console.log(document.getElementById('menu-'));
-        document.getElementById('menu-').style.display = 'none';
-      }
-     console.log('qwe');
-      console.log(document.getElementById('ropa').attributes);
-      document.getElementById('ropa').attributes[
-        'aria-expanded'
-      ].nodeValue = false; 
-    }
-  };
-
-  window.addEventListener('scroll', onScroll); */
 
   const handleGrabarCambios = () => {
     if (document.getElementById('nombre').value === '') {
@@ -153,15 +121,14 @@ const MisDatos = () => {
     mail.append('email', document.getElementById('email').value);
     mail.append('email_old', infoUser.email);
     mail.append('telefono', document.getElementById('telefono').value);
-    mail.append('sexo', genero/* arrayGeneros.indexOf(genero) */);
+    mail.append('sexo', genero.toString());
     mail.append('clave', "prueba");
     mail.append("caracteristicas_favoritas",caracteristicasFin)
     console.log(Object.fromEntries(mail))
 
-
     PerfilAPI(mail, 'clientes', 'update').then((res) => {
 
-       if (res.status === 'success') {
+      if (res.status === 'success') {
         console.log(res)
         /* navigate(`/perfil`) */
       } else{
@@ -169,9 +136,6 @@ const MisDatos = () => {
       }
     });
   };
-
-
-  console.log(infoUser)
 
   const ScrollTop = () => {
     window.scrollTo({
@@ -256,7 +220,7 @@ const MisDatos = () => {
                 size='small'
                 onChange={(e) => setGenero(arrayGeneros.indexOf(e.target.value))}
                 //value={infoUser.genero === '0' ? 'ejemplo' : genero}
-                value={arrayGeneros[Number(genero)]}
+                value={genero!==""?arrayGeneros[Number(genero)]:null}
                 /* defaultValue={infoUser.genero === '0' ? 'ejemplo' : genero} */
                 sx={{
                   '& div': {
@@ -282,11 +246,15 @@ const MisDatos = () => {
                 </MenuItem>
                 {arrayGeneros.length !== 0 &&
                   arrayGeneros.map((res, i) => {
-                    return (
-                      <MenuItem value={res} key={i}>
-                        {res}
-                      </MenuItem>
-                    );
+                    if(res!==""){
+                      return (
+                        <MenuItem value={res} key={i}>
+                          {res}
+                        </MenuItem>
+                      );
+                    }else{
+                      return null
+                    }
                   })}
               </Select>
             </div>
