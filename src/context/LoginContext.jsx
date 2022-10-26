@@ -120,6 +120,7 @@ export const LoginContext = ({ children }) => {
         setUserLog,
         infoUser,
         FacebookLogin,
+        reBuscarInfo,
       }}
     >
       {children}
