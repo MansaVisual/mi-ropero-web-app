@@ -63,6 +63,7 @@ const SearchProductsResults = () => {
 
   const [putFilters, setPutFilters] = useState([]);
   const [putSort, setPutSort] = useState('');
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:0})
 
   const [filtrosFin, setFiltrosFin] = useState("");
 
@@ -325,6 +326,8 @@ const SearchProductsResults = () => {
                           ProdAPI={ProdAPI}
                           setProds={setProds}
                           setTotalPages={setTotalPages}
+                          rangoPrecio={rangoPrecio}
+                          setRangoPrecio={setRangoPrecio}
                         />
                       </Box>
                     </Fade>
@@ -374,6 +377,8 @@ const SearchProductsResults = () => {
                   ProdAPI={ProdAPI}
                   setProds={setProds}
                   setTotalPages={setTotalPages}
+                  rangoPrecio={rangoPrecio}
+                  setRangoPrecio={setRangoPrecio}
                 />
               </>
             )}

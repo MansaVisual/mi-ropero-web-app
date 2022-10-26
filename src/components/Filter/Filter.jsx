@@ -13,6 +13,8 @@ import {
   Checkbox,
   Button,
   Typography,
+  TextField,
+  Box,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -46,6 +48,8 @@ const Filter = (props) => {
   const setProds=props.setProds
   const categorias=props.categorias
   const setTotalPages=props.setTotalPages
+  const rangoPrecio=props.rangoPrecio
+  const setRangoPrecio=props.setRangoPrecio
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -99,7 +103,7 @@ const Filter = (props) => {
       <Button
         className='botonAplicarFiltros'
         disabled={
-          putSort === '' && putFilters.length === 0
+          putSort === '' && putFilters.length === 0 
             ? true
             : false
         }
@@ -380,28 +384,46 @@ const Filter = (props) => {
             </Fragment>
           );
         })}
-      {/* 
 
       <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
-        <ListItemText primary="Rango de precio" sx={ListItemPriceRangeStyled} />
+        <ListItemText primary="Rango de precio"/>
         <Box sx={{ display: "flex" }}>
           <TextField
-            id="outlined-basic"
+            id="min-price"
             label="$ Minimo"
             variant="outlined"
-            sx={{ mr: "16px", fontSize: "13px", width: "120px" }}
+            sx={{ mr: "16px", fontSize: "13px", width: "120px",mt:"6px" }}
+            value={rangoPrecio!==undefined && rangoPrecio.min!==0?rangoPrecio.min:""}
+            onChangeCapture={()=>{
+              setRangoPrecio(
+                {
+                  min:document.getElementById("min-price").value,
+                  max:document.getElementById("max-price").value
+                }
+              )
+            }}
             size="small"
+            inputProps={{ maxLength: 6 }}
           />
           <TextField
-            id="outlined-basic"
+            id="max-price"
             label="$ Maximo"
             variant="outlined"
-            sx={{ fontSize: "13px", width: "120px" }}
+            sx={{ fontSize: "13px", width: "120px",mt:"6px" }}
+            value={rangoPrecio!==undefined && rangoPrecio.max!==0?rangoPrecio.max:""}
+            onChangeCapture={()=>{
+              setRangoPrecio(
+                {
+                  min:document.getElementById("min-price").value,
+                  max:document.getElementById("max-price").value
+                }
+              )
+            }}
             size="small"
-          />
+            inputProps={{ maxLength: 6 }}
+            />
         </Box>
-      </List> */}
-      {/* <Divider /> */}
+      </List> 
     </List>
   );
 };
