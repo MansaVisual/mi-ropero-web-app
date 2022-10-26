@@ -88,6 +88,8 @@ const EditarDireccion = () => {
   const [guardarDireccion, setGuardarDireccion] = useState(false);
   const [provincia, setProvincia] = useState([]);
 
+  const [cambioProvincia, setCambioProvincia] = useState(false)
+
 
   
 
@@ -177,13 +179,15 @@ const EditarDireccion = () => {
       scrollTop();
       setCampoObligatorio(true);
     }
+     console.log(infoLocFinal)
     if (infoLocFinal.length === 0) {
+      console.log(infoLocFinal,"error")
       throwError('barrioLocalidad', 'labelBarrioLocalidad');
       scrollTop();
       setErrorLocalidad(true);
       setLoader(false);
       return;
-    }
+    } 
     const formCodPostal = new FormData();
 
     formCodPostal.append(

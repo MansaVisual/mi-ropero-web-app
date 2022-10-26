@@ -155,11 +155,13 @@ const InfoContact = ({
     setErrorRecargarDir(false);
 
     if (infoLocFinal.length === 0 && !usaDireccionCargada) {
-      throwError('barrioLocalidad', 'labelBarrioLocalidad');
-      scrollTop();
-      setErrorLocalidad(true);
-      setLoader(false);
-      return;
+      if (document.getElementById('barrioLocalidad').value !== "CAPITAL FEDERAL") {
+        throwError('barrioLocalidad', 'labelBarrioLocalidad'); 
+        scrollTop();
+        setErrorLocalidad(true);
+        setLoader(false);
+        return;
+      }
     }
 
     if (usaDireccionCargada && direccionCargada === null) {
