@@ -6,6 +6,8 @@ export const LoginContext = ({ children }) => {
   const [userLog, setUserLog] = useState("");
   const [infoUser, setInfoUser] = useState([]);
 
+  console.log(infoUser);
+
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
     if (res !== null && userLog === "") {
