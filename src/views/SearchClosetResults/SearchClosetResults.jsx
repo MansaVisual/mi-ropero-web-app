@@ -48,7 +48,7 @@ const SearchClosetResults = () => {
     ProdAPI(
       bestR,
       "tiendas",
-      "search"
+      "featured"
     ).then((res)=>{if(res.status==="success"){setBestRoperos(res.result)}})
 
     setLoad(true)
@@ -119,16 +119,18 @@ const SearchClosetResults = () => {
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
-                <Typography
+                {bestRoperos!==undefined && bestRoperos.length!==0 &&
+                  <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[9],
                     fontWeight: theme.typography.fontWeightBold,
                     mb: "20px",
                     color: theme.palette.secondary.main,
                   }}
-                >
-                  Top Roperos 🔥
-                </Typography>
+                  >
+                    Top Roperos 🔥
+                  </Typography>
+                }
               </Box>
             ) : (
               <>
@@ -165,18 +167,18 @@ const SearchClosetResults = () => {
                 >
                   Resultado: {totalProds!==undefined && totalProds} {totalProds!==undefined && totalProds===1?"ropero":"roperos"}
                 </Typography>
-
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[9],
-                    fontWeight: theme.typography.fontWeightBold,
-                    mb: "20px",
-                    color: theme.palette.secondary.main,
-                  }}
-                >
-                  Top Roperos 🔥
-                </Typography>
-
+                {bestRoperos!==undefined && bestRoperos.length!==0 &&
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[9],
+                      fontWeight: theme.typography.fontWeightBold,
+                      mb: "20px",
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    Top Roperos 🔥
+                  </Typography>
+                }
                 {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.tiendas.map((option)=>{
                   return(
                     <ClosetCard ropero={option}/>
