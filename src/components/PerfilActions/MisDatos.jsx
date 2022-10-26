@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
-import { Button, MenuItem, TextField } from '@mui/material';
-import Select from '@mui/material/Select';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
-import { UseLoginContext } from '../../context/LoginContext';
-import { UsePerfilContext } from '../../context/PerfilContext';
-import Loader from '../Loader/Loader';
+import React, { useState, useContext, useEffect, Fragment } from "react";
+import { Button, MenuItem, TextField } from "@mui/material";
+import Select from "@mui/material/Select";
+import { useLocation, useNavigate } from "react-router-dom";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import { UseLoginContext } from "../../context/LoginContext";
+import { UsePerfilContext } from "../../context/PerfilContext";
+import Loader from "../Loader/Loader";
 
 const MisDatos = () => {
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
+  const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
   const { infoUser, userLog } = useContext(UseLoginContext);
@@ -18,23 +18,29 @@ const MisDatos = () => {
   const [caracteristicasFavs, setCaracteristicasFavs] = useState([]);
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  
-  const [genero, setGenero] = useState('');
-  const [talleRopa, setTalleRopa] = useState('');
+  const [genero, setGenero] = useState("");
+  const [talleRopa, setTalleRopa] = useState("");
   const [marcasPreferidas, setMarcasPreferidas] = useState([]);
   const [estiloRopa, setEstiloRopa] = useState([]);
   const [tipoRopa, setTipoRopa] = useState([]);
 
-  const [idTalleRopa, setIdTalleRopa] = useState('');
+  const [idTalleRopa, setIdTalleRopa] = useState("");
   const [idMarcasPreferidas, setIdMarcasPreferidas] = useState([]);
   const [idEstiloRopa, setIdEstiloRopa] = useState([]);
   const [idTipoRopa, setIdTipoRopa] = useState([]);
 
   const [caracteristicasFin, setCaracteristicasFin] = useState([]);
 
-  const handleMultipleSelect = (value, setValue, prevArray, value2, setValue2, prevArray2) => {
+  const handleMultipleSelect = (
+    value,
+    setValue,
+    prevArray,
+    value2,
+    setValue2,
+    prevArray2
+  ) => {
     if (prevArray.length === 0) {
       setValue([...prevArray, value]);
       setValue2([...prevArray2, value2]);
@@ -55,11 +61,9 @@ const MisDatos = () => {
     }
   };
 
-
-
   useEffect(() => {
-    PerfilAPI('', 'clientes', 'get_sexos').then((res) => {
-      if (res.status === 'success') {
+    PerfilAPI("", "clientes", "get_sexos").then((res) => {
+      if (res.status === "success") {
         let array = [""];
         for (const gen in res.result) {
           array.push(res.result[gen]);
@@ -67,8 +71,8 @@ const MisDatos = () => {
         setArrayGeneros(array);
       }
     });
-    PerfilAPI('', 'clientes', 'get_caracteristicas_favoritas').then((res) => {
-      if (res.status === 'success') {
+    PerfilAPI("", "clientes", "get_caracteristicas_favoritas").then((res) => {
+      if (res.status === "success") {
         setCaracteristicasFavs(res.result);
       }
     });
@@ -76,71 +80,78 @@ const MisDatos = () => {
 
   useEffect(() => {
     if (infoUser.length !== 0) {
-      setGenero(infoUser.sexo );
+      setGenero(infoUser.sexo);
     }
   }, [infoUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const coma1=idMarcasPreferidas.length!==0?",":""
-    const coma2=idTipoRopa.length!==0?",":""
-    const coma3=idEstiloRopa.length!==0?",":""
+    const coma1 = idMarcasPreferidas.length !== 0 ? "," : "";
+    const coma2 = idTipoRopa.length !== 0 ? "," : "";
+    const coma3 = idEstiloRopa.length !== 0 ? "," : "";
 
-    setCaracteristicasFin(idTalleRopa+coma1+idMarcasPreferidas+coma2+idTipoRopa+coma3+idEstiloRopa)
-  }, [talleRopa,marcasPreferidas,tipoRopa,estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log("HOLIS",infoUser)
+    setCaracteristicasFin(
+      idTalleRopa +
+        coma1 +
+        idMarcasPreferidas +
+        coma2 +
+        idTipoRopa +
+        coma3 +
+        idEstiloRopa
+    );
+  }, [talleRopa, marcasPreferidas, tipoRopa, estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
+  console.log("HOLIS", infoUser);
 
   const handleGrabarCambios = () => {
-    setLoading(true)
-    if (document.getElementById('nombre').value === '') {
+    setLoading(true);
+    if (document.getElementById("nombre").value === "") {
       ScrollTop();
-      alert('Debe completar el campo Nombre');
+      alert("Debe completar el campo Nombre");
       return;
     }
-    if (document.getElementById('apellido').value === '') {
+    if (document.getElementById("apellido").value === "") {
       ScrollTop();
-      alert('Debe completar el campo Apellido');
+      alert("Debe completar el campo Apellido");
       return;
     }
-    if (document.getElementById('email').value === '') {
+    if (document.getElementById("email").value === "") {
       ScrollTop();
-      alert('Debe completar el campo Email');
+      alert("Debe completar el campo Email");
       return;
     }
 
-    if(document.getElementById("telefono").value!==""){
+    if (document.getElementById("telefono").value !== "") {
       const formPhone = new FormData();
-      formPhone.append('telefono', document.getElementById('telefono').value);
-      PerfilAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
-        if (res.status === 'error') {
-          alert('Error en la validación de telefono');
+      formPhone.append("telefono", document.getElementById("telefono").value);
+      PerfilAPI(formPhone, "clientes", "validate_phone").then((res) => {
+        if (res.status === "error") {
+          alert("Error en la validación de telefono");
           return;
         }
       });
     }
 
     const mail = new FormData();
-    mail.append('idcliente', userLog);
-    mail.append('nombre', document.getElementById('nombre').value);
-    mail.append('apellido', document.getElementById('apellido').value);
-    mail.append('email', document.getElementById('email').value);
-    mail.append('email_old', infoUser.email);
-    mail.append('telefono', document.getElementById('telefono').value);
-    mail.append('sexo', genero.toString());
+    mail.append("idcliente", userLog);
+    mail.append("nombre", document.getElementById("nombre").value);
+    mail.append("apellido", document.getElementById("apellido").value);
+    mail.append("email", document.getElementById("email").value);
+    mail.append("email_old", infoUser.email);
+    mail.append("telefono", document.getElementById("telefono").value);
+    mail.append("sexo", genero.toString());
     // mail.append('clave', "prueba");
-    mail.append("caracteristicas_favoritas",caracteristicasFin)
+    mail.append("caracteristicas_favoritas", caracteristicasFin);
 
-    PerfilAPI(mail, 'clientes', 'update').then((res) => {
-
-      if (res.status === 'success') {
-        setLoading(false)
-         navigate(`/perfil`) 
-      } else{
-        if(res.result==="El campo sexo es necesario"){
-          setLoading(false)
-          alert("Seleccioná tu género")
-        }else if(res.result==="El campo telefono es necesario"){
-          setLoading(false)
-          alert("Completá tu número de teléfono")
+    PerfilAPI(mail, "clientes", "update").then((res) => {
+      if (res.status === "success") {
+        setLoading(false);
+        navigate(`/perfil`);
+      } else {
+        if (res.result === "El campo sexo es necesario") {
+          setLoading(false);
+          alert("Seleccioná tu género");
+        } else if (res.result === "El campo telefono es necesario") {
+          setLoading(false);
+          alert("Completá tu número de teléfono");
         }
       }
     });
@@ -149,91 +160,102 @@ const MisDatos = () => {
   const ScrollTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   return (
-    <div className='misDatosContainer'>
+    <div className="misDatosContainer">
       <Breadcrumbs links={pathnames} />
-      <p className='title'>MIS DATOS</p>
+      <p className="title">MIS DATOS</p>
       {infoUser.length === 0 ? (
-        <div style={{ height: '50vh', marginTop: '18px' }}>
-          <Loader spin={'spinnerM'} />
+        <div style={{ height: "50vh", marginTop: "18px" }}>
+          <Loader spin={"spinnerM"} />
         </div>
       ) : (
         <>
-          <div className='inputContainer'>
-            <div className='inputBox'>
-              <p className='labelInput'>Nombre *</p>
+          <div className="inputContainer">
+            <div className="inputBox">
+              <p className="labelInput">Nombre *</p>
               <TextField
-                color='primary'
-                className='input'
-                size='small'
-                placeholder='Sabrina'
-                id='nombre'
+                disabled={infoUser.social_login === "1" ? true : false}
+                color="primary"
+                className="input"
+                size="small"
+                placeholder="Sabrina"
+                id="nombre"
                 defaultValue={infoUser.nombre}
               />
             </div>
-            <div className='inputBox'>
-              <p className='labelInput'>Apellido *</p>
+            <div className="inputBox">
+              <p className="labelInput">Apellido *</p>
               <TextField
-                color='primary'
-                className='input'
-                size='small'
-                placeholder='Godoy'
-                id='apellido'
+                disabled={infoUser.social_login === "1" ? true : false}
+                color="primary"
+                className="input"
+                size="small"
+                placeholder="Godoy"
+                id="apellido"
                 defaultValue={infoUser.apellido}
               />
             </div>
           </div>
-          <div className='inputContainer'>
-            <div className='inputBox'>
-              <p className='labelInput'>Email *</p>
+          <div className="inputContainer">
+            <div className="inputBox">
+              <p className="labelInput">Email *</p>
               <TextField
-                color='primary'
-                className='input'
-                size='small'
-                placeholder='sabrinagodoy@gmail.com'
-                type='email'
-                id='email'
+                disabled={infoUser.social_login === "1" ? true : false}
+                color="primary"
+                className="input"
+                size="small"
+                placeholder="sabrinagodoy@gmail.com"
+                type="email"
+                id="email"
                 defaultValue={infoUser.email}
               />
-              <p className='bottomText'>
+              <p className="bottomText">
                 Te registraste en el sitio utilizando Facebook, y es por eso que
                 la dirección de email no puede modificarse.
               </p>
             </div>
-            <div className='inputBox'>
-              <p className='labelInput'>Teléfono *</p>
+            <div className="inputBox">
+              <p className="labelInput">Teléfono *</p>
               <TextField
-                color='primary'
-                className='input'
-                size='small'
-                placeholder='+54  011 - 4417 - 8005'
-                type='number'
-                id='telefono'
+                color="primary"
+                className="input"
+                size="small"
+                placeholder="+54  011 - 4417 - 8005"
+                type="number"
+                id="telefono"
                 defaultValue={infoUser.telefono}
               />
-              <p className='bottomText'>
+              <p className="bottomText">
                 Llamarán a este número si hay algún problema con el envío.
               </p>
             </div>
           </div>
-          <div className='inputContainer'>
-            <div className='inputBox'>
-              <p className='labelInput'>Género *</p>
+          <div className="inputContainer">
+            <div className="inputBox">
+              <p className="labelInput">Género *</p>
               <Select
-                color='primary'
-                className='selectInput'
-                size='small'
-                onChange={(e) => setGenero(arrayGeneros.indexOf(e.target.value))}
-                value={genero==="0"?"ejemplo":genero!==""?arrayGeneros[Number(genero)]:null}
+                color="primary"
+                className="selectInput"
+                size="small"
+                onChange={(e) =>
+                  setGenero(arrayGeneros.indexOf(e.target.value))
+                }
+                value={
+                  genero === "0"
+                    ? "ejemplo"
+                    : genero !== ""
+                    ? arrayGeneros[Number(genero)]
+                    : null
+                }
                 sx={{
-                  '& div': {
-                    fontSize: '14px',
-                    color: infoUser.genero === '' ? '#BABCBE' : '#423B3C',
-                    fontWeight: '400',
+                  "& div": {
+                    fontSize: "14px",
+                    color: infoUser.genero === "" ? "#BABCBE" : "#423B3C",
+                    fontWeight: "400",
                   },
                   height: 42,
                 }}
@@ -245,55 +267,55 @@ const MisDatos = () => {
               >
                 <MenuItem
                   disabled
-                  key='ejemplo'
-                  value='ejemplo'
-                  sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
+                  key="ejemplo"
+                  value="ejemplo"
+                  sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
                 >
-                  {'Seleccione una opción'}
+                  {"Seleccione una opción"}
                 </MenuItem>
                 {arrayGeneros.length !== 0 &&
                   arrayGeneros.map((res, i) => {
-                    if(res!==""){
+                    if (res !== "") {
                       return (
                         <MenuItem value={res} key={i}>
                           {res}
                         </MenuItem>
                       );
-                    }else{
-                      return null
+                    } else {
+                      return null;
                     }
                   })}
               </Select>
             </div>
-            <div className='inputBox' />
+            <div className="inputBox" />
           </div>
-          <div className='textContainer'>
-            <p className='title'>Queremos saber más de vos</p>
-            <p className='subTitle'>
+          <div className="textContainer">
+            <p className="title">Queremos saber más de vos</p>
+            <p className="subTitle">
               Esta información la utilizamos para enviarte los nuevos ingresos
               de tus productos favoritos.
             </p>
           </div>
-          <div className='inputContainer'>
-            <div className='inputBox'>
-              <p className='labelInput'>¿Qué talle de ropa usas?</p>
+          <div className="inputContainer">
+            <div className="inputBox">
+              <p className="labelInput">¿Qué talle de ropa usas?</p>
               <Select
                 displayEmpty
-                color='primary'
-                className='selectInput'
-                size='small'
+                color="primary"
+                className="selectInput"
+                size="small"
                 value={talleRopa}
                 renderValue={(selected) => {
-                  if (selected === '') {
+                  if (selected === "") {
                     return <em>Seleccioná una opción</em>;
                   }
                   return selected;
                 }}
                 sx={{
-                  '& div': {
-                    fontSize: '14px',
-                    color: talleRopa.length === 0 ? '#BABCBE' : '#423B3C',
-                    fontWeight: '400',
+                  "& div": {
+                    fontSize: "14px",
+                    color: talleRopa.length === 0 ? "#BABCBE" : "#423B3C",
+                    fontWeight: "400",
                   },
                   height: 42,
                 }}
@@ -305,48 +327,53 @@ const MisDatos = () => {
               >
                 <MenuItem
                   disabled
-                  value=''
-                  sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
+                  value=""
+                  sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
                 >
                   <em>Seleccioná una opción</em>
                 </MenuItem>
                 {caracteristicasFavs.length !== 0 &&
-                  caracteristicasFavs[0].valores.map((option, i) => {return(
-                    <MenuItem
-                      key={i}
-                      value={option.valor}
-                      sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() => {setTalleRopa(option.valor);setIdTalleRopa(option.idcaracteristicavalor)}}
-                    >
-                      {option.valor}
-                    </MenuItem>
-                  )})}
+                  caracteristicasFavs[0].valores.map((option, i) => {
+                    return (
+                      <MenuItem
+                        key={i}
+                        value={option.valor}
+                        sx={{ fontSize: "14px", color: "#969696" }}
+                        onClick={() => {
+                          setTalleRopa(option.valor);
+                          setIdTalleRopa(option.idcaracteristicavalor);
+                        }}
+                      >
+                        {option.valor}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </div>
 
-            <div className='inputBox'>
-              <p className='labelInput'>
+            <div className="inputBox">
+              <p className="labelInput">
                 ¿Cuáles son tus marcas de ropa preferidas?
               </p>
               <Select
                 multiple
                 displayEmpty
-                color='primary'
-                className='selectInput'
-                size='small'
+                color="primary"
+                className="selectInput"
+                size="small"
                 value={marcasPreferidas}
                 renderValue={(selected) => {
                   if (selected.length === 0) {
                     return <em>Seleccioná de 1 a 3 opciones</em>;
                   }
-                  return selected.join(', ');
+                  return selected.join(", ");
                 }}
                 sx={{
-                  '& div': {
-                    fontSize: '14px',
+                  "& div": {
+                    fontSize: "14px",
                     color:
-                      marcasPreferidas.length === 0 ? '#BABCBE' : '#423B3C',
-                    fontWeight: '400',
+                      marcasPreferidas.length === 0 ? "#BABCBE" : "#423B3C",
+                    fontWeight: "400",
                   },
                   height: 42,
                 }}
@@ -358,8 +385,8 @@ const MisDatos = () => {
               >
                 <MenuItem
                   disabled
-                  value=''
-                  sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
+                  value=""
+                  sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
                 >
                   <em>Seleccioná una opción</em>
                 </MenuItem>
@@ -368,8 +395,8 @@ const MisDatos = () => {
                     <MenuItem
                       key={i}
                       value={option.valor}
-                      sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() =>{
+                      sx={{ fontSize: "14px", color: "#969696" }}
+                      onClick={() => {
                         handleMultipleSelect(
                           option.valor,
                           setMarcasPreferidas,
@@ -377,8 +404,8 @@ const MisDatos = () => {
                           option.idcaracteristicavalor,
                           setIdMarcasPreferidas,
                           idMarcasPreferidas
-                        )}
-                      }
+                        );
+                      }}
                     >
                       {option.valor}
                     </MenuItem>
@@ -386,27 +413,27 @@ const MisDatos = () => {
               </Select>
             </div>
           </div>
-          <div className='inputContainer'>
-            <div className='inputBox'>
-              <p className='labelInput'>¿Cuáles son tus estilos preferidos?</p>
+          <div className="inputContainer">
+            <div className="inputBox">
+              <p className="labelInput">¿Cuáles son tus estilos preferidos?</p>
               <Select
                 multiple
                 displayEmpty
-                color='primary'
-                className='selectInput'
-                size='small'
+                color="primary"
+                className="selectInput"
+                size="small"
                 value={estiloRopa}
                 renderValue={(selected) => {
                   if (selected.length === 0) {
                     return <em>Seleccioná de 1 a 3 opciones</em>;
                   }
-                  return selected.join(', ');
+                  return selected.join(", ");
                 }}
                 sx={{
-                  '& div': {
-                    fontSize: '14px',
-                    color: estiloRopa.length === 0 ? '#BABCBE' : '#423B3C',
-                    fontWeight: '400',
+                  "& div": {
+                    fontSize: "14px",
+                    color: estiloRopa.length === 0 ? "#BABCBE" : "#423B3C",
+                    fontWeight: "400",
                   },
                   height: 42,
                 }}
@@ -418,19 +445,19 @@ const MisDatos = () => {
               >
                 <MenuItem
                   disabled
-                  key={'ejemplo'}
-                  value={'ejemplo'}
-                  sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
+                  key={"ejemplo"}
+                  value={"ejemplo"}
+                  sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
                 >
-                  {'Seleccioná de 1 a 3 opciones'}
+                  {"Seleccioná de 1 a 3 opciones"}
                 </MenuItem>
                 {caracteristicasFavs.length !== 0 &&
                   caracteristicasFavs[2].valores.map((option, i) => (
                     <MenuItem
                       key={i}
                       value={option.valor}
-                      sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() =>{
+                      sx={{ fontSize: "14px", color: "#969696" }}
+                      onClick={() => {
                         handleMultipleSelect(
                           option.valor,
                           setEstiloRopa,
@@ -438,34 +465,34 @@ const MisDatos = () => {
                           option.idcaracteristicavalor,
                           setIdEstiloRopa,
                           idEstiloRopa
-                        )}
-                      }
+                        );
+                      }}
                     >
                       {option.valor}
                     </MenuItem>
                   ))}
               </Select>
             </div>
-            <div className='inputBox'>
-              <p className='labelInput'>¿Qué tipo de ropa preferís?</p>
+            <div className="inputBox">
+              <p className="labelInput">¿Qué tipo de ropa preferís?</p>
               <Select
                 multiple
                 displayEmpty
-                color='primary'
-                className='selectInput'
-                size='small'
+                color="primary"
+                className="selectInput"
+                size="small"
                 value={tipoRopa}
                 renderValue={(selected) => {
                   if (selected.length === 0) {
                     return <em>Seleccioná de 1 a 2 opciones</em>;
                   }
-                  return selected.join(', ');
+                  return selected.join(", ");
                 }}
                 sx={{
-                  '& div': {
-                    fontSize: '14px',
-                    color: tipoRopa.length === 0 ? '#BABCBE' : '#423B3C',
-                    fontWeight: '400',
+                  "& div": {
+                    fontSize: "14px",
+                    color: tipoRopa.length === 0 ? "#BABCBE" : "#423B3C",
+                    fontWeight: "400",
                   },
                   height: 42,
                 }}
@@ -477,19 +504,19 @@ const MisDatos = () => {
               >
                 <MenuItem
                   disabled
-                  key={'ejemplo'}
-                  value={'ejemplo'}
-                  sx={{ fontSize: '14px', color: '#BABCBE', fontWeight: '400' }}
+                  key={"ejemplo"}
+                  value={"ejemplo"}
+                  sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
                 >
-                  {'Seleccioná de 1 a 3 opciones'}
+                  {"Seleccioná de 1 a 3 opciones"}
                 </MenuItem>
                 {caracteristicasFavs.length !== 0 &&
                   caracteristicasFavs[3].valores.map((option, i) => (
                     <MenuItem
                       key={i}
                       value={option.valor}
-                      sx={{ fontSize: '14px', color: '#969696' }}
-                      onClick={() =>{
+                      sx={{ fontSize: "14px", color: "#969696" }}
+                      onClick={() => {
                         handleMultipleSelect(
                           option.valor,
                           setTipoRopa,
@@ -497,8 +524,8 @@ const MisDatos = () => {
                           option.idcaracteristicavalor,
                           setIdTipoRopa,
                           idTipoRopa
-                        )}
-                      }
+                        );
+                      }}
                     >
                       {option.valor}
                     </MenuItem>
@@ -507,22 +534,25 @@ const MisDatos = () => {
             </div>
           </div>
           {loading ? (
-        <div style={{ marginTop: '16px' }}>
-          <Loader spin={'spinnerG'} />
-        </div>
-      ) : (
-        <div className='buttonContainer'>
-            <Button className='leftButton' onClick={() => navigate(`/perfil`)}>
-              VOLVER
-            </Button>
-            <Button
-              className='rightButton'
-              onClick={() => handleGrabarCambios()}
-            >
-              GRABAR CAMBIOS
-            </Button>
-          </div>
-      )}
+            <div style={{ marginTop: "16px" }}>
+              <Loader spin={"spinnerG"} />
+            </div>
+          ) : (
+            <div className="buttonContainer">
+              <Button
+                className="leftButton"
+                onClick={() => navigate(`/perfil`)}
+              >
+                VOLVER
+              </Button>
+              <Button
+                className="rightButton"
+                onClick={() => handleGrabarCambios()}
+              >
+                GRABAR CAMBIOS
+              </Button>
+            </div>
+          )}
         </>
       )}
     </div>
