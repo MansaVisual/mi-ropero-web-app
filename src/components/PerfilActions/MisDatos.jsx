@@ -87,6 +87,7 @@ const MisDatos = () => {
 
     setCaracteristicasFin(idTalleRopa+coma1+idMarcasPreferidas+coma2+idTipoRopa+coma3+idEstiloRopa)
   }, [talleRopa,marcasPreferidas,tipoRopa,estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
+  console.log("HOLIS",infoUser)
 
   const handleGrabarCambios = () => {
     setLoading(true)
@@ -125,7 +126,7 @@ const MisDatos = () => {
     mail.append('email_old', infoUser.email);
     mail.append('telefono', document.getElementById('telefono').value);
     mail.append('sexo', genero.toString());
-    mail.append('clave', "prueba");
+    // mail.append('clave', "prueba");
     mail.append("caracteristicas_favoritas",caracteristicasFin)
 
     PerfilAPI(mail, 'clientes', 'update').then((res) => {
