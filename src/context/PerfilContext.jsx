@@ -68,12 +68,11 @@ export const PerfilContext = ({ children }) => {
     for (let i = 0; i < estados.length; i++) {
       const dir = new FormData();
       dir.append("comprador_id", userLog);
-      dir.append("estado", i+1);
+      dir.append("estado", i + 1);
       dir.append("page", 1);
       dir.append("bypage", 10);
       PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
         console.log(res.result);
-
         setComprasFinBusqueda(true);
         if (res.status === "success") {
           //setComprasRealizadas(prevState=> prevState.push(res.result));
@@ -87,14 +86,14 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleOfertasRealizadas = (userLog) => {
-    const estados = [
+    /*     const estados = [
       "Sin definir",
       "en proceso de evaluacion",
       "Rechazada por el vendedor",
       "Cancelada por el comprador",
       "Aceptado",
       "vencida",
-    ];
+    ]; */
 
     let array = [];
 

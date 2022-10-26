@@ -1,0 +1,54 @@
+.miChatContainer {
+  margin-top: 40px;
+  @include screen_1450 {
+    max-width: 1120px;
+  }
+  @include screen_705 {
+    margin-top: 0px;
+  }
+  .firstLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 895px;
+    width: 100%;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      @include screen_705 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+  .chatContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 16px;
+    @include screen_820 {
+      justify-content: center;
+    }
+  }
+  .returnLink {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 130px;
+    margin-top: 24px;
+    p {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+    }
+    img {
+      height: 7.94px;
+      width: 4.24px;
+      margin-right: 10px;
+    }
+  }
+}
