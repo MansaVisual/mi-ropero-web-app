@@ -6,6 +6,7 @@ import Users from "../../assets/img/Users.svg";
 import theme from "../../styles/theme";
 
 const IconGroupText = ({prod,prod2}) => {
+  console.log(prod)
   return (
     <Box
       sx={{
@@ -42,7 +43,7 @@ const IconGroupText = ({prod,prod2}) => {
             color: theme.palette.tertiary.main,
           }}
         >
-          {prod!==undefined && prod.length!==0 && prod.prod.tienda.productos}
+          {prod!==undefined && prod.length!==0 && prod.tienda.productos}
           {prod2!==undefined && prod2.length!==0 && prod2.productos}
         </Typography>
       </Box>
@@ -74,7 +75,7 @@ const IconGroupText = ({prod,prod2}) => {
             color: theme.palette.tertiary.main,
           }}
         >
-                    {prod !== undefined && prod.length!==0&&prod.prod.tienda.seguidores}
+          {prod !== undefined && prod.length!==0&&prod.tienda.seguidores.length}
           {prod2 !== undefined && prod2.length!==0&&prod2.seguidores}
         </Typography>
       </Box>
@@ -106,7 +107,7 @@ const IconGroupText = ({prod,prod2}) => {
             color: theme.palette.tertiary.main,
           }}
         >
-          {prod !== undefined && prod.length!==0&&prod.prod.tienda.ventas}
+          {prod !== undefined && prod.length!==0&&prod.tienda.ventas}
           {prod2 !== undefined && prod2.length!==0&&prod2.operaciones}
         </Typography>
       </Box>

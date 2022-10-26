@@ -265,7 +265,7 @@ const ProductPage = () => {
                 >
                   La tienda aún no tiene calificaciones
                 </Typography> */}
-                <IconGroupText prod={prod}/>
+                <IconGroupText prod={prod} prod2={undefined}/>
               </Box>
             </Box>
           </Grid>
