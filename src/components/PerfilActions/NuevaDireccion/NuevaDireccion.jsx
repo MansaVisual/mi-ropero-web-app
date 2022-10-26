@@ -386,7 +386,7 @@ const NuevaDireccion = () => {
               size='small'
               id='alturaKM'
               placeholder='5'
-              value={form.barrioLocalidad}
+              value={form.alturaKM}
               onChangeCapture={() => {
                 handleInputChange(form, setForm);
                 setCampoObligatorio(false);
