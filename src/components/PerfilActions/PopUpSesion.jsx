@@ -11,7 +11,7 @@ const PopUpSesion = ({ setCloseSession }) => {
   const handleCerrarSesion=()=>{
     localStorage.clear("idClienteRopero")
     setUserLog("")
-    window.location.replace('https://golden-cranachan-c2e38c.netlify.app')
+    window.location.replace('https://mi-ropero-web-app.vercel.app/')
   }
 
   return (

@@ -41,7 +41,7 @@ const BoxLogin = () => {
           top: 0,
           behavior: 'auto',
         });
-        window.location.replace('https://golden-cranachan-c2e38c.netlify.app');
+        window.location.replace('https://mi-ropero-web-app.vercel.app/');
       } else {
         setError(true);
       }
