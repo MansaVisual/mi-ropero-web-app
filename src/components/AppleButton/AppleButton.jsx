@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { /* useContext, */ useState } from "react";
 import { LoginSocialApple } from "reactjs-social-login";
 import { Button } from "reactstrap";
-import { UseLoginContext } from "../../context/LoginContext";
+/* import { UseLoginContext } from "../../context/LoginContext"; */
 
 const AppleButton = () => {
   /*  const { FacebookLogin } = useContext(UseLoginContext); */
 
-  const [data, setData] = useState(null);
+  const [, /* data */ setData] = useState(null);
 
   return (
     <div>
@@ -19,11 +19,11 @@ const AppleButton = () => {
           setData([provider, data]);
         }}
         onReject={(err) => {
-          console.log(err);
+          /*  console.log(err); */
         }}
       >
         <Button className="botonApple">
-          INGRESAR CON APLEE <i className="fbIcon"></i>
+          INGRESAR CON APLEE <i className="appleIcon"></i>
         </Button>
       </LoginSocialApple>
     </div>
