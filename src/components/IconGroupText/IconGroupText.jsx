@@ -5,8 +5,7 @@ import ShoppingBag from "../../assets/img/ShoppingBag.svg";
 import Users from "../../assets/img/Users.svg";
 import theme from "../../styles/theme";
 
-const IconGroupText = (prod) => {
-  console.log(prod.prod.tienda)
+const IconGroupText = ({prod,prod2}) => {
   return (
     <Box
       sx={{
@@ -43,7 +42,8 @@ const IconGroupText = (prod) => {
             color: theme.palette.tertiary.main,
           }}
         >
-          {prod.length!==0 && prod.prod.tienda.productos}
+          {prod!==undefined && prod.length!==0 && prod.prod.tienda.productos}
+          {prod2!==undefined && prod2.length!==0 && prod2.productos}
         </Typography>
       </Box>
 
@@ -74,7 +74,8 @@ const IconGroupText = (prod) => {
             color: theme.palette.tertiary.main,
           }}
         >
-          40
+                    {prod !== undefined && prod.length!==0&&prod.prod.tienda.seguidores}
+          {prod2 !== undefined && prod2.length!==0&&prod2.seguidores}
         </Typography>
       </Box>
 
@@ -105,7 +106,8 @@ const IconGroupText = (prod) => {
             color: theme.palette.tertiary.main,
           }}
         >
-          {prod.length!==0&&prod.prod.tienda.ventas}
+          {prod !== undefined && prod.length!==0&&prod.prod.tienda.ventas}
+          {prod2 !== undefined && prod2.length!==0&&prod2.operaciones}
         </Typography>
       </Box>
     </Box>

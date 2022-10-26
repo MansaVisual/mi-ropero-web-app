@@ -100,6 +100,8 @@ const ViewCloset = () => {
 
   const {closetId, nombre}=useParams()
 
+  const [tienda,setTienda]=useState([])
+
 
   useEffect(() => {
     if(closetId!==undefined){
@@ -109,7 +111,7 @@ const ViewCloset = () => {
         ropero,
         "tiendas",
         "detail"
-      )
+      ).then((res)=>{if(res.status==="success"){setTienda(res.result)}})
     }
   }, [closetId]);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -145,7 +147,7 @@ const ViewCloset = () => {
                     color: theme.palette.primary.main,
                   }}
                 >
-                  Ropero de Romina86
+                  {nombre}
                 </Typography>
                 <Box sx={{ ml: "25px" }}>
                   <FilterButton onClick={() => setOpen(true)} />
@@ -195,7 +197,7 @@ const ViewCloset = () => {
                             disabled
                           />
                         </Box>
-                        <Filter />
+                        {/* <Filter /> */}
                       </Box>
                     </Fade>
                   </Modal>
@@ -216,14 +218,14 @@ const ViewCloset = () => {
                   <Rating name="read-only" readOnly value={5} size="large" />
                 </Box>
               </Box>
-              <IconGroupText />
+              <IconGroupText prod={undefined} prod2={tienda}/>
             </Box>
           ) : (
             <>
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
               </Box>
-              <ChipFilterCategories />
+              {/* <ChipFilterCategories /> */}
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[2],
@@ -243,11 +245,11 @@ const ViewCloset = () => {
                   mb: "16px",
                 }}
               >
-                Ropero de Romina86
+                {nombre}
               </Typography>
               <Rating name="read-only" readOnly value={5} size="large" />
-              <IconGroupText />
-              <Filter />
+              <IconGroupText prod={undefined} prod2={tienda}/>
+              {/* <Filter /> */}
             </>
           )}
         </Grid>
@@ -262,7 +264,7 @@ const ViewCloset = () => {
               ml: isMobile || isMobileBigScreen ? 0 : "30px",
             }}
           >
-            {cards.map((card, index) => (
+            {/* {cards.map((card, index) => (
               <Grid item xs="auto" md="auto">
                 <ProductCard
                   key={index}
@@ -272,7 +274,7 @@ const ViewCloset = () => {
                   tag={card.tag}
                 />
               </Grid>
-            ))}
+            ))} */}
           </Grid>
           <Box
             sx={{
