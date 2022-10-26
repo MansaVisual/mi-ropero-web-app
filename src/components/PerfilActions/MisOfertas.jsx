@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -7,7 +7,7 @@ import Basura from "../../assets/img/basura.png";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
-import { Button } from "@mui/material";
+import { Button, MenuItem, Select } from "@mui/material";
 import vacio from "../../assets/img/ofertasVacio.png";
 
 const MisOfertas = () => {
@@ -19,12 +19,14 @@ const MisOfertas = () => {
   const { handleOfertasRealizadas, ofertasRealizadas, ofertasFinBusqueda } =
     useContext(UsePerfilContext);
 
+  const [filtroSelecc, setFiltroSelecc] = useState("en proceso de evaluacion");
+
   useEffect(() => {
     if (userLog !== "") {
-      handleOfertasRealizadas(userLog);
+      handleOfertasRealizadas(userLog, filtroSelecc);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLog]);
+  }, [userLog, filtroSelecc]);
 
   const array = [
     {
@@ -35,6 +37,14 @@ const MisOfertas = () => {
       estado: "En proceso de evaluación",
       oferta: 200,
     },
+  ];
+
+  const stateTypes = [
+    "en proceso de evaluacion",
+    "Rechazada por el vendedor",
+    "Cancelada por el comprador",
+    "Aceptado",
+    "vencida",
   ];
 
   /*   const estados=[
@@ -50,7 +60,51 @@ const MisOfertas = () => {
     <div className="misOfertasContainer">
       <Breadcrumbs links={pathnames} />
       <div className="container">
-        <p className="title">MIS OFERTAS</p>
+        <div className="firstLine">
+          <p className="title">MIS OFERTAS</p>
+          <div className="inputBox">
+            <Select
+              displayEmpty
+              color="primary"
+              className="selectInput"
+              size="small"
+              onChange={(e) => setFiltroSelecc(e.target.value)}
+              value={filtroSelecc}
+              renderValue={(selected) => {
+                if (selected === "") {
+                  return <em>Seleccioná una opción</em>;
+                }
+                return selected;
+              }}
+              sx={{
+                "& div": {
+                  fontSize: "14px",
+                  fontWeight: "400",
+                },
+                height: 42,
+              }}
+            >
+              <MenuItem
+                disabled
+                value=""
+                className="selectOption"
+                sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
+              >
+                <em>Seleccioná </em>
+              </MenuItem>
+              {stateTypes.map((option) => (
+                <MenuItem
+                  key={option}
+                  value={option}
+                  sx={{ fontSize: "14px", color: "#969696" }}
+                  className="selectOption"
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+        </div>
         <div className="cardsContainer">
           {!ofertasFinBusqueda ? (
             <div

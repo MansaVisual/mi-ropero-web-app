@@ -7,6 +7,8 @@ export const PerfilContext = ({ children }) => {
   const [direccionSelecc, setDireccionSelecc] = useState(false);
   const [comprasRealizadas, setComprasRealizadas] = useState([]);
   const [ofertasRealizadas, setOfertasRealizadas] = useState([]);
+  const [estadoSeleccionado, setEstadoSeleccionado] = useState("");
+  const [ofertaFiltro, setofertaFiltro] = useState("second");
 
   const [dirFinBusqueda, setDirFinBusqueda] = useState(false);
   const [ofertasFinBusqueda, setOfertasFinBusqueda] = useState(false);
@@ -46,60 +48,74 @@ export const PerfilContext = ({ children }) => {
     });
   };
 
-  const handleComprasRealizadas = (userLog) => {
-    const estados = [
-      "",
-      "Sin definir",
-      "En borrador",
-      "En proceso",
-      "Pendiente de pago",
-      "Pago realizado",
-      "Error en pago",
-      "Borrado",
-      "Pago devuelto",
-      "Compra BLOQUEADA",
-      "Plazo de pago vencido",
-      "En calificacion",
-      "Finalizada",
-    ];
+  const handleComprasRealizadas = (userLog, filtroSelecc) => {
+    const estados = {
+      3: "Pendiente de pago",
+      4: "Pago realizado",
+      5: "Error en pago",
+      7: "Pago devuelto",
+      9: "Plazo de pago vencido",
+      10: "En calificacion",
+      11: "Finalizada",
+    };
+
+    /*  3  => 'Pendiente de pago',
+   4  => 'Pago realizado',
+   5  => 'Error en pago',
+   7  => 'Pago devuelto',
+   9  => 'Plazo de pago vencido',
+   10 => 'En calificacion',
+   11 => 'Finalizada' */
+
+    for (const item in estados) {
+      if (estados[item] === filtroSelecc) {
+        console.log(estados[item]);
+        setEstadoSeleccionado(item);
+      }
+    }
 
     let array = [];
 
-    for (let i = 0; i < estados.length; i++) {
-      const dir = new FormData();
-      dir.append("comprador_id", userLog);
-      dir.append("estado", i + 1);
-      dir.append("page", 1);
-      dir.append("bypage", 10);
-      PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
-        console.log(res.result);
-        setComprasFinBusqueda(true);
-        if (res.status === "success") {
-          //setComprasRealizadas(prevState=> prevState.push(res.result));
-          for (const ii in res.result) {
-            console.log(res.result[ii]);
-            array = array.push(res.result[ii]);
-          }
+    const dir = new FormData();
+    dir.append("comprador_id", userLog);
+    dir.append("estado", estadoSeleccionado);
+    dir.append("page", 1);
+    dir.append("bypage", 10);
+    PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
+      console.log(res, estadoSeleccionado);
+      setComprasFinBusqueda(true);
+      if (res.status === "success") {
+        for (const ii in res.result) {
+          console.log(res.result[ii]);
+          array.push(res.result[ii]);
         }
-      });
-    }
+      }
+    });
+    setComprasRealizadas(array);
   };
 
-  const handleOfertasRealizadas = (userLog) => {
-    /*     const estados = [
+  const handleOfertasRealizadas = (userLog, filtroSelecc) => {
+    const estados = [
       "Sin definir",
       "en proceso de evaluacion",
       "Rechazada por el vendedor",
       "Cancelada por el comprador",
       "Aceptado",
       "vencida",
-    ]; */
+    ];
+
+    for (const item in estados) {
+      if (estados[item] === filtroSelecc) {
+        console.log(estados[item]);
+        setofertaFiltro(item);
+      }
+    }
 
     let array = [];
 
     const dir = new FormData();
     dir.append("idcliente", userLog);
-    dir.append("estado", [1, 2, 3, 4, 5]);
+    dir.append("estado", /* [1, 2, 3, 4, 5] */ ofertaFiltro);
     PerfilAPI(dir, "ofertas", "all").then((res) => {
       setOfertasFinBusqueda(true);
       if (res.status === "success") {

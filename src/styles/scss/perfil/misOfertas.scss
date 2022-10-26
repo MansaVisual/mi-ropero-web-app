@@ -7,15 +7,42 @@
     margin-top: 0px;
   }
   .container {
-    .title {
-      font-style: normal;
-      font-weight: 700;
-      font-size: 23px;
-      line-height: 31px;
-      color: #443988;
-      @include screen_705 {
-        font-size: 18px;
-        line-height: 24px;
+    .firstLine {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 895px;
+      width: 100%;
+      .title {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 31px;
+        color: #443988;
+        @include screen_705 {
+          font-size: 18px;
+          line-height: 24px;
+        }
+      }
+      .inputBox {
+        @include screen_705 {
+          margin-right: 0px;
+          display: flex;
+          flex-direction: column;
+        }
+        .selectInput {
+          color: #babcbe;
+          box-sizing: border-box;
+          height: 40px;
+          width: 144px;
+          font-weight: 400;
+          @include screen_705 {
+            height: 32px;
+          }
+          .selectOption {
+            width: 141px;
+          }
+        }
       }
     }
     .cardsContainer {

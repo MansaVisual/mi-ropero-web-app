@@ -17,13 +17,19 @@ const MisCompras = () => {
   const { handleComprasRealizadas, comprasRealizadas, comprasFinBusqueda } =
     useContext(UsePerfilContext);
 
-  const [filtroSelecc, setFiltroSelecc] = useState();
-  const [filtros, setFiltros] = useState();
+  const [filtroSelecc, setFiltroSelecc] = useState("Pendiente de pago");
+
   useEffect(() => {
     if (userLog !== "") {
-      handleComprasRealizadas(userLog);
+      handleComprasRealizadas(userLog, filtroSelecc);
     }
-  }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userLog, filtroSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
+  /* 
+  useEffect(() => {
+    if (userLog !== "") {
+      handleComprasRealizadas(userLog, filtroSelecc);
+    }
+  }, [filtroSelecc]); // eslint-disable-line react-hooks/exhaustive-deps */
 
   const compras = [
     {
