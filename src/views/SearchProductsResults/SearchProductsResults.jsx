@@ -24,6 +24,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import { UseProdsContext } from '../../context/ProdsContext';
 import Loader from '../../components/Loader/Loader';
 import ChipFilterCategories from '../../components/ChipFilterCategories/ChipFilterCategories';
+import ProdsRelation from '../../components/ProdsRelation/ProdsRelation';
 
 const style = {
   position: 'absolute',
@@ -520,6 +521,7 @@ const SearchProductsResults = () => {
                 )}
               </Box>
             }
+            <ProdsRelation />
             {load && (
               <div
                 style={{
