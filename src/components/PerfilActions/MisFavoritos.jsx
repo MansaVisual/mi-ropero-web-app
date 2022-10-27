@@ -33,7 +33,8 @@ const MisFavoritos = ({setTypeNav}) => {
                               productName={item.producto_nombre}
                               idProducto={item.producto_id}
                               itemFav={item}
-                              precioOferta={item.precio_oferta}
+                              productPrice={item.producto_precio}
+                              precioOferta={item.producto_precio_oferta}
                           />
                       </div>
                   )})}                   
