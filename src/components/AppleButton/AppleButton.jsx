@@ -21,7 +21,7 @@ const AppleButton = () => {
           setData([provider, data]);
         }}
         onReject={(err) => {
-          /*  console.log(err); */
+          console.log(err);
         }}
       >
         <Button className="botonApple">
