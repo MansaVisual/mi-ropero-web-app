@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
-import { Button, MenuItem, TextField } from "@mui/material";
+import { Button, InputAdornment, MenuItem, TextField } from "@mui/material";
 import Select from "@mui/material/Select";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const MisDatos = () => {
   const location = useLocation();
@@ -16,6 +17,11 @@ const MisDatos = () => {
   const { PerfilAPI } = useContext(UsePerfilContext);
 
   const [caracteristicasFavs, setCaracteristicasFavs] = useState([]);
+
+  const [contraseña, setContraseña] = useState("");
+  const [contraseña2, setContraseña2] = useState("");
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -80,57 +86,77 @@ const MisDatos = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (infoUser.length !== 0 && caracteristicasFavs.length!==0) {
-      for(const i in infoUser.caracteristicas_favoritas){
-        for(const ii in caracteristicasFavs[0].valores){
-          if(caracteristicasFavs[0].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
-            setTalleRopa(caracteristicasFavs[0].valores[ii].valor)
-            setIdTalleRopa(caracteristicasFavs[0].valores[ii].idcaracteristicavalor)
+    if (infoUser.length !== 0 && caracteristicasFavs.length !== 0) {
+      for (const i in infoUser.caracteristicas_favoritas) {
+        for (const ii in caracteristicasFavs[0].valores) {
+          if (
+            caracteristicasFavs[0].valores[ii].idcaracteristicavalor ===
+            infoUser.caracteristicas_favoritas[i]
+          ) {
+            setTalleRopa(caracteristicasFavs[0].valores[ii].valor);
+            setIdTalleRopa(
+              caracteristicasFavs[0].valores[ii].idcaracteristicavalor
+            );
           }
         }
       }
-      let array1 = []
-      let arrayId1 = []
-      for(const i in infoUser.caracteristicas_favoritas){
-        for(const ii in caracteristicasFavs[1].valores){
-          if(caracteristicasFavs[1].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
-            array1.push(caracteristicasFavs[1].valores[ii].valor)
-            arrayId1.push(caracteristicasFavs[1].valores[ii].idcaracteristicavalor)
+      let array1 = [];
+      let arrayId1 = [];
+      for (const i in infoUser.caracteristicas_favoritas) {
+        for (const ii in caracteristicasFavs[1].valores) {
+          if (
+            caracteristicasFavs[1].valores[ii].idcaracteristicavalor ===
+            infoUser.caracteristicas_favoritas[i]
+          ) {
+            array1.push(caracteristicasFavs[1].valores[ii].valor);
+            arrayId1.push(
+              caracteristicasFavs[1].valores[ii].idcaracteristicavalor
+            );
           }
         }
       }
-      setMarcasPreferidas(array1)
-      setIdMarcasPreferidas(arrayId1)
+      setMarcasPreferidas(array1);
+      setIdMarcasPreferidas(arrayId1);
 
-      let array2 = []
-      let arrayId2 = []
-      for(const i in infoUser.caracteristicas_favoritas){
-        for(const ii in caracteristicasFavs[2].valores){
-          if(caracteristicasFavs[2].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
-            array2.push(caracteristicasFavs[2].valores[ii].valor)
-            arrayId2.push(caracteristicasFavs[2].valores[ii].idcaracteristicavalor)
+      let array2 = [];
+      let arrayId2 = [];
+      for (const i in infoUser.caracteristicas_favoritas) {
+        for (const ii in caracteristicasFavs[2].valores) {
+          if (
+            caracteristicasFavs[2].valores[ii].idcaracteristicavalor ===
+            infoUser.caracteristicas_favoritas[i]
+          ) {
+            array2.push(caracteristicasFavs[2].valores[ii].valor);
+            arrayId2.push(
+              caracteristicasFavs[2].valores[ii].idcaracteristicavalor
+            );
           }
         }
       }
-      setEstiloRopa(array2)
-      setIdEstiloRopa(arrayId2)
+      setEstiloRopa(array2);
+      setIdEstiloRopa(arrayId2);
 
-      let array3 = []
-      let arrayId3 = []
-      for(const i in infoUser.caracteristicas_favoritas){
-        for(const ii in caracteristicasFavs[3].valores){
-          if(caracteristicasFavs[3].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
-            array3.push(caracteristicasFavs[3].valores[ii].valor)
-            arrayId3.push(caracteristicasFavs[3].valores[ii].idcaracteristicavalor)
+      let array3 = [];
+      let arrayId3 = [];
+      for (const i in infoUser.caracteristicas_favoritas) {
+        for (const ii in caracteristicasFavs[3].valores) {
+          if (
+            caracteristicasFavs[3].valores[ii].idcaracteristicavalor ===
+            infoUser.caracteristicas_favoritas[i]
+          ) {
+            array3.push(caracteristicasFavs[3].valores[ii].valor);
+            arrayId3.push(
+              caracteristicasFavs[3].valores[ii].idcaracteristicavalor
+            );
           }
         }
       }
-      setTipoRopa(array3)
-      setIdTipoRopa(arrayId3)
+      setTipoRopa(array3);
+      setIdTipoRopa(arrayId3);
 
-      setLoading2(true)
+      setLoading2(true);
     }
-  }, [caracteristicasFavs,infoUser]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [caracteristicasFavs, infoUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (infoUser.length !== 0) {
@@ -201,7 +227,7 @@ const MisDatos = () => {
     PerfilAPI(mail, "clientes", "update").then((res) => {
       if (res.status === "success") {
         setLoading(false);
-        window.location.reload()
+        window.location.reload();
       } else {
         if (res.result === "El campo sexo es necesario") {
           setLoading(false);
@@ -221,19 +247,35 @@ const MisDatos = () => {
     });
   };
 
-
   return (
     <div className="misDatosContainer">
       <Breadcrumbs links={pathnames} />
       <p className="title">MIS DATOS</p>
       {infoUser.length === 0 ? (
-        <div style={{ height: "50vh", marginTop: "18px" }}>
-          <Loader spin={"spinnerM"} />
+        <div
+          style={{
+            marginTop: "16px",
+            width: "100%",
+            maxWidth: "758px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Loader spin={"spinnerG"} />
         </div>
-      ) : !loading2 ?
-        <div style={{ height: "50vh", marginTop: "18px" }}>
-          <Loader spin={"spinnerM"} />
-        </div> : (
+      ) : !loading2 ? (
+        <div
+          style={{
+            marginTop: "16px",
+            width: "100%",
+            maxWidth: "758px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Loader spin={"spinnerG"} />
+        </div>
+      ) : (
         <>
           <div className="inputContainer">
             <div className="inputBox">
@@ -293,6 +335,65 @@ const MisDatos = () => {
               <p className="bottomText">
                 Llamarán a este número si hay algún problema con el envío.
               </p>
+            </div>
+          </div>
+          <div className="inputContainer">
+            <div className="inputBox">
+              <p className="labelInput">Nueva contraseña *</p>
+              <TextField
+                disabled={infoUser.social_login === "1" ? true : false}
+                color="primary"
+                className="input"
+                size="small"
+                placeholder={
+                  showPassword1 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
+                }
+                type="email"
+                id="email"
+                value={contraseña}
+              />
+              {infoUser.social_login === "1" ? (
+                <p className="bottomText">
+                  Te registraste en el sitio utilizando redes sociales, y es por
+                  eso que la contraseña no puede modificarse.
+                </p>
+              ) : null}
+            </div>
+            <div className="inputBox">
+              <p className="labelInput">Confirmar contraseña *</p>
+              <TextField
+                disabled={infoUser.social_login === "1" ? true : false}
+                color="primary"
+                className="input"
+                size="small"
+                placeholder={
+                  showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
+                }
+                type="number"
+                id="telefono"
+                value={contraseña2}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {showPassword1 ? (
+                        <Visibility
+                          sx={{ fontSize: "20px", cursor: "pointer" }}
+                          onClick={() => setShowPassword2(!showPassword2)}
+                        />
+                      ) : (
+                        <VisibilityOff
+                          sx={{ fontSize: "20px", cursor: "pointer" }}
+                          onClick={() => setShowPassword2(!showPassword2)}
+                        />
+                      )}
+                    </InputAdornment>
+                  ),
+                  /* style: {
+                    fontSize: 15,
+                    border: (error || campoObligatorio) && "1px solid #FF3F20",
+                  }, */
+                }}
+              />
             </div>
           </div>
           <div className="inputContainer">
@@ -401,8 +502,8 @@ const MisDatos = () => {
                         value={option.valor}
                         sx={{ fontSize: "14px", color: "#969696" }}
                         onClick={() => {
-                          setTalleRopa(option.valor)
-                          setIdTalleRopa(option.idcaracteristicavalor)
+                          setTalleRopa(option.valor);
+                          setIdTalleRopa(option.idcaracteristicavalor);
                         }}
                       >
                         {option.valor}
