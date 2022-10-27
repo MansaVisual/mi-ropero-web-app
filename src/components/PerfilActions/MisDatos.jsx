@@ -105,15 +105,18 @@ const MisDatos = () => {
     setLoading(true);
     if (document.getElementById("nombre").value === "") {
       ScrollTop();
+      setLoading(false);
       alert("Debe completar el campo Nombre");
       return;
     }
     if (document.getElementById("apellido").value === "") {
       ScrollTop();
+      setLoading(false);
       alert("Debe completar el campo Apellido");
       return;
     }
     if (document.getElementById("email").value === "") {
+      setLoading(false);
       ScrollTop();
       alert("Debe completar el campo Email");
       return;
@@ -124,6 +127,7 @@ const MisDatos = () => {
       formPhone.append("telefono", document.getElementById("telefono").value);
       PerfilAPI(formPhone, "clientes", "validate_phone").then((res) => {
         if (res.status === "error") {
+          setLoading(false);
           alert("Error en la validación de telefono");
           return;
         }
@@ -536,7 +540,15 @@ const MisDatos = () => {
             </div>
           </div>
           {loading ? (
-            <div style={{ marginTop: "16px" }}>
+            <div
+              style={{
+                marginTop: "16px",
+                width: "100%",
+                maxWidth: "758px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
