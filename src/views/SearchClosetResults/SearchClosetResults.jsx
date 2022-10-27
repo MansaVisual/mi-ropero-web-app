@@ -113,6 +113,7 @@ const SearchClosetResults = () => {
           sx={{
             px: isMobile || isMobileBigScreen ? "16px" : "74px",
             py: "40px",
+            mb:"100px"
           }}
           spacing={5}
         >

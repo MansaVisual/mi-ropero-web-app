@@ -108,7 +108,8 @@ const Cart = () => {
             >
                 <Grid item xs={12} sm={12} lg={carrito.length!== 0 ? 9 : 12} 
                     sx={{
-                        paddingRight: isDesktop ? "32px" : "0px"
+                        paddingRight: isDesktop ? "32px" : "0px",
+                        mb:"100px"
                     }}
                     className="problemaMaxWidthCarrito"
                 >
