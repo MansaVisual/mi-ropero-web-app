@@ -102,11 +102,12 @@ const ViewCloset = () => {
 
   const [tienda,setTienda]=useState([])
 
-
   useEffect(() => {
     if(closetId!==undefined){
       const ropero = new FormData()
       ropero.append("idtienda",closetId)
+      ropero.append("page",0)
+      ropero.append("bypage",15)
       ProdAPI(
         ropero,
         "tiendas",
@@ -264,17 +265,18 @@ const ViewCloset = () => {
               ml: isMobile || isMobileBigScreen ? 0 : "30px",
             }}
           >
-            {/* {cards.map((card, index) => (
-              <Grid item xs="auto" md="auto">
+            {/* {tienda.length!==0  && tienda.search_productos.map((item, index) => {console.log(item);return(
+              <Grid item xs="auto" md="auto" key={index}>
                 <ProductCard
-                  key={index}
-                  productName={card.title}
-                  productPrice={card.price}
-                  imageCard={card.img}
-                  tag={card.tag}
+                  imageCard={item.producto_imagen}
+                  productName={item.nombre}
+                  idProducto={item.idproducto}
+                  itemFav={item}
+                  productPrice={item.precio}
+                  precioOferta={item.precio_oferta}
                 />
               </Grid>
-            ))} */}
+            )})} */}
           </Grid>
           <Box
             sx={{
