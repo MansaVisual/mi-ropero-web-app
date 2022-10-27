@@ -5,7 +5,6 @@ import {
   Container,
   Fade,
   Grid,
-  Link,
   Modal,
   Stack,
   Typography,
@@ -14,8 +13,6 @@ import {
 import { useLocation, useParams } from "react-router-dom";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import Filter from "../../components/Filter/Filter";
-import Chip from "../../components/Chip/Chip";
-import SliderProd from "../../components/SliderProd/SliderProd";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
@@ -465,25 +462,6 @@ const SearchProductsResults = () => {
                 <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
               </Box>
             )}
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12}>
-            <Box sx={{ mt: "40px", textAlign: "center" }}>
-              <Chip primary>Productos relacionados</Chip>
-            </Box>
-            <Box sx={{ mt: "24px", mb: "28px" }}>
-              <SliderProd contenido={[]}/>
-            </Box>
-            <Box sx={{ textAlign: "center" }}>
-              <Link
-                sx={{
-                  color: theme.palette.tertiary.main,
-                  fontSize: theme.typography.fontSize[4],
-                }}
-              >
-                VER TODOS LOS PRODUCTOS RELACIONADOS
-              </Link>
-            </Box>
           </Grid>
         </Grid>
       </Container>

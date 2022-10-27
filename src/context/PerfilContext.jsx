@@ -49,7 +49,6 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleComprasRealizadas = async (userLog, filtroSelecc) => {
-    console.log(filtroSelecc);
     const estados = {
       3: "Pendiente de pago",
       4: "Pago realizado",
