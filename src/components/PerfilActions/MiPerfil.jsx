@@ -82,7 +82,7 @@ const MiPerfil = ({ setTypeNav }) => {
             src={infoUser && infoUser.avatar ? infoUser.avatar : testData.img}
             className="profilePicture"
             alt="profilePicture"
-            onerror={(e) => handleAvatarError(e)}
+            onError={(e) => handleAvatarError(e)}
           />
           <div className="profileText">
             <p className="hello">HOLA!</p>
