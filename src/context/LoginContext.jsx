@@ -3,8 +3,10 @@ import { createContext, useState, useEffect } from "react";
 export const UseLoginContext = createContext();
 
 export const LoginContext = ({ children }) => {
+
   const [userLog, setUserLog] = useState("");
   const [infoUser, setInfoUser] = useState([]);
+  const [notis,setNotis]=useState([])
 
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
@@ -56,6 +58,18 @@ export const LoginContext = ({ children }) => {
           reBuscarInfo();
         }
       });
+
+      const notis=new FormData()
+      notis.append("bypage",10)
+      notis.append("page",0)
+      notis.append("estado",1)
+      notis.append("idcliente",userLog)
+      
+      LoginAPI(
+        notis,
+        "pushs",
+        "all"
+      ).then((res)=>console.log(res))
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -119,6 +133,7 @@ export const LoginContext = ({ children }) => {
         infoUser,
         FacebookLogin,
         reBuscarInfo,
+        notis
       }}
     >
       {children}

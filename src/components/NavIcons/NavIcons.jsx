@@ -39,7 +39,7 @@ import cruz from "../../assets/img/cruz.png";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const { userLog, setUserLog } = useContext(UseLoginContext);
+  const { userLog, setUserLog,notis } = useContext(UseLoginContext);
   const {
     carrito,
     costoCarrito,
@@ -174,11 +174,11 @@ const NavIcons = () => {
       icon: <FaRegMoneyBillAlt />,
       url: "OFERTAS REALIZADAS",
     },
-    {
-      title: "Mis mensajes",
-      icon: <BiMessage />,
-      url: "MIS MENSAJES",
-    },
+    // {
+    //   title: "Mis mensajes",
+    //   icon: <BiMessage />,
+    //   url: "MIS MENSAJES",
+    // },
   ];
 
   const getMenuBell = () => {
@@ -514,7 +514,7 @@ const NavIcons = () => {
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
       <IconButton onClick={userLog !== "" && handleClickNotif}>
         <StyledBadge
-          badgeContent={120}
+          badgeContent={notis.length}
           color="secondary"
           anchorOrigin={{
             vertical: "top",
