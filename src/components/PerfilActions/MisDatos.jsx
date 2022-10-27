@@ -167,6 +167,7 @@ const MisDatos = () => {
     });
   };
 
+
   return (
     <div className="misDatosContainer">
       <Breadcrumbs links={pathnames} />
@@ -337,6 +338,12 @@ const MisDatos = () => {
                 </MenuItem>
                 {caracteristicasFavs.length !== 0 &&
                   caracteristicasFavs[0].valores.map((option, i) => {
+                    let id = infoUser.productos_favoritos.find(e=>e===option.idcaracteristicavalor)
+                    if(id!==undefined){
+                      console.log("HOLA")
+                      // setTalleRopa(option.valor);
+                      // setIdTalleRopa(option.idcaracteristicavalor);
+                    }
                     return (
                       <MenuItem
                         key={i}
