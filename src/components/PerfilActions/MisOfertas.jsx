@@ -28,17 +28,6 @@ const MisOfertas = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, filtroSelecc]);
 
-  const array = [
-    {
-      img: Sweater,
-      titulo:
-        "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado",
-      fecha: "Fecha: 21/7/2022 11:08:20",
-      estado: "En proceso de evaluación",
-      oferta: 200,
-    },
-  ];
-
   const stateTypes = [
     "en proceso de evaluacion",
     "Rechazada por el vendedor",
@@ -55,6 +44,8 @@ const MisOfertas = () => {
     'Aceptado',
     'vencida'
   ] */
+
+  console.log(ofertasRealizadas);
 
   return (
     <div className="misOfertasContainer">
@@ -152,7 +143,7 @@ const MisOfertas = () => {
               </div>
             </div>
           )}
-          {array.map((producto) => {
+          {ofertasRealizadas.map((producto) => {
             return (
               <div className="mobileCard">
                 <img

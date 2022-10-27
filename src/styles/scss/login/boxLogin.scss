@@ -148,22 +148,6 @@
         }
       }
     }
-    /* .botonFB {
-      border: 1px solid #395185;
-      width: 100%;
-      max-width: 254px;
-      height: 36px;
-      filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
-      border-radius: 20px;
-      margin-left: 6px;
-      @include screen_705 {
-        margin-left: 0px;
-        max-width: 370px;
-        min-width: 288px;
-        margin-bottom: 24px;
-        width: 100%;
-      }
-    } */
   }
   .errorBoxContainer {
     width: 100%;
@@ -197,7 +181,6 @@
           font-weight: 400;
           font-size: 14px;
           line-height: 19px;
-          color: #babcbe;
         }
       }
       .olvidoContraseña {

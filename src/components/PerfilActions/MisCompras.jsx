@@ -17,49 +17,13 @@ const MisCompras = () => {
   const { handleComprasRealizadas, comprasRealizadas, comprasFinBusqueda } =
     useContext(UsePerfilContext);
 
-  const [filtroSelecc, setFiltroSelecc] = useState("Pendiente de pago");
+  const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
 
   useEffect(() => {
     if (userLog !== "") {
       handleComprasRealizadas(userLog, filtroSelecc);
     }
   }, [userLog, filtroSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
-  /* 
-  useEffect(() => {
-    if (userLog !== "") {
-      handleComprasRealizadas(userLog, filtroSelecc);
-    }
-  }, [filtroSelecc]); // eslint-disable-line react-hooks/exhaustive-deps */
-
-  const compras = [
-    {
-      fecha: "15 / 03 / 2017",
-      id: "MRO-00000001375",
-      monto: 163.199,
-      estado: {
-        codigo: "PAGO REALIZADO",
-        fecha: "17/03/3017",
-      },
-    },
-    {
-      fecha: "15 / 03 / 2017",
-      id: "MRO-00000001375",
-      monto: 163.199,
-      estado: {
-        codigo: "PAGO REALIZADO",
-        fecha: "17/03/3017",
-      },
-    },
-    {
-      fecha: "15 / 03 / 2017",
-      id: "MRO-00000001375",
-      monto: 163.199,
-      estado: {
-        codigo: "PAGO REALIZADO",
-        fecha: "17/03/3017",
-      },
-    },
-  ];
 
   const stateTypes = [
     "Pendiente de pago",
@@ -172,7 +136,7 @@ const MisCompras = () => {
               </tbody>
             </table>
             <div className="responsiveData">
-              {compras.map((compra) => {
+              {comprasRealizadas.map((compra) => {
                 return (
                   <div className="compra">
                     <div>

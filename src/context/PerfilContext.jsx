@@ -48,7 +48,8 @@ export const PerfilContext = ({ children }) => {
     });
   };
 
-  const handleComprasRealizadas = (userLog, filtroSelecc) => {
+  const handleComprasRealizadas = async (userLog, filtroSelecc) => {
+    console.log(filtroSelecc);
     const estados = {
       3: "Pendiente de pago",
       4: "Pago realizado",
@@ -59,27 +60,24 @@ export const PerfilContext = ({ children }) => {
       11: "Finalizada",
     };
 
-    /*  3  => 'Pendiente de pago',
-   4  => 'Pago realizado',
-   5  => 'Error en pago',
-   7  => 'Pago devuelto',
-   9  => 'Plazo de pago vencido',
-   10 => 'En calificacion',
-   11 => 'Finalizada' */
+    let itemEstadoSelecc = "";
 
     for (const item in estados) {
       if (estados[item] === filtroSelecc) {
-        console.log(estados[item]);
-        setEstadoSeleccionado(item);
+        console.log(item);
+        itemEstadoSelecc = item;
+        await setEstadoSeleccionado(item);
       }
     }
 
     let array = [];
 
+    console.log(estadoSeleccionado, itemEstadoSelecc);
+
     const dir = new FormData();
     dir.append("comprador_id", userLog);
-    dir.append("estado", estadoSeleccionado);
-    dir.append("page", 1);
+    dir.append("estado", "2");
+    dir.append("page", 0);
     dir.append("bypage", 10);
     PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
       console.log(res, estadoSeleccionado);
@@ -94,7 +92,7 @@ export const PerfilContext = ({ children }) => {
     setComprasRealizadas(array);
   };
 
-  const handleOfertasRealizadas = (userLog, filtroSelecc) => {
+  const handleOfertasRealizadas = async (userLog, filtroSelecc) => {
     const estados = [
       "Sin definir",
       "en proceso de evaluacion",
@@ -104,10 +102,13 @@ export const PerfilContext = ({ children }) => {
       "vencida",
     ];
 
+    let itemOfertasRealizadas;
+
     for (const item in estados) {
       if (estados[item] === filtroSelecc) {
         console.log(estados[item]);
-        setofertaFiltro(item);
+        itemOfertasRealizadas = item;
+        await setofertaFiltro(item);
       }
     }
 
@@ -115,20 +116,16 @@ export const PerfilContext = ({ children }) => {
 
     const dir = new FormData();
     dir.append("idcliente", userLog);
-    dir.append("estado", /* [1, 2, 3, 4, 5] */ ofertaFiltro);
+    dir.append("estado", Number(itemOfertasRealizadas));
     PerfilAPI(dir, "ofertas", "all").then((res) => {
       setOfertasFinBusqueda(true);
       if (res.status === "success") {
-        console.log(res);
         for (const ii in res.result) {
-          console.log(res.result[ii]);
-          array = array.push(res.result[ii]);
+          array.push(res.result[ii]);
         }
       }
-      setOfertasFinBusqueda(false);
-      //setOfertasRealizadas(array);
+      setOfertasRealizadas(array);
     });
-    setOfertasRealizadas(array);
   };
 
   return (
