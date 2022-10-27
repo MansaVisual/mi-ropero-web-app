@@ -124,7 +124,9 @@ const ClosetImagesCard = ({
                         backgroundColor: theme.palette.secondary.main,
                         width: "32px",
                         height: "32px",
+                        cursor:"pointer"
                       }}
+                        onClick={()=>navigate(`/roperos/${idtienda}/${nombre}`)}
                       src={icono}
                     >
                     </Avatar>
@@ -133,7 +135,9 @@ const ClosetImagesCard = ({
                         sx={{
                           fontSize: theme.typography.fontSize[2],
                           fontWeight: theme.typography.fontWeightRegular,
+                          cursor:"pointer"
                         }}
+                        onClick={()=>navigate(`/roperos/${idtienda}/${nombre}`)}
                       >
                         {nombre}
                       </Typography>

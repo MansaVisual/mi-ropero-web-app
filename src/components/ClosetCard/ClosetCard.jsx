@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import {
   Avatar,
   Box,
@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import theme from "../../styles/theme";
+import { useNavigate } from "react-router-dom";
 
 const ClosetCard = (ropero) => {
+  const navigate = useNavigate()
+
   return (
     <Card
       sx={{
@@ -30,8 +33,10 @@ const ClosetCard = (ropero) => {
           paddingBottom: "10px",
           "&:last-child": {
             paddingBottom: "10px",
+            cursor:"pointer"
           },
         }}
+        onClick={()=>navigate(`/roperos/${ropero.ropero.idtienda}/${ropero.ropero.nombre}`)}
       >
         <Box
           sx={{
@@ -135,7 +140,7 @@ const ClosetCard = (ropero) => {
                 </>
               )}
             </CardActionArea>
-          </Box> */}
+          </Box>  */}
         </Box>
       </CardContent>
     </Card>
