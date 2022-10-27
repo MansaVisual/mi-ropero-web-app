@@ -27,6 +27,7 @@
     "reactstrap": "^9.1.4",
     "sass": "^1.55.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
