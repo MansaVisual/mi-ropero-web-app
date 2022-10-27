@@ -63,13 +63,13 @@ export const LoginContext = ({ children }) => {
       notis.append("bypage",10)
       notis.append("page",0)
       notis.append("estado",1)
-      notis.append("idcliente",userLog)
+      notis.append("idcliente",36)
       
       LoginAPI(
         notis,
         "pushs",
         "all"
-      ).then((res)=>console.log(res))
+      ).then((res)=>{if(res.status==="success"){setNotis(res.result)}})
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
