@@ -91,7 +91,7 @@ const MisCompras = () => {
           </Select>
         </div>
       </div>
-      <div className="comprasContainer">
+      {/*  <div className="comprasContainer">
         {!comprasFinBusqueda ? (
           <div
             style={{
@@ -176,7 +176,7 @@ const MisCompras = () => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
         <p>VOLVER A MI PERFIL</p>

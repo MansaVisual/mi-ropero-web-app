@@ -71,11 +71,9 @@ export const PerfilContext = ({ children }) => {
 
     let array = [];
 
-    console.log(estadoSeleccionado, itemEstadoSelecc);
-
     const dir = new FormData();
     dir.append("comprador_id", userLog);
-    dir.append("estado", "2");
+    dir.append("estado", 2);
     dir.append("page", 0);
     dir.append("bypage", 10);
     PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
