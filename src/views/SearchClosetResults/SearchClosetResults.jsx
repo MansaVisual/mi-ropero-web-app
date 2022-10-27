@@ -102,6 +102,7 @@ const SearchClosetResults = () => {
   }
 
 
+
   return (
     <>
       {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
@@ -179,7 +180,7 @@ const SearchClosetResults = () => {
                     Top Roperos 🔥
                   </Typography>
                 }
-                {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.tiendas.map((option)=>{
+                {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.map((option)=>{
                   return(
                     <ClosetCard ropero={option}/>
                   )

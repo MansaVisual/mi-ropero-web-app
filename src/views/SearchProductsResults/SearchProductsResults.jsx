@@ -138,10 +138,7 @@ const SearchProductsResults = () => {
     let idCat = '';
     if(putSort==="Mas relevante primero"){
       catProd.append("order_type","desc")
-      catProd.append("order","relevancia")
-    }else if(putSort==="Menos relevante primero"){
-      catProd.append("order_type","asc")
-      catProd.append("order","relevancia")
+      catProd.append("order","idproducto")
     }else if(putSort==="Mayor precio primero"){
       catProd.append("order_type","desc")
       catProd.append("order","precio")
