@@ -48,7 +48,6 @@ const SearchProductsResults = () => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { categorias, ProdAPI } = useContext(UseProdsContext);
 
-  const [load,setLoad]=useState(false)
   const [load2, setLoad2] = useState(false);
   
   const [prods,setProds]=useState([])
@@ -151,7 +150,6 @@ const SearchProductsResults = () => {
 
 
   const buscarPage=(paramSearch,value)=>{
-    setLoad(true)
     let numCol=0
     if(coleccionName==="NuevosIngresos"){
       numCol=71
@@ -199,7 +197,6 @@ const SearchProductsResults = () => {
       if(res.status==="success"){
         setProds(res.result.productos)
       }
-      setLoad(false)
       window.scrollTo({
         top: 0,
         behavior: 'auto',

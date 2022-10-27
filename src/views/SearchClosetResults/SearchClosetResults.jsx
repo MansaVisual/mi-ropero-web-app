@@ -24,7 +24,6 @@ const SearchClosetResults = () => {
 
   const [roperos,setRoperos]=useState([])
   const [buscandoRoperos,setBuscandoRoperos]=useState(true)
-  const [load,setLoad]=useState(false)
 
   const [totalPages,setTotalPages]=useState(0)
   const [totalProds,setTotalProds]=useState(0)
@@ -51,7 +50,6 @@ const SearchClosetResults = () => {
       "featured"
     ).then((res)=>{if(res.status==="success"){setBestRoperos(res.result)}})
 
-    setLoad(true)
     const busqueda=new FormData()
     busqueda.append("page",0)
     busqueda.append("bypage",10)
@@ -68,7 +66,6 @@ const SearchClosetResults = () => {
         setTotalProds(res.result.total)
         setRoperos(res.result.tiendas)
         setTotalPages(res.result.total_paginas)
-        setLoad(false)
       }
       setBuscandoRoperos(false)
     })
@@ -76,7 +73,6 @@ const SearchClosetResults = () => {
 
   const buscarPage=(paramSearch,value)=>{
 
-    setLoad(true)
     const newPage=new FormData()
     if(keyword!==undefined){
       newPage.append("text",keyword)
@@ -93,7 +89,6 @@ const SearchClosetResults = () => {
       if(res.status==="success"){
         setRoperos(res.result.tiendas)
       }
-      setLoad(false)
       window.scrollTo({
         top: 0,
         behavior: 'auto',
