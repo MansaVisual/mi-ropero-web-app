@@ -1,11 +1,11 @@
 .gridContainer {
-  padding: '0px 72px';
+  padding: "0px 72px";
   @include screen_1450 {
     display: flex;
     justify-content: center;
   }
   @include screen_705 {
-    padding: '0px 16px';
+    padding: "0px 16px";
   }
 }
 .miPerfilContainer {
@@ -27,6 +27,7 @@
         height: 142px;
         width: 142px;
         margin-right: 24px;
+        border-radius: 50%;
         @include screen_705 {
           height: 72px;
           width: 72px;

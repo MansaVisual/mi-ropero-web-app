@@ -66,6 +66,8 @@ const MiPerfil = ({ setTypeNav }) => {
     },
   ];
 
+  console.log(infoUser);
+
   return (
     <div className="miPerfilContainer">
       <Breadcrumbs links={pathnames} />
@@ -73,7 +75,7 @@ const MiPerfil = ({ setTypeNav }) => {
         <p className="title">MI PERFIL</p>
         <div className="profileData">
           <img
-            src={testData.img}
+            src={infoUser.avatar ? infoUser.avatar : testData.img}
             className="profilePicture"
             alt="profilePicture"
           />

@@ -18,7 +18,7 @@ const MisDatos = () => {
 
   const [caracteristicasFavs, setCaracteristicasFavs] = useState([]);
 
-  const [contraseña, setContraseña] = useState("");
+  const [contraseña1, setContraseña1] = useState("");
   const [contraseña2, setContraseña2] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
@@ -213,6 +213,13 @@ const MisDatos = () => {
       });
     }
 
+    if (document.getElementById("email").value === "") {
+      setLoading(false);
+      ScrollTop();
+      alert("Debe completar el campo Email");
+      return;
+    }
+
     const mail = new FormData();
     mail.append("idcliente", userLog);
     mail.append("nombre", document.getElementById("nombre").value);
@@ -339,7 +346,7 @@ const MisDatos = () => {
           </div>
           <div className="inputContainer">
             <div className="inputBox">
-              <p className="labelInput">Nueva contraseña *</p>
+              <p className="labelInput">Nueva contraseña</p>
               <TextField
                 disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
@@ -348,19 +355,41 @@ const MisDatos = () => {
                 placeholder={
                   showPassword1 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
                 }
-                type="email"
-                id="email"
-                value={contraseña}
+                type={showPassword1 ? "text" : "password"}
+                id="contraseña1"
+                value={contraseña1}
+                onChange={(e) => setContraseña1(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {showPassword1 ? (
+                        <Visibility
+                          sx={{ fontSize: "20px", cursor: "pointer" }}
+                          onClick={() => setShowPassword1(!showPassword1)}
+                        />
+                      ) : (
+                        <VisibilityOff
+                          sx={{ fontSize: "20px", cursor: "pointer" }}
+                          onClick={() => setShowPassword1(!showPassword1)}
+                        />
+                      )}
+                    </InputAdornment>
+                  ),
+                  /* style: {
+                    fontSize: 15,
+                    border: (error || campoObligatorio) && "1px solid #FF3F20",
+                  }, */
+                }}
               />
-              {infoUser.social_login === "1" ? (
+              {/* {infoUser.social_login === "1" ? (
                 <p className="bottomText">
                   Te registraste en el sitio utilizando redes sociales, y es por
                   eso que la contraseña no puede modificarse.
                 </p>
-              ) : null}
+              ) : null} */}
             </div>
             <div className="inputBox">
-              <p className="labelInput">Confirmar contraseña *</p>
+              <p className="labelInput">Confirmar contraseña </p>
               <TextField
                 disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
@@ -369,13 +398,14 @@ const MisDatos = () => {
                 placeholder={
                   showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
                 }
-                type="number"
-                id="telefono"
+                type={showPassword2 ? "text" : "password"}
+                id="contraseña2"
                 value={contraseña2}
+                onChange={(e) => setContraseña2(e.target.value)}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      {showPassword1 ? (
+                      {showPassword2 ? (
                         <Visibility
                           sx={{ fontSize: "20px", cursor: "pointer" }}
                           onClick={() => setShowPassword2(!showPassword2)}
