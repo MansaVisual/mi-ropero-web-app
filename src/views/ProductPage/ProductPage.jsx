@@ -26,6 +26,7 @@ import DialogComponent from "../../components/Dialog/Dialog";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductPage = () => {
@@ -35,6 +36,7 @@ const ProductPage = () => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const {itemID}=useParams()
+  const navigate = useNavigate()
 
   const {infoUser,userLog}=useContext(UseLoginContext)
   const {ProdAPI}=useContext(UseProdsContext)
@@ -91,6 +93,7 @@ const ProductPage = () => {
           px: isMobile || isMobileBigScreen ? "16px" : "74px",
           py: "40px",
           overflowX: "hidden",
+          marginBottom:"100px"
         }}
       >
         {prod.length===0?<div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center",minHeight:"75vh" }}><Loader spin={"spinnerG"}/></div> :<>
@@ -250,7 +253,9 @@ const ProductPage = () => {
                     color: theme.palette.tertiary.main,
                     mt: isMobile || isMobileBigScreen ? "16px" : "56px",
                     mb: "16px",
+                    cursor:"pointer"
                   }}
+                  onClick={()=>navigate(`/roperos/${prod.tienda.idcliente}/${prod.tienda.nombre}`)}
                 >
                   {prod.length!==0&&prod.tienda.nombre}
                 </Typography>
@@ -270,7 +275,7 @@ const ProductPage = () => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={12}>
+          {/* <Grid item xs={12} sm={12}>
             <Box
               sx={{
                 pt: "43px",
@@ -292,7 +297,7 @@ const ProductPage = () => {
                 VER TODOS LOS PRODUCTOS DEL ROPERO
               </Link>
             </Box>
-          </Grid>
+          </Grid> */}
         </>}
       </Grid>
     </Container>
