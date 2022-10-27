@@ -5,6 +5,7 @@ export const UsePerfilContext = createContext();
 export const PerfilContext = ({ children }) => {
   const [direccionesGuardadas, setDireccionesGuardadas] = useState([]);
   const [direccionSelecc, setDireccionSelecc] = useState(false);
+  const [compraSelecc, setCompraSelecc] = useState(false);
   const [comprasRealizadas, setComprasRealizadas] = useState([]);
   const [ofertasRealizadas, setOfertasRealizadas] = useState([]);
   const [estadoSeleccionado, setEstadoSeleccionado] = useState("");
@@ -139,6 +140,8 @@ export const PerfilContext = ({ children }) => {
         handleOfertasRealizadas,
         ofertasRealizadas,
         ofertasFinBusqueda,
+        compraSelecc,
+        setCompraSelecc,
       }}
     >
       {children}

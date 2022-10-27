@@ -14,8 +14,12 @@ const MisCompras = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleComprasRealizadas, comprasRealizadas, comprasFinBusqueda } =
-    useContext(UsePerfilContext);
+  const {
+    handleComprasRealizadas,
+    comprasRealizadas,
+    comprasFinBusqueda,
+    setCompraSelecc,
+  } = useContext(UsePerfilContext);
 
   const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
 
@@ -42,8 +46,6 @@ const MisCompras = () => {
    9  => 'Plazo de pago vencido',
    10 => 'En calificacion',
    11 => 'Finalizada' */
-
-  console.log(comprasRealizadas);
 
   const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
@@ -127,9 +129,9 @@ const MisCompras = () => {
                 </tr>
               </thead>
               <tbody>
-                {comprasRealizadas[2].map((compra) => {
+                {comprasRealizadas[2].map((compra, i) => {
                   return (
-                    <tr className="dataRow">
+                    <tr index={i} className="dataRow">
                       <th>{formatoFecha(compra.fecha_alta)}</th>
                       <th>{compra.idoperacion}</th>
                       <th>${compra.total}</th>
@@ -138,7 +140,15 @@ const MisCompras = () => {
                         <span>{formatoFecha(compra.fecha_notificacion)}</span>
                       </th>
                       <th>
-                        <Button className="tableButton">VER COMPRA</Button>
+                        <Button
+                          className="tableButton"
+                          onClick={() => {
+                            setCompraSelecc(compra);
+                            navigate(`/perfil/MIS COMPRAS DETALLE`);
+                          }}
+                        >
+                          VER COMPRA
+                        </Button>
                       </th>
                     </tr>
                   );
@@ -146,9 +156,9 @@ const MisCompras = () => {
               </tbody>
             </table>
             <div className="responsiveData">
-              {comprasRealizadas[2].map((compra) => {
+              {comprasRealizadas[2].map((compra, i) => {
                 return (
-                  <div className="compra">
+                  <div key={i} className="compra">
                     <div>
                       <span>FECHA DE COMPRA</span>
                       <th>{formatoFecha(compra.fecha_alta)}</th>
