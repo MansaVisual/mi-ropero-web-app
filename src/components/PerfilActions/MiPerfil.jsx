@@ -66,7 +66,7 @@ const MiPerfil = ({ setTypeNav }) => {
     },
   ];
 
-  console.log(infoUser);
+  console.log(infoUser, infoUser.avatar);
 
   return (
     <div className="miPerfilContainer">
@@ -75,7 +75,7 @@ const MiPerfil = ({ setTypeNav }) => {
         <p className="title">MI PERFIL</p>
         <div className="profileData">
           <img
-            src={infoUser.avatar ? infoUser.avatar : testData.img}
+            src={infoUser && infoUser.avatar ? infoUser.avatar : testData.img}
             className="profilePicture"
             alt="profilePicture"
           />
