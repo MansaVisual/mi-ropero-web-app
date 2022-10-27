@@ -99,7 +99,6 @@ const MisDatos = () => {
         idEstiloRopa
     );
   }, [talleRopa, marcasPreferidas, tipoRopa, estiloRopa]); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log("HOLIS", infoUser);
 
   const handleGrabarCambios = () => {
     setLoading(true);
@@ -182,7 +181,6 @@ const MisDatos = () => {
             <div className="inputBox">
               <p className="labelInput">Nombre *</p>
               <TextField
-                disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
                 className="input"
                 size="small"
@@ -194,7 +192,6 @@ const MisDatos = () => {
             <div className="inputBox">
               <p className="labelInput">Apellido *</p>
               <TextField
-                disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
                 className="input"
                 size="small"
