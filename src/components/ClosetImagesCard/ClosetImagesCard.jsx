@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import {
   ImageList,
   ImageListItem,
@@ -20,7 +20,7 @@ import { UsePerfilContext } from "../../context/PerfilContext";
 import { UseLoginContext } from "../../context/LoginContext";
 
 const ClosetImagesCard = ({
-  ropero: { nombre, icono, productos, rating, img, idtienda, seguidores },
+  ropero: { nombre, icono, productos, rating, img, idtienda, seguidores_count, seguidores },
   keyword,
 }) => {
   
@@ -37,6 +37,17 @@ const ClosetImagesCard = ({
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [like, setLike] = useState(false);
+
+  useEffect(() => {
+    if(seguidores!==undefined && userLog!==undefined){
+      for(const i in seguidores){
+        if(seguidores[i]===userLog){
+          console.log(seguidores[i])
+          setLike(true)
+        }
+      }
+    }
+  }, [seguidores,userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const addFollow = ()=>{
     setOperando(true)
@@ -178,7 +189,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={()=>addFollow()}
                           >
-                            {seguidores}
+                            {seguidores_count}
                           </Typography>
                         </>
                       ) : (
@@ -200,7 +211,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={()=>unFollow()}
                           >
-                            {seguidores}
+                            {seguidores_count}
                           </Typography>
                         </>
                       )}

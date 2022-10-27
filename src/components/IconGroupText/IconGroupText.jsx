@@ -6,7 +6,6 @@ import Users from "../../assets/img/Users.svg";
 import theme from "../../styles/theme";
 
 const IconGroupText = ({prod,prod2}) => {
-  console.log(prod)
   return (
     <Box
       sx={{
