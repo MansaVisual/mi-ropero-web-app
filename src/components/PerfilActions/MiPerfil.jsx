@@ -68,6 +68,10 @@ const MiPerfil = ({ setTypeNav }) => {
 
   console.log(infoUser, infoUser.avatar);
 
+  const handleAvatarError = (event) => {
+    event.currentTarget.src = testData.img;
+  };
+
   return (
     <div className="miPerfilContainer">
       <Breadcrumbs links={pathnames} />
@@ -78,6 +82,7 @@ const MiPerfil = ({ setTypeNav }) => {
             src={infoUser && infoUser.avatar ? infoUser.avatar : testData.img}
             className="profilePicture"
             alt="profilePicture"
+            onerror={(e) => handleAvatarError(e)}
           />
           <div className="profileText">
             <p className="hello">HOLA!</p>
