@@ -93,7 +93,7 @@ const ProductPage = () => {
           overflowX: "hidden",
         }}
       >
-        {prod.length===0?<div style={{minHeight:"80vh"}}><Loader spin={"spinnerM"}/></div> :<>
+        {prod.length===0?<div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center",minHeight:"75vh" }}><Loader spin={"spinnerG"}/></div> :<>
           <Grid item xs={12} sm={12} md={8} xl={6}>
             {isMobile || isMobileBigScreen || isTablet ? (
               <>

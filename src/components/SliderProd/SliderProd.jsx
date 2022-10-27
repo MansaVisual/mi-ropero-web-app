@@ -115,7 +115,9 @@ export default class SimpleSlider extends Component {
     return (
       <div>
         {contenido !== undefined && contenido.length === 0 ? (
-          <Loader spin={"spinnerG"} />
+          <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+            <Loader spin={"spinnerG"} />
+          </div>
         ) : (
           <Slider {...settings}>
             {contenido.map((item, index) => {

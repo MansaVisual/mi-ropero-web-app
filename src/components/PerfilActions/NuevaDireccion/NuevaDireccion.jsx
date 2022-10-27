@@ -572,7 +572,7 @@ const NuevaDireccion = () => {
         </div>
       </div>
       {loader ? (
-        <div style={{ marginTop: '16px' }}>
+        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
           <Loader spin={'spinnerG'} />
         </div>
       ) : (

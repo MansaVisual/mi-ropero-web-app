@@ -74,7 +74,7 @@ const RestorePopUp = ({setRestorePassword}) => {
                     <div className='buttonContainer'>
                         <Button className="volver" onClick={() => setRestorePassword(false)}>VOLVER</Button>
                         {load ?
-                            <div style={{marginTop:"24px",marginLeft:"32px"}}>
+                            <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
                                 <Loader spin={"spinnerM"}/>
                             </div>
                         :

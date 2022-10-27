@@ -414,7 +414,7 @@ const SearchProductsResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={9}>
-            {load2 ? <Loader spin={"spinnerG"}/>:
+            {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
               <Box
                 sx={{
                   display: "flex",
@@ -444,13 +444,12 @@ const SearchProductsResults = () => {
                     );
                   })
                 ) : 
-                  <>
+                  <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
                     <Loader spin={"spinnerG"}/>
-                  </>
+                  </div>
                 }
               </Box>
             } 
-            {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
             {prods.length!==0 && totalPages>1 && coleccionName && (
               <Box
               sx={{

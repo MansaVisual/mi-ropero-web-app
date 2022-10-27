@@ -409,7 +409,9 @@ const SearchProductsResults = () => {
                 ) : (
                   <>
                     {buscandoProds ? (
-                      <Loader spin={'spinnerG'} />
+                      <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+                        <Loader spin={'spinnerG'} />
+                      </div>
                     ) : (
                       <Box
                         sx={{
@@ -521,7 +523,7 @@ const SearchProductsResults = () => {
                 )}
               </Box>
             }
-            <ProdsRelation />
+
             {load && (
               <div
                 style={{
@@ -546,6 +548,9 @@ const SearchProductsResults = () => {
               </Box>
             )}
           </Grid>
+          {!buscandoProds && 
+            <ProdsRelation />
+          }
         </Grid>
       </Container>
     </>

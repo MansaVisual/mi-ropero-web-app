@@ -285,7 +285,7 @@ const SearchClosetResults = () => {
                   </Typography>
                 </StyledLink>
               </Box>
-            : buscandoRoperos && <Loader spin={"spinnerG"}/>}
+            : buscandoRoperos && <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>}
             {roperos!==undefined && roperos.length!==0 &&
               <Box
               sx={{
@@ -304,7 +304,6 @@ const SearchClosetResults = () => {
                 }
               </Box>
             }
-            {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
             {roperos!==undefined && roperos.length!==0 && totalPages>1 && (
                 <Box
                 sx={{
