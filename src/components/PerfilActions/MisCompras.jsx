@@ -14,8 +14,12 @@ const MisCompras = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleComprasRealizadas, comprasRealizadas, comprasFinBusqueda } =
-    useContext(UsePerfilContext);
+  const {
+    handleComprasRealizadas,
+    comprasRealizadas,
+    comprasFinBusqueda,
+    setCompraSelecc,
+  } = useContext(UsePerfilContext);
 
   const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
 
@@ -42,6 +46,14 @@ const MisCompras = () => {
    9  => 'Plazo de pago vencido',
    10 => 'En calificacion',
    11 => 'Finalizada' */
+
+  const formatoFecha = (fecha) => {
+    const fechaSinHora = fecha.substring(0, 10);
+    const [year, month, day] = fechaSinHora.split("-");
+
+    const formatoFinal = `${day} / ${month} / ${year}`;
+    return formatoFinal;
+  };
 
   return (
     <div className="misComprasContainer">
@@ -91,7 +103,7 @@ const MisCompras = () => {
           </Select>
         </div>
       </div>
-      {/*  <div className="comprasContainer">
+      <div className="comprasContainer">
         {!comprasFinBusqueda ? (
           <div
             style={{
@@ -117,18 +129,26 @@ const MisCompras = () => {
                 </tr>
               </thead>
               <tbody>
-                {comprasRealizadas.map((compra) => {
+                {comprasRealizadas[2].map((compra, i) => {
                   return (
-                    <tr className="dataRow">
-                      <th>{compra.fecha}</th>
-                      <th>{compra.id}</th>
-                      <th>${compra.monto}</th>
+                    <tr index={i} className="dataRow">
+                      <th>{formatoFecha(compra.fecha_alta)}</th>
+                      <th>{compra.idoperacion}</th>
+                      <th>${compra.total}</th>
                       <th className="estatusColumn">
-                        <span>{compra.estado.codigo}</span>
-                        <span>{compra.estado.fecha}</span>
+                        <span>{compra.estado_text}</span>
+                        <span>{formatoFecha(compra.fecha_notificacion)}</span>
                       </th>
                       <th>
-                        <Button className="tableButton">VER COMPRA</Button>
+                        <Button
+                          className="tableButton"
+                          onClick={() => {
+                            setCompraSelecc(compra);
+                            navigate(`/perfil/MIS COMPRAS DETALLE`);
+                          }}
+                        >
+                          VER COMPRA
+                        </Button>
                       </th>
                     </tr>
                   );
@@ -136,25 +156,25 @@ const MisCompras = () => {
               </tbody>
             </table>
             <div className="responsiveData">
-              {comprasRealizadas.map((compra) => {
+              {comprasRealizadas[2].map((compra, i) => {
                 return (
-                  <div className="compra">
+                  <div key={i} className="compra">
                     <div>
                       <span>FECHA DE COMPRA</span>
-                      <span>{compra.fecha}</span>
+                      <th>{formatoFecha(compra.fecha_alta)}</th>
                     </div>
                     <div>
                       <span>N° DE PEDIDO</span>
-                      <span>{compra.id}</span>
+                      <span>{compra.idoperacion}</span>
                     </div>
                     <div>
                       <span>MONTO TOTAL</span>
-                      <span>{compra.monto}</span>
+                      <span>{compra.total}</span>
                     </div>
                     <div>
                       <span>ESTADO:</span>
-                      <span>{compra.estado.codigo}</span>
-                      <span>{compra.estado.fecha}</span>
+                      <span>{compra.estado_text}</span>
+                      <span>{formatoFecha(compra.fecha_notificacion)}</span>
                     </div>
                     <Button
                       className="comprasButton"
@@ -176,7 +196,7 @@ const MisCompras = () => {
             </div>
           </div>
         )}
-      </div> */}
+      </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
         <p>VOLVER A MI PERFIL</p>
