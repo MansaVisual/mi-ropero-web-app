@@ -265,7 +265,7 @@ const ViewCloset = () => {
               ml: isMobile || isMobileBigScreen ? 0 : "30px",
             }}
           >
-            {/* {tienda.length!==0  && tienda.search_productos.map((item, index) => {console.log(item);return(
+            {tienda.length!==0  && tienda.search_productos.map((item, index) => {console.log(item);return(
               <Grid item xs="auto" md="auto" key={index}>
                 <ProductCard
                   imageCard={item.producto_imagen}
@@ -276,7 +276,7 @@ const ViewCloset = () => {
                   precioOferta={item.precio_oferta}
                 />
               </Grid>
-            )})} */}
+            )})}
           </Grid>
           <Box
             sx={{
