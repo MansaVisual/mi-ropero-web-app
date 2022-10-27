@@ -18,7 +18,7 @@ const MisCompras = () => {
     handleComprasRealizadas,
     comprasRealizadas,
     comprasFinBusqueda,
-    setCompraSelecc,
+    setCompraId,
   } = useContext(UsePerfilContext);
 
   const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
@@ -143,7 +143,7 @@ const MisCompras = () => {
                         <Button
                           className="tableButton"
                           onClick={() => {
-                            setCompraSelecc(compra);
+                            setCompraId(compra.idoperacion);
                             navigate(`/perfil/MIS COMPRAS DETALLE`);
                           }}
                         >
