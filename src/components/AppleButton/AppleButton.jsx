@@ -6,12 +6,14 @@ import { Button } from "reactstrap";
 const AppleButton = () => {
   /*  const { FacebookLogin } = useContext(UseLoginContext); */
 
-  const [, /* data */ setData] = useState(null);
+  const [data, setData] = useState(null);
+
+  console.log(data);
 
   return (
     <div>
       <LoginSocialApple
-        client_id={"1515990319"}
+        client_id={"DH6J2KPQ4D.biz.pupila.MiRopero"}
         scope={"name email"}
         /* redirect_uri={REDIRECT_URI}
         onLoginStart={onLoginStart} */
@@ -19,7 +21,7 @@ const AppleButton = () => {
           setData([provider, data]);
         }}
         onReject={(err) => {
-          /*  console.log(err); */
+          console.log(err);
         }}
       >
         <Button className="botonApple">
