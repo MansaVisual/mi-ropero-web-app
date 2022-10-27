@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import Sweater from "../../assets/img/Sweater.png";
 import Basura from "../../assets/img/basura.png";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import { UseLoginContext } from "../../context/LoginContext";
