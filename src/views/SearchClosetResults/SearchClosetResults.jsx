@@ -181,9 +181,13 @@ const SearchClosetResults = () => {
                     Top Roperos 🔥
                   </Typography>
                 }
-                {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.map((option)=>{
+                {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.map((option,i)=>{
                   return(
-                    <ClosetCard ropero={option}/>
+                    <>
+                      {i<3 &&
+                        <ClosetCard ropero={option}/>
+                      }
+                    </>
                   )
                 })
                 }

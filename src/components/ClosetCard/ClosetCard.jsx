@@ -12,7 +12,6 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import theme from "../../styles/theme";
 
 const ClosetCard = (ropero) => {
-
   return (
     <Card
       sx={{

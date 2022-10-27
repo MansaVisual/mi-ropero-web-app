@@ -18,7 +18,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const ClosetImagesCard = ({
-  ropero: { nombre, icono, productos, rating, img, idtienda },
+  ropero: { nombre, icono, productos, rating, img, idtienda, seguidores },
   keyword,
 }) => {
   
@@ -147,7 +147,7 @@ const ClosetImagesCard = ({
                               fontWeight: 700,
                             }}
                           >
-                            24
+                            {seguidores}
                           </Typography>
                         </>
                       ) : (
@@ -168,7 +168,7 @@ const ClosetImagesCard = ({
                               fontWeight: 700,
                             }}
                           >
-                            24
+                            {seguidores}
                           </Typography>
                         </>
                       )}
