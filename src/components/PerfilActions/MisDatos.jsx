@@ -19,6 +19,7 @@ const MisDatos = () => {
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
   const [genero, setGenero] = useState("");
   const [talleRopa, setTalleRopa] = useState("");
@@ -77,6 +78,59 @@ const MisDatos = () => {
       }
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (infoUser.length !== 0 && caracteristicasFavs.length!==0) {
+      for(const i in infoUser.caracteristicas_favoritas){
+        for(const ii in caracteristicasFavs[0].valores){
+          if(caracteristicasFavs[0].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
+            setTalleRopa(caracteristicasFavs[0].valores[ii].valor)
+            setIdTalleRopa(caracteristicasFavs[0].valores[ii].idcaracteristicavalor)
+          }
+        }
+      }
+      let array1 = []
+      let arrayId1 = []
+      for(const i in infoUser.caracteristicas_favoritas){
+        for(const ii in caracteristicasFavs[1].valores){
+          if(caracteristicasFavs[1].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
+            array1.push(caracteristicasFavs[1].valores[ii].valor)
+            arrayId1.push(caracteristicasFavs[1].valores[ii].idcaracteristicavalor)
+          }
+        }
+      }
+      setMarcasPreferidas(array1)
+      setIdMarcasPreferidas(arrayId1)
+
+      let array2 = []
+      let arrayId2 = []
+      for(const i in infoUser.caracteristicas_favoritas){
+        for(const ii in caracteristicasFavs[2].valores){
+          if(caracteristicasFavs[2].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
+            array2.push(caracteristicasFavs[2].valores[ii].valor)
+            arrayId2.push(caracteristicasFavs[2].valores[ii].idcaracteristicavalor)
+          }
+        }
+      }
+      setEstiloRopa(array2)
+      setIdEstiloRopa(arrayId2)
+
+      let array3 = []
+      let arrayId3 = []
+      for(const i in infoUser.caracteristicas_favoritas){
+        for(const ii in caracteristicasFavs[3].valores){
+          if(caracteristicasFavs[3].valores[ii].idcaracteristicavalor === infoUser.caracteristicas_favoritas[i]){
+            array3.push(caracteristicasFavs[3].valores[ii].valor)
+            arrayId3.push(caracteristicasFavs[3].valores[ii].idcaracteristicavalor)
+          }
+        }
+      }
+      setTipoRopa(array3)
+      setIdTipoRopa(arrayId3)
+
+      setLoading2(true)
+    }
+  }, [caracteristicasFavs,infoUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (infoUser.length !== 0) {
@@ -147,7 +201,7 @@ const MisDatos = () => {
     PerfilAPI(mail, "clientes", "update").then((res) => {
       if (res.status === "success") {
         setLoading(false);
-        navigate(`/perfil`);
+        window.location.reload()
       } else {
         if (res.result === "El campo sexo es necesario") {
           setLoading(false);
@@ -176,7 +230,10 @@ const MisDatos = () => {
         <div style={{ height: "50vh", marginTop: "18px" }}>
           <Loader spin={"spinnerM"} />
         </div>
-      ) : (
+      ) : !loading2 ?
+        <div style={{ height: "50vh", marginTop: "18px" }}>
+          <Loader spin={"spinnerM"} />
+        </div> : (
         <>
           <div className="inputContainer">
             <div className="inputBox">
@@ -338,20 +395,14 @@ const MisDatos = () => {
                 </MenuItem>
                 {caracteristicasFavs.length !== 0 &&
                   caracteristicasFavs[0].valores.map((option, i) => {
-                    let id = infoUser.productos_favoritos.find(e=>e===option.idcaracteristicavalor)
-                    if(id!==undefined){
-                      console.log("HOLA")
-                      // setTalleRopa(option.valor);
-                      // setIdTalleRopa(option.idcaracteristicavalor);
-                    }
                     return (
                       <MenuItem
                         key={i}
                         value={option.valor}
                         sx={{ fontSize: "14px", color: "#969696" }}
                         onClick={() => {
-                          setTalleRopa(option.valor);
-                          setIdTalleRopa(option.idcaracteristicavalor);
+                          setTalleRopa(option.valor)
+                          setIdTalleRopa(option.idcaracteristicavalor)
                         }}
                       >
                         {option.valor}
