@@ -84,8 +84,8 @@ const ClosetImagesCard = ({
                         width: "32px",
                         height: "32px",
                       }}
+                      src={icono}
                     >
-                      {icono}
                     </Avatar>
                     <Box>
                       <Typography

@@ -75,7 +75,7 @@ const IconGroupText = ({prod,prod2}) => {
             color: theme.palette.tertiary.main,
           }}
         >
-          {prod !== undefined && prod.length!==0&&prod.tienda.seguidores.length}
+          {prod !== undefined && prod.length!==0&&prod.tienda.seguidores}
           {prod2 !== undefined && prod2.length!==0&&prod2.seguidores}
         </Typography>
       </Box>
