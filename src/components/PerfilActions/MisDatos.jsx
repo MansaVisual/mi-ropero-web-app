@@ -33,6 +33,7 @@ const MisDatos = () => {
   const [errorMail, setErrorMail] = useState(false);
   const [errorNewMail, setErrorNewMail] = useState(false);
   const [errorPassLength, setErrorPassLength] = useState(false);
+  const [errorPhone, setErrorPhone] = useState(false);
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -241,6 +242,8 @@ const MisDatos = () => {
         if (res.status === "error") {
           setLoading(false);
           throwError("telefono", "labelTelefono");
+          setErrorPhone(true);
+          ScrollTop();
           return;
         }
       });
@@ -387,6 +390,14 @@ const MisDatos = () => {
           </div>
         </div>
       )}
+      {errorPhone && (
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>El número no es válido.</p>
+          </div>
+        </div>
+      )}
 
       {infoUser.length === 0 ? (
         <div
@@ -516,11 +527,13 @@ const MisDatos = () => {
                 onFocus={(e) => onFocus(e, clase, clase2, "labelTelefono")}
                 onChangeCapture={() => {
                   setCampoObligatorio(false);
+                  setErrorPhone(false);
                 }}
                 sx={{
                   "& .MuiOutlinedInput-root:hover": {
                     "& > fieldset": {
-                      borderColor: campoObligatorio && "#FF3F20",
+                      borderColor:
+                        (campoObligatorio || setErrorPhone) && "#FF3F20",
                     },
                   },
                 }}
@@ -552,6 +565,13 @@ const MisDatos = () => {
                   setErrorPassLength(false);
                 }}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña1")}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: (errorPass || errorPassLength) && "#FF3F20",
+                    },
+                  },
+                }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -602,6 +622,13 @@ const MisDatos = () => {
                   setErrorPassLength(false);
                 }}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña2")}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: (errorPass || errorPassLength) && "#FF3F20",
+                    },
+                  },
+                }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
