@@ -20,7 +20,6 @@ import Pagination from "../../components/Pagination/Pagination";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
-import Button from "../../components/Button/Button";
 import { UseProdsContext } from "../../context/ProdsContext";
 
 const style = {
