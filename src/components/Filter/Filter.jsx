@@ -399,7 +399,7 @@ const Filter = (props) => {
                 setRangoPrecio(
                   {
                     min:document.getElementById("min-price").value,
-                    max:document.getElementById("max-price").value
+                    max:document.getElementById("max-price").value===""?99999:document.getElementById("max-price").value
                   }
                 )
               }}
@@ -415,7 +415,7 @@ const Filter = (props) => {
               onChangeCapture={()=>{
                 setRangoPrecio(
                   {
-                    min:document.getElementById("min-price").value,
+                    min:document.getElementById("min-price").value===0?0:document.getElementById("min-price").value,
                     max:document.getElementById("max-price").value
                   }
                 )
