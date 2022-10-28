@@ -74,7 +74,7 @@ const ViewCloset = () => {
         "tiendas",
         "detail"
         ).then((res)=>{
-          if(res.status==="success"){console.log(res.result)
+          if(res.status==="success"){
             let arrayCol=[]
             for(const i in res.result.search_productos_categorias){
               for(const ii in res.result.search_productos_categorias[i].hijas){

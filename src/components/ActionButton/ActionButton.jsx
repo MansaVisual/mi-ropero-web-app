@@ -14,10 +14,11 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
 
 
   useEffect(() => {
+    setLike(null)
     if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
       setLike(!like)
     }
-  }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
   
 
   const onLike = async () => {
