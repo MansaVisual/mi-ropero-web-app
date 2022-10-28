@@ -57,7 +57,7 @@ const ViewCloset = () => {
 
   const [putFilters, setPutFilters] = useState([]);
   const [putSort, setPutSort] = useState('');
-  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:0})
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
   const [filtrosCategoria,setFiltrosCategoria]=useState([])
   const [putCategory,setPutCategory]=useState("")
   const [coleccion,setColeccion]=useState([])
@@ -163,6 +163,11 @@ const ViewCloset = () => {
       catProd.append("caracteristicas",filtrosFin)
     }
 
+    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+      catProd.append("precio_desde",rangoPrecio.min)
+      catProd.append("precio_hasta",rangoPrecio.max)
+    }
+
     if(putCategory){
       idCat = categorias.find(
         (e) => e.nombre.toString().trim() === putCategory,
@@ -196,9 +201,14 @@ const ViewCloset = () => {
     }
     setFiltrosFin(array.toString());
 
-    if (putFilters.length !== 0 || putSort !== '') {
+    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
         const prod=new FormData()
         let idCat=[]
+
+        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+          prod.append("precio_desde",rangoPrecio.min)
+          prod.append("precio_hasta",rangoPrecio.max)
+        }
 
         if(putCategory!==""){
           idCat = categorias.find(
@@ -342,6 +352,8 @@ const ViewCloset = () => {
                           putSort={putSort} 
                           setPutSort={setPutSort}
                           handleAplicarFiltros={handleAplicarFiltros}
+                          rangoPrecio={rangoPrecio}
+                          setRangoPrecio={setRangoPrecio}
                         />
                       </Box>
                     </Fade>
@@ -423,6 +435,8 @@ const ViewCloset = () => {
                 putSort={putSort} 
                 setPutSort={setPutSort} 
                 handleAplicarFiltros={handleAplicarFiltros}
+                rangoPrecio={rangoPrecio}
+                setRangoPrecio={setRangoPrecio}
               />
             </>
           )}

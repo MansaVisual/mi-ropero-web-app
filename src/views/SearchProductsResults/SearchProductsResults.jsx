@@ -60,7 +60,7 @@ const SearchProductsResults = () => {
 
   const [putFilters, setPutFilters] = useState([]);
   const [putSort, setPutSort] = useState('');
-  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:0})
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
 
   const [filtrosFin, setFiltrosFin] = useState("");
 
@@ -112,6 +112,11 @@ const SearchProductsResults = () => {
       const catFilters = new FormData();
       catFilters.append('idcategoria', idCat.idcategoria);
 
+      if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+        catProd.append("precio_desde",rangoPrecio.min)
+        catProd.append("precio_hasta",rangoPrecio.max)
+      }
+
       ProdAPI(catFilters, 'categorias', 'get').then((res) => {
         if (res.status === 'success') {
           setFiltrosCategoria(res.result[0]);
@@ -130,6 +135,10 @@ const SearchProductsResults = () => {
   };
 
   const buscarPage = (paramSearch, value) => {
+    if(rangoPrecio.min>rangoPrecio.max){
+      alert("Rango de precios incorrectos.")
+      return
+    }
     window.scrollTo({
       top: 0,
       behavior: 'auto',
@@ -137,6 +146,7 @@ const SearchProductsResults = () => {
     setLoad2(true);
     const catProd = new FormData();
     let idCat = '';
+
     if(putSort==="Mas relevante primero"){
       catProd.append("order_type","desc")
       catProd.append("order","idproducto")
@@ -146,6 +156,10 @@ const SearchProductsResults = () => {
     }else if(putSort==="Menor precio primero"){
       catProd.append("order_type","asc")
       catProd.append("order","precio")
+    }
+    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+      catProd.append("precio_desde",rangoPrecio.min)
+      catProd.append("precio_hasta",rangoPrecio.max)
     }
     if(putFilters.length!==0){
       catProd.append("caracteristicas",filtrosFin)
@@ -176,6 +190,10 @@ const SearchProductsResults = () => {
   };
 
   const handleAplicarFiltros = () => {
+    if(rangoPrecio.min>rangoPrecio.max){
+      alert("Rango de precios incorrectos.")
+      return
+    }
     setPags(1)
     setLoad2(true)
     let array = [];
@@ -184,7 +202,7 @@ const SearchProductsResults = () => {
     }
     setFiltrosFin(array.toString());
 
-    if (putFilters.length !== 0 || putSort !== '') {
+    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
         const prod=new FormData()
         let idCat=[]
 
@@ -195,6 +213,11 @@ const SearchProductsResults = () => {
             (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
           );
           prod.append('idcategoria', idCat.idcategoria);
+        }
+
+        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+          prod.append("precio_desde",rangoPrecio.min)
+          prod.append("precio_hasta",rangoPrecio.max)
         }
 
         prod.append("bypage",15)

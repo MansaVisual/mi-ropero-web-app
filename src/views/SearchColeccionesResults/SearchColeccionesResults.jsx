@@ -61,6 +61,7 @@ const SearchProductsResults = () => {
   const [putFilters,setPutFilters]=useState([])
   const [putSort,setPutSort]=useState("")
   const [filtrosFin, setFiltrosFin] = useState("");
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
 
   const [pags,setPags]=useState(1)
 
@@ -157,6 +158,10 @@ const SearchProductsResults = () => {
 
 
   const buscarPage=(paramSearch,value)=>{
+    if(rangoPrecio.min>rangoPrecio.max){
+      alert("Rango de precios incorrectos.")
+      return
+    }
     window.scrollTo({
       top: 0,
       behavior: 'auto',
@@ -178,6 +183,11 @@ const SearchProductsResults = () => {
       let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
       idCat=idCat[0].idcategoria
       catProd.append("idcategoria",Number(idCat))
+    }
+    
+    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+      catProd.append("precio_desde",rangoPrecio.min)
+      catProd.append("precio_hasta",rangoPrecio.max)
     }
 
     catProd.append("idcoleccion",numCol)
@@ -219,6 +229,10 @@ const SearchProductsResults = () => {
   }
 
   const handleAplicarFiltros = () => {
+    if(rangoPrecio.min>rangoPrecio.max){
+      alert("Rango de precios incorrectos.")
+      return
+    }
     setPags(1)
     setLoad2(true)
     let array = [];
@@ -227,7 +241,7 @@ const SearchProductsResults = () => {
     }
     setFiltrosFin(array.toString());
 
-    if (putFilters.length !== 0 || putSort !== '') {
+    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
         const prod=new FormData()
 
         let numCol=0
@@ -243,6 +257,11 @@ const SearchProductsResults = () => {
           let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
           idCat=idCat[0].idcategoria
           prod.append("idcategoria",Number(idCat))
+        }
+
+        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+          prod.append("precio_desde",rangoPrecio.min)
+          prod.append("precio_hasta",rangoPrecio.max)
         }
 
         prod.append("idcoleccion",numCol)
@@ -375,6 +394,8 @@ const SearchProductsResults = () => {
                           setPutSort={setPutSort} 
                           coleccion={coleccion}
                           handleAplicarFiltros={handleAplicarFiltros}
+                          rangoPrecio={rangoPrecio}
+                          setRangoPrecio={setRangoPrecio}
                         />
                       </Box>
                     </Fade>
@@ -427,6 +448,8 @@ const SearchProductsResults = () => {
                   setPutSort={setPutSort} 
                   coleccion={coleccion}
                   handleAplicarFiltros={handleAplicarFiltros}
+                  rangoPrecio={rangoPrecio}
+                  setRangoPrecio={setRangoPrecio}
                 />
               </>
             )}
