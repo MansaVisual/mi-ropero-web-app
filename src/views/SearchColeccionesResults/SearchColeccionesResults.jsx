@@ -94,6 +94,7 @@ const SearchProductsResults = () => {
         "detail"
     ).then((res)=>{
       if(res.status==="success"){
+        console.log(res.result)
         setColeccion(res.result)
         setProds(res.result.productos)
         setTotalPages(res.result.productos_total_paginas)
@@ -343,6 +344,10 @@ const SearchProductsResults = () => {
                                 ProdAPI={ProdAPI}
                                 setTotalPages={setTotalPages}
                                 categorias={categorias}
+                                clase={"colecciones"}
+                                metodo={"detail"}
+                                putCategory={putCategory}
+                                coleccionName={coleccionName}
                               />
                             </Stack>
                           );
@@ -391,7 +396,11 @@ const SearchProductsResults = () => {
                         ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
                         categorias={categorias}
-                      />
+                        clase={"colecciones"}
+                        metodo={"detail"}
+                        putCategory={putCategory}
+                        coleccionName={coleccionName}
+                        />
                     </Stack>
                   );
                 })}

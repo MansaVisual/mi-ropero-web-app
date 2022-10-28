@@ -8,6 +8,9 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
+  // console.log("avatarCard",avatarCard)
+  // console.log("avatarRopero",avatarRopero)
+  // console.log("datostienda",datosTienda)
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>

@@ -12,19 +12,12 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
   const {ProdAPI,listFavs,handleListFavs}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
 
-  useEffect(() => {
-    if(itemFav===undefined){
-      if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
-        setLike(!like)
-      }
-    }
-  }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if(itemFav!==undefined){
-      setLike(true)
+    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
+      setLike(!like)
     }
-  }, [itemFav]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
   
 
   const onLike = async () => {
