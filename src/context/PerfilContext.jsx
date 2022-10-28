@@ -15,6 +15,8 @@ export const PerfilContext = ({ children }) => {
   const [ofertasFinBusqueda, setOfertasFinBusqueda] = useState(false);
   const [comprasFinBusqueda, setComprasFinBusqueda] = useState(false);
 
+  const [mensajes, setMensajes] = useState(false);
+
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = "";
 
@@ -125,6 +127,45 @@ export const PerfilContext = ({ children }) => {
     });
   };
 
+  const handleMensajes = async (userLog, filtroMensajes) => {
+    const estados = [
+      "Sin definir",
+      "en proceso de evaluacion",
+      "Rechazada por el vendedor",
+      "Cancelada por el comprador",
+      "Aceptado",
+      "vencida",
+    ];
+
+    let itemOfertasRealizadas;
+
+    /*     for (const item in estados) {
+      if (estados[item] === filtroMensajes) {
+        console.log(estados[item]);
+        itemOfertasRealizadas = item;
+        await setofertaFiltro(item);
+      }
+    } */
+
+    let array = [];
+
+    const dir = new FormData();
+    dir.append("idcliente", userLog);
+    dir.append("page", 0);
+    dir.append("bypage", 0);
+    PerfilAPI(dir, "mensajes", "all").then((res) => {
+      console.log(res);
+
+      /* setOfertasFinBusqueda(true); */
+      if (res.status === "success") {
+        /* for (const ii in res.result) {
+          array.push(res.result[ii]);
+        } */
+      }
+      setMensajes(array);
+    });
+  };
+
   return (
     <UsePerfilContext.Provider
       value={{
@@ -142,6 +183,7 @@ export const PerfilContext = ({ children }) => {
         ofertasFinBusqueda,
         compraId,
         setCompraId,
+        handleMensajes,
       }}
     >
       {children}

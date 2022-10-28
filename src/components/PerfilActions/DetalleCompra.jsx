@@ -96,11 +96,11 @@ const DetalleCompra = () => {
                 </div>
               </div>
               <div className="descuentos">
-                <p>DESCUENTOS</p>
-                {/* <span>-${compraSelecc.descuentos}</span> */}
+                <p>PROMOCION</p>
+                <span>- ${compraSelecc.promocion.monto}</span>
               </div>
               <div className="total">
-                <p>ENVIO</p>
+                <p>COSTO DE ENVÍO</p>
                 <span>${compraSelecc.total_envio}</span>
               </div>
               <div className="total">
@@ -112,7 +112,7 @@ const DetalleCompra = () => {
                 <span>{compraSelecc.medio_pago_text}</span>
               </div>
               <div className="envio">
-                <p>ENVÍO</p>
+                <p>LUGAR DE ENVÍO</p>
                 <div>
                   <span>{compraSelecc.metodoEnvio}</span>
                   <span>

@@ -254,14 +254,14 @@ const MisDatos = () => {
         ScrollTop();
         setLoading(false);
         setErrorPass(true);
-        throwError("contraseña2", "labelContraseña2");
-        throwError("contraseña1", "labelContraseña1");
+        /* throwError("contraseña2", "labelContraseña2");
+        throwError("contraseña1", "labelContraseña1"); */
         return;
       } else {
         if (contraseña1.length < 7) {
           setLoading(false);
           ScrollTop();
-          throwError("contraseña1", "labelContraseña1");
+          /* throwError("contraseña1", "labelContraseña1"); */
           setErrorPassLength(true);
           return;
         } else {
@@ -533,7 +533,7 @@ const MisDatos = () => {
                   "& .MuiOutlinedInput-root:hover": {
                     "& > fieldset": {
                       borderColor:
-                        (campoObligatorio || setErrorPhone) && "#FF3F20",
+                        (campoObligatorio || errorPhone) && "#FF3F20",
                     },
                   },
                 }}
@@ -588,10 +588,10 @@ const MisDatos = () => {
                       )}
                     </InputAdornment>
                   ),
-                  /* style: {
-                    fontSize: 15,
-                    border: (error || campoObligatorio) && "1px solid #FF3F20",
-                  }, */
+                  style: {
+                    border:
+                      (errorPass || errorPassLength) && "0.5px solid #FF3F20",
+                  },
                 }}
               />
               {/* {infoUser.social_login === "1" ? (
@@ -645,10 +645,10 @@ const MisDatos = () => {
                       )}
                     </InputAdornment>
                   ),
-                  /* style: {
-                    fontSize: 15,
-                    border: (error || campoObligatorio) && "1px solid #FF3F20",
-                  }, */
+                  style: {
+                    border:
+                      (errorPass || errorPassLength) && "0.5px solid #FF3F20",
+                  },
                 }}
               />
             </div>
