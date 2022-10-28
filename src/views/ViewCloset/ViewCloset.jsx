@@ -93,6 +93,10 @@ const ViewCloset = () => {
 
   useEffect(() => {
     setBuscandoRoperos(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     setPutSort("")
     setPutFilters([])
     setPags(1)

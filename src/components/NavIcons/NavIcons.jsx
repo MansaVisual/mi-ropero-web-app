@@ -174,11 +174,11 @@ const NavIcons = () => {
       icon: <FaRegMoneyBillAlt />,
       url: "OFERTAS REALIZADAS",
     },
-    // {
-    //   title: "Mis mensajes",
-    //   icon: <BiMessage />,
-    //   url: "MIS MENSAJES",
-    // },
+    {
+      title: "Mis mensajes",
+      icon: <BiMessage />,
+      url: "MIS MENSAJES",
+    },
   ];
 
   const getMenuBell = () => {

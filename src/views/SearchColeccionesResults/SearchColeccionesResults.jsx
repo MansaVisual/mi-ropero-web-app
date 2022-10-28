@@ -104,6 +104,10 @@ const SearchProductsResults = () => {
 
   useEffect(() => {
     setLoad2(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     setPutSort("")
     setPutFilters([])
     setPags(1)
