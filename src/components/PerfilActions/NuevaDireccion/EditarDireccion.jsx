@@ -634,6 +634,7 @@ const EditarDireccion = () => {
             width: "100%",
             display: "flex",
             justifyContent: "center",
+            maxWidth: "768px",
           }}
         >
           <Loader spin={"spinnerG"} />
