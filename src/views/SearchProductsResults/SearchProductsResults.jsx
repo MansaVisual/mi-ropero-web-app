@@ -50,7 +50,6 @@ const SearchProductsResults = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [load, setLoad] = useState(false);
   const [load2, setLoad2] = useState(false);
 
   const [prods, setProds] = useState([]);
@@ -548,18 +547,6 @@ const SearchProductsResults = () => {
               </Box>
             }
 
-            {load && (
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginBottom: '16px',
-                }}
-              >
-                <Loader spin={'spinnerM'} />
-              </div>
-            )}
             {prods.length !== 0 && totalPages > 1 && keyword && !load2 && (
               <Box
                 sx={{
