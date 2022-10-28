@@ -50,21 +50,21 @@ const DetalleCompra = () => {
           <p className="responsiveTitle">COMPRA {compraSelecc.hash}</p>
           <div className="detailSection">
             <div className="headerDetail">
-              <div
+              {/* <div
                 className="leftArrowSection"
                 onClick={() => navigate(`/perfil`)}
               >
                 <img src={greyLeftArrow} alt="leftArrow" />
                 <p>VER COMPRA ANTERIOR</p>
-              </div>
+              </div> */}
               <p className="headerTitle">RESUMEN DE COMPRA</p>
-              <div
+              {/*  <div
                 className="rightArrowSection"
                 onClick={() => navigate(`/perfil`)}
               >
                 <p>VER COMPRA SIGUIENTE</p>
                 <img src={greyRightArrow} alt="leftArrow" />
-              </div>
+              </div> */}
             </div>
             <div className="bodyDetail">
               <div className="fecha">
@@ -94,10 +94,13 @@ const DetalleCompra = () => {
                   })}
                 </div>
               </div>
-              <div className="descuentos">
-                <p>PROMOCION</p>
-                <span>- ${compraSelecc.promocion.monto}</span>
-              </div>
+              {compraSelecc.promocion.monto && (
+                <div className="descuentos">
+                  <p>PROMOCION</p>
+                  <span>- ${compraSelecc.promocion.monto}</span>
+                </div>
+              )}
+
               <div className="total">
                 <p>COSTO DE ENVÍO</p>
                 <span>${compraSelecc.total_envio}</span>
@@ -132,20 +135,20 @@ const DetalleCompra = () => {
               </div>
             </div>
             <div className="footerDetail">
-              <div
+              {/* <div
                 className="leftArrowSection"
                 onClick={() => navigate(`/perfil`)}
               >
                 <img src={greyLeftArrow} alt="leftArrow" />
                 <p>VER COMPRA ANTERIOR</p>
-              </div>
-              <div
+              </div> */}
+              {/* <div
                 className="rightArrowSection"
                 onClick={() => navigate(`/perfil`)}
               >
                 <p>VER COMPRA SIGUIENTE</p>
                 <img src={greyRightArrow} alt="leftArrow" />
-              </div>
+              </div> */}
             </div>
             <div className="returnLink" onClick={() => navigate(`/perfil`)}>
               <img src={leftArrow} alt="leftArrow" />
