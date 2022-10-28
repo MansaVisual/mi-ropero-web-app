@@ -4,58 +4,63 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import Sweater from "../../assets/img/Sweater.png";
 import Basura from "../../assets/img/basura.png";
-import { MenuItem, Select } from "@mui/material";
+import { Button, MenuItem, Select } from "@mui/material";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
+import Loader from "../Loader/Loader";
+import vacio from "../../assets/img/comprasVacio.png";
 
 const MisMensajes = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
   const [typeMessage, setTypeMessage] = useState("ver no leídos");
-
-  const typeMessages = ["ver no leídos", "ver leídos", "ver todos"];
+  const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
+  const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleMensajes } = useContext(UsePerfilContext);
-
-  console.log(userLog);
-
-  const [filtroSelecc, setFiltroSelecc] = useState("en proceso de evaluacion");
+  const { handleMensajes, mensajes, mensajesFinBusqueda } =
+    useContext(UsePerfilContext);
 
   useEffect(() => {
     if (userLog !== "") {
-      handleMensajes(userLog, filtroSelecc);
+      handleMensajes(userLog);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLog, filtroSelecc]);
+  }, [userLog]);
 
-  const array = [
-    {
-      img: Sweater,
-      titulo:
-        "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado",
-      fecha: "Fecha: 21/7/2022 11:08:20",
-      mensaje: "hola, queria saber si tiene bolsillos, gracias",
-      estado: "Leido",
-    },
-    {
-      img: Sweater,
-      titulo:
-        "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado",
-      fecha: "Fecha: 21/7/2022 11:08:20",
-      mensaje: "hola, queria saber si tiene bolsillos, gracias",
-      estado: "pendiente de leer",
-    },
-    {
-      img: Sweater,
-      titulo:
-        "Buzo campera Fila aeroflat microfibra nuevo modelo 2022. Perfecto estado",
-      fecha: "Fecha: 21/7/2022 11:08:20",
-      mensaje: "hola, queria saber si tiene bolsillos, gracias",
-      estado: "pendiente de leer",
-    },
-  ];
+  useEffect(() => {
+    if (mensajes.length > 0) {
+      if (typeMessage === "ver todos") {
+        setMensajesFiltrados(mensajes);
+      }
+      if (typeMessage === "ver no leídos") {
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "2"));
+      }
+      if (typeMessage === "ver leídos") {
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "1"));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mensajes, typeMessage]);
+
+  console.log(mensajesFiltrados);
+
+  const mensajesEstado = ["No leído", "Leído"];
+
+  const handleAvatarError = (event) => {
+    event.currentTarget.src = Sweater;
+  };
+
+  const formatoFecha = (fecha) => {
+    const hora = fecha.substring(11, 16);
+    console.log(hora);
+    const fechaSinHora = fecha.substring(0, 10);
+    const [year, month, day] = fechaSinHora.split("-");
+
+    const formatoFinal = `Fecha: ${day} / ${month} / ${year} ${hora} Hs.`;
+    return formatoFinal;
+  };
 
   return (
     <div className="misMensajesContainer">
@@ -106,26 +111,75 @@ const MisMensajes = () => {
         </div>
       </div>
       <div className="mensajesContainer">
-        {array.map((mensaje) => {
-          return (
-            <div
-              className="desktopCard"
-              onClick={() => navigate(`/perfil/MI CHAT`)}
-            >
-              <div className="mensajeData">
-                <img src={mensaje.img} alt="cardImage" />
-                <div>
-                  <p className="messageTitle">{mensaje.titulo}</p>
-                  <p className="messageDate">{mensaje.fecha}</p>
-                  <p className="messageMessage">{mensaje.mensaje}</p>
-                  <p className="messageState">{mensaje.estado}</p>
+        {!mensajesFinBusqueda ? (
+          <div
+            style={{
+              height: "50vh",
+              marginTop: "42px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Loader spin={"spinnerM"} />
+          </div>
+        ) : mensajes.length > 0 ? (
+          mensajesFiltrados.map((mensaje) => {
+            return (
+              <>
+                <div
+                  className="desktopCard"
+                  onClick={() => navigate(`/perfil/MI CHAT`)}
+                >
+                  <div className="mensajeData">
+                    <img
+                      src={mensaje.producto.imagenes[0].imagen_cuadrada}
+                      alt="cardImage"
+                      onError={(e) => handleAvatarError(e)}
+                    />
+                    <div>
+                      <p className="messageTitle">{mensaje.producto.nombre}</p>
+                      <p className="messageDate">
+                        {formatoFecha(mensaje.fecha)}
+                      </p>
+                      <p className="messageMessage">{mensaje.mensaje}</p>
+                      <p className="messageState">
+                        {mensajesEstado[Number(mensaje.estado)]}
+                      </p>
+                    </div>
+                  </div>
+                  <img src={Basura} alt="BasuraIcon" />
                 </div>
-              </div>
-              <img src={Basura} alt="BasuraIcon" />
+                <div className="mobileCard">
+                  <img
+                    src={mensaje.producto.imagenes[0].imagen_cuadrada}
+                    className="productImg"
+                    alt="cardImage"
+                    onError={(e) => handleAvatarError(e)}
+                  />
+                  <div>
+                    <p className="messageTitle">{mensaje.titulo}</p>
+                    <p className="messageDate">{formatoFecha(mensaje.fecha)}</p>
+                    <p className="messageMessage">{mensaje.mensaje}</p>
+                    <p className="messageState">
+                      {mensajesEstado[Number(mensaje.estado)]}
+                    </p>
+                  </div>
+                  <img src={Basura} className="trashICon" alt="basuraIcon" />
+                </div>
+              </>
+            );
+          })
+        ) : (
+          <div className="perfilVacio">
+            <div>
+              <img src={vacio} alt="LOGO" />
+              <p>Aún no tienes compras realizadas</p>
+              <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
             </div>
-          );
-        })}
-        {array.map((mensaje) => {
+          </div>
+        )}
+        {/* {mensajes.map((mensaje) => {
           return (
             <div className="mobileCard">
               <img src={mensaje.img} className="productImg" alt="cardImage" />
@@ -138,7 +192,7 @@ const MisMensajes = () => {
               <img src={Basura} className="trashICon" alt="basuraIcon" />
             </div>
           );
-        })}
+        })}  */}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />

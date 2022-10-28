@@ -14,6 +14,7 @@ export const PerfilContext = ({ children }) => {
   const [dirFinBusqueda, setDirFinBusqueda] = useState(false);
   const [ofertasFinBusqueda, setOfertasFinBusqueda] = useState(false);
   const [comprasFinBusqueda, setComprasFinBusqueda] = useState(false);
+  const [mensajesFinBusqueda, setMensajesFinBusqueda] = useState(false);
 
   const [mensajes, setMensajes] = useState(false);
 
@@ -76,7 +77,7 @@ export const PerfilContext = ({ children }) => {
 
     const dir = new FormData();
     dir.append("comprador_id", userLog);
-    dir.append("estado", 2);
+    dir.append("estado", itemEstadoSelecc);
     dir.append("page", 0);
     dir.append("bypage", 10);
     PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
@@ -128,7 +129,7 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleMensajes = async (userLog, filtroMensajes) => {
-    const estados = [
+    /*     const estados = [
       "Sin definir",
       "en proceso de evaluacion",
       "Rechazada por el vendedor",
@@ -139,28 +140,26 @@ export const PerfilContext = ({ children }) => {
 
     let itemOfertasRealizadas;
 
-    /*     for (const item in estados) {
+        for (const item in estados) {
       if (estados[item] === filtroMensajes) {
         console.log(estados[item]);
         itemOfertasRealizadas = item;
         await setofertaFiltro(item);
       }
-    } */
+    }  */
 
     let array = [];
 
     const dir = new FormData();
     dir.append("idcliente", userLog);
     dir.append("page", 0);
-    dir.append("bypage", 0);
+    dir.append("bypage", 20);
     PerfilAPI(dir, "mensajes", "all").then((res) => {
-      console.log(res);
-
-      /* setOfertasFinBusqueda(true); */
+      setMensajesFinBusqueda(true);
       if (res.status === "success") {
-        /* for (const ii in res.result) {
+        for (const ii in res.result) {
           array.push(res.result[ii]);
-        } */
+        }
       }
       setMensajes(array);
     });
@@ -184,6 +183,8 @@ export const PerfilContext = ({ children }) => {
         compraId,
         setCompraId,
         handleMensajes,
+        mensajes,
+        mensajesFinBusqueda,
       }}
     >
       {children}
