@@ -113,12 +113,12 @@ const MiPerfil = ({ setTypeNav }) => {
           <div className="bottomOptions">
             <button>Acerca de la aplicación</button>
             <button>Califica la aplicación</button>
-            <button
+            {/* <button
               onClick={() => setNotificationsOff(true)}
               style={{ color: "#423B3C" }}
             >
               Desactivar notificaciones
-            </button>
+            </button> */}
             <button
               onClick={() => setCloseSession(true)}
               style={{ color: "#FF3F20" }}
