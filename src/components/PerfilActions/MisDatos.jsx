@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 import { Button, InputAdornment, MenuItem, TextField } from "@mui/material";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Select from "@mui/material/Select";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
@@ -13,8 +14,13 @@ const MisDatos = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
+  let clase = "formObligatorio";
+  let clase2 = "formObligatorioTitle";
+
   const { infoUser, userLog } = useContext(UseLoginContext);
   const { PerfilAPI } = useContext(UsePerfilContext);
+  const emailRegex =
+    /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
   const [caracteristicasFavs, setCaracteristicasFavs] = useState([]);
 
@@ -22,6 +28,11 @@ const MisDatos = () => {
   const [contraseña2, setContraseña2] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [contraseñaValidada, setContraseñaValidada] = useState(false);
+  const [errorPass, setErrorPass] = useState(false);
+  const [errorMail, setErrorMail] = useState(false);
+  const [errorNewMail, setErrorNewMail] = useState(false);
+  const [errorPassLength, setErrorPassLength] = useState(false);
 
   const [arrayGeneros, setArrayGeneros] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -39,6 +50,9 @@ const MisDatos = () => {
   const [idTipoRopa, setIdTipoRopa] = useState([]);
 
   const [caracteristicasFin, setCaracteristicasFin] = useState([]);
+
+  const [campoObligatorio, setCampoObligatorio] = useState(false);
+  const [generoObligatorio, setGeneroObligatorio] = useState(false);
 
   const handleMultipleSelect = (
     value,
@@ -183,21 +197,40 @@ const MisDatos = () => {
   const handleGrabarCambios = () => {
     setLoading(true);
     if (document.getElementById("nombre").value === "") {
+      throwError("nombre", "labelNombre");
       ScrollTop();
       setLoading(false);
-      alert("Debe completar el campo Nombre");
+      setCampoObligatorio(true);
       return;
     }
     if (document.getElementById("apellido").value === "") {
+      throwError("apellido", "labelApellido");
       ScrollTop();
       setLoading(false);
-      alert("Debe completar el campo Apellido");
+      setCampoObligatorio(true);
       return;
     }
     if (document.getElementById("email").value === "") {
-      setLoading(false);
+      throwError("email", "labelEmail");
       ScrollTop();
-      alert("Debe completar el campo Email");
+      setLoading(false);
+      setCampoObligatorio(true);
+      return;
+    }
+    if (document.getElementById("telefono").value === "") {
+      throwError("telefono", "labelTelefono");
+      ScrollTop();
+      setLoading(false);
+      setCampoObligatorio(true);
+      return;
+    }
+
+    if (emailRegex.test(document.getElementById("email").value)) {
+    } else {
+      setErrorMail(true);
+      throwError("email", "labelEmail");
+      ScrollTop();
+      setLoading(false);
       return;
     }
 
@@ -207,17 +240,33 @@ const MisDatos = () => {
       PerfilAPI(formPhone, "clientes", "validate_phone").then((res) => {
         if (res.status === "error") {
           setLoading(false);
+          throwError("telefono", "labelTelefono");
           alert("Error en la validación de telefono");
           return;
         }
       });
     }
 
-    if (document.getElementById("email").value === "") {
-      setLoading(false);
-      ScrollTop();
-      alert("Debe completar el campo Email");
-      return;
+    if (contraseña1 || contraseña2) {
+      if (contraseña1 !== contraseña2) {
+        ScrollTop();
+        setLoading(false);
+        setErrorPass(true);
+        throwError("contraseña2", "labelContraseña2");
+        throwError("contraseña1", "labelContraseña1");
+        return;
+      } else {
+        if (contraseña1.length < 7) {
+          setLoading(false);
+          ScrollTop();
+          throwError("contraseña1", "labelContraseña1");
+          setErrorPassLength(true);
+          alert("la contraseña debe tener mínimo 7 caracteres");
+          return;
+        } else {
+          setContraseñaValidada(true);
+        }
+      }
     }
 
     const mail = new FormData();
@@ -228,7 +277,10 @@ const MisDatos = () => {
     mail.append("email_old", infoUser.email);
     mail.append("telefono", document.getElementById("telefono").value);
     mail.append("sexo", genero.toString());
-    // mail.append('clave', "prueba");
+    if (contraseñaValidada) {
+      console.log("cambio password");
+      mail.append("clave", "prueba");
+    }
     mail.append("caracteristicas_favoritas", caracteristicasFin);
 
     PerfilAPI(mail, "clientes", "update").then((res) => {
@@ -238,10 +290,17 @@ const MisDatos = () => {
       } else {
         if (res.result === "El campo sexo es necesario") {
           setLoading(false);
-          alert("Seleccioná tu género");
-        } else if (res.result === "El campo telefono es necesario") {
+          setGeneroObligatorio("Seleccioná tu género");
+        } /* else if (res.result === "El campo telefono es necesario") {
           setLoading(false);
-          alert("Completá tu número de teléfono");
+          setCampoObligatorio(true);
+          throwError("telefono", "labelTelefono");
+          ScrollTop();
+        } */
+        if (res.result === "El email ya se encuentra registrado") {
+          setErrorNewMail(true);
+          setLoading(false);
+          ScrollTop();
         }
       }
     });
@@ -254,18 +313,92 @@ const MisDatos = () => {
     });
   };
 
+  const onFocus = (event, clase, clase2, id) => {
+    if (event.target.id === "barrioLocalidad") {
+      if (document.getElementById(id).classList.contains(clase2)) {
+        document.getElementById(id).classList.remove(clase2);
+      }
+    }
+    if (id === "labelProvincia") {
+      document.getElementById(id).classList.remove(clase2);
+    }
+    if (event.target.classList.contains(clase)) {
+      event.target.classList.remove(clase);
+      document.getElementById(id).classList.remove(clase2);
+    }
+  };
+
+  const throwError = (id1, id2) => {
+    console.log(id1, id2);
+    if (id1 === "provincia") {
+      if (!document.getElementById(id1).classList.contains(clase)) {
+        document.getElementById(id1).parentNode.classList.add(clase);
+        document.getElementById(id2).classList.add(clase2);
+      }
+    } else {
+      if (!document.getElementById(id1).classList.contains(clase)) {
+        document.getElementById(id1).classList.add(clase);
+        document.getElementById(id2).classList.add(clase2);
+      }
+    }
+  };
+
   return (
     <div className="misDatosContainer">
       <Breadcrumbs links={pathnames} />
       <p className="title">MIS DATOS</p>
+      {campoObligatorio && (
+        <div className="errorBox">
+          <CancelOutlinedIcon color="secondary" className="cruz" />
+          <p>Debe completar los campos obligatorios para avanzar</p>
+        </div>
+      )}
+      {generoObligatorio && (
+        <div className="errorBox">
+          <CancelOutlinedIcon color="secondary" className="cruz" />
+          <p>{generoObligatorio}</p>
+        </div>
+      )}
+      {errorPassLength && (
+        <div className="errorBox">
+          <CancelOutlinedIcon color="secondary" className="cruz" />
+          <p>La contraseña debe tener al menos 7 caracteres.</p>
+        </div>
+      )}
+      {errorPass && (
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>Las contraseñas no coinciden.</p>
+          </div>
+        </div>
+      )}
+      {errorNewMail && (
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>El mail ya se encuentra en uso.</p>
+          </div>
+        </div>
+      )}
+      {errorMail && (
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>El mail no es correcto.</p>
+          </div>
+        </div>
+      )}
+
       {infoUser.length === 0 ? (
         <div
           style={{
-            marginTop: "16px",
+            marginTop: "40px",
             width: "100%",
             maxWidth: "758px",
             display: "flex",
             justifyContent: "center",
+            minHeight: "45vh",
           }}
         >
           <Loader spin={"spinnerG"} />
@@ -273,11 +406,12 @@ const MisDatos = () => {
       ) : !loading2 ? (
         <div
           style={{
-            marginTop: "16px",
+            marginTop: "40px",
             width: "100%",
             maxWidth: "758px",
             display: "flex",
             justifyContent: "center",
+            minHeight: "45vh",
           }}
         >
           <Loader spin={"spinnerG"} />
@@ -286,7 +420,9 @@ const MisDatos = () => {
         <>
           <div className="inputContainer">
             <div className="inputBox">
-              <p className="labelInput">Nombre *</p>
+              <p className="labelInput" id="labelNombre">
+                Nombre *
+              </p>
               <TextField
                 color="primary"
                 className="input"
@@ -294,10 +430,23 @@ const MisDatos = () => {
                 placeholder="Sabrina"
                 id="nombre"
                 defaultValue={infoUser.nombre}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
+                onChangeCapture={() => {
+                  setCampoObligatorio(false);
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: campoObligatorio && "#FF3F20",
+                    },
+                  },
+                }}
               />
             </div>
             <div className="inputBox">
-              <p className="labelInput">Apellido *</p>
+              <p className="labelInput" id="labelApellido">
+                Apellido *
+              </p>
               <TextField
                 color="primary"
                 className="input"
@@ -305,12 +454,25 @@ const MisDatos = () => {
                 placeholder="Godoy"
                 id="apellido"
                 defaultValue={infoUser.apellido}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
+                onChangeCapture={() => {
+                  setCampoObligatorio(false);
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: campoObligatorio && "#FF3F20",
+                    },
+                  },
+                }}
               />
             </div>
           </div>
           <div className="inputContainer">
             <div className="inputBox">
-              <p className="labelInput">Email *</p>
+              <p className="labelInput" id="labelEmail">
+                Email *
+              </p>
               <TextField
                 disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
@@ -320,6 +482,19 @@ const MisDatos = () => {
                 type="email"
                 id="email"
                 defaultValue={infoUser.email}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelEmail")}
+                onChangeCapture={() => {
+                  setCampoObligatorio(false);
+                  setErrorMail(false);
+                  setErrorNewMail(false);
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: campoObligatorio && "#FF3F20",
+                    },
+                  },
+                }}
               />
               {infoUser.social_login === "1" ? (
                 <p className="bottomText">
@@ -329,7 +504,9 @@ const MisDatos = () => {
               ) : null}
             </div>
             <div className="inputBox">
-              <p className="labelInput">Teléfono *</p>
+              <p className="labelInput" id="labelTelefono">
+                Teléfono *
+              </p>
               <TextField
                 color="primary"
                 className="input"
@@ -338,6 +515,17 @@ const MisDatos = () => {
                 type="number"
                 id="telefono"
                 defaultValue={infoUser.telefono}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelTelefono")}
+                onChangeCapture={() => {
+                  setCampoObligatorio(false);
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: campoObligatorio && "#FF3F20",
+                    },
+                  },
+                }}
               />
               <p className="bottomText">
                 Llamarán a este número si hay algún problema con el envío.
@@ -346,7 +534,9 @@ const MisDatos = () => {
           </div>
           <div className="inputContainer">
             <div className="inputBox">
-              <p className="labelInput">Nueva contraseña</p>
+              <p className="labelInput" id="labelContraseña1">
+                Nueva contraseña
+              </p>
               <TextField
                 disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
@@ -358,7 +548,12 @@ const MisDatos = () => {
                 type={showPassword1 ? "text" : "password"}
                 id="contraseña1"
                 value={contraseña1}
-                onChange={(e) => setContraseña1(e.target.value)}
+                onChangeCapture={(e) => {
+                  setContraseña1(e.target.value);
+                  setErrorPass(false);
+                  setErrorPassLength(false);
+                }}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña1")}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -389,7 +584,9 @@ const MisDatos = () => {
               ) : null} */}
             </div>
             <div className="inputBox">
-              <p className="labelInput">Confirmar contraseña </p>
+              <p className="labelInput" id="labelContraseña2">
+                Confirmar contraseña{" "}
+              </p>
               <TextField
                 disabled={infoUser.social_login === "1" ? true : false}
                 color="primary"
@@ -401,7 +598,12 @@ const MisDatos = () => {
                 type={showPassword2 ? "text" : "password"}
                 id="contraseña2"
                 value={contraseña2}
-                onChange={(e) => setContraseña2(e.target.value)}
+                onChangeCapture={(e) => {
+                  setContraseña2(e.target.value);
+                  setErrorPass(false);
+                  setErrorPassLength(false);
+                }}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña2")}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">

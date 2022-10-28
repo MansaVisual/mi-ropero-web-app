@@ -11,6 +11,13 @@
     width: 100%;
     margin-bottom: 50px;
   }
+  .formObligatorio {
+    border: 0.5px solid #ff3f20 !important;
+    border-radius: 4px !important;
+  }
+  .formObligatorioTitle {
+    color: #ff3f20 !important;
+  }
   .title {
     font-style: normal;
     font-weight: 700;
@@ -34,11 +41,9 @@
       font-size: 12px;
     }
   }
-  .inputContainer :not(:last-child) {
-    margin-right: 6px;
-  }
   .inputContainer {
     display: flex;
+    gap: 6px;
     @include screen_705 {
       flex-direction: column;
       align-items: center;

@@ -93,10 +93,8 @@ const EditarDireccion = () => {
   useEffect(() => {
     if (provincia === "1") {
       document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
-
     }
   }, [provincia]); // eslint-disable-line react-hooks/exhaustive-deps
-
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -118,8 +116,8 @@ const EditarDireccion = () => {
     setProvincia(event.target.value);
     setForm({ ...form, provincia: event.target.value });
     if (event.target.value === 1) {
-       /* document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";  */
-      setForm({ codigoPostal: "",barrioLocalidad:"CAPITAL FEDERAL" });
+      /* document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";  */
+      setForm({ codigoPostal: "", barrioLocalidad: "CAPITAL FEDERAL" });
     } else {
       setForm({ ...form, barrioLocalidad: "", codigoPostal: "" });
     }
@@ -284,7 +282,7 @@ const EditarDireccion = () => {
         }
       });
     }
-  }, [guardarDireccion]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = (param) => {
     if (param !== undefined) {
@@ -327,7 +325,6 @@ const EditarDireccion = () => {
           <p>Debe completar los campos obligatorios para avanzar</p>
         </div>
       )}
-
       {errorCodPostal && (
         <div className="errorBox">
           <CancelOutlinedIcon color="secondary" className="cruz" />
@@ -478,7 +475,7 @@ const EditarDireccion = () => {
               setCambioProvincia(true);
               setErrorDireccion(false);
               setCampoObligatorio(false);
-              setErrorLocalidad(false)
+              setErrorLocalidad(false);
             }}
             onFocus={(e) => onFocus(e, clase, clase2, "labelProvincia")}
             sx={{
@@ -524,7 +521,7 @@ const EditarDireccion = () => {
             className="input"
             size="small"
             id="barrioLocalidad"
-            value={provincia==="1"?"CAPITAL FEDERAL":form.barrioLocalidad}
+            value={provincia === "1" ? "CAPITAL FEDERAL" : form.barrioLocalidad}
             onChangeCapture={() => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
@@ -631,7 +628,14 @@ const EditarDireccion = () => {
         </div>
       </div>
       {loader ? (
-        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+        <div
+          style={{
+            marginTop: "24px",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Loader spin={"spinnerG"} />
         </div>
       ) : (
