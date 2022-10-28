@@ -4,13 +4,11 @@ import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) => {
+const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda,idTienda }) => {
   const navigate = useNavigate()
 
   const {infoUser}=useContext(UseLoginContext)
-  // console.log("avatarCard",avatarCard)
-  // console.log("avatarRopero",avatarRopero)
-  // console.log("datostienda",datosTienda)
+
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
@@ -28,7 +26,12 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda }) 
           }}
           src={datosTienda!==undefined?datosTienda.icono:infoUser.avatar
           }
-          onClick={avatarCard?()=>navigate(`/roperos/${datosTienda.idcliente}/${datosTienda.nombre}`):()=>{handleCloseAvatar();navigate('/perfil')}}
+          onClick={avatarCard?
+            idTienda!==undefined ? ()=>navigate(`/roperos/${idTienda}/${datosTienda.nombre}`)
+            :()=>navigate(`/roperos/${datosTienda.idcliente}/${datosTienda.nombre}`)
+            :
+            ()=>{handleCloseAvatar();navigate('/perfil')}
+          }
         >
         </Avatar>
         <Box sx={{ pl: !avatarCard ? "6px" : "10px" }}>

@@ -477,6 +477,7 @@ const SearchProductsResults = () => {
                           productName={product.nombre}
                           productPrice={product.precio}
                           idProducto={product.idproducto}
+                          idTienda={product.idtienda}
                           tag={product.tag}
                           datosTienda={product.tienda}
                           precioOferta={product.precio_oferta}

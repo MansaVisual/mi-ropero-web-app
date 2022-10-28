@@ -5,57 +5,6 @@ import { Box } from "@mui/material";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Loader from "../Loader/Loader";
 
-export const slides = [
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: 2000,
-    tag: "NUEVO",
-  },
-];
-
 const PrevArrow = (props) => {
   const { onClick } = props;
   return (
@@ -128,8 +77,8 @@ export default class SimpleSlider extends Component {
                     productName={item.nombre}
                     productPrice={item.precio}
                     idProducto={item.idproducto}
-                    item
                     datosTienda={item.tienda}
+                    idTienda={item.idtienda}
                     precioOferta={item.precio_oferta}
                     tag="NUEVO"
                   />

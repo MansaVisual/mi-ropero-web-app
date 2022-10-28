@@ -24,6 +24,7 @@ const ProductCard = ({
   datosTienda,
   itemFav,
   precioOferta,
+  idTienda
 }) => {
 
   const { userLog, infoUser } = useContext(UseLoginContext);
@@ -120,6 +121,7 @@ const ProductCard = ({
             datosTienda={
               itemFav.producto_tienda
             }
+            idTienda={idTienda}
             />
           }
           {datosTienda!==undefined &&
@@ -128,6 +130,7 @@ const ProductCard = ({
             datosTienda={
               datosTienda
             }
+            idTienda={idTienda}
             />
           }
         </Box>
