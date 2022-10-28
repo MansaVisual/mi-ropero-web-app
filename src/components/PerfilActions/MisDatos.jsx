@@ -292,6 +292,7 @@ const MisDatos = () => {
         if (res.result === "El campo sexo es necesario") {
           setLoading(false);
           setGeneroObligatorio("Seleccioná tu género");
+          ScrollTop();
         } /* else if (res.result === "El campo telefono es necesario") {
           setLoading(false);
           setCampoObligatorio(true);
@@ -543,116 +544,121 @@ const MisDatos = () => {
               </p>
             </div>
           </div>
-          <div className="inputContainer">
-            <div className="inputBox">
-              <p className="labelInput" id="labelContraseña1">
-                Nueva contraseña
-              </p>
-              <TextField
-                disabled={infoUser.social_login === "1" ? true : false}
-                color="primary"
-                className="input"
-                size="small"
-                placeholder={
-                  showPassword1 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
-                }
-                type={showPassword1 ? "text" : "password"}
-                id="contraseña1"
-                value={contraseña1}
-                onChangeCapture={(e) => {
-                  setContraseña1(e.target.value);
-                  setErrorPass(false);
-                  setErrorPassLength(false);
-                }}
-                onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña1")}
-                sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: (errorPass || errorPassLength) && "#FF3F20",
+          {infoUser.social_login === "1" && (
+            <div className="inputContainer">
+              <div className="inputBox">
+                <p className="labelInput" id="labelContraseña1">
+                  Nueva contraseña
+                </p>
+                <TextField
+                  disabled={infoUser.social_login === "1" ? true : false}
+                  color="primary"
+                  className="input"
+                  size="small"
+                  placeholder={
+                    showPassword1 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
+                  }
+                  type={showPassword1 ? "text" : "password"}
+                  id="contraseña1"
+                  value={contraseña1}
+                  onChangeCapture={(e) => {
+                    setContraseña1(e.target.value);
+                    setErrorPass(false);
+                    setErrorPassLength(false);
+                  }}
+                  onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña1")}
+                  sx={{
+                    "& .MuiOutlinedInput-root:hover": {
+                      "& > fieldset": {
+                        borderColor:
+                          (errorPass || errorPassLength) && "#FF3F20",
+                      },
                     },
-                  },
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {showPassword1 ? (
-                        <Visibility
-                          sx={{ fontSize: "20px", cursor: "pointer" }}
-                          onClick={() => setShowPassword1(!showPassword1)}
-                        />
-                      ) : (
-                        <VisibilityOff
-                          sx={{ fontSize: "20px", cursor: "pointer" }}
-                          onClick={() => setShowPassword1(!showPassword1)}
-                        />
-                      )}
-                    </InputAdornment>
-                  ),
-                  style: {
-                    border:
-                      (errorPass || errorPassLength) && "0.5px solid #FF3F20",
-                  },
-                }}
-              />
-              {/* {infoUser.social_login === "1" ? (
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {showPassword1 ? (
+                          <Visibility
+                            sx={{ fontSize: "20px", cursor: "pointer" }}
+                            onClick={() => setShowPassword1(!showPassword1)}
+                          />
+                        ) : (
+                          <VisibilityOff
+                            sx={{ fontSize: "20px", cursor: "pointer" }}
+                            onClick={() => setShowPassword1(!showPassword1)}
+                          />
+                        )}
+                      </InputAdornment>
+                    ),
+                    style: {
+                      border:
+                        (errorPass || errorPassLength) && "0.5px solid #FF3F20",
+                    },
+                  }}
+                />
+                {/* {infoUser.social_login === "1" ? (
                 <p className="bottomText">
                   Te registraste en el sitio utilizando redes sociales, y es por
                   eso que la contraseña no puede modificarse.
                 </p>
               ) : null} */}
-            </div>
-            <div className="inputBox">
-              <p className="labelInput" id="labelContraseña2">
-                Confirmar contraseña{" "}
-              </p>
-              <TextField
-                disabled={infoUser.social_login === "1" ? true : false}
-                color="primary"
-                className="input"
-                size="small"
-                placeholder={
-                  showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
-                }
-                type={showPassword2 ? "text" : "password"}
-                id="contraseña2"
-                value={contraseña2}
-                onChangeCapture={(e) => {
-                  setContraseña2(e.target.value);
-                  setErrorPass(false);
-                  setErrorPassLength(false);
-                }}
-                onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña2")}
-                sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: (errorPass || errorPassLength) && "#FF3F20",
+              </div>
+              <div className="inputBox">
+                <p className="labelInput" id="labelContraseña2">
+                  Confirmar contraseña{" "}
+                </p>
+                <TextField
+                  disabled={infoUser.social_login === "1" ? true : false}
+                  color="primary"
+                  className="input"
+                  size="small"
+                  placeholder={
+                    showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"
+                  }
+                  type={showPassword2 ? "text" : "password"}
+                  id="contraseña2"
+                  value={contraseña2}
+                  onChangeCapture={(e) => {
+                    setContraseña2(e.target.value);
+                    setErrorPass(false);
+                    setErrorPassLength(false);
+                  }}
+                  onFocus={(e) => onFocus(e, clase, clase2, "labelContraseña2")}
+                  sx={{
+                    "& .MuiOutlinedInput-root:hover": {
+                      "& > fieldset": {
+                        borderColor:
+                          (errorPass || errorPassLength) && "#FF3F20",
+                      },
                     },
-                  },
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {showPassword2 ? (
-                        <Visibility
-                          sx={{ fontSize: "20px", cursor: "pointer" }}
-                          onClick={() => setShowPassword2(!showPassword2)}
-                        />
-                      ) : (
-                        <VisibilityOff
-                          sx={{ fontSize: "20px", cursor: "pointer" }}
-                          onClick={() => setShowPassword2(!showPassword2)}
-                        />
-                      )}
-                    </InputAdornment>
-                  ),
-                  style: {
-                    border:
-                      (errorPass || errorPassLength) && "0.5px solid #FF3F20",
-                  },
-                }}
-              />
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {showPassword2 ? (
+                          <Visibility
+                            sx={{ fontSize: "20px", cursor: "pointer" }}
+                            onClick={() => setShowPassword2(!showPassword2)}
+                          />
+                        ) : (
+                          <VisibilityOff
+                            sx={{ fontSize: "20px", cursor: "pointer" }}
+                            onClick={() => setShowPassword2(!showPassword2)}
+                          />
+                        )}
+                      </InputAdornment>
+                    ),
+                    style: {
+                      border:
+                        (errorPass || errorPassLength) && "0.5px solid #FF3F20",
+                    },
+                  }}
+                />
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="inputContainer">
             <div className="inputBox">
               <p className="labelInput">Género *</p>

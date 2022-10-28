@@ -153,7 +153,7 @@ export const PerfilContext = ({ children }) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
     dir.append("page", 0);
-    dir.append("bypage", 20);
+    dir.append("bypage", 10);
     PerfilAPI(dir, "mensajes", "all").then((res) => {
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
