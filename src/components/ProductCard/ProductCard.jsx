@@ -39,7 +39,6 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-  console.log(itemFav)
 
   return (
     <Card
