@@ -544,7 +544,7 @@ const MisDatos = () => {
               </p>
             </div>
           </div>
-          {!infoUser.social_login === "1" && (
+          {infoUser.social_login === "0" && (
             <div className="inputContainer">
               <div className="inputBox">
                 <p className="labelInput" id="labelContraseña1">
