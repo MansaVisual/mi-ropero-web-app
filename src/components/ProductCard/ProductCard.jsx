@@ -39,7 +39,6 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-
   return (
     <Card
       sx={{
@@ -114,12 +113,14 @@ const ProductCard = ({
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          <AvatarMR
+          {itemFav!==undefined && itemFav.producto_tienda !== undefined &&
+            <AvatarMR
             avatarCard
             datosTienda={
               datosTienda !== undefined ? datosTienda : itemFav.producto_tienda
             }
-          />
+            />
+          }
         </Box>
       </CardContent>
       <Divider />

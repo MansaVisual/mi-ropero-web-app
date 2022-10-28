@@ -291,7 +291,7 @@ const SearchProductsResults = () => {
                           <Typography id='filter-modal-title' component='h2'>
                             Filtrar
                           </Typography>
-                          <Typography
+                          {/* <Typography
                             sx={{
                               fontSize: theme.typography.fontSize[2],
                               fontWeight: theme.typography.fontWeightRegular,
@@ -301,7 +301,25 @@ const SearchProductsResults = () => {
                             }}
                           >
                             Limpiar filtros
-                          </Typography>
+                          </Typography> */}
+                          {putFilters.map((res, index) => {
+                            return (
+                              <Stack direction='row' spacing={1}>
+                                <ChipFilterCategories
+                                  filteredCategory={res}
+                                  key={index}
+                                  putFilters={putFilters}
+                                  setPutFilters={setPutFilters}
+                                  setProds={setProds}
+                                  ProdAPI={ProdAPI}
+                                  setTotalPages={setTotalPages}
+                                  categorias={categorias}
+                                  clase={"productos"}
+                                  metodo={"search"}
+                                />
+                              </Stack>
+                            );
+                          })}
                           <Button
                             backgroundColor={theme.palette.primary.main}
                             color={theme.palette.secondary.contrastText}
@@ -358,6 +376,8 @@ const SearchProductsResults = () => {
                         ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
                         categorias={categorias}
+                        clase={"productos"}
+                        metodo={"search"}
                       />
                     </Stack>
                   );

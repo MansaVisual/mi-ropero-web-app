@@ -200,15 +200,15 @@ const Filter = (props) => {
                     res2.nombre !== 'BELLEZA' && (
                       <List component='div' sx={{ paddingLeft: '4px' }}>
                         <FormControlLabel
-                          label={res2.nombre}
+                          label={res2.nombre!==undefined?res2.nombre:res2.Nombre}
                           control={
                             <Radio
                               checked={
-                                putCategory === res2.nombre ? true : false
+                                putCategory === (res2.nombre!==undefined?res2.nombre:res2.Nombre) ? true : false
                               }
-                              name={res2.valor}
+                              name={res2.valor!==undefined?res2.valor:res2.idcategoria}
                               onClick={(e) => {
-                                setPutCategory(res2.nombre);
+                                setPutCategory(res2.nombre!==undefined?res2.nombre:res2.Nombre);
                               }}
                             />
                           }

@@ -3,27 +3,50 @@ import { Chip, ListItem } from "@mui/material";
 import theme from "../../styles/theme";
 import { useParams } from "react-router-dom";
 
-const ChipFilterCategories = ({ filteredCategory, key, putFilters,setPutFilters,setProds,ProdAPI,setTotalPages,categorias }) => {
+const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
+  setPutFilters,setProds,ProdAPI,setTotalPages,categorias,setTienda,clase,metodo,closetId,coleccionName }) => {
   const { keyword, search } = useParams();
-
+  
   const handleDelete = () => {
     let newArrayId = putFilters.filter(
       (element) => element.id !== filteredCategory.id
     );
+
     if(newArrayId.length===0){
       if(search===undefined){
         const catProd = new FormData();
         let idCat = '';
         idCat = categorias.find(
-          (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
+          (e) => e.nombre.toString().trim() === (keyword!==undefined? keyword.replaceAll('&', '/'):putCategory),
         );
+
+        if(coleccionName!==undefined){
+          let numCol=0
+          if(coleccionName==="NuevosIngresos"){
+            numCol=71
+          }else if(coleccionName==="Recomendados"){
+              numCol=73
+          }else if(coleccionName==="MejoresVendedores"){
+              numCol=73
+          }
+            catProd.append("idcoleccion",numCol)
+        }
+        if(closetId!==undefined){
+          catProd.append("idtienda",closetId)
+        }
+
         catProd.append('idcategoria', idCat.idcategoria);
         catProd.append('bypage', 15);
         catProd.append('page', 0);
-        ProdAPI(catProd, 'productos', 'search').then((res) => {
+        ProdAPI(catProd, clase, metodo).then((res) => {
           if (res.status === 'success') {
-            setProds(res.result.productos);
-            setTotalPages(res.result.total_paginas);
+            if(setTienda!==undefined){
+              setTienda(res.result)
+              setTotalPages(res.result.search_productos_total_paginas)
+            }else{
+              setProds(res.result.productos);
+              setTotalPages(res.result.total_paginas);
+            }
           }
         });
       }

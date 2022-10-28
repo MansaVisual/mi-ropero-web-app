@@ -9,69 +9,18 @@ import {
   Fade,
   Backdrop,
   Container,
+  Stack,
 } from "@mui/material";
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Pagination from "../../components/Pagination/Pagination";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
-import Button from "../../components/Button/Button";
 import { UseProdsContext } from "../../context/ProdsContext";
-
-export const cards = [
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-];
 
 const style = {
   position: "absolute",
@@ -90,17 +39,28 @@ const style = {
 
 const ViewCloset = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
 
-  const {ProdAPI}=useContext(UseProdsContext)
+  const {ProdAPI,categorias}=useContext(UseProdsContext)
 
   const {closetId, nombre}=useParams()
 
   const [tienda,setTienda]=useState([])
+
+  const [totalPages,setTotalPages]=useState(0)
+  const [pags,setPags]=useState(1)
+
+  const [putFilters, setPutFilters] = useState([]);
+  const [putSort, setPutSort] = useState('');
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:0})
+  const [filtrosCategoria,setFiltrosCategoria]=useState([])
+  const [putCategory,setPutCategory]=useState("")
+  const [coleccion,setColeccion]=useState([])
+  const [filtrosFin, setFiltrosFin] = useState("");
+
 
   useEffect(() => {
     if(closetId!==undefined){
@@ -112,9 +72,57 @@ const ViewCloset = () => {
         ropero,
         "tiendas",
         "detail"
-      ).then((res)=>{if(res.status==="success"){setTienda(res.result)}})
+        ).then((res)=>{
+          if(res.status==="success"){
+            let arrayCol=[]
+            for(const i in res.result.search_productos_categorias){
+              for(const ii in res.result.search_productos_categorias[i].hijas){
+                arrayCol.push(res.result.search_productos_categorias[i].hijas[ii])
+              }
+            }
+            setColeccion({productos_categorias:arrayCol})
+            setTienda(res.result)
+            setTotalPages(res.result.search_productos_total_paginas)
+          }
+        })
     }
   }, [closetId]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    setPutSort("")
+    setPutFilters([])
+    setPags(1)
+    if(putCategory!==""){
+      let idCat=coleccion.productos_categorias.filter(e=>e.Nombre===putCategory)
+      idCat=idCat[0].idcategoria
+
+      const catFilters = new FormData();
+      catFilters.append('idcategoria', Number(idCat));
+
+      ProdAPI(catFilters, 'categorias', 'get').then((res) => {
+        if (res.status === 'success') {
+          setFiltrosCategoria(res.result[0]);
+        }
+      });
+
+      const col=new FormData()
+      col.append("idtienda",closetId)
+      col.append("idcategoria",idCat)
+      col.append("bypage",15)
+      col.append("page",0)
+
+      ProdAPI(
+          col,
+          "tiendas",
+          "detail"
+      ).then((res)=>{
+        if(res.status==="success"){
+          setTienda(res.result)
+          setTotalPages(res.result.productos_total_paginas)
+        }
+      })
+    }
+  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     window.scrollTo({
@@ -122,6 +130,101 @@ const ViewCloset = () => {
       behavior: 'auto',
     });
   }, []);
+
+  const buscarPage = (paramSearch, value) => {
+    const catProd = new FormData();
+    let idCat = '';
+    if(putSort==="Mas relevante primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","idproducto")
+    }else if(putSort==="Mayor precio primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","precio")
+    }else if(putSort==="Menor precio primero"){
+      catProd.append("order_type","asc")
+      catProd.append("order","precio")
+    }
+    if(putFilters.length!==0){
+      catProd.append("caracteristicas",filtrosFin)
+    }
+
+    if(putCategory){
+      idCat = categorias.find(
+        (e) => e.nombre.toString().trim() === putCategory,
+      );
+      catProd.append('idcategoria', idCat.idcategoria);
+    }
+
+    catProd.append("idtienda",closetId)
+    catProd.append('bypage', 15);
+    
+    catProd.append('page', value);
+
+    ProdAPI(catProd, 'tiendas', 'detail').then((res) => {
+      if (res.status === 'success') {
+        setTienda(res.result);
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto',
+      });
+    });
+  };
+
+  const handleAplicarFiltros = () => {
+    setPags(1)
+    let array = [];
+    for (let i = 0; i < putFilters.length; i++) {
+      array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
+    }
+    setFiltrosFin(array.toString());
+
+    if (putFilters.length !== 0 || putSort !== '') {
+        const prod=new FormData()
+        let idCat=[]
+
+        if(putCategory!==""){
+          idCat = categorias.find(
+            (e) => e.nombre.toString().trim() === putCategory,
+          );
+  
+          prod.append('idcategoria', idCat.idcategoria);
+        }
+
+        prod.append("idtienda",closetId)
+        prod.append("bypage",15)
+        prod.append("page",0)
+
+        if(putSort==="Mas relevante primero"){
+          prod.append("order_type","desc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Menos relevante primero"){
+          prod.append("order_type","asc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Mayor precio primero"){
+          prod.append("order_type","desc")
+          prod.append("order","precio")
+        }else if(putSort==="Menor precio primero"){
+          prod.append("order_type","asc")
+          prod.append("order","precio")
+        }
+
+        if(putFilters.length!==0){
+          prod.append("caracteristicas",array.toString())
+        }
+        
+        ProdAPI(
+          prod,
+          "tiendas",
+          "detail"
+        ).then((res)=>{console.log(res)
+          if (res.status === 'success') {
+            setTienda(res.result);
+            setTotalPages(res.result.total_paginas);
+          }
+        })
+    }
+  };
 
   return (
     <Container maxWidth="xl">
@@ -178,7 +281,8 @@ const ViewCloset = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          <Typography
+                        
+                          {/* <Typography
                             sx={{
                               fontSize: theme.typography.fontSize[2],
                               fontWeight: theme.typography.fontWeightRegular,
@@ -188,17 +292,39 @@ const ViewCloset = () => {
                             }}
                           >
                             Limpiar filtros
-                          </Typography>
-                          <Button
-                            backgroundColor={theme.palette.primary.main}
-                            color={theme.palette.secondary.contrastText}
-                            text="APLICAR"
-                            small
-                            notRounded
-                            disabled
-                          />
+                          </Typography> */}
                         </Box>
-                        {/* <Filter /> */}
+                        {putFilters.map((res, index) => {
+                          return (
+                            <Stack direction='row' spacing={1}>
+                              <ChipFilterCategories
+                                filteredCategory={res}
+                                key={index}
+                                putFilters={putFilters}
+                                setPutFilters={setPutFilters}
+                                setProds={setTienda}
+                                ProdAPI={ProdAPI}
+                                setTotalPages={setTotalPages}
+                                categorias={categorias}
+                                clase={"tiendas"}
+                                metodo={"detail"}
+                                putCategory={putCategory}
+                                closetId={closetId}
+                              />
+                            </Stack>
+                          );
+                        })}
+                        <Filter 
+                          setPutCategory={setPutCategory} 
+                          putCategory={putCategory} 
+                          filtros={filtrosCategoria} 
+                          setPutFilters={setPutFilters} 
+                          coleccion={coleccion}
+                          putFilters={putFilters} 
+                          putSort={putSort} 
+                          setPutSort={setPutSort}
+                          handleAplicarFiltros={handleAplicarFiltros}
+                        />
                       </Box>
                     </Fade>
                   </Modal>
@@ -226,8 +352,7 @@ const ViewCloset = () => {
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
               </Box>
-              {/* <ChipFilterCategories /> */}
-              <Typography
+              {/* <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[2],
                   fontWeight: theme.typography.fontWeightRegular,
@@ -237,7 +362,7 @@ const ViewCloset = () => {
                 }}
               >
                 Limpiar todos los filtros
-              </Typography>
+              </Typography> */}
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[9],
@@ -250,7 +375,37 @@ const ViewCloset = () => {
               </Typography>
               <Rating name="read-only" readOnly value={5} size="large" />
               <IconGroupText prod={undefined} prod2={tienda}/>
-              {/* <Filter /> */}
+              {putFilters.map((res, index) => {
+                return (
+                  <Stack direction='row' spacing={1}>
+                    <ChipFilterCategories
+                      filteredCategory={res}
+                      key={index}
+                      putFilters={putFilters}
+                      setPutFilters={setPutFilters}
+                      setTienda={setTienda}
+                      ProdAPI={ProdAPI}
+                      setTotalPages={setTotalPages}
+                      categorias={categorias}
+                      clase={"tiendas"}
+                      metodo={"detail"}
+                      putCategory={putCategory}
+                      closetId={closetId}
+                    />
+                  </Stack>
+                );
+              })}
+              <Filter 
+                setPutCategory={setPutCategory} 
+                putCategory={putCategory} 
+                filtros={filtrosCategoria} 
+                setPutFilters={setPutFilters} 
+                coleccion={coleccion}
+                putFilters={putFilters} 
+                putSort={putSort} 
+                setPutSort={setPutSort} 
+                handleAplicarFiltros={handleAplicarFiltros}
+              />
             </>
           )}
         </Grid>
@@ -265,13 +420,12 @@ const ViewCloset = () => {
               ml: isMobile || isMobileBigScreen ? 0 : "30px",
             }}
           >
-            {tienda.length!==0  && tienda.search_productos.map((item, index) => {console.log(item);return(
+            {tienda.length!==0  && tienda.search_productos.map((item, index) => {return(
               <Grid item xs="auto" md="auto" key={index}>
                 <ProductCard
-                  imageCard={item.producto_imagen}
+                  imageCard={item.imagenes[0].imagen_vertical}
                   productName={item.nombre}
                   idProducto={item.idproducto}
-                  itemFav={item}
                   productPrice={item.precio}
                   precioOferta={item.precio_oferta}
                 />
@@ -286,7 +440,7 @@ const ViewCloset = () => {
               mt: "40px",
             }}
           >
-            <Pagination />
+            <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
           </Box>
         </Grid>
       </Grid>
