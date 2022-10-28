@@ -5,7 +5,7 @@ import theme from "../../styles/theme";
 import Chip from "../Chip/Chip"
 import React,{useContext} from "react"
 
-const ProdsRelation = ({})=>{
+const ProdsRelation = ()=>{
     const {coleccionRecomendados}=useContext(UseColeccionContext)
 
     return(
