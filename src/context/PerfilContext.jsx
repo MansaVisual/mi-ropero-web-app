@@ -79,17 +79,17 @@ export const PerfilContext = ({ children }) => {
     dir.append("estado", itemEstadoSelecc);
     dir.append("page", 0);
     dir.append("bypage", 10);
-    PerfilAPI(dir, "operaciones", "all_buyer").then(async (res) => {
+    PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
       setComprasFinBusqueda(true);
       if (res.status === "success") {
         console.log("hola");
         for (const ii in res.result.operaciones) {
           console.log("chau");
-          await array.push(res.result.operaciones[ii]);
+          array.push(res.result.operaciones[ii]);
         }
       }
+      setComprasRealizadas(array);
     });
-    setComprasRealizadas(array);
   };
 
   const handleOfertasRealizadas = async (userLog, filtroSelecc) => {
