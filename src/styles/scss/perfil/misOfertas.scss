@@ -66,6 +66,9 @@
         @include screen_768 {
           display: none;
         }
+        .basuraIcon {
+          cursor: pointer;
+        }
         .productoData {
           display: flex;
           align-items: center;

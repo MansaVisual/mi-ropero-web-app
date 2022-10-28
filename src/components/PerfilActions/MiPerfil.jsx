@@ -14,7 +14,7 @@ import PopUpSesion from "./PopUpSesion";
 import PopUpEliminar from "./PopUpEliminar";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const MiPerfil = ({ setTypeNav }) => {
+const MiPerfil = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
@@ -34,6 +34,8 @@ const MiPerfil = ({ setTypeNav }) => {
     email: "sabrinagodoy@gmail.com",
     img: profileTest,
   };
+
+  console.log(infoUser);
 
   const profileSections = [
     // {
@@ -135,7 +137,12 @@ const MiPerfil = ({ setTypeNav }) => {
         <PopUpNotis setNotificationsOff={setNotificationsOff} />
       )}
       {closeSession && <PopUpSesion setCloseSession={setCloseSession} />}
-      {deleteAccount && <PopUpEliminar setDeleteAccount={setDeleteAccount} />}
+      {deleteAccount && (
+        <PopUpEliminar
+          setDeleteAccount={setDeleteAccount}
+          idCliente={infoUser.idcliente}
+        />
+      )}
     </div>
   );
 };

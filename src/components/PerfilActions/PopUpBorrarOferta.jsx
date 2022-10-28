@@ -1,35 +1,34 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "@mui/material";
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from "../../assets/img/isologo.png";
 import { UsePerfilContext } from "../../context/PerfilContext";
-import { useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
 
-const PopUpEliminar = ({ setDeleteAccount, idCliente }) => {
+const PopUpBorrarOferta = ({ setBorrarOferta, ofertaId, userLog }) => {
   const { PerfilAPI } = useContext(UsePerfilContext);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
-  const borrarCuenta = () => {
+  const borrar = () => {
     setLoading(true);
     const dir = new FormData();
-    dir.append("idcliente", idCliente);
-    PerfilAPI(dir, "clientes", "delete").then((res) => {
-      console.log(idCliente);
+    dir.append("idcliente", userLog);
+    dir.append("idoferta", ofertaId);
+    PerfilAPI(dir, "ofertas", "cancel").then((res) => {
+      console.log(res);
       if (res.status === "success") {
-        setDeleteAccount(false);
-        navigate("/");
+        setBorrarOferta(false);
       }
     });
   };
+
   return (
     <div className="PopUpPerfil">
-      <div className="fondoPopUp" onClick={() => setDeleteAccount(false)}></div>
+      <div className="fondoPopUp" onClick={() => setBorrarOferta(false)}></div>
       <div className="popUp">
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
-          <p className="popUpTitle">¿Seguro querés eliminar tu cuenta?</p>
+          <p className="popUpTitle">¿Seguro querés cancelar la oferta?</p>
           <p className="popUpDescription">
             Se perderán todos los datos y no podrán ser recuperados luego.
           </p>
@@ -41,19 +40,19 @@ const PopUpEliminar = ({ setDeleteAccount, idCliente }) => {
             ) : (
               <>
                 <Button
-                  onClick={() => setDeleteAccount(false)}
+                  onClick={() => setBorrarOferta(false)}
                   className="volver"
                 >
                   CANCELAR
                 </Button>
-                <Button onClick={() => borrarCuenta()} className="recordar">
-                  ELIMINAR CUENTA
+                <Button className="recordar" onClick={() => borrar()}>
+                  CANCELAR OFERTA
                 </Button>
               </>
             )}
           </div>
           <img
-            onClick={() => setDeleteAccount(false)}
+            onClick={() => setBorrarOferta(false)}
             src={cruz}
             alt="CRUZ"
             className="cruz"
@@ -64,4 +63,4 @@ const PopUpEliminar = ({ setDeleteAccount, idCliente }) => {
   );
 };
 
-export default PopUpEliminar;
+export default PopUpBorrarOferta;

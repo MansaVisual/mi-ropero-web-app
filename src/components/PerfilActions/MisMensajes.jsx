@@ -9,6 +9,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 import vacio from "../../assets/img/comprasVacio.png";
+import PopUpBorrarMsj from "./PopUpBorrarMsj";
 
 const MisMensajes = () => {
   const location = useLocation();
@@ -17,6 +18,8 @@ const MisMensajes = () => {
   const [typeMessage, setTypeMessage] = useState("ver no leídos");
   const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
+  const [borrarMsj, setBorrarMsj] = useState(false);
+  const [mensajeId, setMensajeId] = useState(false);
 
   const { userLog } = useContext(UseLoginContext);
   const { handleMensajes, mensajes, mensajesFinBusqueda } =
@@ -44,8 +47,6 @@ const MisMensajes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensajes, typeMessage]);
 
-  console.log(mensajesFiltrados);
-
   const mensajesEstado = ["No leído", "Leído"];
 
   const handleAvatarError = (event) => {
@@ -54,7 +55,6 @@ const MisMensajes = () => {
 
   const formatoFecha = (fecha) => {
     const hora = fecha.substring(11, 16);
-    console.log(hora);
     const fechaSinHora = fecha.substring(0, 10);
     const [year, month, day] = fechaSinHora.split("-");
 
@@ -124,13 +124,10 @@ const MisMensajes = () => {
             <Loader spin={"spinnerM"} />
           </div>
         ) : mensajes.length > 0 ? (
-          mensajesFiltrados.map((mensaje) => {
+          mensajesFiltrados.map((mensaje, id) => {
             return (
               <>
-                <div
-                  className="desktopCard"
-                  onClick={() => navigate(`/perfil/MI CHAT`)}
-                >
+                <div key={id} className="desktopCard">
                   <div className="mensajeData">
                     <img
                       src={mensaje.producto.imagenes[0].imagen_cuadrada}
@@ -138,7 +135,12 @@ const MisMensajes = () => {
                       onError={(e) => handleAvatarError(e)}
                     />
                     <div>
-                      <p className="messageTitle">{mensaje.producto.nombre}</p>
+                      <p
+                        className="messageTitle"
+                        onClick={() => navigate(`/perfil/MI CHAT`)}
+                      >
+                        {mensaje.producto.nombre}
+                      </p>
                       <p className="messageDate">
                         {formatoFecha(mensaje.fecha)}
                       </p>
@@ -148,9 +150,17 @@ const MisMensajes = () => {
                       </p>
                     </div>
                   </div>
-                  <img src={Basura} alt="BasuraIcon" />
+                  <img
+                    onClick={() => {
+                      setBorrarMsj(true);
+                      setMensajeId(mensaje.idmensaje);
+                    }}
+                    className="basuraIcon"
+                    src={Basura}
+                    alt="BasuraIcon"
+                  />
                 </div>
-                <div className="mobileCard">
+                <div key={`mobile${id}`} className="mobileCard">
                   <img
                     src={mensaje.producto.imagenes[0].imagen_cuadrada}
                     className="productImg"
@@ -184,6 +194,9 @@ const MisMensajes = () => {
         <img src={leftArrow} alt="leftArrow" />
         <p>VOLVER A MI PERFIL</p>
       </div>
+      {borrarMsj && (
+        <PopUpBorrarMsj setBorrarMsj={setBorrarMsj} mensajeId={mensajeId} />
+      )}
     </div>
   );
 };

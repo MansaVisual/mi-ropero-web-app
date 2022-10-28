@@ -8,6 +8,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
 import { Button, MenuItem, Select } from "@mui/material";
 import vacio from "../../assets/img/ofertasVacio.png";
+import PopUpBorrarOferta from "./PopUpBorrarOferta";
 
 const MisOfertas = () => {
   const location = useLocation();
@@ -18,7 +19,10 @@ const MisOfertas = () => {
   const { handleOfertasRealizadas, ofertasRealizadas, ofertasFinBusqueda } =
     useContext(UsePerfilContext);
 
+  const [borrarOferta, setBorrarOferta] = useState(false);
+
   const [filtroSelecc, setFiltroSelecc] = useState("en proceso de evaluacion");
+  const [ofertaId, setOfertaId] = useState(false);
 
   useEffect(() => {
     if (userLog !== "") {
@@ -43,8 +47,6 @@ const MisOfertas = () => {
     'Aceptado',
     'vencida'
   ] */
-
-  console.log(ofertasRealizadas);
 
   return (
     <div className="misOfertasContainer">
@@ -128,7 +130,15 @@ const MisOfertas = () => {
                   <div className="ofertaData">
                     <p className="oferta">OFERTA</p>
                     <p className="monto">${producto.oferta}</p>
-                    <img src={Basura} alt="BasuraIcon" />
+                    <img
+                      onClick={() => {
+                        setBorrarOferta(true);
+                        setOfertaId(producto.idoferta);
+                      }}
+                      className="basuraIcon"
+                      src={Basura}
+                      alt="BasuraIcon"
+                    />
                   </div>
                 </div>
               );
@@ -169,6 +179,13 @@ const MisOfertas = () => {
           VOLVER A MI PERFIl
         </p>
       </div>
+      {borrarOferta && (
+        <PopUpBorrarOferta
+          setBorrarOferta={setBorrarOferta}
+          ofertaId={ofertaId}
+          userLog={userLog}
+        />
+      )}
     </div>
   );
 };
