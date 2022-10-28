@@ -21,6 +21,7 @@ import IconGroupText from "../../components/IconGroupText/IconGroupText";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import { UseProdsContext } from "../../context/ProdsContext";
+import Loader from "../../components/Loader/Loader";
 
 const style = {
   position: "absolute",
@@ -45,6 +46,7 @@ const ViewCloset = () => {
   const [open, setOpen] = useState(false);
 
   const {ProdAPI,categorias}=useContext(UseProdsContext)
+  const [buscandoRoperos,setBuscandoRoperos]=useState(true)
 
   const {closetId, nombre}=useParams()
 
@@ -84,11 +86,13 @@ const ViewCloset = () => {
             setTienda(res.result)
             setTotalPages(res.result.search_productos_total_paginas)
           }
+          setBuscandoRoperos(false)
         })
     }
   }, [closetId]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    setBuscandoRoperos(true)
     setPutSort("")
     setPutFilters([])
     setPags(1)
@@ -120,6 +124,7 @@ const ViewCloset = () => {
           setTienda(res.result)
           setTotalPages(res.result.productos_total_paginas)
         }
+        setBuscandoRoperos(false)
       })
     }
   }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
@@ -132,6 +137,12 @@ const ViewCloset = () => {
   }, []);
 
   const buscarPage = (paramSearch, value) => {
+    setBuscandoRoperos(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+
     const catProd = new FormData();
     let idCat = '';
     if(putSort==="Mas relevante primero"){
@@ -164,6 +175,7 @@ const ViewCloset = () => {
       if (res.status === 'success') {
         setTienda(res.result);
       }
+      setBuscandoRoperos(false)
       window.scrollTo({
         top: 0,
         behavior: 'auto',
@@ -172,6 +184,7 @@ const ViewCloset = () => {
   };
 
   const handleAplicarFiltros = () => {
+    setBuscandoRoperos(true)
     setPags(1)
     let array = [];
     for (let i = 0; i < putFilters.length; i++) {
@@ -217,11 +230,12 @@ const ViewCloset = () => {
           prod,
           "tiendas",
           "detail"
-        ).then((res)=>{console.log(res)
+        ).then((res)=>{
           if (res.status === 'success') {
             setTienda(res.result);
-            setTotalPages(res.result.total_paginas);
+            setTotalPages(res.result.search_productos_total_paginas);
           }
+          setBuscandoRoperos(false)
         })
     }
   };
@@ -411,38 +425,42 @@ const ViewCloset = () => {
         </Grid>
 
         <Grid item xs={12} sm={12} md={9}>
-          <Grid
-            container
-            columns={{ xs: 1, sm: 2, md: 3 }}
-            justifyContent="flex-start"
-            spacing={5}
-            sx={{
-              ml: isMobile || isMobileBigScreen ? 0 : "30px",
-            }}
-          >
-            {tienda.length!==0  && tienda.search_productos.map((item, index) => {return(
-              <Grid item xs="auto" md="auto" key={index}>
-                <ProductCard
-                  imageCard={item.imagenes[0].imagen_vertical}
-                  productName={item.nombre}
-                  idProducto={item.idproducto}
-                  productPrice={item.precio}
-                  precioOferta={item.precio_oferta}
-                />
-              </Grid>
-            )})}
-          </Grid>
-          <Box
+          {buscandoRoperos ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div> :
+            <Grid
+              container
+              columns={{ xs: 1, sm: 2, md: 3 }}
+              justifyContent="flex-start"
+              spacing={5}
+              sx={{
+                ml: isMobile || isMobileBigScreen ? 0 : "30px",
+              }}
+            >
+              {tienda.length!==0  && tienda.search_productos.map((item, index) => {return(
+                <Grid item xs="auto" md="auto" key={index}>
+                  <ProductCard
+                    imageCard={item.imagenes[0].imagen_vertical}
+                    productName={item.nombre}
+                    idProducto={item.idproducto}
+                    productPrice={item.precio}
+                    precioOferta={item.precio_oferta}
+                  />
+                </Grid>
+              )})}
+            </Grid>
+          }
+          {!buscandoRoperos &&
+            <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               mt: "40px",
             }}
-          >
-            <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
-          </Box>
-        </Grid>
+            >
+              <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
+            </Box>
+          }
+          </Grid>
       </Grid>
     </Container>
   );

@@ -11,6 +11,7 @@ import { StyledLink } from "../../components/Footer/styles";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/Pagination/Pagination";
 
+
 const SearchClosetResults = () => {
   const { keyword } = useParams();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -72,6 +73,7 @@ const SearchClosetResults = () => {
   },[keyword])// eslint-disable-line react-hooks/exhaustive-deps
 
   const buscarPage=(paramSearch,value)=>{
+    setBuscandoRoperos(true)
 
     const newPage=new FormData()
     if(keyword!==undefined){
@@ -89,6 +91,8 @@ const SearchClosetResults = () => {
       if(res.status==="success"){
         setRoperos(res.result.tiendas)
       }
+      setBuscandoRoperos(false)
+
       window.scrollTo({
         top: 0,
         behavior: 'auto',
