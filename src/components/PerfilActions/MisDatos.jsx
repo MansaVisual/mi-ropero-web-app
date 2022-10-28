@@ -241,7 +241,6 @@ const MisDatos = () => {
         if (res.status === "error") {
           setLoading(false);
           throwError("telefono", "labelTelefono");
-          alert("Error en la validación de telefono");
           return;
         }
       });
@@ -261,7 +260,6 @@ const MisDatos = () => {
           ScrollTop();
           throwError("contraseña1", "labelContraseña1");
           setErrorPassLength(true);
-          alert("la contraseña debe tener mínimo 7 caracteres");
           return;
         } else {
           setContraseñaValidada(true);
