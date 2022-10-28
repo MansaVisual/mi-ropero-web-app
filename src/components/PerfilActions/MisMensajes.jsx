@@ -179,20 +179,6 @@ const MisMensajes = () => {
             </div>
           </div>
         )}
-        {/* {mensajes.map((mensaje) => {
-          return (
-            <div className="mobileCard">
-              <img src={mensaje.img} className="productImg" alt="cardImage" />
-              <div>
-                <p className="messageTitle">{mensaje.titulo}</p>
-                <p className="messageDate">{mensaje.fecha}</p>
-                <p className="messageMessage">{mensaje.mensaje}</p>
-                <p className="messageState">{mensaje.estado}</p>
-              </div>
-              <img src={Basura} className="trashICon" alt="basuraIcon" />
-            </div>
-          );
-        })}  */}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
