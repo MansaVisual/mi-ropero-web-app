@@ -67,7 +67,6 @@ export const PerfilContext = ({ children }) => {
 
     for (const item in estados) {
       if (estados[item] === filtroSelecc) {
-        console.log(item);
         itemEstadoSelecc = item;
         await setEstadoSeleccionado(item);
       }
@@ -76,7 +75,7 @@ export const PerfilContext = ({ children }) => {
     let array = [];
 
     const dir = new FormData();
-    dir.append("comprador_id", userLog);
+    dir.append("comprador_id", 36);
     dir.append("estado", itemEstadoSelecc);
     dir.append("page", 0);
     dir.append("bypage", 10);
@@ -84,7 +83,7 @@ export const PerfilContext = ({ children }) => {
       setComprasFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {
-          console.log(res.result[ii]);
+          /* console.log(res.result[ii]); */
           array.push(res.result[ii]);
         }
       }

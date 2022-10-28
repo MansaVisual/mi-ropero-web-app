@@ -39,14 +39,6 @@ const MisCompras = () => {
     "Finalizada",
   ];
 
-  /*  3  => 'Pendiente de pago',
-   4  => 'Pago realizado',
-   5  => 'Error en pago',
-   7  => 'Pago devuelto',
-   9  => 'Plazo de pago vencido',
-   10 => 'En calificacion',
-   11 => 'Finalizada' */
-
   const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
     const [year, month, day] = fechaSinHora.split("-");
@@ -54,6 +46,8 @@ const MisCompras = () => {
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
   };
+
+  console.log(comprasRealizadas);
 
   return (
     <div className="misComprasContainer">
