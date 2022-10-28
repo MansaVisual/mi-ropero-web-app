@@ -282,26 +282,7 @@ const ViewCloset = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          {putFilters.map((res, index) => {
-                            return (
-                              <Stack direction='row' spacing={1}>
-                                <ChipFilterCategories
-                                  filteredCategory={res}
-                                  key={index}
-                                  putFilters={putFilters}
-                                  setPutFilters={setPutFilters}
-                                  setProds={setTienda}
-                                  ProdAPI={ProdAPI}
-                                  setTotalPages={setTotalPages}
-                                  categorias={categorias}
-                                  clase={"tiendas"}
-                                  metodo={"detail"}
-                                  putCategory={putCategory}
-                                  closetId={closetId}
-                                />
-                              </Stack>
-                            );
-                          })}
+                        
                           {/* <Typography
                             sx={{
                               fontSize: theme.typography.fontSize[2],
@@ -313,15 +294,27 @@ const ViewCloset = () => {
                           >
                             Limpiar filtros
                           </Typography> */}
-                          <Button
-                            backgroundColor={theme.palette.primary.main}
-                            color={theme.palette.secondary.contrastText}
-                            text="APLICAR"
-                            small
-                            notRounded
-                            disabled
-                          />
                         </Box>
+                        {putFilters.map((res, index) => {
+                          return (
+                            <Stack direction='row' spacing={1}>
+                              <ChipFilterCategories
+                                filteredCategory={res}
+                                key={index}
+                                putFilters={putFilters}
+                                setPutFilters={setPutFilters}
+                                setProds={setTienda}
+                                ProdAPI={ProdAPI}
+                                setTotalPages={setTotalPages}
+                                categorias={categorias}
+                                clase={"tiendas"}
+                                metodo={"detail"}
+                                putCategory={putCategory}
+                                closetId={closetId}
+                              />
+                            </Stack>
+                          );
+                        })}
                         <Filter 
                           setPutCategory={setPutCategory} 
                           putCategory={putCategory} 
@@ -434,7 +427,6 @@ const ViewCloset = () => {
                   imageCard={item.imagenes[0].imagen_vertical}
                   productName={item.nombre}
                   idProducto={item.idproducto}
-                  itemFav={item}
                   productPrice={item.precio}
                   precioOferta={item.precio_oferta}
                 />

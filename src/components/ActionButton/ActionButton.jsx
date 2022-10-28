@@ -20,6 +20,11 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
     }
   }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
   
+  useEffect(() => {
+    if(itemFav!==undefined){
+      setLike(true)
+    }
+  }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const onLike = async () => {
     setLike(!like)
