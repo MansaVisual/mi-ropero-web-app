@@ -16,7 +16,6 @@ const DetalleCompra = () => {
   const { compraId, PerfilAPI } = useContext(UsePerfilContext);
   const [compraSelecc, setCompraSelecc] = useState(false);
   const [direccion, setDireccion] = useState(false);
-  console.log(compraId);
 
   useEffect(() => {
     if (!compraId && !userLog) {
@@ -24,7 +23,7 @@ const DetalleCompra = () => {
     } else {
       const dir = new FormData();
       dir.append("idcliente", 36);
-      dir.append("idoperacion", 840);
+      dir.append("idoperacion", compraId);
       console.log(Object.fromEntries(dir)); // Works if all fields are uniq
       PerfilAPI(dir, "operaciones", "get").then((res) => {
         console.log(res);
@@ -45,7 +44,7 @@ const DetalleCompra = () => {
   return (
     <div className="detalleCompraContainer">
       <Breadcrumbs links={pathnames} />
-      {compraSelecc && (
+      {compraSelecc ? (
         <>
           <p className="title">COMPRA {compraSelecc.hash}</p>
           <p className="responsiveTitle">COMPRA {compraSelecc.hash}</p>
@@ -154,6 +153,8 @@ const DetalleCompra = () => {
             </div>
           </div>
         </>
+      ) : (
+        <div style={{ minHeight: "75vh" }}></div>
       )}
     </div>
   );

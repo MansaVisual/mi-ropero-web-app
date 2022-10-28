@@ -123,7 +123,7 @@ const MisCompras = () => {
                 </tr>
               </thead>
               <tbody>
-                {comprasRealizadas[2].map((compra, i) => {
+                {comprasRealizadas.map((compra, i) => {
                   return (
                     <tr index={i} className="dataRow">
                       <th>{formatoFecha(compra.fecha_alta)}</th>
@@ -150,7 +150,7 @@ const MisCompras = () => {
               </tbody>
             </table>
             <div className="responsiveData">
-              {comprasRealizadas[2].map((compra, i) => {
+              {comprasRealizadas.map((compra, i) => {
                 return (
                   <div key={i} className="compra">
                     <div>
