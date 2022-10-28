@@ -14,7 +14,7 @@ import {
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Pagination from "../../components/Pagination/Pagination";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
@@ -40,7 +40,6 @@ const style = {
 
 const ViewCloset = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));

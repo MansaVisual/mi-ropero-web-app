@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   Grid,
-  Link,
   Rating,
   Typography,
   useMediaQuery,
@@ -14,8 +13,6 @@ import ImageGallery from "react-image-gallery";
 import ProductBuyBox from "../../components/ProductBuyBox/ProductBuyBox";
 import ProductDetails from "../../components/ProductDetails/ProductDetails";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
-import SliderProd from "../../components/SliderProd/SliderProd";
-import Chip from "../../components/Chip/Chip";
 import theme from "../../styles/theme";
 import {
   CommentButton,
