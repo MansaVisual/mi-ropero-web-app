@@ -50,7 +50,6 @@ const SearchProductsResults = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [load, setLoad] = useState(false);
   const [load2, setLoad2] = useState(false);
 
   const [prods, setProds] = useState([]);
@@ -131,7 +130,11 @@ const SearchProductsResults = () => {
   };
 
   const buscarPage = (paramSearch, value) => {
-    setLoad(true);
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+    setLoad2(true);
     const catProd = new FormData();
     let idCat = '';
     if(putSort==="Mas relevante primero"){
@@ -164,7 +167,7 @@ const SearchProductsResults = () => {
       if (res.status === 'success') {
         setProds(res.result.productos);
       }
-      setLoad(false);
+      setLoad2(false);
       window.scrollTo({
         top: 0,
         behavior: 'auto',
@@ -401,7 +404,7 @@ const SearchProductsResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={9}>
-            {load2 ? <Loader spin={"spinnerG"}/>:
+            {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
               <Box
                 sx={{
                   display: 'flex',
@@ -544,19 +547,7 @@ const SearchProductsResults = () => {
               </Box>
             }
 
-            {load && (
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginBottom: '16px',
-                }}
-              >
-                <Loader spin={'spinnerM'} />
-              </div>
-            )}
-            {prods.length !== 0 && totalPages > 1 && keyword && (
+            {prods.length !== 0 && totalPages > 1 && keyword && !load2 && (
               <Box
                 sx={{
                   display: 'flex',

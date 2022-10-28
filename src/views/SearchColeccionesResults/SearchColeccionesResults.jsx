@@ -94,15 +94,20 @@ const SearchProductsResults = () => {
         "detail"
     ).then((res)=>{
       if(res.status==="success"){
-        console.log(res.result)
         setColeccion(res.result)
         setProds(res.result.productos)
         setTotalPages(res.result.productos_total_paginas)
       }
+      setLoad2(false)
   })
   }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    setLoad2(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     setPutSort("")
     setPutFilters([])
     setPags(1)
@@ -145,12 +150,19 @@ const SearchProductsResults = () => {
           setProds(res.result.productos)
           setTotalPages(res.result.productos_total_paginas)
         }
+        setLoad2(false)
       })
     }
   }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
   const buscarPage=(paramSearch,value)=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+    setLoad2(true)
+
     let numCol=0
     if(coleccionName==="NuevosIngresos"){
       numCol=71
@@ -198,6 +210,7 @@ const SearchProductsResults = () => {
       if(res.status==="success"){
         setProds(res.result.productos)
       }
+      setLoad2(false)
       window.scrollTo({
         top: 0,
         behavior: 'auto',
@@ -456,7 +469,7 @@ const SearchProductsResults = () => {
                 }
               </Box>
             } 
-            {prods.length!==0 && totalPages>1 && coleccionName && (
+            {prods.length!==0 && totalPages>1 && coleccionName && !load2 && (
               <Box
               sx={{
                 display: "flex",

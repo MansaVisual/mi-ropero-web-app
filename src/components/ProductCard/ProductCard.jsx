@@ -39,6 +39,8 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
+  console.log(itemFav)
+
   return (
     <Card
       sx={{
@@ -117,7 +119,15 @@ const ProductCard = ({
             <AvatarMR
             avatarCard
             datosTienda={
-              datosTienda !== undefined ? datosTienda : itemFav.producto_tienda
+              itemFav.producto_tienda
+            }
+            />
+          }
+          {datosTienda!==undefined &&
+            <AvatarMR
+            avatarCard
+            datosTienda={
+              datosTienda
             }
             />
           }
