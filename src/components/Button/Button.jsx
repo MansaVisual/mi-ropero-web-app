@@ -16,6 +16,7 @@ const Button = ({
   disabled,
   onClick,
   border,
+  noHover
 }) => {
   return (
     <MuiButton
@@ -36,6 +37,9 @@ const Button = ({
         width: fullWidth ? "100%" : "auto",
         height: height ? "48px" : "36px",
         whiteSpace: "nowrap",
+        "&:hover": noHover && {
+           backgroundColor: theme.palette.primary.main,
+        },
       }}
       endIcon={endIcon}
       onClick={onClick}

@@ -197,6 +197,7 @@ const ProductPage = () => {
                     thirdInputLabel="Tu mensaje para el vendedor/a"
                     leftButtonText="Cancelar"
                     rightButtonText="Enviar mensaje"
+                    prod={prod}
                   />
                 )}
               </>

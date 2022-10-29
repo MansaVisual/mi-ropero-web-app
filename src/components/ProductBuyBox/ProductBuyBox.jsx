@@ -167,9 +167,10 @@ const ProductBuyBox = ({prod,itemID}) => {
                     title="¡OFERTÁ!"
                     firstInputLabel="Monto de la oferta*"
                     secondInputLabel="Comentarios"
-                    firstText="Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"
+                    firstText={`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio}`}
                     leftButtonText="Cancelar"
                     rightButtonText="Hacer oferta"
+                    prod={prod}
                   />
                 )}
               </Box>
@@ -184,6 +185,7 @@ const ProductBuyBox = ({prod,itemID}) => {
                   thirdInputLabel="Tu mensaje para el vendedor/a"
                   leftButtonText="Cancelar"
                   rightButtonText="Enviar mensaje"
+                  prod={prod}
                 />
               )}
             </Box>
@@ -301,9 +303,10 @@ const ProductBuyBox = ({prod,itemID}) => {
                       title="¡OFERTÁ!"
                       firstInputLabel="Monto de la oferta*"
                       secondInputLabel="Comentarios"
-                      firstText="Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"
+                      firstText={`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio}`}
                       leftButtonText="Cancelar"
                       rightButtonText="Hacer oferta"
+                      prod={prod}
                     />
                   )}
                 </Box>
