@@ -9,6 +9,7 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda,idT
 
   const {infoUser}=useContext(UseLoginContext)
 
+  console.log(datosTienda.calificaciones)
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
@@ -55,7 +56,12 @@ const AvatarMR = ({ avatarCard, avatarRopero, handleCloseAvatar, datosTienda,idT
             }
           </Typography>
           {avatarCard ? (
-            <Rating name="read-only" readOnly value={datosTienda.calificaciones!==undefined && Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))} size="small" />
+            <Rating name="read-only" readOnly size="small" 
+            value={
+              datosTienda.calificaciones!==undefined && datosTienda.calificaciones.sum!==null &&
+              Math.round(Number(datosTienda.calificaciones.sum)/Number(datosTienda.calificaciones.total))
+            }
+            />
           ) : null}
         </Box>
       </Box>
