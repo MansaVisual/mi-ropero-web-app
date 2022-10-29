@@ -239,10 +239,8 @@ const Footer = () => {
                 direction="row"
                 alignItems="baseline"
                 pt={isMobile ? "70px" : null}
-                justifyContent={isMobile ? "center" : null}
+                justifyContent="center"
               >
-                <img src={pdp} alt="legal-footer" />
-                <img src={sps} alt="legal-footer" />
                 <img src={fiscal} alt="legal-footer" />
               </Stack>
               <Stack alignItems="center" sx={{ mt: "40px" }}>
