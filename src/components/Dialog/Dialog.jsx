@@ -54,7 +54,7 @@ const DialogComponent = ({
 
 
   const onSubmit = (data) => {
-    if (!errorState && !errorStateComment && data.amount > 0 && data.comment) {
+    if (data.title==="¡OFERTÁ!") {
       setLoad(true)
       const oferta=new FormData()
       oferta.append("idcliente",userLog)
@@ -77,7 +77,35 @@ const DialogComponent = ({
         }else{
           setTimeout(() => {
             setLoad(false)
-            alert("OFERTA NO ENVIADA.")
+            alert("OFERTA NO ENVIADA")
+          }, 1000);
+        }
+      })
+
+    }
+    if (title==="¡ENVIÁ UN MENSAJE!"){
+      setLoad(true)
+      const oferta=new FormData()
+      oferta.append("idcliente",userLog)
+      oferta.append("idproducto",prod.idproducto)
+      oferta.append("mensaje",data.comment)
+
+      ProdAPI(
+        oferta,
+        "mensajes",
+        "insert"
+      ).then((res)=>{
+
+        if(res.status==="success"){
+          setTimeout(() => {
+            setLoad(false)
+            handleClose();
+            alert("MENSAJE ENVIADO")
+          }, 1000);
+        }else{
+          setTimeout(() => {
+            setLoad(false)
+            alert("MENSAJE NO ENVIADO")
           }, 1000);
         }
       })
