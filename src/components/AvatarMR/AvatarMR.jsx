@@ -15,8 +15,7 @@ const AvatarMR = ({
 
   const { infoUser } = useContext(UseLoginContext);
 
-  /*   console.log(datosTienda.calificaciones)
-   */
+
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
