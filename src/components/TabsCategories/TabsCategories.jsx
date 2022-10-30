@@ -129,14 +129,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
@@ -178,14 +179,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
@@ -227,14 +229,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
@@ -276,14 +279,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
