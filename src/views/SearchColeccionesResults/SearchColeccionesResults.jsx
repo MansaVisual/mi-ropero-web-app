@@ -5,7 +5,6 @@ import {
   Container,
   Fade,
   Grid,
-  Link,
   Modal,
   Stack,
   Typography,
@@ -14,11 +13,8 @@ import {
 import { useLocation, useParams } from "react-router-dom";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import Filter from "../../components/Filter/Filter";
-import Chip from "../../components/Chip/Chip";
-import SliderProd from "../../components/SliderProd/SliderProd";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import Button from "../../components/Button/Button";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
@@ -52,7 +48,6 @@ const SearchProductsResults = () => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { categorias, ProdAPI } = useContext(UseProdsContext);
 
-  const [load,setLoad]=useState(false)
   const [load2, setLoad2] = useState(false);
   
   const [prods,setProds]=useState([])
@@ -66,6 +61,7 @@ const SearchProductsResults = () => {
   const [putFilters,setPutFilters]=useState([])
   const [putSort,setPutSort]=useState("")
   const [filtrosFin, setFiltrosFin] = useState("");
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
 
   const [pags,setPags]=useState(1)
 
@@ -103,10 +99,16 @@ const SearchProductsResults = () => {
         setProds(res.result.productos)
         setTotalPages(res.result.productos_total_paginas)
       }
+      setLoad2(false)
   })
   }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    setLoad2(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     setPutSort("")
     setPutFilters([])
     setPags(1)
@@ -149,13 +151,23 @@ const SearchProductsResults = () => {
           setProds(res.result.productos)
           setTotalPages(res.result.productos_total_paginas)
         }
+        setLoad2(false)
       })
     }
   }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
   const buscarPage=(paramSearch,value)=>{
-    setLoad(true)
+    if(rangoPrecio.min>rangoPrecio.max){
+      alert("Rango de precios incorrectos.")
+      return
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+    setLoad2(true)
+
     let numCol=0
     if(coleccionName==="NuevosIngresos"){
       numCol=71
@@ -171,6 +183,11 @@ const SearchProductsResults = () => {
       let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
       idCat=idCat[0].idcategoria
       catProd.append("idcategoria",Number(idCat))
+    }
+    
+    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+      catProd.append("precio_desde",rangoPrecio.min)
+      catProd.append("precio_hasta",rangoPrecio.max)
     }
 
     catProd.append("idcoleccion",numCol)
@@ -203,7 +220,7 @@ const SearchProductsResults = () => {
       if(res.status==="success"){
         setProds(res.result.productos)
       }
-      setLoad(false)
+      setLoad2(false)
       window.scrollTo({
         top: 0,
         behavior: 'auto',
@@ -212,6 +229,10 @@ const SearchProductsResults = () => {
   }
 
   const handleAplicarFiltros = () => {
+    if(rangoPrecio.min>rangoPrecio.max){
+      alert("Rango de precios incorrectos.")
+      return
+    }
     setPags(1)
     setLoad2(true)
     let array = [];
@@ -220,7 +241,7 @@ const SearchProductsResults = () => {
     }
     setFiltrosFin(array.toString());
 
-    if (putFilters.length !== 0 || putSort !== '') {
+    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
         const prod=new FormData()
 
         let numCol=0
@@ -236,6 +257,11 @@ const SearchProductsResults = () => {
           let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
           idCat=idCat[0].idcategoria
           prod.append("idcategoria",Number(idCat))
+        }
+
+        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+          prod.append("precio_desde",rangoPrecio.min)
+          prod.append("precio_hasta",rangoPrecio.max)
         }
 
         prod.append("idcoleccion",numCol)
@@ -336,27 +362,41 @@ const SearchProductsResults = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: theme.typography.fontSize[2],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              textDecoration: "underline",
-                              mt: "12px",
-                              mb: "16px",
-                            }}
-                          >
-                            Limpiar filtros
-                          </Typography>
-                          <Button
-                            backgroundColor={theme.palette.primary.main}
-                            color={theme.palette.secondary.contrastText}
-                            text="APLICAR"
-                            small
-                            notRounded
-                            disabled
-                          />
+
                         </Box>
-                        <Filter filtros={filtrosCategoria}/>
+                        {putFilters.map((res, index) => {
+                          return (
+                            <Stack direction='row' spacing={1}>
+                              <ChipFilterCategories
+                                filteredCategory={res}
+                                key={index}
+                                putFilters={putFilters}
+                                setPutFilters={setPutFilters}
+                                setProds={setProds}
+                                ProdAPI={ProdAPI}
+                                setTotalPages={setTotalPages}
+                                categorias={categorias}
+                                clase={"colecciones"}
+                                metodo={"detail"}
+                                putCategory={putCategory}
+                                coleccionName={coleccionName}
+                              />
+                            </Stack>
+                          );
+                        })}
+                        <Filter 
+                          setPutCategory={setPutCategory} 
+                          putCategory={putCategory} 
+                          filtros={filtrosCategoria} 
+                          setPutFilters={setPutFilters} 
+                          putFilters={putFilters} 
+                          putSort={putSort} 
+                          setPutSort={setPutSort} 
+                          coleccion={coleccion}
+                          handleAplicarFiltros={handleAplicarFiltros}
+                          rangoPrecio={rangoPrecio}
+                          setRangoPrecio={setRangoPrecio}
+                        />
                       </Box>
                     </Fade>
                   </Modal>
@@ -390,7 +430,11 @@ const SearchProductsResults = () => {
                         ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
                         categorias={categorias}
-                      />
+                        clase={"colecciones"}
+                        metodo={"detail"}
+                        putCategory={putCategory}
+                        coleccionName={coleccionName}
+                        />
                     </Stack>
                   );
                 })}
@@ -404,13 +448,15 @@ const SearchProductsResults = () => {
                   setPutSort={setPutSort} 
                   coleccion={coleccion}
                   handleAplicarFiltros={handleAplicarFiltros}
+                  rangoPrecio={rangoPrecio}
+                  setRangoPrecio={setRangoPrecio}
                 />
               </>
             )}
           </Grid>
 
           <Grid item xs={12} sm={12} md={9}>
-            {load2 ? <Loader spin={"spinnerG"}/>:
+            {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
               <Box
                 sx={{
                   display: "flex",
@@ -431,6 +477,7 @@ const SearchProductsResults = () => {
                           productName={product.nombre}
                           productPrice={product.precio}
                           idProducto={product.idproducto}
+                          idTienda={product.idtienda}
                           tag={product.tag}
                           datosTienda={product.tienda}
                           precioOferta={product.precio_oferta}
@@ -440,14 +487,13 @@ const SearchProductsResults = () => {
                     );
                   })
                 ) : 
-                  <>
+                  <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
                     <Loader spin={"spinnerG"}/>
-                  </>
+                  </div>
                 }
               </Box>
             } 
-            {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
-            {prods.length!==0 && totalPages>1 && coleccionName && (
+            {prods.length!==0 && totalPages>1 && coleccionName && !load2 && (
               <Box
               sx={{
                 display: "flex",
@@ -458,25 +504,6 @@ const SearchProductsResults = () => {
                 <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
               </Box>
             )}
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12}>
-            <Box sx={{ mt: "40px", textAlign: "center" }}>
-              <Chip primary>Productos relacionados</Chip>
-            </Box>
-            <Box sx={{ mt: "24px", mb: "28px" }}>
-              <SliderProd contenido={[]}/>
-            </Box>
-            <Box sx={{ textAlign: "center" }}>
-              <Link
-                sx={{
-                  color: theme.palette.tertiary.main,
-                  fontSize: theme.typography.fontSize[4],
-                }}
-              >
-                VER TODOS LOS PRODUCTOS RELACIONADOS
-              </Link>
-            </Box>
           </Grid>
         </Grid>
       </Container>

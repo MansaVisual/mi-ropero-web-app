@@ -9,69 +9,19 @@ import {
   Fade,
   Backdrop,
   Container,
+  Stack,
 } from "@mui/material";
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Pagination from "../../components/Pagination/Pagination";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
 import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
-import Button from "../../components/Button/Button";
 import { UseProdsContext } from "../../context/ProdsContext";
-
-export const cards = [
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-  {
-    img: require("../../assets/img/fotoProd.png"),
-    title: "Calza Adidas 2022",
-    price: "$2000",
-    tag: "NUEVO",
-  },
-];
+import Loader from "../../components/Loader/Loader";
 
 const style = {
   position: "absolute",
@@ -90,28 +40,98 @@ const style = {
 
 const ViewCloset = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
 
-  const {ProdAPI}=useContext(UseProdsContext)
+  const {ProdAPI,categorias}=useContext(UseProdsContext)
+  const [buscandoRoperos,setBuscandoRoperos]=useState(true)
 
   const {closetId, nombre}=useParams()
+
+  const [tienda,setTienda]=useState([])
+
+  const [totalPages,setTotalPages]=useState(0)
+  const [pags,setPags]=useState(1)
+
+  const [putFilters, setPutFilters] = useState([]);
+  const [putSort, setPutSort] = useState('');
+  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
+  const [filtrosCategoria,setFiltrosCategoria]=useState([])
+  const [putCategory,setPutCategory]=useState("")
+  const [coleccion,setColeccion]=useState([])
+  const [filtrosFin, setFiltrosFin] = useState("");
 
 
   useEffect(() => {
     if(closetId!==undefined){
       const ropero = new FormData()
       ropero.append("idtienda",closetId)
+      ropero.append("page",0)
+      ropero.append("bypage",15)
       ProdAPI(
         ropero,
         "tiendas",
         "detail"
-      )
+        ).then((res)=>{
+          if(res.status==="success"){
+            let arrayCol=[]
+            for(const i in res.result.search_productos_categorias){
+              for(const ii in res.result.search_productos_categorias[i].hijas){
+                arrayCol.push(res.result.search_productos_categorias[i].hijas[ii])
+              }
+            }
+            setColeccion({productos_categorias:arrayCol})
+            setTienda(res.result)
+            setTotalPages(res.result.search_productos_total_paginas)
+          }
+          setBuscandoRoperos(false)
+        })
     }
   }, [closetId]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    setBuscandoRoperos(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+    setPutSort("")
+    setPutFilters([])
+    setPags(1)
+    if(putCategory!==""){
+      let idCat=coleccion.productos_categorias.filter(e=>e.Nombre===putCategory)
+      idCat=idCat[0].idcategoria
+
+      const catFilters = new FormData();
+      catFilters.append('idcategoria', Number(idCat));
+
+      ProdAPI(catFilters, 'categorias', 'get').then((res) => {
+        if (res.status === 'success') {
+          setFiltrosCategoria(res.result[0]);
+        }
+      });
+
+      const col=new FormData()
+      col.append("idtienda",closetId)
+      col.append("idcategoria",idCat)
+      col.append("bypage",15)
+      col.append("page",0)
+
+      ProdAPI(
+          col,
+          "tiendas",
+          "detail"
+      ).then((res)=>{
+        if(res.status==="success"){
+          setTienda(res.result)
+          setTotalPages(res.result.productos_total_paginas)
+        }
+        setBuscandoRoperos(false)
+      })
+    }
+  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     window.scrollTo({
@@ -119,6 +139,120 @@ const ViewCloset = () => {
       behavior: 'auto',
     });
   }, []);
+
+  const buscarPage = (paramSearch, value) => {
+    setBuscandoRoperos(true)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+
+    const catProd = new FormData();
+    let idCat = '';
+    if(putSort==="Mas relevante primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","idproducto")
+    }else if(putSort==="Mayor precio primero"){
+      catProd.append("order_type","desc")
+      catProd.append("order","precio")
+    }else if(putSort==="Menor precio primero"){
+      catProd.append("order_type","asc")
+      catProd.append("order","precio")
+    }
+    if(putFilters.length!==0){
+      catProd.append("caracteristicas",filtrosFin)
+    }
+
+    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+      catProd.append("precio_desde",rangoPrecio.min)
+      catProd.append("precio_hasta",rangoPrecio.max)
+    }
+
+    if(putCategory){
+      idCat = categorias.find(
+        (e) => e.nombre.toString().trim() === putCategory,
+      );
+      catProd.append('idcategoria', idCat.idcategoria);
+    }
+
+    catProd.append("idtienda",closetId)
+    catProd.append('bypage', 15);
+    
+    catProd.append('page', value);
+
+    ProdAPI(catProd, 'tiendas', 'detail').then((res) => {
+      if (res.status === 'success') {
+        setTienda(res.result);
+      }
+      setBuscandoRoperos(false)
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto',
+      });
+    });
+  };
+
+  const handleAplicarFiltros = () => {
+    setBuscandoRoperos(true)
+    setPags(1)
+    let array = [];
+    for (let i = 0; i < putFilters.length; i++) {
+      array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
+    }
+    setFiltrosFin(array.toString());
+
+    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
+        const prod=new FormData()
+        let idCat=[]
+
+        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
+          prod.append("precio_desde",rangoPrecio.min)
+          prod.append("precio_hasta",rangoPrecio.max)
+        }
+
+        if(putCategory!==""){
+          idCat = categorias.find(
+            (e) => e.nombre.toString().trim() === putCategory,
+          );
+  
+          prod.append('idcategoria', idCat.idcategoria);
+        }
+
+        prod.append("idtienda",closetId)
+        prod.append("bypage",15)
+        prod.append("page",0)
+
+        if(putSort==="Mas relevante primero"){
+          prod.append("order_type","desc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Menos relevante primero"){
+          prod.append("order_type","asc")
+          prod.append("order","relevancia")
+        }else if(putSort==="Mayor precio primero"){
+          prod.append("order_type","desc")
+          prod.append("order","precio")
+        }else if(putSort==="Menor precio primero"){
+          prod.append("order_type","asc")
+          prod.append("order","precio")
+        }
+
+        if(putFilters.length!==0){
+          prod.append("caracteristicas",array.toString())
+        }
+        
+        ProdAPI(
+          prod,
+          "tiendas",
+          "detail"
+        ).then((res)=>{
+          if (res.status === 'success') {
+            setTienda(res.result);
+            setTotalPages(res.result.search_productos_total_paginas);
+          }
+          setBuscandoRoperos(false)
+        })
+    }
+  };
 
   return (
     <Container maxWidth="xl">
@@ -145,7 +279,7 @@ const ViewCloset = () => {
                     color: theme.palette.primary.main,
                   }}
                 >
-                  Ropero de Romina86
+                  {nombre}
                 </Typography>
                 <Box sx={{ ml: "25px" }}>
                   <FilterButton onClick={() => setOpen(true)} />
@@ -175,7 +309,8 @@ const ViewCloset = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          <Typography
+                        
+                          {/* <Typography
                             sx={{
                               fontSize: theme.typography.fontSize[2],
                               fontWeight: theme.typography.fontWeightRegular,
@@ -185,17 +320,41 @@ const ViewCloset = () => {
                             }}
                           >
                             Limpiar filtros
-                          </Typography>
-                          <Button
-                            backgroundColor={theme.palette.primary.main}
-                            color={theme.palette.secondary.contrastText}
-                            text="APLICAR"
-                            small
-                            notRounded
-                            disabled
-                          />
+                          </Typography> */}
                         </Box>
-                        <Filter />
+                        {putFilters.map((res, index) => {
+                          return (
+                            <Stack direction='row' spacing={1}>
+                              <ChipFilterCategories
+                                filteredCategory={res}
+                                key={index}
+                                putFilters={putFilters}
+                                setPutFilters={setPutFilters}
+                                setProds={setTienda}
+                                ProdAPI={ProdAPI}
+                                setTotalPages={setTotalPages}
+                                categorias={categorias}
+                                clase={"tiendas"}
+                                metodo={"detail"}
+                                putCategory={putCategory}
+                                closetId={closetId}
+                              />
+                            </Stack>
+                          );
+                        })}
+                        <Filter 
+                          setPutCategory={setPutCategory} 
+                          putCategory={putCategory} 
+                          filtros={filtrosCategoria} 
+                          setPutFilters={setPutFilters} 
+                          coleccion={coleccion}
+                          putFilters={putFilters} 
+                          putSort={putSort} 
+                          setPutSort={setPutSort}
+                          handleAplicarFiltros={handleAplicarFiltros}
+                          rangoPrecio={rangoPrecio}
+                          setRangoPrecio={setRangoPrecio}
+                        />
                       </Box>
                     </Fade>
                   </Modal>
@@ -216,15 +375,14 @@ const ViewCloset = () => {
                   <Rating name="read-only" readOnly value={5} size="large" />
                 </Box>
               </Box>
-              <IconGroupText />
+              <IconGroupText prod={undefined} prod2={tienda}/>
             </Box>
           ) : (
             <>
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
               </Box>
-              <ChipFilterCategories />
-              <Typography
+              {/* <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[2],
                   fontWeight: theme.typography.fontWeightRegular,
@@ -234,7 +392,7 @@ const ViewCloset = () => {
                 }}
               >
                 Limpiar todos los filtros
-              </Typography>
+              </Typography> */}
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[9],
@@ -243,48 +401,84 @@ const ViewCloset = () => {
                   mb: "16px",
                 }}
               >
-                Ropero de Romina86
+                {nombre}
               </Typography>
               <Rating name="read-only" readOnly value={5} size="large" />
-              <IconGroupText />
-              <Filter />
+              <IconGroupText prod={undefined} prod2={tienda}/>
+              {putFilters.map((res, index) => {
+                return (
+                  <Stack direction='row' spacing={1}>
+                    <ChipFilterCategories
+                      filteredCategory={res}
+                      key={index}
+                      putFilters={putFilters}
+                      setPutFilters={setPutFilters}
+                      setTienda={setTienda}
+                      ProdAPI={ProdAPI}
+                      setTotalPages={setTotalPages}
+                      categorias={categorias}
+                      clase={"tiendas"}
+                      metodo={"detail"}
+                      putCategory={putCategory}
+                      closetId={closetId}
+                    />
+                  </Stack>
+                );
+              })}
+              <Filter 
+                setPutCategory={setPutCategory} 
+                putCategory={putCategory} 
+                filtros={filtrosCategoria} 
+                setPutFilters={setPutFilters} 
+                coleccion={coleccion}
+                putFilters={putFilters} 
+                putSort={putSort} 
+                setPutSort={setPutSort} 
+                handleAplicarFiltros={handleAplicarFiltros}
+                rangoPrecio={rangoPrecio}
+                setRangoPrecio={setRangoPrecio}
+              />
             </>
           )}
         </Grid>
 
         <Grid item xs={12} sm={12} md={9}>
-          <Grid
-            container
-            columns={{ xs: 1, sm: 2, md: 3 }}
-            justifyContent="flex-start"
-            spacing={5}
-            sx={{
-              ml: isMobile || isMobileBigScreen ? 0 : "30px",
-            }}
-          >
-            {cards.map((card, index) => (
-              <Grid item xs="auto" md="auto">
-                <ProductCard
-                  key={index}
-                  productName={card.title}
-                  productPrice={card.price}
-                  imageCard={card.img}
-                  tag={card.tag}
-                />
-              </Grid>
-            ))}
-          </Grid>
-          <Box
+          {buscandoRoperos ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div> :
+            <Grid
+              container
+              columns={{ xs: 1, sm: 2, md: 3 }}
+              justifyContent="flex-start"
+              spacing={5}
+              sx={{
+                ml: isMobile || isMobileBigScreen ? 0 : "30px",
+              }}
+            >
+              {tienda.length!==0  && tienda.search_productos.map((item, index) => {return(
+                <Grid item xs="auto" md="auto" key={index}>
+                  <ProductCard
+                    imageCard={item.imagenes[0].imagen_vertical}
+                    productName={item.nombre}
+                    idProducto={item.idproducto}
+                    productPrice={item.precio}
+                    precioOferta={item.precio_oferta}
+                  />
+                </Grid>
+              )})}
+            </Grid>
+          }
+          {!buscandoRoperos &&
+            <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               mt: "40px",
             }}
-          >
-            <Pagination />
-          </Box>
-        </Grid>
+            >
+              <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
+            </Box>
+          }
+          </Grid>
       </Grid>
     </Container>
   );

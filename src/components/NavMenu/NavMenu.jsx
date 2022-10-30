@@ -167,7 +167,6 @@ const NavMenu = () => {
             }}
             disablePadding
           >
-            <ListItemButton>Vender</ListItemButton>
           </ListItem>
         </List>
       )}

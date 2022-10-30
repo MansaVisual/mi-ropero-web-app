@@ -12,20 +12,19 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
   const {ProdAPI,listFavs,handleListFavs}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
 
-  useEffect(() => {
-    if(itemFav===undefined){
-      if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
-        setLike(!like)
-      }
-    }
-  }, [infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    setLike(null)
+    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
+      setLike(!like)
+    }
+  }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
+  
   useEffect(() => {
     if(itemFav!==undefined){
       setLike(true)
     }
-  }, [itemFav]);// eslint-disable-line react-hooks/exhaustive-deps
-  
+  }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const onLike = async () => {
     setLike(!like)
@@ -50,7 +49,7 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
       const favAdd = new FormData()
       favAdd.append("idcliente",idCliente)
       favAdd.append("idproducto",idProd)
-      ProdAPI(
+      await ProdAPI(
         favAdd,
         "favoritos",
         "insert"

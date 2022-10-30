@@ -68,6 +68,9 @@
       @include screen_705 {
         display: none;
       }
+      .basuraIcon {
+        cursor: pointer;
+      }
       .mensajeData {
         display: flex;
         align-items: center;
@@ -86,6 +89,10 @@
           line-height: 24px;
           .messageTitle {
             color: #878787;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
           }
           .messageDate {
             color: #878787;
@@ -124,6 +131,8 @@
         img {
           height: 22px;
           width: 18px;
+          cursor: pointer;
+          z-index: 999;
         }
       }
     }
@@ -133,6 +142,7 @@
       box-sizing: border-box;
       padding: 16px;
       max-width: 329px;
+      min-width: 320px;
       display: flex;
       @include screen_705 {
         display: flex !important;
@@ -157,6 +167,7 @@
       }
       div {
         max-width: 180px;
+        min-width: 170px;
         p:not(:last-child) {
           margin-bottom: 8px;
         }

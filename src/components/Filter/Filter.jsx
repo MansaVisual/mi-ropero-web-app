@@ -13,6 +13,8 @@ import {
   Checkbox,
   Button,
   Typography,
+  TextField,
+  Box,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -46,6 +48,8 @@ const Filter = (props) => {
   const setProds=props.setProds
   const categorias=props.categorias
   const setTotalPages=props.setTotalPages
+  const rangoPrecio=props.rangoPrecio
+  const setRangoPrecio=props.setRangoPrecio
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -69,6 +73,7 @@ const Filter = (props) => {
     setPutSort(e.target.value);
   };
 
+  
   return (
     <List
       sx={{
@@ -98,13 +103,13 @@ const Filter = (props) => {
       <Button
         className='botonAplicarFiltros'
         disabled={
-          putSort === '' && putFilters.length === 0 && putCategory===undefined
+          putSort === '' && putFilters.length === 0 && (rangoPrecio.min===0 && rangoPrecio.max===0)
             ? true
             : false
         }
         sx={{
           background:
-            putSort === '' && putFilters.length === 0 && putCategory===undefined
+            putSort === '' && putFilters.length === 0 && (rangoPrecio.min===0 && rangoPrecio.max===0)
               ? '#998edb'
               : "#443988",
         }}
@@ -195,15 +200,15 @@ const Filter = (props) => {
                     res2.nombre !== 'BELLEZA' && (
                       <List component='div' sx={{ paddingLeft: '4px' }}>
                         <FormControlLabel
-                          label={res2.nombre}
+                          label={res2.nombre!==undefined?res2.nombre:res2.Nombre}
                           control={
                             <Radio
                               checked={
-                                putCategory === res2.nombre ? true : false
+                                putCategory === (res2.nombre!==undefined?res2.nombre:res2.Nombre) ? true : false
                               }
-                              name={res2.valor}
+                              name={res2.valor!==undefined?res2.valor:res2.idcategoria}
                               onClick={(e) => {
-                                setPutCategory(res2.nombre);
+                                setPutCategory(res2.nombre!==undefined?res2.nombre:res2.Nombre);
                               }}
                             />
                           }
@@ -379,28 +384,48 @@ const Filter = (props) => {
             </Fragment>
           );
         })}
-      {/* 
 
-      <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
-        <ListItemText primary="Rango de precio" sx={ListItemPriceRangeStyled} />
-        <Box sx={{ display: "flex" }}>
-          <TextField
-            id="outlined-basic"
-            label="$ Minimo"
-            variant="outlined"
-            sx={{ mr: "16px", fontSize: "13px", width: "120px" }}
-            size="small"
-          />
-          <TextField
-            id="outlined-basic"
-            label="$ Maximo"
-            variant="outlined"
-            sx={{ fontSize: "13px", width: "120px" }}
-            size="small"
-          />
-        </Box>
-      </List> */}
-      {/* <Divider /> */}
+      {putCategory!=="" &&
+        <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
+          <ListItemText primary="Rango de precio"/>
+          <Box sx={{ display: "flex" }}>
+            <TextField
+              id="min-price"
+              label="$ Minimo"
+              variant="outlined"
+              sx={{ mr: "16px", fontSize: "13px", width: "120px",mt:"6px" }}
+              value={rangoPrecio!==undefined && rangoPrecio.min>0?rangoPrecio.min:""}
+              onChangeCapture={()=>{
+                setRangoPrecio(
+                  {
+                    min:document.getElementById("min-price").value,
+                    max:document.getElementById("max-price").value===""?99999:document.getElementById("max-price").value
+                  }
+                )
+              }}
+              size="small"
+              inputProps={{ maxLength: 6 }}
+            />
+            <TextField
+              id="max-price"
+              label="$ Maximo"
+              variant="outlined"
+              sx={{ fontSize: "13px", width: "120px",mt:"6px" }}
+              value={rangoPrecio!==undefined && rangoPrecio.max<999999?rangoPrecio.max:""}
+              onChangeCapture={()=>{
+                setRangoPrecio(
+                  {
+                    min:document.getElementById("min-price").value===0?0:document.getElementById("min-price").value,
+                    max:document.getElementById("max-price").value
+                  }
+                )
+              }}
+              size="small"
+              inputProps={{ maxLength: 6 }}
+              />
+          </Box>
+        </List> 
+      }
     </List>
   );
 };

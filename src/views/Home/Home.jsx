@@ -180,6 +180,8 @@ const Home = () => {
                 lineHeight: "36px",
                 width: isMobile ? "189px" : null,
               }}
+              href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero"
+              target={"_blank"}
             >
               Vender
             </Button>

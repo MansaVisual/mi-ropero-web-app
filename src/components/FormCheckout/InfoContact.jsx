@@ -155,11 +155,13 @@ const InfoContact = ({
     setErrorRecargarDir(false);
 
     if (infoLocFinal.length === 0 && !usaDireccionCargada) {
-      throwError('barrioLocalidad', 'labelBarrioLocalidad');
-      scrollTop();
-      setErrorLocalidad(true);
-      setLoader(false);
-      return;
+      if (document.getElementById('barrioLocalidad').value !== "CAPITAL FEDERAL") {
+        throwError('barrioLocalidad', 'labelBarrioLocalidad'); 
+        scrollTop();
+        setErrorLocalidad(true);
+        setLoader(false);
+        return;
+      }
     }
 
     if (usaDireccionCargada && direccionCargada === null) {
@@ -427,10 +429,10 @@ const InfoContact = ({
       </div>
 
       {loader2 && (
-        <>
+        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
           <Loader spin={'spinnerM'} />
           <br />
-        </>
+        </div>
       )}
       {direccionesCargadas.length !== 0 && (
         <div className='selectorDireccion'>
@@ -784,7 +786,7 @@ const InfoContact = ({
       )}
 
       {loader ? (
-        <div style={{ marginTop: '16px' }}>
+        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
           <Loader spin={'spinnerG'} />
         </div>
       ) : (

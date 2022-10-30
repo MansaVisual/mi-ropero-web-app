@@ -47,7 +47,7 @@
     .footerDetail {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       @include screen_705 {
         display: none;

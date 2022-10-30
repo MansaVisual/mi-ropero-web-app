@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import {
   ImageList,
   ImageListItem,
@@ -16,12 +16,19 @@ import {
 import theme from "../../styles/theme";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { UsePerfilContext } from "../../context/PerfilContext";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const ClosetImagesCard = ({
-  ropero: { nombre, icono, productos, rating, img, idtienda },
+  ropero: { nombre, icono, productos, rating, img, idtienda, seguidores_count, seguidores },
   keyword,
 }) => {
   
+  const {PerfilAPI}=useContext(UsePerfilContext)
+  const {userLog}=useContext(UseLoginContext)
+
+  const [operando,setOperando]=useState(false)
+
   const navigate = useNavigate();
   const handleClick = (event) => {
     event.preventDefault();
@@ -30,6 +37,40 @@ const ClosetImagesCard = ({
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [like, setLike] = useState(false);
+
+  useEffect(() => {
+    if(seguidores!==undefined && userLog!==undefined){
+      for(const i in seguidores){
+        if(seguidores[i]===userLog){
+          console.log(seguidores[i])
+          setLike(true)
+        }
+      }
+    }
+  }, [seguidores,userLog]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  const addFollow = ()=>{
+    setOperando(true)
+    const follow = new FormData()
+    follow.append("idcliente",userLog)
+    follow.append("idtienda",idtienda)
+    PerfilAPI(
+      follow,
+      "tiendas",
+      "follow"
+    ).then(()=>{setOperando(false)})
+  }
+  const unFollow = ()=>{
+    setOperando(true)
+    const follow = new FormData()
+    follow.append("idcliente",userLog)
+    follow.append("idtienda",idtienda)
+    PerfilAPI(
+      follow,
+      "tiendas",
+      "unfollow"
+    ).then(()=>{setOperando(false)})
+  }
 
   return (
     <Box sx={{ flex: 1, maxWidth: { sm: "420px" },minWidth: { sm: "420px" } }}>
@@ -83,16 +124,20 @@ const ClosetImagesCard = ({
                         backgroundColor: theme.palette.secondary.main,
                         width: "32px",
                         height: "32px",
+                        cursor:"pointer"
                       }}
+                        onClick={()=>navigate(`/roperos/${idtienda}/${nombre}`)}
+                      src={icono}
                     >
-                      {icono}
                     </Avatar>
                     <Box>
                       <Typography
                         sx={{
                           fontSize: theme.typography.fontSize[2],
                           fontWeight: theme.typography.fontWeightRegular,
+                          cursor:"pointer"
                         }}
+                        onClick={()=>navigate(`/roperos/${idtienda}/${nombre}`)}
                       >
                         {nombre}
                       </Typography>
@@ -122,7 +167,7 @@ const ClosetImagesCard = ({
 
                   <Box>
                     <CardActionArea
-                      onClick={() => setLike(!like)}
+                      onClick={!operando ? () => setLike(!like) : null}
                       disableTouchRipple
                       sx={{
                         position: "relative",
@@ -146,8 +191,9 @@ const ClosetImagesCard = ({
                               fontSize: "9px",
                               fontWeight: 700,
                             }}
+                            onClick={()=>addFollow()}
                           >
-                            24
+                            {seguidores_count}
                           </Typography>
                         </>
                       ) : (
@@ -167,8 +213,9 @@ const ClosetImagesCard = ({
                               fontSize: "9px",
                               fontWeight: 700,
                             }}
+                            onClick={()=>unFollow()}
                           >
-                            24
+                            {seguidores_count}
                           </Typography>
                         </>
                       )}

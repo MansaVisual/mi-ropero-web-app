@@ -18,13 +18,13 @@ import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({
   imageCard,
-  tag,
   productName,
   productPrice,
   idProducto,
   datosTienda,
   itemFav,
   precioOferta,
+  idTienda
 }) => {
 
   const { userLog, infoUser } = useContext(UseLoginContext);
@@ -39,8 +39,6 @@ const ProductCard = ({
   const handleMouseLeave = () => {
     buttonRef.current.style.opacity = "0";
   };
-
-
 
 
   return (
@@ -117,12 +115,24 @@ const ProductCard = ({
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          <AvatarMR
+          {itemFav!==undefined && itemFav.producto_tienda !== undefined &&
+            <AvatarMR
             avatarCard
             datosTienda={
-              datosTienda !== undefined ? datosTienda : itemFav.producto_tienda
+              itemFav.producto_tienda
             }
-          />
+            idTienda={idTienda}
+            />
+          }
+          {datosTienda!==undefined &&
+            <AvatarMR
+            avatarCard
+            datosTienda={
+              datosTienda
+            }
+            idTienda={idTienda}
+            />
+          }
         </Box>
       </CardContent>
       <Divider />

@@ -7,22 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import theme from "../../styles/theme";
 
-const productDetails = [
-  {
-    genero: "Unisex",
-    talle: "L",
-    colores: "Rosa",
-    marca: "Adidas",
-    condicion: "Nuevo",
-    "tipo de tela": "Silver",
-    estampado: "Combinado con texturas",
-    temporada: "Media estacion",
-    estilo: "Deportivo",
-    origen: "Importado",
-  },
-];
-
-const Accordion = ({ title }) => {
+const Accordion = ({ title,prodCaracteristicas }) => {
   return (
     <MuiAccordion>
       <AccordionSummary
@@ -47,9 +32,9 @@ const Accordion = ({ title }) => {
           },
         }}
       >
-        {Object.entries(productDetails[0]).map(([key, value]) => (
-          <ProductDetails key={key} title={key} content={value} />
-        ))}
+      {prodCaracteristicas !== undefined && prodCaracteristicas.map((carac,index) => (
+        <ProductDetails key={index} carac={carac}/>
+      ))}
       </AccordionDetails>
     </MuiAccordion>
   );

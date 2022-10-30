@@ -39,7 +39,7 @@ import cruz from "../../assets/img/cruz.png";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const { userLog, setUserLog } = useContext(UseLoginContext);
+  const { userLog, setUserLog,notis } = useContext(UseLoginContext);
   const {
     carrito,
     costoCarrito,
@@ -318,7 +318,9 @@ const NavIcons = () => {
     return (
       <>
         {buscandoCart ? (
-          <Loader spin={"spinnerM"} />
+          <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+            <Loader spin={"spinnerM"} />
+          </div>
         ) : (
           <>
             {carrito.length === 0 ? (
@@ -514,7 +516,7 @@ const NavIcons = () => {
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
       <IconButton onClick={userLog !== "" && handleClickNotif}>
         <StyledBadge
-          badgeContent={120}
+          badgeContent={notis.length}
           color="secondary"
           anchorOrigin={{
             vertical: "top",
@@ -713,7 +715,7 @@ const NavIcons = () => {
                 ELIMINAR
               </Button>
             </div>
-            {load && <Loader spin={"spinnerG"} />}
+            {load && <div style={{ marginBottom: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"} /></div>}
             {load && <br />}
             <img
               src={cruz}

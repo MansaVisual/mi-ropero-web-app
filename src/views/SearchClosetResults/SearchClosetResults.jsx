@@ -11,6 +11,7 @@ import { StyledLink } from "../../components/Footer/styles";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/Pagination/Pagination";
 
+
 const SearchClosetResults = () => {
   const { keyword } = useParams();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -24,7 +25,6 @@ const SearchClosetResults = () => {
 
   const [roperos,setRoperos]=useState([])
   const [buscandoRoperos,setBuscandoRoperos]=useState(true)
-  const [load,setLoad]=useState(false)
 
   const [totalPages,setTotalPages]=useState(0)
   const [totalProds,setTotalProds]=useState(0)
@@ -48,10 +48,9 @@ const SearchClosetResults = () => {
     ProdAPI(
       bestR,
       "tiendas",
-      "search"
+      "featured"
     ).then((res)=>{if(res.status==="success"){setBestRoperos(res.result)}})
 
-    setLoad(true)
     const busqueda=new FormData()
     busqueda.append("page",0)
     busqueda.append("bypage",10)
@@ -68,15 +67,14 @@ const SearchClosetResults = () => {
         setTotalProds(res.result.total)
         setRoperos(res.result.tiendas)
         setTotalPages(res.result.total_paginas)
-        setLoad(false)
       }
       setBuscandoRoperos(false)
     })
   },[keyword])// eslint-disable-line react-hooks/exhaustive-deps
 
   const buscarPage=(paramSearch,value)=>{
+    setBuscandoRoperos(true)
 
-    setLoad(true)
     const newPage=new FormData()
     if(keyword!==undefined){
       newPage.append("text",keyword)
@@ -93,13 +91,15 @@ const SearchClosetResults = () => {
       if(res.status==="success"){
         setRoperos(res.result.tiendas)
       }
-      setLoad(false)
+      setBuscandoRoperos(false)
+
       window.scrollTo({
         top: 0,
         behavior: 'auto',
       });
     })
   }
+
 
 
   return (
@@ -112,6 +112,7 @@ const SearchClosetResults = () => {
           sx={{
             px: isMobile || isMobileBigScreen ? "16px" : "74px",
             py: "40px",
+            mb:"100px"
           }}
           spacing={5}
         >
@@ -119,16 +120,18 @@ const SearchClosetResults = () => {
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
-                <Typography
+                {bestRoperos!==undefined && bestRoperos.length!==0 &&
+                  <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[9],
                     fontWeight: theme.typography.fontWeightBold,
                     mb: "20px",
                     color: theme.palette.secondary.main,
                   }}
-                >
-                  Top Roperos 🔥
-                </Typography>
+                  >
+                    Top Roperos 🔥
+                  </Typography>
+                }
               </Box>
             ) : (
               <>
@@ -165,21 +168,25 @@ const SearchClosetResults = () => {
                 >
                   Resultado: {totalProds!==undefined && totalProds} {totalProds!==undefined && totalProds===1?"ropero":"roperos"}
                 </Typography>
-
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[9],
-                    fontWeight: theme.typography.fontWeightBold,
-                    mb: "20px",
-                    color: theme.palette.secondary.main,
-                  }}
-                >
-                  Top Roperos 🔥
-                </Typography>
-
-                {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.tiendas.map((option)=>{
+                {bestRoperos!==undefined && bestRoperos.length!==0 &&
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[9],
+                      fontWeight: theme.typography.fontWeightBold,
+                      mb: "20px",
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    Top Roperos 🔥
+                  </Typography>
+                }
+                {bestRoperos!==undefined && bestRoperos.length!==0 && bestRoperos.map((option,i)=>{
                   return(
-                    <ClosetCard ropero={option}/>
+                    <>
+                      {i<3 &&
+                        <ClosetCard ropero={option}/>
+                      }
+                    </>
                   )
                 })
                 }
@@ -277,7 +284,7 @@ const SearchClosetResults = () => {
                   </Typography>
                 </StyledLink>
               </Box>
-            : buscandoRoperos && <Loader spin={"spinnerG"}/>}
+            : buscandoRoperos && <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>}
             {roperos!==undefined && roperos.length!==0 &&
               <Box
               sx={{
@@ -296,7 +303,6 @@ const SearchClosetResults = () => {
                 }
               </Box>
             }
-            {load && <div style={{width:"100%",display:"flex",justifyContent:"center",marginBottom:"16px"}}><Loader spin={"spinnerM"}/></div>}
             {roperos!==undefined && roperos.length!==0 && totalPages>1 && (
                 <Box
                 sx={{

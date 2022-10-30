@@ -6,6 +6,8 @@ import AdressCard from '../AddressCard/AdressCard';
 import { UseLoginContext } from '../../context/LoginContext';
 import Loader from '../Loader/Loader';
 import { UsePerfilContext } from '../../context/PerfilContext';
+import { Button } from '@mui/material';
+import vacio from "../../assets/img/dirVacio.png"
 
 const MisDirecciones = () => {
   const location = useLocation();
@@ -13,17 +15,14 @@ const MisDirecciones = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleBuscarDirecciones, direccionesGuardadas } =
+  const { handleBuscarDirecciones, direccionesGuardadas,dirFinBusqueda } =
     useContext(UsePerfilContext);
 
   const [adressOption, setAdressOption] = useState(false);
-  const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     if (userLog !== '') {
       handleBuscarDirecciones(userLog);
-      setLoading(false);
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -39,10 +38,11 @@ const MisDirecciones = () => {
           Agregar dirección
         </p>
       </div>
-      <p className='direcSubtitle'>Selecciona un domicilio *</p>
       <div className='cardContainer'>
-        {loading ? (
-          <Loader spin={'spinnerM'} />
+        {!dirFinBusqueda ? (
+          <div style={{ height: '50vh', marginTop: '42px', width:"100%",display:"flex",justifyContent:"center" }}>
+            <Loader spin={'spinnerM'} />
+          </div>
         ) : direccionesGuardadas.length > 0 ? (
           direccionesGuardadas.map((direccion, index) => {
             return (
@@ -56,7 +56,15 @@ const MisDirecciones = () => {
             );
           })
         ) : (
-          <p>No hay direcciones cargadas</p>
+          <div className='perfilVacio'>
+            <div>
+              <img src={vacio} alt="LOGO" />
+              <p>Aún no tienes direcciones cargadas</p>
+              <Button onClick={()=>navigate(`/perfil/NUEVA DIRECCION`)}>
+                AGREGAR DIRECCIÓN
+              </Button>
+            </div>
+          </div>
         )}
       </div>
       <div className='returnLink' onClick={() => navigate(`/perfil`)}>

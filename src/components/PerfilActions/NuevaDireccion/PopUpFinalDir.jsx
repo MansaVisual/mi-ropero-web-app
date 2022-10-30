@@ -35,7 +35,9 @@ const PopUpFinalDir = ({
             onClick={() => {
               setViewDireccion(false);
               setDireccion({});
-              setBuscandoDir(false);
+              if(setBuscandoDir!==undefined){
+                setBuscandoDir(false);
+              }
             }}
           ></div>
           <div className='popUp'>
@@ -45,7 +47,9 @@ const PopUpFinalDir = ({
               onClick={() => {
                 setViewDireccion(false);
                 setDireccion({});
-                setBuscandoDir(false);
+                if(setBuscandoDir!==undefined){
+                  setBuscandoDir(false);
+                }             
               }}
             />
             <img src={home} alt='SHOP' color='primary' className='botonLogo' />

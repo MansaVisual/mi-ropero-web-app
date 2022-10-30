@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import {
   Dialog,
   DialogActions,
@@ -18,6 +18,9 @@ import { useForm, Controller } from "react-hook-form";
 import { IoCloseCircle } from "react-icons/io5";
 import Button from "../Button/Button";
 import theme from "../../styles/theme";
+import { UseProdsContext } from "../../context/ProdsContext";
+import { UseLoginContext } from "../../context/LoginContext";
+import Loader from "../Loader/Loader";
 
 const DialogComponent = ({
   open,
@@ -31,6 +34,7 @@ const DialogComponent = ({
   thirdInputLabel,
   leftButtonText,
   rightButtonText,
+  prod
 }) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -43,9 +47,69 @@ const DialogComponent = ({
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const {ProdAPI}=useContext(UseProdsContext)
+  const {userLog}=useContext(UseLoginContext)
+
+  const [load,setLoad]=useState(false)
+
+
   const onSubmit = (data) => {
-    if (!errorState && !errorStateComment && data.amount > 0 && data.comment) {
-      handleClose();
+    if (data.title==="¡OFERTÁ!") {
+      setLoad(true)
+      const oferta=new FormData()
+      oferta.append("idcliente",userLog)
+      oferta.append("idproducto",prod.idproducto)
+      oferta.append("oferta",data.amount)
+      oferta.append("mensaje",data.comment)
+
+      ProdAPI(
+        oferta,
+        "ofertas",
+        "insert"
+      ).then((res)=>{
+
+        if(res.status==="success"){
+          setTimeout(() => {
+            setLoad(false)
+            handleClose();
+            alert("OFERTA ENVIADA")
+          }, 1000);
+        }else{
+          setTimeout(() => {
+            setLoad(false)
+            alert("OFERTA NO ENVIADA")
+          }, 1000);
+        }
+      })
+
+    }
+    if (title==="¡ENVIÁ UN MENSAJE!"){
+      setLoad(true)
+      const oferta=new FormData()
+      oferta.append("idcliente",userLog)
+      oferta.append("idproducto",prod.idproducto)
+      oferta.append("mensaje",data.comment)
+
+      ProdAPI(
+        oferta,
+        "mensajes",
+        "insert"
+      ).then((res)=>{
+
+        if(res.status==="success"){
+          setTimeout(() => {
+            setLoad(false)
+            handleClose();
+            alert("MENSAJE ENVIADO")
+          }, 1000);
+        }else{
+          setTimeout(() => {
+            setLoad(false)
+            alert("MENSAJE NO ENVIADO")
+          }, 1000);
+        }
+      })
+
     }
   };
 
@@ -156,7 +220,7 @@ const DialogComponent = ({
             }}
           >
             {dialogType === "ofertar" && errorState
-              ? "El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor"
+              ? "El valor ingresado no es válido. No podemos aceptar que ofertes un monto igual a cero o mayor al precio publicado por el vendedor"
               : firstText}
             <br />
             {dialogType === "ofertar" && errorStateComment
@@ -198,7 +262,7 @@ const DialogComponent = ({
                     value: /^[0-9]+$/,
                   },
                   validate: (value) => {
-                    if (value > 0 && value < 3600) {
+                    if (value > 0 && value <= Number(prod.precio)) {
                       return true;
                     } else {
                       return false;
@@ -214,7 +278,7 @@ const DialogComponent = ({
                     type="number"
                     placeholder="$ Ingresar valor"
                     onChange={onChange}
-                    value={value}
+                    value={value===0?"":value}
                     error={
                       error?.type === "required" ||
                       error?.type === "pattern" ||
@@ -258,6 +322,7 @@ const DialogComponent = ({
               name="comment"
               control={control}
               rules={{
+                required:true,
                 validate: (value) => {
                   if (
                     value.includes("@") ||
@@ -328,13 +393,20 @@ const DialogComponent = ({
             border={`1px solid ${theme.palette.primary.main}`}
             fullWidth
           />
-          <Button
+          {load ?
+            <div style={{width:"100%",display:"flex",justifyContent:"center" }}>
+                <Loader spin={"spinnerM"} />
+            </div>
+          :
+            <Button
             onClick={handleSubmit(onSubmit)}
             text={rightButtonText}
             backgroundColor={theme.palette.primary.main}
             color={theme.palette.secondary.contrastText}
             fullWidth
-          />
+            noHover={true}
+            />
+          }
         </DialogActions>
       </form>
     </MuiDialog>

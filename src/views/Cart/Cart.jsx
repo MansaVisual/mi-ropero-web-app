@@ -109,7 +109,8 @@ const Cart = () => {
             >
                 <Grid item xs={12} sm={12} lg={carrito.length!== 0 ? 9 : 12} 
                     sx={{
-                        paddingRight: isDesktop ? "32px" : "0px"
+                        paddingRight: isDesktop ? "32px" : "0px",
+                        mb:"100px"
                     }}
                     className="problemaMaxWidthCarrito"
                 >
@@ -152,28 +153,30 @@ const Cart = () => {
                         </>
                         :
                             <>
-                                {buscandoCart ? <Loader spin={"spinnerG"}/> :
-                                    <div className="cartVacio">
-                                        <img src={cart} alt="CART"
-                                            style={{
-                                                fontSize: "65px",
-                                                marginTop: "12px"
-                                            }}
-                                            />
-                                        <p>Tu carrito esta vacío</p>
-                                        <div className="seguirComprando">
-                                            <Button onClick={()=>navigate("/")}>
-                                                SEGUIR COMPRANDO
-                                            </Button>
+                                {buscandoCart ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div> :
+                                    <>
+                                        <div className="cartVacio">
+                                            <img src={cart} alt="CART"
+                                                style={{
+                                                    fontSize: "65px",
+                                                    marginTop: "12px"
+                                                }}
+                                                />
+                                            <p>Tu carrito esta vacío</p>
+                                            <div className="seguirComprando">
+                                                <Button onClick={()=>navigate("/")}>
+                                                    SEGUIR COMPRANDO
+                                                </Button>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <p className="carritoVolver" onClick={()=>navigate("/")}>
+                                            <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
+                                            VOLVER
+                                        </p>
+                                    </>
                                 }
                             </>
                     }
-                    <p className="carritoVolver" onClick={()=>navigate("/")}>
-                        <ArrowBackIosNewIcon sx={{fontSize:"10px"}}/>
-                        VOLVER
-                    </p>
                 </Grid>
                 
                 {carrito.length !== 0 && 
@@ -206,7 +209,7 @@ const Cart = () => {
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>
                             <Button className="eliminar" onClick={()=>handleEliminarFinal()}>ELIMINAR</Button>
                         </div>
-                        {load && <Loader spin={"spinnerG"}/>}
+                        {!load && <div style={{marginBottom:"24px"}}><Loader spin={"spinnerG"}/></div>}
                         {load && <br/>}
                         <img src={cruz} alt="CRUZ" className="cruz" onClick={()=>setEliminar(false)}/>
                     </div>

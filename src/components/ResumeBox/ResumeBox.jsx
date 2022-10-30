@@ -36,8 +36,8 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             "balance"
         ).then((res)=>{
             if(res.status==="success"){
-                setDebe(6000)
-                setHaber(100)
+                setDebe(res.result.debe)
+                setHaber(res.result.haber)
             }
         })
     },[]);// eslint-disable-line react-hooks/exhaustive-deps

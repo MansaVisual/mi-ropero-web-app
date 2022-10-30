@@ -167,9 +167,10 @@ const ProductBuyBox = ({prod,itemID}) => {
                     title="¡OFERTÁ!"
                     firstInputLabel="Monto de la oferta*"
                     secondInputLabel="Comentarios"
-                    firstText="Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"
+                    firstText={`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio}`}
                     leftButtonText="Cancelar"
                     rightButtonText="Hacer oferta"
+                    prod={prod}
                   />
                 )}
               </Box>
@@ -184,6 +185,7 @@ const ProductBuyBox = ({prod,itemID}) => {
                   thirdInputLabel="Tu mensaje para el vendedor/a"
                   leftButtonText="Cancelar"
                   rightButtonText="Enviar mensaje"
+                  prod={prod}
                 />
               )}
             </Box>
@@ -192,7 +194,7 @@ const ProductBuyBox = ({prod,itemID}) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                mb: "72px",
+                mb: isMobileBigScreen? costoEnvio.length===0?"72px":"24px":"72px",
               }}
             >
               <Box>
@@ -301,9 +303,10 @@ const ProductBuyBox = ({prod,itemID}) => {
                       title="¡OFERTÁ!"
                       firstInputLabel="Monto de la oferta*"
                       secondInputLabel="Comentarios"
-                      firstText="Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a $3600"
+                      firstText={`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio}`}
                       leftButtonText="Cancelar"
                       rightButtonText="Hacer oferta"
+                      prod={prod}
                     />
                   )}
                 </Box>
@@ -384,13 +387,16 @@ const ProductBuyBox = ({prod,itemID}) => {
 
         {costoEnvio.length!==0 &&
           <>
-            <Box>
+            <Box
+              sx={{
+                mb: isMobileBigScreen?"32px":"18px",
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[2],
                   fontWeight: theme.typography.fontWeightMedium,
                   color: theme.palette.quaternary.contrastText,
-                  mb: "18px",
                 }}
               >
                 Costo de envío a CP {CP}

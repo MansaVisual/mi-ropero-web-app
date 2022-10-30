@@ -1,3 +1,16 @@
+body{
+  &::-webkit-scrollbar {
+    width: 10px;
+}
+&::-webkit-scrollbar-thumb {
+    background: #BABCBE;
+    border-radius: 10px;
+}
+&::-webkit-scrollbar-track {
+    background: transparent;
+}
+}
+
 .Breadcrumbs {
   margin-left: 74px;
   margin-top: 56px;
@@ -134,5 +147,35 @@ input[type='number']::-webkit-outer-spin-button {
   margin-bottom: 12px !important;
   &:hover{
     background-color: #443988 !important;
+  }
+}
+
+.perfilVacio{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    img{
+      width: 100%;
+      max-width: 100px;
+    }
+    p{
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 25px;
+      color: #424143;
+    }
+    button{
+      border: 1px solid #443988;
+      filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+      border-radius: 20px;
+      padding: 10px 36px;
+    }
   }
 }
