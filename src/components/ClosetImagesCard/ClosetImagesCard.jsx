@@ -35,7 +35,6 @@ const ClosetImagesCard = ({
   const { PerfilAPI } = useContext(UsePerfilContext);
   const { userLog } = useContext(UseLoginContext);
 
-  const [operando, setOperando] = useState(false);
   const [seg,setSeg]=useState(0)
 
   const navigate = useNavigate();
@@ -59,7 +58,6 @@ const ClosetImagesCard = ({
   }, [seguidores, userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const addFollow = () => {
-    setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
@@ -69,13 +67,11 @@ const ClosetImagesCard = ({
       PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
         setSeg(res.result.seguidores)
         setLike(!like)
-        setOperando(false);
       })
     });
   };
   
   const unFollow = () => {
-    setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
@@ -85,7 +81,6 @@ const ClosetImagesCard = ({
       PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
         setSeg(res.result.seguidores)
         setLike(!like)
-        setOperando(false);
       })
     });
   };
