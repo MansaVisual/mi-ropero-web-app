@@ -1,14 +1,12 @@
-import React,{useState} from "react";
+import React from "react";
 import {
   Avatar,
   Box,
   Card,
-  CardActionArea,
   CardContent,
   Rating,
   Typography,
 } from "@mui/material";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 
