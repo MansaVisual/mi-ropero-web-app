@@ -90,6 +90,9 @@ const MisMensajes = () => {
                 fontSize: "14px",
                 fontWeight: "400",
               },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+              },
               height: 42,
             }}
           >
@@ -189,13 +192,12 @@ const MisMensajes = () => {
           })
         ) : (
           <div className="perfilVacio">
-          <div>
-            <img src={mensaje} alt="LOGO" />
-            <p>Aún no tienes mensajes "{typeMessage}"</p>
-            <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+            <div>
+              <img src={mensaje} alt="LOGO" />
+              <p>Aún no tienes mensajes "{typeMessage}"</p>
+              <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+            </div>
           </div>
-        </div>
-
         )}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>

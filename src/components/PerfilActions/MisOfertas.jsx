@@ -77,6 +77,9 @@ const MisOfertas = () => {
                   fontSize: "14px",
                   fontWeight: "400",
                 },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderWidth: "1px",
+                },
                 height: 42,
               }}
             >
@@ -158,23 +161,23 @@ const MisOfertas = () => {
           )}
           {ofertasRealizadas.map((producto) => {
             return (
-                <div className="mobileCard">
-                  <img
-                    src={producto.img}
-                    className="productImg"
-                    alt="cardImage"
-                  />
+              <div className="mobileCard">
+                <img
+                  src={producto.img}
+                  className="productImg"
+                  alt="cardImage"
+                />
+                <div>
+                  <p className="productoTitle">{producto.titulo}</p>
+                  <p className="productoDate">{producto.fecha}</p>
                   <div>
-                    <p className="productoTitle">{producto.titulo}</p>
-                    <p className="productoDate">{producto.fecha}</p>
-                    <div>
-                      <span className="firstSpan">OFERTA</span>
-                      <span className="secondSpan">${producto.oferta}</span>
-                    </div>
-                    <p className="productoState">{producto.estado}</p>
+                    <span className="firstSpan">OFERTA</span>
+                    <span className="secondSpan">${producto.oferta}</span>
                   </div>
-                  <img src={Basura} className="trashICon" alt="basuraIcon" />
+                  <p className="productoState">{producto.estado}</p>
                 </div>
+                <img src={Basura} className="trashICon" alt="basuraIcon" />
+              </div>
             );
           })}
         </div>

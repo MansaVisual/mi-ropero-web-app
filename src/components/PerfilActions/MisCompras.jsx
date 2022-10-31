@@ -73,6 +73,9 @@ const MisCompras = () => {
                 fontSize: "14px",
                 fontWeight: "400",
               },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+              },
               height: 42,
             }}
           >
