@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Dialog,
   DialogActions,
@@ -34,7 +34,7 @@ const DialogComponent = ({
   thirdInputLabel,
   leftButtonText,
   rightButtonText,
-  prod
+  prod,
 }) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -47,69 +47,56 @@ const DialogComponent = ({
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const {ProdAPI}=useContext(UseProdsContext)
-  const {userLog}=useContext(UseLoginContext)
+  const { ProdAPI } = useContext(UseProdsContext);
+  const { userLog } = useContext(UseLoginContext);
 
-  const [load,setLoad]=useState(false)
-
+  const [load, setLoad] = useState(false);
 
   const onSubmit = (data) => {
-    if (data.title==="¡OFERTÁ!") {
-      setLoad(true)
-      const oferta=new FormData()
-      oferta.append("idcliente",userLog)
-      oferta.append("idproducto",prod.idproducto)
-      oferta.append("oferta",data.amount)
-      oferta.append("mensaje",data.comment)
+    if (data.title === "¡OFERTÁ!") {
+      setLoad(true);
+      const oferta = new FormData();
+      oferta.append("idcliente", userLog);
+      oferta.append("idproducto", prod.idproducto);
+      oferta.append("oferta", data.amount);
+      oferta.append("mensaje", data.comment);
 
-      ProdAPI(
-        oferta,
-        "ofertas",
-        "insert"
-      ).then((res)=>{
-
-        if(res.status==="success"){
+      ProdAPI(oferta, "ofertas", "insert").then((res) => {
+        if (res.status === "success") {
           setTimeout(() => {
-            setLoad(false)
+            setLoad(false);
             handleClose();
-            alert("OFERTA ENVIADA")
+            alert("OFERTA ENVIADA");
           }, 1000);
-        }else{
+        } else {
           setTimeout(() => {
-            setLoad(false)
-            alert("OFERTA NO ENVIADA")
+            setLoad(false);
+            alert("OFERTA NO ENVIADA");
           }, 1000);
         }
-      })
-
+      });
     }
-    if (title==="¡ENVIÁ UN MENSAJE!"){
-      setLoad(true)
-      const oferta=new FormData()
-      oferta.append("idcliente",userLog)
-      oferta.append("idproducto",prod.idproducto)
-      oferta.append("mensaje",data.comment)
+    if (title === "¡ENVIÁ UN MENSAJE!") {
+      setLoad(true);
+      const oferta = new FormData();
+      oferta.append("idcliente", userLog);
+      oferta.append("idproducto", prod.idproducto);
+      oferta.append("mensaje", data.comment);
 
-      ProdAPI(
-        oferta,
-        "mensajes",
-        "insert"
-      ).then((res)=>{
-
-        if(res.status==="success"){
+      ProdAPI(oferta, "mensajes", "insert").then((res) => {
+        if (res.status === "success") {
           setTimeout(() => {
-            setLoad(false)
+            setLoad(false);
             handleClose();
-            alert("MENSAJE ENVIADO")
+            alert("MENSAJE ENVIADO");
           }, 1000);
-        }else{
+        } else {
           setTimeout(() => {
-            setLoad(false)
-            alert("MENSAJE NO ENVIADO")
+            setLoad(false);
+            alert("MENSAJE NO ENVIADO");
           }, 1000);
         }
-      })
-
+      });
     }
   };
 
@@ -166,11 +153,11 @@ const DialogComponent = ({
       open={open}
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
-      sx={{
-        "& .MuiPaper-root .MuiDialog-paper": {
-          margin: "32px",
-        },
-      }}
+      // sx={{
+      //   "& .MuiPaper-root .MuiDialog-paper": {
+      //     margin: "32px",
+      //   },
+      // }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <MuiDialogTitle
@@ -278,7 +265,7 @@ const DialogComponent = ({
                     type="number"
                     placeholder="$ Ingresar valor"
                     onChange={onChange}
-                    value={value===0?"":value}
+                    value={value === 0 ? "" : value}
                     error={
                       error?.type === "required" ||
                       error?.type === "pattern" ||
@@ -322,7 +309,7 @@ const DialogComponent = ({
               name="comment"
               control={control}
               rules={{
-                required:true,
+                required: true,
                 validate: (value) => {
                   if (
                     value.includes("@") ||
@@ -393,20 +380,26 @@ const DialogComponent = ({
             border={`1px solid ${theme.palette.primary.main}`}
             fullWidth
           />
-          {load ?
-            <div style={{width:"100%",display:"flex",justifyContent:"center" }}>
-                <Loader spin={"spinnerM"} />
+          {load ? (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Loader spin={"spinnerM"} />
             </div>
-          :
+          ) : (
             <Button
-            onClick={handleSubmit(onSubmit)}
-            text={rightButtonText}
-            backgroundColor={theme.palette.primary.main}
-            color={theme.palette.secondary.contrastText}
-            fullWidth
-            noHover={true}
+              onClick={handleSubmit(onSubmit)}
+              text={rightButtonText}
+              backgroundColor={theme.palette.primary.main}
+              color={theme.palette.secondary.contrastText}
+              fullWidth
+              noHover={true}
             />
-          }
+          )}
         </DialogActions>
       </form>
     </MuiDialog>

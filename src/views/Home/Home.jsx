@@ -51,7 +51,7 @@ const Home = () => {
           pb: "84px",
         }}
       >
-        <Container maxWidth={{ xs: "xs", md: "md", lg: "lg", xl: "xl" }}>
+        <Container maxWidth="xl">
           <Box sx={{ pt: "40px", textAlign: "center" }}>
             <Chip primary>Nuevos ingresos</Chip>
           </Box>

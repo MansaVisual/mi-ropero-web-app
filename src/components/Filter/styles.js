@@ -3,9 +3,7 @@ import theme from "../../styles/theme";
 
 export const ListItemStyled = styled((props) => <ListItemButton {...props} />)(
   ({ theme }) => ({
-    paddingTop: "16px",
-    paddingBottom: "16px",
-    paddingLeft: 0,
+    padding: "16px",
   })
 );
 
@@ -31,5 +29,8 @@ export const FormControlLabelStyled = {
     fontSize: theme.typography.fontSize[3],
     fontWeight: theme.typography.fontWeightRegular,
     color: theme.palette.quaternary.contrastText,
+  },
+  "&.MuiFormControlLabel-root": {
+    marginLeft: 0,
   },
 };

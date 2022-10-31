@@ -5,6 +5,7 @@ import { StyledChip } from "./styles";
 
 const Chip = (props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isExtraSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <StyledChip
@@ -22,7 +23,10 @@ const Chip = (props) => {
           fontSize: isMobile
             ? theme.typography.fontSize[5]
             : theme.typography.fontSize[9],
-          padding: "0px 48px 0px 48px",
+          padding:
+            isExtraSmall && props.smallSize
+              ? "0px 24px 0px 24px"
+              : "0px 48px 0px 48px",
           fontWeight: theme.typography.fontWeightBold,
           lineHeight: "40px",
           color: props.primary

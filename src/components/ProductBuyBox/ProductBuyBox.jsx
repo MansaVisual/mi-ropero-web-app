@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 // import { useLocation } from "react-router-dom";
 import {
   Box,
@@ -8,7 +8,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import OCA from "../../assets/img/OCA.png"
+import OCA from "../../assets/img/OCA.png";
 import { BiRightArrow } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
 import { CommentButton } from "../ActionButton/ActionButton";
@@ -23,24 +23,23 @@ import Loader from "../Loader/Loader";
 import { UseCartContext } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
-const ProductBuyBox = ({prod,itemID}) => {
+const ProductBuyBox = ({ prod, itemID }) => {
   // const location = useLocation();
   // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
   const [openCommentDialog, setOpenCommentDialog] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
-  const [load,setLoad]=useState(false)
-  const [load2,setLoad2]=useState(false)
+  const [load, setLoad] = useState(false);
+  const [load2, setLoad2] = useState(false);
 
-  const [costoEnvio,setCostoEnvio]=useState([])
-  const [CP,setCP]=useState("")
+  const [costoEnvio, setCostoEnvio] = useState([]);
+  const [CP, setCP] = useState("");
 
-  const {userLog}=useContext(UseLoginContext)
-  const {CartAPI,setCarrito}=useContext(UseCartContext)
-
+  const { userLog } = useContext(UseLoginContext);
+  const { CartAPI, setCarrito } = useContext(UseCartContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,18 +57,14 @@ const ProductBuyBox = ({prod,itemID}) => {
     setOpenCommentDialog(false);
   };
 
-  const handleAgregarCarrito=()=>{
-    setLoad(true)
-    const add=new FormData()
-    add.append("idcliente",userLog)
-    add.append("idproducto",itemID)
-    add.append("cantidad",1)
-    CartAPI(
-      add,
-      "carritos",
-      "insert"
-    ).then((res)=>{
-      if(res.result==="El producto se agrego correctamente al carrito"){
+  const handleAgregarCarrito = () => {
+    setLoad(true);
+    const add = new FormData();
+    add.append("idcliente", userLog);
+    add.append("idproducto", itemID);
+    add.append("cantidad", 1);
+    CartAPI(add, "carritos", "insert").then((res) => {
+      if (res.result === "El producto se agrego correctamente al carrito") {
         const CartID = new FormData();
         CartID.append("idcliente", userLog);
         CartAPI(CartID, "carritos", "all").then((res) => {
@@ -78,33 +73,32 @@ const ProductBuyBox = ({prod,itemID}) => {
           } else if (res.status === "error") {
           }
         });
-        setLoad(false)
-      }else if(res.result==="El producto ya existe en el carrito"){
-        alert("El producto ya se encuentra en tu carrito")
-        setLoad(false)
+        setLoad(false);
+      } else if (res.result === "El producto ya existe en el carrito") {
+        alert("El producto ya se encuentra en tu carrito");
+        setLoad(false);
       }
-    })
-  }
+    });
+  };
 
-  const handleCostoEnvio=()=>{
-    setLoad2(true)
-    setCP("")
-    setCostoEnvio([])
-    const envio=new FormData()
-    envio.append("idproducto",itemID)
-    envio.append("codigo_postal",document.getElementById("outlined-number").value)
-    CartAPI(
-      envio,
-      "productos",
-      "check_shipping_cost"
-    ).then((res)=>{
-      setLoad2(false)
-      if(res.status==="success"){
-        setCostoEnvio(res.result)
-        setCP(document.getElementById("outlined-number").value)
+  const handleCostoEnvio = () => {
+    setLoad2(true);
+    setCP("");
+    setCostoEnvio([]);
+    const envio = new FormData();
+    envio.append("idproducto", itemID);
+    envio.append(
+      "codigo_postal",
+      document.getElementById("outlined-number").value
+    );
+    CartAPI(envio, "productos", "check_shipping_cost").then((res) => {
+      setLoad2(false);
+      if (res.status === "success") {
+        setCostoEnvio(res.result);
+        setCP(document.getElementById("outlined-number").value);
       }
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -194,7 +188,11 @@ const ProductBuyBox = ({prod,itemID}) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                mb: isMobileBigScreen? costoEnvio.length===0?"72px":"24px":"72px",
+                mb: isMobileBigScreen
+                  ? costoEnvio.length === 0
+                    ? "72px"
+                    : "24px"
+                  : "72px",
               }}
             >
               <Box>
@@ -243,26 +241,30 @@ const ProductBuyBox = ({prod,itemID}) => {
                   }}
                   variant="outlined"
                 />
-                {load2 ? <div style={{marginTop:"4px"}}><Loader spin={"spinnerS"}/></div>:
+                {load2 ? (
+                  <div style={{ marginTop: "4px" }}>
+                    <Loader spin={"spinnerS"} />
+                  </div>
+                ) : (
                   <IconButton
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    marginLeft: "8px",
-                    borderRadius: "3px",
-                    border: "1px solid hsla(210, 3%, 74%, 1)",
-                    backgroundColor: "hsla(210, 3%, 74%, 1)",
-                  }}
-                  onClick={()=>handleCostoEnvio()}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      marginLeft: "8px",
+                      borderRadius: "3px",
+                      border: "1px solid hsla(210, 3%, 74%, 1)",
+                      backgroundColor: "hsla(210, 3%, 74%, 1)",
+                    }}
+                    onClick={() => handleCostoEnvio()}
                   >
                     <BiRightArrow
                       style={{
                         fontSize: "32px",
                         color: "hsla(0, 0%, 100%, 1)",
                       }}
-                      />
+                    />
                   </IconButton>
-                }
+                )}
               </Box>
             </Box>
           </>
@@ -274,7 +276,7 @@ const ProductBuyBox = ({prod,itemID}) => {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 mt: "24px",
-                mb: "32px",
+                mb: "72px",
               }}
             >
               <Box>
@@ -344,26 +346,30 @@ const ProductBuyBox = ({prod,itemID}) => {
                     }}
                     variant="outlined"
                   />
-                  {load2 ? <div style={{marginTop:"4px"}}><Loader spin={"spinnerS"}/></div>:
+                  {load2 ? (
+                    <div style={{ marginTop: "4px" }}>
+                      <Loader spin={"spinnerS"} />
+                    </div>
+                  ) : (
                     <IconButton
-                    style={{
-                      width: "32px",
-                      height: "32px",
-                      marginLeft: "8px",
-                      borderRadius: "3px",
+                      style={{
+                        width: "32px",
+                        height: "32px",
+                        marginLeft: "8px",
+                        borderRadius: "3px",
                         border: "1px solid hsla(210, 3%, 74%, 1)",
                         backgroundColor: "hsla(210, 3%, 74%, 1)",
                       }}
-                      onClick={()=>handleCostoEnvio()}
+                      onClick={() => handleCostoEnvio()}
                     >
                       <BiRightArrow
                         style={{
                           fontSize: "32px",
                           color: "hsla(0, 0%, 100%, 1)",
                         }}
-                        />
+                      />
                     </IconButton>
-                  }
+                  )}
                 </Box>
                 <Typography sx={{ mt: "8px" }}>
                   <Link
@@ -385,11 +391,11 @@ const ProductBuyBox = ({prod,itemID}) => {
           </>
         )}
 
-        {costoEnvio.length!==0 &&
+        {costoEnvio.length !== 0 && (
           <>
             <Box
               sx={{
-                mb: isMobileBigScreen?"32px":"18px",
+                mb: isMobileBigScreen ? "32px" : "18px",
               }}
             >
               <Typography
@@ -406,25 +412,27 @@ const ProductBuyBox = ({prod,itemID}) => {
                     fontWeight: theme.typography.fontWeightRegular,
                     color: theme.palette.primary.main,
                     ml: "16px",
-                    cursor:"pointer"
+                    cursor: "pointer",
                   }}
-                  onClick={()=>document.getElementById("outlined-number").focus()}
+                  onClick={() =>
+                    document.getElementById("outlined-number").focus()
+                  }
                 >
                   Cambiar
                 </Link>
               </Typography>
-              {costoEnvio.moova.status!=="error" &&
+              {costoEnvio.moova.status !== "error" && (
                 <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[2],
-                  fontWeight: theme.typography.fontWeightRegular,
-                  color: theme.palette.tertiary.main,
+                  sx={{
+                    fontSize: theme.typography.fontSize[2],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    color: theme.palette.tertiary.main,
                     mb: "18px",
                   }}
                 >
                   $500 moto a domicilio
                 </Typography>
-              }
+              )}
               <Box>
                 <img src={OCA} alt="OCA Logo" />
               </Box>
@@ -435,7 +443,11 @@ const ProductBuyBox = ({prod,itemID}) => {
                   color: theme.palette.tertiary.main,
                 }}
               >
-                $ {(Number(costoEnvio.oca_suc_dom.NewDataSet.Table.Precio)).toFixed(2)} a domicilio
+                ${" "}
+                {Number(costoEnvio.oca_suc_dom.NewDataSet.Table.Precio).toFixed(
+                  2
+                )}{" "}
+                a domicilio
               </Typography>
               <Typography
                 sx={{
@@ -444,13 +456,16 @@ const ProductBuyBox = ({prod,itemID}) => {
                   color: theme.palette.tertiary.main,
                 }}
               >
-                $ {(Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio)).toFixed(2)} a sucursal
+                ${" "}
+                {Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio).toFixed(
+                  2
+                )}{" "}
+                a sucursal
               </Typography>
             </Box>
-            <Box sx={{height:"40px"}}/>
+            <Box sx={{ height: "40px" }} />
           </>
-        }
-
+        )}
 
         <Box
           sx={{
@@ -463,9 +478,13 @@ const ProductBuyBox = ({prod,itemID}) => {
           <Button
             backgroundColor="hsla(59, 100%, 60%, 1)"
             color="hsla(351, 6%, 25%, 1)"
-            text={load?<Loader spin={"spinnerM"}/>:"Comprar"}
+            text={load ? <Loader spin={"spinnerM"} /> : "Comprar"}
             endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
-            onClick={userLog===""?()=>navigate("/login"):()=>handleAgregarCarrito()}
+            onClick={
+              userLog === ""
+                ? () => navigate("/login")
+                : () => handleAgregarCarrito()
+            }
             fullWidth
             height
           />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import {
   Backdrop,
   Box,
@@ -9,36 +9,35 @@ import {
   Stack,
   Typography,
   useMediaQuery,
-} from '@mui/material';
-import { useLocation, useParams } from 'react-router-dom';
-import Onboarding from '../../components/Onboarding/Onboarding';
-import Filter from '../../components/Filter/Filter';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import { StyledLink } from '../../components/Footer/styles';
-import notFoundIcon from '../../assets/img/notFoundIcon.svg';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import Button from '../../components/Button/Button';
-import { FilterButton } from '../../components/ActionButton/ActionButton';
-import theme from '../../styles/theme';
-import Pagination from '../../components/Pagination/Pagination';
-import { UseProdsContext } from '../../context/ProdsContext';
-import Loader from '../../components/Loader/Loader';
-import ChipFilterCategories from '../../components/ChipFilterCategories/ChipFilterCategories';
-import ProdsRelation from '../../components/ProdsRelation/ProdsRelation';
+} from "@mui/material";
+import { useLocation, useParams } from "react-router-dom";
+import Onboarding from "../../components/Onboarding/Onboarding";
+import Filter from "../../components/Filter/Filter";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import { StyledLink } from "../../components/Footer/styles";
+import notFoundIcon from "../../assets/img/notFoundIcon.svg";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import { FilterButton } from "../../components/ActionButton/ActionButton";
+import theme from "../../styles/theme";
+import Pagination from "../../components/Pagination/Pagination";
+import { UseProdsContext } from "../../context/ProdsContext";
+import Loader from "../../components/Loader/Loader";
+import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
+import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '80%',
-  height: '100%',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80%",
+  height: "100%",
   bgcolor: theme.palette.secondary.contrastText,
   boxShadow: 24,
   p: 3,
-  borderRadius: '6px',
+  borderRadius: "6px",
   zIndex: 10,
-  overflowY: 'auto',
+  overflowY: "auto",
 };
 
 const SearchProductsResults = () => {
@@ -46,9 +45,9 @@ const SearchProductsResults = () => {
   const { keyword, search } = useParams();
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const pathnames = location.pathname.split("/").filter((x) => x);
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [load2, setLoad2] = useState(false);
 
@@ -59,26 +58,26 @@ const SearchProductsResults = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   const [putFilters, setPutFilters] = useState([]);
-  const [putSort, setPutSort] = useState('');
-  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
+  const [putSort, setPutSort] = useState("");
+  const [rangoPrecio, setRangoPrecio] = useState({ min: 0, max: 999999 });
 
   const [filtrosFin, setFiltrosFin] = useState("");
 
-  const [pags,setPags]=useState(1)
+  const [pags, setPags] = useState(1);
 
   useEffect(() => {
     // filter products by keyword entered in search bar
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
 
     setBuscandoProds(true);
     setProds([]);
-    setPutFilters([])
-    setPutSort("")
-    setTotalPages(0)
-    
+    setPutFilters([]);
+    setPutSort("");
+    setTotalPages(0);
+
     if (
       categorias !== undefined &&
       categorias.length !== 0 &&
@@ -99,35 +98,35 @@ const SearchProductsResults = () => {
 
   const prodsCategoria = (paramSearch) => {
     const catProd = new FormData();
-    let idCat = '';
+    let idCat = "";
 
     if (paramSearch) {
-      catProd.append('text', keyword);
+      catProd.append("text", keyword);
     } else {
       idCat = categorias.find(
-        (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
+        (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
       );
-      catProd.append('idcategoria', idCat.idcategoria);
+      catProd.append("idcategoria", idCat.idcategoria);
 
       const catFilters = new FormData();
-      catFilters.append('idcategoria', idCat.idcategoria);
+      catFilters.append("idcategoria", idCat.idcategoria);
 
-      if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
-        catProd.append("precio_desde",rangoPrecio.min)
-        catProd.append("precio_hasta",rangoPrecio.max)
+      if (rangoPrecio.min !== 0 || rangoPrecio.max !== 0) {
+        catProd.append("precio_desde", rangoPrecio.min);
+        catProd.append("precio_hasta", rangoPrecio.max);
       }
 
-      ProdAPI(catFilters, 'categorias', 'get').then((res) => {
-        if (res.status === 'success') {
+      ProdAPI(catFilters, "categorias", "get").then((res) => {
+        if (res.status === "success") {
           setFiltrosCategoria(res.result[0]);
         }
       });
     }
-    catProd.append('bypage', 15);
-    catProd.append('page', 0);
-    ProdAPI(catProd, 'productos', 'search').then((res) => {
+    catProd.append("bypage", 15);
+    catProd.append("page", 0);
+    ProdAPI(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
-      if (res.status === 'success') {
+      if (res.status === "success") {
         setProds(res.result.productos);
         setTotalPages(res.result.total_paginas);
       }
@@ -135,149 +134,149 @@ const SearchProductsResults = () => {
   };
 
   const buscarPage = (paramSearch, value) => {
-    if(rangoPrecio.min>rangoPrecio.max){
-      alert("Rango de precios incorrectos.")
-      return
+    if (rangoPrecio.min > rangoPrecio.max) {
+      alert("Rango de precios incorrectos.");
+      return;
     }
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
     setLoad2(true);
     const catProd = new FormData();
-    let idCat = '';
+    let idCat = "";
 
-    if(putSort==="Mas relevante primero"){
-      catProd.append("order_type","desc")
-      catProd.append("order","idproducto")
-    }else if(putSort==="Mayor precio primero"){
-      catProd.append("order_type","desc")
-      catProd.append("order","precio")
-    }else if(putSort==="Menor precio primero"){
-      catProd.append("order_type","asc")
-      catProd.append("order","precio")
+    if (putSort === "Mas relevante primero") {
+      catProd.append("order_type", "desc");
+      catProd.append("order", "idproducto");
+    } else if (putSort === "Mayor precio primero") {
+      catProd.append("order_type", "desc");
+      catProd.append("order", "precio");
+    } else if (putSort === "Menor precio primero") {
+      catProd.append("order_type", "asc");
+      catProd.append("order", "precio");
     }
-    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
-      catProd.append("precio_desde",rangoPrecio.min)
-      catProd.append("precio_hasta",rangoPrecio.max)
+    if (rangoPrecio.min !== 0 || rangoPrecio.max !== 0) {
+      catProd.append("precio_desde", rangoPrecio.min);
+      catProd.append("precio_hasta", rangoPrecio.max);
     }
-    if(putFilters.length!==0){
-      catProd.append("caracteristicas",filtrosFin)
+    if (putFilters.length !== 0) {
+      catProd.append("caracteristicas", filtrosFin);
     }
     if (paramSearch) {
-      catProd.append('text', keyword);
+      catProd.append("text", keyword);
     } else {
       idCat = categorias.find(
-        (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
+        (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
       );
-      catProd.append('idcategoria', idCat.idcategoria);
+      catProd.append("idcategoria", idCat.idcategoria);
     }
-    catProd.append('bypage', 15);
-    
-    catProd.append('page', value);
+    catProd.append("bypage", 15);
 
-    ProdAPI(catProd, 'productos', 'search').then((res) => {
+    catProd.append("page", value);
+
+    ProdAPI(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
-      if (res.status === 'success') {
+      if (res.status === "success") {
         setProds(res.result.productos);
       }
       setLoad2(false);
       window.scrollTo({
         top: 0,
-        behavior: 'auto',
+        behavior: "auto",
       });
     });
   };
 
   const handleAplicarFiltros = () => {
-    if(rangoPrecio.min>rangoPrecio.max){
-      alert("Rango de precios incorrectos.")
-      return
+    if (rangoPrecio.min > rangoPrecio.max) {
+      alert("Rango de precios incorrectos.");
+      return;
     }
-    setPags(1)
-    setLoad2(true)
+    setPags(1);
+    setLoad2(true);
     let array = [];
     for (let i = 0; i < putFilters.length; i++) {
       array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
     }
     setFiltrosFin(array.toString());
 
-    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
-        const prod=new FormData()
-        let idCat=[]
+    if (
+      putFilters.length !== 0 ||
+      putSort !== "" ||
+      rangoPrecio.min !== 0 ||
+      rangoPrecio.max !== 0
+    ) {
+      const prod = new FormData();
+      let idCat = [];
 
-        if(search !== undefined){
-          prod.append("text",keyword)
-        }else{
-          idCat = categorias.find(
-            (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
-          );
-          prod.append('idcategoria', idCat.idcategoria);
+      if (search !== undefined) {
+        prod.append("text", keyword);
+      } else {
+        idCat = categorias.find(
+          (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
+        );
+        prod.append("idcategoria", idCat.idcategoria);
+      }
+
+      if (rangoPrecio.min !== 0 || rangoPrecio.max !== 0) {
+        prod.append("precio_desde", rangoPrecio.min);
+        prod.append("precio_hasta", rangoPrecio.max);
+      }
+
+      prod.append("bypage", 15);
+      prod.append("page", 0);
+
+      if (putSort === "Mas relevante primero") {
+        prod.append("order_type", "desc");
+        prod.append("order", "relevancia");
+      } else if (putSort === "Menos relevante primero") {
+        prod.append("order_type", "asc");
+        prod.append("order", "relevancia");
+      } else if (putSort === "Mayor precio primero") {
+        prod.append("order_type", "desc");
+        prod.append("order", "precio");
+      } else if (putSort === "Menor precio primero") {
+        prod.append("order_type", "asc");
+        prod.append("order", "precio");
+      }
+
+      if (putFilters.length !== 0) {
+        prod.append("caracteristicas", array.toString());
+      }
+      ProdAPI(prod, "productos", "search").then((res) => {
+        setLoad2(false);
+        if (res.status === "success") {
+          setProds(res.result.productos);
+          setTotalPages(res.result.total_paginas);
         }
-
-        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
-          prod.append("precio_desde",rangoPrecio.min)
-          prod.append("precio_hasta",rangoPrecio.max)
-        }
-
-        prod.append("bypage",15)
-        prod.append("page",0)
-
-        if(putSort==="Mas relevante primero"){
-          prod.append("order_type","desc")
-          prod.append("order","relevancia")
-        }else if(putSort==="Menos relevante primero"){
-          prod.append("order_type","asc")
-          prod.append("order","relevancia")
-        }else if(putSort==="Mayor precio primero"){
-          prod.append("order_type","desc")
-          prod.append("order","precio")
-        }else if(putSort==="Menor precio primero"){
-          prod.append("order_type","asc")
-          prod.append("order","precio")
-        }
-
-        if(putFilters.length!==0){
-          prod.append("caracteristicas",array.toString())
-        }
-        ProdAPI(
-          prod,
-          "productos",
-          "search"
-        ).then((res)=>{
-          setLoad2(false)
-          if (res.status === 'success') {
-            setProds(res.result.productos);
-            setTotalPages(res.result.total_paginas);
-          }
-        })
+      });
     }
   };
-
 
   return (
     <>
       {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
 
-      <Container maxWidth='xl'>
+      <Container maxWidth="xl">
         <Grid
           container
           sx={{
-            px: isMobile || isMobileBigScreen ? '16px' : '74px',
-            py: '40px',
-            mb:"100px"
+            px: isMobile || isMobileBigScreen ? "16px" : "74px",
+            py: "40px",
+            mb: "100px",
           }}
-          spacing={6}
+          spacing={5}
         >
           <Grid item xs={12} sm={6} md={3}>
             {isMobile || isMobileBigScreen ? (
-              <Box sx={{ mt: '16px' }}>
+              <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
                 <Box
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
                   <Typography
@@ -285,7 +284,7 @@ const SearchProductsResults = () => {
                       fontSize: theme.typography.fontSize[9],
                       fontWeight: theme.typography.fontWeightMedium,
                       color: theme.palette.primary.main,
-                      textTransform: 'capitalize',
+                      textTransform: "capitalize",
                     }}
                   >
                     {keyword}
@@ -296,25 +295,25 @@ const SearchProductsResults = () => {
                   <Modal
                     open={open}
                     onClose={() => setOpen(false)}
-                    aria-labelledby='filter-modal-title'
+                    aria-labelledby="filter-modal-title"
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
                       timeout: 500,
                     }}
-                    sx={{ overflowY: 'auto', m: '40px 0', borderRadius: '6px' }}
+                    sx={{ overflowY: "auto", m: "40px 0", borderRadius: "6px" }}
                   >
                     <Fade in={open}>
                       <Box sx={style}>
                         <Box
                           sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            mt: '16px',
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            mt: "16px",
                           }}
                         >
-                          <Typography id='filter-modal-title' component='h2'>
+                          <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
                           {/* <Typography
@@ -330,7 +329,7 @@ const SearchProductsResults = () => {
                           </Typography> */}
                           {putFilters.map((res, index) => {
                             return (
-                              <Stack direction='row' spacing={1}>
+                              <Stack direction="row" spacing={1}>
                                 <ChipFilterCategories
                                   filteredCategory={res}
                                   key={index}
@@ -346,14 +345,6 @@ const SearchProductsResults = () => {
                               </Stack>
                             );
                           })}
-                          <Button
-                            backgroundColor={theme.palette.primary.main}
-                            color={theme.palette.secondary.contrastText}
-                            text='APLICAR'
-                            small
-                            notRounded
-                            disabled
-                          />
                         </Box>
                         <Filter
                           filtros={filtrosCategoria}
@@ -383,8 +374,8 @@ const SearchProductsResults = () => {
                       fontSize: theme.typography.fontSize[9],
                       fontWeight: theme.typography.fontWeightMedium,
                       color: theme.palette.primary.main,
-                      textTransform: 'capitalize',
-                      mb: '20px',
+                      textTransform: "capitalize",
+                      mb: "20px",
                     }}
                   >
                     {keyword}
@@ -392,7 +383,7 @@ const SearchProductsResults = () => {
                 </Box>
                 {putFilters.map((res, index) => {
                   return (
-                    <Stack direction='row' spacing={1}>
+                    <Stack direction="row" spacing={1}>
                       <ChipFilterCategories
                         filteredCategory={res}
                         key={index}
@@ -427,14 +418,25 @@ const SearchProductsResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={9}>
-            {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
+            {load2 ? (
+              <div
+                style={{
+                  marginTop: "24px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader spin={"spinnerG"} />
+              </div>
+            ) : (
               <Box
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  flexWrap: 'wrap',
-                  gap: '32px',
-                  mb: '32px',
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  flexWrap: "wrap",
+                  gap: "32px",
+                  mb: "32px",
                 }}
               >
                 {prods.length !== 0 && keyword ? (
@@ -447,7 +449,7 @@ const SearchProductsResults = () => {
                         productPrice={product.precio}
                         idProducto={product.idproducto}
                         idTienda={product.idtienda}
-                        tag='NUEVO'
+                        tag="NUEVO"
                         datosTienda={product.tienda}
                         precioOferta={product.precio_oferta}
                       />
@@ -456,24 +458,31 @@ const SearchProductsResults = () => {
                 ) : (
                   <>
                     {buscandoProds ? (
-                      <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
-                        <Loader spin={'spinnerG'} />
+                      <div
+                        style={{
+                          marginTop: "24px",
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Loader spin={"spinnerG"} />
                       </div>
                     ) : (
                       <Box
                         sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          mt: '16px',
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          mt: "16px",
                         }}
                       >
-                        <Box sx={{ mr: '20px' }}>
+                        <Box sx={{ mr: "20px" }}>
                           <img
                             src={notFoundIcon}
                             width={30}
                             height={30}
-                            alt='not found icon'
+                            alt="not found icon"
                           />
                         </Box>
                         <Box>
@@ -482,20 +491,20 @@ const SearchProductsResults = () => {
                               fontSize: theme.typography.fontSize[6],
                               fontWeight: theme.typography.fontWeightMedium,
                               color: theme.palette.secondary.main,
-                              textTransform: 'uppercase',
+                              textTransform: "uppercase",
                               textAlign:
                                 isMobile || isMobileBigScreen
-                                  ? 'center'
-                                  : 'unset',
+                                  ? "center"
+                                  : "unset",
                               mb: 4,
                             }}
                           >
-                            No encontramos resultados para{' '}
+                            No encontramos resultados para{" "}
                             <Typography
-                              component='span'
+                              component="span"
                               sx={{
                                 color: theme.palette.secondary.main,
-                                textTransform: 'capitalize',
+                                textTransform: "capitalize",
                               }}
                             >
                               "{keyword}"
@@ -530,33 +539,33 @@ const SearchProductsResults = () => {
                             similar
                           </Typography>
                           <StyledLink
-                            to='/'
+                            to="/"
                             sx={{
-                              display: 'flex',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              cursor: 'default',
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              cursor: "default",
                             }}
                           >
                             <Typography
-                              component='span'
+                              component="span"
                               sx={{
-                                boxSizing: 'border-box',
+                                boxSizing: "border-box",
                                 color: theme.palette.primary.main,
                                 fontSize: theme.typography.fontSize[2],
                                 fontWeight: theme.typography.fontWeightRegular,
-                                textTransform: 'uppercase',
-                                padding: '10px 36px',
-                                height: '36px',
-                                width: '200px',
-                                textAlign: 'center',
-                                border: '1px solid hsl(248.4, 40.9%, 37.8%)',
-                                borderRadius: '20px',
+                                textTransform: "uppercase",
+                                padding: "10px 36px",
+                                height: "36px",
+                                width: "200px",
+                                textAlign: "center",
+                                border: "1px solid hsl(248.4, 40.9%, 37.8%)",
+                                borderRadius: "20px",
                                 mt: 4,
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
                               }}
                               onClick={() => prodsCategoria()}
                             >
@@ -569,23 +578,26 @@ const SearchProductsResults = () => {
                   </>
                 )}
               </Box>
-            }
+            )}
 
             {prods.length !== 0 && totalPages > 1 && keyword && !load2 && (
               <Box
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
+                <Pagination
+                  cantidad={totalPages}
+                  buscarPage={buscarPage}
+                  pags={pags}
+                  setPags={setPags}
+                />
               </Box>
             )}
           </Grid>
-          {!buscandoProds && 
-            <ProdsRelation />
-          }
+          {!buscandoProds && <ProdsRelation />}
         </Grid>
       </Container>
     </>
