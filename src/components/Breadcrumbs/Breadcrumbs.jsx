@@ -40,7 +40,7 @@ const Breadcrumbs = ({ links }) => {
               color: theme.palette.quaternary.contrastText,
             }}
           >
-            {link.replace(/%20/g, " ")}
+            {link.replace(/%20/g, " ").replaceAll("&"," ")}
           </Typography>
         ) : (
           <Link
