@@ -8,7 +8,6 @@ import { Button, MenuItem, Select } from "@mui/material";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
-import vacio from "../../assets/img/comprasVacio.png";
 import mensaje from "../../assets/img/mensajesVacio.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
 
