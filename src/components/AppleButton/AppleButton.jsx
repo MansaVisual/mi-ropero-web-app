@@ -15,8 +15,8 @@ const AppleButton = () => {
       <LoginSocialApple
         client_id={"ar.com.miropero.web"}
         scope={"name email"}
-        /* redirect_uri={REDIRECT_URI}
-        onLoginStart={onLoginStart} */
+        redirect_uri={"https://mi-ropero-web-app.vercel.app"}
+        /* onLoginStart={onLoginStart} */
         onResolve={({ provider, data }) => {
           setData([provider, data]);
         }}
