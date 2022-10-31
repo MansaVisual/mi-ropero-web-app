@@ -57,7 +57,7 @@ console.log(slider1)
           <Box sx={{ pt: "40px", textAlign: "center" }}>
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px", display: "flex", justifyContent:"flex-start" }}>
             <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -76,7 +76,7 @@ console.log(slider1)
             <Chip>Zapatillas</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px", display: "flex", justifyContent:"flex-start" }}>
             <SliderProd contenido={slider1} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -107,7 +107,7 @@ console.log(slider1)
             <Chip>Remeras</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px", display: "flex", justifyContent:"flex-start" }}>
             <SliderProd contenido={slider2} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -126,7 +126,7 @@ console.log(slider1)
             <Chip>Blusa/Top</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px", display: "flex", justifyContent:"flex-start" }}>
             <SliderProd contenido={slider3} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -193,7 +193,7 @@ console.log(slider1)
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Productos recomendados</Chip>
           </Box>
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px", display: "flex", justifyContent:"flex-start" }}>
             <SliderProd contenido={coleccionRecomendados} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -211,7 +211,7 @@ console.log(slider1)
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px", display: "flex", justifyContent:"flex-start" }}>
             <SliderProd contenido={coleccionMejoresV} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
