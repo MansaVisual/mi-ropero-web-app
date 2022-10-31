@@ -1,7 +1,8 @@
 .misDatosContainer {
   margin-top: 40px;
   margin-bottom: 60px;
-  max-width: 758px;
+  /* max-width: 758px; */
+  max-width: 1366px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -183,6 +184,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 48px;
+    max-width: 746px;
     @include screen_705 {
       flex-direction: column-reverse;
       margin-top: 24px;

@@ -1,8 +1,12 @@
 .misMensajesContainer {
   margin-top: 40px;
   @include screen_1450 {
-    max-width: 1120px;
+    width: 100%;
+    max-width: 1366px;
   }
+  /*   @include screen_1450 {
+    max-width: 1120px;
+  } */
   @include screen_705 {
     margin-top: 0px;
   }
@@ -10,7 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 895px;
+    /* max-width: 895px; */
+    max-width: 1366px;
     width: 100%;
     .title {
       font-style: normal;
@@ -54,7 +59,8 @@
       justify-content: center;
     }
     .desktopCard {
-      max-width: 895px;
+      /* max-width: 895px; */
+      max-width: 1366px;
       box-sizing: border-box;
       display: flex;
       align-items: center;

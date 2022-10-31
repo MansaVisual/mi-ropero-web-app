@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @include screen_1450 {
+    width: 100%;
+    max-width: 1366px;
+  }
   @include screen_705 {
     margin-top: 24px;
     width: 100%;

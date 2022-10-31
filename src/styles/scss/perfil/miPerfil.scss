@@ -10,6 +10,10 @@
 }
 .miPerfilContainer {
   margin-top: 40px;
+  @include screen_1450 {
+    width: 100%;
+    max-width: 1366px;
+  }
   @include screen_705 {
     margin-top: 24px;
   }
