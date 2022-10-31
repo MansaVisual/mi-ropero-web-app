@@ -1,4 +1,4 @@
-import React, { useState,useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   ImageList,
   ImageListItem,
@@ -20,14 +20,22 @@ import { UsePerfilContext } from "../../context/PerfilContext";
 import { UseLoginContext } from "../../context/LoginContext";
 
 const ClosetImagesCard = ({
-  ropero: { nombre, icono, productos, rating, img, idtienda, seguidores_count, seguidores },
+  ropero: {
+    nombre,
+    icono,
+    productos,
+    rating,
+    img,
+    idtienda,
+    seguidores_count,
+    seguidores,
+  },
   keyword,
 }) => {
-  
-  const {PerfilAPI}=useContext(UsePerfilContext)
-  const {userLog}=useContext(UseLoginContext)
+  const { PerfilAPI } = useContext(UsePerfilContext);
+  const { userLog } = useContext(UseLoginContext);
 
-  const [operando,setOperando]=useState(false)
+  const [operando, setOperando] = useState(false);
 
   const navigate = useNavigate();
   const handleClick = (event) => {
@@ -39,51 +47,49 @@ const ClosetImagesCard = ({
   const [like, setLike] = useState(false);
 
   useEffect(() => {
-    if(seguidores!==undefined && userLog!==undefined){
-      for(const i in seguidores){
-        if(seguidores[i]===userLog){
-          console.log(seguidores[i])
-          setLike(true)
+    if (seguidores !== undefined && userLog !== undefined) {
+      for (const i in seguidores) {
+        if (seguidores[i] === userLog) {
+          console.log(seguidores[i]);
+          setLike(true);
         }
       }
     }
-  }, [seguidores,userLog]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [seguidores, userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const addFollow = ()=>{
-    setOperando(true)
-    const follow = new FormData()
-    follow.append("idcliente",userLog)
-    follow.append("idtienda",idtienda)
-    PerfilAPI(
-      follow,
-      "tiendas",
-      "follow"
-    ).then(()=>{setOperando(false)})
-  }
-  const unFollow = ()=>{
-    setOperando(true)
-    const follow = new FormData()
-    follow.append("idcliente",userLog)
-    follow.append("idtienda",idtienda)
-    PerfilAPI(
-      follow,
-      "tiendas",
-      "unfollow"
-    ).then(()=>{setOperando(false)})
-  }
+  const addFollow = () => {
+    setOperando(true);
+    const follow = new FormData();
+    follow.append("idcliente", userLog);
+    follow.append("idtienda", idtienda);
+    PerfilAPI(follow, "tiendas", "follow").then(() => {
+      setOperando(false);
+    });
+  };
+  const unFollow = () => {
+    setOperando(true);
+    const follow = new FormData();
+    follow.append("idcliente", userLog);
+    follow.append("idtienda", idtienda);
+    PerfilAPI(follow, "tiendas", "unfollow").then(() => {
+      setOperando(false);
+    });
+  };
 
   return (
-    <Box sx={{ flex: 1, maxWidth: { sm: "420px" },minWidth: { sm: "420px" } }}>
+    <Box sx={{ maxWidth: { sm: "420px" }, minWidth: { sm: "420px" } }}>
       <Box>
         <ImageList
           sx={{
             position: "relative",
             boxSizing: "border-box",
+            minWidth: "270px",
             "&.MuiImageList-root": {
               overflow: "hidden",
               borderRadius: "12px",
               border: "1px solid #e6e6e6",
               margin: 0,
+              gap: "0 !important",
             },
           }}
         >
@@ -124,20 +130,21 @@ const ClosetImagesCard = ({
                         backgroundColor: theme.palette.secondary.main,
                         width: "32px",
                         height: "32px",
-                        cursor:"pointer"
+                        cursor: "pointer",
                       }}
-                        onClick={()=>navigate(`/roperos/${idtienda}/${nombre}`)}
+                      onClick={() => navigate(`/roperos/${idtienda}/${nombre}`)}
                       src={icono}
-                    >
-                    </Avatar>
+                    ></Avatar>
                     <Box>
                       <Typography
                         sx={{
                           fontSize: theme.typography.fontSize[2],
                           fontWeight: theme.typography.fontWeightRegular,
-                          cursor:"pointer"
+                          cursor: "pointer",
                         }}
-                        onClick={()=>navigate(`/roperos/${idtienda}/${nombre}`)}
+                        onClick={() =>
+                          navigate(`/roperos/${idtienda}/${nombre}`)
+                        }
                       >
                         {nombre}
                       </Typography>
@@ -153,7 +160,8 @@ const ClosetImagesCard = ({
                             mr: "5px",
                           }}
                         >
-                          {productos.length} {productos.length===1?"producto":"productos"}
+                          {productos.length}{" "}
+                          {productos.length === 1 ? "producto" : "productos"}
                         </Typography>
                         <Rating
                           name="read-only"
@@ -191,7 +199,7 @@ const ClosetImagesCard = ({
                               fontSize: "9px",
                               fontWeight: 700,
                             }}
-                            onClick={()=>addFollow()}
+                            onClick={() => addFollow()}
                           >
                             {seguidores_count}
                           </Typography>
@@ -213,7 +221,7 @@ const ClosetImagesCard = ({
                               fontSize: "9px",
                               fontWeight: 700,
                             }}
-                            onClick={()=>unFollow()}
+                            onClick={() => unFollow()}
                           >
                             {seguidores_count}
                           </Typography>

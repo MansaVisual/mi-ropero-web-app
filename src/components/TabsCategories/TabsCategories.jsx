@@ -80,10 +80,10 @@ const TabsCategories = () => {
               onChange={handleChange}
               aria-label="ant example"
             >
-              <AntTab label="Ropa" />
-              <AntTab label="Calzado" />
-              <AntTab label="Accesorios" />
-              <AntTab label="Belleza" />
+              <AntTab label="Ropa" id="ROPA" />
+              <AntTab label="Calzado" id="CALZADO" />
+              <AntTab label="Accesorios" id="ACCESORIOS" />
+              <AntTab label="Belleza" id="BELLEZA" />
               <Link
                 sx={{
                   color: theme.palette.primary.contrastText,
@@ -94,7 +94,7 @@ const TabsCategories = () => {
                   cursor: "pointer",
                   lineHeight: "19.07px",
                 }}
-                onClick={()=>navigate("/roperos")}
+                onClick={() => navigate("/roperos")}
               >
                 Roperos
               </Link>
@@ -104,9 +104,8 @@ const TabsCategories = () => {
         <TabPanel value={value} index={0}>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
               maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
@@ -130,14 +129,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
@@ -154,9 +154,8 @@ const TabsCategories = () => {
         <TabPanel value={value} index={1}>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
               maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
@@ -180,14 +179,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
@@ -204,9 +204,8 @@ const TabsCategories = () => {
         <TabPanel value={value} index={2}>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
               maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
@@ -230,14 +229,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>
@@ -254,9 +254,8 @@ const TabsCategories = () => {
         <TabPanel value={value} index={3}>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
               maxHeight: "328px",
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
@@ -280,14 +279,15 @@ const TabsCategories = () => {
                                 textDecoration: "none",
                                 "&:hover": { textDecoration: "underline" },
                               }}
-                              onClick={() =>
+                              onClick={() => {
                                 navigate(
                                   `/productos/${item.nombre.replaceAll(
                                     "/",
                                     "&"
                                   )}`
-                                )
-                              }
+                                );
+                                handleClickAway();
+                              }}
                             >
                               {item.nombre}
                             </Link>

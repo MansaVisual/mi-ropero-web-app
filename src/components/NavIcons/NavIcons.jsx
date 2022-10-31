@@ -39,7 +39,7 @@ import cruz from "../../assets/img/cruz.png";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const { userLog, setUserLog,notis } = useContext(UseLoginContext);
+  const { userLog, setUserLog, notis } = useContext(UseLoginContext);
   const {
     carrito,
     costoCarrito,
@@ -318,7 +318,14 @@ const NavIcons = () => {
     return (
       <>
         {buscandoCart ? (
-          <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+          <div
+            style={{
+              marginTop: "24px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Loader spin={"spinnerM"} />
           </div>
         ) : (
@@ -445,6 +452,10 @@ const NavIcons = () => {
                             justifyContent: "space-between",
                             alignItems: "center",
                             px: "8px",
+                            marginBottom: "10px",
+                            "&:last-child": {
+                              marginBottom: "0px",
+                            },
                           }}
                           key={i}
                         >
@@ -462,7 +473,7 @@ const NavIcons = () => {
                               height={40}
                             />
                           </Box>
-                          <Box>
+                          <Box sx={{ maxWidth: "100px" }}>
                             <Typography
                               sx={{ fontSize: theme.typography.fontSize[2] }}
                             >
@@ -715,7 +726,18 @@ const NavIcons = () => {
                 ELIMINAR
               </Button>
             </div>
-            {load && <div style={{ marginBottom: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"} /></div>}
+            {load && (
+              <div
+                style={{
+                  marginBottom: "24px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader spin={"spinnerG"} />
+              </div>
+            )}
             {load && <br />}
             <img
               src={cruz}

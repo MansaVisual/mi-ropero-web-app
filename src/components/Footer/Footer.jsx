@@ -107,6 +107,7 @@ const Footer = () => {
               {footerContent.products.text.map((item, key) => (
                 <StyledLink
                   key={key}
+                  id={item}
                   sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                 >
                   {item}

@@ -24,11 +24,10 @@ const ProductCard = ({
   datosTienda,
   itemFav,
   precioOferta,
-  idTienda
+  idTienda,
 }) => {
-
   const { userLog, infoUser } = useContext(UseLoginContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const buttonRef = useRef(null);
@@ -40,11 +39,10 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-
   return (
     <Card
       sx={{
-        width: { xs: "160px", md: "264px", lg: "220px", xl: "264px" },
+        width: { xs: "160px", sm: "220px", md: "264px", xl: "264px" },
         position: "relative",
         overflow: "hidden",
         borderRadius: "10px",
@@ -96,7 +94,7 @@ const ProductCard = ({
             },
           }}
           ref={buttonRef}
-          onClick={()=>navigate(`/productoCard/${idProducto}`)}
+          onClick={() => navigate(`/productoCard/${idProducto}`)}
         >
           Comprar
         </Button>
@@ -115,29 +113,25 @@ const ProductCard = ({
           {productName}
         </Typography>
         <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
-          {itemFav!==undefined && itemFav.producto_tienda !== undefined &&
+          {itemFav !== undefined && itemFav.producto_tienda !== undefined && (
             <AvatarMR
-            avatarCard
-            datosTienda={
-              itemFav.producto_tienda
-            }
-            idTienda={idTienda}
+              avatarCard
+              datosTienda={itemFav.producto_tienda}
+              idTienda={idTienda}
             />
-          }
-          {datosTienda!==undefined &&
+          )}
+          {datosTienda !== undefined && (
             <AvatarMR
-            avatarCard
-            datosTienda={
-              datosTienda
-            }
-            idTienda={idTienda}
+              avatarCard
+              datosTienda={datosTienda}
+              idTienda={idTienda}
             />
-          }
+          )}
         </Box>
       </CardContent>
       <Divider />
       <CardContent sx={{ display: "flex", alignItems: "center", padding: 0 }}>
-        {precioOferta!=="0.00" ? (
+        {precioOferta !== "0.00" ? (
           <>
             <Typography
               sx={{
