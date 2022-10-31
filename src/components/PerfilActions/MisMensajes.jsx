@@ -19,11 +19,15 @@ const MisMensajes = () => {
   const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
   const [borrarMsj, setBorrarMsj] = useState(false);
-  const [mensajeId, setMensajeId] = useState(false);
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleMensajes, mensajes, mensajesFinBusqueda } =
-    useContext(UsePerfilContext);
+  const {
+    handleMensajes,
+    mensajes,
+    mensajesFinBusqueda,
+    setMensajeId,
+    mensajeId,
+  } = useContext(UsePerfilContext);
 
   useEffect(() => {
     if (userLog !== "") {
@@ -137,7 +141,10 @@ const MisMensajes = () => {
                     <div>
                       <p
                         className="messageTitle"
-                        onClick={() => navigate(`/perfil/MI CHAT`)}
+                        onClick={() => {
+                          setMensajeId(mensaje.idmensaje);
+                          navigate(`/perfil/MI CHAT`);
+                        }}
                       >
                         {mensaje.producto.nombre}
                       </p>
