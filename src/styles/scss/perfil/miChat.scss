@@ -25,13 +25,173 @@
     }
   }
   .chatContainer {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 16px;
-    @include screen_820 {
-      justify-content: center;
+    max-width: 800px;
+    font-family: "Open Sans", sans-serif;
+
+    .chatContent {
+      border-right: 1px solid #ebe7fb;
+      @include screen_705 {
+        border: 0px;
+      }
+      .chatHeader {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #ebe7fb;
+        margin-bottom: 16px;
+        .current-chatting-user {
+          display: flex;
+          align-items: center;
+          p {
+            margin: 0;
+            font-weight: 600;
+          }
+        }
+      }
+      .contentBody {
+        max-height: calc(100vh - calc(100vh / 2));
+        overflow: auto;
+        &::-webkit-scrollbar {
+          width: 5px;
+          background: transparent;
+        }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: hsl(210, 3%, 73.7%);
+          border-radius: 10px;
+        }
+        .chatItem {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          margin-bottom: 15px;
+          /* transition: all 0.3s ease;
+          transform: scale(0);
+          transform-origin: right;
+          animation-name: showIn;
+          animation-duration: 0.2s;
+          animation-iteration-count: 1;
+          animation-direction: normal;
+          animation-timing-function: cubic-bezier(0.88, 0.19, 0.37, 1.11);
+          animation-fill-mode: both;
+          animation-delay: 0.2s; */
+          font-family: "Open Sans", sans-serif;
+        }
+        @keyframes showIn {
+          0% {
+            transform: scale(0);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        .chatItemContent {
+          background-color: hsla(248, 41%, 38%, 1);
+          color: #fff;
+          padding: 15px;
+          border-radius: 10px 10px 0 10px;
+          max-width: 50%;
+          min-width: 215px;
+          .chatMsg {
+            line-break: anywhere;
+            margin: 0;
+          }
+          .chatMeta {
+            user-select: none;
+          }
+          .chatMeta {
+            justify-content: space-between;
+            display: flex;
+            margin-top: 10px;
+            span {
+              font-size: 14px;
+              color: #8693d3;
+              user-select: none;
+            }
+          }
+        }
+      }
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+      position: relative;
+    }
+    .avatar img {
+      max-width: 100%;
+      border-radius: 50%;
+
+      object-fit: cover;
+    }
+
+    .chatItem .avatar {
+      margin-right: 0px;
+      margin-left: 20px;
+      background: #fff;
+      padding: 1px;
+    }
+    .chatItem.other {
+      flex-direction: row-reverse;
+      transform-origin: left;
+      .chatItemContent {
+        background-color: mediumpurple;
+        color: #000;
+        border-radius: 10px 10px 10px 0;
+        max-width: 50%;
+        .chatMeta span {
+          color: #d1d1d1;
+        }
+      }
+      .avatar {
+        margin-right: 20px;
+        margin-left: 0px;
+      }
+    }
+
+    .chatItem.other .chatItemContent .content__footer {
+      padding-top: 30px;
+    }
+    .sendNewMessage {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 8px;
+      font-family: "Open Sans", sans-serif;
+    }
+    .sendNewMessage button {
+      width: 36px;
+      height: 36px;
+      background-color: #ecefff;
+      border: none;
+      box-shadow: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: hsla(248, 41%, 38%, 1);
+      padding: 0;
+      border-radius: 5px;
+      line-height: 36px;
+      transition: all 0.3s cubic-bezier(0.88, 0.19, 0.37, 1.11);
+    }
+    .sendNewMessage button:hover {
+      transform: scale(1.2);
+    }
+    .sendNewMessage button i {
+      display: block;
+    }
+    .sendNewMessage input {
+      flex-grow: 1;
+      padding: 0 15px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-family: "Open Sans", sans-serif;
+    }
+    #sendMsgBtn {
+      background-color: hsla(248, 41%, 38%, 1);
+      color: #fff;
     }
   }
   .returnLink {

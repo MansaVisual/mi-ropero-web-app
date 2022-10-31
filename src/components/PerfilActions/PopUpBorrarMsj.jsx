@@ -5,7 +5,7 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 
-const PopUpBorrarMsj = ({ setBorrarMsj, mensajeId }) => {
+const PopUpBorrarMsj = ({ setBorrarMsj, mensajeId, setMensajesFiltrados }) => {
   const { PerfilAPI } = useContext(UsePerfilContext);
   const [loading, setLoading] = useState(false);
 
@@ -16,6 +16,9 @@ const PopUpBorrarMsj = ({ setBorrarMsj, mensajeId }) => {
     PerfilAPI(dir, "mensajes", "delete").then((res) => {
       if (res.status === "success") {
         setBorrarMsj(false);
+        setMensajesFiltrados((prevState) =>
+          prevState.filter((msg) => msg.idmensaje !== mensajeId)
+        );
       }
     });
   };

@@ -185,6 +185,7 @@ export const PerfilContext = ({ children }) => {
         handleMensajes,
         mensajes,
         mensajesFinBusqueda,
+        setOfertasRealizadas,
       }}
     >
       {children}

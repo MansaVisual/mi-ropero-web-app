@@ -5,7 +5,12 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 
-const PopUpBorrarOferta = ({ setBorrarOferta, ofertaId, userLog }) => {
+const PopUpBorrarOferta = ({
+  setBorrarOferta,
+  ofertaId,
+  userLog,
+  setOfertasRealizadas,
+}) => {
   const { PerfilAPI } = useContext(UsePerfilContext);
   const [loading, setLoading] = useState(false);
 
@@ -15,9 +20,11 @@ const PopUpBorrarOferta = ({ setBorrarOferta, ofertaId, userLog }) => {
     dir.append("idcliente", userLog);
     dir.append("idoferta", ofertaId);
     PerfilAPI(dir, "ofertas", "cancel").then((res) => {
-      console.log(res);
       if (res.status === "success") {
         setBorrarOferta(false);
+        setOfertasRealizadas((prevState) =>
+          prevState.filter((msg) => msg.idoferta !== ofertaId)
+        );
       }
     });
   };

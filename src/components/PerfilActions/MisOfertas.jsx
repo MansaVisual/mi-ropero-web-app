@@ -16,8 +16,12 @@ const MisOfertas = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleOfertasRealizadas, ofertasRealizadas, ofertasFinBusqueda } =
-    useContext(UsePerfilContext);
+  const {
+    handleOfertasRealizadas,
+    ofertasRealizadas,
+    ofertasFinBusqueda,
+    setOfertasRealizadas,
+  } = useContext(UsePerfilContext);
 
   const [borrarOferta, setBorrarOferta] = useState(false);
 
@@ -184,6 +188,7 @@ const MisOfertas = () => {
           setBorrarOferta={setBorrarOferta}
           ofertaId={ofertaId}
           userLog={userLog}
+          setOfertasRealizadas={setOfertasRealizadas}
         />
       )}
     </div>

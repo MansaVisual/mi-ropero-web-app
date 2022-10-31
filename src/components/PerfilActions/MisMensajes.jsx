@@ -195,7 +195,11 @@ const MisMensajes = () => {
         <p>VOLVER A MI PERFIL</p>
       </div>
       {borrarMsj && (
-        <PopUpBorrarMsj setBorrarMsj={setBorrarMsj} mensajeId={mensajeId} />
+        <PopUpBorrarMsj
+          setBorrarMsj={setBorrarMsj}
+          mensajeId={mensajeId}
+          setMensajesFiltrados={setMensajesFiltrados}
+        />
       )}
     </div>
   );
