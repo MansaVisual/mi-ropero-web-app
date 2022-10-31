@@ -124,7 +124,7 @@ const MisMensajes = () => {
               height: "50vh",
               marginTop: "42px",
               width: "100%",
-              maxWidth: "1366px",
+              maxWidth: "895px",
               display: "flex",
               justifyContent: "center",
             }}
