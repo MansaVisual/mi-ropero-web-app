@@ -93,6 +93,7 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleOfertasRealizadas = async (userLog, filtroSelecc) => {
+    setOfertasFinBusqueda(false)
     const estados = [
       "Sin definir",
       "en proceso de evaluacion",
@@ -124,6 +125,7 @@ export const PerfilContext = ({ children }) => {
           array.push(res.result[ii]);
         }
       }
+      setOfertasFinBusqueda(true)
       setOfertasRealizadas(array);
     });
   };

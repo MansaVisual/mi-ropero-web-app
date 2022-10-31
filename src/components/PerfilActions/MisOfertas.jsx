@@ -151,30 +151,30 @@ const MisOfertas = () => {
             <div className="perfilVacio">
               <div>
                 <img src={vacio} alt="LOGO" />
-                <p>Aún no tienes ofertas realizadas</p>
+                <p>Aún no tienes ofertas en estado "{filtroSelecc}"</p>
                 <Button onClick={() => navigate(`/`)}>VER PRODUCTOS</Button>
               </div>
             </div>
           )}
           {ofertasRealizadas.map((producto) => {
             return (
-              <div className="mobileCard">
-                <img
-                  src={producto.img}
-                  className="productImg"
-                  alt="cardImage"
-                />
-                <div>
-                  <p className="productoTitle">{producto.titulo}</p>
-                  <p className="productoDate">{producto.fecha}</p>
+                <div className="mobileCard">
+                  <img
+                    src={producto.img}
+                    className="productImg"
+                    alt="cardImage"
+                  />
                   <div>
-                    <span className="firstSpan">OFERTA</span>
-                    <span className="secondSpan">${producto.oferta}</span>
+                    <p className="productoTitle">{producto.titulo}</p>
+                    <p className="productoDate">{producto.fecha}</p>
+                    <div>
+                      <span className="firstSpan">OFERTA</span>
+                      <span className="secondSpan">${producto.oferta}</span>
+                    </div>
+                    <p className="productoState">{producto.estado}</p>
                   </div>
-                  <p className="productoState">{producto.estado}</p>
+                  <img src={Basura} className="trashICon" alt="basuraIcon" />
                 </div>
-                <img src={Basura} className="trashICon" alt="basuraIcon" />
-              </div>
             );
           })}
         </div>
