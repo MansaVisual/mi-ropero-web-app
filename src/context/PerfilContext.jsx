@@ -53,6 +53,8 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleComprasRealizadas = async (userLog, filtroSelecc) => {
+    setComprasFinBusqueda(false);
+
     const estados = {
       3: "Pendiente de pago",
       4: "Pago realizado",
@@ -80,7 +82,6 @@ export const PerfilContext = ({ children }) => {
     dir.append("page", 0);
     dir.append("bypage", 10);
     PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
-      setComprasFinBusqueda(true);
       if (res.status === "success") {
         console.log("hola");
         for (const ii in res.result.operaciones) {
@@ -88,6 +89,7 @@ export const PerfilContext = ({ children }) => {
           array.push(res.result.operaciones[ii]);
         }
       }
+      setComprasFinBusqueda(true);
       setComprasRealizadas(array);
     });
   };
