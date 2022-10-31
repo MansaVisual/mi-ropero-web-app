@@ -13,7 +13,7 @@ const AppleButton = () => {
   return (
     <div>
       <LoginSocialApple
-        client_id={"DH6J2KPQ4D"}
+        client_id={"ar.com.miropero.web"}
         scope={"name email"}
         /* redirect_uri={REDIRECT_URI}
         onLoginStart={onLoginStart} */

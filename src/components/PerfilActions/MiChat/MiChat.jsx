@@ -1,15 +1,25 @@
-import React, { createRef, useState, useEffect } from "react";
+import React, { createRef, useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../../assets/img/leftArrow.png";
 import profileTest1 from "../../../assets/img/profileTest1.jpg";
 import ChatItem from "./ChatItem";
 import Avatar from "./Avatar";
+import { UseLoginContext } from "../../../context/LoginContext";
+import { UsePerfilContext } from "../../../context/PerfilContext";
 
 const MiChat = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+
+  const { userLog } = useContext(UseLoginContext);
+  const {
+    handleComprasRealizadas,
+    comprasRealizadas,
+    comprasFinBusqueda,
+    setCompraId,
+  } = useContext(UsePerfilContext);
 
   const messagesEndRef = createRef(null);
 
@@ -69,6 +79,11 @@ const MiChat = () => {
       });
     }, 1200);
   };
+
+  useEffect(() => {
+    scrollToBottom();
+    console.log("inicio");
+  }, []);
 
   const chateador = {
     image:
