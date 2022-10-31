@@ -11,9 +11,7 @@ import theme from "../../styles/theme";
 // import { StyledInput } from "../SearchBar/styles";
 import { Container } from "@mui/system";
 import fiscal from "../../assets/img/fiscal.png";
-import pdp from "../../assets/img/pdp.png";
 import MP from "../../assets/img/MP.png";
-import sps from "../../assets/img/sps.png";
 import { SocialButton, StyledLink } from "./styles";
 import {
   FaGooglePlay,
