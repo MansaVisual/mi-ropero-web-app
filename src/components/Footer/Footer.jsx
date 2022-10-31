@@ -120,7 +120,7 @@ const Footer = () => {
                 {footerContent.section.text.map((item, key) => (
                   <StyledLink
                     key={key}
-                    sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
+                    sx={{ mb: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                   >
                     {item}
                   </StyledLink>

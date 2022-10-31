@@ -35,8 +35,6 @@ const Home = () => {
     });
   }, []);
 
-console.log(slider1)
-
   return (
     <>
       <Banner />
