@@ -323,10 +323,10 @@ const ProductPage = () => {
                   <Rating name="read-only" readOnly value={
                     prod.tienda.calificaciones !== undefined &&
                     prod.tienda.calificaciones.sum !== null &&
-                    Math.round(
+                    
                       Number(prod.tienda.calificaciones.sum) /
                       Number(prod.tienda.calificaciones.total)
-                    )
+                    
                   } />
                   {/* <Typography
                   sx={{

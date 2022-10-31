@@ -97,10 +97,10 @@ const AvatarMR = ({
               value={
                 datosTienda.calificaciones !== undefined &&
                 datosTienda.calificaciones.sum !== null &&
-                Math.round(
+                
                   Number(datosTienda.calificaciones.sum) /
-                    Number(datosTienda.calificaciones.total)
-                )
+                  Number(datosTienda.calificaciones.total)
+                
               }
             />
           ) : null}

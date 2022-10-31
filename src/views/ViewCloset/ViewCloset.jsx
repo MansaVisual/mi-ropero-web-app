@@ -373,7 +373,7 @@ const ViewCloset = () => {
                   <Rating name="read-only" readOnly value={
                     tienda.calificaciones !== undefined &&
                     tienda.calificaciones.sum !== null &&
-                    Math.round(
+                    (
                       Number(tienda.calificaciones.sum) /
                       Number(tienda.calificaciones.total)
                     )
@@ -411,10 +411,10 @@ const ViewCloset = () => {
               <Rating name="read-only" readOnly value={
                 tienda.calificaciones !== undefined &&
                 tienda.calificaciones.sum !== null &&
-                Math.round(
+                
                   Number(tienda.calificaciones.sum) /
                   Number(tienda.calificaciones.total)
-                )
+                
               } size="large" />
               <IconGroupText prod={undefined} prod2={tienda} />
               {putFilters.map((res, index) => {

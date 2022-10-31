@@ -170,10 +170,10 @@ const ClosetImagesCard = ({
                           value={
                             calificaciones !== undefined &&
                             calificaciones.sum !== null &&
-                            Math.round(
+                            
                               Number(calificaciones.sum) /
                               Number(calificaciones.total)
-                            )
+                            
                           }
                           size="small"
                         />
