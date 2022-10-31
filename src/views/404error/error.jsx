@@ -1,5 +1,5 @@
 import React,{useContext,useEffect} from "react";
-import { Box, Button, Grid, Link } from "@mui/material";
+import { Box, Button, Link } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import pag from "../../assets/img/PÁGINANOT.png"
 import Chip from "../../components/Chip/Chip";
@@ -24,7 +24,7 @@ const Error = () => {
 
     return (
     <Box>
-      {/* <Onboarding /> */}
+      <Onboarding />
       <Box sx={{mt:"32px"}}></Box>
       <Box sx={{maxWidth:"1366px",display:"flex",flexDirection:"column",margin:"auto",justifyContent:"center",overflowX:"hidden"}}>
         <Box sx={{ml:"72px"}}>
