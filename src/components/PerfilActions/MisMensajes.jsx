@@ -9,6 +9,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 import vacio from "../../assets/img/comprasVacio.png";
+import mensaje from "../../assets/img/mensajesVacio.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
 
 const MisMensajes = () => {
@@ -189,12 +190,13 @@ const MisMensajes = () => {
           })
         ) : (
           <div className="perfilVacio">
-            <div>
-              <img src={vacio} alt="LOGO" />
-              <p>Aún no tienes compras realizadas</p>
-              <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
-            </div>
+          <div>
+            <img src={mensaje} alt="LOGO" />
+            <p>Aún no tienes mensajes "{typeMessage}"</p>
+            <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
           </div>
+        </div>
+
         )}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
