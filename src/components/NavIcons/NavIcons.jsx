@@ -35,11 +35,13 @@ import { UseCartContext } from "../../context/CartContext";
 import Loader from "../Loader/Loader";
 import basura from "../../assets/img/basura.png";
 import cruz from "../../assets/img/cruz.png";
+import MiRoperoNavbar from "../../assets/img/isologo.png";
+// import MisMensajesNavbar from "../../assets/img/msj2.jpg";
 
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const { userLog, setUserLog, notis } = useContext(UseLoginContext);
+  const { userLog, setUserLog,notis } = useContext(UseLoginContext);
   const {
     carrito,
     costoCarrito,
@@ -183,26 +185,30 @@ const NavIcons = () => {
 
   const getMenuBell = () => {
     return (
-      <Stack
-        justifyContent="center"
-        alignItems="center"
-        sx={{ paddingTop: "10px", paddingBottom: "10px" }}
-      >
-        <Box sx={{ mb: "4px" }}>
-          <CgCloseO size={24} color={theme.palette.secondary.main} />
-        </Box>
-        <Box>
-          <Typography
-            sx={{
-              fontSize: theme.typography.fontSize[3],
-              fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.secondary.main,
-            }}
+      <>
+        {notis.length!==0 ? getMenuBellNotifications() :
+          <Stack
+          justifyContent="center"
+          alignItems="center"
+          sx={{ paddingTop: "10px", paddingBottom: "10px" }}
           >
-            NO TENÉS NOTIFICACIONES
-          </Typography>
-        </Box>
-      </Stack>
+            <Box sx={{ mb: "4px" }}>
+              <CgCloseO size={24} color={theme.palette.secondary.main} />
+            </Box>
+            <Box>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[3],
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: theme.palette.secondary.main,
+                }}
+                >
+                NO TENÉS NOTIFICACIONES
+              </Typography>
+            </Box>
+          </Stack>
+        }
+      </>
     );
   };
 
@@ -314,18 +320,95 @@ const NavIcons = () => {
     );
   };
 
+  const getMenuBellNotifications = () => {
+    return (
+      <Stack
+        sx={{
+          p: "10px",
+          overflowY: "auto",
+          maxHeight: "280px",
+          "&::-webkit-scrollbar": {
+            width: "8px",
+            backgroundColor: "transparent",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "hsl(210, 3%, 73.7%)",
+            borderRadius: "10px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "transparent",
+          },
+        }}
+      >
+          {notis!==undefined && notis.map((item,i)=>(<>
+            {i>7 ? <></> : <>
+              <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "10px",
+                cursor:"pointer",
+                "&:hover": {
+                  backgroundColor:"rgb(245 245 245)",
+                },
+              }}
+              key={i}
+              onClick={()=>window.location.replace(`${item.url}`)}
+              >
+                <Box>
+                  <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
+                </Box>
+                <Box
+                sx={{ display: "flex", flexDirection: "column", maxWidth: "180px" }}
+                >
+                  <Typography
+                    component="h6"
+                    sx={{
+                      fontSize: theme.typography.fontSize[1],
+                      fontWeight: theme.typography.fontWeightMedium,
+                      color: "hsla(351, 6%, 25%, 1)",
+                    }}
+                    >
+                    {item.titulo}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    sx={{
+                      fontSize: theme.typography.fontSize[1],
+                      fontWeight: theme.typography.fontWeightBold,
+                      color: "hsla(351, 6%, 25%, 1)",
+                    }}
+                    >
+                    {item.texto}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    sx={{
+                      fontSize: theme.typography.fontSize[0],
+                      color: theme.palette.tertiary.main,
+                    }}
+                    >
+                    {item.fecha} hs
+                  </Typography>
+                </Box>
+                <IconButton>
+                  <img src={basura} alt="icono de basura" width={14} height={16} />
+                </IconButton>
+              </Box>
+              <Divider sx={{ my: "15px" }} />
+            </>}
+          </>))  
+          }
+          </Stack>
+          );
+        };
+        
   const getMenuCart = () => {
     return (
       <>
         {buscandoCart ? (
-          <div
-            style={{
-              marginTop: "24px",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
             <Loader spin={"spinnerM"} />
           </div>
         ) : (
@@ -452,10 +535,6 @@ const NavIcons = () => {
                             justifyContent: "space-between",
                             alignItems: "center",
                             px: "8px",
-                            marginBottom: "10px",
-                            "&:last-child": {
-                              marginBottom: "0px",
-                            },
                           }}
                           key={i}
                         >
@@ -473,7 +552,7 @@ const NavIcons = () => {
                               height={40}
                             />
                           </Box>
-                          <Box sx={{ maxWidth: "100px" }}>
+                          <Box>
                             <Typography
                               sx={{ fontSize: theme.typography.fontSize[2] }}
                             >
@@ -527,7 +606,7 @@ const NavIcons = () => {
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
       <IconButton onClick={userLog !== "" && handleClickNotif}>
         <StyledBadge
-          badgeContent={notis.length}
+          badgeContent={notis.length>7?7:notis.length}
           color="secondary"
           anchorOrigin={{
             vertical: "top",
@@ -726,18 +805,7 @@ const NavIcons = () => {
                 ELIMINAR
               </Button>
             </div>
-            {load && (
-              <div
-                style={{
-                  marginBottom: "24px",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Loader spin={"spinnerG"} />
-              </div>
-            )}
+            {load && <div style={{ marginBottom: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"} /></div>}
             {load && <br />}
             <img
               src={cruz}

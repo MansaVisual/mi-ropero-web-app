@@ -60,7 +60,7 @@ export const LoginContext = ({ children }) => {
       });
 
       const notis=new FormData()
-      notis.append("bypage",10)
+      notis.append("bypage",7)
       notis.append("page",0)
       notis.append("estado",1)
       notis.append("idcliente",36)
