@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { createRef, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../../assets/img/leftArrow.png";
@@ -58,13 +58,16 @@ const MiChat = () => {
 
   const [mensaje, setMensaje] = useState("");
   const [chatActual, setChatActual] = useState(chatPrevio);
+  const [scroll, setScroll] = useState(false);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest",
-    });
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        /*  inline: "nearest", */
+      });
+    }, 1200);
   };
 
   const chateador = {
@@ -87,9 +90,19 @@ const MiChat = () => {
       ]);
       setMensaje("");
       console.log(chatActual);
-      scrollToBottom();
+      setScroll(true);
     }
   };
+
+  useEffect(() => {
+    console.log("first");
+    setTimeout(() => {
+      scrollToBottom();
+      console.log("second");
+    }, 500);
+    setScroll(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scroll]);
 
   return (
     <div className="miChatContainer">
