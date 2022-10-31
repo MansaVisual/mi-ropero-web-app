@@ -320,7 +320,14 @@ const ProductPage = () => {
                   >
                     {prod.length !== 0 && prod.tienda.nombre}
                   </Typography>
-                  <Rating name="read-only" readOnly value={4} />
+                  <Rating name="read-only" readOnly value={
+                    prod.tienda.calificaciones !== undefined &&
+                    prod.tienda.calificaciones.sum !== null &&
+                    Math.round(
+                      Number(prod.tienda.calificaciones.sum) /
+                      Number(prod.tienda.calificaciones.total)
+                    )
+                  } />
                   {/* <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[4],

@@ -86,7 +86,14 @@ const ClosetCard = (ropero) => {
                 <Rating
                   name="read-only"
                   readOnly
-                  value={1}
+                  value={
+                    ropero.calificaciones !== undefined &&
+                    ropero.calificaciones.sum !== null &&
+                    Math.round(
+                      Number(ropero.calificaciones.sum) /
+                      Number(ropero.calificaciones.total)
+                    )
+                  }
                   sx={{ fontSize: theme.typography.fontSize[0] }}
                 />
               </Box>

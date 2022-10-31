@@ -187,6 +187,8 @@ const ViewCloset = () => {
     });
   };
 
+  console.log(tienda)
+
   const handleAplicarFiltros = () => {
     setBuscandoRoperos(true);
     setPags(1);
@@ -368,7 +370,14 @@ const ViewCloset = () => {
                   La tienda aún no tiene calificaciones
                 </Typography>
                 <Box sx={{ mb: "36px" }}>
-                  <Rating name="read-only" readOnly value={5} size="large" />
+                  <Rating name="read-only" readOnly value={
+                    tienda.calificaciones !== undefined &&
+                    tienda.calificaciones.sum !== null &&
+                    Math.round(
+                      Number(tienda.calificaciones.sum) /
+                      Number(tienda.calificaciones.total)
+                    )
+                  } size="large" />
                 </Box>
               </Box>
               <IconGroupText prod={undefined} prod2={tienda} />
@@ -399,7 +408,14 @@ const ViewCloset = () => {
               >
                 {nombre}
               </Typography>
-              <Rating name="read-only" readOnly value={5} size="large" />
+              <Rating name="read-only" readOnly value={
+                tienda.calificaciones !== undefined &&
+                tienda.calificaciones.sum !== null &&
+                Math.round(
+                  Number(tienda.calificaciones.sum) /
+                  Number(tienda.calificaciones.total)
+                )
+              } size="large" />
               <IconGroupText prod={undefined} prod2={tienda} />
               {putFilters.map((res, index) => {
                 return (

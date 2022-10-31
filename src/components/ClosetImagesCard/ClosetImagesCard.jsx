@@ -24,7 +24,7 @@ const ClosetImagesCard = ({
     nombre,
     icono,
     productos,
-    rating,
+    calificaciones,
     img,
     idtienda,
     seguidores_count,
@@ -34,6 +34,8 @@ const ClosetImagesCard = ({
 }) => {
   const { PerfilAPI } = useContext(UsePerfilContext);
   const { userLog } = useContext(UseLoginContext);
+
+  console.log(calificaciones)
 
   const [operando, setOperando] = useState(false);
 
@@ -50,7 +52,6 @@ const ClosetImagesCard = ({
     if (seguidores !== undefined && userLog !== undefined) {
       for (const i in seguidores) {
         if (seguidores[i] === userLog) {
-          console.log(seguidores[i]);
           setLike(true);
         }
       }
@@ -166,7 +167,14 @@ const ClosetImagesCard = ({
                         <Rating
                           name="read-only"
                           readOnly
-                          value={rating}
+                          value={
+                            calificaciones !== undefined &&
+                            calificaciones.sum !== null &&
+                            Math.round(
+                              Number(calificaciones.sum) /
+                              Number(calificaciones.total)
+                            )
+                          }
                           size="small"
                         />
                       </Box>
