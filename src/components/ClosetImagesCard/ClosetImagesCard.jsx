@@ -35,9 +35,8 @@ const ClosetImagesCard = ({
   const { PerfilAPI } = useContext(UsePerfilContext);
   const { userLog } = useContext(UseLoginContext);
 
-  console.log(calificaciones)
-
   const [operando, setOperando] = useState(false);
+  const [seg,setSeg]=useState(0)
 
   const navigate = useNavigate();
   const handleClick = (event) => {
@@ -59,6 +58,7 @@ const ClosetImagesCard = ({
   }, [seguidores, userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const addFollow = () => {
+    setSeg(1)
     setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
@@ -67,7 +67,9 @@ const ClosetImagesCard = ({
       setOperando(false);
     });
   };
+  
   const unFollow = () => {
+    setSeg(0)
     setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
@@ -188,6 +190,10 @@ const ClosetImagesCard = ({
                       sx={{
                         position: "relative",
                         pr: "10px",
+                        "&:hover":{
+                          background:"hsla(210, 77%, 95%, 1)",
+                          color:"transparent !important"
+                        }
                       }}
                     >
                       {!like ? (
@@ -209,7 +215,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={() => addFollow()}
                           >
-                            {seguidores_count}
+                            {seguidores_count+seg}
                           </Typography>
                         </>
                       ) : (
@@ -231,7 +237,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={() => unFollow()}
                           >
-                            {seguidores_count}
+                            {seguidores_count+seg}
                           </Typography>
                         </>
                       )}
@@ -266,7 +272,7 @@ const ClosetImagesCard = ({
             </Grid>
           ))}
         </ImageList>
-        <Box sx={{ textAlign: "center", mt: "8px" }}>
+        <Box sx={{ textAlign: "center", mt: "8px",mb:"16px" }}>
           <Link
             underline="hover"
             href="#"

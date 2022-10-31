@@ -64,6 +64,7 @@ const ProductCard = ({
                 filter: "blur(2px)",
               },
             }}
+            onClick={() => navigate(`/productoCard/${idProducto}`)}
           />
         </CardActionArea>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>

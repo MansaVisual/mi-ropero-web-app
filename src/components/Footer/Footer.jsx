@@ -26,7 +26,7 @@ const footerContent = {
     text: ["Ropa", "Calzado", "Accesorios", "Belleza"],
   },
   section: {
-    text: ["FAQ's", "Términos y condiciones"],
+    text: ["FAQ's", "Términos y condiciones", "Políticas de privacidad"],
   },
 };
 

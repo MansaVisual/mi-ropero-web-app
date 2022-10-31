@@ -64,6 +64,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate("/colecciones/NuevosIngresos")}
             >
@@ -83,6 +86,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate(`/productos/Zapatillas`)}
             >
@@ -114,6 +120,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate(`/productos/Remeras`)}
             >
@@ -133,6 +142,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate(`/productos/Bluse&top`)}
             >
@@ -200,6 +212,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate("/colecciones/Recomendados")}
             >
@@ -218,6 +233,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate("/colecciones/MejoresVendedores")}
             >
