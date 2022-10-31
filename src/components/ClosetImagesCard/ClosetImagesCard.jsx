@@ -54,28 +54,39 @@ const ClosetImagesCard = ({
           setLike(true);
         }
       }
+      setSeg(seguidores_count)
     }
   }, [seguidores, userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const addFollow = () => {
-    setSeg(1)
     setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
-    PerfilAPI(follow, "tiendas", "follow").then(() => {
-      setOperando(false);
+    PerfilAPI(follow, "tiendas", "follow").then((res) => {
+      const newFollow=new FormData()
+      newFollow.append("idtienda",idtienda)
+      PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
+        setSeg(res.result.seguidores)
+        setLike(!like)
+        setOperando(false);
+      })
     });
   };
   
   const unFollow = () => {
-    setSeg(0)
     setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
-    PerfilAPI(follow, "tiendas", "unfollow").then(() => {
-      setOperando(false);
+    PerfilAPI(follow, "tiendas", "unfollow").then((res) => {
+      const newFollow=new FormData()
+      newFollow.append("idtienda",idtienda)
+      PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
+        setSeg(res.result.seguidores)
+        setLike(!like)
+        setOperando(false);
+      })
     });
   };
 
@@ -185,7 +196,6 @@ const ClosetImagesCard = ({
 
                   <Box>
                     <CardActionArea
-                      onClick={!operando ? () => setLike(!like) : null}
                       disableTouchRipple
                       sx={{
                         position: "relative",
@@ -215,7 +225,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={() => addFollow()}
                           >
-                            {seguidores_count+seg}
+                            {seg}
                           </Typography>
                         </>
                       ) : (
@@ -237,7 +247,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={() => unFollow()}
                           >
-                            {seguidores_count+seg}
+                            {seg}
                           </Typography>
                         </>
                       )}
