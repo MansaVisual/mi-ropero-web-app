@@ -17,6 +17,7 @@ export const PerfilContext = ({ children }) => {
   const [mensajesFinBusqueda, setMensajesFinBusqueda] = useState(false);
 
   const [mensajes, setMensajes] = useState(false);
+  const [mensajeId, setMensajeId] = useState(false);
 
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = "";
@@ -95,7 +96,7 @@ export const PerfilContext = ({ children }) => {
   };
 
   const handleOfertasRealizadas = async (userLog, filtroSelecc) => {
-    setOfertasFinBusqueda(false)
+    setOfertasFinBusqueda(false);
     const estados = [
       "Sin definir",
       "en proceso de evaluacion",
@@ -127,7 +128,7 @@ export const PerfilContext = ({ children }) => {
           array.push(res.result[ii]);
         }
       }
-      setOfertasFinBusqueda(true)
+      setOfertasFinBusqueda(true);
       setOfertasRealizadas(array);
     });
   };
@@ -190,6 +191,8 @@ export const PerfilContext = ({ children }) => {
         mensajes,
         mensajesFinBusqueda,
         setOfertasRealizadas,
+        setMensajeId,
+        mensajeId,
       }}
     >
       {children}
