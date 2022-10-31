@@ -349,6 +349,7 @@ const NavIcons = () => {
                 justifyContent: "space-between",
                 gap: "10px",
                 cursor:"pointer",
+                p:"4px 8px",
                 "&:hover": {
                   backgroundColor:"rgb(245 245 245)",
                 },
@@ -529,70 +530,73 @@ const NavIcons = () => {
                   <Box sx={{ pt: "10px" }}>
                     {carrito.map((prod, i) => {
                       return (
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            px: "8px",
-                          }}
-                          key={i}
-                        >
+                        <>
                           <Box
                             sx={{
-                              width: "40px",
-                              height: "40px",
-                              borderRadius: "20px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              px: "8px",
+                              pt:"4px"
                             }}
+                            key={i}
                           >
-                            <img
-                              src={prod.producto_imagen}
-                              alt=""
-                              width={40}
-                              height={40}
-                            />
-                          </Box>
-                          <Box>
-                            <Typography
-                              sx={{ fontSize: theme.typography.fontSize[2] }}
-                            >
-                              {prod.producto.nombre}
-                            </Typography>
-                            <Typography
+                            <Box
                               sx={{
-                                fontSize: theme.typography.fontSize[0],
-                                color: theme.palette.tertiary.main,
+                                width: "40px",
+                                height: "40px",
+                                borderRadius: "20px",
                               }}
                             >
-                              {prod.producto.tienda.nombre}
-                            </Typography>
-                            <Typography
-                              sx={{
-                                fontSize: theme.typography.fontSize[1],
-                                pt: "6px",
-                              }}
-                            >
-                              ${prod.producto.precio}
-                            </Typography>
-                          </Box>
-                          <Box>
-                            <IconButton
-                              onClick={() => {
-                                handleCloseCart();
-                                handleEliminar(prod.idcarrito);
-                              }}
-                            >
-                              <IoTrashOutline
-                                color={theme.palette.secondary.main}
-                                size={20}
+                              <img
+                                src={prod.producto_imagen}
+                                alt=""
+                                width={40}
+                                height={40}
                               />
-                            </IconButton>
+                            </Box>
+                            <Box sx={{minWidth:"130px"}}>
+                              <Typography
+                                sx={{ fontSize: theme.typography.fontSize[2] }}
+                              >
+                                {prod.producto.nombre}
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  fontSize: theme.typography.fontSize[0],
+                                  color: theme.palette.tertiary.main,
+                                }}
+                              >
+                                {prod.producto.tienda.nombre}
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  fontSize: theme.typography.fontSize[1],
+                                  pt: "6px",
+                                }}
+                              >
+                                ${prod.producto.precio}
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <IconButton
+                                onClick={() => {
+                                  handleCloseCart();
+                                  handleEliminar(prod.idcarrito);
+                                }}
+                              >
+                                <IoTrashOutline
+                                  color={theme.palette.secondary.main}
+                                  size={20}
+                                />
+                              </IconButton>
+                            </Box>
                           </Box>
-                        </Box>
+                          <Divider />
+                        </>
                       );
                     })}
                   </Box>
-                  <Divider />
                 </Box>
               </Stack>
             )}
@@ -604,18 +608,21 @@ const NavIcons = () => {
 
   return (
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
-      <IconButton onClick={userLog !== "" && handleClickNotif}>
-        <StyledBadge
-          badgeContent={notis.length>7?7:notis.length}
-          color="secondary"
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          <img src={BellNotif} alt="Icono de notificacion" width="17px" />
-        </StyledBadge>
-      </IconButton>
+      {userLog!=="" && 
+        <IconButton onClick={userLog !== "" && handleClickNotif}>
+          <StyledBadge
+            badgeContent={notis.length>7?7:notis.length}
+            color="secondary"
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <img src={BellNotif} alt="Icono de notificacion" width="17px" />
+          </StyledBadge>
+        </IconButton>
+      }
+
       <StyledMenu
         anchorOrigin={{
           vertical: "bottom",
@@ -713,27 +720,29 @@ const NavIcons = () => {
       >
         {getMenuAvatar()}
       </StyledMenu>
-      <IconButton onClick={userLog !== "" && handleClickCart}>
-        <StyledBadge
-          badgeContent={carrito.length}
-          color="secondary"
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          <img src={Cart} alt="logo-mi-ropero" width="21px" />
-        </StyledBadge>
-        {!cartMenu ? (
-          <ExpandMoreIcon
-            sx={{ position: "absolute", top: "12px", left: "30px" }}
-          />
-        ) : (
-          <ExpandLessIcon
-            sx={{ position: "absolute", top: "12px", left: "30px" }}
-          />
-        )}
-      </IconButton>
+      {userLog!=="" && 
+        <IconButton onClick={userLog !== "" && handleClickCart}>
+          <StyledBadge
+            badgeContent={carrito.length}
+            color="secondary"
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <img src={Cart} alt="logo-mi-ropero" width="21px" />
+          </StyledBadge>
+          {!cartMenu ? (
+            <ExpandMoreIcon
+              sx={{ position: "absolute", top: "12px", left: "30px" }}
+            />
+          ) : (
+            <ExpandLessIcon
+              sx={{ position: "absolute", top: "12px", left: "30px" }}
+            />
+          )}
+        </IconButton>
+      }
       <StyledMenu
         anchorOrigin={{
           vertical: "bottom",

@@ -35,8 +35,6 @@ const Home = () => {
     });
   }, []);
 
-console.log(slider1)
-
   return (
     <>
       <Banner />
@@ -66,6 +64,9 @@ console.log(slider1)
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate("/colecciones/NuevosIngresos")}
             >
@@ -85,6 +86,9 @@ console.log(slider1)
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate(`/productos/Zapatillas`)}
             >
@@ -116,6 +120,9 @@ console.log(slider1)
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate(`/productos/Remeras`)}
             >
@@ -135,6 +142,9 @@ console.log(slider1)
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate(`/productos/Bluse&top`)}
             >
@@ -202,6 +212,9 @@ console.log(slider1)
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate("/colecciones/Recomendados")}
             >
@@ -220,6 +233,9 @@ console.log(slider1)
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
+                "&:hover":{
+                  fontWeight:"700"
+                }
               }}
               onClick={() => navigate("/colecciones/MejoresVendedores")}
             >

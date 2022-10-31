@@ -35,9 +35,7 @@ const ClosetImagesCard = ({
   const { PerfilAPI } = useContext(UsePerfilContext);
   const { userLog } = useContext(UseLoginContext);
 
-  console.log(calificaciones)
-
-  const [operando, setOperando] = useState(false);
+  const [seg,setSeg]=useState(0)
 
   const navigate = useNavigate();
   const handleClick = (event) => {
@@ -55,25 +53,35 @@ const ClosetImagesCard = ({
           setLike(true);
         }
       }
+      setSeg(seguidores_count)
     }
   }, [seguidores, userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const addFollow = () => {
-    setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
-    PerfilAPI(follow, "tiendas", "follow").then(() => {
-      setOperando(false);
+    PerfilAPI(follow, "tiendas", "follow").then((res) => {
+      const newFollow=new FormData()
+      newFollow.append("idtienda",idtienda)
+      PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
+        setSeg(res.result.seguidores)
+        setLike(!like)
+      })
     });
   };
+  
   const unFollow = () => {
-    setOperando(true);
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
-    PerfilAPI(follow, "tiendas", "unfollow").then(() => {
-      setOperando(false);
+    PerfilAPI(follow, "tiendas", "unfollow").then((res) => {
+      const newFollow=new FormData()
+      newFollow.append("idtienda",idtienda)
+      PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
+        setSeg(res.result.seguidores)
+        setLike(!like)
+      })
     });
   };
 
@@ -170,10 +178,10 @@ const ClosetImagesCard = ({
                           value={
                             calificaciones !== undefined &&
                             calificaciones.sum !== null &&
-                            Math.round(
+                            
                               Number(calificaciones.sum) /
                               Number(calificaciones.total)
-                            )
+                            
                           }
                           size="small"
                         />
@@ -183,11 +191,14 @@ const ClosetImagesCard = ({
 
                   <Box>
                     <CardActionArea
-                      onClick={!operando ? () => setLike(!like) : null}
                       disableTouchRipple
                       sx={{
                         position: "relative",
                         pr: "10px",
+                        "&:hover":{
+                          background:"hsla(210, 77%, 95%, 1)",
+                          color:"transparent !important"
+                        }
                       }}
                     >
                       {!like ? (
@@ -209,7 +220,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={() => addFollow()}
                           >
-                            {seguidores_count}
+                            {seg}
                           </Typography>
                         </>
                       ) : (
@@ -231,7 +242,7 @@ const ClosetImagesCard = ({
                             }}
                             onClick={() => unFollow()}
                           >
-                            {seguidores_count}
+                            {seg}
                           </Typography>
                         </>
                       )}
@@ -266,7 +277,7 @@ const ClosetImagesCard = ({
             </Grid>
           ))}
         </ImageList>
-        <Box sx={{ textAlign: "center", mt: "8px" }}>
+        <Box sx={{ textAlign: "center", mt: "8px",mb:"16px" }}>
           <Link
             underline="hover"
             href="#"

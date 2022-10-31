@@ -77,6 +77,9 @@ const MisOfertas = () => {
                   fontSize: "14px",
                   fontWeight: "400",
                 },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderWidth: "1px",
+                },
                 height: 42,
               }}
             >
@@ -151,7 +154,7 @@ const MisOfertas = () => {
             <div className="perfilVacio">
               <div>
                 <img src={vacio} alt="LOGO" />
-                <p>Aún no tienes ofertas realizadas</p>
+                <p>Aún no tienes ofertas en estado "{filtroSelecc}"</p>
                 <Button onClick={() => navigate(`/`)}>VER PRODUCTOS</Button>
               </div>
             </div>

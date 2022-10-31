@@ -73,6 +73,9 @@ const MisCompras = () => {
                 fontSize: "14px",
                 fontWeight: "400",
               },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+              },
               height: 42,
             }}
           >
@@ -185,7 +188,7 @@ const MisCompras = () => {
           <div className="perfilVacio">
             <div>
               <img src={vacio} alt="LOGO" />
-              <p>Aún no tienes compras realizadas</p>
+              <p>Aún no tienes compras en estado "{filtroSelecc}"</p>
               <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
             </div>
           </div>

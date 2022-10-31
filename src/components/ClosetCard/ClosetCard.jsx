@@ -10,7 +10,7 @@ import {
 import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
 
-const ClosetCard = (ropero) => {
+const ClosetCard = ({ropero}) => {
   const navigate = useNavigate()
 
   return (
@@ -34,7 +34,7 @@ const ClosetCard = (ropero) => {
             cursor:"pointer"
           },
         }}
-        onClick={()=>navigate(`/roperos/${ropero.ropero.idtienda}/${ropero.ropero.nombre}`)}
+        onClick={()=>navigate(`/roperos/${ropero.idtienda}/${ropero.nombre}`)}
       >
         <Box
           sx={{
@@ -55,7 +55,7 @@ const ClosetCard = (ropero) => {
                 width: "32px",
                 height: "32px",
               }}
-              src={ropero.ropero.icono}
+              src={ropero.icono}
             >
             </Avatar>
             <Box>
@@ -65,7 +65,7 @@ const ClosetCard = (ropero) => {
                   fontWeight: theme.typography.fontWeightRegular,
                 }}
               >
-                {ropero.ropero.nombre}
+                {ropero.nombre}
               </Typography>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Typography
@@ -79,7 +79,7 @@ const ClosetCard = (ropero) => {
                     mr: "5px",
                   }}
                 >
-                  {ropero.ropero.productos.length} {ropero.ropero.productos.length===1?"producto":"productos"}
+                  {ropero.productos.length} {ropero.productos.length===1?"producto":"productos"}
                 </Typography>
                 <Rating
                   name="read-only"
@@ -87,10 +87,10 @@ const ClosetCard = (ropero) => {
                   value={
                     ropero.calificaciones !== undefined &&
                     ropero.calificaciones.sum !== null &&
-                    Math.round(
+                    
                       Number(ropero.calificaciones.sum) /
                       Number(ropero.calificaciones.total)
-                    )
+                    
                   }
                   sx={{ fontSize: theme.typography.fontSize[0] }}
                 />

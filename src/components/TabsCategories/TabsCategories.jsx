@@ -90,9 +90,12 @@ const TabsCategories = () => {
                   textDecoration: "none",
                   alignSelf: "center",
                   fontSize: theme.typography.fontSize[4],
-                  padding: "12px 28px",
+                  padding: "6px 28px",
                   cursor: "pointer",
                   lineHeight: "19.07px",
+                  "&:hover": {
+                    color:"white",
+                  },
                 }}
                 onClick={() => navigate("/roperos")}
               >

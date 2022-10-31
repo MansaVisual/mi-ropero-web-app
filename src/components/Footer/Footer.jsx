@@ -11,9 +11,7 @@ import theme from "../../styles/theme";
 // import { StyledInput } from "../SearchBar/styles";
 import { Container } from "@mui/system";
 import fiscal from "../../assets/img/fiscal.png";
-import pdp from "../../assets/img/pdp.png";
 import MP from "../../assets/img/MP.png";
-import sps from "../../assets/img/sps.png";
 import { SocialButton, StyledLink } from "./styles";
 import {
   FaGooglePlay,
@@ -28,7 +26,7 @@ const footerContent = {
     text: ["Ropa", "Calzado", "Accesorios", "Belleza"],
   },
   section: {
-    text: ["FAQ's", "Términos y condiciones"],
+    text: ["FAQ's", "Términos y condiciones", "Políticas de privacidad"],
   },
 };
 
@@ -120,7 +118,7 @@ const Footer = () => {
                 {footerContent.section.text.map((item, key) => (
                   <StyledLink
                     key={key}
-                    sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
+                    sx={{ mb: isMobile ? "30px" : "12px", lineHeight: "18px" }}
                   >
                     {item}
                   </StyledLink>

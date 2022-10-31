@@ -25,6 +25,9 @@ import Perfil from "./views/Perfil/Perfil";
 import { ColeccionContext } from "./context/ColeccionesContext";
 import { PerfilContext } from "./context/PerfilContext";
 import SearchColeccionesResults from "./views/SearchColeccionesResults/SearchColeccionesResults";
+import TyC from "./views/TyC/TyC";
+import PdeP from "./views/PdeP/PdeP";
+import Error from "./views/404error/error";
 
 function App() {
   useEffect(() => {
@@ -95,11 +98,7 @@ function App() {
                       <Route path="/checkout/:status" element={<Checkout />} />
                       <Route
                         path="*"
-                        element={
-                          <h1 style={{ height: "50vh", marginLeft: "16px" }}>
-                            404 Page Not Found
-                          </h1>
-                        }
+                        element={<Error/>}
                       ></Route>
                       <Route path="/login" element={<Login />} />
                       <Route path="/registro" element={<Register />} />
@@ -112,6 +111,15 @@ function App() {
                         path="perfil/:perfilSeccion"
                         element={<Perfil />}
                       />
+                      <Route
+                        path="terminos&y&condiciones"
+                        element={<TyC />}
+                      />
+                      <Route
+                        path="politica&de&privacidad"
+                        element={<PdeP />}
+                      />
+
                     </Routes>
                     <Footer />
                   </ThemeProvider>

@@ -8,7 +8,7 @@ import { Button, MenuItem, Select } from "@mui/material";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
-import vacio from "../../assets/img/comprasVacio.png";
+import mensaje from "../../assets/img/mensajesVacio.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
 
 const MisMensajes = () => {
@@ -19,11 +19,15 @@ const MisMensajes = () => {
   const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
   const [borrarMsj, setBorrarMsj] = useState(false);
-  const [mensajeId, setMensajeId] = useState(false);
 
   const { userLog } = useContext(UseLoginContext);
-  const { handleMensajes, mensajes, mensajesFinBusqueda } =
-    useContext(UsePerfilContext);
+  const {
+    handleMensajes,
+    mensajes,
+    mensajesFinBusqueda,
+    setMensajeId,
+    mensajeId,
+  } = useContext(UsePerfilContext);
 
   useEffect(() => {
     if (userLog !== "") {
@@ -86,6 +90,9 @@ const MisMensajes = () => {
                 fontSize: "14px",
                 fontWeight: "400",
               },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+              },
               height: 42,
             }}
           >
@@ -137,7 +144,10 @@ const MisMensajes = () => {
                     <div>
                       <p
                         className="messageTitle"
-                        onClick={() => navigate(`/perfil/MI CHAT`)}
+                        onClick={() => {
+                          setMensajeId(mensaje.idmensaje);
+                          navigate(`/perfil/MI CHAT`);
+                        }}
                       >
                         {mensaje.producto.nombre}
                       </p>
@@ -183,8 +193,8 @@ const MisMensajes = () => {
         ) : (
           <div className="perfilVacio">
             <div>
-              <img src={vacio} alt="LOGO" />
-              <p>Aún no tienes compras realizadas</p>
+              <img src={mensaje} alt="LOGO" />
+              <p>Aún no tienes mensajes "{typeMessage}"</p>
               <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
             </div>
           </div>
