@@ -6,6 +6,8 @@
   justify-content: center;
   @include screen_1450 {
     min-width: 1120px;
+    max-width: 1366px;
+    width: 100%;
   }
   @include screen_705 {
     margin-top: 24px;
