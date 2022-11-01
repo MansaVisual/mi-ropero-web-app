@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 export const UseLoginContext = createContext();
 
@@ -118,7 +119,12 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         FacebookLogin(loginData);
       } else if (res.status === "error") {
-        alert("Surgió un problema. Volvé a intentarlo");
+        Swal.fire({
+          title:'OCURRIÓ UN ERROR',
+          text:"Volvé a intentarlo",
+          icon:'error',
+          confirmButtonText: 'ACEPTAR',
+        })
       }
     });
   };

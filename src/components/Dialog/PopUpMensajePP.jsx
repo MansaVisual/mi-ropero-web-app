@@ -33,21 +33,22 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
         setTimeout(() => {
           setLoading(false);
           setOpenMessagePop(false);
-          Swal.fire(
-            'MENSAJE ENVIADO',
-            "",
-            'success'
-          );
+          Swal.fire({
+            title:'MENSAJE ENVIADO',
+            icon:'success',
+            confirmButtonText: 'ACEPTAR',
+        })
         }, 1000);
       } else {
         setTimeout(() => {
           setLoading(false);
           setAparece(false)
-          Swal.fire(
-            'MENSAJE NO ENVIADO',
-            "Ocurrió un error. Vuelva a intentarlo",
-            'error'
-          ).then(()=>setAparece(true))
+          Swal.fire({
+            title:'MENSAJE NO ENVIADO',
+            text:"Ocurrió un error. Vuelva a intentarlo",
+            icon:'error',
+            confirmButtonText: 'ACEPTAR',
+        }).then(()=>setAparece(true))
         }, 1000);
       }
     });

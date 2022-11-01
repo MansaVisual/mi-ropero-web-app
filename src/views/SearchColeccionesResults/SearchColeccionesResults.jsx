@@ -22,6 +22,7 @@ import Loader from "../../components/Loader/Loader";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
 import {UseProdsContext} from "../../context/ProdsContext"
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
+import Swal from "sweetalert2";
 
 const style = {
   position: "absolute",
@@ -159,7 +160,12 @@ const SearchProductsResults = () => {
 
   const buscarPage=(paramSearch,value)=>{
     if(rangoPrecio.min>rangoPrecio.max){
-      alert("Rango de precios incorrectos.")
+      Swal.fire({
+        title:'RANGOS INCORRECTOS',
+        text:"Los rangos de precios son incorrectos. Volvé a intentarlo",
+        icon:'error',
+        confirmButtonText: 'ACEPTAR',
+      })
       return
     }
     window.scrollTo({
@@ -230,7 +236,12 @@ const SearchProductsResults = () => {
 
   const handleAplicarFiltros = () => {
     if(rangoPrecio.min>rangoPrecio.max){
-      alert("Rango de precios incorrectos.")
+      Swal.fire({
+        title:'RANGOS INCORRECTOS',
+        text:"Los rangos de precios son incorrectos. Volvé a intentarlo",
+        icon:'error',
+        confirmButtonText: 'ACEPTAR',
+      })
       return
     }
     setPags(1)

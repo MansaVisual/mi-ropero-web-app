@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Loader from '../../components/Loader/Loader';
 import { UseLoginContext } from '../../context/LoginContext';
 
@@ -38,7 +39,12 @@ const BoxLoginValidate = () => {
         } else {
           setLoad(false);
           document.getElementById('codValidacion').value = '';
-          alert('No se pudo enviar el código. Vuelva a intentarlo');
+          Swal.fire({
+            title:'ERROR AL ENVIAR EL CÓDIGO',
+            text:"No se pudo enviar el código. Volvé a intentarlo",
+            icon:'error',
+            confirmButtonText: 'ACEPTAR',
+          })
         }
       });
     }
@@ -51,10 +57,20 @@ const BoxLoginValidate = () => {
     LoginAPI(loginUser, 'clientes', 'validate_send').then((res) => {
       if (res.status === 'success') {
         setLoad(false);
-        alert('Se envió el código');
+        Swal.fire({
+          title:'CÓDIGO ENVIADO',
+          text:"Revisá tu correo electrónico",
+          icon:'info',
+          confirmButtonText: 'ACEPTAR',
+        })
       } else {
         setLoad(false);
-        alert('No se pudo enviar el código. Vuelva a intentarlo');
+        Swal.fire({
+          title:'OCURRIÓ UN ERROR',
+          text:"No se pudo enviar el código. Volvé a intentarlo",
+          icon:'error',
+          confirmButtonText: 'ACEPTAR',
+        })
       }
     });
   };

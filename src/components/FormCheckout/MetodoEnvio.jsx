@@ -10,6 +10,7 @@ import PopUpSucursales from "./PopUpME";
 import PopUpSetSucursal from "./PopUpME2";
 import { UseFormContext } from "../../context/FormContext"
 import Loader from "../Loader/Loader"
+import Swal from "sweetalert2"
 
 
 const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,sucursales,setMetodoEnvio,direccion})=>{
@@ -63,7 +64,12 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
         if(metodoEnvio==="345838"){
             setSetSucursal(true)
         }else if(metodoEnvio===""){
-            alert("Eija un método de envío")
+            Swal.fire({
+                title:'ELIJA UN MÉTODO DE ENVIO',
+                text:"Para continuar, debe seleccionar un método de envio",
+                icon:'info',
+                confirmButtonText: 'ACEPTAR',
+            })
         }else{
             setViewSucursales(false)
             setTypeNav("tarjeta")
@@ -71,7 +77,12 @@ const MetodoEnvio=({setTypeNav,sucursalEntrega,setSucursalEntrega,metodoEnvio,su
     }
     const handleClickSetSucusarl=async()=>{
         if(sucursalEntrega===""){
-            alert("DEBE ELEGIR UNO")
+            Swal.fire({
+                title:'ELIJA UNA SUCURSAL',
+                text:"Debe seleccionar una sucursal para avanzar",
+                icon:'info',
+                confirmButtonText: 'ACEPTAR',
+            })
         }else{
             setViewSucursales(false)
             setTypeNav("tarjeta")

@@ -13,6 +13,7 @@ import { UseCartContext } from "../../context/CartContext";
 import cruz from "../../assets/img/cruz.png";
 import Loader from "../../components/Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
+import Swal from "sweetalert2";
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -71,7 +72,12 @@ const Cart = () => {
                 setEliminar(false)
                 setLoad(false)
             }else{
-                alert("Ocurrio un error")
+                Swal.fire({
+                    title:'OCURRIÓ UN ERROR',
+                    text:"Volvé a intentarlo",
+                    icon:'error',
+                    confirmButtonText: 'ACEPTAR',
+                  })
                 setLoad(false)
             }
         })

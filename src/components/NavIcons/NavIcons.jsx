@@ -36,6 +36,7 @@ import Loader from "../Loader/Loader";
 import basura from "../../assets/img/basura.png";
 import cruz from "../../assets/img/cruz.png";
 import MiRoperoNavbar from "../../assets/img/isologo.png";
+import Swal from "sweetalert2";
 // import MisMensajesNavbar from "../../assets/img/msj2.jpg";
 
 const NavIcons = () => {
@@ -89,7 +90,12 @@ const NavIcons = () => {
         setEliminar(false);
         setLoad(false);
       } else {
-        alert("Ocurrio un error al borrar el producto. Volvé a intentarlo.");
+        Swal.fire({
+          title:'OCURRIÓ UN ERROR',
+          text:"Ocurrio un error al borrar el producto. Volvé a intentarlo",
+          icon:'error',
+          confirmButtonText: 'ACEPTAR',
+        })
         setLoad(false);
       }
     });

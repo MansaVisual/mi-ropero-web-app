@@ -23,6 +23,7 @@ import { UseCartContext } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import PopUpOfertaPP from "../Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../Dialog/PopUpMensajePP";
+import Swal from "sweetalert2";
 
 const ProductBuyBox = ({ prod, itemID }) => {
   // const location = useLocation();
@@ -64,7 +65,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
         });
         setLoad(false);
       } else if (res.result === "El producto ya existe en el carrito") {
-        alert("El producto ya se encuentra en tu carrito");
+        Swal.fire({
+          title:'PRODUCTO EN CARRITO',
+          text:"El producto ya se encuentra en tu carrito",
+          icon:'info',
+          confirmButtonText: 'ACEPTAR',
+        })
         setLoad(false);
       }
     });

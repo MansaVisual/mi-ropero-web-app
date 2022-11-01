@@ -4,6 +4,7 @@ import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/MRlogoModal.png'
 import Loader from '../Loader/Loader';
 import { UseLoginContext } from '../../context/LoginContext';
+import Swal from 'sweetalert2';
 
 const ValidationPopUp = ({setSendCod}) => {
     const {LoginAPI}=useContext(UseLoginContext)
@@ -22,9 +23,19 @@ const ValidationPopUp = ({setSendCod}) => {
             ).then((res)=>{
                 setLoad(false)
                 if(res.status==="success"){
-                    alert("Se envió el código")
+                    Swal.fire({
+                        title:'CÓDIGO ENVIADO',
+                        text:"Revise su correo electrónico",
+                        icon:'info',
+                        confirmButtonText: 'ACEPTAR',
+                    })
                 }else{
-                    alert("No se pudo enviar el código. Volvé a intentarlo")
+                    Swal.fire({
+                        title:'OCURRIÓ UN ERROR',
+                        text:"No se pudo enviar el código. Volvé a intentarlo",
+                        icon:'error',
+                        confirmButtonText: 'ACEPTAR',
+                    })
                 }
             }
         )
