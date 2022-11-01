@@ -112,6 +112,10 @@ function App() {
                         element={<Perfil />}
                       />
                       <Route
+                        path="perfil/:perfilSeccion/:idDetalleCompra"
+                        element={<Perfil />}
+                      />
+                      <Route
                         path="terminos&y&condiciones"
                         element={<TyC />}
                       />
