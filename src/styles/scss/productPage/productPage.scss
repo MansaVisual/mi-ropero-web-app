@@ -1,20 +1,37 @@
 .popUpOferta{
     font-family: 'Open Sans' !important;
     font-style: normal !important;
+    max-width: 468px !important;
+    @include screen_601{
+        max-width: 320px !important;
+        margin-top: 8px !important;
+    }
     img{
         width: 35px;
+    }
+    .parrafo{
+        text-align: center;
+        @include screen_601{
+            margin:0px 8px 16px !important;
+        }
     }
     .titleOferta{
         margin-top: 8px !important;
         line-height: 22px !important;
         font-size: 16px !important;
         color: #423B3C !important;
+        @include screen_601{
+            margin-bottom: 16px !important;
+        }
     }
     .titleOfertaInput{
         font-size: 16px !important;
         line-height: 22px !important;
         color: #423B3C !important;
         margin-bottom: 8px !important;
+        @include screen_601{
+            margin-top: -8px !important;
+        }
     }
     .ofertaInput{
         margin-top: 0px !important;
@@ -37,41 +54,61 @@
         font-size: 12px !important;
         line-height: 16px !important;
     }
-    .cancelar{
-        padding: 0px 48px;
-        width: 207px;
-        height: 36px;
-        border: 0.5px solid #443988;
-        filter: drop-shadow(0px 2px 6px rgba(66, 65, 67, 0.1));
-        border-radius: 20px;
-        margin-top: 24px !important;
-        margin-bottom: 32px !important;
-    }
-    .oferta{
-        padding: 0px 48px;
-        width: 207px;
-        height: 36px;
-        background: #443988;
-        color: white;
-        box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
-        border-radius: 20px;
-        margin-left: 16px !important;
-        margin-top: 24px !important;
-        margin-bottom: 32px !important;
-        &:hover{
-            background: #443988;
+    .botones{
+        @include screen_601{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
         }
-    }
-    .ofertaDisabled{
-        padding: 0px 48px;
-        width: 207px;
-        height: 36px;
-        background: #8883ac;
-        color: #c0bfca !important;
-        box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
-        border-radius: 20px;
-        margin-left: 16px !important;
-        margin-top: 24px !important;
-        margin-bottom: 32px !important;
+        .cancelar{
+            padding: 0px 48px;
+            width: 207px;
+            height: 36px;
+            border: 0.5px solid #443988;
+            filter: drop-shadow(0px 2px 6px rgba(66, 65, 67, 0.1));
+            border-radius: 20px;
+            margin-top: 24px !important;
+            margin-bottom: 32px !important;
+            @include screen_601{
+                margin-top: 16px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+        .oferta{
+            padding: 0px 48px;
+            width: 207px;
+            height: 36px;
+            background: #443988;
+            color: white;
+            box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
+            border-radius: 20px;
+            margin-left: 16px !important;
+            margin-top: 24px !important;
+            margin-bottom: 32px !important;
+            &:hover{
+                background: #443988;
+            }
+            @include screen_601{
+                margin-top: 8px !important;
+                margin-left: 0px !important;
+            }
+        }
+        .ofertaDisabled{
+            padding: 0px 48px;
+            width: 207px;
+            height: 36px;
+            background: #998edb !important;
+            color: #FFFFFF !important;
+            box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
+            border-radius: 20px;
+            margin-left: 16px !important;
+            margin-top: 24px !important;
+            margin-bottom: 32px !important;
+            @include screen_601{
+                margin-top: 8px !important;
+                margin-left: 0px !important;
+            }
+        }
     }
 }
