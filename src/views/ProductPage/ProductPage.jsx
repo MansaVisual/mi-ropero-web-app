@@ -7,7 +7,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ImageGallery from "react-image-gallery";
 import ProductBuyBox from "../../components/ProductBuyBox/ProductBuyBox";
@@ -27,8 +27,6 @@ import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
 
 const ProductPage = () => {
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
