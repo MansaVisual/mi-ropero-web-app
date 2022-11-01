@@ -9,6 +9,12 @@
     font-weight: 700;
     font-size: 18px;
   }
+  .tituloPrimario {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 40px;
+  }
   .tituloSecundario {
     font-weight: 600;
     font-size: 13px;
@@ -18,6 +24,24 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;
+  }
+  .returnLink {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 24px;
+    p {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      color: #424143;
+    }
+    img {
+      height: 7.94px;
+      width: 4.24px;
+      margin-right: 10px;
+    }
   }
 }
 
