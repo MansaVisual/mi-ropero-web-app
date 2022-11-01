@@ -82,12 +82,6 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     }
   };
 
-  const onFocus = (event, clase, clase2, id) => {
-    if (event.target.classList.contains(clase)) {
-      event.target.classList.remove(clase);
-      document.getElementById(id).classList.remove(clase2);
-    }
-  };
 
   return (
     <>
@@ -130,7 +124,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
             <p className="titleOfertaInput">Monto de la oferta*</p>
             <TextField
               id="oferta"
-              className="ofertaInput"
+              className={`ofertaInput ${errorValor && "ofertaInputError"}`}
               margin="dense"
               type="number"
               placeholder="$ Ingresar valor"

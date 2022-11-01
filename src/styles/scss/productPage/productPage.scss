@@ -42,6 +42,13 @@
         height: 40px !important;
         margin-bottom: 16px !important;
     }
+    .ofertaInputError{
+        div{
+            .MuiOutlinedInput-notchedOutline{
+                border-color: transparent !important;
+            }
+        }
+    }
     .titleCommentInput{
         font-size: 16px !important;
         line-height: 22px !important;
