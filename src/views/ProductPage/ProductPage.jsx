@@ -24,6 +24,7 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
+import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -39,6 +40,7 @@ const ProductPage = () => {
   const { ProdAPI } = useContext(UseProdsContext);
 
   const [open, setOpen] = useState(false);
+  const [openMessagePop, setOpenMessagePop] = useState(false);
 
   const [prod, setProd] = useState([]);
   const [prodFotos, setProdFotos] = useState([]);
@@ -234,16 +236,19 @@ const ProductPage = () => {
                         infoUser={infoUser}
                         idProd={itemID}
                       />
-                      <CommentButton onClick={handleClickOpen} />
+                      <CommentButton onClick={() => setOpenMessagePop(true)} />
                     </Box>
                   </Box>
                   <ProductBuyBox prod={prod} itemID={itemID} />
-                  {open && (
-                    <PopUpOfertaPP 
-                      open={open}
-                      setOpen={setOpen}
+                  {openMessagePop && (
+                    <PopUpMensajePP
+                      setOpenMessagePop={setOpenMessagePop}
+                      openMessagePop={openMessagePop}
                       prod={prod}
                     />
+                  )}
+                  {open && (
+                    <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                   )}
                 </>
               )}
@@ -310,14 +315,16 @@ const ProductPage = () => {
                   >
                     {prod.length !== 0 && prod.tienda.nombre}
                   </Typography>
-                  <Rating name="read-only" readOnly value={
-                    prod.tienda.calificaciones !== undefined &&
-                    prod.tienda.calificaciones.sum !== null &&
-                    
+                  <Rating
+                    name="read-only"
+                    readOnly
+                    value={
+                      prod.tienda.calificaciones !== undefined &&
+                      prod.tienda.calificaciones.sum !== null &&
                       Number(prod.tienda.calificaciones.sum) /
-                      Number(prod.tienda.calificaciones.total)
-                    
-                  } />
+                        Number(prod.tienda.calificaciones.total)
+                    }
+                  />
                   {/* <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[4],

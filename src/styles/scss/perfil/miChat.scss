@@ -30,6 +30,8 @@
 
     .chatContent {
       border-right: 1px solid #ebe7fb;
+      border-radius: 7px;
+      padding: 1rem;
       @include screen_705 {
         border: 0px;
       }
@@ -129,7 +131,6 @@
     .chatItem .avatar {
       margin-right: 0px;
       margin-left: 20px;
-      background: #fff;
       padding: 1px;
     }
     .chatItem.other {
@@ -154,7 +155,7 @@
       padding-top: 30px;
     }
     .sendNewMessage {
-      background-color: #fff;
+      background-color: #ededed;
       display: flex;
       justify-content: space-between;
       padding: 10px;
