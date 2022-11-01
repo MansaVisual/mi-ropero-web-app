@@ -2,6 +2,7 @@ import React, {Fragment,useState,useContext} from "react"
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Box, Button, TextField, useMediaQuery } from "@mui/material";
 import isologo from "../../assets/img/isologo.png";
+import error from "../../assets/img/error.png"
 import theme from "../../styles/theme";
 import Loader from "../Loader/Loader";
 import { UseProdsContext } from "../../context/ProdsContext";
@@ -23,15 +24,12 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
         }
     );
 
+    const [errorValor,setErrorValor]=useState(false)
+
     const handleSubmit=()=>{
+        setErrorValor(false)
         if(data.amount>(prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio)){
-            setAparece(false)
-            Swal.fire({
-                title:'MONTO INCORRECTO',
-                text:`El monto debe ser mayor a $0 y menor a $${prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio}`,
-                icon:'info',
-                confirmButtonText: 'ACEPTAR',
-            }).then(()=>setAparece(true))
+            setErrorValor(true)
             document.getElementById("oferta").focus()
             return
         }
@@ -90,9 +88,14 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
                     <div className="fondoPopUp" onClick={()=>{setOpen(false)}}></div>
                     <div className="popUp popUpOferta">
                         <CancelIcon color="tertiary" className="cross" onClick={()=>{setOpen(false)}}/>
-                        <img src={isologo} alt="SHOP" color="primary" className="botonLogo"/>
-                        <p className="titleOferta">¡OFERTÁ!</p>
-                        <p className="parrafo">Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio}</p>
+                        <img src={errorValor?error:isologo} alt="SHOP" color="primary" className="botonLogo"/>
+                        <p className="titleOferta">{errorValor?"¡ERROR!":"¡OFERTÁ!"}</p>
+                        <p className="parrafo">
+                            {errorValor ? 
+                            "El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor"
+                            :`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio}`
+                            }
+                        </p>
 
                         <p className="titleOfertaInput">Monto de la oferta*</p>
                         <TextField
