@@ -114,7 +114,14 @@ const ProductPage = () => {
               {isMobile || isMobileBigScreen || isTablet ? (
                 <>
                   <Box sx={{ mt: "16px" }}>
-                    <Breadcrumbs links={pathnames} />
+                    <Breadcrumbs
+                      links={[
+                        "PRODUCTO",
+                        prod.nombre.length > 15
+                          ? prod.nombre.substring(0, 15) + "..."
+                          : prod.nombre,
+                      ]}
+                    />
                   </Box>
                   <Box>
                     <Typography
@@ -162,7 +169,14 @@ const ProductPage = () => {
               ) : (
                 <>
                   <Box sx={{ mb: "16px" }}>
-                    <Breadcrumbs links={pathnames} />
+                    <Breadcrumbs
+                      links={[
+                        "PRODUCTO",
+                        prod.nombre.length > 15
+                          ? prod.nombre.substring(0, 15) + "..."
+                          : prod.nombre,
+                      ]}
+                    />
                   </Box>
                   <ImageGallery
                     items={prodFotos}
@@ -200,7 +214,14 @@ const ProductPage = () => {
               ) : (
                 <>
                   <Box sx={{ mb: "24px", mt: "32px" }}>
-                    <Breadcrumbs links={pathnames} />
+                    <Breadcrumbs
+                      links={[
+                        "PRODUCTO",
+                        prod.nombre.length > 15
+                          ? prod.nombre.substring(0, 15) + "..."
+                          : prod.nombre,
+                      ]}
+                    />
                   </Box>
                   <Box sx={{ display: "flex" }}>
                     <Box

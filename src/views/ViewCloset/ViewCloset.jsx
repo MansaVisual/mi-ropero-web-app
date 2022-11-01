@@ -63,6 +63,8 @@ const ViewCloset = () => {
   const [coleccion, setColeccion] = useState([]);
   const [filtrosFin, setFiltrosFin] = useState("");
 
+  console.log(nombre);
+
   useEffect(() => {
     if (closetId !== undefined) {
       const ropero = new FormData();
@@ -94,8 +96,7 @@ const ViewCloset = () => {
       top: 0,
       behavior: "auto",
     });
-    busquedaPrimera()
-
+    busquedaPrimera();
   }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -105,7 +106,7 @@ const ViewCloset = () => {
     });
   }, []);
 
-  const busquedaPrimera =()=>{
+  const busquedaPrimera = () => {
     setPutSort("");
     setPutFilters([]);
     setPags(1);
@@ -137,7 +138,7 @@ const ViewCloset = () => {
         }
         setBuscandoRoperos(false);
       });
-    }else{
+    } else {
       if (closetId !== undefined) {
         const ropero = new FormData();
         ropero.append("idtienda", closetId);
@@ -147,7 +148,8 @@ const ViewCloset = () => {
           if (res.status === "success") {
             let arrayCol = [];
             for (const i in res.result.search_productos_categorias) {
-              for (const ii in res.result.search_productos_categorias[i].hijas) {
+              for (const ii in res.result.search_productos_categorias[i]
+                .hijas) {
                 arrayCol.push(
                   res.result.search_productos_categorias[i].hijas[ii]
                 );
@@ -161,7 +163,7 @@ const ViewCloset = () => {
         });
       }
     }
-  }
+  };
 
   const buscarPage = (paramSearch, value) => {
     setBuscandoRoperos(true);
@@ -214,7 +216,6 @@ const ViewCloset = () => {
       });
     });
   };
-
 
   const handleAplicarFiltros = () => {
     setBuscandoRoperos(true);
@@ -289,7 +290,12 @@ const ViewCloset = () => {
         <Grid item xs={12} sm={12} md={3}>
           {isMobile || isMobileBigScreen ? (
             <Box sx={{ mt: "16px" }}>
-              <Breadcrumbs links={pathnames} />
+              <Breadcrumbs
+                links={[
+                  "ROPEROS",
+                  nombre.length > 15 ? nombre.substring(0, 15) + "..." : nombre,
+                ]}
+              />
               <Box
                 sx={{
                   display: "flex",
@@ -335,28 +341,39 @@ const ViewCloset = () => {
                             Filtrar
                           </Typography>
 
-                          {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                          {putCategory !== "" ||
+                          putSort !== "" ||
+                          putFilters.length !== 0 ||
+                          rangoPrecio.min !== 0 ||
+                          rangoPrecio.max !== 999999 ? (
                             <Typography
-                            sx={{
-                              fontSize: theme.typography.fontSize[2],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              textDecoration: 'underline',
-                              mt: '12px',
-                              mb: '16px',
-                              cursor:"pointer"
-                            }}
-                            onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                                ()=>{
-                                  setPutCategory("")
-                                  setRangoPrecio({ min: 0, max: 999999 })
-                                  busquedaPrimera()
-                                }
-                                :null
+                              sx={{
+                                fontSize: theme.typography.fontSize[2],
+                                fontWeight: theme.typography.fontWeightRegular,
+                                textDecoration: "underline",
+                                mt: "12px",
+                                mb: "16px",
+                                cursor: "pointer",
+                              }}
+                              onClick={
+                                putCategory !== "" ||
+                                putSort !== "" ||
+                                putFilters.length !== 0 ||
+                                rangoPrecio.min !== 0 ||
+                                rangoPrecio.max !== 999999
+                                  ? () => {
+                                      setPutCategory("");
+                                      setRangoPrecio({ min: 0, max: 999999 });
+                                      busquedaPrimera();
+                                    }
+                                  : null
                               }
-                              >
+                            >
                               Limpiar filtros
                             </Typography>
-                            :<></>}
+                          ) : (
+                            <></>
+                          )}
                         </Box>
                         {putFilters.map((res, index) => {
                           return (
@@ -408,14 +425,17 @@ const ViewCloset = () => {
                   La tienda aún no tiene calificaciones
                 </Typography>
                 <Box sx={{ mb: "36px" }}>
-                  <Rating name="read-only" readOnly value={
-                    tienda.calificaciones !== undefined &&
-                    tienda.calificaciones.sum !== null &&
-                    (
+                  <Rating
+                    name="read-only"
+                    readOnly
+                    value={
+                      tienda.calificaciones !== undefined &&
+                      tienda.calificaciones.sum !== null &&
                       Number(tienda.calificaciones.sum) /
-                      Number(tienda.calificaciones.total)
-                    )
-                  } size="large" />
+                        Number(tienda.calificaciones.total)
+                    }
+                    size="large"
+                  />
                 </Box>
               </Box>
               <IconGroupText prod={undefined} prod2={tienda} />
@@ -423,7 +443,14 @@ const ViewCloset = () => {
           ) : (
             <>
               <Box sx={{ mt: "16px" }}>
-                <Breadcrumbs links={pathnames} />
+                <Breadcrumbs
+                  links={[
+                    "ROPEROS",
+                    nombre.length > 15
+                      ? nombre.substring(0, 15) + "..."
+                      : nombre,
+                  ]}
+                />
               </Box>
               {putFilters.map((res, index) => {
                 return (
@@ -445,28 +472,39 @@ const ViewCloset = () => {
                   </Stack>
                 );
               })}
-              {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+              {putCategory !== "" ||
+              putSort !== "" ||
+              putFilters.length !== 0 ||
+              rangoPrecio.min !== 0 ||
+              rangoPrecio.max !== 999999 ? (
                 <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[2],
-                  fontWeight: theme.typography.fontWeightRegular,
-                  textDecoration: 'underline',
-                  mt: '12px',
-                  mb: '16px',
-                  cursor:"pointer"
-                }}
-                onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                    ()=>{
-                      setPutCategory("")
-                      setRangoPrecio({ min: 0, max: 999999 })
-                      busquedaPrimera()
-                    }
-                    :null
+                  sx={{
+                    fontSize: theme.typography.fontSize[2],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    textDecoration: "underline",
+                    mt: "12px",
+                    mb: "16px",
+                    cursor: "pointer",
+                  }}
+                  onClick={
+                    putCategory !== "" ||
+                    putSort !== "" ||
+                    putFilters.length !== 0 ||
+                    rangoPrecio.min !== 0 ||
+                    rangoPrecio.max !== 999999
+                      ? () => {
+                          setPutCategory("");
+                          setRangoPrecio({ min: 0, max: 999999 });
+                          busquedaPrimera();
+                        }
+                      : null
                   }
-                  >
+                >
                   Limpiar filtros
                 </Typography>
-                :<></>}
+              ) : (
+                <></>
+              )}
               <Typography
                 sx={{
                   fontSize: theme.typography.fontSize[9],
@@ -477,16 +515,19 @@ const ViewCloset = () => {
               >
                 {nombre}
               </Typography>
-              <Rating name="read-only" readOnly value={
-                tienda.calificaciones !== undefined &&
-                tienda.calificaciones.sum !== null &&
-                
+              <Rating
+                name="read-only"
+                readOnly
+                value={
+                  tienda.calificaciones !== undefined &&
+                  tienda.calificaciones.sum !== null &&
                   Number(tienda.calificaciones.sum) /
-                  Number(tienda.calificaciones.total)
-                
-              } size="large" />
+                    Number(tienda.calificaciones.total)
+                }
+                size="large"
+              />
               <IconGroupText prod={undefined} prod2={tienda} />
-              
+
               <Filter
                 setPutCategory={setPutCategory}
                 putCategory={putCategory}
