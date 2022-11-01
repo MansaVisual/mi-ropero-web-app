@@ -39,13 +39,23 @@ const MisMensajes = () => {
   useEffect(() => {
     if (mensajes.length > 0) {
       if (typeMessage === "ver todos") {
-        setMensajesFiltrados(mensajes);
+        setMensajesFiltrados(
+          mensajes.filter((msg) => msg.cliente_id !== userLog)
+        );
       }
       if (typeMessage === "ver no leídos") {
-        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "2"));
+        setMensajesFiltrados(
+          mensajes.filter(
+            (msg) => msg.estado === "2" && msg.cliente_id !== userLog
+          )
+        );
       }
       if (typeMessage === "ver leídos") {
-        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "1"));
+        setMensajesFiltrados(
+          mensajes.filter(
+            (msg) => msg.estado === "1" && msg.cliente_id !== userLog
+          )
+        );
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,6 +75,8 @@ const MisMensajes = () => {
     const formatoFinal = `Fecha: ${day} / ${month} / ${year} ${hora} Hs.`;
     return formatoFinal;
   };
+
+  console.log(mensajesFiltrados);
 
   return (
     <div className="misMensajesContainer">
@@ -131,11 +143,8 @@ const MisMensajes = () => {
           >
             <Loader spin={"spinnerM"} />
           </div>
-        ) : mensajes.length > 0 ? (
+        ) : mensajesFiltrados.length > 0 ? (
           mensajesFiltrados.map((mensaje, id) => {
-            /* if (mensaje.cliente_id === userLog) {
-              return null;
-            } */
             return (
               <>
                 <div key={id} className="desktopCard">

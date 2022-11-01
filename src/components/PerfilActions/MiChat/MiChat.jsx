@@ -19,7 +19,7 @@ const MiChat = () => {
 
   const [mensaje, setMensaje] = useState("");
   const [chatActual, setChatActual] = useState([]);
-  const [scroll, setScroll] = useState(false);
+  const [scroll, setScroll] = useState(true);
   const [productoImg, setProductoImg] = useState(false);
   const [nombreRemitente, setNombreRemitente] = useState(false);
   const [productoId, setProductoId] = useState(false);
@@ -55,19 +55,19 @@ const MiChat = () => {
   }, [mensajeId, userLog]);
 
   const scrollToBottom = () => {
-    console.log("scroll function");
-
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
-      /* inline: "nearest", */
     });
   };
 
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "auto",
+      block: "nearest",
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [chatActual]);
 
   useEffect(() => {
     console.log("scroll");
@@ -100,10 +100,10 @@ const MiChat = () => {
             ...chatActual,
             { type: "", msg: mensaje, image: infoUser.avatar },
           ]);
+          setMensaje("");
+          setScroll(true);
         }
       });
-      setMensaje("");
-      setScroll(true);
     }
   };
 
@@ -139,9 +139,6 @@ const MiChat = () => {
           </div>
           <div className="content__footer">
             <div className="sendNewMessage">
-              {/* <button className="addFiles">
-                <i className="fa fa-plus"></i>
-              </button> */}
               <input
                 type="text"
                 placeholder="Escribe un mensaje"
@@ -154,7 +151,6 @@ const MiChat = () => {
                 id="sendMsgBtn"
                 onClick={() => sendMessage()}
               >
-                {/* <i className="fa fa-paper-plane"></i> */}
                 Enviar
               </button>
             </div>
