@@ -22,12 +22,12 @@ import Loader from "../Loader/Loader";
 import { UseCartContext } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import PopUpOfertaPP from "../Dialog/PopUpOfertaPP";
+import PopUpMensajePP from "../Dialog/PopUpMensajePP";
 
 const ProductBuyBox = ({ prod, itemID }) => {
   // const location = useLocation();
   // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
-  const [openCommentDialog, setOpenCommentDialog] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
@@ -37,19 +37,14 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
   const [costoEnvio, setCostoEnvio] = useState([]);
   const [CP, setCP] = useState("");
+  const [openMessagePop, setOpenMessagePop] = useState(false);
 
   const { userLog } = useContext(UseLoginContext);
   const { CartAPI, setCarrito } = useContext(UseCartContext);
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-  const handleClickOpenCommentDialog = () => {
-    setOpenCommentDialog(true);
-  };
-
 
   const handleAgregarCarrito = () => {
     setLoad(true);
@@ -145,21 +140,22 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   medium
                   icon={ofertIcon}
                   onClick={handleClickOpen}
-                  sx={{ height: "30px" }}
+                  sx={{
+                    height: "30px",
+                    "&:hover": {
+                      backgroundColor: theme.palette.quinary.main,
+                    },
+                  }}
                 />
                 {open && (
-                  <PopUpOfertaPP 
-                    open={open}
-                    setOpen={setOpen}
-                    prod={prod}
-                  />
+                  <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                 )}
               </Box>
-              <CommentButton onClick={handleClickOpenCommentDialog} />
-              {openCommentDialog && (
-                <PopUpOfertaPP 
-                  open={open}
-                  setOpen={setOpen}
+              <CommentButton onClick={() => setOpenMessagePop(true)} />
+              {openMessagePop && (
+                <PopUpMensajePP
+                  setOpenMessagePop={setOpenMessagePop}
+                  openMessagePop={openMessagePop}
                   prod={prod}
                 />
               )}
@@ -279,11 +275,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     onClick={handleClickOpen}
                   />
                   {open && (
-                    <PopUpOfertaPP 
-                      open={open}
-                      setOpen={setOpen}
-                      prod={prod}
-                    />
+                    <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                   )}
                 </Box>
               </Box>

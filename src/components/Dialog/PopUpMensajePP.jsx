@@ -103,7 +103,11 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
                 >
                   CANCELAR
                 </Button>
-                <Button className="recordar" onClick={() => submit()}>
+                <Button
+                  disabled={message === "" ? true : false}
+                  className={message === "" ? "mensajeDisabled" : "recordar"}
+                  onClick={() => submit()}
+                >
                   ENVIAR MENSAJE
                 </Button>
               </>

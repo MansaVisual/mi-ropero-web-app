@@ -133,6 +133,9 @@ const MisMensajes = () => {
           </div>
         ) : mensajes.length > 0 ? (
           mensajesFiltrados.map((mensaje, id) => {
+            /* if (mensaje.cliente_id === userLog) {
+              return null;
+            } */
             return (
               <>
                 <div key={id} className="desktopCard">

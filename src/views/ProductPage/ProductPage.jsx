@@ -46,10 +46,6 @@ const ProductPage = () => {
   const [prodFotos, setProdFotos] = useState([]);
   const [prodCaracteristicas, setProdCaracteristicas] = useState([]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   useEffect(() => {
     window.scrollTo({
       top: 0,

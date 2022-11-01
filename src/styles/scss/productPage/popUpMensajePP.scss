@@ -28,14 +28,15 @@
     justify-content: center;
     align-items: center;
     margin: 0px 16px;
-    margin-top: 127px;
+    margin-top: 30px;
     z-index: 99999;
     position: relative;
     width: 100%;
-    max-width: 479px;
+    max-width: 468px;
     padding: 24px;
     @include screen_705 {
       padding: 32px 16px 8px 16px;
+      margin-top: 40px;
     }
     .cross {
       position: absolute;
@@ -130,6 +131,21 @@
         @include screen_506 {
           margin-left: 0;
           margin-top: 16px;
+        }
+      }
+      .mensajeDisabled {
+        width: 208px;
+        height: 32px;
+        background: #998edb !important;
+        color: #ffffff !important;
+        box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
+        font-size: 13px;
+        border-radius: 20px;
+        margin-left: 8px;
+        margin-top: 24px !important;
+        @include screen_506 {
+          margin-top: 16px;
+          margin-left: 0px !important;
         }
       }
       .continuar {
