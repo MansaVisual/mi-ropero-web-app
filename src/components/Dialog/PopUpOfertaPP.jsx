@@ -23,7 +23,7 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
 
     const handleSubmit=()=>{
         if(data.amount>(prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio)){
-            alert("Monto mas alto que el costo del producto")
+            alert("El monto ingresado es incorrecto")
             document.getElementById("oferta").focus()
             return
         }
