@@ -57,7 +57,7 @@ const Error = () => {
           <Box sx={{ pt: "40px", textAlign: "center" }}>
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
-          <Box sx={{ pt: "24px", display: "flex", justifyContent: "center" }}>
+          <Box sx={{ pt: "24px"}}>
             <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center", mb: "72px" }}>

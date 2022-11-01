@@ -76,7 +76,10 @@ const Home = () => {
           <Box sx={{ pt: "40px", textAlign: "center" }}>
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
+          <Box sx={{ pt: "24px"}}>
+
           <SliderProd contenido={coleccionNuevosIngresos} />
+          </Box>
           <Box sx={{ textAlign: "center" }}>
             <Link
               sx={{
@@ -96,7 +99,7 @@ const Home = () => {
             <Chip>Zapatillas</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px"}}>
             <SliderProd contenido={slider1} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -130,7 +133,7 @@ const Home = () => {
             <Chip>Remeras</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px"}}>
             <SliderProd contenido={slider2} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -152,7 +155,7 @@ const Home = () => {
             <Chip>Blusa/Top</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px"}}>
             <SliderProd contenido={slider3} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -222,7 +225,7 @@ const Home = () => {
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Productos recomendados</Chip>
           </Box>
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px"}}>
             <SliderProd contenido={coleccionRecomendados} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -243,7 +246,7 @@ const Home = () => {
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
-          <Box sx={{ pt: "24px", display: "flex", justifyContent:"center" }}>
+          <Box sx={{ pt: "24px"}}>
             <SliderProd contenido={coleccionMejoresV} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
