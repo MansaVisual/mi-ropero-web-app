@@ -145,7 +145,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   text="Ofertar"
                   medium
                   icon={ofertIcon}
-                  onClick={handleClickOpen}
+                  onClick={userLog!==""? ()=>handleClickOpen():()=>navigate("/login")}
                   sx={{
                     height: "30px",
                     "&:hover": {
@@ -157,7 +157,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                 )}
               </Box>
-              <CommentButton onClick={() => setOpenMessagePop(true)} />
+              <CommentButton onClick={userLog===""?()=>navigate("/login"):() => setOpenMessagePop(true)} />
               {openMessagePop && (
                 <PopUpMensajePP
                   setOpenMessagePop={setOpenMessagePop}
@@ -278,8 +278,8 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     color={theme.palette.primary.main}
                     text="Ofertar"
                     icon={ofertIcon}
-                    onClick={handleClickOpen}
-                  />
+                    onClick={userLog!==""? ()=>handleClickOpen():()=>navigate("/login")}
+                    />
                   {open && (
                     <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                   )}

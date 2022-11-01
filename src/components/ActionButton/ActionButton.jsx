@@ -7,12 +7,13 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
   const {ProdAPI,listFavs,handleListFavs}=useContext(UseProdsContext)
   const [like, setLike] = useState(null);
-
+  const navigate=useNavigate()
 
   useEffect(() => {
     setLike(null)
@@ -28,6 +29,11 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
   }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const onLike = async () => {
+    if(idCliente===""){
+      navigate("/login")
+      return
+    }
+
     setLike(!like)
     if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
       const idFavorito = listFavs.find(e=>e.producto_id===idProd)

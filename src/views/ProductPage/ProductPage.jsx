@@ -253,7 +253,7 @@ const ProductPage = () => {
                         infoUser={infoUser}
                         idProd={itemID}
                       />
-                      <CommentButton onClick={() => setOpenMessagePop(true)} />
+                      <CommentButton onClick={userLog===""?()=>navigate("/login"):() => setOpenMessagePop(true)} />
                     </Box>
                   </Box>
                   <ProductBuyBox prod={prod} itemID={itemID} />
@@ -326,7 +326,7 @@ const ProductPage = () => {
                     }}
                     onClick={() =>
                       navigate(
-                        `/roperos/${prod.tienda.idcliente}/${prod.tienda.nombre}`
+                        `/roperos/${prod.tienda.idtienda}/${prod.tienda.nombre}`
                       )
                     }
                   >
