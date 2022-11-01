@@ -2,7 +2,6 @@ import React, { createRef, useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../../assets/img/leftArrow.png";
-import profileTest1 from "../../../assets/img/profileTest1.jpg";
 import ChatItem from "./ChatItem";
 import Avatar from "./Avatar";
 import { UseLoginContext } from "../../../context/LoginContext";
@@ -13,83 +12,69 @@ const MiChat = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
-  const { userLog } = useContext(UseLoginContext);
-  const {
-    handleComprasRealizadas,
-    comprasRealizadas,
-    comprasFinBusqueda,
-    setCompraId,
-  } = useContext(UsePerfilContext);
+  const { userLog, infoUser } = useContext(UseLoginContext);
+  const { mensajeId, PerfilAPI } = useContext(UsePerfilContext);
 
   const messagesEndRef = createRef(null);
 
-  const chatPrevio = [
-    {
-      image: profileTest1,
-      type: "",
-      msg: "que onda timo",
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "todo bien y vos",
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-
-      type: "other",
-      msg: "todo tranqui por suerte",
-    },
-    {
-      image: profileTest1,
-      type: "",
-      msg: "sale discord",
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "sale discord ",
-    },
-    {
-      image: profileTest1,
-      type: "",
-      msg: "sale discord",
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "sale discord",
-    },
-  ];
-
   const [mensaje, setMensaje] = useState("");
-  const [chatActual, setChatActual] = useState(chatPrevio);
+  const [chatActual, setChatActual] = useState([]);
   const [scroll, setScroll] = useState(false);
+  const [productoImg, setProductoImg] = useState(false);
+  const [nombreRemitente, setNombreRemitente] = useState(false);
+  const [productoId, setProductoId] = useState(false);
+
+  useEffect(() => {
+    if (userLog) {
+      const dir = new FormData();
+      dir.append("idcliente", userLog);
+      dir.append("idmensaje", mensajeId);
+      PerfilAPI(dir, "mensajes", "thread").then((res) => {
+        if (res.status === "success") {
+          setProductoImg(res.result[0].producto.imagenes[0].imagen_chica);
+          setNombreRemitente(res.result[0].cliente_nombre);
+          setProductoId(res.result[0].producto.idproducto);
+          let array = [];
+          for (const ii in res.result) {
+            array.push({
+              type:
+                res.result[ii].cliente_email === infoUser.email ? "" : "other",
+              msg: res.result[ii].mensaje,
+              image:
+                res.result[ii].cliente_email === infoUser.email
+                  ? infoUser.avatar
+                  : res.result[0].producto.imagenes[0].imagen_chica,
+              idMensaje: res.result[ii].idmensaje,
+            });
+          }
+          setChatActual(array);
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mensajeId, userLog]);
 
   const scrollToBottom = () => {
-    setTimeout(() => {
-      messagesEndRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        /*  inline: "nearest", */
-      });
-    }, 1200);
+    console.log("scroll function");
+
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      /* inline: "nearest", */
+    });
   };
 
   useEffect(() => {
     scrollToBottom();
-    console.log("inicio");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const chateador = {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-    nombre: "Timo",
-  };
+  useEffect(() => {
+    console.log("scroll");
+    scrollToBottom();
+    setScroll(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scroll]);
 
   const handlePress = (e) => {
     if (e.key === "Enter") {
@@ -99,25 +84,28 @@ const MiChat = () => {
 
   const sendMessage = () => {
     if (mensaje !== "") {
-      setChatActual([
-        ...chatActual,
-        { type: "", msg: mensaje, image: profileTest1 },
-      ]);
+      const mensajePadre = chatActual[chatActual.length - 1];
+
+      const dir = new FormData();
+      dir.append("idcliente", userLog);
+      dir.append("idmensajepadre", mensajePadre.idMensaje);
+      dir.append("idproducto", productoId);
+      dir.append("mensaje", mensaje);
+      console.log(Object.fromEntries(dir));
+
+      PerfilAPI(dir, "mensajes", "insert").then((res) => {
+        console.log(res);
+        if (res.status === "success") {
+          setChatActual([
+            ...chatActual,
+            { type: "", msg: mensaje, image: infoUser.avatar },
+          ]);
+        }
+      });
       setMensaje("");
-      console.log(chatActual);
       setScroll(true);
     }
   };
-
-  useEffect(() => {
-    console.log("first");
-    setTimeout(() => {
-      scrollToBottom();
-      console.log("second");
-    }, 500);
-    setScroll(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scroll]);
 
   return (
     <div className="miChatContainer">
@@ -130,8 +118,8 @@ const MiChat = () => {
           <div className="chatHeader">
             <div className="blocks">
               <div className="current-chatting-user">
-                <Avatar isOnline="active" image={chateador.image} />
-                <p>{chateador.nombre}</p>
+                <Avatar isOnline="active" image={productoImg} />
+                <p>{nombreRemitente}</p>
               </div>
             </div>
           </div>
@@ -151,9 +139,9 @@ const MiChat = () => {
           </div>
           <div className="content__footer">
             <div className="sendNewMessage">
-              <button className="addFiles">
+              {/* <button className="addFiles">
                 <i className="fa fa-plus"></i>
-              </button>
+              </button> */}
               <input
                 type="text"
                 placeholder="Escribe un mensaje"
@@ -166,7 +154,8 @@ const MiChat = () => {
                 id="sendMsgBtn"
                 onClick={() => sendMessage()}
               >
-                <i className="fa fa-paper-plane"></i>
+                {/* <i className="fa fa-paper-plane"></i> */}
+                Enviar
               </button>
             </div>
           </div>

@@ -9,10 +9,10 @@ const ChatItem = ({ msg, image, user }) => {
     >
       <div className="chatItemContent">
         <p className="chatMsg">{msg}</p>
-        <div className="chatMeta">
+        {/* <div className="chatMeta">
           <span>Hace 16 min</span>
           <span>Visto 1.03PM</span>
-        </div>
+        </div> */}
       </div>
       <Avatar isOnline="active" image={image} />
     </div>
