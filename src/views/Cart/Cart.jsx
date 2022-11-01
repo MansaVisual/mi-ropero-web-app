@@ -32,6 +32,7 @@ const Cart = () => {
     const isDesktopBig = useMediaQuery(theme.breakpoints.up("xl"));
     
     const [num,setNum]=useState(1)
+    const [aparece,setAparece]=useState(true)
 
     useEffect(()=>{
         setTimeout(() => {
@@ -72,12 +73,13 @@ const Cart = () => {
                 setEliminar(false)
                 setLoad(false)
             }else{
+                setAparece(false)
                 Swal.fire({
                     title:'OCURRIÓ UN ERROR',
                     text:"Volvé a intentarlo",
                     icon:'error',
                     confirmButtonText: 'ACEPTAR',
-                  })
+                }).then(()=>setAparece(true))
                 setLoad(false)
             }
         })
@@ -206,7 +208,7 @@ const Cart = () => {
                 
             </Grid>
             {eliminar &&
-                <div className="cartElimianrPopUp">
+                <div className="cartElimianrPopUp" style={{display:aparece?"flex":"none"}}>
                     <div className="fondoPopUp" onClick={()=>setEliminar(false)}></div>
                     <div className="popUp">
                         <img src={basura} alt="BORRAR" style={{marginTop:"28px"}} className="basuraLogo"/>
@@ -215,7 +217,7 @@ const Cart = () => {
                             <Button className="cancelar" onClick={()=>setEliminar(false)}>CANCELAR</Button>
                             <Button className="eliminar" onClick={()=>handleEliminarFinal()}>ELIMINAR</Button>
                         </div>
-                        {!load && <div style={{marginBottom:"24px"}}><Loader spin={"spinnerG"}/></div>}
+                        {load && <div style={{marginBottom:"24px"}}><Loader spin={"spinnerG"}/></div>}
                         {load && <br/>}
                         <img src={cruz} alt="CRUZ" className="cruz" onClick={()=>setEliminar(false)}/>
                     </div>

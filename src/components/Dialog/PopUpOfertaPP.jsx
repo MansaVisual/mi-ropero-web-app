@@ -37,7 +37,7 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
         }
         setLoad(true);
         const oferta = new FormData();
-        oferta.append("idcliente", 3214234324);
+        oferta.append("idcliente", userLog);
         oferta.append("idproducto", prod.idproducto);
         oferta.append("oferta", data.amount);
         oferta.append("mensaje", data.comment);

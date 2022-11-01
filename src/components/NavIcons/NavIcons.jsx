@@ -55,6 +55,7 @@ const NavIcons = () => {
   const [load, setLoad] = useState(false);
   const [eliminar, setEliminar] = useState(false);
   const [prodEliminar, setProdEliminar] = useState(null);
+  const [aparece,setAparece]=useState(true)
 
   useEffect(() => {
     if (localStorage.getItem("idClienteMiRopero") !== null) {
@@ -90,12 +91,13 @@ const NavIcons = () => {
         setEliminar(false);
         setLoad(false);
       } else {
+        setAparece(false)
         Swal.fire({
           title:'OCURRIÓ UN ERROR',
           text:"Ocurrio un error al borrar el producto. Volvé a intentarlo",
           icon:'error',
           confirmButtonText: 'ACEPTAR',
-        })
+        }).then(()=>setAparece(true))
         setLoad(false);
       }
     });
@@ -791,7 +793,7 @@ const NavIcons = () => {
         {getMenuCart()}
       </StyledMenu>
       {eliminar && (
-        <div className="cartElimianrPopUp">
+        <div className="cartElimianrPopUp" style={{display:aparece?"flex":"none"}}>
           <div className="fondoPopUp" onClick={() => setEliminar(false)}></div>
           <div className="popUp">
             <img
