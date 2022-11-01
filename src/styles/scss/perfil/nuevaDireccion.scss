@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 1366px;
+  width: 100%;
   @include screen_705 {
     margin-top: 24px;
     margin-bottom: 50px;

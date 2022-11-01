@@ -108,6 +108,7 @@ const MisCompras = () => {
               marginTop: "42px",
               width: "100%",
               display: "flex",
+              maxWidth: "1066px",
               justifyContent: "center",
             }}
           >

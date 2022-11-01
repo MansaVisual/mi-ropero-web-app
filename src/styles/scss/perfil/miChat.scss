@@ -48,6 +48,7 @@
       }
       .contentBody {
         max-height: calc(100vh - calc(100vh / 2));
+        min-height: 50vh;
         overflow: auto;
         &::-webkit-scrollbar {
           width: 5px;
@@ -192,13 +193,15 @@
     #sendMsgBtn {
       background-color: hsla(248, 41%, 38%, 1);
       color: #fff;
+      width: 60px;
+      font-family: "Open Sans", sans-serif;
     }
   }
   .returnLink {
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 130px;
+    width: 150px;
     margin-top: 24px;
     p {
       font-weight: 600;

@@ -112,6 +112,7 @@ const MisOfertas = () => {
                 marginTop: "42px",
                 width: "100%",
                 display: "flex",
+                maxWidth: "895px",
                 justifyContent: "center",
               }}
             >
@@ -163,18 +164,18 @@ const MisOfertas = () => {
             return (
               <div className="mobileCard">
                 <img
-                  src={producto.img}
+                  src={producto.producto.imagenes[0].imagen_cuadrada}
                   className="productImg"
                   alt="cardImage"
                 />
                 <div>
-                  <p className="productoTitle">{producto.titulo}</p>
+                  <p className="productoTitle">{producto.producto.nombre}</p>
                   <p className="productoDate">{producto.fecha}</p>
                   <div>
                     <span className="firstSpan">OFERTA</span>
                     <span className="secondSpan">${producto.oferta}</span>
                   </div>
-                  <p className="productoState">{producto.estado}</p>
+                  <p className="productoState">{producto.estado_text}</p>
                 </div>
                 <img src={Basura} className="trashICon" alt="basuraIcon" />
               </div>
