@@ -14,8 +14,7 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
   const { ProdAPI } = useContext(UseProdsContext);
   const { userLog } = useContext(UseLoginContext);
   const [error, setError] = useState(false);
-  const [aparece,setAparece]=useState(true)
-
+  const [aparece, setAparece] = useState(true);
 
   const submit = () => {
     setLoading(true);
@@ -34,28 +33,31 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
           setLoading(false);
           setOpenMessagePop(false);
           Swal.fire({
-            title:'MENSAJE ENVIADO',
-            icon:'success',
-            confirmButtonText: 'ACEPTAR',
-        })
+            title: "MENSAJE ENVIADO",
+            icon: "success",
+            confirmButtonText: "ACEPTAR",
+          });
         }, 1000);
       } else {
         setTimeout(() => {
           setLoading(false);
-          setAparece(false)
+          setAparece(false);
           Swal.fire({
-            title:'MENSAJE NO ENVIADO',
-            text:"Ocurrió un error. Vuelva a intentarlo",
-            icon:'error',
-            confirmButtonText: 'ACEPTAR',
-        }).then(()=>setAparece(true))
+            title: "MENSAJE NO ENVIADO",
+            text: "Ocurrió un error. Vuelva a intentarlo",
+            icon: "error",
+            confirmButtonText: "ACEPTAR",
+          }).then(() => setAparece(true));
         }, 1000);
       }
     });
   };
 
   return (
-    <div className="PopUpMensajePP" style={{display:aparece?"flex":"none"}}>
+    <div
+      className="PopUpMensajePP"
+      style={{ display: aparece ? "flex" : "none" }}
+    >
       <div
         className="fondoPopUp"
         onClick={() => setOpenMessagePop(false)}
@@ -105,13 +107,15 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
           />
           <div className="buttonContainer">
             {loading ? (
-              <div style={{ 
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems:"center",
-                height:"100px"
-               }}>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100px",
+                }}
+              >
                 <Loader spin={"spinnerM"} />
               </div>
             ) : (
