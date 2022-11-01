@@ -4,7 +4,7 @@
     max-width: 468px !important;
     @include screen_601{
         max-width: 320px !important;
-        margin-top: 8px !important;
+        margin-top: 32px !important;
     }
     img{
         width: 35px;
@@ -55,6 +55,7 @@
         line-height: 16px !important;
     }
     .botones{
+        margin-top:20px;
         @include screen_601{
             display: flex;
             justify-content: center;
