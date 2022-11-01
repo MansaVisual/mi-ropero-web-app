@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Box,
   IconButton,
@@ -26,7 +26,7 @@ import PopUpMensajePP from "../Dialog/PopUpMensajePP";
 import Swal from "sweetalert2";
 
 const ProductBuyBox = ({ prod, itemID }) => {
-  // const location = useLocation();
+  const location = useLocation();
   // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -47,6 +47,11 @@ const ProductBuyBox = ({ prod, itemID }) => {
     setOpen(true);
   };
 
+  const handleCompraSinLogin = () => {
+    localStorage.setItem("redirectUrl", location.pathname);
+    navigate("/login");
+  };
+
   const handleAgregarCarrito = () => {
     setLoad(true);
     const add = new FormData();
@@ -61,21 +66,21 @@ const ProductBuyBox = ({ prod, itemID }) => {
           if (res.status === "success") {
             setCarrito(res.result);
             Swal.fire({
-              title:'PRODUCTO AÑADIDO',
-              text:"El producto se añadió exitosamente",
-              icon:'success',
-              confirmButtonText: 'ACEPTAR',
-            })
+              title: "PRODUCTO AÑADIDO",
+              text: "El producto se añadió exitosamente",
+              icon: "success",
+              confirmButtonText: "ACEPTAR",
+            });
           }
         });
         setLoad(false);
       } else if (res.result === "El producto ya existe en el carrito") {
         Swal.fire({
-          title:'PRODUCTO EN CARRITO',
-          text:"El producto ya se encuentra en tu carrito",
-          icon:'info',
-          confirmButtonText: 'ACEPTAR',
-        })
+          title: "PRODUCTO EN CARRITO",
+          text: "El producto ya se encuentra en tu carrito",
+          icon: "info",
+          confirmButtonText: "ACEPTAR",
+        });
         setLoad(false);
       }
     });
@@ -150,7 +155,11 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   text="Ofertar"
                   medium
                   icon={ofertIcon}
-                  onClick={userLog!==""? ()=>handleClickOpen():()=>navigate("/login")}
+                  onClick={
+                    userLog !== ""
+                      ? () => handleClickOpen()
+                      : () => navigate("/login")
+                  }
                   sx={{
                     height: "30px",
                     "&:hover": {
@@ -162,7 +171,13 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                 )}
               </Box>
-              <CommentButton onClick={userLog===""?()=>navigate("/login"):() => setOpenMessagePop(true)} />
+              <CommentButton
+                onClick={
+                  userLog === ""
+                    ? () => navigate("/login")
+                    : () => setOpenMessagePop(true)
+                }
+              />
               {openMessagePop && (
                 <PopUpMensajePP
                   setOpenMessagePop={setOpenMessagePop}
@@ -283,8 +298,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     color={theme.palette.primary.main}
                     text="Ofertar"
                     icon={ofertIcon}
-                    onClick={userLog!==""? ()=>handleClickOpen():()=>navigate("/login")}
-                    />
+                    onClick={
+                      userLog !== ""
+                        ? () => handleClickOpen()
+                        : () => navigate("/login")
+                    }
+                  />
                   {open && (
                     <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                   )}
@@ -462,7 +481,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
             endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
             onClick={
               userLog === ""
-                ? () => navigate("/login")
+                ? () => handleCompraSinLogin()
                 : () => handleAgregarCarrito()
             }
             fullWidth

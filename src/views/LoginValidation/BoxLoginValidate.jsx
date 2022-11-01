@@ -1,50 +1,59 @@
-import { TextField } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import Loader from '../../components/Loader/Loader';
-import { UseLoginContext } from '../../context/LoginContext';
+import { TextField } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import Loader from "../../components/Loader/Loader";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const BoxLoginValidate = () => {
   const { LoginAPI } = useContext(UseLoginContext);
   const navigate = useNavigate();
 
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
   const [load, setLoad] = useState(false);
+
+  const redirectUrl = localStorage.getItem("redirectUrl");
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
-    if (JSON.parse(localStorage.getItem('sendCodMiRopero')) !== null) {
-      setUser(JSON.parse(localStorage.getItem('sendCodMiRopero')));
+    if (JSON.parse(localStorage.getItem("sendCodMiRopero")) !== null) {
+      setUser(JSON.parse(localStorage.getItem("sendCodMiRopero")));
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = () => {
-    const cod = document.getElementById('codValidacion').value;
+    const cod = document.getElementById("codValidacion").value;
     if (cod.length === 4) {
       setLoad(true);
       const loginUser = new FormData();
-      loginUser.append('idcliente', Number(user.id));
-      loginUser.append('codigo', String(cod));
-      LoginAPI(loginUser, 'clientes', 'validate_set').then((res) => {
-        if (res.status === 'success') {
+      loginUser.append("idcliente", Number(user.id));
+      loginUser.append("codigo", String(cod));
+      LoginAPI(loginUser, "clientes", "validate_set").then((res) => {
+        if (res.status === "success") {
           setLoad(false);
-          localStorage.setItem('idClienteMiRopero', user.id);
-          window.location.replace('https://mi-ropero-web-app.vercel.app/');
+          localStorage.setItem("idClienteMiRopero", user.id);
+          if (redirectUrl !== "") {
+            localStorage.setItem("redirectUrl", "");
+            window.location.replace(
+              `https://mi-ropero-web-app.vercel.app${redirectUrl}`
+            );
+          } else {
+            window.location.replace("https://mi-ropero-web-app.vercel.app/");
+          }
         } else {
           setLoad(false);
-          document.getElementById('codValidacion').value = '';
+          document.getElementById("codValidacion").value = "";
           Swal.fire({
-            title:'ERROR AL ENVIAR EL CÓDIGO',
-            text:"No se pudo enviar el código. Volvé a intentarlo",
-            icon:'error',
-            confirmButtonText: 'ACEPTAR',
-          })
+            title: "ERROR AL ENVIAR EL CÓDIGO",
+            text: "No se pudo enviar el código. Volvé a intentarlo",
+            icon: "error",
+            confirmButtonText: "ACEPTAR",
+          });
         }
       });
     }
@@ -53,46 +62,46 @@ const BoxLoginValidate = () => {
   const handleSendMail = () => {
     setLoad(true);
     const loginUser = new FormData();
-    loginUser.append('idcliente', user.id);
-    LoginAPI(loginUser, 'clientes', 'validate_send').then((res) => {
-      if (res.status === 'success') {
+    loginUser.append("idcliente", user.id);
+    LoginAPI(loginUser, "clientes", "validate_send").then((res) => {
+      if (res.status === "success") {
         setLoad(false);
         Swal.fire({
-          title:'CÓDIGO ENVIADO',
-          text:"Revisá tu correo electrónico",
-          icon:'info',
-          confirmButtonText: 'ACEPTAR',
-        })
+          title: "CÓDIGO ENVIADO",
+          text: "Revisá tu correo electrónico",
+          icon: "info",
+          confirmButtonText: "ACEPTAR",
+        });
       } else {
         setLoad(false);
         Swal.fire({
-          title:'OCURRIÓ UN ERROR',
-          text:"No se pudo enviar el código. Volvé a intentarlo",
-          icon:'error',
-          confirmButtonText: 'ACEPTAR',
-        })
+          title: "OCURRIÓ UN ERROR",
+          text: "No se pudo enviar el código. Volvé a intentarlo",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
       }
     });
   };
 
   return (
     <>
-      {user !== '' && (
-        <div className='boxValidateContainer'>
-          <p className='validateTitle'>VALIDÁ TU CUENTA</p>
-          <p className='descriptionText'>
+      {user !== "" && (
+        <div className="boxValidateContainer">
+          <p className="validateTitle">VALIDÁ TU CUENTA</p>
+          <p className="descriptionText">
             Te mandamos un código a la dirección de email {user.mail} para que
             valides tu cuenta
           </p>
-          {load && <Loader spin={'spinnerG'} />}
-          <div className='inputBox'>
-            <p className='labelInput'>Código de validación</p>
+          {load && <Loader spin={"spinnerG"} />}
+          <div className="inputBox">
+            <p className="labelInput">Código de validación</p>
             <TextField
-              color='primary'
-              className='input'
-              size='small'
-              placeholder='● ● ● ●'
-              id='codValidacion'
+              color="primary"
+              className="input"
+              size="small"
+              placeholder="● ● ● ●"
+              id="codValidacion"
               disabled={load ? true : false}
               onChangeCapture={() => handleChange()}
               inputProps={{
@@ -101,8 +110,8 @@ const BoxLoginValidate = () => {
             />
           </div>
           <p
-            className='resendText'
-            style={{ cursor: 'pointer' }}
+            className="resendText"
+            style={{ cursor: "pointer" }}
             onClick={!load ? () => handleSendMail() : null}
           >
             Reenviar email de validación.

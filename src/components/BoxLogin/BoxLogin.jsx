@@ -21,6 +21,10 @@ const BoxLogin = () => {
   const [error, setError] = useState(false);
   const [load, setLoad] = useState(false);
 
+  const redirectUrl = localStorage.getItem("redirectUrl");
+
+  console.log(redirectUrl);
+
   const handleLogin = async () => {
     setLoad(true);
     if (
@@ -42,7 +46,14 @@ const BoxLogin = () => {
           top: 0,
           behavior: "auto",
         });
-        window.location.replace("https://mi-ropero-web-app.vercel.app/");
+        if (redirectUrl !== "") {
+          localStorage.setItem("redirectUrl", "");
+          window.location.replace(
+            `https://mi-ropero-web-app.vercel.app${redirectUrl}`
+          );
+        } else {
+          window.location.replace("https://mi-ropero-web-app.vercel.app/");
+        }
       } else {
         setError(true);
       }
@@ -174,7 +185,14 @@ const BoxLogin = () => {
         </div>
         <div className="buttonContainer">
           {load ? (
-            <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+            <div
+              style={{
+                marginTop: "24px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Loader spin={"spinnerM"} />
             </div>
           ) : (
