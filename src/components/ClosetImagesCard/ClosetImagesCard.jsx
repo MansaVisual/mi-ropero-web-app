@@ -263,8 +263,10 @@ const ClosetImagesCard = ({
                       ? "105px"
                       : "140px",
                     height: "auto",
+                    cursor:"pointer"
                   },
                 }}
+                onClick={handleClick}
               >
                 <img
                   src={item.imagenes[0].imagen_vertical}
