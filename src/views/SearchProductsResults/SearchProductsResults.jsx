@@ -327,17 +327,28 @@ const SearchProductsResults = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          {/* <Typography
-                            sx={{
-                              fontSize: theme.typography.fontSize[2],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              textDecoration: 'underline',
-                              mt: '12px',
-                              mb: '16px',
-                            }}
+                          {(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                          <Typography
+                          sx={{
+                            fontSize: theme.typography.fontSize[2],
+                            fontWeight: theme.typography.fontWeightRegular,
+                            textDecoration: 'underline',
+                            mt: '12px',
+                            mb: '16px',
+                          }}
+                          onClick={(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                          ()=>{
+                            setPutFilters([])
+                            setPutSort("")
+                            setRangoPrecio({ min: 0, max: 999999 })
+                            prodsCategoria(false)
+                          }
+                          :null
+                        }
                           >
                             Limpiar filtros
-                          </Typography> */}
+                          </Typography>
+                          :<></>}
                           {putFilters.map((res, index) => {
                             return (
                               <Stack direction="row" spacing={1}>
@@ -410,6 +421,30 @@ const SearchProductsResults = () => {
                     </Stack>
                   );
                 })}
+                {(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[2],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  textDecoration: 'underline',
+                  mt: '12px',
+                  mb: '16px',
+                  cursor:"pointer"
+                }}
+                onClick={(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                    ()=>{
+                      setPags(1);
+                      setPutFilters([])
+                      setPutSort("")
+                      setRangoPrecio({ min: 0, max: 999999 })
+                      prodsCategoria(false)
+                    }
+                    :null
+                  }
+                  >
+                  Limpiar filtros
+                </Typography>
+                :<></>}
                 <Filter
                   filtros={filtrosCategoria}
                   setPutFilters={setPutFilters}

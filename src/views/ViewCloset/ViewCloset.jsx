@@ -94,6 +94,18 @@ const ViewCloset = () => {
       top: 0,
       behavior: "auto",
     });
+    busquedaPrimera()
+
+  }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  }, []);
+
+  const busquedaPrimera =()=>{
     setPutSort("");
     setPutFilters([]);
     setPags(1);
@@ -125,15 +137,31 @@ const ViewCloset = () => {
         }
         setBuscandoRoperos(false);
       });
+    }else{
+      if (closetId !== undefined) {
+        const ropero = new FormData();
+        ropero.append("idtienda", closetId);
+        ropero.append("page", 0);
+        ropero.append("bypage", 15);
+        ProdAPI(ropero, "tiendas", "detail").then((res) => {
+          if (res.status === "success") {
+            let arrayCol = [];
+            for (const i in res.result.search_productos_categorias) {
+              for (const ii in res.result.search_productos_categorias[i].hijas) {
+                arrayCol.push(
+                  res.result.search_productos_categorias[i].hijas[ii]
+                );
+              }
+            }
+            setColeccion({ productos_categorias: arrayCol });
+            setTienda(res.result);
+            setTotalPages(res.result.search_productos_total_paginas);
+          }
+          setBuscandoRoperos(false);
+        });
+      }
     }
-  }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "auto",
-    });
-  }, []);
+  }
 
   const buscarPage = (paramSearch, value) => {
     setBuscandoRoperos(true);
@@ -187,7 +215,6 @@ const ViewCloset = () => {
     });
   };
 
-  console.log(tienda)
 
   const handleAplicarFiltros = () => {
     setBuscandoRoperos(true);
@@ -308,17 +335,28 @@ const ViewCloset = () => {
                             Filtrar
                           </Typography>
 
-                          {/* <Typography
+                          {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                            <Typography
                             sx={{
                               fontSize: theme.typography.fontSize[2],
                               fontWeight: theme.typography.fontWeightRegular,
-                              textDecoration: "underline",
-                              mt: "12px",
-                              mb: "16px",
+                              textDecoration: 'underline',
+                              mt: '12px',
+                              mb: '16px',
+                              cursor:"pointer"
                             }}
-                          >
-                            Limpiar filtros
-                          </Typography> */}
+                            onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                                ()=>{
+                                  setPutCategory("")
+                                  setRangoPrecio({ min: 0, max: 999999 })
+                                  busquedaPrimera()
+                                }
+                                :null
+                              }
+                              >
+                              Limpiar filtros
+                            </Typography>
+                            :<></>}
                         </Box>
                         {putFilters.map((res, index) => {
                           return (
@@ -387,36 +425,6 @@ const ViewCloset = () => {
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
               </Box>
-              {/* <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[2],
-                  fontWeight: theme.typography.fontWeightRegular,
-                  textDecoration: "underline",
-                  mt: "12px",
-                  mb: "16px",
-                }}
-              >
-                Limpiar todos los filtros
-              </Typography> */}
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[9],
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: theme.palette.primary.main,
-                  mb: "16px",
-                }}
-              >
-                {nombre}
-              </Typography>
-              <Rating name="read-only" readOnly value={
-                tienda.calificaciones !== undefined &&
-                tienda.calificaciones.sum !== null &&
-                
-                  Number(tienda.calificaciones.sum) /
-                  Number(tienda.calificaciones.total)
-                
-              } size="large" />
-              <IconGroupText prod={undefined} prod2={tienda} />
               {putFilters.map((res, index) => {
                 return (
                   <Stack direction="row" spacing={1}>
@@ -437,6 +445,48 @@ const ViewCloset = () => {
                   </Stack>
                 );
               })}
+              {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[2],
+                  fontWeight: theme.typography.fontWeightRegular,
+                  textDecoration: 'underline',
+                  mt: '12px',
+                  mb: '16px',
+                  cursor:"pointer"
+                }}
+                onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                    ()=>{
+                      setPutCategory("")
+                      setRangoPrecio({ min: 0, max: 999999 })
+                      busquedaPrimera()
+                    }
+                    :null
+                  }
+                  >
+                  Limpiar filtros
+                </Typography>
+                :<></>}
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[9],
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: theme.palette.primary.main,
+                  mb: "16px",
+                }}
+              >
+                {nombre}
+              </Typography>
+              <Rating name="read-only" readOnly value={
+                tienda.calificaciones !== undefined &&
+                tienda.calificaciones.sum !== null &&
+                
+                  Number(tienda.calificaciones.sum) /
+                  Number(tienda.calificaciones.total)
+                
+              } size="large" />
+              <IconGroupText prod={undefined} prod2={tienda} />
+              
               <Filter
                 setPutCategory={setPutCategory}
                 putCategory={putCategory}

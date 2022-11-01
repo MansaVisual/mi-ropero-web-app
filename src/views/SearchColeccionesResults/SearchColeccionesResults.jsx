@@ -110,6 +110,10 @@ const SearchProductsResults = () => {
       top: 0,
       behavior: 'auto',
     });
+    busquedaPrimera()
+  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  const busquedaPrimera=()=>{
     setPutSort("")
     setPutFilters([])
     setPags(1)
@@ -154,9 +158,35 @@ const SearchProductsResults = () => {
         }
         setLoad2(false)
       })
+    }else{
+      let numCol=0
+      if(coleccionName==="NuevosIngresos"){
+        numCol=71
+    }else if(coleccionName==="Recomendados"){
+        numCol=73
+    }else if(coleccionName==="MejoresVendedores"){
+        numCol=73
     }
-  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
 
+    const col=new FormData()
+    col.append("idcoleccion",numCol)
+    col.append("bypage",15)
+    col.append("page",0)
+
+    ColeccionAPI(
+        col,
+        "colecciones",
+        "detail"
+    ).then((res)=>{
+      if(res.status==="success"){
+        setColeccion(res.result)
+        setProds(res.result.productos)
+        setTotalPages(res.result.productos_total_paginas)
+      }
+      setLoad2(false)
+  })
+    }
+  }
 
   const buscarPage=(paramSearch,value)=>{
     if(rangoPrecio.min>rangoPrecio.max){
@@ -395,6 +425,28 @@ const SearchProductsResults = () => {
                             </Stack>
                           );
                         })}
+                        {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                            <Typography
+                            sx={{
+                              fontSize: theme.typography.fontSize[2],
+                              fontWeight: theme.typography.fontWeightRegular,
+                              textDecoration: 'underline',
+                              mt: '12px',
+                              mb: '16px',
+                              cursor:"pointer"
+                            }}
+                            onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                                ()=>{
+                                  setPutCategory("")
+                                  setRangoPrecio({ min: 0, max: 999999 })
+                                  busquedaPrimera()
+                                }
+                                :null
+                              }
+                              >
+                              Limpiar filtros
+                            </Typography>
+                            :<></>}
                         <Filter 
                           setPutCategory={setPutCategory} 
                           putCategory={putCategory} 
@@ -449,6 +501,28 @@ const SearchProductsResults = () => {
                     </Stack>
                   );
                 })}
+                {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                  <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[2],
+                    fontWeight: theme.typography.fontWeightRegular,
+                    textDecoration: 'underline',
+                    mt: '12px',
+                    mb: '16px',
+                    cursor:"pointer"
+                  }}
+                  onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                      ()=>{
+                        setPutCategory("")
+                        setRangoPrecio({ min: 0, max: 999999 })
+                        busquedaPrimera()
+                      }
+                      :null
+                    }
+                    >
+                    Limpiar filtros
+                  </Typography>
+                  :<></>}
                 <Filter 
                   setPutCategory={setPutCategory} 
                   putCategory={putCategory} 
