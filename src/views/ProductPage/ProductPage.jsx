@@ -19,11 +19,11 @@ import {
   LikeButton,
 } from "../../components/ActionButton/ActionButton";
 import Accordion from "../../components/Accordion/Accordion";
-import DialogComponent from "../../components/Dialog/Dialog";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -243,15 +243,9 @@ const ProductPage = () => {
                   </Box>
                   <ProductBuyBox prod={prod} itemID={itemID} />
                   {open && (
-                    <DialogComponent
+                    <PopUpOfertaPP 
                       open={open}
-                      handleClose={handleClose}
-                      dialogType="comentar"
-                      title="¡ENVIÁ UN MENSAJE!"
-                      firstDialogText="Sacate todas las dudas que tengas escribiéndole al vendedor/a. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc."
-                      thirdInputLabel="Tu mensaje para el vendedor/a"
-                      leftButtonText="Cancelar"
-                      rightButtonText="Enviar mensaje"
+                      setOpen={setOpen}
                       prod={prod}
                     />
                   )}

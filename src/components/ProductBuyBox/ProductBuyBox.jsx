@@ -22,6 +22,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
 import { UseCartContext } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import PopUpOfertaPP from "../Dialog/PopUpOfertaPP";
 
 const ProductBuyBox = ({ prod, itemID }) => {
   // const location = useLocation();
@@ -40,6 +41,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
   const { userLog } = useContext(UseLoginContext);
   const { CartAPI, setCarrito } = useContext(UseCartContext);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -154,31 +156,18 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   sx={{ height: "30px" }}
                 />
                 {open && (
-                  <DialogComponent
+                  <PopUpOfertaPP 
                     open={open}
-                    handleClose={handleClose}
-                    dialogType="ofertar"
-                    title="¡OFERTÁ!"
-                    firstInputLabel="Monto de la oferta*"
-                    secondInputLabel="Comentarios"
-                    firstText={`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio}`}
-                    leftButtonText="Cancelar"
-                    rightButtonText="Hacer oferta"
+                    setOpen={setOpen}
                     prod={prod}
                   />
                 )}
               </Box>
               <CommentButton onClick={handleClickOpenCommentDialog} />
               {openCommentDialog && (
-                <DialogComponent
-                  open={openCommentDialog}
-                  handleClose={handleCloseCommentDialog}
-                  dialogType="comentar"
-                  title="¡ENVIÁ UN MENSAJE!"
-                  firstDialogText="Sacate todas las dudas que tengas escribiéndole al vendedor/a. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc."
-                  thirdInputLabel="Tu mensaje para el vendedor/a"
-                  leftButtonText="Cancelar"
-                  rightButtonText="Enviar mensaje"
+                <PopUpOfertaPP 
+                  open={open}
+                  setOpen={setOpen}
                   prod={prod}
                 />
               )}
@@ -298,16 +287,9 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     onClick={handleClickOpen}
                   />
                   {open && (
-                    <DialogComponent
+                    <PopUpOfertaPP 
                       open={open}
-                      handleClose={handleClose}
-                      dialogType="ofertar"
-                      title="¡OFERTÁ!"
-                      firstInputLabel="Monto de la oferta*"
-                      secondInputLabel="Comentarios"
-                      firstText={`Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio}`}
-                      leftButtonText="Cancelar"
-                      rightButtonText="Hacer oferta"
+                      setOpen={setOpen}
                       prod={prod}
                     />
                   )}
