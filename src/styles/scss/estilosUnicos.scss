@@ -208,3 +208,23 @@ input[type='number']::-webkit-outer-spin-button {
     }
   }
 }
+
+.image-gallery-thumbnails-container{
+  .image-gallery-thumbnails{
+    overflow-y: scroll !important;
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+  button{
+    border: none !important;
+    img{
+      filter: opacity(60%)
+    }
+  }
+  .active{
+    img{
+      filter: opacity(100%)
+    }
+  }
+}
