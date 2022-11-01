@@ -48,10 +48,6 @@ const ProductPage = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   useEffect(() => {
     window.scrollTo({
       top: 0,

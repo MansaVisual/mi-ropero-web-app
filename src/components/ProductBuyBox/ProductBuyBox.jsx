@@ -14,7 +14,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CommentButton } from "../ActionButton/ActionButton";
 // import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Button from "../Button/Button";
-import DialogComponent from "../Dialog/Dialog";
 import ofertIcon from "../../assets/img/OfertIcon.svg";
 // import OCA from "../../assets/img/OCA.png";
 import theme from "../../styles/theme";
@@ -47,17 +46,10 @@ const ProductBuyBox = ({ prod, itemID }) => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleClickOpenCommentDialog = () => {
     setOpenCommentDialog(true);
   };
 
-  const handleCloseCommentDialog = () => {
-    setOpenCommentDialog(false);
-  };
 
   const handleAgregarCarrito = () => {
     setLoad(true);
