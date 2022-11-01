@@ -323,6 +323,43 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 </div>
             }
 
+            {balance===0 && !stateForm && codigoValido && 
+                <div className="box">
+                    <p></p>
+                    <p className="subtitulo subtituloTotal" style={{marginTop:"-40px"}}>
+                        {
+                            codigo.result.tipo_text==="Aplica a productos"?
+                            `$ ${
+                                codigo.result.tipo_descuento==="1"?
+                                    costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)>0?(costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)).toFixed(2):0
+                                :codigo.result.tipo_descuento==="2"&&
+                                    costoDesc==="100.00"?
+                                        costoEnvio>0?costoEnvio:0
+                                    :costoFinal-(costoCarrito*costoDesc/100)>0?(costoFinal-(costoCarrito*costoDesc/100)).toFixed(2):0
+                            }`
+                            :codigo.result.tipo_text==="Aplica a envio"?
+                                `$ ${
+                                    codigo.result.tipo_descuento==="1"?
+                                        costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)>0?(costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)).toFixed(2):0
+                                    :codigo.result.tipo_descuento==="2"&&
+                                        costoDesc==="100.00"?
+                                            costoCarrito>0?costoCarrito:0
+                                        :costoFinal-(costoEnvio*costoDesc/100)>0?(costoFinal-(costoEnvio*costoDesc/100)).toFixed(2):0
+                                }`
+                            :codigo.result.tipo_text==="Aplica a productos + envio"&&
+                            `$ ${
+                                codigo.result.tipo_descuento==="1"?
+                                    costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)>0?(costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)).toFixed(2):0
+                                :codigo.result.tipo_descuento==="2"&&
+                                    costoDesc==="100.00"?
+                                        0
+                                    :costoFinal-(costoFinal*costoDesc/100)>0?(costoFinal-(costoFinal*costoDesc/100)).toFixed(2):0
+                            }`
+                        }
+                    </p>
+                </div>
+            }
+
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
                 BANNER
             </div>

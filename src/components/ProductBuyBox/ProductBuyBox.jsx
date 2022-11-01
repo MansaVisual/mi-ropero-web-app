@@ -60,7 +60,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
         CartAPI(CartID, "carritos", "all").then((res) => {
           if (res.status === "success") {
             setCarrito(res.result);
-          } else if (res.status === "error") {
+            Swal.fire({
+              title:'PRODUCTO AÑADIDO',
+              text:"El producto se añadió exitosamente",
+              icon:'success',
+              confirmButtonText: 'ACEPTAR',
+            })
           }
         });
         setLoad(false);
