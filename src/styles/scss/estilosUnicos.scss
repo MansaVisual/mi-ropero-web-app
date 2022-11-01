@@ -179,3 +179,32 @@ input[type='number']::-webkit-outer-spin-button {
     }
   }
 }
+
+.containerSliders{
+  .react-multi-carousel-item{
+    width: 264px !important;
+    margin: 24px 22px;
+    @include screen_768{
+      width: 220px !important;
+    }
+    @include screen_601{
+      width: 160px !important;
+    }
+  }
+  
+  .react-multi-carousel-list{
+    margin: 0px 80px;
+    @include screen_1001{
+      margin: 0px 50px;
+    }
+    @include screen_768{
+      margin: 0px 36px;
+    }
+    @include screen_601{
+      margin: 0px 24px;
+    }
+    @include screen_460{
+      margin: 0px 12px;
+    }
+  }
+}
