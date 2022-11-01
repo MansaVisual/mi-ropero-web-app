@@ -1,0 +1,52 @@
+#swal2-title{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #423B3C;
+}
+#swal2-html-container{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 20px;
+    color: #878787;
+}
+.swal2-confirm{
+    width: 150px !important;
+    height: 36px;
+    text-align: center !important;
+    background: #443988 !important;
+    box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1) !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    &:hover{
+        background: #5c4fb1 !important;
+    }
+}
+.swal2-success-line-tip{
+    background-color: #20FFA6 !important;
+}
+.swal2-success-line-long{
+    background-color: #20FFA6 !important;
+}
+.swal2-success-ring{
+    border: 0.25em solid #20FFA6 !important;
+}
+
+.swal2-info{
+    color: #e4b020 !important;
+    border-color: #e4b020 !important;
+}
+
+.swal2-x-mark-line-left{
+    background-color: #FF3F20 !important;
+}
+.swal2-x-mark-line-right{
+    background-color: #FF3F20 !important;
+}
+.swal2-error{
+    border-color: #FF3F20 !important;
+}

@@ -5,6 +5,7 @@ import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { UseProdsContext } from "../../context/ProdsContext";
 import { UseLoginContext } from "../../context/LoginContext";
+import Swal from "sweetalert2";
 
 const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,8 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
   const { ProdAPI } = useContext(UseProdsContext);
   const { userLog } = useContext(UseLoginContext);
   const [error, setError] = useState(false);
+  const [aparece,setAparece]=useState(true)
+
 
   const submit = () => {
     setLoading(true);
@@ -30,19 +33,28 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
         setTimeout(() => {
           setLoading(false);
           setOpenMessagePop(false);
-          alert("MENSAJE ENVIADO");
+          Swal.fire(
+            'MENSAJE ENVIADO',
+            "",
+            'success'
+          );
         }, 1000);
       } else {
         setTimeout(() => {
           setLoading(false);
-          alert("MENSAJE NO ENVIADO");
+          setAparece(false)
+          Swal.fire(
+            'MENSAJE NO ENVIADO',
+            "Ocurrió un error. Vuelva a intentarlo",
+            'error'
+          ).then(()=>setAparece(true))
         }, 1000);
       }
     });
   };
 
   return (
-    <div className="PopUpMensajePP">
+    <div className="PopUpMensajePP" style={{display:aparece?"flex":"none"}}>
       <div
         className="fondoPopUp"
         onClick={() => setOpenMessagePop(false)}
@@ -92,7 +104,13 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
           />
           <div className="buttonContainer">
             {loading ? (
-              <div style={{ marginTop: "16px" }}>
+              <div style={{ 
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems:"center",
+                height:"100px"
+               }}>
                 <Loader spin={"spinnerM"} />
               </div>
             ) : (

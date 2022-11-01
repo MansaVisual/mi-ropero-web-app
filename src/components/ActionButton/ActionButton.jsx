@@ -6,6 +6,7 @@ import { IoArrowUndoSharp } from "react-icons/io5";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 import { UseProdsContext } from "../../context/ProdsContext";
+import Swal from "sweetalert2";
 
 
 export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
@@ -41,7 +42,12 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
         "delete"
       ).then((res)=>{
         if(res.status==="error"){
-          alert("Surgió un error al borrar el producto. Volvé a intentarlo")
+          Swal.fire({
+            title:'ERROR AL BORRAR',
+            text:"Surgió un error al borrar el producto. Volvé a intentarlo",
+            icon:'error',
+            confirmButtonText: 'ACEPTAR',
+          })
         }
       })
       await handleListFavs()
@@ -55,7 +61,12 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
         "insert"
       ).then((res)=>{
         if(res.status==="error"){
-          alert("Surgió un error al agregar a favoritos. Volvé a intentarlo")
+          Swal.fire({
+            title:'ERROR AL AGREGAR A FAVORITOS',
+            text:"Surgió un error al agregar a favoritos. Volvé a intentarlo",
+            icon:'error',
+            confirmButtonText: 'ACEPTAR',
+          })
         }
       })
       await handleListFavs()
