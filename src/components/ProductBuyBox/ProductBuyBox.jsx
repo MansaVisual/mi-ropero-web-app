@@ -362,6 +362,9 @@ const ProductBuyBox = ({ prod, itemID }) => {
             <Box
               sx={{
                 mb: isMobileBigScreen ? "32px" : "18px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
               }}
             >
               <Typography
