@@ -69,11 +69,11 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
             {open!==undefined &&
                 <div className="setSucursales">
                     <div className="fondoPopUp" onClick={()=>{setOpen(false)}}></div>
-                    <div className="popUp popUpOferta" style={{maxWidth:"478px"}}>
+                    <div className="popUp popUpOferta">
                         <CancelIcon color="tertiary" className="cross" onClick={()=>{setOpen(false)}}/>
                         <img src={isologo} alt="SHOP" color="primary" className="botonLogo"/>
                         <p className="titleOferta">¡OFERTÁ!</p>
-                        <p style={{textAlign:"center"}}>Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio}</p>
+                        <p className="parrafo">Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${prod.precio_oferta!=="0.00"?prod.precio_oferta:prod.precio}</p>
 
                         <p className="titleOfertaInput">Monto de la oferta*</p>
                         <TextField
@@ -110,11 +110,11 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
                             }
                             multiline
                             sx={{
-                                minWidth: isMobile || isMobileBigScreen ? "245px" : "430px",
-                                maxWidth: isMobile || isMobileBigScreen ? "295px" : "430px",
+                                minWidth: isMobile || isMobileBigScreen ? "290px" : "430px",
+                                maxWidth: isMobile || isMobileBigScreen ? "290px" : "430px",
                                 "& textarea": {
                                 padding: "4px 8px",
-                                height: "75px !important",
+                                height: isMobile || isMobileBigScreen ? "60px !important" : "75px !important" ,
                                 boxSizing: "border-box",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
@@ -124,7 +124,7 @@ const PopUpOfertaPP = ({open,setOpen,prod})=>{
                             inputProps={{ maxLength: 220 }}
                         />
 
-                        <Box>
+                        <Box className="botones">
                             <Button
                                 onClick={()=>{setOpen(false)}}
                                 className="cancelar"
