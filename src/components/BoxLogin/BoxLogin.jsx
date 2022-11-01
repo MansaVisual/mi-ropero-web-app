@@ -46,7 +46,7 @@ const BoxLogin = () => {
           top: 0,
           behavior: "auto",
         });
-        if (redirectUrl !== "") {
+        if (redirectUrl) {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(
             `https://mi-ropero-web-app.vercel.app${redirectUrl}`

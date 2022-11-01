@@ -158,7 +158,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   onClick={
                     userLog !== ""
                       ? () => handleClickOpen()
-                      : () => navigate("/login")
+                      : () => handleCompraSinLogin()
                   }
                   sx={{
                     height: "30px",
@@ -174,7 +174,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
               <CommentButton
                 onClick={
                   userLog === ""
-                    ? () => navigate("/login")
+                    ? () => handleCompraSinLogin()
                     : () => setOpenMessagePop(true)
                 }
               />
@@ -301,7 +301,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     onClick={
                       userLog !== ""
                         ? () => handleClickOpen()
-                        : () => navigate("/login")
+                        : () => handleCompraSinLogin()
                     }
                   />
                   {open && (
