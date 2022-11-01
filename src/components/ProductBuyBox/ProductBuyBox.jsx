@@ -48,6 +48,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
   };
 
   const handleCompraSinLogin = () => {
+    console.log("redirect");
     localStorage.setItem("redirectUrl", location.pathname);
     navigate("/login");
   };

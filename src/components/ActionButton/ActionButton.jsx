@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Fab } from "@mui/material";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
@@ -9,74 +9,84 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-
-export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
-  const {ProdAPI,listFavs,handleListFavs}=useContext(UseProdsContext)
+export const LikeButton = ({
+  idCliente,
+  idProd,
+  infoUser,
+  itemFav,
+  location,
+}) => {
+  const { ProdAPI, listFavs, handleListFavs } = useContext(UseProdsContext);
   const [like, setLike] = useState(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setLike(null)
-    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
-      setLike(!like)
+    setLike(null);
+    if (
+      infoUser.productos_favoritos !== undefined &&
+      infoUser.productos_favoritos.find((e) => e === idProd)
+    ) {
+      setLike(!like);
     }
-  }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
-  
+  }, [infoUser, idProd]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
-    if(itemFav!==undefined){
-      setLike(true)
+    if (itemFav !== undefined) {
+      setLike(true);
     }
-  }, [infoUser,idProd]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [infoUser, idProd]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /*   const handleCompraSinLogin = () => {
+    console.log("redirect");
+    localStorage.setItem("redirectUrl", location.pathname);
+    navigate("/login");
+  }; */
 
   const onLike = async () => {
-    if(idCliente===""){
-      navigate("/login")
-      return
+    if (idCliente === "") {
+      localStorage.setItem("redirectUrl", location);
+      navigate("/login");
+      return;
     }
 
-    setLike(!like)
-    if(infoUser.productos_favoritos !== undefined && infoUser.productos_favoritos.find(e=>e===idProd)){
-      const idFavorito = listFavs.find(e=>e.producto_id===idProd)
+    setLike(!like);
+    if (
+      infoUser.productos_favoritos !== undefined &&
+      infoUser.productos_favoritos.find((e) => e === idProd)
+    ) {
+      const idFavorito = listFavs.find((e) => e.producto_id === idProd);
 
-      const favAdd = new FormData()
-      favAdd.append("idcliente",idCliente)
-      favAdd.append("idproducto",idProd)
-      favAdd.append("idfavorito",idFavorito.idfavorito)
-      ProdAPI(
-        favAdd,
-        "favoritos",
-        "delete"
-      ).then((res)=>{
-        if(res.status==="error"){
+      const favAdd = new FormData();
+      favAdd.append("idcliente", idCliente);
+      favAdd.append("idproducto", idProd);
+      favAdd.append("idfavorito", idFavorito.idfavorito);
+      ProdAPI(favAdd, "favoritos", "delete").then((res) => {
+        if (res.status === "error") {
           Swal.fire({
-            title:'ERROR AL BORRAR',
-            text:"Surgió un error al borrar el producto. Volvé a intentarlo",
-            icon:'error',
-            confirmButtonText: 'ACEPTAR',
-          })
+            title: "ERROR AL BORRAR",
+            text: "Surgió un error al borrar el producto. Volvé a intentarlo",
+            icon: "error",
+            confirmButtonText: "ACEPTAR",
+          });
         }
-      })
-      await handleListFavs()
-    }else{
-      const favAdd = new FormData()
-      favAdd.append("idcliente",idCliente)
-      favAdd.append("idproducto",idProd)
-      await ProdAPI(
-        favAdd,
-        "favoritos",
-        "insert"
-      ).then((res)=>{
-        if(res.status==="error"){
+      });
+      await handleListFavs();
+    } else {
+      const favAdd = new FormData();
+      favAdd.append("idcliente", idCliente);
+      favAdd.append("idproducto", idProd);
+      await ProdAPI(favAdd, "favoritos", "insert").then((res) => {
+        if (res.status === "error") {
           Swal.fire({
-            title:'ERROR AL AGREGAR A FAVORITOS',
-            text:"Surgió un error al agregar a favoritos. Volvé a intentarlo",
-            icon:'error',
-            confirmButtonText: 'ACEPTAR',
-          })
+            title: "ERROR AL AGREGAR A FAVORITOS",
+            text: "Surgió un error al agregar a favoritos. Volvé a intentarlo",
+            icon: "error",
+            confirmButtonText: "ACEPTAR",
+          });
         }
-      })
-      await handleListFavs()
-      infoUser.productos_favoritos.push(idProd)
+      });
+      await handleListFavs();
+      infoUser.productos_favoritos.push(idProd);
     }
   };
 
@@ -94,9 +104,9 @@ export const LikeButton = ({idCliente,idProd,infoUser,itemFav}) => {
         }}
       >
         {like ? (
-            <AiFillHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
-          ) : (
-            <AiOutlineHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
+          <AiFillHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
+        ) : (
+          <AiOutlineHeart fontSize="23px" color="hsl(0, 0%, 100%)" />
         )}
       </Fab>
     </Box>

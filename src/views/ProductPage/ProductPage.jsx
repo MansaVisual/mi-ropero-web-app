@@ -22,7 +22,7 @@ import Accordion from "../../components/Accordion/Accordion";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
 
@@ -33,6 +33,7 @@ const ProductPage = () => {
   const isDesktop = useMediaQuery(theme.breakpoints.down("lg"));
   const { itemID } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { infoUser, userLog } = useContext(UseLoginContext);
   const { ProdAPI } = useContext(UseProdsContext);
@@ -75,6 +76,12 @@ const ProductPage = () => {
       });
     }
   }, [itemID]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleCompraSinLogin = () => {
+    console.log("redirect");
+    localStorage.setItem("redirectUrl", location.pathname);
+    navigate("/login");
+  };
 
   return (
     <Container maxWidth="xl">
@@ -160,6 +167,7 @@ const ProductPage = () => {
                         idCliente={userLog}
                         infoUser={infoUser}
                         idProd={itemID}
+                        location={location.pathname}
                       />
                     </Box>
                   </Box>
@@ -250,8 +258,15 @@ const ProductPage = () => {
                         idCliente={userLog}
                         infoUser={infoUser}
                         idProd={itemID}
+                        location={location.pathname}
                       />
-                      <CommentButton onClick={userLog===""?()=>navigate("/login"):() => setOpenMessagePop(true)} />
+                      <CommentButton
+                        onClick={
+                          userLog === ""
+                            ? () => handleCompraSinLogin()
+                            : () => setOpenMessagePop(true)
+                        }
+                      />
                     </Box>
                   </Box>
                   <ProductBuyBox prod={prod} itemID={itemID} />
