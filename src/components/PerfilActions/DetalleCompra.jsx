@@ -6,6 +6,7 @@ import greyLeftArrow from "../../assets/img/GreyLeftArrow.png";
 import greyRightArrow from "../../assets/img/GreyRightArrow.png";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
+import Swal from "sweetalert2";
 
 const DetalleCompra = () => {
   const location = useLocation();
@@ -26,9 +27,23 @@ const DetalleCompra = () => {
       dir.append("idoperacion", compraId);
       console.log(Object.fromEntries(dir)); // Works if all fields are uniq
       PerfilAPI(dir, "operaciones", "get").then((res) => {
-        console.log(res);
-        setCompraSelecc(res.result);
-        setDireccion(res.result.direccion_entrega);
+        if (res.status === "success") {
+          setCompraSelecc(res.result);
+          setDireccion(res.result.direccion_entrega);
+        } else {
+          if (res.status === "error") {
+            Swal.fire({
+              title: "ERROR",
+              text: "Surgió un error traer el detalle de producto. Volvé a intentarlo",
+              icon: "error",
+              confirmButtonText: "ACEPTAR",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                navigate("/perfil");
+              }
+            });
+          }
+        }
       });
     }
   }, [compraId, userLog]); // eslint-disable-line react-hooks/exhaustive-deps
