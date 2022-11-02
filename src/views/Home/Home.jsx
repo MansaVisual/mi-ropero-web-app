@@ -27,20 +27,20 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 1366, min: 1366 },
-    items: 4
+    items: 4,
   },
   desktop: {
     breakpoint: { max: 1366, min: 1100 },
-    items: 4
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1100, min: 600 },
-    items: 3
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 600, min: 280 },
-    items: 2
-  }
+    items: 2,
+  },
 };
 
 const Home = () => {
@@ -76,9 +76,8 @@ const Home = () => {
           <Box sx={{ pt: "40px", textAlign: "center" }}>
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
-          <Box sx={{ pt: "24px"}}>
-
-          <SliderProd contenido={coleccionNuevosIngresos} />
+          <Box sx={{ pt: "24px" }}>
+            <SliderProd contenido={coleccionNuevosIngresos} />
           </Box>
           <Box sx={{ textAlign: "center" }}>
             <Link
@@ -86,9 +85,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
-                "&:hover":{
-                  fontWeight:"700"
-                }
+                "&:hover": {
+                  fontWeight: "700",
+                },
               }}
               onClick={() => navigate("/colecciones/NuevosIngresos")}
             >
@@ -99,7 +98,7 @@ const Home = () => {
             <Chip>Zapatillas</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px"}}>
+          <Box sx={{ pt: "24px" }}>
             <SliderProd contenido={slider1} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -108,9 +107,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
-                "&:hover":{
-                  fontWeight:"700"
-                }
+                "&:hover": {
+                  fontWeight: "700",
+                },
               }}
               onClick={() => navigate(`/productos/Zapatillas`)}
             >
@@ -133,7 +132,7 @@ const Home = () => {
             <Chip>Remeras</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px"}}>
+          <Box sx={{ pt: "24px" }}>
             <SliderProd contenido={slider2} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -142,9 +141,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
-                "&:hover":{
-                  fontWeight:"700"
-                }
+                "&:hover": {
+                  fontWeight: "700",
+                },
               }}
               onClick={() => navigate(`/productos/Remeras`)}
             >
@@ -155,7 +154,7 @@ const Home = () => {
             <Chip>Blusa/Top</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px"}}>
+          <Box sx={{ pt: "24px" }}>
             <SliderProd contenido={slider3} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -164,9 +163,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
-                "&:hover":{
-                  fontWeight:"700"
-                }
+                "&:hover": {
+                  fontWeight: "700",
+                },
               }}
               onClick={() => navigate(`/productos/Bluse&top`)}
             >
@@ -202,7 +201,7 @@ const Home = () => {
             EMPEZÁ A VENDER ESO QUE NO USÁS
           </Typography>
           <Box sx={{ paddingBottom: "28px", marginTop: "14px" }}>
-            <Button
+            {/* <Button
               sx={{
                 border: "1px solid hsla(248, 41%, 38%, 1)",
                 borderRadius: "20px",
@@ -218,14 +217,14 @@ const Home = () => {
               target={"_blank"}
             >
               Vender
-            </Button>
+            </Button> */}
           </Box>
         </Box>
         <Container maxWidth="xl">
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Productos recomendados</Chip>
           </Box>
-          <Box sx={{ pt: "24px"}}>
+          <Box sx={{ pt: "24px" }}>
             <SliderProd contenido={coleccionRecomendados} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -234,9 +233,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
-                "&:hover":{
-                  fontWeight:"700"
-                }
+                "&:hover": {
+                  fontWeight: "700",
+                },
               }}
               onClick={() => navigate("/colecciones/Recomendados")}
             >
@@ -246,7 +245,7 @@ const Home = () => {
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip primary>Mejores Vendedores</Chip>
           </Box>
-          <Box sx={{ pt: "24px"}}>
+          <Box sx={{ pt: "24px" }}>
             <SliderProd contenido={coleccionMejoresV} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -255,9 +254,9 @@ const Home = () => {
                 color: "hsla(0, 0%, 53%, 1)",
                 fontSize: theme.typography.fontSize[4],
                 cursor: "pointer",
-                "&:hover":{
-                  fontWeight:"700"
-                }
+                "&:hover": {
+                  fontWeight: "700",
+                },
               }}
               onClick={() => navigate("/colecciones/MejoresVendedores")}
             >
