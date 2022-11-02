@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Button, MenuItem, Select } from "@mui/material";
@@ -12,6 +12,15 @@ const MisCompras = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
+
+  let { idDetalleCompra } = useParams();
+
+  useEffect(() => {
+    if (idDetalleCompra) {
+      setCompraId(idDetalleCompra);
+      navigate(`/perfil/MIS COMPRAS DETALLE`);
+    }
+  }, []);
 
   const { userLog } = useContext(UseLoginContext);
   const {
@@ -46,8 +55,6 @@ const MisCompras = () => {
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
   };
-
-  console.log(comprasRealizadas);
 
   return (
     <div className="misComprasContainer">
@@ -176,7 +183,10 @@ const MisCompras = () => {
                     </div>
                     <Button
                       className="comprasButton"
-                      onClick={() => navigate(`/perfil/MIS COMPRAS DETALLE`)}
+                      onClick={() => {
+                        setCompraId(compra.idoperacion);
+                        navigate(`/perfil/MIS COMPRAS DETALLE`);
+                      }}
                     >
                       VER COMPRA
                     </Button>

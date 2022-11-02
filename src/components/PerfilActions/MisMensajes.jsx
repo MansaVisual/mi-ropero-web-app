@@ -53,7 +53,7 @@ const MisMensajes = () => {
       if (typeMessage === "ver leídos") {
         setMensajesFiltrados(
           mensajes.filter(
-            (msg) => msg.estado === "1" && msg.cliente_id !== userLog
+            (msg) => msg.estado === "1" /* && msg.cliente_id !== userLog */
           )
         );
       }
@@ -212,6 +212,22 @@ const MisMensajes = () => {
             </div>
           </div>
         )}
+        {/* {mensajesFiltrados.length !== 0 && totalPages > 1  && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Pagination
+                  cantidad={totalPages}
+                  buscarPage={buscarPage}
+                  pags={pags}
+                  setPags={setPags}
+                />
+              </Box>
+            )} */}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
