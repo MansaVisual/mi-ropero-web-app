@@ -147,9 +147,11 @@ const MiChat = () => {
                 onKeyPress={handlePress}
               />
               <button
-                className="btnSendMsg"
-                id="sendMsgBtn"
+                className={`${
+                  mensaje === "" ? "disabledButton" : "btnSendMsg"
+                }`}
                 onClick={() => sendMessage()}
+                disabled={mensaje === "" ? true : false}
               >
                 Enviar
               </button>

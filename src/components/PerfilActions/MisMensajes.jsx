@@ -147,7 +147,14 @@ const MisMensajes = () => {
           mensajesFiltrados.map((mensaje, id) => {
             return (
               <>
-                <div key={id} className="desktopCard">
+                <div
+                  key={id}
+                  className="desktopCard"
+                  onClick={() => {
+                    setMensajeId(mensaje.idmensaje);
+                    navigate(`/perfil/MI CHAT`);
+                  }}
+                >
                   <div className="mensajeData">
                     <img
                       src={mensaje.producto.imagenes[0].imagen_cuadrada}
@@ -155,15 +162,7 @@ const MisMensajes = () => {
                       onError={(e) => handleAvatarError(e)}
                     />
                     <div>
-                      <p
-                        className="messageTitle"
-                        onClick={() => {
-                          setMensajeId(mensaje.idmensaje);
-                          navigate(`/perfil/MI CHAT`);
-                        }}
-                      >
-                        {mensaje.producto.nombre}
-                      </p>
+                      <p className="messageTitle">{mensaje.producto.nombre}</p>
                       <p className="messageDate">
                         {formatoFecha(mensaje.fecha)}
                       </p>
@@ -173,7 +172,7 @@ const MisMensajes = () => {
                       </p>
                     </div>
                   </div>
-                  <img
+                  {/* <img
                     onClick={() => {
                       setBorrarMsj(true);
                       setMensajeId(mensaje.idmensaje);
@@ -181,9 +180,16 @@ const MisMensajes = () => {
                     className="basuraIcon"
                     src={Basura}
                     alt="BasuraIcon"
-                  />
+                  /> */}
                 </div>
-                <div key={`mobile${id}`} className="mobileCard">
+                <div
+                  key={`mobile${id}`}
+                  className="mobileCard"
+                  onClick={() => {
+                    setMensajeId(mensaje.idmensaje);
+                    navigate(`/perfil/MI CHAT`);
+                  }}
+                >
                   <img
                     src={mensaje.producto.imagenes[0].imagen_cuadrada}
                     className="productImg"
@@ -198,7 +204,7 @@ const MisMensajes = () => {
                       {mensajesEstado[Number(mensaje.estado)]}
                     </p>
                   </div>
-                  <img src={Basura} className="trashICon" alt="basuraIcon" />
+                  {/* <img src={Basura} className="trashICon" alt="basuraIcon" /> */}
                 </div>
               </>
             );
