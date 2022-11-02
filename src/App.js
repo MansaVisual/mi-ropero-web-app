@@ -29,6 +29,7 @@ import TyC from "./views/TyC/TyC";
 import PdeP from "./views/PdeP/PdeP";
 import Error from "./views/404error/error";
 import Maintance from "./views/Maintance/Maintance";
+import About from "./views/About/About";
 
 function App() {
   useEffect(() => {
@@ -116,6 +117,7 @@ function App() {
                       <Route path="terminos&y&condiciones" element={<TyC />} />
                       <Route path="politica&de&privacidad" element={<PdeP />} />
                       <Route path="mantenimiento" element={<Maintance />} />
+                      <Route path="acercaDe" element={<About />} />
                     </Routes>
                     <Footer />
                   </ThemeProvider>
