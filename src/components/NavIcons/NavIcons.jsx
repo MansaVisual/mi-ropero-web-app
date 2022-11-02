@@ -611,6 +611,7 @@ const NavIcons = () => {
                                 width: "40px",
                                 height: "40px",
                                 borderRadius: "20px",
+                                mr:"8px"
                               }}
                             >
                               <img
@@ -624,7 +625,10 @@ const NavIcons = () => {
                               <Typography
                                 sx={{ fontSize: theme.typography.fontSize[2] }}
                               >
-                                {prod.producto.nombre}
+                                {prod.producto.nombre.length > 20
+                                  ? prod.producto.nombre.substring(0, 20) + "..."
+                                  : prod.producto.nombre
+                                }
                               </Typography>
                               <Typography
                                 sx={{
@@ -657,7 +661,7 @@ const NavIcons = () => {
                               </IconButton>
                             </Box>
                           </Box>
-                          <Divider />
+                          <Divider sx={{py:"4px"}}/>
                         </>
                       );
                     })}
