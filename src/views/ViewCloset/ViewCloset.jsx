@@ -63,8 +63,6 @@ const ViewCloset = () => {
   const [coleccion, setColeccion] = useState([]);
   const [filtrosFin, setFiltrosFin] = useState("");
 
-  console.log(nombre);
-
   useEffect(() => {
     if (closetId !== undefined) {
       const ropero = new FormData();
