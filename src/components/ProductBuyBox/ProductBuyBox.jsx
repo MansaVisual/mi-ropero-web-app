@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import PopUpOfertaPP from "../Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../Dialog/PopUpMensajePP";
 import Swal from "sweetalert2";
+import MopedIcon from "@mui/icons-material/Moped";
 
 const ProductBuyBox = ({ prod, itemID }) => {
   const location = useLocation();
@@ -42,7 +43,6 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
   const { userLog } = useContext(UseLoginContext);
   const { CartAPI, setCarrito } = useContext(UseCartContext);
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -517,16 +517,21 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 </Link>
               </Typography>
               {costoEnvio.moova.status !== "error" && (
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[2],
-                    fontWeight: theme.typography.fontWeightRegular,
-                    color: theme.palette.tertiary.main,
-                    mb: "18px",
-                  }}
-                >
-                  $500 moto a domicilio
-                </Typography>
+                <>
+                  <MopedIcon
+                    sx={{ fontSize: 40, color: "hsla(248, 41%, 38%, 1)" }}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[2],
+                      fontWeight: theme.typography.fontWeightRegular,
+                      color: theme.palette.tertiary.main,
+                      mb: "18px",
+                    }}
+                  >
+                    $500 moto a domicilio
+                  </Typography>
+                </>
               )}
               <Box>
                 <img src={OCA} alt="OCA Logo" />
