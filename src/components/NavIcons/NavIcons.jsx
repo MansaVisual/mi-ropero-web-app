@@ -42,7 +42,7 @@ import Swal from "sweetalert2";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const { userLog, setUserLog,notis } = useContext(UseLoginContext);
+  const { userLog, setUserLog,notis,buscandoNotis } = useContext(UseLoginContext);
   const {
     carrito,
     costoCarrito,
@@ -194,32 +194,37 @@ const NavIcons = () => {
   const getMenuBell = () => {
     return (
       <>
-        {notis.length!==0 ? getMenuBellNotifications() :
-          <Stack
-          justifyContent="center"
-          alignItems="center"
-          sx={{ paddingTop: "10px", paddingBottom: "10px" }}
-          >
-            <Box sx={{ mb: "4px" }}>
-              <CgCloseO size={24} color={theme.palette.secondary.main} />
-            </Box>
-            <Box>
-              <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[3],
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: theme.palette.secondary.main,
-                }}
-                >
-                NO TENÉS NOTIFICACIONES
-              </Typography>
-            </Box>
-          </Stack>
+        {buscandoNotis ? 
+          <div style={{ marginTop: "24px",marginBottom:"12px",width:"100%",display:"flex",justifyContent:"center" }}>
+            <Loader spin={"spinnerM"} />
+          </div>    
+        :      
+          notis.length!==0 ? getMenuBellNotifications() :
+            <Stack
+            justifyContent="center"
+            alignItems="center"
+            sx={{ paddingTop: "10px", paddingBottom: "10px" }}
+            >
+              <Box sx={{ mb: "4px" }}>
+                <CgCloseO size={24} color={theme.palette.secondary.main} />
+              </Box>
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[3],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.secondary.main,
+                  }}
+                  >
+                  NO TENÉS NOTIFICACIONES
+                </Typography>
+              </Box>
+            </Stack>
         }
       </>
     );
   };
-
+console.log(notis)
   const getMenuAvatar = () => {
     if (!session) {
       return (
@@ -348,14 +353,66 @@ const NavIcons = () => {
           },
         }}
       >
-          {notis!==undefined && notis.map((item,i)=>(<>
-            {i>7 ? <></> : <>
+          {notis!==undefined && notis.map((item,i)=>{
+            let url =""
+            let buscarI=""
+            let id=""
+
+            if(i<=7){
+              if(item.url.indexOf("/app/profile-showroom/sales")!==-1){//------------------------------------------------
+                url="/perfil"
+              }else if(item.url.indexOf("/app/profile/messages&id=")!==-1){//------------------------------------------------
+                buscarI=item.url.indexOf("/app/profile/messages&id=")
+                id=item.url.substring(buscarI+25,item.url.length)
+                url=`/perfil/MIS%20MENSAJES/${id}`
+              }else if(item.url.indexOf("/app/profile-showroom/offers")!==-1){//------------------------------------------------
+                url="/perfil/OFERTAS%20REALIZADAS"
+              }else if(item.url.indexOf("idproducto=")!==-1){//------------------------------------------------
+                buscarI=item.url.indexOf("idproducto=")
+                id=item.url.substring(buscarI+11,item.url.length)
+                url=`/productoCard/${id}`
+              }else if(item.url.indexOf("/app/profile/offers")!==-1){//------------------------------------------------
+                url="/perfil/OFERTAS%20REALIZADAS"
+              }else if(item.url.indexOf("/app/profile/buys-detail&idoperacion=")!==-1){//------------------------------------------------
+                buscarI=item.url.indexOf("/app/profile/buys-detail&idoperacion=")
+                id=item.url.substring(buscarI+37,item.url.length)
+                url=`/perfil/MIS%COMPRAS/${id}`
+              }else if(item.url.indexOf("idtienda=")!==-1){//------------------------------------------------
+                buscarI=item.url.indexOf("idtienda=")
+                id=item.url.substring(buscarI+9,item.url.length)
+                const llamada=new FormData()
+                llamada.append("idcliente", userLog);
+                llamada.append("idtienda", id);
+                CartAPI(
+                  llamada,
+                  "tiendas",
+                  "detail"
+                ).then((res)=>{
+                  if(res.status==="success"){
+                    url=`/roperos/${id}/${res.result.nombre}`
+                  }else{url="/roperos"}
+                })
+              }else if(item.url.indexOf("/app/profile-showroom/offers")!==-1){//------------------------------------------------
+                url="/perfil"
+              }else if(item.url.indexOf("/app/profile-showroom/transfers")!==-1){//------------------------------------------------
+                url="/perfil"
+              }else if(item.url.indexOf("/app/cart")!==-1){//------------------------------------------------
+                url="/carrito"
+              }else if(item.url.indexOf("/app/profile-showroom")!==-1){//------------------------------------------------
+                url="/perfil"
+              }else if(item.url.indexOf(".com.ar/terms")!==-1){
+                url=item.url
+              }else{
+                url="/"
+              }
+            }
+
+            return((<>{i>7 ? <></> : <>
               <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                gap: "10px",
                 cursor:"pointer",
                 p:"4px 8px",
                 "&:hover": {
@@ -363,9 +420,9 @@ const NavIcons = () => {
                 },
               }}
               key={i}
-              onClick={()=>window.location.replace(`${item.url}`)}
+              onClick={()=>window.location.assign(`${url}`)}
               >
-                <Box>
+                <Box sx={{mr:"8px"}}>
                   <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
                 </Box>
                 <Box
@@ -405,9 +462,9 @@ const NavIcons = () => {
                   <img src={basura} alt="icono de basura" width={14} height={16} />
                 </IconButton>
               </Box>
-              <Divider sx={{ my: "15px" }} />
+              <Divider sx={{ my: "5px" }} />
             </>}
-          </>))  
+          </>))})
           }
           </Stack>
           );
