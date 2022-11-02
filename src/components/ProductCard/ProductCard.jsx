@@ -109,16 +109,21 @@ const ProductCard = ({
             textAlign: isMobile ? null : "start",
             maxHeight: "20px",
             overflowY: "hidden",
-            cursor:"pointer"
+            cursor: "pointer",
           }}
           onClick={() => navigate(`/productoCard/${idProducto}`)}
         >
           {productName}
         </Typography>
-        <Box sx={{ pt: isMobile ? "8px" : "12px",cursor:"pointer" }}
-          onClick={itemFav !== undefined && itemFav.producto_tienda !== undefined ? 
-            () => navigate(`/roperos/${itemFav.producto_tienda.idtienda}/${itemFav.producto_tienda.nombre}`)
-          : ()=> navigate(`/roperos/${idTienda}/${datosTienda.nombre}`)
+        <Box
+          sx={{ pt: isMobile ? "8px" : "12px", cursor: "pointer" }}
+          onClick={
+            itemFav !== undefined && itemFav.producto_tienda !== undefined
+              ? () =>
+                  navigate(
+                    `/roperos/${itemFav.producto_tienda.idtienda}/${itemFav.producto_tienda.nombre}`
+                  )
+              : () => navigate(`/roperos/${idTienda}/${datosTienda.nombre}`)
           }
         >
           {itemFav !== undefined && itemFav.producto_tienda !== undefined && (
@@ -138,8 +143,14 @@ const ProductCard = ({
         </Box>
       </CardContent>
       <Divider />
-      <CardContent sx={{ display: "flex", alignItems: "center", padding: 0, cursor:"pointer" }}
-      onClick={() => navigate(`/productoCard/${idProducto}`)}
+      <CardContent
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          padding: 0,
+          cursor: "pointer",
+        }}
+        onClick={() => navigate(`/productoCard/${idProducto}`)}
       >
         {precioOferta !== "0.00" ? (
           <>
@@ -149,7 +160,7 @@ const ProductCard = ({
                 fontSize: isMobile ? "13px" : "20px",
                 fontWeight: theme.typography.fontWeightRegular,
                 pl: "16px",
-                color: theme.palette.quaternary.contrastText,
+                color: "#BABCBE",
                 textDecoration: `${theme.palette.secondary.main} line-through`,
                 opacity: "0.5",
               }}
@@ -163,7 +174,7 @@ const ProductCard = ({
                 fontSize: isMobile ? "13px" : "20px",
                 fontWeight: theme.typography.fontWeightRegular,
                 pl: "16px",
-                color: theme.palette.secondary.main,
+                color: "#FF3F20",
               }}
             >
               ${precioOferta}
@@ -176,6 +187,7 @@ const ProductCard = ({
               fontSize: isMobile ? "13px" : "20px",
               fontWeight: theme.typography.fontWeightMedium,
               pl: "16px",
+              color: "#423B3C",
             }}
           >
             $
