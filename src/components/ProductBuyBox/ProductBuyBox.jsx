@@ -43,6 +43,8 @@ const ProductBuyBox = ({ prod, itemID }) => {
   const { userLog } = useContext(UseLoginContext);
   const { CartAPI, setCarrito } = useContext(UseCartContext);
 
+  console.log(prod);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -139,7 +141,50 @@ const ProductBuyBox = ({ prod, itemID }) => {
               }}
             >
               <Box>
-                <Typography
+                {prod.precio_oferta !== "0.00" ? (
+                  <>
+                    <Typography
+                      sx={{
+                        lineHeight: "40px",
+                        fontSize: isMobile ? "13px" : "20px",
+                        fontWeight: theme.typography.fontWeightRegular,
+                        pl: "16px",
+                        color: theme.palette.quaternary.contrastText,
+                        textDecoration: `${theme.palette.secondary.main} line-through`,
+                        opacity: "0.5",
+                      }}
+                    >
+                      ${prod.precio}
+                    </Typography>
+                    <Typography
+                      component="span"
+                      sx={{
+                        lineHeight: "40px",
+                        fontSize: isMobile ? "13px" : "20px",
+                        fontWeight: theme.typography.fontWeightRegular,
+                        pl: "16px",
+                        color: theme.palette.secondary.main,
+                      }}
+                    >
+                      ${prod.precio_oferta}
+                    </Typography>
+                  </>
+                ) : (
+                  <Typography
+                    sx={{
+                      lineHeight: "40px",
+                      fontSize: isMobile ? "13px" : "20px",
+                      fontWeight: theme.typography.fontWeightMedium,
+                      pl: "16px",
+                    }}
+                  >
+                    $ {prod.precio}
+                    {/*  {prod.precio !== undefined
+              ? prod.precio
+              : itemFav.producto_precio} */}
+                  </Typography>
+                )}
+                {/* <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[9],
                     fontWeight: theme.typography.fontWeightMedium,
@@ -147,7 +192,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   }}
                 >
                   ${prod.precio}
-                </Typography>
+                </Typography> */}
               </Box>
               <Box sx={{ maxWidth: "120px" }}>
                 <Button
@@ -284,7 +329,59 @@ const ProductBuyBox = ({ prod, itemID }) => {
               }}
             >
               <Box>
-                <Typography
+                {prod.precio_oferta !== "0.00" ? (
+                  <>
+                    <Typography
+                      sx={{
+                        /* lineHeight: "40px", */
+                        fontSize: theme.typography.fontSize[9],
+                        fontWeight: theme.typography.fontWeightMedium,
+                        pl: "16px",
+                        color: theme.palette.quaternary.contrastText,
+                        textDecoration: `${theme.palette.secondary.main} line-through`,
+                        opacity: "0.5",
+                      }}
+                    >
+                      ${prod.precio}
+                    </Typography>
+                    <Typography
+                      component="span"
+                      sx={{
+                        lineHeight: "40px",
+                        fontSize: isMobile ? "13px" : "20px",
+                        fontWeight: theme.typography.fontWeightRegular,
+                        pl: "16px",
+                        color: theme.palette.secondary.main,
+                      }}
+                    >
+                      ${prod.precio_oferta}
+                    </Typography>
+                  </>
+                ) : (
+                  <Typography
+                    sx={{
+                      lineHeight: "40px",
+                      fontSize: theme.typography.fontSize[9],
+                      fontWeight: theme.typography.fontWeightMedium,
+                      pl: "16px",
+                    }}
+                  >
+                    $ {prod.precio}
+                    {/*  {prod.precio !== undefined
+              ? prod.precio
+              : itemFav.producto_precio} */}
+                  </Typography>
+                )}
+                {/* <Typography
+                  sx={{
+                    fontSize: theme.typography.fontSize[9],
+                    fontWeight: theme.typography.fontWeightMedium,
+                    color: theme.palette.quaternary.contrastText,
+                  }}
+                >
+                  ${prod.precio}
+                </Typography> */}
+                {/* <Typography
                   sx={{
                     fontSize: theme.typography.fontSize[10],
                     fontWeight: theme.typography.fontWeightMedium,
@@ -292,7 +389,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   }}
                 >
                   ${prod.precio}
-                </Typography>
+                </Typography> */}
                 <Box sx={{ mt: "16px" }}>
                   <Button
                     backgroundColor={theme.palette.quinary.main}
