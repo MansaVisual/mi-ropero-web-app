@@ -8,6 +8,7 @@ export const LoginContext = ({ children }) => {
   const [userLog, setUserLog] = useState("");
   const [infoUser, setInfoUser] = useState([]);
   const [notis,setNotis]=useState([])
+  const [buscandoNotis,setBuscandoNotis]=useState(true)
 
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
@@ -50,6 +51,7 @@ export const LoginContext = ({ children }) => {
 
   useEffect(() => {
     if (userLog !== "") {
+      setBuscandoNotis(true)
       const user = new FormData();
       user.append("idcliente", userLog);
       LoginAPI(user, "clientes", "get").then((res) => {
@@ -70,7 +72,7 @@ export const LoginContext = ({ children }) => {
         notis,
         "pushs",
         "all"
-      ).then((res)=>{if(res.status==="success"){setNotis(res.result)}})
+      ).then((res)=>{setBuscandoNotis(false);if(res.status==="success"){setNotis(res.result)}})
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -139,7 +141,8 @@ export const LoginContext = ({ children }) => {
         infoUser,
         FacebookLogin,
         reBuscarInfo,
-        notis
+        notis,
+        buscandoNotis
       }}
     >
       {children}
