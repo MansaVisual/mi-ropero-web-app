@@ -368,7 +368,11 @@ const InfoContact = ({
           <p>Localidad no encontrada. Vuelva a intentarlo</p>
         </div>
       )}
-
+      {infoUser.length===0 ? 
+        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+          <Loader spin={'spinnerG'} />
+        </div>
+      :<>
       <div className='firstLine' style={{ marginTop: '12px' }}>
         <div className='margenInput margenInputEspecial'>
           <InputLabel className='labelForm' id='labelNombreApellido'>
@@ -784,6 +788,7 @@ const InfoContact = ({
           })}
         </div>
       )}
+      </>}
 
       {loader ? (
         <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
