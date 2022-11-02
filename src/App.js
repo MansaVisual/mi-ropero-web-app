@@ -28,6 +28,7 @@ import SearchColeccionesResults from "./views/SearchColeccionesResults/SearchCol
 import TyC from "./views/TyC/TyC";
 import PdeP from "./views/PdeP/PdeP";
 import Error from "./views/404error/error";
+import Maintance from "./views/Maintance/Maintance";
 
 function App() {
   useEffect(() => {
@@ -96,10 +97,7 @@ function App() {
                       <Route path="/carrito" element={<Cart />} />
                       <Route path="/checkout" element={<Checkout />} />
                       <Route path="/checkout/:status" element={<Checkout />} />
-                      <Route
-                        path="*"
-                        element={<Error/>}
-                      ></Route>
+                      <Route path="*" element={<Error />}></Route>
                       <Route path="/login" element={<Login />} />
                       <Route path="/registro" element={<Register />} />
                       <Route
@@ -115,15 +113,9 @@ function App() {
                         path="perfil/:perfilSeccion/:idDetalleCompra"
                         element={<Perfil />}
                       />
-                      <Route
-                        path="terminos&y&condiciones"
-                        element={<TyC />}
-                      />
-                      <Route
-                        path="politica&de&privacidad"
-                        element={<PdeP />}
-                      />
-
+                      <Route path="terminos&y&condiciones" element={<TyC />} />
+                      <Route path="politica&de&privacidad" element={<PdeP />} />
+                      <Route path="mantenimiento" element={<Maintance />} />
                     </Routes>
                     <Footer />
                   </ThemeProvider>
