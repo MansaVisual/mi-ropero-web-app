@@ -128,9 +128,9 @@ const Footer = () => {
                 <Typography
                   sx={{ pt: isMobile ? "69px" : "48px", lineHeight: "14px" }}
                 >
-                  ME ARREPENTI
+                  ME ARREPENTÍ
                 </Typography>
-                <Typography>(solicitud de cancelacion de compra)</Typography>
+                <Typography>(solicitud de cancelación de compra)</Typography>
               </Box>
             </Box>
             <Box

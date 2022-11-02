@@ -791,7 +791,7 @@ const InfoContact = ({
         </div>
       ) : (
         <div className='botonEnvio'>
-          <Button onClick={() => checkForm()}>IR A ENVÍO</Button>
+          <Button onClick={() => checkForm()}>CONTINUAR</Button>
         </div>
       )}
 
