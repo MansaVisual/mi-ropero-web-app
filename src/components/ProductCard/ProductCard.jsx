@@ -109,11 +109,18 @@ const ProductCard = ({
             textAlign: isMobile ? null : "start",
             maxHeight: "20px",
             overflowY: "hidden",
+            cursor:"pointer"
           }}
+          onClick={() => navigate(`/productoCard/${idProducto}`)}
         >
           {productName}
         </Typography>
-        <Box sx={{ pt: isMobile ? "8px" : "12px" }}>
+        <Box sx={{ pt: isMobile ? "8px" : "12px",cursor:"pointer" }}
+          onClick={itemFav !== undefined && itemFav.producto_tienda !== undefined ? 
+            () => navigate(`/roperos/${itemFav.producto_tienda.idtienda}/${itemFav.producto_tienda.nombre}`)
+          : ()=> navigate(`/roperos/${idTienda}/${datosTienda.nombre}`)
+          }
+        >
           {itemFav !== undefined && itemFav.producto_tienda !== undefined && (
             <AvatarMR
               avatarCard
@@ -131,7 +138,9 @@ const ProductCard = ({
         </Box>
       </CardContent>
       <Divider />
-      <CardContent sx={{ display: "flex", alignItems: "center", padding: 0 }}>
+      <CardContent sx={{ display: "flex", alignItems: "center", padding: 0, cursor:"pointer" }}
+      onClick={() => navigate(`/productoCard/${idProducto}`)}
+      >
         {precioOferta !== "0.00" ? (
           <>
             <Typography

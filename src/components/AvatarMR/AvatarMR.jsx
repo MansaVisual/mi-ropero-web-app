@@ -15,7 +15,7 @@ const AvatarMR = ({
 
   const { infoUser } = useContext(UseLoginContext);
 
-
+  console.log(idTienda)
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
