@@ -35,8 +35,6 @@ const MiPerfil = () => {
     img: profileTest,
   };
 
-  console.log(infoUser);
-
   const profileSections = [
     // {
     //   name: 'MI TIENDA',
@@ -68,7 +66,6 @@ const MiPerfil = () => {
     },
   ];
 
-  console.log(infoUser, infoUser.avatar);
 
   const handleAvatarError = (event) => {
     event.currentTarget.src = testData.img;

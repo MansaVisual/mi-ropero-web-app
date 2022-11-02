@@ -279,7 +279,6 @@ const MisDatos = () => {
     mail.append("telefono", document.getElementById("telefono").value);
     mail.append("sexo", genero.toString());
     if (contraseñaValidada) {
-      console.log("cambio password");
       mail.append("clave", "prueba");
     }
     mail.append("caracteristicas_favoritas", caracteristicasFin);
@@ -331,7 +330,6 @@ const MisDatos = () => {
   };
 
   const throwError = (id1, id2) => {
-    console.log(id1, id2);
     if (id1 === "provincia") {
       if (!document.getElementById(id1).classList.contains(clase)) {
         document.getElementById(id1).parentNode.classList.add(clase);

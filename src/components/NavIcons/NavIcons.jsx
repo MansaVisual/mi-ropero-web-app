@@ -224,7 +224,7 @@ const NavIcons = () => {
       </>
     );
   };
-console.log(notis)
+
   const getMenuAvatar = () => {
     if (!session) {
       return (

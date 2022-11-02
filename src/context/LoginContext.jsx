@@ -96,13 +96,11 @@ export const LoginContext = ({ children }) => {
     log.append("social_login_id", loginData.id);
     LoginAPI(log, "clientes", "login_social").then((res) => {
       if (res.status === "success") {
-        console.log(res);
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
         window.location.replace("https://mi-ropero-web-app.vercel.app/");
       } else if (res.status === "error") {
         if (res.result === "El social_login_id y/o social_login no existen") {
-          console.log(res);
           FacebookRegister(loginData);
         }
       }

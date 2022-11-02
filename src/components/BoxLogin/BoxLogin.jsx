@@ -23,8 +23,6 @@ const BoxLogin = () => {
 
   const redirectUrl = localStorage.getItem("redirectUrl");
 
-  console.log(redirectUrl);
-
   const handleLogin = async () => {
     setLoad(true);
     if (

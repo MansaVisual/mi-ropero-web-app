@@ -16,8 +16,6 @@ const PopUpEliminar = ({ setDeleteAccount, idCliente }) => {
     const dir = new FormData();
     dir.append("idcliente", idCliente);
     PerfilAPI(dir, "clientes", "delete").then((res) => {
-      console.log(idCliente);
-      console.log(res);
       if (res.status === "success") {
         setDeleteAccount(false);
         navigate("/");

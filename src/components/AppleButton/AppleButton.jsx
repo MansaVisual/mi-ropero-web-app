@@ -8,8 +8,6 @@ const AppleButton = () => {
 
   const [data, setData] = useState(null);
 
-  console.log(data);
-
   return (
     <div>
       <LoginSocialApple

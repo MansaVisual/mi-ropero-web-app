@@ -25,7 +25,6 @@ const DetalleCompra = () => {
       const dir = new FormData();
       dir.append("idcliente", 36);
       dir.append("idoperacion", compraId);
-      console.log(Object.fromEntries(dir)); // Works if all fields are uniq
       PerfilAPI(dir, "operaciones", "get").then((res) => {
         if (res.status === "success") {
           setCompraSelecc(res.result);

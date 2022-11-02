@@ -64,6 +64,7 @@ const SearchBar = () => {
           }}
           onFocus={handleFocus}
           onChange={handleChange}
+          onKeyPress={(e) => handleSubmit(e, "productos")}
         />
         <IconButton
           type="button"
@@ -73,7 +74,9 @@ const SearchBar = () => {
             right: "8px",
           }}
         >
-          <IoSearch fontSize="15px" color="red" />
+          <IoSearch fontSize="15px" color="red" 
+            onClick={(e) => handleSubmit(e, "productos")}
+          />
         </IconButton>
         {openSearch && (
           <Box

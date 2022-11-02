@@ -43,14 +43,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
   const { userLog } = useContext(UseLoginContext);
   const { CartAPI, setCarrito } = useContext(UseCartContext);
 
-  console.log(prod);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleCompraSinLogin = () => {
-    console.log("redirect");
     localStorage.setItem("redirectUrl", location.pathname);
     navigate("/login");
   };

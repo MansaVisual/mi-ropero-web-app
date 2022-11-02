@@ -84,9 +84,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("bypage", 10);
     PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
       if (res.status === "success") {
-        console.log("hola");
         for (const ii in res.result.operaciones) {
-          console.log("chau");
           array.push(res.result.operaciones[ii]);
         }
       }
@@ -110,7 +108,6 @@ export const PerfilContext = ({ children }) => {
 
     for (const item in estados) {
       if (estados[item] === filtroSelecc) {
-        console.log(estados[item]);
         itemOfertasRealizadas = item;
         await setofertaFiltro(item);
       }

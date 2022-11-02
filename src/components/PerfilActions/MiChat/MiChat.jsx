@@ -70,7 +70,6 @@ const MiChat = () => {
   }, [chatActual]);
 
   useEffect(() => {
-    console.log("scroll");
     scrollToBottom();
     setScroll(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,10 +90,8 @@ const MiChat = () => {
       dir.append("idmensajepadre", mensajePadre.idMensaje);
       dir.append("idproducto", productoId);
       dir.append("mensaje", mensaje);
-      console.log(Object.fromEntries(dir));
 
       PerfilAPI(dir, "mensajes", "insert").then((res) => {
-        console.log(res);
         if (res.status === "success") {
           setChatActual([
             ...chatActual,
