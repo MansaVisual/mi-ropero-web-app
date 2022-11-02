@@ -94,7 +94,7 @@ const TabsCategories = () => {
                   cursor: "pointer",
                   lineHeight: "19.07px",
                   "&:hover": {
-                    color:"white",
+                    color: "white",
                   },
                 }}
                 onClick={() => navigate("/roperos")}
@@ -113,6 +113,7 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
+              padding: "0px 32px",
             }}
           >
             {categorias.length === 0 ? (
@@ -163,6 +164,7 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
+              padding: "0px 32px",
             }}
           >
             {categorias.length === 0 ? (
@@ -213,6 +215,7 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
+              padding: "0px 32px",
             }}
           >
             {categorias.length === 0 ? (
@@ -263,6 +266,7 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
+              padding: "0px 32px",
             }}
           >
             {categorias.length === 0 ? (
