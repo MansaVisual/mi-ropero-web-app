@@ -23,6 +23,7 @@ import { UseColeccionContext } from "../../context/ColeccionesContext";
 import {UseProdsContext} from "../../context/ProdsContext"
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Swal from "sweetalert2";
+import notFoundIcon from "../../assets/img/notFoundIcon.svg";
 
 const style = {
   position: "absolute",
@@ -53,6 +54,7 @@ const SearchProductsResults = () => {
   
   const [prods,setProds]=useState([])
   const [filtrosCategoria,setFiltrosCategoria]=useState([])
+  const [buscandoCol,setBuscandoCol]=useState(true)
 
   const [totalPages,setTotalPages]=useState(0)
 
@@ -95,7 +97,6 @@ const SearchProductsResults = () => {
         "colecciones",
         "detail"
     ).then((res)=>{
-      console.log(res)
       if(res.status==="success"){
         setColeccion(res.result)
         setProds(res.result.productos)
@@ -122,16 +123,6 @@ const SearchProductsResults = () => {
       let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
       idCat=idCat[0].idcategoria
 
-      const catFilters = new FormData();
-      catFilters.append('idcategoria', Number(idCat));
-
-      ProdAPI(catFilters, 'categorias', 'get').then((res) => {
-        if (res.status === 'success') {
-          setFiltrosCategoria(res.result[0]);
-        }
-      });
-
-
       let numCol=0
       if(coleccionName==="NuevosIngresos"){
         numCol=71
@@ -146,7 +137,6 @@ const SearchProductsResults = () => {
       col.append("idcategoria",idCat)
       col.append("bypage",15)
       col.append("page",0)
-      // col.append("caracteristicas","12:764, 1:37")
 
       ColeccionAPI(
           col,
@@ -154,9 +144,11 @@ const SearchProductsResults = () => {
           "detail"
       ).then((res)=>{
         if(res.status==="success"){
+          setFiltrosCategoria(res.result.productos_categorias[0].caracteristica)
           setProds(res.result.productos)
           setTotalPages(res.result.productos_total_paginas)
         }
+        setBuscandoCol(false)
         setLoad2(false)
       })
     }else{
@@ -180,10 +172,10 @@ const SearchProductsResults = () => {
         "detail"
     ).then((res)=>{
       if(res.status==="success"){
-        setColeccion(res.result)
         setProds(res.result.productos)
         setTotalPages(res.result.productos_total_paginas)
       }
+      setBuscandoCol(false)
       setLoad2(false)
   })
     }
@@ -266,6 +258,8 @@ const SearchProductsResults = () => {
   }
 
   const handleAplicarFiltros = () => {
+    setBuscandoCol(true)
+
     if(rangoPrecio.min>rangoPrecio.max){
       Swal.fire({
         title:'RANGOS INCORRECTOS',
@@ -335,9 +329,13 @@ const SearchProductsResults = () => {
           "detail"
         ).then((res)=>{
           setLoad2(false)
+          setBuscandoCol(false)
           if (res.status === 'success') {
             setProds(res.result.productos);
             setTotalPages(res.result.productos_total_paginas);
+          }else if(res.result==="No se encontraron producto para la coleccion"){
+            setProds([])
+            setTotalPages(0);
           }
         })
     }
@@ -449,6 +447,7 @@ const SearchProductsResults = () => {
                             </Typography>
                             :<></>}
                         <Filter 
+                          filtrosCol={filtrosCategoria}
                           setPutCategory={setPutCategory} 
                           putCategory={putCategory} 
                           filtros={filtrosCategoria} 
@@ -525,6 +524,7 @@ const SearchProductsResults = () => {
                   </Typography>
                   :<></>}
                 <Filter 
+                  filtrosCol={filtrosCategoria}
                   setPutCategory={setPutCategory} 
                   putCategory={putCategory} 
                   filtros={filtrosCategoria} 
@@ -543,6 +543,52 @@ const SearchProductsResults = () => {
 
           <Grid item xs={12} sm={12} md={9}>
             {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
+              <>{!buscandoCol && prods.length===0 ? 
+                <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          mt: "16px",
+                        }}
+                      >
+                        <Box sx={{ mr: "20px" }}>
+                          <img
+                            src={notFoundIcon}
+                            width={30}
+                            height={30}
+                            alt="not found icon"
+                          />
+                        </Box>
+                        <Box>
+                          <Typography
+                            sx={{
+                              fontSize: theme.typography.fontSize[6],
+                              fontWeight: theme.typography.fontWeightMedium,
+                              color: theme.palette.secondary.main,
+                              textTransform: "uppercase",
+                              textAlign:
+                                isMobile || isMobileBigScreen
+                                  ? "center"
+                                  : "unset",
+                              mb: 4,
+                            }}
+                          >
+                            No encontramos resultados para esos filtros
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: theme.typography.fontSize[6],
+                              fontWeight: theme.typography.fontWeightRegular,
+                              color: theme.palette.tertiary.main,
+                            }}
+                          >
+                            Intentá con filtros diferentes.
+                          </Typography>
+                        </Box>
+                      </Box>
+              :
+              
               <Box
                 sx={{
                   display: "flex",
@@ -578,6 +624,7 @@ const SearchProductsResults = () => {
                   </div>
                 }
               </Box>
+            }</>
             } 
             {prods.length!==0 && totalPages>1 && coleccionName && !load2 && (
               <Box

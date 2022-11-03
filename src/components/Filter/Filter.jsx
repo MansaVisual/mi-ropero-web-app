@@ -40,6 +40,7 @@ const Filter = (props) => {
   const putSort = props.putSort;
   const setPutSort = props.setPutSort;
   const filtros = props.filtros.caracteristicas;
+  const filtrosCol = props.filtros;
   const coleccion = props.coleccion;
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
@@ -311,7 +312,7 @@ const Filter = (props) => {
               <Divider />
             </Fragment>
           );
-        })}
+      })}
       {filtros !== undefined && search===undefined &&
         coleccion !== undefined &&
         filtros.map((res, i) => {
@@ -384,7 +385,78 @@ const Filter = (props) => {
             </Fragment>
           );
         })}
-
+      {filtrosCol !== undefined && search===undefined &&
+        coleccion !== undefined &&
+        filtrosCol.map((res, i) => {
+          return (
+            <Fragment key={i}>
+              <ListItemStyled onClick={() => handleClick(res.nombre)}>
+                <ListItemText primary={res.nombre} sx={ListItemTextStyled} />
+                {openFilter[res.nombre] ? <ExpandLess /> : <ExpandMore />}
+              </ListItemStyled>
+              <Collapse
+                in={openFilter[res.nombre]}
+                timeout='auto'
+                unmountOnExit
+                className='scrollFilter'
+                sx={{
+                  maxHeight: '60vh',
+                  overflowY: 'scroll',
+                }}
+              >
+                {res.valores.map((res2, i2) => {
+                  return (
+                    <List component='div' key={i2}>
+                      <FormControlLabel
+                        label={res2.valor}
+                        control={
+                          <Checkbox
+                            checked={putFilters.find(
+                              (element) => element.nombre === res2.valor,
+                            )}
+                            name={res2.valor}
+                            onClick={(e) => {
+                              if (putFilters.length !== 0) {
+                                let oldArray = putFilters.filter(
+                                  (element) => element.nombre === e.target.name,
+                                );
+                                let newArray = putFilters.filter(
+                                  (element) => element.nombre !== e.target.name,
+                                );
+                                if (oldArray.length === 0) {
+                                  setPutFilters([
+                                    ...newArray,
+                                    {
+                                      nombre: e.target.name,
+                                      id: res2.idcaracteristicavalor,
+                                      idName: res.idcaracteristica,
+                                    },
+                                  ]);
+                                } else {
+                                  setPutFilters(newArray);
+                                }
+                              } else {
+                                setPutFilters([
+                                  {
+                                    nombre: e.target.name,
+                                    id: res2.idcaracteristicavalor,
+                                    idName: res.idcaracteristica,
+                                  },
+                                ]);
+                              }
+                            }}
+                          />
+                        }
+                        sx={FormControlLabelStyled}
+                      />
+                    </List>
+                  );
+                })}
+              </Collapse>
+              <Divider />
+            </Fragment>
+          );
+        })}
       {putCategory!=="" &&
         <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
           <ListItemText primary="Rango de precio"/>

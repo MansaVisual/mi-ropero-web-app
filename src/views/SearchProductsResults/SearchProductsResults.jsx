@@ -54,6 +54,7 @@ const SearchProductsResults = () => {
 
   const [prods, setProds] = useState([]);
   const [buscandoProds, setBuscandoProds] = useState(true);
+  const [buscandoFiltros, setBuscandoFiltros] = useState(false);
   const [filtrosCategoria, setFiltrosCategoria] = useState([]);
 
   const [totalPages, setTotalPages] = useState(0);
@@ -195,6 +196,7 @@ const SearchProductsResults = () => {
   };
 
   const handleAplicarFiltros = () => {
+    setBuscandoFiltros(true)
     if (rangoPrecio.min > rangoPrecio.max) {
       Swal.fire({
         title:'RANGOS INCORRECTOS',
@@ -260,6 +262,9 @@ const SearchProductsResults = () => {
         if (res.status === "success") {
           setProds(res.result.productos);
           setTotalPages(res.result.total_paginas);
+        }else if(res.result==="No se encontraron productos"){
+          setProds([]);
+          setTotalPages(0);
         }
       });
     }
@@ -545,7 +550,9 @@ const SearchProductsResults = () => {
                               mb: 4,
                             }}
                           >
-                            No encontramos resultados para{" "}
+                            {buscandoFiltros ? "No encontramos resultados para esos filtros": 
+                            `No encontramos resultados para `
+                            }
                             <Typography
                               component="span"
                               sx={{
@@ -553,7 +560,9 @@ const SearchProductsResults = () => {
                                 textTransform: "capitalize",
                               }}
                             >
-                              "{keyword}"
+                              {!buscandoFiltros ?
+                              `"${keyword}"`:""
+                              }
                             </Typography>
                           </Typography>
                           <Typography
@@ -563,7 +572,9 @@ const SearchProductsResults = () => {
                               color: theme.palette.tertiary.main,
                             }}
                           >
-                            Revisá la ortografía de la palabra
+                            {buscandoFiltros ? "Intentá con filtros diferentes":
+                              "Revisá la ortografía de la palabra"
+                            }
                           </Typography>
                           <Typography
                             sx={{
@@ -572,7 +583,9 @@ const SearchProductsResults = () => {
                               color: theme.palette.tertiary.main,
                             }}
                           >
-                            Utilizá palabras más genéricas o menos palabras.
+                            {!buscandoFiltros ?
+                            "Utilizá palabras más genéricas o menos palabras.":""
+                            }
                           </Typography>
                           <Typography
                             sx={{
@@ -581,16 +594,18 @@ const SearchProductsResults = () => {
                               color: theme.palette.tertiary.main,
                             }}
                           >
-                            Navegá por las categorías para encontrar un producto
-                            similar
+                            {!buscandoFiltros ?
+                            "Navegá por las categorías para encontrar un producto similar":""
+                            }
                           </Typography>
+                          {!buscandoFiltros &&
                           <StyledLink
-                            to="/"
-                            sx={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              cursor: "default",
+                          to="/"
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            cursor: "default",
                             }}
                           >
                             <Typography
@@ -614,10 +629,11 @@ const SearchProductsResults = () => {
                                 justifyContent: "center",
                               }}
                               onClick={() => prodsCategoria()}
-                            >
+                              >
                               Ir al Inicio
                             </Typography>
                           </StyledLink>
+                          }
                         </Box>
                       </Box>
                     )}
