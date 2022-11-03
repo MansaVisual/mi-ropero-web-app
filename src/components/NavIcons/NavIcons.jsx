@@ -191,6 +191,8 @@ const NavIcons = () => {
     },
   ];
 
+  console.log(notis)
+
   const getMenuBell = () => {
     return (
       <>
@@ -357,29 +359,30 @@ const NavIcons = () => {
             let url =""
             let buscarI=""
             let id=""
+            let itemURL=item.url
 
             if(i<=7){
-              if(item.url.indexOf("/app/profile-showroom/sales")!==-1){//------------------------------------------------
+              if(itemURL.indexOf("/app/profile-showroom/sales")!==-1){//-----------------------|-------------------------
                 url="/perfil"
-              }else if(item.url.indexOf("/app/profile/messages&id=")!==-1){//------------------------------------------------
-                buscarI=item.url.indexOf("/app/profile/messages&id=")
-                id=item.url.substring(buscarI+25,item.url.length)
-                url=`/perfil/MIS%20MENSAJES/${id}`
-              }else if(item.url.indexOf("/app/profile-showroom/offers")!==-1){//------------------------------------------------
-                url="/perfil/OFERTAS%20REALIZADAS"
-              }else if(item.url.indexOf("idproducto=")!==-1){//------------------------------------------------
-                buscarI=item.url.indexOf("idproducto=")
-                id=item.url.substring(buscarI+11,item.url.length)
+              }else if(itemURL.indexOf("/app/profile/messages?id=")!==-1){//---------------|---------------------------------
+                buscarI=itemURL.indexOf("/app/profile/messages?id=")
+                id=itemURL.substring(buscarI+25,itemURL.length)
+                url=`/perfil/MIS MENSAJES/${id}`
+              }else if(itemURL.indexOf("/app/profile-showroom/offers")!==-1){//------------------|------------------------------
+                url="/perfil/OFERTAS REALIZADAS"
+              }else if(itemURL.indexOf("idproducto=")!==-1){//--------------------------------|----------------
+                buscarI=itemURL.indexOf("idproducto=")
+                id=itemURL.substring(buscarI+11,itemURL.length)
                 url=`/productoCard/${id}`
-              }else if(item.url.indexOf("/app/profile/offers")!==-1){//------------------------------------------------
-                url="/perfil/OFERTAS%20REALIZADAS"
-              }else if(item.url.indexOf("/app/profile/buys-detail&idoperacion=")!==-1){//------------------------------------------------
-                buscarI=item.url.indexOf("/app/profile/buys-detail&idoperacion=")
-                id=item.url.substring(buscarI+37,item.url.length)
-                url=`/perfil/MIS%COMPRAS/${id}`
-              }else if(item.url.indexOf("idtienda=")!==-1){//------------------------------------------------
-                buscarI=item.url.indexOf("idtienda=")
-                id=item.url.substring(buscarI+9,item.url.length)
+              }else if(itemURL.indexOf("/app/profile/offers")!==-1){//-------------------|-----------------------------
+                url="/perfil/OFERTAS REALIZADAS"
+              }else if(itemURL.indexOf("/app/profile/buys-detail?idoperacion=")!==-1){//---------------|---------------------------------
+                buscarI=itemURL.indexOf("/app/profile/buys-detail?idoperacion=")
+                id=itemURL.substring(buscarI+45,itemURL.length)
+                url=`/perfil/MIS COMPRAS/${id}`
+              }else if(itemURL.indexOf("idtienda=")!==-1){//---------------|---------------------------------
+                buscarI=itemURL.indexOf("idtienda=")
+                id=itemURL.substring(buscarI+9,itemURL.length)
                 const llamada=new FormData()
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
@@ -392,18 +395,16 @@ const NavIcons = () => {
                     url=`/roperos/${id}/${res.result.nombre}`
                   }else{url="/roperos"}
                 })
-              }else if(item.url.indexOf("/app/profile-showroom/offers")!==-1){//------------------------------------------------
+              }else if(itemURL.indexOf("/app/profile-showroom/offers")!==-1){//-------------------|-----------------------------
                 url="/perfil"
-              }else if(item.url.indexOf("/app/profile-showroom/transfers")!==-1){//------------------------------------------------
+              }else if(itemURL.indexOf("/app/profile-showroom/transfers")!==-1){//------------------|------------------------------
                 url="/perfil"
-              }else if(item.url.indexOf("/app/cart")!==-1){//------------------------------------------------
+              }else if(itemURL.indexOf("/app/cart")!==-1){//--------------------------|----------------------
                 url="/carrito"
-              }else if(item.url.indexOf("/app/profile-showroom")!==-1){//------------------------------------------------
+              }else if(itemURL.indexOf("/app/profile-showroom")!==-1){//--------------------|----------------------------
                 url="/perfil"
-              }else if(item.url.indexOf(".com.ar/terms")!==-1){
-                url=item.url
-              }else{
-                url="/"
+              }else{//--------------------|-----------------------------
+                url=itemURL
               }
             }
 
@@ -444,6 +445,7 @@ const NavIcons = () => {
                       fontSize: theme.typography.fontSize[1],
                       fontWeight: theme.typography.fontWeightBold,
                       color: "hsla(351, 6%, 25%, 1)",
+                      overflowX:"hidden"
                     }}
                     >
                     {item.texto}
@@ -458,9 +460,9 @@ const NavIcons = () => {
                     {item.fecha} hs
                   </Typography>
                 </Box>
-                <IconButton>
+                {/* <IconButton>
                   <img src={basura} alt="icono de basura" width={14} height={16} />
-                </IconButton>
+                </IconButton> */}
               </Box>
               <Divider sx={{ my: "5px" }} />
             </>}
