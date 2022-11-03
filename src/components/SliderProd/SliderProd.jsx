@@ -8,11 +8,11 @@ import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 5000, min: 1100 },
+    breakpoint: { max: 5000, min: 1200 },
     items: 4
   },
   tablet: {
-    breakpoint: { max: 1100, min: 600 },
+    breakpoint: { max: 1200, min: 600 },
     items: 3
   },
   mobile: {
@@ -50,7 +50,6 @@ const SliderProd =({contenido})=>{
       ) : (
         <Carousel
           responsive={responsive}
-          infinite={true}
           customLeftArrow={<PrevArrow />}
           customRightArrow={<NextArrow />}
         >
