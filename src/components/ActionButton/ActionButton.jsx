@@ -160,6 +160,9 @@ export const CommentButton = ({ onClick }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          "&:hover": {
+            backgroundColor: "#4d419a",
+          },
         }}
       >
         <FaRegCommentAlt fontSize="20px" color="hsl(0, 0%, 100%)" />

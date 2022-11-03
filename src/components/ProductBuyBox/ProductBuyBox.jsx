@@ -2,18 +2,19 @@ import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Box,
+  Button,
   IconButton,
   Link,
   TextField,
   Typography,
   useMediaQuery,
+  Avatar,
 } from "@mui/material";
 import OCA from "../../assets/img/OCA.png";
 import { BiRightArrow } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
 import { CommentButton } from "../ActionButton/ActionButton";
 // import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
-import Button from "../Button/Button";
 import ofertIcon from "../../assets/img/OfertIcon.svg";
 // import OCA from "../../assets/img/OCA.png";
 import theme from "../../styles/theme";
@@ -25,6 +26,7 @@ import PopUpOfertaPP from "../Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../Dialog/PopUpMensajePP";
 import Swal from "sweetalert2";
 import MopedIcon from "@mui/icons-material/Moped";
+/* import Avatar from "@material-ui/core/Avatar"; */
 
 const ProductBuyBox = ({ prod, itemID }) => {
   const location = useLocation();
@@ -194,23 +196,25 @@ const ProductBuyBox = ({ prod, itemID }) => {
               </Box>
               <Box sx={{ maxWidth: "120px" }}>
                 <Button
-                  backgroundColor={theme.palette.quinary.main}
+                  /* backgroundColor={theme.palette.quinary.main}
                   color={theme.palette.primary.main}
                   text="Ofertar"
                   medium
-                  icon={ofertIcon}
-                  disabled={prod.precio_oferta!=="0.00"?true:false}
-                  onClick={prod.precio_oferta!=="0.00"?null:
-                    userLog !== ""
+                  icon={ofertIcon} */
+                  disabled={prod.precio_oferta !== "0.00" ? true : false}
+                  onClick={
+                    prod.precio_oferta !== "0.00"
+                      ? null
+                      : userLog !== ""
                       ? () => handleClickOpen()
                       : () => handleCompraSinLogin()
                   }
-                  sx={{
+                  /* sx={{
                     height: "30px",
                     "&:hover": {
                       backgroundColor: theme.palette.quinary.main,
                     },
-                  }}
+                  }} */
                 />
                 {open && (
                   <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
@@ -290,7 +294,13 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   variant="outlined"
                 />
                 {load2 ? (
-                  <div style={{ marginTop: "4px" }}>
+                  <div
+                    style={{
+                      marginTop: "4px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <Loader spin={"spinnerS"} />
                   </div>
                 ) : (
@@ -391,17 +401,33 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 </Typography> */}
                 <Box sx={{ mt: "16px" }}>
                   <Button
-                    backgroundColor={theme.palette.quinary.main}
+                    /* backgroundColor={theme.palette.quinary.main}
                     color={theme.palette.primary.main}
-                    text="Ofertar"
-                    icon={ofertIcon}
-                    disabled={prod.precio_oferta!=="0.00"?true:false}
-                    onClick={prod.precio_oferta!=="0.00"?null:
-                      userLog !== ""
+                    text="Ofertar"*/
+                    endIcon={
+                      <Avatar src={ofertIcon} sx={{ width: 16, height: 16 }} />
+                    }
+                    disabled={prod.precio_oferta !== "0.00" ? true : false}
+                    onClick={
+                      prod.precio_oferta !== "0.00"
+                        ? null
+                        : userLog !== ""
                         ? () => handleClickOpen()
                         : () => handleCompraSinLogin()
                     }
-                  />
+                    sx={{
+                      backgroundColor: "#E7F1FC",
+                      boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
+                      borderRadius: "20px",
+                      width: "219px",
+                      height: "36px",
+                      "&:hover": {
+                        backgroundColor: "#e7f1fc",
+                      },
+                    }}
+                  >
+                    Ofertar
+                  </Button>
                   {open && (
                     <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                   )}
@@ -441,7 +467,13 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     variant="outlined"
                   />
                   {load2 ? (
-                    <div style={{ marginTop: "4px" }}>
+                    <div
+                      style={{
+                        marginTop: "4px",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
                       <Loader spin={"spinnerS"} />
                     </div>
                   ) : (
@@ -578,18 +610,34 @@ const ProductBuyBox = ({ prod, itemID }) => {
           }}
         >
           <Button
-            backgroundColor="hsla(59, 100%, 60%, 1)"
+            /* backgroundColor="hsla(59, 100%, 60%, 1)"
             color="hsla(351, 6%, 25%, 1)"
-            text={load ? <Loader spin={"spinnerM"} /> : "Comprar"}
+            text={load ? <Loader spin={"spinnerM"} /> : "Comprar"}*/
             endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
             onClick={
               userLog === ""
                 ? () => handleCompraSinLogin()
                 : () => handleAgregarCarrito()
             }
-            fullWidth
+            /* fullWidth
             height
-          />
+            noHover="rgb(255, 253, 118)" */
+            sx={{
+              width: "100%",
+              backgroundColor: "hsla(59, 100%, 60%, 1)",
+              color: "hsla(351, 6%, 25%, 1)",
+              boxShadow: " 0px 2px 6px rgba(66, 65, 67, 0.1)",
+              borderRadius: " 20px",
+              height: "50px",
+              fontSize: "16px",
+              fontWeight: "700",
+              "&:hover": {
+                backgroundColor: "#fffd76",
+              },
+            }}
+          >
+            {load ? <Loader spin={"spinnerM"} /> : "Comprar"}
+          </Button>
         </Box>
       </Box>
     </>
