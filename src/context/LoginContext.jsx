@@ -129,8 +129,8 @@ export const LoginContext = ({ children }) => {
     });
   };
 
-  const AppleLogin = (loginData) => {
-    console.log(loginData);
+  const AppleLogin = ({ provider, data }) => {
+    console.log(provider, data);
     /* const log = new FormData();
     log.append("social_login_type", 3);
     log.append("social_login_id", loginData.id);
