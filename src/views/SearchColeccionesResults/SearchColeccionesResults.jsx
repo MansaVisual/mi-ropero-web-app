@@ -80,7 +80,7 @@ const SearchProductsResults = () => {
     if(coleccionName==="NuevosIngresos"){
         numCol=71
     }else if(coleccionName==="Recomendados"){
-        numCol=73
+        numCol=72
     }else if(coleccionName==="MejoresVendedores"){
         numCol=73
     }
@@ -95,6 +95,7 @@ const SearchProductsResults = () => {
         "colecciones",
         "detail"
     ).then((res)=>{
+      console.log(res)
       if(res.status==="success"){
         setColeccion(res.result)
         setProds(res.result.productos)
@@ -135,7 +136,7 @@ const SearchProductsResults = () => {
       if(coleccionName==="NuevosIngresos"){
         numCol=71
       }else if(coleccionName==="Recomendados"){
-          numCol=73
+          numCol=72
       }else if(coleccionName==="MejoresVendedores"){
           numCol=73
       }
@@ -163,7 +164,7 @@ const SearchProductsResults = () => {
       if(coleccionName==="NuevosIngresos"){
         numCol=71
     }else if(coleccionName==="Recomendados"){
-        numCol=73
+        numCol=72
     }else if(coleccionName==="MejoresVendedores"){
         numCol=73
     }
@@ -208,7 +209,7 @@ const SearchProductsResults = () => {
     if(coleccionName==="NuevosIngresos"){
       numCol=71
     }else if(coleccionName==="Recomendados"){
-        numCol=73
+        numCol=72
     }else if(coleccionName==="MejoresVendedores"){
         numCol=73
     }
@@ -289,7 +290,7 @@ const SearchProductsResults = () => {
         if(coleccionName==="NuevosIngresos"){
           numCol=71
         }else if(coleccionName==="Recomendados"){
-            numCol=73
+            numCol=72
         }else if(coleccionName==="MejoresVendedores"){
             numCol=73
         }
