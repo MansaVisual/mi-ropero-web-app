@@ -13,9 +13,7 @@ const AppleButton = () => {
         scope={"name email"}
         redirect_uri={"https://mi-ropero-web-app.vercel.app"}
         /* onLoginStart={onLoginStart} */
-        onResolve={({ provider, data }) => {
-          AppleLogin(provider, data);
-        }}
+        onResolve={(e) => AppleLogin(e)}
         onReject={(err) => {
           console.log(err);
         }}
