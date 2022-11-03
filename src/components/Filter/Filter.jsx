@@ -40,7 +40,7 @@ const Filter = (props) => {
   const putSort = props.putSort;
   const setPutSort = props.setPutSort;
   const filtros = props.filtros.caracteristicas;
-  const filtrosCol = props.filtros;
+  const filtrosCol = props.filtrosCol;
   const coleccion = props.coleccion;
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;

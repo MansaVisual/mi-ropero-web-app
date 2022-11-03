@@ -484,7 +484,7 @@ const SearchProductsResults = () => {
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "flex-start",
+                  justifyContent: "center",
                   flexWrap: "wrap",
                   gap: "32px",
                   mb: "32px",
