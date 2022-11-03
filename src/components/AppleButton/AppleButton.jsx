@@ -9,7 +9,7 @@ const AppleButton = () => {
   const [profile, setProfile] = useState(false);
   const [provider, setProvider] = useState(false);
 
-  console.log(profile, provider);
+  console.log(profile);
 
   return (
     <div>
@@ -18,10 +18,7 @@ const AppleButton = () => {
         scope={"name email"}
         redirect_uri={"https://mi-ropero-web-app.vercel.app"}
         /* onLoginStart={onLoginStart} */
-        onResolve={({ provider, data }) => {
-          setProvider(provider);
-          setProfile(data);
-        }}
+        onResolve={(data) => setProfile(data)}
         onReject={(err) => {
           console.log(err);
         }}
