@@ -338,6 +338,8 @@ const NavIcons = () => {
       <Stack
         sx={{
           p: "10px",
+          justifyContent:"flex-start",
+          alignItems:"flex-start",
           overflowY: "auto",
           maxHeight: "280px",
           "&::-webkit-scrollbar": {
@@ -421,7 +423,7 @@ const NavIcons = () => {
               key={i}
               onClick={()=>window.location.assign(`${url}`)}
               >
-                <Box sx={{mr:"8px"}}>
+                <Box sx={{mr:"10px"}}>
                   <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
                 </Box>
                 <Box
