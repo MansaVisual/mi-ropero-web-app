@@ -13,11 +13,12 @@ const MisCompras = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
-  let { idDetalleCompra } = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
-    if (idDetalleCompra) {
-      setCompraId(idDetalleCompra);
+    if (id) {
+      console.log(id);
+      setCompraId(id);
       navigate(`/perfil/MIS COMPRAS DETALLE`);
     }
   }, []);

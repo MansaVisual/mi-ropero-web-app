@@ -7,6 +7,9 @@ import greyRightArrow from "../../assets/img/GreyRightArrow.png";
  */ import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Swal from "sweetalert2";
+import Loader from "../Loader/Loader";
+import vacio from "../../assets/img/comprasVacio.png";
+import { Button } from "@mui/material";
 
 const DetalleCompra = () => {
   const location = useLocation();
@@ -17,6 +20,8 @@ const DetalleCompra = () => {
   const { compraId, PerfilAPI } = useContext(UsePerfilContext);
   const [compraSelecc, setCompraSelecc] = useState(false);
   const [direccion, setDireccion] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!compraId && !userLog) {
@@ -29,8 +34,11 @@ const DetalleCompra = () => {
         if (res.status === "success") {
           setCompraSelecc(res.result);
           setDireccion(res.result.direccion_entrega);
+          setLoading(false);
         } else {
           if (res.status === "error") {
+            setLoading(false);
+            setError(true);
             Swal.fire({
               title: "ERROR",
               text: "Surgió un error traer el detalle de producto. Volvé a intentarlo",
@@ -58,7 +66,20 @@ const DetalleCompra = () => {
   return (
     <div className="detalleCompraContainer">
       <Breadcrumbs links={pathnames} />
-      {compraSelecc ? (
+      {loading ? (
+        <div
+          style={{
+            height: "50vh",
+            marginTop: "42px",
+            width: "100%",
+            maxWidth: "895px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Loader spin={"spinnerM"} />
+        </div>
+      ) : !error ? (
         <>
           <p className="title">COMPRA {compraSelecc.hash}</p>
           <p className="responsiveTitle">COMPRA {compraSelecc.hash}</p>
@@ -171,7 +192,13 @@ const DetalleCompra = () => {
           </div>
         </>
       ) : (
-        <div style={{ minHeight: "75vh" }}></div>
+        <div className="perfilVacio">
+          <div>
+            <img src={vacio} alt="LOGO" />
+            <p>Error al abrir chat. Vuelva a intentar en un momento</p>
+            <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+          </div>
+        </div>
       )}
     </div>
   );

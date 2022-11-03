@@ -6,6 +6,8 @@ import ChatItem from "./ChatItem";
 import Avatar from "./Avatar";
 import { UseLoginContext } from "../../../context/LoginContext";
 import { UsePerfilContext } from "../../../context/PerfilContext";
+import Loader from "../../Loader/Loader";
+import { Button } from "@mui/material";
 
 const MiChat = () => {
   const navigate = useNavigate();
@@ -23,9 +25,13 @@ const MiChat = () => {
   const [productoImg, setProductoImg] = useState(false);
   const [nombreRemitente, setNombreRemitente] = useState(false);
   const [productoId, setProductoId] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (userLog) {
+    if (!userLog && !mensajeId /* && !infoUser */) {
+      navigate("/perfil/MIS MENSAJES");
+    } else {
       const dir = new FormData();
       dir.append("idcliente", userLog);
       dir.append("idmensaje", mensajeId);
@@ -36,6 +42,7 @@ const MiChat = () => {
           setProductoId(res.result[0].producto.idproducto);
           let array = [];
           for (const ii in res.result) {
+            console.log(res.result[ii]);
             array.push({
               type:
                 res.result[ii].cliente_email === infoUser.email ? "" : "other",
@@ -48,11 +55,16 @@ const MiChat = () => {
             });
           }
           setChatActual(array);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+        } else {
+          setError(true);
         }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mensajeId, userLog]);
+  }, [mensajeId, userLog, infoUser]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({
@@ -67,7 +79,7 @@ const MiChat = () => {
       block: "nearest",
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chatActual]);
+  }, [chatActual, loading]);
 
   useEffect(() => {
     scrollToBottom();
@@ -107,55 +119,81 @@ const MiChat = () => {
   return (
     <div className="miChatContainer">
       <Breadcrumbs links={pathnames} />
-      <div className="firstLine">
-        <p className="title">MI CHAT CON </p>
-      </div>
-      <div className="chatContainer">
-        <div className="chatContent">
-          <div className="chatHeader">
-            <div className="blocks">
-              <div className="current-chatting-user">
-                <Avatar isOnline="active" image={productoImg} />
-                <p>{nombreRemitente}</p>
+      {loading ? (
+        <div
+          style={{
+            height: "50vh",
+            marginTop: "42px",
+            width: "100%",
+            maxWidth: "895px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Loader spin={"spinnerM"} />
+        </div>
+      ) : !error ? (
+        <>
+          <div className="firstLine">
+            <p className="title">MI CHAT CON </p>
+          </div>
+          <div className="chatContainer">
+            <div className="chatContent">
+              <div className="chatHeader">
+                <div className="blocks">
+                  <div className="current-chatting-user">
+                    <Avatar isOnline="active" image={productoImg} />
+                    <p>{nombreRemitente}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="contentBody">
+                {chatActual.map((itm, i) => {
+                  return (
+                    <ChatItem
+                      animationDelay={i + 2}
+                      key={i}
+                      user={itm.type ? itm.type : "me"}
+                      msg={itm.msg}
+                      image={itm.image}
+                    />
+                  );
+                })}
+                <div ref={messagesEndRef} />
+              </div>
+              <div className="content__footer">
+                <div className="sendNewMessage">
+                  <input
+                    type="text"
+                    placeholder="Escribe un mensaje"
+                    onChange={(e) => setMensaje(e.target.value)}
+                    value={mensaje}
+                    onKeyPress={handlePress}
+                  />
+                  <button
+                    className={`${
+                      mensaje === "" ? "disabledButton" : "btnSendMsg"
+                    }`}
+                    onClick={() => sendMessage()}
+                    disabled={mensaje === "" ? true : false}
+                  >
+                    Enviar
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="contentBody">
-            {chatActual.map((itm, i) => {
-              return (
-                <ChatItem
-                  animationDelay={i + 2}
-                  key={i}
-                  user={itm.type ? itm.type : "me"}
-                  msg={itm.msg}
-                  image={itm.image}
-                />
-              );
-            })}
-            <div ref={messagesEndRef} />
-          </div>
-          <div className="content__footer">
-            <div className="sendNewMessage">
-              <input
-                type="text"
-                placeholder="Escribe un mensaje"
-                onChange={(e) => setMensaje(e.target.value)}
-                value={mensaje}
-                onKeyPress={handlePress}
-              />
-              <button
-                className={`${
-                  mensaje === "" ? "disabledButton" : "btnSendMsg"
-                }`}
-                onClick={() => sendMessage()}
-                disabled={mensaje === "" ? true : false}
-              >
-                Enviar
-              </button>
-            </div>
+        </>
+      ) : (
+        <div className="perfilVacio">
+          <div>
+            <img src={mensaje} alt="LOGO" />
+            <p>Error al abrir chat. Vuelva a intentar en un momento</p>
+            <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
           </div>
         </div>
-      </div>
+      )}
+
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
         <p>VOLVER A MI PERFIL</p>

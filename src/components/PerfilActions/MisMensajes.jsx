@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import Sweater from "../../assets/img/Sweater.png";
@@ -12,10 +12,11 @@ import mensaje from "../../assets/img/mensajesVacio.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
 
 const MisMensajes = () => {
+  let { id } = useParams();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
-  const [typeMessage, setTypeMessage] = useState("ver no leídos");
+  const [typeMessage, setTypeMessage] = useState("ver todos");
   const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
   const [borrarMsj, setBorrarMsj] = useState(false);
@@ -35,6 +36,17 @@ const MisMensajes = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog]);
+
+  useEffect(() => {
+    if (id) {
+      console.log(id);
+      setMensajeId(id);
+      navigate(`/perfil/MI CHAT`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log(mensajes);
 
   useEffect(() => {
     if (mensajes.length > 0) {

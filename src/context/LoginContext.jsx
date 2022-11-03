@@ -147,7 +147,27 @@ export const LoginContext = ({ children }) => {
     }); */
   };
 
-  const AppleRegister = (loginData) => {};
+  const AppleRegister = (loginData) => {
+    const log = new FormData();
+    log.append("social_login_type", 1);
+    log.append("social_login_id", loginData.id);
+    log.append("nombre", loginData.first_name);
+    log.append("email", loginData.email);
+    log.append("apellido", loginData.last_name);
+    log.append("avatar", loginData.picture.data.url);
+    LoginAPI(log, "clientes", "insert_social").then((res) => {
+      if (res.status === "success") {
+        FacebookLogin(loginData);
+      } else if (res.status === "error") {
+        Swal.fire({
+          title: "OCURRIÓ UN ERROR",
+          text: "Volvé a intentarlo",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
+      }
+    });
+  };
 
   return (
     <UseLoginContext.Provider
