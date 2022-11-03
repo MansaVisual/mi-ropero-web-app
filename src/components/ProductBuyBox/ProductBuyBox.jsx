@@ -199,7 +199,8 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   text="Ofertar"
                   medium
                   icon={ofertIcon}
-                  onClick={
+                  disabled={prod.precio_oferta!=="0.00"?true:false}
+                  onClick={prod.precio_oferta!=="0.00"?null:
                     userLog !== ""
                       ? () => handleClickOpen()
                       : () => handleCompraSinLogin()
@@ -394,7 +395,8 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     color={theme.palette.primary.main}
                     text="Ofertar"
                     icon={ofertIcon}
-                    onClick={
+                    disabled={prod.precio_oferta!=="0.00"?true:false}
+                    onClick={prod.precio_oferta!=="0.00"?null:
                       userLog !== ""
                         ? () => handleClickOpen()
                         : () => handleCompraSinLogin()
