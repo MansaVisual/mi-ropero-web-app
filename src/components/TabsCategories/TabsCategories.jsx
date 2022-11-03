@@ -119,6 +119,8 @@ const TabsCategories = () => {
                 lg: "0px 90px",
                 xl: "0px 80px",
               },
+              maxWidth: "1179px",
+              width: "100%",
             }}
           >
             {categorias.length === 0 ? (
@@ -160,6 +162,7 @@ const TabsCategories = () => {
             )}
           </Box>
         </TabPanel>
+
         <TabPanel value={value} index={1}>
           <Box
             sx={{
@@ -175,6 +178,8 @@ const TabsCategories = () => {
                 lg: "0px 90px",
                 xl: "0px 80px",
               },
+              maxWidth: "1179px",
+              width: "100%",
             }}
           >
             {categorias.length === 0 ? (
@@ -230,6 +235,8 @@ const TabsCategories = () => {
                 md: "0px 70px",
                 lg: "0px 90px",
                 xl: "0px 80px",
+                maxWidth: "1179px",
+                width: "100%",
               },
             }}
           >
@@ -286,6 +293,8 @@ const TabsCategories = () => {
                 md: "0px 70px",
                 lg: "0px 90px",
                 xl: "0px 80px",
+                maxWidth: "1179px",
+                width: "100%",
               },
             }}
           >

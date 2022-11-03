@@ -183,3 +183,11 @@ body {
     width: 90px !important;
   }
 }
+
+#simple-tabpanel-0 > div,
+#simple-tabpanel-1 > div,
+#simple-tabpanel-2 > div,
+#simple-tabpanel-3 > div {
+  display: flex;
+  justify-content: center;
+}
