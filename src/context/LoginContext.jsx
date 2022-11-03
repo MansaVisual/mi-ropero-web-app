@@ -63,16 +63,16 @@ export const LoginContext = ({ children }) => {
       });
 
       const notis=new FormData()
-      notis.append("bypage",9)
+      notis.append("bypage",7)
       notis.append("page",0)
-      notis.append("estado",3)
+      notis.append("estado",2)
       notis.append("idcliente",36)
       
       LoginAPI(
         notis,
         "pushs",
         "all"
-      ).then((res)=>{setBuscandoNotis(false);if(res.status==="success"){setNotis(res.result)}})
+      ).then((res)=>{console.log(res);setBuscandoNotis(false);if(res.status==="success"){setNotis(res.result)}})
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 

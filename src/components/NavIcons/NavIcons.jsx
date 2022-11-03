@@ -403,6 +403,8 @@ const NavIcons = () => {
                 url="/carrito"
               }else if(itemURL.indexOf("/app/profile-showroom")!==-1){//--------------------|----------------------------
                 url="/perfil"
+              }else if(itemURL==="#"){
+                url=false
               }else{//--------------------|-----------------------------
                 url=itemURL
               }
@@ -421,7 +423,7 @@ const NavIcons = () => {
                 },
               }}
               key={i}
-              onClick={()=>window.location.assign(`${url}`)}
+              onClick={url===false ? null : ()=>window.location.assign(`${url}`)}
               >
                 <Box sx={{mr:"10px"}}>
                   <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
