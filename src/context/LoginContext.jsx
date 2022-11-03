@@ -4,11 +4,10 @@ import Swal from "sweetalert2";
 export const UseLoginContext = createContext();
 
 export const LoginContext = ({ children }) => {
-
   const [userLog, setUserLog] = useState("");
   const [infoUser, setInfoUser] = useState([]);
-  const [notis,setNotis]=useState([])
-  const [buscandoNotis,setBuscandoNotis]=useState(true)
+  const [notis, setNotis] = useState([]);
+  const [buscandoNotis, setBuscandoNotis] = useState(true);
 
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
@@ -51,7 +50,7 @@ export const LoginContext = ({ children }) => {
 
   useEffect(() => {
     if (userLog !== "") {
-      setBuscandoNotis(true)
+      setBuscandoNotis(true);
       const user = new FormData();
       user.append("idcliente", userLog);
       LoginAPI(user, "clientes", "get").then((res) => {
@@ -62,17 +61,18 @@ export const LoginContext = ({ children }) => {
         }
       });
 
-      const notis=new FormData()
-      notis.append("bypage",7)
-      notis.append("page",0)
-      notis.append("estado",2)
-      notis.append("idcliente",36)
-      
-      LoginAPI(
-        notis,
-        "pushs",
-        "all"
-      ).then((res)=>{console.log(res);setBuscandoNotis(false);if(res.status==="success"){setNotis(res.result)}})
+      const notis = new FormData();
+      notis.append("bypage", 9);
+      notis.append("page", 0);
+      notis.append("estado", 3);
+      notis.append("idcliente", 36);
+
+      LoginAPI(notis, "pushs", "all").then((res) => {
+        setBuscandoNotis(false);
+        if (res.status === "success") {
+          setNotis(res.result);
+        }
+      });
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -120,14 +120,34 @@ export const LoginContext = ({ children }) => {
         FacebookLogin(loginData);
       } else if (res.status === "error") {
         Swal.fire({
-          title:'OCURRIÓ UN ERROR',
-          text:"Volvé a intentarlo",
-          icon:'error',
-          confirmButtonText: 'ACEPTAR',
-        })
+          title: "OCURRIÓ UN ERROR",
+          text: "Volvé a intentarlo",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
       }
     });
   };
+
+  const AppleLogin = (loginData) => {
+    console.log(loginData);
+    /* const log = new FormData();
+    log.append("social_login_type", 3);
+    log.append("social_login_id", loginData.id);
+    LoginAPI(log, "clientes", "login_social").then((res) => {
+      if (res.status === "success") {
+        setInfoUser(res.result);
+        localStorage.setItem("idClienteMiRopero", res.result.idcliente);
+        window.location.replace("https://mi-ropero-web-app.vercel.app/");
+      } else if (res.status === "error") {
+        if (res.result === "El social_login_id y/o social_login no existen") {
+          AppleRegister(loginData);
+        }
+      }
+    }); */
+  };
+
+  const AppleRegister = (loginData) => {};
 
   return (
     <UseLoginContext.Provider
@@ -140,7 +160,8 @@ export const LoginContext = ({ children }) => {
         FacebookLogin,
         reBuscarInfo,
         notis,
-        buscandoNotis
+        buscandoNotis,
+        AppleLogin,
       }}
     >
       {children}
