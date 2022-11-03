@@ -29,6 +29,15 @@ const SearchBar = () => {
     navigate(`/${route}/search/${keyword}`);
     setKeyword("");
   };
+  const handleSubmitEnter = (evt, route) => {
+    if(evt.key==="Enter"){
+      evt.preventDefault();
+      setOpenSearch(false);
+      navigate(`/${route}/search/${keyword}`);
+      setKeyword("");
+    }
+  };
+
 
   const handleChange = (evt) => {
     setKeyword(evt.target.value);
@@ -64,7 +73,7 @@ const SearchBar = () => {
           }}
           onFocus={handleFocus}
           onChange={handleChange}
-          onKeyPress={(e) => handleSubmit(e, "productos")}
+          onKeyPress={(e) => handleSubmitEnter(e, "productos")}
         />
         <IconButton
           type="button"
