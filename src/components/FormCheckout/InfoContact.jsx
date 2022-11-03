@@ -73,6 +73,12 @@ const InfoContact = ({
           setDireccionesCargadas(res.result);
         }
       });
+      if (form.length !== 0 && !usaDireccionCargada) {
+        chargeForm(form, setProvincia);
+      } else if (form.length !== 0 && usaDireccionCargada) {
+        document.getElementById('nombreApellido').value = form.nombreApellido;
+        document.getElementById('telefono').value = form.telefono;
+      }
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -158,6 +164,7 @@ const InfoContact = ({
       if (document.getElementById('barrioLocalidad').value !== "CAPITAL FEDERAL") {
         throwError('barrioLocalidad', 'labelBarrioLocalidad'); 
         scrollTop();
+        setBuscandoDir(false);
         setErrorLocalidad(true);
         setLoader(false);
         return;
