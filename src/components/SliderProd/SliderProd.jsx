@@ -50,6 +50,7 @@ const SliderProd =({contenido})=>{
       ) : (
         <Carousel
           responsive={responsive}
+          infinite={true}
           customLeftArrow={<PrevArrow />}
           customRightArrow={<NextArrow />}
         >
