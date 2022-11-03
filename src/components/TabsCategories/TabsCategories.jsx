@@ -113,7 +113,12 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
-              padding: "0px 32px",
+              padding: {
+                xs: "0px 48px",
+                md: "0px 70px",
+                lg: "0px 90px",
+                xl: "0px 80px",
+              },
             }}
           >
             {categorias.length === 0 ? (
@@ -164,7 +169,12 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
-              padding: "0px 32px",
+              padding: {
+                xs: "0px 48px",
+                md: "0px 70px",
+                lg: "0px 90px",
+                xl: "0px 80px",
+              },
             }}
           >
             {categorias.length === 0 ? (
@@ -215,7 +225,12 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
-              padding: "0px 32px",
+              padding: {
+                xs: "0px 48px",
+                md: "0px 70px",
+                lg: "0px 90px",
+                xl: "0px 80px",
+              },
             }}
           >
             {categorias.length === 0 ? (
@@ -266,7 +281,12 @@ const TabsCategories = () => {
               fontSize: theme.typography.fontSize[4],
               lineHeight: "19.07px",
               fontWeight: theme.typography.fontWeightRegular,
-              padding: "0px 32px",
+              padding: {
+                xs: "0px 48px",
+                md: "0px 70px",
+                lg: "0px 90px",
+                xl: "0px 80px",
+              },
             }}
           >
             {categorias.length === 0 ? (

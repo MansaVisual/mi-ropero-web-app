@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import Sweater from "../../assets/img/Sweater.png";
-import Basura from "../../assets/img/basura.png";
+/* import Basura from "../../assets/img/basura.png"; */
 import { Button, MenuItem, Select } from "@mui/material";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
@@ -75,7 +75,6 @@ const MisMensajes = () => {
     const formatoFinal = `Fecha: ${day} / ${month} / ${year} ${hora} Hs.`;
     return formatoFinal;
   };
-
 
   return (
     <div className="misMensajesContainer">
