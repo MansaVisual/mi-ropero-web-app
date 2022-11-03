@@ -191,8 +191,6 @@ const NavIcons = () => {
     },
   ];
 
-  console.log(notis)
-
   const getMenuBell = () => {
     return (
       <>
