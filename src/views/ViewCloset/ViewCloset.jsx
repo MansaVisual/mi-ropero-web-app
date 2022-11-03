@@ -51,6 +51,7 @@ const ViewCloset = () => {
   const { closetId, nombre } = useParams();
 
   const [tienda, setTienda] = useState([]);
+  const [prods, setProds] = useState([]);
 
   const [totalPages, setTotalPages] = useState(0);
   const [pags, setPags] = useState(1);
@@ -117,11 +118,6 @@ const ViewCloset = () => {
       const catFilters = new FormData();
       catFilters.append("idcategoria", Number(idCat));
 
-      ProdAPI(catFilters, "categorias", "get").then((res) => {
-        if (res.status === "success") {
-          setFiltrosCategoria(res.result[0]);
-        }
-      });
 
       const col = new FormData();
       col.append("idtienda", closetId);
@@ -131,7 +127,8 @@ const ViewCloset = () => {
 
       ProdAPI(col, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
-          setTienda(res.result);
+          setFiltrosCategoria(res.result.search_productos_categorias[0].hijas[0].caracteristicas)
+          setProds(res.result);
           setTotalPages(res.result.productos_total_paginas);
         }
         setBuscandoRoperos(false);
@@ -154,7 +151,7 @@ const ViewCloset = () => {
               }
             }
             setColeccion({ productos_categorias: arrayCol });
-            setTienda(res.result);
+            setProds(res.result)
             setTotalPages(res.result.search_productos_total_paginas);
           }
           setBuscandoRoperos(false);
@@ -205,7 +202,7 @@ const ViewCloset = () => {
 
     ProdAPI(catProd, "tiendas", "detail").then((res) => {
       if (res.status === "success") {
-        setTienda(res.result);
+        setProds(res.result)
       }
       setBuscandoRoperos(false);
       window.scrollTo({
@@ -270,7 +267,7 @@ const ViewCloset = () => {
 
       ProdAPI(prod, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
-          setTienda(res.result);
+          setProds(res.result)
           setTotalPages(res.result.search_productos_total_paginas);
         }
         setBuscandoRoperos(false);
@@ -405,6 +402,7 @@ const ViewCloset = () => {
                           handleAplicarFiltros={handleAplicarFiltros}
                           rangoPrecio={rangoPrecio}
                           setRangoPrecio={setRangoPrecio}
+                          filtrosCol={filtrosCategoria}
                         />
                       </Box>
                     </Fade>
@@ -458,7 +456,7 @@ const ViewCloset = () => {
                       key={index}
                       putFilters={putFilters}
                       setPutFilters={setPutFilters}
-                      setTienda={setTienda}
+                      setTienda={setProds}
                       ProdAPI={ProdAPI}
                       setTotalPages={setTotalPages}
                       categorias={categorias}
@@ -538,6 +536,7 @@ const ViewCloset = () => {
                 handleAplicarFiltros={handleAplicarFiltros}
                 rangoPrecio={rangoPrecio}
                 setRangoPrecio={setRangoPrecio}
+                filtrosCol={filtrosCategoria}
               />
             </>
           )}
@@ -562,8 +561,8 @@ const ViewCloset = () => {
               justifyContent="flex-start"
               spacing={5}
             >
-              {tienda.length !== 0 &&
-                tienda.search_productos.map((item, index) => {
+              {prods.length !== 0 &&
+                prods.search_productos.map((item, index) => {
                   return (
                     <Grid item key={index}>
                       <ProductCard
