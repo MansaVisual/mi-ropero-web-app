@@ -13,7 +13,7 @@ const AppleButton = () => {
   return (
     <div>
       <LoginSocialApple
-        client_id={"ar.com.miropero.web"}
+        client_id={"ar.com.miropero.web2"}
         scope={"name email"}
         redirect_uri={"https://mi-ropero-web-app.vercel.app"}
         /* onLoginStart={onLoginStart} */
