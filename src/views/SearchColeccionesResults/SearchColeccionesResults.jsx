@@ -23,7 +23,7 @@ import { UseColeccionContext } from "../../context/ColeccionesContext";
 import {UseProdsContext} from "../../context/ProdsContext"
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Swal from "sweetalert2";
-import notFoundIcon from "../../assets/img/notFoundIcon.svg";
+import lupa from "../../assets/img/lupaFilters.png"
 
 const style = {
   position: "absolute",
@@ -49,6 +49,7 @@ const SearchProductsResults = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { categorias, ProdAPI } = useContext(UseProdsContext);
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg"))
 
   const [load2, setLoad2] = useState(false);
   
@@ -349,12 +350,12 @@ const SearchProductsResults = () => {
         <Grid
           container
           sx={{
-            px: isMobile || isMobileBigScreen ? "16px" : "74px",
+            px: isMobile || isMobileBigScreen ? "16px" : isTablet ? "20px" : "74px",
             py: "40px",
           }}
-          spacing={8}
+          spacing={5}
         >
-          <Grid item xs={12} sm={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
                 <Breadcrumbs links={pathnames} />
@@ -541,7 +542,7 @@ const SearchProductsResults = () => {
             )}
           </Grid>
 
-          <Grid item xs={12} sm={12} md={9}>
+          <Grid item xs={12} sm={6} md={9}>
             {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
               <>{!buscandoCol && prods.length===0 ? 
                 <Box
@@ -550,13 +551,14 @@ const SearchProductsResults = () => {
                           alignItems: "center",
                           justifyContent: "center",
                           mt: "16px",
+                          flexDirection:!buscandoCol ? "column" : "row"
                         }}
                       >
                         <Box sx={{ mr: "20px" }}>
                           <img
-                            src={notFoundIcon}
-                            width={30}
-                            height={30}
+                            src={lupa}
+                            width={40}
+                            height={40}
                             alt="not found icon"
                           />
                         </Box>
@@ -570,7 +572,7 @@ const SearchProductsResults = () => {
                               textAlign:
                                 isMobile || isMobileBigScreen
                                   ? "center"
-                                  : "unset",
+                                  : !buscandoCol?"center":"unset",
                               mb: 4,
                             }}
                           >
@@ -581,6 +583,7 @@ const SearchProductsResults = () => {
                               fontSize: theme.typography.fontSize[6],
                               fontWeight: theme.typography.fontWeightRegular,
                               color: theme.palette.tertiary.main,
+                              textAlign:!buscandoCol?"center":"unset"
                             }}
                           >
                             Intentá con filtros diferentes.

@@ -199,7 +199,7 @@ const Filter = (props) => {
                     res2.nombre !== 'CALZADO' &&
                     res2.nombre !== 'ACCESORIOS' &&
                     res2.nombre !== 'BELLEZA' && (
-                      <List component='div' sx={{ marginLeft: '4px' }}>
+                      <List component='div' sx={{ marginLeft: '6px' }}>
                         <FormControlLabel
                           label={res2.nombre!==undefined?res2.nombre:res2.Nombre}
                           control={
@@ -251,7 +251,7 @@ const Filter = (props) => {
                         label={res2.valor}
                         control={
                           <Checkbox
-                          sx={{marginLeft:"4px"}}
+                          sx={{marginLeft:"6px"}}
                             checked={putFilters.find(
                               (element) => element.nombre === res2.valor,
                             )}
@@ -343,7 +343,7 @@ const Filter = (props) => {
                             checked={putFilters.find(
                               (element) => element.nombre === res2.valor,
                             )}
-                            sx={{marginLeft:"4px"}}
+                            sx={{marginLeft:"6px"}}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
@@ -416,7 +416,7 @@ const Filter = (props) => {
                             checked={putFilters.find(
                               (element) => element.nombre === res2.valor,
                             )}
-                            sx={{marginLeft:"4px"}}
+                            sx={{marginLeft:"6px"}}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {

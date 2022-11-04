@@ -25,6 +25,7 @@ import Loader from "../../components/Loader/Loader";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import Swal from "sweetalert2";
+import lupa from "../../assets/img/lupaFilters.png"
 
 const style = {
   position: "absolute",
@@ -49,6 +50,7 @@ const SearchProductsResults = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg"))
 
   const [load2, setLoad2] = useState(false);
 
@@ -278,7 +280,7 @@ const SearchProductsResults = () => {
         <Grid
           container
           sx={{
-            px: isMobile || isMobileBigScreen ? "16px" : "74px",
+            px: isMobile || isMobileBigScreen ? "16px" : isTablet ? "20px" : "74px",
             py: "40px",
             mb: "100px",
           }}
@@ -526,16 +528,28 @@ const SearchProductsResults = () => {
                           alignItems: "center",
                           justifyContent: "center",
                           mt: "16px",
+                          flexDirection:buscandoFiltros ? "column" : "row"
                         }}
                       >
+                        {buscandoFiltros ? 
                         <Box sx={{ mr: "20px" }}>
                           <img
-                            src={notFoundIcon}
+                            src={lupa}
                             width={30}
                             height={30}
                             alt="not found icon"
-                          />
+                            />
                         </Box>
+                        :
+                        <Box sx={{ mr: "20px" }}>
+                          <img
+                            src={notFoundIcon}
+                            width={40}
+                            height={40}
+                            alt="not found icon"
+                            />
+                        </Box>
+                        }
                         <Box>
                           <Typography
                             sx={{
@@ -546,7 +560,7 @@ const SearchProductsResults = () => {
                               textAlign:
                                 isMobile || isMobileBigScreen
                                   ? "center"
-                                  : "unset",
+                                  : buscandoFiltros?"center":"unset",
                               mb: 4,
                             }}
                           >
@@ -570,6 +584,7 @@ const SearchProductsResults = () => {
                               fontSize: theme.typography.fontSize[6],
                               fontWeight: theme.typography.fontWeightRegular,
                               color: theme.palette.tertiary.main,
+                              textAlign:buscandoFiltros?"center":"unset"
                             }}
                           >
                             {buscandoFiltros ? "Intentá con filtros diferentes":
