@@ -516,20 +516,22 @@ const NavIcons = () => {
               </>
             );
           })}
-        <Box>
-          <p
-            style={{
-              fontWeight: " 600",
-              fontSize: " 11px",
-              lineHeight: "20px",
-              display: "flex",
-              alignItems: "center",
-              textAlign: "center",
-              textDecoration: "underline",
-              color: "#443988",
-              margin: 0,
-            }}
-          >
+        <Box
+          sx={{
+            fontWeight: " 600",
+            fontSize: " 11px",
+            lineHeight: "20px",
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            justifyContent:"center",
+            textDecoration: "underline",
+            color: "#443988",
+            margin: "auto",
+            cursor:"pointer"
+          }}
+        >
+          <p>
             VER TODAS LAS NOTIFICACIONES
           </p>
         </Box>
