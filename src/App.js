@@ -30,6 +30,7 @@ import PdeP from "./views/PdeP/PdeP";
 import Error from "./views/404error/error";
 import Maintance from "./views/Maintance/Maintance";
 import About from "./views/About/About";
+import Notifications from "./views/Notifications/Notifications";
 
 function App() {
   useEffect(() => {
@@ -118,14 +119,15 @@ function App() {
                         path="perfil/:perfilSeccion/:id"
                         element={<Perfil />}
                       />
-                      <Route
-                        path="productos"
-                        element={<Home />}
-                      />
+                      <Route path="productos" element={<Home />} />
                       <Route path="terminos&y&condiciones" element={<TyC />} />
                       <Route path="politica&de&privacidad" element={<PdeP />} />
                       <Route path="mantenimiento" element={<Maintance />} />
                       <Route path="acercaDe" element={<About />} />
+                      <Route
+                        path="notificaciones"
+                        element={<Notifications />}
+                      />
                     </Routes>
                     <Footer />
                   </ThemeProvider>
