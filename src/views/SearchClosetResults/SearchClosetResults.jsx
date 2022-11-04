@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Box, Container, Grid, Typography, useMediaQuery } from "@mui/material";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import theme from "../../styles/theme";
 import ClosetCard from "../../components/ClosetCard/ClosetCard";
@@ -15,8 +15,6 @@ const SearchClosetResults = () => {
   const { keyword } = useParams();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
 
   const navigate = useNavigate();
 
@@ -66,6 +64,7 @@ const SearchClosetResults = () => {
     });
   }, [keyword]); // eslint-disable-line react-hooks/exhaustive-deps
 
+
   const buscarPage = (paramSearch, value) => {
     setBuscandoRoperos(true);
 
@@ -107,7 +106,12 @@ const SearchClosetResults = () => {
           <Grid item xs={12} sm={12} md={3}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
-                <Breadcrumbs links={pathnames} />
+                  <Breadcrumbs links={[
+                    "roperos",
+                    keyword!==undefined ? keyword.length > 15
+                      ? keyword.substring(0, 15) + "..."
+                      : keyword : ""
+                  ]} />
                 {bestRoperos !== undefined && bestRoperos.length !== 0 && (
                   <Typography
                     sx={{
@@ -124,7 +128,12 @@ const SearchClosetResults = () => {
             ) : (
               <>
                 <Box sx={{ mb: "24px" }}>
-                  <Breadcrumbs links={pathnames} />
+                <Breadcrumbs links={[
+                    "roperos",
+                    keyword!==undefined ? keyword.length > 15
+                    ? keyword.substring(0, 15) + "..."
+                    : keyword : ""
+                  ]} />
                 </Box>
                 <Typography
                   sx={{
@@ -143,7 +152,10 @@ const SearchClosetResults = () => {
                     textTransform: "capitalize",
                   }}
                 >
-                  {keyword}
+                {keyword!==undefined ? keyword.length > 15
+                          ? keyword.substring(0, 15) + "..."
+                          : keyword
+                :keyword}
                 </Typography>
                 <Typography
                   sx={{

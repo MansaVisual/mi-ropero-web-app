@@ -114,6 +114,10 @@ function App() {
                         path="perfil/:perfilSeccion/:id"
                         element={<Perfil />}
                       />
+                      <Route
+                        path="productos"
+                        element={<Home />}
+                      />
                       <Route path="terminos&y&condiciones" element={<TyC />} />
                       <Route path="politica&de&privacidad" element={<PdeP />} />
                       <Route path="mantenimiento" element={<Maintance />} />

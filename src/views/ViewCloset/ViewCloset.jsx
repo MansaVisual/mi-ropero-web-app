@@ -560,7 +560,7 @@ const ViewCloset = () => {
             >
               <Loader spin={"spinnerG"} />
             </div>
-          ) : prods.search_productos.length===0 ? 
+          ) : prods.search_productos !== undefined && prods.search_productos.length===0 ? 
           <Box
                         sx={{
                           display: "flex",

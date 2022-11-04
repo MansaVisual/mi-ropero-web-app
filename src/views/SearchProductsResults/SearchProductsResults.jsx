@@ -10,7 +10,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -46,12 +46,10 @@ const SearchProductsResults = () => {
   const { categorias, ProdAPI } = useContext(UseProdsContext);
   const { keyword, search } = useParams();
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("lg"))
-
+  const navigate=useNavigate()
   const [load2, setLoad2] = useState(false);
 
   const [prods, setProds] = useState([]);
@@ -99,6 +97,7 @@ const SearchProductsResults = () => {
       prodsCategoria(false);
     }
   }, [keyword, categorias]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   const prodsCategoria = (paramSearch) => {
     const catProd = new FormData();
@@ -289,7 +288,12 @@ const SearchProductsResults = () => {
           <Grid item xs={12} sm={6} md={3}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
-                <Breadcrumbs links={pathnames} />
+                <Breadcrumbs links={[
+                  "productos",
+                  keyword.length > 15
+                    ? keyword.substring(0, 15) + "..."
+                    : keyword
+                ]} />
                 <Box
                   sx={{
                     display: "flex",
@@ -305,7 +309,9 @@ const SearchProductsResults = () => {
                       textTransform: "capitalize",
                     }}
                   >
-                    {keyword}
+                    {                        keyword.length > 15
+                          ? keyword.substring(0, 15) + "..."
+                          : keyword}
                   </Typography>
                   <FilterButton onClick={() => setOpen(true)} />
                 </Box>
@@ -397,7 +403,12 @@ const SearchProductsResults = () => {
             ) : (
               <>
                 <Box>
-                  <Breadcrumbs links={pathnames} />
+                  <Breadcrumbs links={[
+                    "productos",
+                    keyword.length > 15
+                      ? keyword.substring(0, 15) + "..."
+                      : keyword
+                  ]} />
                   <Typography
                     sx={{
                       fontSize: theme.typography.fontSize[9],
@@ -407,7 +418,9 @@ const SearchProductsResults = () => {
                       mb: "20px",
                     }}
                   >
-                    {keyword}
+                  {keyword.length > 15
+                          ? keyword.substring(0, 15) + "..."
+                          : keyword}
                   </Typography>
                 </Box>
                 {putFilters.map((res, index) => {
@@ -643,7 +656,7 @@ const SearchProductsResults = () => {
                                 alignItems: "center",
                                 justifyContent: "center",
                               }}
-                              onClick={() => prodsCategoria()}
+                              onClick={() => navigate("/")}
                               >
                               Ir al Inicio
                             </Typography>
