@@ -63,9 +63,6 @@ const BoxLogin = () => {
       <div className="boxLoginContainer">
         <p className="title">Continuar con Google o Facebook</p>
         <div className="buttonWrapper">
-          {/* <Button className='botonGoogle'>
-            INGRESAR CON GOOGLE <i className='googleIcon'></i>
-          </Button> */}
           <AppleButton />
           <FacebookButton />
         </div>

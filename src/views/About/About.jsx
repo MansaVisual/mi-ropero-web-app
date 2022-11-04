@@ -3,7 +3,6 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import logoMR from "../../assets/img/isologoMR-grande.png";
 import about1 from "../../assets/img/about1.png";
 import about2 from "../../assets/img/about2.png";
-import isologo from "../../assets/img/isologo.png";
 import MRlogoGrande from "../../assets/img/MRlogoGrande.png";
 import downloadGoogle from "../../assets/img/downloadGoogle.png";
 import downloadApple from "../../assets/img/downloadApple.png";
@@ -65,7 +64,7 @@ const About = () => {
           <div className="benefits">
             <img src={about2} alt="benefitSection" />
             <div className="benefitList">
-              <img src={isologo} alt="logoMR" />
+              <img src={MRlogoGrande} alt="logoMR" />
               <ul className="list">
                 <li>Plataforma ágil y fácil de usar.</li>
                 <li>Acceso a la compra y venta. </li>

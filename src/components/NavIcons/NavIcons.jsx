@@ -42,7 +42,8 @@ import Swal from "sweetalert2";
 const NavIcons = () => {
   const navigate = useNavigate();
 
-  const { userLog, setUserLog,notis,buscandoNotis } = useContext(UseLoginContext);
+  const { userLog, setUserLog, notis, buscandoNotis } =
+    useContext(UseLoginContext);
   const {
     carrito,
     costoCarrito,
@@ -55,7 +56,7 @@ const NavIcons = () => {
   const [load, setLoad] = useState(false);
   const [eliminar, setEliminar] = useState(false);
   const [prodEliminar, setProdEliminar] = useState(null);
-  const [aparece,setAparece]=useState(true)
+  const [aparece, setAparece] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("idClienteMiRopero") !== null) {
@@ -91,13 +92,13 @@ const NavIcons = () => {
         setEliminar(false);
         setLoad(false);
       } else {
-        setAparece(false)
+        setAparece(false);
         Swal.fire({
-          title:'OCURRIÓ UN ERROR',
-          text:"Ocurrio un error al borrar el producto. Volvé a intentarlo",
-          icon:'error',
-          confirmButtonText: 'ACEPTAR',
-        }).then(()=>setAparece(true))
+          title: "OCURRIÓ UN ERROR",
+          text: "Ocurrio un error al borrar el producto. Volvé a intentarlo",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        }).then(() => setAparece(true));
         setLoad(false);
       }
     });
@@ -194,33 +195,42 @@ const NavIcons = () => {
   const getMenuBell = () => {
     return (
       <>
-        {buscandoNotis ? 
-          <div style={{ marginTop: "24px",marginBottom:"12px",width:"100%",display:"flex",justifyContent:"center" }}>
+        {buscandoNotis ? (
+          <div
+            style={{
+              marginTop: "24px",
+              marginBottom: "12px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Loader spin={"spinnerM"} />
-          </div>    
-        :      
-          notis.length!==0 ? getMenuBellNotifications() :
-            <Stack
+          </div>
+        ) : notis.length !== 0 ? (
+          getMenuBellNotifications()
+        ) : (
+          <Stack
             justifyContent="center"
             alignItems="center"
             sx={{ paddingTop: "10px", paddingBottom: "10px" }}
-            >
-              <Box sx={{ mb: "4px" }}>
-                <CgCloseO size={24} color={theme.palette.secondary.main} />
-              </Box>
-              <Box>
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[3],
-                    fontWeight: theme.typography.fontWeightMedium,
-                    color: theme.palette.secondary.main,
-                  }}
-                  >
-                  NO TENÉS NOTIFICACIONES
-                </Typography>
-              </Box>
-            </Stack>
-        }
+          >
+            <Box sx={{ mb: "4px" }}>
+              <CgCloseO size={24} color={theme.palette.secondary.main} />
+            </Box>
+            <Box>
+              <Typography
+                sx={{
+                  fontSize: theme.typography.fontSize[3],
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                NO TENÉS NOTIFICACIONES
+              </Typography>
+            </Box>
+          </Stack>
+        )}
       </>
     );
   };
@@ -338,8 +348,8 @@ const NavIcons = () => {
       <Stack
         sx={{
           p: "10px",
-          justifyContent:"flex-start",
-          alignItems:"flex-start",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
           overflowY: "auto",
           maxHeight: "280px",
           "&::-webkit-scrollbar": {
@@ -355,130 +365,190 @@ const NavIcons = () => {
           },
         }}
       >
-          {notis!==undefined && notis.map((item,i)=>{
-            let url =""
-            let buscarI=""
-            let id=""
-            let itemURL=item.url
+        {notis !== undefined &&
+          notis.map((item, i) => {
+            let url = "";
+            let buscarI = "";
+            let id = "";
+            let itemURL = item.url;
 
-            if(i<=7){
-              if(itemURL.indexOf("/app/profile-showroom/sales")!==-1){//-----------------------|-------------------------
-                url="/perfil"
-              }else if(itemURL.indexOf("/app/profile/messages?id=")!==-1){//---------------|---------------------------------
-                buscarI=itemURL.indexOf("/app/profile/messages?id=")
-                id=itemURL.substring(buscarI+25,itemURL.length)
-                url=`/perfil/MIS MENSAJES/${id}`
-              }else if(itemURL.indexOf("/app/profile-showroom/offers")!==-1){//------------------|------------------------------
-                url="/perfil/OFERTAS REALIZADAS"
-              }else if(itemURL.indexOf("idproducto=")!==-1){//--------------------------------|----------------
-                buscarI=itemURL.indexOf("idproducto=")
-                id=itemURL.substring(buscarI+11,itemURL.length)
-                url=`/productoCard/${id}`
-              }else if(itemURL.indexOf("/app/profile/offers")!==-1){//-------------------|-----------------------------
-                url="/perfil/OFERTAS REALIZADAS"
-              }else if(itemURL.indexOf("/app/profile/buys-detail?idoperacion=")!==-1){//---------------|---------------------------------
-                buscarI=itemURL.indexOf("/app/profile/buys-detail?idoperacion=")
-                id=itemURL.substring(buscarI+45,itemURL.length)
-                url=`/perfil/MIS COMPRAS/${id}`
-              }else if(itemURL.indexOf("idtienda=")!==-1){//---------------|---------------------------------
-                buscarI=itemURL.indexOf("idtienda=")
-                id=itemURL.substring(buscarI+9,itemURL.length)
-                const llamada=new FormData()
+            if (i <= 7) {
+              if (itemURL.indexOf("/app/profile-showroom/sales") !== -1) {
+                //-----------------------|-------------------------
+                url = "/perfil";
+              } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
+                //---------------|---------------------------------
+                buscarI = itemURL.indexOf("/app/profile/messages?id=");
+                id = itemURL.substring(buscarI + 25, itemURL.length);
+                url = `/perfil/MIS MENSAJES/${id}`;
+              } else if (
+                itemURL.indexOf("/app/profile-showroom/offers") !== -1
+              ) {
+                //------------------|------------------------------
+                url = "/perfil/OFERTAS REALIZADAS";
+              } else if (itemURL.indexOf("idproducto=") !== -1) {
+                //--------------------------------|----------------
+                buscarI = itemURL.indexOf("idproducto=");
+                id = itemURL.substring(buscarI + 11, itemURL.length);
+                url = `/productoCard/${id}`;
+              } else if (itemURL.indexOf("/app/profile/offers") !== -1) {
+                //-------------------|-----------------------------
+                url = "/perfil/OFERTAS REALIZADAS";
+              } else if (
+                itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
+              ) {
+                //---------------|---------------------------------
+                buscarI = itemURL.indexOf(
+                  "/app/profile/buys-detail?idoperacion="
+                );
+                id = itemURL.substring(buscarI + 45, itemURL.length);
+                url = `/perfil/MIS COMPRAS/${id}`;
+              } else if (itemURL.indexOf("idtienda=") !== -1) {
+                //---------------|---------------------------------
+                buscarI = itemURL.indexOf("idtienda=");
+                id = itemURL.substring(buscarI + 9, itemURL.length);
+                const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                CartAPI(
-                  llamada,
-                  "tiendas",
-                  "detail"
-                ).then((res)=>{
-                  if(res.status==="success"){
-                    url=`/roperos/${id}/${res.result.nombre}`
-                  }else{url="/roperos"}
-                })
-              }else if(itemURL.indexOf("/app/profile-showroom/offers")!==-1){//-------------------|-----------------------------
-                url="/perfil"
-              }else if(itemURL.indexOf("/app/profile-showroom/transfers")!==-1){//------------------|------------------------------
-                url="/perfil"
-              }else if(itemURL.indexOf("/app/cart")!==-1){//--------------------------|----------------------
-                url="/carrito"
-              }else if(itemURL.indexOf("/app/profile-showroom")!==-1){//--------------------|----------------------------
-                url="/perfil"
-              }else if(itemURL==="#"){
-                url=false
-              }else{//--------------------|-----------------------------
-                url=itemURL
+                CartAPI(llamada, "tiendas", "detail").then((res) => {
+                  if (res.status === "success") {
+                    url = `/roperos/${id}/${res.result.nombre}`;
+                  } else {
+                    url = "/roperos";
+                  }
+                });
+              } else if (
+                itemURL.indexOf("/app/profile-showroom/offers") !== -1
+              ) {
+                //-------------------|-----------------------------
+                url = "/perfil";
+              } else if (
+                itemURL.indexOf("/app/profile-showroom/transfers") !== -1
+              ) {
+                //------------------|------------------------------
+                url = "/perfil";
+              } else if (itemURL.indexOf("/app/cart") !== -1) {
+                //--------------------------|----------------------
+                url = "/carrito";
+              } else if (itemURL.indexOf("/app/profile-showroom") !== -1) {
+                //--------------------|----------------------------
+                url = "/perfil";
+              } else if (itemURL === "#") {
+                url = false;
+              } else {
+                //--------------------|-----------------------------
+                url = itemURL;
               }
             }
 
-            return((<>{i>7 ? <></> : <>
-              <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                cursor:"pointer",
-                p:"4px 8px",
-                "&:hover": {
-                  backgroundColor:"rgb(245 245 245)",
-                },
-              }}
-              key={i}
-              onClick={url===false ? null : ()=>window.location.assign(`${url}`)}
-              >
-                <Box sx={{mr:"10px"}}>
-                  <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
-                </Box>
-                <Box
-                sx={{ display: "flex", flexDirection: "column", maxWidth: "180px" }}
-                >
-                  <Typography
-                    component="h6"
-                    sx={{
-                      fontSize: theme.typography.fontSize[1],
-                      fontWeight: theme.typography.fontWeightMedium,
-                      color: "hsla(351, 6%, 25%, 1)",
-                    }}
+            return (
+              <>
+                {i > 7 ? (
+                  <></>
+                ) : (
+                  <>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        cursor: "pointer",
+                        p: "4px 8px",
+                        "&:hover": {
+                          backgroundColor: "rgb(245 245 245)",
+                        },
+                      }}
+                      key={i}
+                      onClick={
+                        url === false
+                          ? null
+                          : () => window.location.assign(`${url}`)
+                      }
                     >
-                    {item.titulo}
-                  </Typography>
-                  <Typography
-                    component="p"
-                    sx={{
-                      fontSize: theme.typography.fontSize[1],
-                      fontWeight: theme.typography.fontWeightBold,
-                      color: "hsla(351, 6%, 25%, 1)",
-                      overflowX:"hidden"
-                    }}
-                    >
-                    {item.texto}
-                  </Typography>
-                  <Typography
-                    component="p"
-                    sx={{
-                      fontSize: theme.typography.fontSize[0],
-                      color: theme.palette.tertiary.main,
-                    }}
-                    >
-                    {item.fecha} hs
-                  </Typography>
-                </Box>
-                {/* <IconButton>
+                      <Box sx={{ mr: "10px" }}>
+                        <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          maxWidth: "180px",
+                        }}
+                      >
+                        <Typography
+                          component="h6"
+                          sx={{
+                            fontSize: theme.typography.fontSize[1],
+                            fontWeight: theme.typography.fontWeightMedium,
+                            color: "hsla(351, 6%, 25%, 1)",
+                          }}
+                        >
+                          {item.titulo}
+                        </Typography>
+                        <Typography
+                          component="p"
+                          sx={{
+                            fontSize: theme.typography.fontSize[1],
+                            fontWeight: theme.typography.fontWeightBold,
+                            color: "hsla(351, 6%, 25%, 1)",
+                            overflowX: "hidden",
+                          }}
+                        >
+                          {item.texto}
+                        </Typography>
+                        <Typography
+                          component="p"
+                          sx={{
+                            fontSize: theme.typography.fontSize[0],
+                            color: theme.palette.tertiary.main,
+                          }}
+                        >
+                          {item.fecha} hs
+                        </Typography>
+                      </Box>
+                      {/* <IconButton>
                   <img src={basura} alt="icono de basura" width={14} height={16} />
                 </IconButton> */}
-              </Box>
-              <Divider sx={{ my: "5px" }} />
-            </>}
-          </>))})
-          }
-          </Stack>
-          );
-        };
-        
+                    </Box>
+                    <Divider sx={{ my: "5px" }} />
+                  </>
+                )}
+              </>
+            );
+          })}
+        <Box>
+          <p
+            style={{
+              fontWeight: " 600",
+              fontSize: " 11px",
+              lineHeight: "20px",
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+              textDecoration: "underline",
+              color: "#443988",
+              margin: 0,
+            }}
+          >
+            VER TODAS LAS NOTIFICACIONES
+          </p>
+        </Box>
+      </Stack>
+    );
+  };
+
   const getMenuCart = () => {
     return (
       <>
         {buscandoCart ? (
-          <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+          <div
+            style={{
+              marginTop: "24px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Loader spin={"spinnerM"} />
           </div>
         ) : (
@@ -606,7 +676,7 @@ const NavIcons = () => {
                               justifyContent: "space-between",
                               alignItems: "center",
                               px: "8px",
-                              pt:"4px"
+                              pt: "4px",
                             }}
                             key={i}
                           >
@@ -615,7 +685,7 @@ const NavIcons = () => {
                                 width: "40px",
                                 height: "40px",
                                 borderRadius: "20px",
-                                mr:"8px"
+                                mr: "8px",
                               }}
                             >
                               <img
@@ -625,14 +695,14 @@ const NavIcons = () => {
                                 height={40}
                               />
                             </Box>
-                            <Box sx={{minWidth:"130px"}}>
+                            <Box sx={{ minWidth: "130px" }}>
                               <Typography
                                 sx={{ fontSize: theme.typography.fontSize[2] }}
                               >
                                 {prod.producto.nombre.length > 20
-                                  ? prod.producto.nombre.substring(0, 20) + "..."
-                                  : prod.producto.nombre
-                                }
+                                  ? prod.producto.nombre.substring(0, 20) +
+                                    "..."
+                                  : prod.producto.nombre}
                               </Typography>
                               <Typography
                                 sx={{
@@ -665,7 +735,7 @@ const NavIcons = () => {
                               </IconButton>
                             </Box>
                           </Box>
-                          <Divider sx={{py:"4px"}}/>
+                          <Divider sx={{ py: "4px" }} />
                         </>
                       );
                     })}
@@ -681,10 +751,10 @@ const NavIcons = () => {
 
   return (
     <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
-      {userLog!=="" && 
+      {userLog !== "" && (
         <IconButton onClick={userLog !== "" && handleClickNotif}>
           <StyledBadge
-            badgeContent={notis.length>7?7:notis.length}
+            badgeContent={notis.length > 7 ? 7 : notis.length}
             color="secondary"
             anchorOrigin={{
               vertical: "top",
@@ -694,7 +764,7 @@ const NavIcons = () => {
             <img src={BellNotif} alt="Icono de notificacion" width="17px" />
           </StyledBadge>
         </IconButton>
-      }
+      )}
 
       <StyledMenu
         anchorOrigin={{
@@ -793,7 +863,7 @@ const NavIcons = () => {
       >
         {getMenuAvatar()}
       </StyledMenu>
-      {userLog!=="" && 
+      {userLog !== "" && (
         <IconButton onClick={userLog !== "" && handleClickCart}>
           <StyledBadge
             badgeContent={carrito.length}
@@ -815,7 +885,7 @@ const NavIcons = () => {
             />
           )}
         </IconButton>
-      }
+      )}
       <StyledMenu
         anchorOrigin={{
           vertical: "bottom",
@@ -858,7 +928,10 @@ const NavIcons = () => {
         {getMenuCart()}
       </StyledMenu>
       {eliminar && (
-        <div className="cartElimianrPopUp" style={{display:aparece?"flex":"none"}}>
+        <div
+          className="cartElimianrPopUp"
+          style={{ display: aparece ? "flex" : "none" }}
+        >
           <div className="fondoPopUp" onClick={() => setEliminar(false)}></div>
           <div className="popUp">
             <img
@@ -887,7 +960,18 @@ const NavIcons = () => {
                 ELIMINAR
               </Button>
             </div>
-            {load && <div style={{ marginBottom: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"} /></div>}
+            {load && (
+              <div
+                style={{
+                  marginBottom: "24px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader spin={"spinnerG"} />
+              </div>
+            )}
             {load && <br />}
             <img
               src={cruz}

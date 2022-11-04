@@ -129,11 +129,10 @@ export const LoginContext = ({ children }) => {
     });
   };
 
-  const AppleLogin = (e) => {
-    console.log(e);
-    /* const log = new FormData();
+  const AppleLogin = ({ data }) => {
+    const log = new FormData();
     log.append("social_login_type", 3);
-    log.append("social_login_id", loginData.id);
+    log.append("social_login_id", data.authorization.id_token);
     LoginAPI(log, "clientes", "login_social").then((res) => {
       if (res.status === "success") {
         setInfoUser(res.result);
@@ -141,23 +140,22 @@ export const LoginContext = ({ children }) => {
         window.location.replace("https://mi-ropero-web-app.vercel.app/");
       } else if (res.status === "error") {
         if (res.result === "El social_login_id y/o social_login no existen") {
-          AppleRegister(loginData);
+          AppleRegister(data);
         }
       }
-    }); */
+    });
   };
 
-  const AppleRegister = (loginData) => {
+  const AppleRegister = (data) => {
     const log = new FormData();
-    log.append("social_login_type", 1);
-    log.append("social_login_id", loginData.id);
-    log.append("nombre", loginData.first_name);
-    log.append("email", loginData.email);
-    log.append("apellido", loginData.last_name);
-    log.append("avatar", loginData.picture.data.url);
+    log.append("social_login_type", 3);
+    log.append("social_login_id", data.authorization.id_token);
+    log.append("nombre", data.user.name.firstName);
+    log.append("email", data.user.email);
+    log.append("apellido", data.user.lastName);
     LoginAPI(log, "clientes", "insert_social").then((res) => {
       if (res.status === "success") {
-        FacebookLogin(loginData);
+        FacebookLogin(data);
       } else if (res.status === "error") {
         Swal.fire({
           title: "OCURRIÓ UN ERROR",

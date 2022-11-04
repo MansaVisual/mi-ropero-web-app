@@ -6,11 +6,6 @@ import { UseLoginContext } from "../../context/LoginContext";
 const AppleButton = () => {
   const { AppleLogin } = useContext(UseLoginContext);
 
-  const [profile, setProfile] = useState(false);
-  const [provider, setProvider] = useState(false);
-
-  console.log(profile);
-
   return (
     <div>
       <LoginSocialApple
@@ -18,7 +13,7 @@ const AppleButton = () => {
         scope={"name email"}
         redirect_uri={"https://mi-ropero-web-app.vercel.app"}
         /* onLoginStart={onLoginStart} */
-        onResolve={(data) => setProfile(data)}
+        onResolve={(data) => AppleLogin(data)}
         onReject={(err) => {
           console.log(err);
         }}
