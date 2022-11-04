@@ -147,7 +147,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       sx={{
                         lineHeight: "40px",
                         fontSize: isMobile ? "13px" : "20px",
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: 700,
                         pl: "16px",
                         color: theme.palette.quaternary.contrastText,
                         textDecoration: `${theme.palette.secondary.main} line-through`,
@@ -173,7 +173,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   <Typography
                     sx={{
                       lineHeight: "40px",
-                      fontSize: isMobile ? "13px" : "20px",
+                      fontSize: isMobile ? "13px" : "42px",
                       fontWeight: theme.typography.fontWeightMedium,
                       pl: "16px",
                     }}
@@ -240,11 +240,11 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                mb: isMobileBigScreen
+                /* mb: isMobileBigScreen
                   ? costoEnvio.length === 0
                     ? "72px"
                     : "24px"
-                  : "72px",
+                  : "72px", */
               }}
             >
               <Box>
@@ -334,16 +334,16 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 mt: "24px",
-                mb: "72px",
+                /*  mb: "72px", */
               }}
             >
               <Box>
                 {prod.precio_oferta !== "0.00" ? (
-                  <>
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Typography
                       sx={{
                         /* lineHeight: "40px", */
-                        fontSize: theme.typography.fontSize[9],
+                        fontSize: "24px",
                         fontWeight: theme.typography.fontWeightMedium,
                         pl: "16px",
                         color: theme.palette.quaternary.contrastText,
@@ -357,7 +357,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       component="span"
                       sx={{
                         lineHeight: "40px",
-                        fontSize: isMobile ? "13px" : "20px",
+                        fontSize: isMobile ? "13px" : "33px",
                         fontWeight: theme.typography.fontWeightRegular,
                         pl: "16px",
                         color: theme.palette.secondary.main,
@@ -365,12 +365,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     >
                       ${prod.precio_oferta}
                     </Typography>
-                  </>
+                  </Box>
                 ) : (
                   <Typography
                     sx={{
                       lineHeight: "40px",
-                      fontSize: theme.typography.fontSize[9],
+                      fontSize: "42px",
                       fontWeight: theme.typography.fontWeightMedium,
                       pl: "16px",
                     }}
@@ -610,18 +610,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
           }}
         >
           <Button
-            /* backgroundColor="hsla(59, 100%, 60%, 1)"
-            color="hsla(351, 6%, 25%, 1)"
-            text={load ? <Loader spin={"spinnerM"} /> : "Comprar"}*/
             endIcon={!load && <FiShoppingCart style={{ fontSize: "18px" }} />}
             onClick={
               userLog === ""
                 ? () => handleCompraSinLogin()
                 : () => handleAgregarCarrito()
             }
-            /* fullWidth
-            height
-            noHover="rgb(255, 253, 118)" */
             sx={{
               width: "100%",
               backgroundColor: "hsla(59, 100%, 60%, 1)",
@@ -634,6 +628,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
               "&:hover": {
                 backgroundColor: "#fffd76",
               },
+              /*  marginBottom: costoEnvio.length !== 0 ? 0 : "8rem", */
             }}
           >
             {load ? <Loader spin={"spinnerM"} /> : "Comprar"}

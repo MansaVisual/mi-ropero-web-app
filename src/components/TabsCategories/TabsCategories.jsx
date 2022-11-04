@@ -97,7 +97,10 @@ const TabsCategories = () => {
                     color: "white",
                   },
                 }}
-                onClick={() => navigate("/roperos")}
+                onClick={() => {
+                  navigate("/roperos");
+                  handleClickAway();
+                }}
               >
                 Roperos
               </Link>
