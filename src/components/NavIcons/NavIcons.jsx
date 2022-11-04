@@ -208,7 +208,8 @@ const NavIcons = () => {
             <Loader spin={"spinnerM"} />
           </div>
         ) : notis.length !== 0 ? (
-          getMenuBellNotifications()
+          // getMenuBellNotifications()
+          null
         ) : (
           <Stack
             justifyContent="center"
