@@ -100,6 +100,10 @@ function App() {
                       <Route path="/checkout/:status" element={<Checkout />} />
                       <Route path="*" element={<Error />}></Route>
                       <Route path="/login" element={<Login />} />
+                      <Route
+                        path="/login/:redireccionCompra"
+                        element={<Login />}
+                      />
                       <Route path="/registro" element={<Register />} />
                       <Route
                         path="/validacionLogin"

@@ -52,7 +52,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
   const handleCompraSinLogin = () => {
     localStorage.setItem("redirectUrl", location.pathname);
-    navigate("/login");
+    navigate(`/login/${itemID}`);
   };
 
   const handleAgregarCarrito = () => {

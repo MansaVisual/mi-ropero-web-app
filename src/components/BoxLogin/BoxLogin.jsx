@@ -4,7 +4,7 @@ import { Button, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import RestorePopUp from "./RestorePopUp";
 import { UseLoginContext } from "../../context/LoginContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Loader from "../Loader/Loader";
 import FacebookButton from "../FacebookButton/FacebookButton";
@@ -16,6 +16,7 @@ const BoxLogin = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [restorePassword, setRestorePassword] = useState(false);
+  const { redireccionCompra } = useParams();
 
   const [campoObligatorio, setCampoObligatorio] = useState(false);
   const [error, setError] = useState(false);
@@ -39,6 +40,11 @@ const BoxLogin = () => {
     await LoginAPI(loginUser, "clientes", "login").then((res) => {
       setLoad(false);
       if (res.status === "success") {
+        if(redireccionCompra!==undefined){
+          window.location.replace(
+            `https://mi-ropero-web-app.vercel.app${redireccionCompra}`
+          );
+        }
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
         window.scrollTo({
           top: 0,

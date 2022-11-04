@@ -2,6 +2,7 @@ import React, {useContext,useState} from "react"
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { Button, useMediaQuery } from "@mui/material";
 import oca from "../../assets/img/OCA.png"
+import moto from "../../assets/img/moto.png"
 import theme from "../../styles/theme";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
@@ -106,7 +107,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
                 <div className="card">
                     <div>
                         <p>
-                            <img src={oca} alt="OCA"/>
+                            <img src={metodoEnvio==="1"?moto:oca} alt="METODO"/>
                             {metodoEnvio==="345837"?"Envío a domicilio":metodoEnvio==="345838"?"Envío a sucursal":metodoEnvio==="1"?"Envío en moto":""}
                         </p>
                         {metodoEnvio==="345837" &&
