@@ -27,7 +27,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
   const handleSubmit = () => {
     setErrorValor(false);
     if (
-      data.amount >
+      Number(data.amount) >
       (prod.precio_oferta !== "0.00" ? prod.precio_oferta : prod.precio)
     ) {
       setErrorValor(true);
@@ -113,13 +113,18 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
             <p className="titleOferta">{errorValor ? "¡ERROR!" : "¡OFERTÁ!"}</p>
             <p className="parrafo">
               {errorValor
-                ? "El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor"
+                ? `El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor. `
                 : `Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${
                     prod.precio_oferta !== "0.00"
                       ? prod.precio_oferta
                       : prod.precio
                   }`}
             </p>
+            <p className="parrafo"> {errorValor && `Recordá que debe ser mayor a $0 y menor a ${
+                    prod.precio_oferta !== "0.00"
+                      ? prod.precio_oferta
+                      : prod.precio
+                  }`} </p>
 
             <p className="titleOfertaInput">Monto de la oferta*</p>
             <TextField
@@ -149,6 +154,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
                   },
                 },
               }}
+            inputProps={{ maxLength: 10 }}
             />
 
             <p className="titleCommentInput">Comentarios</p>
@@ -205,12 +211,12 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
                     onClick={() => handleSubmit()}
                     noHover={true}
                     className={
-                      data.amount === 0 || data.comment === ""
+                      data.amount === 0
                         ? "ofertaDisabled"
                         : "oferta"
                     }
                     disabled={
-                      data.amount === 0 || data.comment === "" ? true : false
+                      data.amount === 0  ? true : false
                     }
                   >
                     HACER OFERTA
