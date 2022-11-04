@@ -507,9 +507,6 @@ const NavIcons = () => {
                           {item.fecha} hs
                         </Typography>
                       </Box>
-                      {/* <IconButton>
-                  <img src={basura} alt="icono de basura" width={14} height={16} />
-                </IconButton> */}
                     </Box>
                     <Divider sx={{ my: "5px" }} />
                   </>

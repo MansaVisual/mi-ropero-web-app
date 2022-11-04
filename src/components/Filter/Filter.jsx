@@ -135,28 +135,28 @@ const Filter = (props) => {
             <FormControlLabel
               value='Mas relevante primero'
               checked={putSort === 'Mas relevante primero' ? true : false}
-              control={<Radio />}
+              control={<Radio sx={{ml:"10px"}}/>}
               label='Mas relevante primero'
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
               value='Menos relevante primero'
               checked={putSort === 'Menos relevante primero' ? true : false}
-              control={<Radio />}
+              control={<Radio sx={{ml:"10px"}}/>}
               label='Menos relevante primero'
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
               value='Mayor precio primero'
               checked={putSort === 'Mayor precio primero' ? true : false}
-              control={<Radio />}
+              control={<Radio sx={{ml:"10px"}}/>}
               label='Mayor precio primero'
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
               value='Menor precio primero'
               checked={putSort === 'Menor precio primero' ? true : false}
-              control={<Radio />}
+              control={<Radio sx={{ml:"10px"}}/>}
               label='Menor precio primero'
               sx={FormControlLabelStyled}
             />

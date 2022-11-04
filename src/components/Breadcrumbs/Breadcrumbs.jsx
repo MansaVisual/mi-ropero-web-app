@@ -10,6 +10,7 @@ const Breadcrumbs = ({ links }) => {
     <MuiBreadcrumbs
       aria-label="breadcrumb"
       separator={<img src={Separator} alt="" />}
+      sx={{mb:"16px"}}
     >
       <Link
         href="/"

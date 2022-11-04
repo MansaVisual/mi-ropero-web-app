@@ -291,8 +291,8 @@ const SearchProductsResults = () => {
                 <Breadcrumbs links={[
                   "productos",
                   keyword.length > 15
-                    ? keyword.substring(0, 15) + "..."
-                    : keyword
+                    ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
+                    : keyword.replaceAll("&"," ")
                 ]} />
                 <Box
                   sx={{
@@ -310,8 +310,8 @@ const SearchProductsResults = () => {
                     }}
                   >
                     {                        keyword.length > 15
-                          ? keyword.substring(0, 15) + "..."
-                          : keyword}
+                          ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
+                          : keyword.replaceAll("&"," ")}
                   </Typography>
                   <FilterButton onClick={() => setOpen(true)} />
                 </Box>
@@ -406,8 +406,8 @@ const SearchProductsResults = () => {
                   <Breadcrumbs links={[
                     "productos",
                     keyword.length > 15
-                      ? keyword.substring(0, 15) + "..."
-                      : keyword
+                      ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
+                      : keyword.replaceAll("&"," ")
                   ]} />
                   <Typography
                     sx={{
@@ -419,8 +419,8 @@ const SearchProductsResults = () => {
                     }}
                   >
                   {keyword.length > 15
-                          ? keyword.substring(0, 15) + "..."
-                          : keyword}
+                          ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
+                          : keyword.replaceAll("&"," ")}
                   </Typography>
                 </Box>
                 {putFilters.map((res, index) => {
