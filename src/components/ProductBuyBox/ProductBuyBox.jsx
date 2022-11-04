@@ -180,28 +180,12 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     }}
                   >
                     $ {prod.precio}
-                    {/*  {prod.precio !== undefined
-              ? prod.precio
-              : itemFav.producto_precio} */}
+
                   </Typography>
                 )}
-                {/* <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[9],
-                    fontWeight: theme.typography.fontWeightMedium,
-                    color: theme.palette.quaternary.contrastText,
-                  }}
-                >
-                  ${prod.precio}
-                </Typography> */}
               </Box>
               <Box sx={{ maxWidth: "120px" }}>
                 <Button
-                  /* backgroundColor={theme.palette.quinary.main}
-                  color={theme.palette.primary.main}
-                  text="Ofertar"
-                  medium
-                  icon={ofertIcon} */
                   disabled={prod.precio_oferta !== "0.00" ? true : false}
                   onClick={
                     prod.precio_oferta !== "0.00"
@@ -210,12 +194,6 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       ? () => handleClickOpen()
                       : () => handleCompraSinLogin()
                   }
-                  /* sx={{
-                    height: "30px",
-                    "&:hover": {
-                      backgroundColor: theme.palette.quinary.main,
-                    },
-                  }} */
                 />
                 {open && (
                   <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
@@ -241,11 +219,6 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                /* mb: isMobileBigScreen
-                  ? costoEnvio.length === 0
-                    ? "72x"
-                    : "24px"
-                  : "72px", */
               }}
             >
               <Box>
@@ -378,34 +351,11 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     }}
                   >
                     $ {prod.precio}
-                    {/*  {prod.precio !== undefined
-              ? prod.precio
-              : itemFav.producto_precio} */}
+
                   </Typography>
                 )}
-                {/* <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[9],
-                    fontWeight: theme.typography.fontWeightMedium,
-                    color: theme.palette.quaternary.contrastText,
-                  }}
-                >
-                  ${prod.precio}
-                </Typography> */}
-                {/* <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[10],
-                    fontWeight: theme.typography.fontWeightMedium,
-                    color: theme.palette.primary.main,
-                  }}
-                >
-                  ${prod.precio}
-                </Typography> */}
                 <Box sx={{ mt: "16px" }}>
                   <Button
-                    /* backgroundColor={theme.palette.quinary.main}
-                    color={theme.palette.primary.main}
-                    text="Ofertar"*/
                     endIcon={
                       <Avatar src={ofertIcon} sx={{ width: 16, height: 16 }} />
                     }
@@ -626,7 +576,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
               height: "50px",
               fontSize: "16px",
               fontWeight: "700",
-              mt:isMobile?"32px":"0px",
+              mt:isMobileBigScreen?"32px":"0px",
               "&:hover": {
                 backgroundColor: "#fffd76",
               },

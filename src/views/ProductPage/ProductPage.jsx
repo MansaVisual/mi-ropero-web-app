@@ -162,12 +162,14 @@ const ProductPage = () => {
                         right: "20px",
                       }}
                     >
-                      <LikeButton
+                      {isMobileBigScreen &&
+                        <LikeButton
                         idCliente={userLog}
                         infoUser={infoUser}
                         idProd={itemID}
                         location={location.pathname}
-                      />
+                        />
+                      }
                     </Box>
                   </Box>
                 </>
