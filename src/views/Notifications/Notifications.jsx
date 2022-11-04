@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Button, MenuItem, Select } from "@mui/material";
+import { Box, Button, MenuItem, Select } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
 import MRlogoGrande from "../../assets/img/MRlogoGrande.png";
@@ -7,6 +7,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../../components/Loader/Loader";
 import mensaje from "../../assets/img/mensajesVacio.png";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Notifications = () => {
   const location = useLocation();
@@ -15,9 +16,9 @@ const Notifications = () => {
   const typeNotifications = ["no leídas", "ver leídas"];
   const [notificationsType, setNotificationsType] = useState("no leídas");
   const [notis, setNotis] = useState([]);
-
+  const [totalPages, settotalPages] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const [pags, setPags] = useState(1);
   const { userLog, LoginAPI } = useContext(UseLoginContext);
 
   useEffect(() => {
@@ -39,11 +40,12 @@ const Notifications = () => {
         setLoading(false);
         if (res.status === "success") {
           setNotis(res.result.mensajes);
+          settotalPages(res.result.total_paginas);
         }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLog /* , typeNotifications */]);
+  }, [userLog, notificationsType]);
 
   const formatoFecha = (fecha) => {
     const hora = fecha.substring(11, 16);
@@ -104,7 +106,7 @@ const Notifications = () => {
           </Select>
         </div>
       </div>
-      <div className="mensajesContainer">
+      <div className="notifContainer">
         {loading ? (
           <div
             style={{
@@ -125,21 +127,19 @@ const Notifications = () => {
                 <div
                   key={id}
                   className="desktopCard"
-                  /* onClick={() => {
-                    navigate(`/perfil/MI CHAT`);
-                  }} */
+                  onClick={() => {
+                    console.log(noti.url);
+                    navigate(noti.url);
+                  }}
                 >
-                  <div className="mensajeData">
+                  <div className="notiData">
                     <div>
                       <img src={MRlogoGrande} alt="mrLogo" />
                     </div>
                     <div>
-                      <p className="messageTitle">{noti.titulo}</p>
-                      <p className="messageDate">{formatoFecha(noti.fecha)}</p>
-                      <p className="messageMessage">{noti.texto}</p>
-                      {/* <p className="messageState">
-                        {typeNotifications[Number(noti.estado)]}
-                      </p> */}
+                      <p className="notiTitle">{noti.titulo}</p>
+                      <p className="notiDate">{formatoFecha(noti.fecha)}</p>
+                      <p className="notiMessage">{noti.texto}</p>
                     </div>
                   </div>
                 </div>
@@ -150,13 +150,11 @@ const Notifications = () => {
                     navigate(`/perfil/MI CHAT`);
                   }}
                 >
+                  <img src={MRlogoGrande} alt="mrLogo" />
                   <div>
-                    <p className="messageTitle">{noti.titulo}</p>
-                    <p className="messageDate">{formatoFecha(noti.fecha)}</p>
-                    <p className="messageMessage">{noti.texto}</p>
-                    {/* <p className="messageState">
-                      {typeNotifications[Number(noti.estado)]}
-                    </p> */}
+                    <p className="notiTitle">{noti.titulo}</p>
+                    <p className="notiDate">{formatoFecha(noti.fecha)}</p>
+                    <p className="notiMessage">{noti.texto}</p>
                   </div>
                 </div>
               </>
@@ -171,22 +169,24 @@ const Notifications = () => {
             </div>
           </div>
         )}
-        {/* {mensajesFiltrados.length !== 0 && totalPages > 1  && (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Pagination
-                  cantidad={totalPages}
-                  buscarPage={buscarPage}
-                  pags={pags}
-                  setPags={setPags}
-                />
-              </Box>
-            )} */}
+        {/* {notis.length !== 0 &&
+          totalPages > 1 &&
+       
+            <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Pagination
+              cantidad={totalPages}
+              buscarPage={buscarPage}
+              pags={pags}
+              setPags={setPags}
+            />
+          </Box> 
+          }  */}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
