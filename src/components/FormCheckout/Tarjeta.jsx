@@ -59,7 +59,6 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             }
         })
     }
-
     return(
         <div className="tarjetaContenedor">
             <h2 className="TituloCartCheck" style={{width:"100%"}} id="datos">Resumen</h2>
@@ -67,13 +66,13 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             <div className="productos">
                 <p>Productos</p>
                 <div className="prodsContainer">
-                    {carrito.map((prod,i)=>{
+                    {carrito.map((prod,i)=>{console.log(prod)
                         return(
                             <div className="prodCard" key={i}>
                                 <div className="fotoProd" style={{backgroundImage:`url(${prod.producto_imagen})`}}/>
                                 <div>
                                     <p>{prod.producto_nombre}</p>
-                                    <p className="roperoDe">{prod.description}</p>
+                                    <p className="roperoDe">{prod.producto.tienda.nombre}</p>
                                 </div>
                             </div>
                         )
