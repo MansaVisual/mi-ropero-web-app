@@ -31,7 +31,7 @@ const Notifications = () => {
       }
       setLoading(true);
       const notis = new FormData();
-      notis.append("bypage", 15);
+      notis.append("bypage", 10);
       notis.append("page", 0);
       notis.append("estado", type);
       notis.append("idcliente", 36);
@@ -46,6 +46,33 @@ const Notifications = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, notificationsType]);
+
+  const buscarPage = (paramSearch, value) => {
+    setLoading(true);
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+
+    let type;
+    if (notificationsType === "no leídas") {
+      type = 1;
+    } else {
+      type = 2;
+    }
+    const notis = new FormData();
+    notis.append("bypage", 10);
+    notis.append("page", value);
+    notis.append("estado", type);
+    notis.append("idcliente", 36);
+    LoginAPI(notis, "pushs", "all").then((res) => {
+      console.log(res);
+      if (res.status === "success") {
+        setNotis(res.result.mensajes);
+      }
+      setLoading(false);
+    });
+  };
 
   const formatoFecha = (fecha) => {
     const hora = fecha.substring(11, 16);
@@ -169,25 +196,26 @@ const Notifications = () => {
             </div>
           </div>
         )}
-        {/* {notis.length !== 0 &&
-          totalPages > 1 &&
-       
-            <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Pagination
-              cantidad={totalPages}
-              buscarPage={buscarPage}
-              pags={pags}
-              setPags={setPags}
-            />
-          </Box> 
-          }  */}
       </div>
+      {notis.length !== 0 && totalPages > 1 && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            maxWidth: "895px",
+            width: "100%",
+            marginTop: "3rem",
+          }}
+        >
+          <Pagination
+            cantidad={totalPages}
+            buscarPage={buscarPage}
+            pags={pags}
+            setPags={setPags}
+          />
+        </Box>
+      )}
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
         <p>VOLVER A MI PERFIL</p>
