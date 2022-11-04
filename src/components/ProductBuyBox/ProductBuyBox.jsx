@@ -149,7 +149,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                         fontSize: isMobile ? "13px" : "20px",
                         fontWeight: 700,
                         pl: "16px",
-                        color: theme.palette.quaternary.contrastText,
+                        color: "#443988",
                         textDecoration: `${theme.palette.secondary.main} line-through`,
                         opacity: "0.5",
                       }}
@@ -176,6 +176,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       fontSize: isMobile ? "13px" : "42px",
                       fontWeight: theme.typography.fontWeightMedium,
                       pl: "16px",
+                      color:"#443988"
                     }}
                   >
                     $ {prod.precio}
@@ -346,7 +347,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                         fontSize: "24px",
                         fontWeight: theme.typography.fontWeightMedium,
                         pl: "16px",
-                        color: theme.palette.quaternary.contrastText,
+                        color: "#443988",
                         textDecoration: `${theme.palette.secondary.main} line-through`,
                         opacity: "0.5",
                       }}
@@ -373,6 +374,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       fontSize: "42px",
                       fontWeight: theme.typography.fontWeightMedium,
                       pl: "16px",
+                      color:"#443988"
                     }}
                   >
                     $ {prod.precio}
@@ -628,7 +630,6 @@ const ProductBuyBox = ({ prod, itemID }) => {
               "&:hover": {
                 backgroundColor: "#fffd76",
               },
-              /*  marginBottom: costoEnvio.length !== 0 ? 0 : "8rem", */
             }}
           >
             {load ? <Loader spin={"spinnerM"} /> : "Comprar"}
