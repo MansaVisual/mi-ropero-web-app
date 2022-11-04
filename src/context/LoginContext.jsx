@@ -129,7 +129,7 @@ export const LoginContext = ({ children }) => {
     });
   };
 
-  const AppleLogin = ({ data }) => {
+  const AppleLogin = (data) => {
     const log = new FormData();
     log.append("social_login_type", 3);
     log.append("social_login_id", data.authorization.id_token);
