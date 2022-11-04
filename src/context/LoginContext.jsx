@@ -154,6 +154,7 @@ export const LoginContext = ({ children }) => {
     log.append("email", data.user.email);
     log.append("apellido", data.user.lastName);
     LoginAPI(log, "clientes", "insert_social").then((res) => {
+      console.log(res);
       if (res.status === "success") {
         FacebookLogin(data);
       } else if (res.status === "error") {
