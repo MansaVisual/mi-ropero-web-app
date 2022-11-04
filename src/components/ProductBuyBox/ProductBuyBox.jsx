@@ -242,7 +242,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 justifyContent: "space-between",
                 mb: isMobileBigScreen
                   ? costoEnvio.length === 0
-                    ? "72px"
+                    ? "72x"
                     : "24px"
                   : "72px",
               }}
@@ -334,7 +334,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 mt: "24px",
-                mb: "72px",
+                mb: costoEnvio.length !== 0 ? "24px":"72px",
               }}
             >
               <Box>
@@ -603,7 +603,6 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
         <Box
           sx={{
-            position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
@@ -631,6 +630,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
               height: "50px",
               fontSize: "16px",
               fontWeight: "700",
+              mt:isMobile?"32px":"0px",
               "&:hover": {
                 backgroundColor: "#fffd76",
               },
