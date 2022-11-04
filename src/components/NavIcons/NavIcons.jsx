@@ -36,6 +36,7 @@ import Loader from "../Loader/Loader";
 import basura from "../../assets/img/basura.png";
 import cruz from "../../assets/img/cruz.png";
 import MiRoperoNavbar from "../../assets/img/isologo.png";
+import iconoMensaje from "../../assets/img/iconMensaje.png";
 import Swal from "sweetalert2";
 // import MisMensajesNavbar from "../../assets/img/msj2.jpg";
 
@@ -208,8 +209,7 @@ const NavIcons = () => {
             <Loader spin={"spinnerM"} />
           </div>
         ) : notis.length !== 0 ? (
-          // getMenuBellNotifications()
-          null
+          getMenuBellNotifications()
         ) : (
           <Stack
             justifyContent="center"
@@ -367,7 +367,7 @@ const NavIcons = () => {
         }}
       >
         {notis !== undefined &&
-          notis.map((item, i) => {
+          notis.mensajes.map((item, i) => {
             let url = "";
             let buscarI = "";
             let id = "";
@@ -441,7 +441,6 @@ const NavIcons = () => {
                 url = itemURL;
               }
             }
-
             return (
               <>
                 {i > 7 ? (
@@ -466,9 +465,15 @@ const NavIcons = () => {
                           : () => window.location.assign(`${url}`)
                       }
                     >
+                      {itemURL.indexOf("messagges")!==-1 ?
+                      <Box sx={{ mr: "10px" }}>
+                        <img src={iconoMensaje} alt="isologo de Mi Ropero" />
+                      </Box>
+                      :
                       <Box sx={{ mr: "10px" }}>
                         <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
                       </Box>
+                      }
                       <Box
                         sx={{
                           display: "flex",
@@ -754,7 +759,7 @@ const NavIcons = () => {
       {userLog !== "" && (
         <IconButton onClick={userLog !== "" && handleClickNotif}>
           <StyledBadge
-            badgeContent={notis.length > 7 ? 7 : notis.length}
+            badgeContent={notis.mensajes!==undefined ? notis.mensajes.length > 7 ? 7 : notis.mensajes.length:0}
             color="secondary"
             anchorOrigin={{
               vertical: "top",
