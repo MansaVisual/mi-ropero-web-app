@@ -31,6 +31,6 @@ export const FormControlLabelStyled = {
     color: theme.palette.quaternary.contrastText,
   },
   "&.MuiFormControlLabel-root": {
-    marginLeft: 0,
+    marginLeft: 1,
   },
 };
