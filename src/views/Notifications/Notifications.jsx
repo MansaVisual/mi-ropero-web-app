@@ -148,40 +148,116 @@ const Notifications = () => {
             <Loader spin={"spinnerM"} />
           </div>
         ) : notis.length > 0 ? (
-          notis.map((noti, id) => {
+          notis.map((item, i) => {
+            let url = "";
+            let buscarI = "";
+            let id = "";
+            let itemURL = item.url;
+
+            if (i <= 7) {
+              if (itemURL.indexOf("/app/profile-showroom/sales") !== -1) {
+                //-----------------------|-------------------------
+                url = "/perfil";
+              } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
+                //---------------|---------------------------------
+                buscarI = itemURL.indexOf("/app/profile/messages?id=");
+                id = itemURL.substring(buscarI + 25, itemURL.length);
+                url = `/perfil/MIS MENSAJES/${id}`;
+              } else if (
+                itemURL.indexOf("/app/profile-showroom/offers") !== -1
+              ) {
+                //------------------|------------------------------
+                url = "/perfil/OFERTAS REALIZADAS";
+              } else if (itemURL.indexOf("idproducto=") !== -1) {
+                //--------------------------------|----------------
+                buscarI = itemURL.indexOf("idproducto=");
+                id = itemURL.substring(buscarI + 11, itemURL.length);
+                url = `/productoCard/${id}`;
+              } else if (itemURL.indexOf("/app/profile/offers") !== -1) {
+                //-------------------|-----------------------------
+                url = "/perfil/OFERTAS REALIZADAS";
+              } else if (
+                itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
+              ) {
+                //---------------|---------------------------------
+                buscarI = itemURL.indexOf(
+                  "/app/profile/buys-detail?idoperacion="
+                );
+                id = itemURL.substring(buscarI + 45, itemURL.length);
+                url = `/perfil/MIS COMPRAS/${id}`;
+              } else if (itemURL.indexOf("idtienda=") !== -1) {
+                //---------------|---------------------------------
+                buscarI = itemURL.indexOf("idtienda=");
+                id = itemURL.substring(buscarI + 9, itemURL.length);
+                const llamada = new FormData();
+                llamada.append("idcliente", userLog);
+                llamada.append("idtienda", id);
+                LoginAPI(llamada, "tiendas", "detail").then((res) => {
+                  if (res.status === "success") {
+                    url = `/roperos/${id}/${res.result.nombre}`;
+                  } else {
+                    url = "/roperos";
+                  }
+                });
+              } else if (
+                itemURL.indexOf("/app/profile-showroom/offers") !== -1
+              ) {
+                //-------------------|-----------------------------
+                url = "/perfil";
+              } else if (
+                itemURL.indexOf("/app/profile-showroom/transfers") !== -1
+              ) {
+                //------------------|------------------------------
+                url = "/perfil";
+              } else if (itemURL.indexOf("/app/cart") !== -1) {
+                //--------------------------|----------------------
+                url = "/carrito";
+              } else if (itemURL.indexOf("/app/profile-showroom") !== -1) {
+                //--------------------|----------------------------
+                url = "/perfil";
+              } else if (itemURL === "#") {
+                url = false;
+              } else {
+                //--------------------|-----------------------------
+                url = itemURL;
+              }
+            }
             return (
               <>
                 <div
-                  key={id}
                   className="desktopCard"
-                  onClick={() => {
-                    console.log(noti.url);
-                    navigate(noti.url);
-                  }}
+                  key={i}
+                  onClick={
+                    url === false
+                      ? null
+                      : () => window.location.assign(`${url}`)
+                  }
                 >
                   <div className="notiData">
                     <div>
                       <img src={MRlogoGrande} alt="mrLogo" />
                     </div>
                     <div>
-                      <p className="notiTitle">{noti.titulo}</p>
-                      <p className="notiDate">{formatoFecha(noti.fecha)}</p>
-                      <p className="notiMessage">{noti.texto}</p>
+                      <p className="notiTitle">{item.titulo}</p>
+                      <p className="notiDate">{formatoFecha(item.fecha)}</p>
+                      <p className="notiMessage">{item.texto}</p>
                     </div>
                   </div>
                 </div>
                 <div
-                  key={`mobile${id}`}
+                  key={`mobile${i}`}
                   className="mobileCard"
-                  onClick={() => {
-                    navigate(`/perfil/MI CHAT`);
-                  }}
+                  onClick={
+                    url === false
+                      ? null
+                      : () => window.location.assign(`${url}`)
+                  }
                 >
                   <img src={MRlogoGrande} alt="mrLogo" />
                   <div>
-                    <p className="notiTitle">{noti.titulo}</p>
-                    <p className="notiDate">{formatoFecha(noti.fecha)}</p>
-                    <p className="notiMessage">{noti.texto}</p>
+                    <p className="notiTitle">{item.titulo}</p>
+                    <p className="notiDate">{formatoFecha(item.fecha)}</p>
+                    <p className="notiMessage">{item.texto}</p>
                   </div>
                 </div>
               </>

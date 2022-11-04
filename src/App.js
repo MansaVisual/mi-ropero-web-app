@@ -31,6 +31,9 @@ import Error from "./views/404error/error";
 import Maintance from "./views/Maintance/Maintance";
 import About from "./views/About/About";
 import Notifications from "./views/Notifications/Notifications";
+import BtnArrepentimiento from "./views/CancelacionCompra/CancelacionCompra";
+import CancelacionCompra from "./views/CancelacionCompra/CancelacionCompra";
+import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 
 function App() {
   useEffect(() => {
@@ -127,6 +130,14 @@ function App() {
                       <Route
                         path="notificaciones"
                         element={<Notifications />}
+                      />
+                      <Route
+                        path="cancelacionCompra"
+                        element={<CancelacionCompra />}
+                      />
+                      <Route
+                        path="cancelacionCompraOk"
+                        element={<CancelacionCompraOk />}
                       />
                     </Routes>
                     <Footer />
