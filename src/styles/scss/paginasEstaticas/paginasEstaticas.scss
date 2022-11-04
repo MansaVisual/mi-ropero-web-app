@@ -214,14 +214,3 @@
     }
   }
 }
-
-.aboutContainer {
-  margin-top: 65px;
-  margin-bottom: 80px;
-  @include screen_705 {
-    margin: 45px 16px 45px 16px;
-  }
-  .breadCrumbs {
-    margin-left: 72px;
-  }
-}
