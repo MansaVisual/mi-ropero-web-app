@@ -103,6 +103,7 @@
             width: 90%;
           }
           .chatMsg {
+            word-wrap: break-word;
             white-space: pre-wrap;
             word-break: keep-all;
             margin: 0;
@@ -192,7 +193,7 @@
       transition: all 0.3s cubic-bezier(0.88, 0.19, 0.37, 1.11);
       font-family: "Open Sans", sans-serif;
     }
-    .sendNewMessage input {
+    .sendNewMessage textarea {
       flex-grow: 1;
       padding: 0 15px;
       background-color: transparent;
