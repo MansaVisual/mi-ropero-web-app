@@ -84,86 +84,78 @@ const CancelacionCompra = () => {
               <p>Debe aceptar los términos y condiciones</p>
             </div>
           )}
-          <div className="inputContainer">
-            <div className="inputBox">
-              <p className="labelInput" id="labelAlias">
-                ID de la operación *
-              </p>
-              <TextField
-                color="primary"
-                className="input"
-                size="small"
-                id="alias"
-                type="number"
-                placeholder="número de operación"
-                value={form.idOperacion}
-                onChange={(e) => {
-                  setForm({ ...form, idOperacion: e.target.value });
-                  setCampoObligatorio(false);
-                }}
-              />
-            </div>
-            <div className="inputBox"></div>
-          </div>
-          <div className="inputContainer">
-            <div className="textAreaBox">
-              <span className="label1">Mensaje</span>
-              <TextField
-                multiline
-                rows={4}
-                id="infoAdicional"
-                color="primary"
-                className="textArea"
-                size="small"
-                placeholder="Contános los motivos por los cuales querés cancelar la operación."
-                value={form.mensaje}
-                onChange={(e) => {
-                  setForm({ ...form, mensaje: e.target.value });
-                  setCampoObligatorio(false);
-                }}
-                inputProps={{ maxLength: 50 }}
-              />
-            </div>
-          </div>
-          <div className="checkBoxSection">
-            <input
-              type="checkbox"
-              value={checkBox}
-              onClick={() => {
-                setCheckBox(!checkBox);
-                setAceptarTerminosError(false);
-              }}
-              className="checkBox"
-            />
-            {/* <FormControlLabel
-              name="sucursal"
-              control={<Checkbox sx={{ fontSize: "24px" }} />}
-              id="nuevaDir"
-               checked={usaDireccionCargada ? true : false} 
-              value="setDireccion"
-               disabled={buscandoDir ? true : false}
-            /> */}
-            <p
-              className="labelForm"
-              htmlFor="nuevaDir"
-              style={{ cursor: "pointer" }}
-            >
-              Acepto los <span>términos y condiciones</span>
+        </div>
+        <div className="inputContainer">
+          <div className="inputBox">
+            <p className="labelInput" id="labelAlias">
+              ID de la operación *
             </p>
+            <TextField
+              color="primary"
+              className="input"
+              size="small"
+              id="alias"
+              type="number"
+              placeholder="número de operación"
+              value={form.idOperacion}
+              onChange={(e) => {
+                setForm({ ...form, idOperacion: e.target.value });
+                setCampoObligatorio(false);
+              }}
+            />
           </div>
-          <div className="buttonContainer">
-            {loading ? (
-              <Loader spin={"spinnerM"} />
-            ) : (
-              <Button className="sendButton" onClick={() => handleSubmit()}>
-                ENVIAR
-              </Button>
-            )}
+          <div className="inputBox"></div>
+        </div>
+        <div className="inputContainer">
+          <div className="textAreaBox">
+            <span className="label1">Mensaje</span>
+            <TextField
+              multiline
+              rows={4}
+              id="infoAdicional"
+              color="primary"
+              className="textArea"
+              size="small"
+              placeholder="Contános los motivos por los cuales querés cancelar la operación."
+              value={form.mensaje}
+              onChange={(e) => {
+                setForm({ ...form, mensaje: e.target.value });
+                setCampoObligatorio(false);
+              }}
+              inputProps={{ maxLength: 50 }}
+            />
           </div>
-          <div className="returnLink" onClick={() => navigate(`/perfil`)}>
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A INICIO</p>
-          </div>
+        </div>
+        <div className="checkBoxSection">
+          <input
+            type="checkbox"
+            value={checkBox}
+            onClick={() => {
+              setCheckBox(!checkBox);
+              setAceptarTerminosError(false);
+            }}
+            className="checkBox"
+          />
+          <p
+            className="labelForm"
+            htmlFor="nuevaDir"
+            style={{ cursor: "pointer" }}
+          >
+            Acepto los <span>términos y condiciones</span>
+          </p>
+        </div>
+        <div className="buttonContainer">
+          {loading ? (
+            <Loader spin={"spinnerM"} />
+          ) : (
+            <Button className="sendButton" onClick={() => handleSubmit()}>
+              ENVIAR
+            </Button>
+          )}
+        </div>
+        <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+          <img src={leftArrow} alt="leftArrow" />
+          <p>VOLVER A INICIO</p>
         </div>
       </div>
     </div>

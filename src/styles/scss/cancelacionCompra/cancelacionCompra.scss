@@ -1,5 +1,10 @@
 .cancelacionPage {
+  display: flex;
+  justify-content: center;
   padding: 30px 72px;
+  @include screen_705 {
+    padding: 30px 16px;
+  }
   .cancelacionBody {
     margin-top: 40px;
     margin-bottom: 80px;
@@ -16,8 +21,6 @@
     .titleSection {
       @include screen_705 {
         width: 100%;
-        display: flex;
-        justify-content: center;
       }
       .title {
         margin-top: 24px;
@@ -34,14 +37,6 @@
           max-width: 370px;
         }
       }
-    }
-
-    .formObligatorio {
-      border: 0.5px solid #ff3f20 !important;
-      border-radius: 4px !important;
-    }
-    .formObligatorioTitle {
-      color: #ff3f20 !important;
     }
 
     .inputContainer {
