@@ -68,6 +68,19 @@ const FAQ = () => {
     "Una prenda se muestra mejor cuando se luce, no pierdas esa posibilidad, sacate fotos usando la prenda.",
     "No incluyas datos de contacto como mails, direcciones, teléfonos o link a redes sociales, ni subas imágenes inapropiadas, evita sanciones.",
   ];
+  const comoCompro = [
+    "• Comprar en Mi Ropero es Gratis!",
+    "• Ingresa con tu usuario",
+    "• Escribí que estas buscando.",
+    "• Selecciona lo que te gusta",
+    "• Sumalas al Carrito.",
+    "• Compra.",
+    "• Selecciona o carga la dirección donde queres recibir la compra. (Mis Direcciones)",
+    "• Selecciona como queres recibirla, puede ser por OCA o servicio de MOTO habilitado para CABA y próximamente GBA (Envío)",
+    "• Elegí como pagar: (usamos Mercado Pago)",
+    "• Espera a que te lleguen las prendas, te enviaremos un mail con el Link de seguimiento.",
+    "• Cuando llega tu pedido asegurate que sea lo que vos seleccionaste y si esta todo OK, no te olvides de calificar al vendedor (Como Calificar)",
+  ];
   return (
     <div className="FAQPage">
       <div className="FAQBody">
@@ -307,6 +320,12 @@ const FAQ = () => {
                 base para tu calificación, acordate que mejor calificado estás
                 mas exposición ganas.
               </Typography>
+              <Typography className="questionTitle">Ropa usada:</Typography>
+              {miTiendaConfig3.map((res, i) => (
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
+              ))}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -378,13 +397,13 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 Cuando realizas una venta, es decir cuando el pago esta
                 realizado y aprobado, podrás ver tu venta en Mi Tienda/Venta,
                 tendrás que filtrar por Pago Realizado y seleccionar el producto
                 vendido.
               </Typography>
-              <Typography>
+              <Typography className="answerText">
                 En el detalle podrás ver la Fecha en que se realizo la venta y
                 el Nro. De Pedido, el producto que vendiste, el detalle del
                 envío, la forma de pago y el resumen de la venta, donde podrás
@@ -434,7 +453,163 @@ const FAQ = () => {
               <Typography>
                 Envolve el pedido y espera a que llegue la moto.
               </Typography>
-              <img src={foto2} alt="foto2" />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel11"}
+            onChange={handleChange("panel11")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel11-content"
+              id="panel11-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.5.1 ¿Cómo cobro Mis Ventas?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Una vez que te califiquen de manera satisfactoria, tu comprador
+                o nosotros (máximo 48hs), podrás ver disponible tu dinero en Tu
+                Tienda/ Cuenta Corriente. En ese momento podrás pedir una
+                transferencia a tu cuenta bancaria o podrás utilizar el crédito
+                para realizar una compra en Mi Ropero.
+              </Typography>
+              <Typography>
+                En el caso que pidas una transferencia, lo tenes que hacer desde
+                Mi Tienda/Cuenta Corriente/Solicitar Transferencia. Deberás
+                ingresar los datos de la cuenta donde queres que realicemos la
+                transferencia. El dinero solicitado estará disponible en tu
+                cuenta bancaria en 48/72hs. dependiendo de cada banco.
+              </Typography>
+              <Typography>
+                Recorda que vas a tener disponible el dinero de la venta (menos
+                el 18% de la comisión) luego de una calificación satisfactoria.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel12"}
+            onChange={handleChange("panel12")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel12-content"
+              id="panel12-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                5. ¿Cómo compro?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>Es muy fácil, rápido, seguro y conómico.</Typography>
+              {comoCompro.map((res, i) => (
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
+              ))}
+              <Typography>Listo!. A disfrutar de tu nueva Prenda!</Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel13"}
+            onChange={handleChange("panel13")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel13-content"
+              id="panel13-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                6. Medios de Pago
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Por el momento solo operamos con Mercado Pago, próximamente
+                estaremos ampliando con otros Medios de Pago. Al momento de
+                realizar el pago se abrirá una pagina que te llevara a Mercado
+                Pago para que puedas realizar el pago, con tarjeta de crédito,
+                debito, o en efectivo por los medios de pago que propone Mercado
+                Pago.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel14"}
+            onChange={handleChange("panel14")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel14-content"
+              id="panel14-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                6.1. ¿Cuáles son los medios de pago?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Dependiendo del destino, podrás seleccionar la forma de envío:
+                Podes recibir tu pedido en cualquier parte del país, en tu
+                domicilio o en una sucursal de OCA . Los envíos se realizan a
+                través de Oca y tenes servicio de Moto, por el momento, solo
+                para CABA próximamente ampliaremos a GBA. En el proceso de
+                compras vas a tener la posibilidad de elegir el método de envío
+                disponible .
+              </Typography>
+              <Typography className="questionTitle">Importante:</Typography>
+              <Typography className="answerText">
+                Si el Método de envío que seleccionas es “Envío por Moto”, tene
+                en cuenta que:
+              </Typography>
+              <Typography className="answerText">
+                • Si compras antes de las 14hs el pedido llega en el día. ( en
+                fechas festivas pueden surgir demoras).
+              </Typography>
+              <Typography className="answerText">
+                •Si compras después de las 14hs el pedido se programa para el
+                día siguiente.
+              </Typography>
+              <Typography className="answerText">
+                En ambos casos recibirás un mail notificando el día y hora de
+                entrega y link de seguimiento.
+              </Typography>
+              <Typography className="answerText">
+                Vendedorxs y Compradxs deberán estar atentos a las
+                notificaciones de despacho y entrega.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel15"}
+            onChange={handleChange("panel15")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel15-content"
+              id="panel15-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                7. Medio de envío
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="questionTitle">Importante:</Typography>
+              <Typography className="answerText">
+                Si el Método de envío que seleccionas es “Envío por Moto”, tene
+                en cuenta que:
+              </Typography>
+              <Typography className="answerText">
+                • Si compras antes de las 14hs el pedido llega en el día. ( en
+                fechas festivas pueden surgir demoras).
+              </Typography>
             </AccordionDetails>
           </Accordion>
         </div>
