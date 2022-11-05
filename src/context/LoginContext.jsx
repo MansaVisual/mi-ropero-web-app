@@ -130,10 +130,14 @@ export const LoginContext = ({ children }) => {
   };
 
   const AppleLogin = (data) => {
+    console.log(data);
+
     const log = new FormData();
     log.append("social_login_type", 3);
     log.append("social_login_id", data.authorization.id_token);
     LoginAPI(log, "clientes", "login_social").then((res) => {
+      console.log(res);
+
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
