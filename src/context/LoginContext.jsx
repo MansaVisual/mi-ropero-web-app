@@ -98,7 +98,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        window.location.replace("https://mi-ropero-web-app.vercel.app/");
+        window.location.replace("https://www.miropero.ar/");
       } else if (res.status === "error") {
         if (res.result === "El social_login_id y/o social_login no existen") {
           FacebookRegister(loginData);
