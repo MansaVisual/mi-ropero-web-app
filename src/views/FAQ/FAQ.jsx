@@ -233,20 +233,24 @@ const FAQ = () => {
                 Una vez que cargaste un producto por primera vez, te va a
                 aparecer en el Zócalo inferior Mi Tienda.
               </Typography>
-              <Typography>En esta sección vas a poder:</Typography>
+              <Typography className="answerText">
+                En esta sección vas a poder:
+              </Typography>
               <Typography className="questionTitle">Tienda:</Typography>
               {miTiendaConfig1.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
               <Typography className="questionTitle">Productos:</Typography>
-              <Typography>
+              <Typography className="answerText">
                 • Vas a poder ver los productos que cargaste, vas a poder cargar
                 mas productos y hacer modificaciones si lo necesitas o eliminar
                 productos que ya no vendes.
               </Typography>
               <Typography className="questionTitle">Ventas:</Typography>
               {miTiendaConfig2.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
               ))}
               <Typography className="questionTitle">Ofertas:</Typography>
               <Typography>
@@ -304,12 +308,54 @@ const FAQ = () => {
               {miTiendaConfig3.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
-              <Typography>Estado de una Prenda:</Typography>
+              <Typography className="questionTitle">
+                Estado de una Prenda:
+              </Typography>
               {miTiendaConfig4.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
-              <Typography>Tips de Fotos:</Typography>
+              <Typography className="questionTitle">Tips de Fotos:</Typography>
               {miTiendaConfig5.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel7"}
+            onChange={handleChange("panel7")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel7-content"
+              id="panel7-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.2.1 Estado de una Prenda:
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {miTiendaConfig4.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel8"}
+            onChange={handleChange("panel8")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel8-content"
+              id="panel8-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.3 Tips de Fotos:
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {miTiendaConfig4.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
             </AccordionDetails>
