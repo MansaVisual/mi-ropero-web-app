@@ -28,7 +28,7 @@ const DetalleCompra = () => {
       navigate("/perfil");
     } else {
       const dir = new FormData();
-      dir.append("idcliente", 36);
+      dir.append("idcliente", userLog);
       dir.append("idoperacion", compraId);
       PerfilAPI(dir, "operaciones", "get").then((res) => {
         if (res.status === "success") {

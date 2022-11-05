@@ -56,7 +56,7 @@ useEffect(()=>{
       notis.append("bypage", 10);
       notis.append("page", 0);
       notis.append("estado", type);
-      notis.append("idcliente", 36);
+      notis.append("idcliente", userLog);
       LoginAPI(notis, "pushs", "all").then((res) => {
         console.log(res);
         setLoading(false);
@@ -86,7 +86,7 @@ useEffect(()=>{
     notis.append("bypage", 10);
     notis.append("page", value);
     notis.append("estado", type);
-    notis.append("idcliente", 36);
+    notis.append("idcliente", userLog);
     LoginAPI(notis, "pushs", "all").then((res) => {
       console.log(res);
       if (res.status === "success") {

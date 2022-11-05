@@ -65,7 +65,7 @@ export const LoginContext = ({ children }) => {
       notis.append("bypage", 7);
       notis.append("page", 0);
       notis.append("estado", 1);
-      notis.append("idcliente", 36);
+      notis.append("idcliente", userLog);
 
       LoginAPI(notis, "pushs", "all").then((res) => {
         setBuscandoNotis(false);

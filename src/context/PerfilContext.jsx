@@ -78,7 +78,7 @@ export const PerfilContext = ({ children }) => {
     let array = [];
 
     const dir = new FormData();
-    dir.append("comprador_id", 36);
+    dir.append("comprador_id", userLog);
     dir.append("estado", itemEstadoSelecc);
     dir.append("page", 0);
     dir.append("bypage", 10);
