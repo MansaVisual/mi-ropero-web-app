@@ -7,6 +7,7 @@ import MRlogoGrande from "../../assets/img/MRlogoGrande.png";
 import downloadGoogle from "../../assets/img/downloadGoogle.png";
 import downloadApple from "../../assets/img/downloadApple.png";
 import YoutubeEmbed from "../../components/YoutubeEmbed/YoutubeEmbed";
+import { Link } from "@mui/material";
 
 const About = () => {
   return (
@@ -23,15 +24,21 @@ const About = () => {
                 Vendé lo que no usas y comprá lo que querés.
               </p>
               <p className="bottomText">Todo desde Mi Ropero</p>
-              <button>MIRÁ NUESTRO VIDEO PRESENTACIÓN</button>
+              <a href="#video">
+                <button>MIRÁ NUESTRO VIDEO PRESENTACIÓN</button>
+              </a>
             </div>
             <img src={about1} alt="about1Img" />
           </div>
           <div className="responsiveButtons">
             <button>MIRÁ NUESTRO VIDEO PRESENTACIÓN</button>
             <div>
-              <img src={downloadApple} alt="appleStore" />
-              <img src={downloadGoogle} alt="googlePlay" />
+              <Link href="https://apps.apple.com/us/app/mi-ropero/id1515990319">
+                <img src={downloadApple} alt="appleStore" />
+              </Link>
+              <Link href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero">
+                <img src={downloadGoogle} alt="googlePlay" />
+              </Link>
             </div>
           </div>
           <div className="bannerFooter">
@@ -40,8 +47,12 @@ const About = () => {
               <p>FAQs</p>
             </div>
             <div>
-              <img src={downloadApple} alt="appleStore" />
-              <img src={downloadGoogle} alt="googlePlay" />
+              <Link href="https://apps.apple.com/us/app/mi-ropero/id1515990319">
+                <img src={downloadApple} alt="appleStore" />
+              </Link>
+              <Link href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero">
+                <img src={downloadGoogle} alt="googlePlay" />
+              </Link>
             </div>
           </div>
           <div className="infoSection">
@@ -56,8 +67,12 @@ const About = () => {
                   <p className="rightText">Disponible para iOS y Android</p>
                   <div className="absoluteContainer">
                     <div>
-                      <img src={downloadApple} alt="appleStore" />
-                      <img src={downloadGoogle} alt="googlePlay" />
+                      <Link href="https://apps.apple.com/us/app/mi-ropero/id1515990319">
+                        <img src={downloadApple} alt="appleStore" />
+                      </Link>
+                      <Link href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero">
+                        <img src={downloadGoogle} alt="googlePlay" />
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -85,8 +100,12 @@ const About = () => {
                 <p className="firstText">DESCARGÁ LA APP</p>
                 <p className="secondText">Disponible para iOS y Android</p>
                 <div className="socialButtons">
-                  <img src={downloadApple} alt="appleStore" />
-                  <img src={downloadGoogle} alt="googlePlay" />
+                  <Link href="https://apps.apple.com/us/app/mi-ropero/id1515990319">
+                    <img src={downloadApple} alt="appleStore" />
+                  </Link>
+                  <Link href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero">
+                    <img src={downloadGoogle} alt="googlePlay" />
+                  </Link>
                 </div>
               </div>
               <div>
@@ -108,8 +127,12 @@ const About = () => {
               <div>
                 <img src={about2} alt="benefitSection" />
                 <div>
-                  <img src={downloadApple} alt="appleStore" />
-                  <img src={downloadGoogle} alt="googlePlay" />
+                  <Link href="https://apps.apple.com/us/app/mi-ropero/id1515990319">
+                    <img src={downloadApple} alt="appleStore" />
+                  </Link>
+                  <Link href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero">
+                    <img src={downloadGoogle} alt="googlePlay" />
+                  </Link>
                 </div>
               </div>
               <div className="benefitList">
@@ -132,14 +155,14 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="videoSection">
+          <div className="videoSection" id="video">
             <YoutubeEmbed />
           </div>
-          <div className="bottomSection">
+          {/* <div className="bottomSection">
             <img src={MRlogoGrande} alt="mrLogo" />
             <p>Vendé lo que no usas y comprá lo que querés.</p>
             <button>VOLVER A LA TIENDA</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

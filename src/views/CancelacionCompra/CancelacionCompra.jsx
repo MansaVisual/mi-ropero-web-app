@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -20,7 +20,6 @@ const CancelacionCompra = () => {
   const [campoObligatorio, setCampoObligatorio] = useState(false);
   const [aceptarTerminosError, setAceptarTerminosError] = useState(false);
   const [loading, setLoading] = useState(false);
-
 
   useEffect(() => {
     window.scrollTo({
@@ -134,23 +133,25 @@ const CancelacionCompra = () => {
             />
           </div>
         </div>
-        <div className="checkBoxSection">
-          <input
-            type="checkbox"
-            value={checkBox}
-            onClick={() => {
-              setCheckBox(!checkBox);
-              setAceptarTerminosError(false);
-            }}
-            className="checkBox"
-          />
-          <p
-            className="labelForm"
-            htmlFor="nuevaDir"
-            style={{ cursor: "pointer" }}
-          >
-            Acepto los <span>términos y condiciones</span>
-          </p>
+        <div className="checkBoxContainer">
+          <div className="checkBoxSection">
+            <input
+              type="checkbox"
+              value={checkBox}
+              onClick={() => {
+                setCheckBox(!checkBox);
+                setAceptarTerminosError(false);
+              }}
+              className="checkBox"
+            />
+            <p
+              className="labelForm"
+              htmlFor="nuevaDir"
+              style={{ cursor: "pointer" }}
+            >
+              Acepto los <span>términos y condiciones</span>
+            </p>
+          </div>
         </div>
         <div className="buttonContainer">
           {loading ? (
