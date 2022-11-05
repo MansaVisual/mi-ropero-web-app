@@ -21,6 +21,28 @@ const Notifications = () => {
   const [pags, setPags] = useState(1);
   const { userLog, LoginAPI } = useContext(UseLoginContext);
 
+  const [num,setNum]=useState(1)
+
+  useEffect(()=>{
+    setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, 1000);
+    if(num===1){
+        setNum(2)
+    }
+},[])// eslint-disable-line react-hooks/exhaustive-deps
+
+useEffect(()=>{
+  if(num!==1){
+      if(userLog===""){
+          navigate("/login")
+      }
+  }
+},[num])// eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (userLog !== "") {
       let type;
