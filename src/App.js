@@ -33,12 +33,13 @@ import About from "./views/About/About";
 import Notifications from "./views/Notifications/Notifications";
 import CancelacionCompra from "./views/CancelacionCompra/CancelacionCompra";
 import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
+import FAQ from "./views/FAQ/FAQ";
 
 function App() {
   useEffect(() => {
-    fetch('MiRoperoApiDataGetway.php',{
-      method:"GET",
-    }).then((res)=>console.log(res))
+    fetch("MiRoperoApiDataGetway.php", {
+      method: "POST",
+    }).then((res) => console.log(res));
 
     const handleFooterClick = (e) => {
       if (e.target.id === "Ropa") {
@@ -142,6 +143,7 @@ function App() {
                         path="cancelacionCompraOk"
                         element={<CancelacionCompraOk />}
                       />
+                      <Route path="FAQ" element={<FAQ />} />
                     </Routes>
                     <Footer />
                   </ThemeProvider>

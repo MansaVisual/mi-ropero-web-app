@@ -163,7 +163,7 @@ const MiChat = () => {
               </div>
               <div className="content__footer">
                 <div className="sendNewMessage">
-                  <input
+                  <textarea
                     type="text"
                     placeholder="Escribe un mensaje"
                     onChange={(e) => setMensaje(e.target.value)}
