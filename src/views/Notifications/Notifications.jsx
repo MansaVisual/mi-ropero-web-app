@@ -252,7 +252,15 @@ useEffect(()=>{
                   onClick={
                     url === false
                       ? null
-                      : () => window.location.assign(`${url}`)
+                      : () => {
+                        const not = new FormData()
+                        not.append("idpush",item.idpush)
+                        LoginAPI(
+                          not,
+                          "pushs",
+                          "readed"
+                        )
+                        window.location.assign(`${url}`)}
                   }
                 >
                   <div className="notiData">
