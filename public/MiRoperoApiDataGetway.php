@@ -13,7 +13,7 @@
 	* @USER
 	* @PASS
 	**/	
-$apidata_url  = "https://soap.miropero.pupila.biz";
+$apidata_url  = "https://apidata.miropero.com.ar";
 $apidata_user = "pruebas";
 $apidata_pass = "786512497638AA";
 

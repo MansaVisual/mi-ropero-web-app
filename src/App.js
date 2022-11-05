@@ -37,7 +37,7 @@ import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 function App() {
   useEffect(() => {
     fetch('MiRoperoApiDataGetway.php',{
-      method:"POST",
+      method:"GET",
     }).then((res)=>console.log(res))
 
     const handleFooterClick = (e) => {
