@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import foto1 from "../../assets/FAQ/1.png";
+import foto2 from "../../assets/FAQ/2.png";
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
@@ -238,7 +239,9 @@ const FAQ = () => {
               </Typography>
               <Typography className="questionTitle">Tienda:</Typography>
               {miTiendaConfig1.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
               ))}
               <Typography className="questionTitle">Productos:</Typography>
               <Typography className="answerText">
@@ -253,22 +256,22 @@ const FAQ = () => {
                 </Typography>
               ))}
               <Typography className="questionTitle">Ofertas:</Typography>
-              <Typography>
+              <Typography className="answerText">
                 • Vas a poder ver las Ofertas Recibidas que te hicieron
                 potenciales vendedorxs y contestar aceptando o contra ofertando.
               </Typography>
               <Typography className="questionTitle">Mensajes:</Typography>
-              <Typography>
+              <Typography className="answerText">
                 • Vas a poder ver los mensajes que te enviaron potenciales
                 compradorxs
               </Typography>
               <Typography className="questionTitle">Calificaciones:</Typography>
-              <Typography>
+              <Typography className="answerText">
                 • Vas a poder ver las calificaciones y comentarios que te
                 hicieron tus compradorxs
               </Typography>
               <Typography className="questionTitle">Transferencias:</Typography>
-              <Typography>
+              <Typography className="answerText">
                 • Vas a poder ver el detalle de las transferencias que
                 solicitaste y el estado.
               </Typography>
@@ -290,34 +293,20 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 La primera impresión es lo que cuenta, no pierdas la oportunidad
                 de lucir las prendas que queres vender.
               </Typography>
-              <Typography>
+              <Typography className="answerText">
                 Usado no significa roto o sucio. Una prenda usada y en buen
                 estado es una prenda que le podemos dar una segunda oportunidad.
               </Typography>
-              <Typography>
+              <Typography className="answerText">
                 Pensa que quien te compro tu prenda espera recibirla tal cual lo
                 detallaste en las características y en las fotos. Ésta será la
                 base para tu calificación, acordate que mejor calificado estás
                 mas exposición ganas.
               </Typography>
-              <Typography className="questionTitle">Ropa Usada:</Typography>
-              {miTiendaConfig3.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
-              ))}
-              <Typography className="questionTitle">
-                Estado de una Prenda:
-              </Typography>
-              {miTiendaConfig4.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
-              ))}
-              <Typography className="questionTitle">Tips de Fotos:</Typography>
-              {miTiendaConfig5.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
-              ))}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -336,7 +325,9 @@ const FAQ = () => {
             </AccordionSummary>
             <AccordionDetails>
               {miTiendaConfig4.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
               ))}
             </AccordionDetails>
           </Accordion>
@@ -355,9 +346,95 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {miTiendaConfig4.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
+              {miTiendaConfig5.map((res, i) => (
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
               ))}
+              <Typography className="questionTitle">
+                ¿Porque no puedo ver las Fotos de Mi Galería?
+              </Typography>
+              <Typography className="questionTitle">
+                Cuando publicas imágenes tene en cuenta que si no habilitas tu
+                celular para que la app MI Ropero puedo ingresara a tu galería
+                de fotos, no vas a poder seleccionarlas. Te recomendamos que
+                ingreses a la configuración de tu teléfono y verifiques si estas
+                habilitando a MI Ropero para que ingrese a tu Galería de Fotos.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel9"}
+            onChange={handleChange("panel9")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel9-content"
+              id="panel9-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.4 ¿Dónde veo el detalle de mis ventas?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Cuando realizas una venta, es decir cuando el pago esta
+                realizado y aprobado, podrás ver tu venta en Mi Tienda/Venta,
+                tendrás que filtrar por Pago Realizado y seleccionar el producto
+                vendido.
+              </Typography>
+              <Typography>
+                En el detalle podrás ver la Fecha en que se realizo la venta y
+                el Nro. De Pedido, el producto que vendiste, el detalle del
+                envío, la forma de pago y el resumen de la venta, donde podrás
+                ver el detalle de la venta y cual es el total de la operación
+                (cuanto dinero te queda luego de aplicada nuestra comisión por
+                el servicio de venta)
+              </Typography>
+              <img src={foto2} alt="foto2" />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel10"}
+            onChange={handleChange("panel10")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel10-content"
+              id="panel10-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.5 ¿Cómo realizo el envío?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Una vez que el pago esta realizado se te avisa por mail y por
+                notificación que la venta se realizo satisfactoriamente. Deberás
+                ingresar a Tienda/Venta seleccionar el producto vendido y
+                verificar que medio de envío eligieron.
+              </Typography>
+              <Typography>Si el Envío es por OCA</Typography>
+              <Typography>
+                Deberás seleccionar la sucursal desde donde realizaras el envío
+                e imprimir la etiqueta, envolve el pedido y pega la etiqueta en
+                el exterior del embalaje. Tenes 5 días hábiles para realizar el
+                envío.
+              </Typography>
+              <Typography>Si el Envío es por Moto</Typography>
+              <Typography>
+                Si la venta se realizo antes de las 14hs, se enviara una moto a
+                tu domicilio durante el día. En caso de que la compra se haya
+                realizado después de las 14hs, se enviara una moto al día
+                siguiente día hábil. Se te enviaran notificaciones/mail
+                avisándote que estes atentx a la llegada de la moto.
+              </Typography>
+              <Typography>
+                Envolve el pedido y espera a que llegue la moto.
+              </Typography>
+              <img src={foto2} alt="foto2" />
             </AccordionDetails>
           </Accordion>
         </div>
