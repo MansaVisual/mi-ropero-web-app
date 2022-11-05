@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import foto1 from "../../assets/FAQ/1.png"
+import foto1 from "../../assets/FAQ/1.png";
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
@@ -214,30 +214,6 @@ const FAQ = () => {
           <Accordion
             expanded={expanded === "panel5"}
             onChange={handleChange("panel5")}
-            className="accordion"
-          >
-            <AccordionSummary
-              aria-controls="panel5-content"
-              id="panel5-header"
-              expandIcon={<ExpandMoreIcon />}
-            >
-              <Typography className="questionTitle">
-                4.1. ¿Cómo configuro Mi Tienda?
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography className="answerText">
-                Para tener una Tienda lo primero que tenes que hacer es Publicar
-                un producto. Vas a tener una Tienda asignada si pones productos
-                a la venta, si solo compras no tenes Tienda. Una vez que
-                cargaste un producto por primera vez, te va a aparecer en el
-                Zócalo inferior Mi Tienda.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel5"}
-            onChange={handleChange("panel5")}
           >
             <AccordionSummary
               aria-controls="panel5-content"
@@ -247,52 +223,69 @@ const FAQ = () => {
               <Typography>4.1. ¿Cómo configuro Mi Tienda?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 Para tener una Tienda lo primero que tenes que hacer es Publicar
                 un producto. Vas a tener una Tienda asignada si pones productos
                 a la venta, si solo compras no tenes Tienda.
               </Typography>
               <img src={foto1} alt="foto1" />
-              <Typography>
+              <Typography className="answerText">
                 Una vez que cargaste un producto por primera vez, te va a
                 aparecer en el Zócalo inferior Mi Tienda.
               </Typography>
               <Typography>En esta sección vas a poder:</Typography>
-              <Typography>Tienda:</Typography>
+              <Typography className="questionTitle">Tienda:</Typography>
               {miTiendaConfig1.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
-              <Typography>Productos:</Typography>
+              <Typography className="questionTitle">Productos:</Typography>
               <Typography>
                 • Vas a poder ver los productos que cargaste, vas a poder cargar
                 mas productos y hacer modificaciones si lo necesitas o eliminar
                 productos que ya no vendes.
               </Typography>
-              <Typography>Ventas:</Typography>
+              <Typography className="questionTitle">Ventas:</Typography>
               {miTiendaConfig2.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
-              <Typography>Ofertas:</Typography>
+              <Typography className="questionTitle">Ofertas:</Typography>
               <Typography>
                 • Vas a poder ver las Ofertas Recibidas que te hicieron
                 potenciales vendedorxs y contestar aceptando o contra ofertando.
               </Typography>
-              <Typography>Mensajes:</Typography>
+              <Typography className="questionTitle">Mensajes:</Typography>
               <Typography>
                 • Vas a poder ver los mensajes que te enviaron potenciales
                 compradorxs
               </Typography>
-              <Typography>Calificaciones:</Typography>
+              <Typography className="questionTitle">Calificaciones:</Typography>
               <Typography>
                 • Vas a poder ver las calificaciones y comentarios que te
                 hicieron tus compradorxs
               </Typography>
-              <Typography>Transferencias:</Typography>
+              <Typography className="questionTitle">Transferencias:</Typography>
               <Typography>
                 • Vas a poder ver el detalle de las transferencias que
                 solicitaste y el estado.
               </Typography>
-              <Typography>Tips de Ventas:</Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            expanded={expanded === "panel6"}
+            onChange={handleChange("panel6")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel6-content"
+              id="panel6-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.2 Tips de Ventas:
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
               <Typography>
                 La primera impresión es lo que cuenta, no pierdas la oportunidad
                 de lucir las prendas que queres vender.
@@ -307,7 +300,7 @@ const FAQ = () => {
                 base para tu calificación, acordate que mejor calificado estás
                 mas exposición ganas.
               </Typography>
-              <Typography>Ropa Usada:</Typography>
+              <Typography className="questionTitle">Ropa Usada:</Typography>
               {miTiendaConfig3.map((res, i) => (
                 <Typography key={i}>{res}</Typography>
               ))}
