@@ -61,10 +61,10 @@
     }
   }
 }
-#panel1d-header
-  > div.MuiAccordionSummary-content.MuiAccordionSummary-contentGutters.css-o4b71y-MuiAccordionSummary-content {
-  padding: 20px 20px 0px 20px;
-  p {
+
+.MuiAccordionSummary-content {
+  .css-1qur8cn-MuiTypography-root {
+    padding: 20px 20px 0px 20px;
     font-family: "Open Sans";
     font-weight: 700;
     font-size: 14px;
@@ -72,6 +72,7 @@
     color: #878787;
   }
 }
+
 #panel1d-header {
   padding: 0px 20px;
 }
@@ -82,7 +83,7 @@
   > div
   > div
   > div.MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-pwcg7p-MuiCollapse-root {
-  padding: 0px 72px;
+  padding: 0px 20px;
   p {
     margin-bottom: 8px;
   }
@@ -99,5 +100,8 @@
     font-size: 13px;
     line-height: 20px;
     color: #878787;
+    a {
+      text-decoration: none;
+    }
   }
 }

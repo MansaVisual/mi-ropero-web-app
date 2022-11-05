@@ -51,6 +51,20 @@ const FAQ = () => {
     "• Si le falta un botón o el cierre no funciona correctamente ponelo en la descripción del producto para que quien lo compre lo sepa.",
     "• Si modificaste la prenda, avisa!., tenes un espacio de “descripción” que podes hacer todas las aclaraciones que consideres necesarias.",
   ];
+  const miTiendaConfig4 = [
+    "• Nueva : Cuando nunca la usaste.",
+    "• Nueva con Etiqueta. Cuando nunca la usaste y tiene etiqueta.",
+    "• Usada. Cuando la usaste y ya no te queda o cambiaste el look.",
+    "• No incluyas datos de contacto como mails, teléfonos o link a redes sociales, evita sanciones.",
+    "• No podes poner a la venta falsificaciones de marcas.",
+  ];
+  const miTiendaConfig5 = [
+    "La calidad de las imágenes que subas es clave, una buena imagen hace que tu prenda se luzca, que de ganas de comprarla.",
+    "Incluí fotos de distintos ángulos para que se puedan ver las características del producto (colores, detalles, texturas, etc.).",
+    "Busca sacar la foto con luz natural, que no sea oscura o con exceso de luz, que los colores, el modelo, la textura, se puedan apreciar.",
+    "Una prenda se muestra mejor cuando se luce, no pierdas esa posibilidad, sacate fotos usando la prenda.",
+    "No incluyas datos de contacto como mails, direcciones, teléfonos o link a redes sociales, ni subas imágenes inapropiadas, evita sanciones.",
+  ];
   return (
     <div className="FAQPage">
       <div className="FAQBody">
@@ -132,18 +146,23 @@ const FAQ = () => {
           <Accordion
             expanded={expanded === "panel2"}
             onChange={handleChange("panel2")}
+            className="accordion"
           >
             <AccordionSummary
               aria-controls="panel2-content"
               id="panel2-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography>2. ¿Cómo lo instalo?</Typography>
+              <Typography className="questionTitle">
+                2. ¿Cómo lo instalo?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Fácil. Ingresando a www.miropero.com.ar , descargate la app
-                (disponibles en IOS y Androide), te registras y listo!
+              <Typography className="answerText">
+                Fácil. Ingresando a{" "}
+                <a href="www.miropero.com.ar">www.miropero.com.ar</a> ,
+                descargate la app (disponibles en IOS y Androide), te registras
+                y listo!
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -151,16 +170,19 @@ const FAQ = () => {
           <Accordion
             expanded={expanded === "panel3"}
             onChange={handleChange("panel3")}
+            className="accordion"
           >
             <AccordionSummary
               aria-controls="panel3-content"
               id="panel3-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography>3. ¿Cómo me registro?</Typography>
+              <Typography className="questionTitle">
+                3. ¿Cómo me registro?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 Tenes que tener un mail o usuario de Facebook, si tenes IOS
                 podes ingresar con tu AppleID
               </Typography>
@@ -170,18 +192,45 @@ const FAQ = () => {
           <Accordion
             expanded={expanded === "panel4"}
             onChange={handleChange("panel4")}
+            className="accordion"
           >
             <AccordionSummary
               aria-controls="panel4-content"
               id="panel4-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography>4. ¿Cómo vendo?</Typography>
+              <Typography className="questionTitle">4. ¿Cómo vendo?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               {comoVendo.map((res, i) => (
-                <Typography key={i}>{res}</Typography>
+                <Typography className="answerText" key={i}>
+                  {res}
+                </Typography>
               ))}
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel5-content"
+              id="panel5-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                4.1. ¿Cómo configuro Mi Tienda?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Para tener una Tienda lo primero que tenes que hacer es Publicar
+                un producto. Vas a tener una Tienda asignada si pones productos
+                a la venta, si solo compras no tenes Tienda. Una vez que
+                cargaste un producto por primera vez, te va a aparecer en el
+                Zócalo inferior Mi Tienda.
+              </Typography>
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -199,10 +248,75 @@ const FAQ = () => {
               <Typography>
                 Para tener una Tienda lo primero que tenes que hacer es Publicar
                 un producto. Vas a tener una Tienda asignada si pones productos
-                a la venta, si solo compras no tenes Tienda. Una vez que
-                cargaste un producto por primera vez, te va a aparecer en el
-                Zócalo inferior Mi Tienda.
+                a la venta, si solo compras no tenes Tienda.
               </Typography>
+              <img src={foto1} alt="foto1" />
+              <Typography>
+                Una vez que cargaste un producto por primera vez, te va a
+                aparecer en el Zócalo inferior Mi Tienda.
+              </Typography>
+              <Typography>En esta sección vas a poder:</Typography>
+              <Typography>Tienda:</Typography>
+              {miTiendaConfig1.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
+              <Typography>Productos:</Typography>
+              <Typography>
+                • Vas a poder ver los productos que cargaste, vas a poder cargar
+                mas productos y hacer modificaciones si lo necesitas o eliminar
+                productos que ya no vendes.
+              </Typography>
+              <Typography>Ventas:</Typography>
+              {miTiendaConfig2.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
+              <Typography>Ofertas:</Typography>
+              <Typography>
+                • Vas a poder ver las Ofertas Recibidas que te hicieron
+                potenciales vendedorxs y contestar aceptando o contra ofertando.
+              </Typography>
+              <Typography>Mensajes:</Typography>
+              <Typography>
+                • Vas a poder ver los mensajes que te enviaron potenciales
+                compradorxs
+              </Typography>
+              <Typography>Calificaciones:</Typography>
+              <Typography>
+                • Vas a poder ver las calificaciones y comentarios que te
+                hicieron tus compradorxs
+              </Typography>
+              <Typography>Transferencias:</Typography>
+              <Typography>
+                • Vas a poder ver el detalle de las transferencias que
+                solicitaste y el estado.
+              </Typography>
+              <Typography>Tips de Ventas:</Typography>
+              <Typography>
+                La primera impresión es lo que cuenta, no pierdas la oportunidad
+                de lucir las prendas que queres vender.
+              </Typography>
+              <Typography>
+                Usado no significa roto o sucio. Una prenda usada y en buen
+                estado es una prenda que le podemos dar una segunda oportunidad.
+              </Typography>
+              <Typography>
+                Pensa que quien te compro tu prenda espera recibirla tal cual lo
+                detallaste en las características y en las fotos. Ésta será la
+                base para tu calificación, acordate que mejor calificado estás
+                mas exposición ganas.
+              </Typography>
+              <Typography>Ropa Usada:</Typography>
+              {miTiendaConfig3.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
+              <Typography>Estado de una Prenda:</Typography>
+              {miTiendaConfig4.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
+              <Typography>Tips de Fotos:</Typography>
+              {miTiendaConfig5.map((res, i) => (
+                <Typography key={i}>{res}</Typography>
+              ))}
             </AccordionDetails>
           </Accordion>
         </div>
