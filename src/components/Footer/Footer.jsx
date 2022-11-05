@@ -20,6 +20,7 @@ import {
   FaYoutube,
   FaInstagram,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const footerContent = {
   products: {
@@ -33,6 +34,7 @@ const footerContent = {
 const Footer = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isFooterTab = useMediaQuery("(max-width: 720px)");
+  const navigate = useNavigate()
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
@@ -126,11 +128,14 @@ const Footer = () => {
               </Box>
               <Box sx={{ color: "hsla(151, 100%, 76%, 1)" }}>
                 <Typography
-                  sx={{ pt: isMobile ? "69px" : "48px", lineHeight: "14px" }}
+                  sx={{ pt: isMobile ? "69px" : "48px", lineHeight: "14px",cursor:"pointer" }}
+                  onClick={()=>navigate("/cancelacionCompra")}
                 >
                   ME ARREPENTÍ
                 </Typography>
-                <Typography>(solicitud de cancelación de compra)</Typography>
+                <Typography
+                sx={{cursor:"pointer"}}
+                onClick={()=>navigate("/cancelacionCompra")}>(solicitud de cancelación de compra)</Typography>
               </Box>
             </Box>
             <Box

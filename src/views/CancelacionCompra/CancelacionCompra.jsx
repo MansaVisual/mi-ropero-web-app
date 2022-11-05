@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -20,6 +20,14 @@ const CancelacionCompra = () => {
   const [campoObligatorio, setCampoObligatorio] = useState(false);
   const [aceptarTerminosError, setAceptarTerminosError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  }, []);
 
   const handleSubmit = () => {
     setLoading(true);

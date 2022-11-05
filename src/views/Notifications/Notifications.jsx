@@ -93,7 +93,7 @@ const Notifications = () => {
             color="primary"
             className="selectInput"
             size="small"
-            onChange={(e) => setNotificationsType(e.target.value)}
+            onChange={(e) => {setPags(1);setNotificationsType(e.target.value)}}
             value={notificationsType}
             renderValue={(selected) => {
               if (selected === "") {

@@ -462,7 +462,16 @@ const NavIcons = () => {
                       onClick={
                         url === false
                           ? null
-                          : () => window.location.assign(`${url}`)
+                          : () => {
+                            const not = new FormData()
+                            not.append("idpush",item.idpush)
+                            CartAPI(
+                              not,
+                              "pushs",
+                              "readed"
+                            )
+                            window.location.assign(`${url}`)
+                          }
                       }
                     >
                       {itemURL.indexOf("messagges")!==-1 ?
@@ -533,6 +542,7 @@ const NavIcons = () => {
             margin: "auto",
             cursor:"pointer"
           }}
+          onClick={()=>{handleCloseNotif();navigate("/notificaciones")}}
         >
           <p>
             VER TODAS LAS NOTIFICACIONES
@@ -759,7 +769,7 @@ const NavIcons = () => {
       {userLog !== "" && (
         <IconButton onClick={userLog !== "" && handleClickNotif}>
           <StyledBadge
-            badgeContent={notis.mensajes!==undefined ? notis.mensajes.length > 7 ? 7 : notis.mensajes.length:0}
+            badgeContent={notis.mensajes!==undefined ? notis.total:0}
             color="secondary"
             anchorOrigin={{
               vertical: "top",
