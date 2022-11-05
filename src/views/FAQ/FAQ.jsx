@@ -7,6 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import foto1 from "../../assets/FAQ/1.png"
+
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
 
