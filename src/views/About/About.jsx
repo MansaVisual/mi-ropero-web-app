@@ -27,6 +27,13 @@ const About = () => {
             </div>
             <img src={about1} alt="about1Img" />
           </div>
+          <div className="responsiveButtons">
+            <button>MIRÁ NUESTRO VIDEO PRESENTACIÓN</button>
+            <div>
+              <img src={downloadApple} alt="appleStore" />
+              <img src={downloadGoogle} alt="googlePlay" />
+            </div>
+          </div>
           <div className="bannerFooter">
             <div className="linkContainer">
               <p>¿CÓMO FUNCIONA?</p>
@@ -39,13 +46,21 @@ const About = () => {
           </div>
           <div className="infoSection">
             <p className="infoTitle">¿Cómo funciona?</p>
-            {/*  <div className="stepsContainer">
+            <div className="stepsContainer">
               <div>
                 <p className="leftText">DESCARGÁ LA APP</p>
                 <div className="circle">
                   <p>1</p>
                 </div>
-                <p className="rightText">Disponible para iOS y Android</p>
+                <div className="redirectButtons">
+                  <p className="rightText">Disponible para iOS y Android</p>
+                  <div className="absoluteContainer">
+                    <div>
+                      <img src={downloadApple} alt="appleStore" />
+                      <img src={downloadGoogle} alt="googlePlay" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div>
                 <p className="leftText">VENDÉ LO QUE NO USÁS</p>
@@ -61,9 +76,42 @@ const About = () => {
                 </div>
                 <p className="rightText">Comprás. Recibís. Disfrutás.</p>
               </div>
-            </div> */}
-            {/* <div className="benefits">
-              <img src={about2} alt="benefitSection" />
+            </div>
+            <div className="stepsResponsive">
+              <div>
+                <div className="circle">
+                  <p>1</p>
+                </div>
+                <p className="firstText">DESCARGÁ LA APP</p>
+                <p className="secondText">Disponible para iOS y Android</p>
+                <div className="socialButtons">
+                  <img src={downloadApple} alt="appleStore" />
+                  <img src={downloadGoogle} alt="googlePlay" />
+                </div>
+              </div>
+              <div>
+                <div className="circle">
+                  <p>2</p>
+                </div>
+                <p className="firstText">VENDÉ LO QUE NO USÁS</p>
+                <p className="secondText">Vendés. Enviás. Cobrás.</p>
+              </div>
+              <div>
+                <div className="circle">
+                  <p>3</p>
+                </div>
+                <p className="firstText">COMPRÁ LO QUE QUERÉS</p>
+                <p className="secondText">Comprás. Recibís. Disfrutás.</p>
+              </div>
+            </div>
+            <div className="benefits">
+              <div>
+                <img src={about2} alt="benefitSection" />
+                <div>
+                  <img src={downloadApple} alt="appleStore" />
+                  <img src={downloadGoogle} alt="googlePlay" />
+                </div>
+              </div>
               <div className="benefitList">
                 <img src={MRlogoGrande} alt="logoMR" />
                 <ul className="list">
@@ -82,7 +130,7 @@ const About = () => {
                   </li>
                 </ul>
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="videoSection">
             <YoutubeEmbed />

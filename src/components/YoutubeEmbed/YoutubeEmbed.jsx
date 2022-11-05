@@ -9,7 +9,7 @@ const YoutubeEmbed = () => {
     <div className="video-responsive">
       <iframe
         width="100%"
-        height={isMobile ? "204px" : "665px"}
+        height={isMobile ? "320px" : "665px"}
         src="https://www.youtube.com/embed/0Eucpoysz8M"
         title="YouTube video"
         frameBorder="0"
