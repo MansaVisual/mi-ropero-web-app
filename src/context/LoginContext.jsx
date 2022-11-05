@@ -147,6 +147,7 @@ export const LoginContext = ({ children }) => {
   };
 
   const AppleRegister = (data) => {
+    console.log(data);
     const log = new FormData();
     log.append("social_login_type", 3);
     log.append("social_login_id", data.authorization.id_token);
