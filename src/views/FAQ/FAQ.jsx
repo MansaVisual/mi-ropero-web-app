@@ -9,6 +9,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import foto1 from "../../assets/FAQ/1.png";
 import foto2 from "../../assets/FAQ/2.png";
+import foto3 from "../../assets/FAQ/3.png";
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
@@ -554,7 +555,7 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography className="answerText">
+              {/*               <Typography className="answerText">
                 Dependiendo del destino, podrás seleccionar la forma de envío:
                 Podes recibir tu pedido en cualquier parte del país, en tu
                 domicilio o en una sucursal de OCA . Los envíos se realizan a
@@ -583,7 +584,7 @@ const FAQ = () => {
               <Typography className="answerText">
                 Vendedorxs y Compradxs deberán estar atentos a las
                 notificaciones de despacho y entrega.
-              </Typography>
+              </Typography> */}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -601,6 +602,15 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
+              <Typography className="answerText">
+                Dependiendo del destino, podrás seleccionar la forma de envío:
+                Podes recibir tu pedido en cualquier parte del país, en tu
+                domicilio o en una sucursal de OCA . Los envíos se realizan a
+                través de Oca y tenes servicio de Moto, por el momento, solo
+                para CABA próximamente ampliaremos a GBA. En el proceso de
+                compras vas a tener la posibilidad de elegir el método de envío
+                disponible .
+              </Typography>
               <Typography className="questionTitle">Importante:</Typography>
               <Typography className="answerText">
                 Si el Método de envío que seleccionas es “Envío por Moto”, tene
@@ -609,6 +619,273 @@ const FAQ = () => {
               <Typography className="answerText">
                 • Si compras antes de las 14hs el pedido llega en el día. ( en
                 fechas festivas pueden surgir demoras).
+              </Typography>
+              <Typography className="answerText">
+                • Si compras después de las 14hs el pedido se programa para el
+                día siguiente.
+              </Typography>
+              <Typography className="answerText">
+                En ambos casos recibirás un mail notificando el día y hora de
+                entrega y link de seguimiento.
+              </Typography>
+              <Typography className="answerText">
+                Vendedorxs y Compradxs deberán estar atentos a las
+                notificaciones de despacho y entrega.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel16"}
+            onChange={handleChange("panel16")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel16-content"
+              id="panel16-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                7.1. ¿Cuáles son los medios de envío?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Dependiendo del destino, podrás seleccionar la forma de envío:
+                Podes recibir tu pedido en cualquier parte del país, en tu
+                domicilio o en una sucursal de OCA . Los envíos se realizan a
+                través de Oca y tenes servicio de Moto, por el momento, solo
+                para CABA próximamente ampliaremos a GBA. En el proceso de
+                compras vas a tener la posibilidad de elegir el método de envío
+                disponible .
+              </Typography>
+              <Typography className="questionTitle">Envío por OCA:</Typography>
+              <Typography className="answerText">
+                • Lx vendedorxs tiene 5 días hábiles para enviarte el pedido y
+                en llegarte puede demorar 5 y 10 días hábiles. Dependerá de las
+                distancias entre Vendedorxs y Compradxs. Podrás realizar el
+                seguimiento desde el Link que te enviemos por mail.
+              </Typography>
+              <Typography className="answerText">
+                • Si lx vendedorxs no realizo el envío en 5 días hábiles, se
+                cancela la compra y se te devuelve el dinero, podrás elegir en
+                recibir el efectivo o comprarte otra cosa en Mi Ropero.
+              </Typography>
+              <Typography className="questionTitle">Envío por Moto:</Typography>
+              <Typography className="answerText">
+                • Dependiendo del horario de la compra Lxs vendedorxs tiene que
+                tener el pedido listo para entregar:
+              </Typography>
+              <Typography className="answerText">
+                Si la compra se realizo antes de las 14hs, el envío se deberá
+                realizar en el día.
+              </Typography>
+              <Typography className="answerText">
+                • Si la compra se realizo después de las 14hs, se programa para
+                el día siguiente.
+              </Typography>
+              <Typography className="answerText">
+                • Podrás realizar el seguimiento desde el Link que te enviemos
+                por mail.
+              </Typography>
+              <Typography className="answerText">
+                • Podrás realizar el seguimiento desde el Link que te enviemos
+                por mail.
+              </Typography>
+              <Typography className="answerText">
+                • Si no realiza el envío en el tiempo estipulado se podrá
+                cancelar la compra y se te devuelve el dinero, podrás elegir en
+                recibir el efectivo o que te quede como crédito para comprarte
+                otra cosa en Mi Ropero. También se podrá pactar nuevamente con
+                lxs vendedorxs un nuevo horario, y el envío será por cuenta de
+                lx vendedorxs.
+              </Typography>
+              <Typography className="questionTitle">
+                No me llega el Pedido
+              </Typography>
+              <Typography className="answerText">
+                Los motivos por los cuales el pedido de no te llega puede ser :
+              </Typography>
+              <Typography className="answerText">
+                •Lx Vendedorx no envió el pedido.
+              </Typography>
+              <Typography className="answerText">
+                •El pedido se perdió en el proceso de logística
+              </Typography>
+              <Typography className="answerText">
+                No te preocupes. Si el envío no te llega, te devolvemos el
+                dinero, y podes elegir dejarlo como crédito para comprarte lo
+                que te guste en Mi Ropero, si lo que queres comprar es mas caro,
+                podes pagar la diferencia y si es mas barato te queda como
+                crédito.
+              </Typography>
+              <Typography className="questionTitle">
+                Pago y Costo de los Envíos
+              </Typography>
+              <Typography className="answerText">
+                El costo del envío lo pagan lxs compradorxs cuando realizan el
+                pedido. En el proceso de compras se hace la verificación del
+                Domicilio de ambas partes para poder estimar el costo. Cuando
+                pagas, en el detalle de la Compra te muestra el total de la
+                compra mas el costo del Envío.
+              </Typography>
+              <Typography className="answerText">
+                El costo del envío se calcula por distancia, peso y cantidad de
+                bultos, a su vez el costo del envío varia según sea el Método de
+                Envío (OCA o Moto) y la distancia entre Vendedorxs y Compradorxs
+                y si elegís recibirlo en una sucursal o en tu domicilio.
+              </Typography>
+              <Typography className="answerText">
+                Tene en cuenta que si compras muchas prendas a una sola Tienda
+                el costo del envío es uno solo, si realizas compras a distintas
+                Tiendas se te cobra envío por cada Tienda.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel17"}
+            onChange={handleChange("panel17")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel17-content"
+              id="panel17-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                8. Cambios y devoluciones
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="questionTitle">
+                ¿Como hago un cambio o una devolucion
+              </Typography>
+              <Typography className="answerText">
+                Dentro de las 24hs de recibida la compra, podrás gestionar el
+                cambio o devolución si la compra la hiciste con el método de
+                “Envío por OCA”, en caso de que lo hayas hecho por “Envío por
+                Moto” tenes 2 horas para gestionar la devolución.
+              </Typography>
+              <Typography className="questionTitle">
+                Motivos de cambios o Devolución:
+              </Typography>
+              <Typography className="answerText">
+                {" "}
+                • Lo que compre difiere en características y descripción del
+                producto que elegí.
+              </Typography>
+              <Typography className="answerText">
+                {" "}
+                • El producto esta sucio o roto.
+              </Typography>
+              <Typography className="answerText">
+                • Me enviaron algo distinto a lo que compre.
+              </Typography>
+              <Typography className="answerText">
+                Tenes que seguir estos pasos:
+              </Typography>
+              <Typography className="answerText">Desde Mi Perfil </Typography>
+              <img src={foto3} alt="foto3" />
+
+              <Typography className="answerText">
+                Se te despliega un cuadro de texto donde deberás especificar el
+                motivo de devolución, de esa manera se inicia el proceso de
+                Reclamo. Te enviaremos por mail una etiqueta de cambio,
+                imprimila, envolve la prenda, Coloca la etiqueta de devolución
+                en el exterior del embalaje y acercate a la sucursal de OCA mas
+                cercana. O podes acercarte a nuestra oficina ( Migueletes 1324 –
+                Belgrano) y dejar la prenda a devolver, previa coordinación con
+                nuestro Equipo de Calidad.
+              </Typography>
+              <Typography className="answerText">
+                Nos pondremos en contacto, luego de realizar la verificación y
+                de corresponder nos ocuparemos de gestionar el cambio o la
+                devolución.{" "}
+              </Typography>
+              <Typography className="answerText">
+                Solo podes gestionar el cambio una sola vez.
+              </Typography>
+              <Typography className="answerText">
+                {" "}
+                Recorda que una vez que hayas calificado la compra o que haya
+                vencido el plazo para hacerlo, no se aceptarán devoluciones.
+              </Typography>
+              <Typography className="answerText">
+                Ropa interior, Vestidos de Fiesta, artículos de belleza, no
+                tienen cambio.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel18"}
+            onChange={handleChange("panel18")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel18-content"
+              id="panel18-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                8. Cambios y devoluciones
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="questionTitle">
+                ¿Como hago un cambio o una devolucion
+              </Typography>
+              <Typography className="answerText">
+                Dentro de las 24hs de recibida la compra, podrás gestionar el
+                cambio o devolución si la compra la hiciste con el método de
+                “Envío por OCA”, en caso de que lo hayas hecho por “Envío por
+                Moto” tenes 2 horas para gestionar la devolución.
+              </Typography>
+              <Typography className="questionTitle">
+                Motivos de cambios o Devolución:
+              </Typography>
+              <Typography className="answerText">
+                {" "}
+                • Lo que compre difiere en características y descripción del
+                producto que elegí.
+              </Typography>
+              <Typography className="answerText">
+                {" "}
+                • El producto esta sucio o roto.
+              </Typography>
+              <Typography className="answerText">
+                • Me enviaron algo distinto a lo que compre.
+              </Typography>
+              <Typography className="answerText">
+                Tenes que seguir estos pasos:
+              </Typography>
+              <Typography className="answerText">Desde Mi Perfil </Typography>
+              <img src={foto3} alt="foto3" />
+
+              <Typography className="answerText">
+                Se te despliega un cuadro de texto donde deberás especificar el
+                motivo de devolución, de esa manera se inicia el proceso de
+                Reclamo. Te enviaremos por mail una etiqueta de cambio,
+                imprimila, envolve la prenda, Coloca la etiqueta de devolución
+                en el exterior del embalaje y acercate a la sucursal de OCA mas
+                cercana. O podes acercarte a nuestra oficina ( Migueletes 1324 –
+                Belgrano) y dejar la prenda a devolver, previa coordinación con
+                nuestro Equipo de Calidad.
+              </Typography>
+              <Typography className="answerText">
+                Nos pondremos en contacto, luego de realizar la verificación y
+                de corresponder nos ocuparemos de gestionar el cambio o la
+                devolución.{" "}
+              </Typography>
+              <Typography className="answerText">
+                Solo podes gestionar el cambio una sola vez.
+              </Typography>
+              <Typography className="answerText">
+                {" "}
+                Recorda que una vez que hayas calificado la compra o que haya
+                vencido el plazo para hacerlo, no se aceptarán devoluciones.
+              </Typography>
+              <Typography className="answerText">
+                Ropa interior, Vestidos de Fiesta, artículos de belleza, no
+                tienen cambio.
               </Typography>
             </AccordionDetails>
           </Accordion>
