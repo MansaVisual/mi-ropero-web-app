@@ -10,6 +10,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import foto1 from "../../assets/FAQ/1.png";
 import foto2 from "../../assets/FAQ/2.png";
 import foto3 from "../../assets/FAQ/3.png";
+import foto4 from "../../assets/FAQ/4.png";
+import foto5 from "../../assets/FAQ/5.png";
+import foto6 from "../../assets/FAQ/6.png";
+import foto7 from "../../assets/FAQ/7.png";
+import foto8 from "../../assets/FAQ/8.png";
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
@@ -430,28 +435,32 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 Una vez que el pago esta realizado se te avisa por mail y por
                 notificación que la venta se realizo satisfactoriamente. Deberás
                 ingresar a Tienda/Venta seleccionar el producto vendido y
                 verificar que medio de envío eligieron.
               </Typography>
-              <Typography>Si el Envío es por OCA</Typography>
-              <Typography>
+              <Typography className="questionTitle">
+                Si el Envío es por OCA
+              </Typography>
+              <Typography className="answerText">
                 Deberás seleccionar la sucursal desde donde realizaras el envío
                 e imprimir la etiqueta, envolve el pedido y pega la etiqueta en
                 el exterior del embalaje. Tenes 5 días hábiles para realizar el
                 envío.
               </Typography>
-              <Typography>Si el Envío es por Moto</Typography>
-              <Typography>
+              <Typography className="questionTitle">
+                Si el Envío es por Moto
+              </Typography>
+              <Typography className="answerText">
                 Si la venta se realizo antes de las 14hs, se enviara una moto a
                 tu domicilio durante el día. En caso de que la compra se haya
                 realizado después de las 14hs, se enviara una moto al día
                 siguiente día hábil. Se te enviaran notificaciones/mail
                 avisándote que estes atentx a la llegada de la moto.
               </Typography>
-              <Typography>
+              <Typography className="answerText">
                 Envolve el pedido y espera a que llegue la moto.
               </Typography>
             </AccordionDetails>
@@ -471,21 +480,21 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 Una vez que te califiquen de manera satisfactoria, tu comprador
                 o nosotros (máximo 48hs), podrás ver disponible tu dinero en Tu
                 Tienda/ Cuenta Corriente. En ese momento podrás pedir una
                 transferencia a tu cuenta bancaria o podrás utilizar el crédito
                 para realizar una compra en Mi Ropero.
               </Typography>
-              <Typography>
+              <Typography className="answerText">
                 En el caso que pidas una transferencia, lo tenes que hacer desde
                 Mi Tienda/Cuenta Corriente/Solicitar Transferencia. Deberás
                 ingresar los datos de la cuenta donde queres que realicemos la
                 transferencia. El dinero solicitado estará disponible en tu
                 cuenta bancaria en 48/72hs. dependiendo de cada banco.
               </Typography>
-              <Typography>
+              <Typography className="answerText">
                 Recorda que vas a tener disponible el dinero de la venta (menos
                 el 18% de la comisión) luego de una calificación satisfactoria.
               </Typography>
@@ -506,13 +515,17 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>Es muy fácil, rápido, seguro y conómico.</Typography>
+              <Typography className="answerText">
+                Es muy fácil, rápido, seguro y conómico.
+              </Typography>
               {comoCompro.map((res, i) => (
                 <Typography className="answerText" key={i}>
                   {res}
                 </Typography>
               ))}
-              <Typography>Listo!. A disfrutar de tu nueva Prenda!</Typography>
+              <Typography className="answerText">
+                Listo!. A disfrutar de tu nueva Prenda!
+              </Typography>
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -530,7 +543,7 @@ const FAQ = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="answerText">
                 Por el momento solo operamos con Mercado Pago, próximamente
                 estaremos ampliando con otros Medios de Pago. Al momento de
                 realizar el pago se abrirá una pagina que te llevara a Mercado
@@ -538,53 +551,6 @@ const FAQ = () => {
                 debito, o en efectivo por los medios de pago que propone Mercado
                 Pago.
               </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel14"}
-            onChange={handleChange("panel14")}
-            className="accordion"
-          >
-            <AccordionSummary
-              aria-controls="panel14-content"
-              id="panel14-header"
-              expandIcon={<ExpandMoreIcon />}
-            >
-              <Typography className="questionTitle">
-                6.1. ¿Cuáles son los medios de pago?
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {/*               <Typography className="answerText">
-                Dependiendo del destino, podrás seleccionar la forma de envío:
-                Podes recibir tu pedido en cualquier parte del país, en tu
-                domicilio o en una sucursal de OCA . Los envíos se realizan a
-                través de Oca y tenes servicio de Moto, por el momento, solo
-                para CABA próximamente ampliaremos a GBA. En el proceso de
-                compras vas a tener la posibilidad de elegir el método de envío
-                disponible .
-              </Typography>
-              <Typography className="questionTitle">Importante:</Typography>
-              <Typography className="answerText">
-                Si el Método de envío que seleccionas es “Envío por Moto”, tene
-                en cuenta que:
-              </Typography>
-              <Typography className="answerText">
-                • Si compras antes de las 14hs el pedido llega en el día. ( en
-                fechas festivas pueden surgir demoras).
-              </Typography>
-              <Typography className="answerText">
-                •Si compras después de las 14hs el pedido se programa para el
-                día siguiente.
-              </Typography>
-              <Typography className="answerText">
-                En ambos casos recibirás un mail notificando el día y hora de
-                entrega y link de seguimiento.
-              </Typography>
-              <Typography className="answerText">
-                Vendedorxs y Compradxs deberán estar atentos a las
-                notificaciones de despacho y entrega.
-              </Typography> */}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -604,12 +570,16 @@ const FAQ = () => {
             <AccordionDetails>
               <Typography className="answerText">
                 Dependiendo del destino, podrás seleccionar la forma de envío:
+              </Typography>
+              <Typography className="answerText">
                 Podes recibir tu pedido en cualquier parte del país, en tu
                 domicilio o en una sucursal de OCA . Los envíos se realizan a
                 través de Oca y tenes servicio de Moto, por el momento, solo
-                para CABA próximamente ampliaremos a GBA. En el proceso de
-                compras vas a tener la posibilidad de elegir el método de envío
-                disponible .
+                para CABA próximamente ampliaremos a GBA.
+              </Typography>
+              <Typography className="answerText">
+                En el proceso de compras vas a tener la posibilidad de elegir el
+                método de envío disponible .
               </Typography>
               <Typography className="questionTitle">Importante:</Typography>
               <Typography className="answerText">
@@ -621,7 +591,7 @@ const FAQ = () => {
                 fechas festivas pueden surgir demoras).
               </Typography>
               <Typography className="answerText">
-                • Si compras después de las 14hs el pedido se programa para el
+                •Si compras después de las 14hs el pedido se programa para el
                 día siguiente.
               </Typography>
               <Typography className="answerText">
@@ -645,19 +615,10 @@ const FAQ = () => {
               expandIcon={<ExpandMoreIcon />}
             >
               <Typography className="questionTitle">
-                7.1. ¿Cuáles son los medios de envío?
+                7.1. ¿Cuánto tiempo demora en llegar el pedido?
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography className="answerText">
-                Dependiendo del destino, podrás seleccionar la forma de envío:
-                Podes recibir tu pedido en cualquier parte del país, en tu
-                domicilio o en una sucursal de OCA . Los envíos se realizan a
-                través de Oca y tenes servicio de Moto, por el momento, solo
-                para CABA próximamente ampliaremos a GBA. En el proceso de
-                compras vas a tener la posibilidad de elegir el método de envío
-                disponible .
-              </Typography>
               <Typography className="questionTitle">Envío por OCA:</Typography>
               <Typography className="answerText">
                 • Lx vendedorxs tiene 5 días hábiles para enviarte el pedido y
@@ -826,66 +787,352 @@ const FAQ = () => {
               expandIcon={<ExpandMoreIcon />}
             >
               <Typography className="questionTitle">
-                8. Cambios y devoluciones
+                9. ¿ Cuál es el costo por comprar o vender en MI ROPERO?
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography className="questionTitle">
-                ¿Como hago un cambio o una devolucion
+              <Typography className="questionTitle">Compradorxs</Typography>
+              <Typography className="answerText">
+                Si sos Compradorx, solo pagas lo que compras y el costo del
+                envío que elijas (Medios de Envío).
+              </Typography>
+              <Typography className="questionTitle">Vendedorxs </Typography>
+              <Typography className="answerText">
+                Si sos Vendedorxs, publicas gratis!, solo te cobramos el 18%
+                (IVA incluido) de comisión por la venta realizada.
+              </Typography>
+              <Typography className="questionTitle">Es decir :</Typography>
+              <Typography className="answerText">
+                Si tu venta es por $1.000 , nosotros te cobramos $ 180 (18% de
+                comisión), y
               </Typography>
               <Typography className="answerText">
-                Dentro de las 24hs de recibida la compra, podrás gestionar el
-                cambio o devolución si la compra la hiciste con el método de
-                “Envío por OCA”, en caso de que lo hayas hecho por “Envío por
-                Moto” tenes 2 horas para gestionar la devolución.
+                A vos te quedan $ 820 (el 82% del valor de la venta) en tu
+                cuenta, que podrás pedir una transferencia o utilizarla para
+                comprarte algo que te guste en Mi Ropero.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel50"}
+            onChange={handleChange("panel50")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel50-content"
+              id="panel50-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                10. ¿Porqué me piden que cargue mi dirección?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="questionTitle">Mis Direcciones</Typography>
+              <Typography className="answerText">
+                En Mi Perfil/Mis Direcciones. Vas a poder cargar las direcciones
+                de donde queres recibir los pedidos, puede ser que quieras
+                ingresar la dirección de tu casa y/o de la oficina u otra
+                dirección donde puedas recibir el pedido.
+              </Typography>
+              <Typography className="answerText">
+                Tene en cuenta que las direcciones ingresadas son validadas con
+                Google Maps, en caso de que no la puedas validar, te
+                recomendamos que ingreses a Google Maps y verifiques la
+                dirección ingresada.
               </Typography>
               <Typography className="questionTitle">
-                Motivos de cambios o Devolución:
+                Mis Direcciones{" "}
               </Typography>
+              <Typography className="answerText">
+                En Mi Perfil/Mis Direcciones. Vas a poder cargar las direcciones
+                de donde queres recibir los pedidos, puede ser que quieras
+                ingresar la dirección de tu casa y/o de la oficina u otra
+                dirección donde puedas recibir el pedido.
+              </Typography>
+              <Typography className="answerText">
+                Tene en cuenta que las direcciones ingresadas son validadas con
+                Google Maps, en caso de que no la puedas validar, te
+                recomendamos que ingreses a Google Maps y verifiques la
+                dirección ingresada.
+              </Typography>
+              <Typography className="questionTitle">Compradorxs</Typography>
+              <Typography className="answerText">
+                La Dirección es utilizada para estimar el costo y tiempos del
+                envío ( Dirección de envío y Dirección de recepción).
+              </Typography>
+              <Typography className="answerText">
+                Si sos compradorx, vamos a necesitar que ingreses la dirección
+                de donde queres recibir el pedido, puede ser tu casa, tu
+                trabajo, o el lugar donde te encuentres al momento de recibirlo.
+              </Typography>
+              <Typography className="questionTitle">Vendedorxs</Typography>
               <Typography className="answerText">
                 {" "}
-                • Lo que compre difiere en características y descripción del
-                producto que elegí.
+                Si publicas vamos a necesitar que ingreses la dirección de tu
+                Tienda, es decir la dirección desde donde saldrá el pedido. Esto
+                nos permite estimar el costo del envío en el momento que un
+                comprador compra una prenda de tu Tienda.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel19"}
+            onChange={handleChange("panel19")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel19-content"
+              id="panel19-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                11. ¿Porqué me piden mi teléfono?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                El número de teléfono te lo pedimos, para coordinar el envío, en
+                caso de que no te encuentres en tu domicilio al momento de
+                recibir o enviar un pedido, posiblemente te llamen por teléfono
+                para avisarte, que se encuentran en el domicilio.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel20"}
+            onChange={handleChange("panel20")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel20-content"
+              id="panel20-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                12. ¿Cómo califico?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Para que ésta comunidad de moda circular funcione, es importante
+                la calificación de lxs compradorxs hacia lxs vendedorxs.
               </Typography>
               <Typography className="answerText">
-                {" "}
-                • El producto esta sucio o roto.
+                Cuando recibís un producto tenes 48hs, para calificar al
+                vendedorx, pasadas esas 48hs nosotros entendemos que el producto
+                esta OK y calificamos como neutral, dando la conformidad del
+                pedido recibido.
               </Typography>
               <Typography className="answerText">
-                • Me enviaron algo distinto a lo que compre.
+                Para calificar a lxs vendedorxs, tenes que ir a Mi Perfil/Mis
+                Compras, seleccionar el producto por el cual vas a calificar al
+                vendedorx, tenes la posibilidad de calificar con una puntuación
+                del 1 al 5 , donde uno es Malo y 5 Excelente.
               </Typography>
               <Typography className="answerText">
-                Tenes que seguir estos pasos:
+                Para calificar apreta el botón de ¿Ya tenés el producto? y
+                califica.
               </Typography>
-              <Typography className="answerText">Desde Mi Perfil </Typography>
-              <img src={foto3} alt="foto3" />
 
+              <img src={foto4} alt="foto4" />
+              <img src={foto5} alt="foto5" />
               <Typography className="answerText">
-                Se te despliega un cuadro de texto donde deberás especificar el
-                motivo de devolución, de esa manera se inicia el proceso de
-                Reclamo. Te enviaremos por mail una etiqueta de cambio,
-                imprimila, envolve la prenda, Coloca la etiqueta de devolución
-                en el exterior del embalaje y acercate a la sucursal de OCA mas
-                cercana. O podes acercarte a nuestra oficina ( Migueletes 1324 –
-                Belgrano) y dejar la prenda a devolver, previa coordinación con
-                nuestro Equipo de Calidad.
+                Una vez que lxs vendedorxs son calificadxs no podrás realizar un
+                reclamo.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel32"}
+            onChange={handleChange("panel32")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel32-content"
+              id="panel32-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                13. ¿Por qué no puedo ver las fotos de mi galería de fotos?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Cuando publicas imágenes tene en cuenta que si no habilitas tu
+                celular para que la app MI Ropero puedo ingresara a tu galería
+                de fotos, no vas a poder seleccionarlas. Te recomendamos que
+                ingreses a la configuración de tu teléfono y verifiques si estas
+                habilitando a MI Ropero para que ingrese a tu Galería de Fotos.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel21"}
+            onChange={handleChange("panel21")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel21-content"
+              id="panel21-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                14. ¿Porqué algunas tiendas no tienen la opción de envío por
+                moto?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Por el momento el servicio de Envío por Moto solo esta
+                disponible en los casos que vendedorxs y Compradorxs tengan
+                dirección de envío y recepción en CABA. Próximamente vamos a
+                habilitar GBA.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel22"}
+            onChange={handleChange("panel22")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel22-content"
+              id="panel22-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                15. ¿Porqué si añadí en mi carrito un producto que estaba
+                disponible, ya no lo esta cuando quiero finalizar la compra?.
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                La disponibilidad de los productos en Mi Ropero cambian
+                constantemente. Si añadis un producto a tu carrito no garantiza
+                que lo tenes asegurado, ya que otros compradores pueden haberlo
+                comprado mientras estaba en tu carrito pendiente de compra. En
+                el momento que se completa el proceso de pago, el producto es
+                tuyo.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel23"}
+            onChange={handleChange("panel23")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel23-content"
+              id="panel23-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                16. ¿Porqué el producto en Oferta que añadi en mi carrito, ya no
+                esta en oferta cuando lo quiero comprar?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Si añadis un producto en tu carrito de compras cuando está en
+                oferta, el precio también cambiará cuando la oferta haya
+                caducado. Te recomendamos que si ves algún producto en el que
+                estés interesado, realices la compra lo antes posible!{" "}
               </Typography>
               <Typography className="answerText">
-                Nos pondremos en contacto, luego de realizar la verificación y
-                de corresponder nos ocuparemos de gestionar el cambio o la
-                devolución.{" "}
+                Tener el producto en tu Carrito de Compra no te garantiza que
+                puedas comprarlo a un precio rebajado.
               </Typography>
               <Typography className="answerText">
-                Solo podes gestionar el cambio una sola vez.
+                En este caso podes volver a ofertar el producto al vendedor.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel25"}
+            onChange={handleChange("panel25")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel25-content"
+              id="panel25-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                17. Me olvidé la contraseña para ingresar, ¿como la recupero?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                Si olvidaste tu contraseña, desde el inicio de App hace clic en
+                la opción “ingresa con tu email” y hace clic en “olvide mi
+                contraseña” deberás ingresar tu dirección de correo electrónico
+                y hace clic en “Recordar”. Recibirás de manera inmediata en tu
+                mail un link con un enlace para recuperar la contraseña. Hace
+                clic en el enlace y te pediremos que ingreses una nueva
+                contraseña, hace clic en Actualizar y listo. Desde la app
+                ingresa tu mail y la nueva contraseña.
+              </Typography>
+              <img src={foto6} alt="foto6" />
+              <img src={foto7} alt="foto7" />
+              <img src={foto8} alt="foto8" />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel26"}
+            onChange={handleChange("panel26")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel26-content"
+              id="panel26-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                18. ¿Cómo sé que mi compra se realizo correctamente?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="answerText">
+                ¿Cómo se que mi compra se realizo correctamente? Antes de
+                seleccionar el metodo de pago, podras ver el detalle de tu
+                compra y el costo del envio. Después de completar el proceso de
+                compra te aparecerá la opcion de Seguir comprando o ver tus
+                compras . Si elegis ver tus compras te lleva a Mi Perfil/Compras
+                y podrás ver el detalle.
               </Typography>
               <Typography className="answerText">
-                {" "}
-                Recorda que una vez que hayas calificado la compra o que haya
-                vencido el plazo para hacerlo, no se aceptarán devoluciones.
+                También recibirás una confirmación de la compra por email, de
+                Mercado Pago y de Mi Ropero, de esta forma te aseguramos que la
+                compra se realizo de manera correcta.
               </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel27"}
+            onChange={handleChange("panel27")}
+            className="accordion"
+          >
+            <AccordionSummary
+              aria-controls="panel27-content"
+              id="panel27-header"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="questionTitle">
+                19. ¿Puedo cambiar mi dirección de envío luego de haber
+                realizado una compra?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
               <Typography className="answerText">
-                Ropa interior, Vestidos de Fiesta, artículos de belleza, no
-                tienen cambio.
+                Podes cambiar tu dirección de entrega las veces que quieras y
+                también podrás guardar las direcciones de uso frecuente. Tene en
+                cuenta que si hiciste una compra y luego cambias la dirección,
+                el pedido no tomara el cambio de dirección y se te entregara a
+                la dirección con la cual hiciste la compra. Te recomendamos que
+                actualices tu dirección en Mi Perfil/Mis Direcciones antes de
+                realizar una compra, ya que las direcciones de entrega no se
+                pueden cambiar una vez que se ha enviado un pedido.
               </Typography>
             </AccordionDetails>
           </Accordion>

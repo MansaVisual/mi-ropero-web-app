@@ -195,11 +195,24 @@
     }
     .sendNewMessage textarea {
       flex-grow: 1;
-      padding: 0 15px;
+      padding: 15px 15px 0 15px;
       background-color: transparent;
       border: none;
+      resize: none;
       outline: none;
       font-family: "Open Sans", sans-serif;
+      margin-right: 10px;
+      &::-webkit-scrollbar {
+        width: 5px;
+        background: transparent;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: hsl(210, 3%, 73.7%);
+        border-radius: 10px;
+      }
       @include screen_389 {
         padding: 0;
       }
