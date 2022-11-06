@@ -27,14 +27,18 @@ const footerContent = {
     text: ["Ropa", "Calzado", "Accesorios", "Belleza"],
   },
   section: {
-    text: ["FAQ's", "Términos y condiciones", "Políticas de privacidad"],
+    text: [
+      { title: "FAQ's", href: "/FAQ" },
+      { title: "Términos y condiciones", href: "/terminos&y&condiciones" },
+      { title: "Políticas de privacidad", href: "/politica&de&privacidad" },
+    ],
   },
 };
 
 const Footer = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isFooterTab = useMediaQuery("(max-width: 720px)");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ fontFamily: theme.typography.fontFamily }}>
@@ -121,21 +125,29 @@ const Footer = () => {
                   <StyledLink
                     key={key}
                     sx={{ mb: isMobile ? "30px" : "12px", lineHeight: "18px" }}
+                    href={item.href}
                   >
-                    {item}
+                    {item.title}
                   </StyledLink>
                 ))}
               </Box>
               <Box sx={{ color: "hsla(151, 100%, 76%, 1)" }}>
                 <Typography
-                  sx={{ pt: isMobile ? "69px" : "48px", lineHeight: "14px",cursor:"pointer" }}
-                  onClick={()=>navigate("/cancelacionCompra")}
+                  sx={{
+                    pt: isMobile ? "69px" : "48px",
+                    lineHeight: "14px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => navigate("/cancelacionCompra")}
                 >
                   ME ARREPENTÍ
                 </Typography>
                 <Typography
-                sx={{cursor:"pointer"}}
-                onClick={()=>navigate("/cancelacionCompra")}>(solicitud de cancelación de compra)</Typography>
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/cancelacionCompra")}
+                >
+                  (solicitud de cancelación de compra)
+                </Typography>
               </Box>
             </Box>
             <Box

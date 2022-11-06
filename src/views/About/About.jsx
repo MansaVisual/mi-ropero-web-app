@@ -8,8 +8,11 @@ import downloadGoogle from "../../assets/img/downloadGoogle.png";
 import downloadApple from "../../assets/img/downloadApple.png";
 import YoutubeEmbed from "../../components/YoutubeEmbed/YoutubeEmbed";
 import { Link } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="aboutPage">
       <div className="breadCrumbs">
@@ -44,7 +47,7 @@ const About = () => {
           <div className="bannerFooter">
             <div className="linkContainer">
               <p>¿CÓMO FUNCIONA?</p>
-              <p>FAQs</p>
+              <p onClick={() => navigate("/FAQ")}>FAQs</p>
             </div>
             <div>
               <Link href="https://apps.apple.com/us/app/mi-ropero/id1515990319">
