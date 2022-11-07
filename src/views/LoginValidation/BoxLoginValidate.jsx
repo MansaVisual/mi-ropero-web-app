@@ -37,7 +37,7 @@ const BoxLoginValidate = () => {
         if (res.status === "success") {
           setLoad(false);
           localStorage.setItem("idClienteMiRopero", user.id);
-          if (redirectUrl !== "") {
+          if (redirectUrl !== "" && redirectUrl!== null) {
             localStorage.setItem("redirectUrl", "");
             window.location.replace(
               `https://www.miropero.ar/${redirectUrl}`
