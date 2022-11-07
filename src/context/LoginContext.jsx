@@ -150,7 +150,12 @@ export const LoginContext = ({ children }) => {
         setInfoUser(res.result);
         console.log(infoUser);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        /* window.location.replace("https://www.miropero.ar/"); */
+        if (redirectUrl) {
+          localStorage.setItem("redirectUrl", "");
+          window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
+        } else {
+          window.location.replace("https://www.miropero.ar/");
+        }
       } else if (res.status === "error") {
         if (res.result === "El social_login_id y/o social_login no existen") {
           AppleRegister(data);
