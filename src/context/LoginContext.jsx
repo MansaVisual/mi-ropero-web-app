@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 
 export const UseLoginContext = createContext();
 
@@ -138,6 +139,9 @@ export const LoginContext = ({ children }) => {
 
   const AppleLogin = (data) => {
     console.log(data);
+    const decoded = jwt_decode(data.authorization.id_token);
+
+    console.log(decoded);
 
     const log = new FormData();
     log.append("social_login_type", 3);
