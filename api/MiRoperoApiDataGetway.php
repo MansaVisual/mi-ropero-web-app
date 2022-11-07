@@ -22,7 +22,7 @@ if(empty($_SERVER['HTTP_REFERER'])){
 	
 // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
 // you want to allow, and if so:
-header("Access-Control-Allow-Origin: www.miropero.ar");
+header("Access-Control-Allow-Origin: apidata.miropero.com.ar");
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Max-Age: 86400');    // cache for 1 day
  
@@ -31,12 +31,11 @@ header('Access-Control-Max-Age: 86400');    // cache for 1 day
 	* verifico que el dominio del referer sea el mismo que le dominio
 	* Sino, informo 404
 	**/	
-/*
-if(strpos($_SERVER['HTTP_REFERER'], 'www.miropero.com.ar') === false){
+
+if(strpos($_SERVER['HTTP_REFERER'], 'www.miropero.ar') === false){
 	header("HTTP/1.0 404 Not Found");	
 	die();	
 }
-*/
 
 /*
 echo "<pre>";
@@ -90,7 +89,7 @@ if( !empty($_FILES)){
 	**/	
 $ch = curl_init();    
 curl_setopt($ch, CURLOPT_URL, $apidata_url . "/" . $class . "/" . $method);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERPWD, $apidata_user . ":" . $apidata_pass); 
