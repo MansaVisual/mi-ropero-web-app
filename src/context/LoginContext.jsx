@@ -12,8 +12,6 @@ export const LoginContext = ({ children }) => {
 
   const redirectUrl = localStorage.getItem("redirectUrl");
 
-  console.log(redirectUrl);
-
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
     if (res !== null && userLog === "") {
@@ -103,7 +101,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        if (redirectUrl.length > 0) {
+        if (redirectUrl && redirectUrl !== "") {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
         } else {
@@ -149,7 +147,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        if (redirectUrl.length > 0) {
+        if (redirectUrl && redirectUrl !== "") {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
         } else {
