@@ -116,8 +116,6 @@ const FAQ = () => {
             </AccordionSummary>
             <AccordionDetails sx={{
               display:time?"none":"block"
-            }} sx={{
-              display:time?"none":"block"
             }}>
               <Typography className="questionTitle">
                 Escencia & filosofía
