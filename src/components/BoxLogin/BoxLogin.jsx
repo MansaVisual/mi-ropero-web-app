@@ -67,14 +67,12 @@ const BoxLogin = () => {
   return (
     <>
       <div className="boxLoginContainer">
-        <p className="title">Continuar con Google o Facebook</p>
+        <p className="title">Continuar con Apple o Facebook</p>
         <div className="buttonWrapper">
           <AppleButton />
           <FacebookButton />
         </div>
-
         <p className="title">Continuar con tu email</p>
-
         {error && (
           <div className="errorBoxContainer">
             <div className="errorBox">
