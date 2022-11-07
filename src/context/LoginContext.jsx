@@ -136,7 +136,7 @@ export const LoginContext = ({ children }) => {
     log.append("social_login_type", 3);
     log.append("social_login_id", data.authorization.id_token);
     LoginAPI(log, "clientes", "login_social").then((res) => {
-      console.log(res.log);
+      console.log(res, log);
 
       if (res.status === "success") {
         setInfoUser(res.result);
