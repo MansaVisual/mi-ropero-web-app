@@ -1,4 +1,67 @@
 .TiendaContainer{
     min-height: 60vh;
-    background-color: red;
+    padding: 0px 76px;
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-family: 'Open Sans';
+    margin-bottom: 60px;
+    .breadcumbs{
+        margin-top: 72px;
+    }
+    .contenedorInfo{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        .title{
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 31px;
+            color: #FF3F20;
+        }
+        .text{
+            font-weight: 700;
+            font-size: 17px;
+            line-height: 28px;
+            color: #878787;
+            margin-top: 1px;
+        }
+        img{
+            width: 133px;
+            height: 116px;
+        }
+        .agregarProd{
+            padding: 10px 36px;
+            width: 450px;
+            height: 36px;
+            background: #443988;
+            box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+            border-radius: 20px;
+            color: white;
+            margin-top: 24px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.05em;
+        }
+    }
+    .returnLink {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 150px;
+        margin-top: 24px;
+        p {
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 16px;
+        }
+        img {
+          height: 7.94px;
+          width: 4.24px;
+          margin-right: 10px;
+        }
+    }
 }
