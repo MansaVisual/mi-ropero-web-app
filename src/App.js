@@ -34,6 +34,8 @@ import Notifications from "./views/Notifications/Notifications";
 import CancelacionCompra from "./views/CancelacionCompra/CancelacionCompra";
 import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 import FAQ from "./views/FAQ/FAQ";
+import MiTienda from "./views/MiTienda/MiTienda";
+import { MiTiendaContext } from "./context/MiTiendaContext";
 
 function App() {
   useEffect(() => {
@@ -66,6 +68,7 @@ function App() {
           <PerfilContext>
             <FormContext>
               <CartContext>
+                <MiTiendaContext>
                 <Router>
                   <ThemeProvider theme={theme}>
                     <NavBar />
@@ -144,10 +147,15 @@ function App() {
                         element={<CancelacionCompraOk />}
                       />
                       <Route path="FAQ" element={<FAQ />} />
+                      <Route
+                        path="MiTienda"
+                        element={<MiTienda />}
+                      />
                     </Routes>
                     <Footer />
                   </ThemeProvider>
                 </Router>
+                </MiTiendaContext>
               </CartContext>
             </FormContext>
           </PerfilContext>
