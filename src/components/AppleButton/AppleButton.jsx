@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { LoginSocialApple } from "reactjs-social-login";
 import { Button } from "reactstrap";
 import { UseLoginContext } from "../../context/LoginContext";

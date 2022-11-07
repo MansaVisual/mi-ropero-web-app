@@ -482,7 +482,11 @@ const MisDatos = () => {
                 Email *
               </p>
               <TextField
-                disabled={infoUser.social_login === "1" ? true : false}
+                disabled={
+                  infoUser.social_login === "1" || infoUser.social_login === "3"
+                    ? true
+                    : false
+                }
                 color="primary"
                 className="input"
                 size="small"
@@ -504,7 +508,8 @@ const MisDatos = () => {
                   },
                 }}
               />
-              {infoUser.social_login === "1" ? (
+              {infoUser.social_login === "1" ||
+              infoUser.social_login === "3" ? (
                 <p className="bottomText">
                   Te registraste en el sitio utilizando redes sociales, y es por
                   eso que la dirección de email no puede modificarse.
@@ -595,12 +600,6 @@ const MisDatos = () => {
                     },
                   }}
                 />
-                {/* {infoUser.social_login === "1" ? (
-                <p className="bottomText">
-                  Te registraste en el sitio utilizando redes sociales, y es por
-                  eso que la contraseña no puede modificarse.
-                </p>
-              ) : null} */}
               </div>
               <div className="inputBox">
                 <p className="labelInput" id="labelContraseña2">
