@@ -12,6 +12,8 @@ export const LoginContext = ({ children }) => {
 
   const redirectUrl = localStorage.getItem("redirectUrl");
 
+  console.log(redirectUrl);
+
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
     if (res !== null && userLog === "") {
