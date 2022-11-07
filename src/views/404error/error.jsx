@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Box, Button, Link } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import pag from "../../assets/img/PÁGINANOT.png";
+import pag from "../../assets/img/PAGINANOT.png";
 import Chip from "../../components/Chip/Chip";
 import error from "../../assets/img/#404.png";
 import { useNavigate } from "react-router-dom";
