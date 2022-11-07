@@ -136,7 +136,7 @@ export const LoginContext = ({ children }) => {
     log.append("social_login_type", 3);
     log.append("social_login_id", data.authorization.id_token);
     LoginAPI(log, "clientes", "login_social").then((res) => {
-      console.log(res);
+      console.log(res.log);
 
       if (res.status === "success") {
         setInfoUser(res.result);
@@ -157,7 +157,7 @@ export const LoginContext = ({ children }) => {
     log.append("social_login_id", data.authorization.id_token);
     log.append("nombre", data.user.name.firstName);
     log.append("email", data.user.email);
-    log.append("apellido", data.user.lastName);
+    log.append("apellido", data.user.name.lastName);
     /*     log.append("social_login_type", 3);
     log.append("social_login_id", data.authorization.id_token);
     log.append("nombre", "Valentin");
