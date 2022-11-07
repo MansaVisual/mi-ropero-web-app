@@ -7,6 +7,9 @@ export const MiTiendaContext = ({children}) => {
 
     const {userLog}=useContext(UseLoginContext)
 
+    const [buscandoProds,setBuscandoProds]=useState(true)
+    const [productos,setProductos]=useState([])
+
 
     const MiTiendaAPI = async(data,clase,metodo) =>{
         let resFinal = ''
@@ -29,11 +32,24 @@ export const MiTiendaContext = ({children}) => {
     }
 
     useEffect(() => {
-
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+        if(userLog!==""){
+            const prods=new FormData()
+            prods.append("idcliente",userLog)
+            MiTiendaAPI(
+                prods,
+                "tiendas",
+                "list"
+            ).then((res)=>{
+                if(res.status==="success"){
+                    setProductos(res.result)
+                }
+                setBuscandoProds(false)
+            })
+        }
+    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <UseMiTiendaContext.Provider value={{MiTiendaAPI}}>
+        <UseMiTiendaContext.Provider value={{MiTiendaAPI,buscandoProds,productos}}>
             {children}
         </UseMiTiendaContext.Provider>
     )

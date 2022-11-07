@@ -20,28 +20,11 @@ const MiTienda = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Grid>
-      <div className='bannerLoginTop'>
-        <img src={banner} alt='banner' className='banner' />
-        <div className='container'>
-          <img src={logoRopero} alt='LOGO' className='logo' />
-          <p>VENDÉ LO QUE NO USÁS Y COMPRÁ LO QUE QUERÉS</p>
+    <div className='TiendaContainer'>
+        <div className='breadcumbs'>
+            <Breadcrumbs links={pathnames} />
         </div>
-      </div>
-      <div className='loginContainer'>
-        <div className='loginBreadcrumbs'>
-          <Breadcrumbs links={pathnames} />
-        </div>
-        <BoxLogin />
-      </div>
-      <div className='bannerLoginBottom'>
-        <img src={banner} alt='banner' className='banner' />
-        <div className='container'>
-          <img src={logoRopero} alt='LOGO' className='logo' />
-          <p>VENDÉ LO QUE NO USÁS Y COMPRÁ LO QUE QUERÉS</p>
-        </div>
-      </div>
-    </Grid>
+    </div>
   );
 };
 
