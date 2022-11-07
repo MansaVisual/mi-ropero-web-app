@@ -20,7 +20,7 @@ export const ProdsContext = ({children}) => {
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
-        await fetch(`https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
+        await fetch(`https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`, {
             method: 'POST',					
             body: data
         })

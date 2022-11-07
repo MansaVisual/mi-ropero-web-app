@@ -12,7 +12,7 @@ export const ColeccionContext = ({ children }) => {
     let resFinal = "";
 
     await fetch(
-      `https://apidata.miropero.com.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
+      `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
       {
         method: "POST",
         body: data,

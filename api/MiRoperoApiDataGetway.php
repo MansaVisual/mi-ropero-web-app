@@ -1,4 +1,6 @@
 <?php
+print_r($_SERVER['SERVER_ADDR']);
+
 /**
  	* MiRoperoApiDataGetway: Archivo de conexion al servicio de datos
  	* @author Pupila BIZ SRL <info@pupila.biz>
@@ -13,9 +15,10 @@
 	* @USER
 	* @PASS
 	**/	
-$apidata_url  = "https://apidata.miropero.com.ar/MiRoperoApiDataGetway.php";
-$apidata_user = "pruebas";
-$apidata_pass = "786512497638AA";
+$apidata_url  = "https://apidata.miropero.com.ar/";
+$apidata_user = "accesomiroperoweb";
+$apidata_pass = "#acc3s47dm1pp";
+
 
 /**
 	* Variables por GET

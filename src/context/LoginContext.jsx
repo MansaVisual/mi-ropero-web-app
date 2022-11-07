@@ -24,7 +24,7 @@ export const LoginContext = ({ children }) => {
     }
 
     await fetch(
-      `https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
+      `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
       {
         method: "POST",
         body: data,

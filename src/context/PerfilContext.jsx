@@ -8,8 +8,6 @@ export const PerfilContext = ({ children }) => {
   const [compraId, setCompraId] = useState(false);
   const [comprasRealizadas, setComprasRealizadas] = useState([]);
   const [ofertasRealizadas, setOfertasRealizadas] = useState([]);
-  const [estadoSeleccionado, setEstadoSeleccionado] = useState("");
-  const [ofertaFiltro, setofertaFiltro] = useState("second");
 
   const [dirFinBusqueda, setDirFinBusqueda] = useState(false);
   const [ofertasFinBusqueda, setOfertasFinBusqueda] = useState(false);
@@ -23,7 +21,7 @@ export const PerfilContext = ({ children }) => {
     let resFinal = "";
 
     await fetch(
-      `https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
+      `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
       {
         method: "POST",
         body: data,
@@ -71,7 +69,6 @@ export const PerfilContext = ({ children }) => {
     for (const item in estados) {
       if (estados[item] === filtroSelecc) {
         itemEstadoSelecc = item;
-        await setEstadoSeleccionado(item);
       }
     }
 
@@ -109,7 +106,6 @@ export const PerfilContext = ({ children }) => {
     for (const item in estados) {
       if (estados[item] === filtroSelecc) {
         itemOfertasRealizadas = item;
-        await setofertaFiltro(item);
       }
     }
 
