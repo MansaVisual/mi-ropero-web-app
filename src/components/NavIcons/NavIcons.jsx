@@ -460,7 +460,7 @@ const NavIcons = () => {
                       }}
                       key={i}
                       onClick={
-                        url === false
+                        (url === false || url==="")
                           ? null
                           : () => {
                             const not = new FormData()
