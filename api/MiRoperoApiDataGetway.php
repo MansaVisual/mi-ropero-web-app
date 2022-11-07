@@ -1,5 +1,5 @@
 <?php
-print_r($_SERVER['SERVER_ADDR']);
+print_r($_SERVER);
 
 /**
  	* MiRoperoApiDataGetway: Archivo de conexion al servicio de datos
