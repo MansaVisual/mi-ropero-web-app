@@ -103,8 +103,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        console.log(redirectUrl);
-        if (redirectUrl) {
+        if (redirectUrl.length > 0) {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
         } else {
@@ -147,12 +146,10 @@ export const LoginContext = ({ children }) => {
     log.append("social_login_type", 3);
     log.append("social_login_id", decoded.sub);
     LoginAPI(log, "clientes", "login_social").then((res) => {
-      console.log(res, Object.fromEntries(log));
-
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        if (redirectUrl) {
+        if (redirectUrl.length > 0) {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
         } else {
@@ -177,8 +174,6 @@ export const LoginContext = ({ children }) => {
     log.append("apellido", data.user.name.lastName);
 
     LoginAPI(log, "clientes", "insert_social").then((res) => {
-      console.log(res, Object.fromEntries(log));
-
       if (res.status === "success") {
         AppleLogin(data);
       } else if (res.status === "error") {
