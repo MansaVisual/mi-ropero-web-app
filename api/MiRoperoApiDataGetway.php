@@ -14,7 +14,6 @@
 	* @USER
 	* @PASS
 	**/	
-	print_r($_ENV);
 $apidata_url  = $_ENV["REACT_APP_URL"];
 $apidata_user = $_ENV["REACT_APP_USER"];
 $apidata_pass = $_ENV["REACT_APP_PASS"];
@@ -57,7 +56,7 @@ if( !empty($_FILES)){
 	**/	
 $ch = curl_init();    
 curl_setopt($ch, CURLOPT_URL, $apidata_url . "/" . $class . "/" . $method);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERPWD, $apidata_user . ":" . $apidata_pass); 
