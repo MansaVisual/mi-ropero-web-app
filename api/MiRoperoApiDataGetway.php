@@ -1,5 +1,4 @@
 <?php
-
 /**
  	* MiRoperoApiDataGetway: Archivo de conexion al servicio de datos
  	* @author Pupila BIZ SRL <info@pupila.biz>
@@ -7,7 +6,47 @@
  	* @link https://www.pupila.biz
  	* @builddate 2022/09/22
  	**/
- 	
+
+/** Validacion 1
+	* si no viene con referer 	
+	* informo 404
+	**/	
+if(empty($_SERVER['HTTP_REFERER'])){
+	header("HTTP/1.0 404 Not Found");	
+	die();	
+}
+
+/** validacion 2 
+	* cors
+	**/
+	
+// Allow from any origin		
+if (isset($_SERVER['HTTP_ORIGIN'])) 
+{
+	// Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+	// you want to allow, and if so:
+	header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+	header('Access-Control-Allow-Credentials: true');
+	header('Access-Control-Max-Age: 86400');    // cache for 1 day
+}
+ 
+
+/** Validacion 2
+	* verifico que el dominio del referer sea el mismo que le dominio
+	* Sino, informo 404
+	**/	
+/*
+if(strpos($_SERVER['HTTP_REFERER'], 'www.miropero.com.ar') === false){
+	header("HTTP/1.0 404 Not Found");	
+	die();	
+}
+*/
+
+/*
+echo "<pre>";
+print_r($_SERVER['HTTP_REFERER']);
+echo "</pre>";
+*/
 /**
 	* Datos de acceso a la API
 	* @URL
@@ -17,7 +56,6 @@
 $apidata_url  = $_ENV["REACT_APP_URL"];
 $apidata_user = $_ENV["REACT_APP_USER"];
 $apidata_pass = $_ENV["REACT_APP_PASS"];
-
 
 /**
 	* Variables por GET
@@ -57,7 +95,7 @@ if( !empty($_FILES)){
 $ch = curl_init();    
 curl_setopt($ch, CURLOPT_URL, $apidata_url . "/" . $class . "/" . $method);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERPWD, $apidata_user . ":" . $apidata_pass); 
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);    
