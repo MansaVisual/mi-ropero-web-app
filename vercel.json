@@ -5,6 +5,7 @@
       }
     },
     "routes": [
-      { "src": "/MiRoperoApiDataGetway",  "dest": "/MiRoperoApiDataGetway.php" }
+      { "src": "/MiRoperoApiDataGetway",  "dest": "/api/MiRoperoApiDataGetway.php" },
+      { "src": "/testApi",  "dest": "/api/index.php" }
     ]
 }
