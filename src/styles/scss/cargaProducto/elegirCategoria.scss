@@ -1,0 +1,20 @@
+.elegirCatContainer {
+  margin-top: 40px;
+  margin: 40px 72px 0px 72px;
+  @include screen_1450 {
+    width: 100%;
+    max-width: 1366px;
+  }
+  @include screen_705 {
+    margin-top: 24px;
+  }
+  .container {
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+    }
+  }
+}
