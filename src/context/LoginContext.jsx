@@ -9,6 +9,8 @@ export const LoginContext = ({ children }) => {
   const [notis, setNotis] = useState([]);
   const [buscandoNotis, setBuscandoNotis] = useState(true);
 
+  const redirectUrl = localStorage.getItem("redirectUrl");
+
   useEffect(() => {
     const res = localStorage.getItem("idClienteMiRopero");
     if (res !== null && userLog === "") {
@@ -98,7 +100,12 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
-        window.location.replace("https://www.miropero.ar/");
+        if (redirectUrl) {
+          localStorage.setItem("redirectUrl", "");
+          window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
+        } else {
+          window.location.replace("https://www.miropero.ar/");
+        }
       } else if (res.status === "error") {
         if (res.result === "El social_login_id y/o social_login no existen") {
           FacebookRegister(loginData);
@@ -140,6 +147,7 @@ export const LoginContext = ({ children }) => {
 
       if (res.status === "success") {
         setInfoUser(res.result);
+        console.log(infoUser);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
         /* window.location.replace("https://www.miropero.ar/"); */
       } else if (res.status === "error") {
