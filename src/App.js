@@ -35,6 +35,7 @@ import CancelacionCompra from "./views/CancelacionCompra/CancelacionCompra";
 import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 import FAQ from "./views/FAQ/FAQ";
 import MiTienda from "./views/MiTienda/MiTienda";
+import CargaProducto from "./views/MiTienda/CargaProducto/CargaProducto";
 import { MiTiendaContext } from "./context/MiTiendaContext";
 
 function App() {
@@ -65,92 +66,102 @@ function App() {
             <FormContext>
               <CartContext>
                 <MiTiendaContext>
-                <Router>
-                  <ThemeProvider theme={theme}>
-                    <NavBar />
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route
-                        path="/productos/:keyword"
-                        element={<SearchProductsResults />}
-                      />
-                      <Route
-                        path="/productos/:search/:keyword"
-                        element={<SearchProductsResults />}
-                      />
-                      <Route
-                        path="/roperos"
-                        element={<SearchClosetResults />}
-                      />
-                      <Route
-                        path="/roperos/:keyword"
-                        element={<SearchClosetResults />}
-                      />
-                      <Route
-                        path="/roperos/search/:keyword"
-                        element={<SearchClosetResults />}
-                      />
-                      <Route
-                        path="/roperos/:closetId/:nombre"
-                        element={<ViewCloset />}
-                      />
-                      <Route
-                        path="/productoCard/:itemID"
-                        element={<ProductPage />}
-                      />
-                      <Route
-                        path="/colecciones/:coleccionName"
-                        element={<SearchColeccionesResults />}
-                      />
-                      <Route path="/carrito" element={<Cart />} />
-                      <Route path="/checkout" element={<Checkout />} />
-                      <Route path="/checkout/:status" element={<Checkout />} />
-                      <Route path="*" element={<Error />}></Route>
-                      <Route path="/login" element={<Login />} />
-                      <Route
-                        path="/login/:redireccionCompra"
-                        element={<Login />}
-                      />
-                      <Route path="/registro" element={<Register />} />
-                      <Route
-                        path="/validacionLogin"
-                        element={<LoginValidation />}
-                      />
-                      <Route path="/perfil" element={<Perfil />} />
-                      <Route
-                        path="perfil/:perfilSeccion"
-                        element={<Perfil />}
-                      />
-                      <Route
-                        path="perfil/:perfilSeccion/:id"
-                        element={<Perfil />}
-                      />
-                      <Route path="productos" element={<Home />} />
-                      <Route path="terminos&y&condiciones" element={<TyC />} />
-                      <Route path="politica&de&privacidad" element={<PdeP />} />
-                      <Route path="mantenimiento" element={<Maintance />} />
-                      <Route path="acercaDe" element={<About />} />
-                      <Route
-                        path="notificaciones"
-                        element={<Notifications />}
-                      />
-                      <Route
-                        path="cancelacionCompra"
-                        element={<CancelacionCompra />}
-                      />
-                      <Route
-                        path="cancelacionCompraOk"
-                        element={<CancelacionCompraOk />}
-                      />
-                      <Route path="FAQ" element={<FAQ />} />
-                      <Route
-                        path="MiTienda"
-                        element={<MiTienda />}
-                      />
-                    </Routes>
-                    <Footer />
-                  </ThemeProvider>
-                </Router>
+                  <Router>
+                    <ThemeProvider theme={theme}>
+                      <NavBar />
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route
+                          path="/productos/:keyword"
+                          element={<SearchProductsResults />}
+                        />
+                        <Route
+                          path="/productos/:search/:keyword"
+                          element={<SearchProductsResults />}
+                        />
+                        <Route
+                          path="/roperos"
+                          element={<SearchClosetResults />}
+                        />
+                        <Route
+                          path="/roperos/:keyword"
+                          element={<SearchClosetResults />}
+                        />
+                        <Route
+                          path="/roperos/search/:keyword"
+                          element={<SearchClosetResults />}
+                        />
+                        <Route
+                          path="/roperos/:closetId/:nombre"
+                          element={<ViewCloset />}
+                        />
+                        <Route
+                          path="/productoCard/:itemID"
+                          element={<ProductPage />}
+                        />
+                        <Route
+                          path="/colecciones/:coleccionName"
+                          element={<SearchColeccionesResults />}
+                        />
+                        <Route path="/carrito" element={<Cart />} />
+                        <Route path="/checkout" element={<Checkout />} />
+                        <Route
+                          path="/checkout/:status"
+                          element={<Checkout />}
+                        />
+                        <Route path="*" element={<Error />}></Route>
+                        <Route path="/login" element={<Login />} />
+                        <Route
+                          path="/login/:redireccionCompra"
+                          element={<Login />}
+                        />
+                        <Route path="/registro" element={<Register />} />
+                        <Route
+                          path="/validacionLogin"
+                          element={<LoginValidation />}
+                        />
+                        <Route path="/perfil" element={<Perfil />} />
+                        <Route
+                          path="perfil/:perfilSeccion"
+                          element={<Perfil />}
+                        />
+                        <Route
+                          path="perfil/:perfilSeccion/:id"
+                          element={<Perfil />}
+                        />
+                        <Route path="productos" element={<Home />} />
+                        <Route
+                          path="terminos&y&condiciones"
+                          element={<TyC />}
+                        />
+                        <Route
+                          path="politica&de&privacidad"
+                          element={<PdeP />}
+                        />
+                        <Route path="mantenimiento" element={<Maintance />} />
+                        <Route path="acercaDe" element={<About />} />
+                        <Route
+                          path="notificaciones"
+                          element={<Notifications />}
+                        />
+                        <Route
+                          path="cancelacionCompra"
+                          element={<CancelacionCompra />}
+                        />
+                        <Route
+                          path="cancelacionCompraOk"
+                          element={<CancelacionCompraOk />}
+                        />
+                        <Route path="FAQ" element={<FAQ />} />
+                        <Route path="MiTienda" element={<MiTienda />} />
+                        <Route
+                          path="MiTienda/cargaProducto/:seccion"
+                          element={<CargaProducto />}
+                        />
+                      </Routes>
+                      <Footer />
+                    </ThemeProvider>
+                  </Router>
                 </MiTiendaContext>
               </CartContext>
             </FormContext>
