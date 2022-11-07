@@ -1,5 +1,4 @@
 <?php
-print_r($_SERVER);
 
 /**
  	* MiRoperoApiDataGetway: Archivo de conexion al servicio de datos
@@ -15,9 +14,9 @@ print_r($_SERVER);
 	* @USER
 	* @PASS
 	**/	
-$apidata_url  = "https://apidata.miropero.com.ar/";
-$apidata_user = "accesomiroperoweb";
-$apidata_pass = "#acc3s47dm1pp";
+$apidata_url  = $_ENV["REACT_APP_URL"];
+$apidata_user = $_ENV["REACT_APP_USER"];
+$apidata_pass = $_ENV["REACT_APP_PASS"];
 
 
 /**

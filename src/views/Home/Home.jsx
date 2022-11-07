@@ -3,7 +3,6 @@ import {
   Container,
   Link,
   Typography,
-  Button,
   useMediaQuery,
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
@@ -20,28 +19,8 @@ import YoutubeEmbed from "../../components/YoutubeEmbed/YoutubeEmbed";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ProductCard from "../../components/ProductCard/ProductCard";
 
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 1366, min: 1366 },
-    items: 4,
-  },
-  desktop: {
-    breakpoint: { max: 1366, min: 1100 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1100, min: 600 },
-    items: 3,
-  },
-  mobile: {
-    breakpoint: { max: 600, min: 280 },
-    items: 2,
-  },
-};
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));

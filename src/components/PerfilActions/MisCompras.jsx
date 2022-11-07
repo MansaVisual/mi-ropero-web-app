@@ -17,11 +17,10 @@ const MisCompras = () => {
 
   useEffect(() => {
     if (id) {
-      console.log(id);
       setCompraId(id);
       navigate(`/perfil/MIS COMPRAS DETALLE`);
     }
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const { userLog } = useContext(UseLoginContext);
   const {
