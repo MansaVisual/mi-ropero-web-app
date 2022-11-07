@@ -158,14 +158,10 @@ export const LoginContext = ({ children }) => {
     log.append("nombre", data.user.name.firstName);
     log.append("email", data.user.email);
     log.append("apellido", data.user.name.lastName);
-    /*     log.append("social_login_type", 3);
-    log.append("social_login_id", data.authorization.id_token);
-    log.append("nombre", "Valentin");
-    log.append("email", "Valentingambella7@hotmail.com");
-    log.append("apellido", "Gambella"); */
 
     LoginAPI(log, "clientes", "insert_social").then((res) => {
-      console.log(res);
+      console.log(res, Object.fromEntries(log));
+
       if (res.status === "success") {
         AppleLogin(data);
       } else if (res.status === "error") {
