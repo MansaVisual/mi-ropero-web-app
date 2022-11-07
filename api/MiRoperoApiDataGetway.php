@@ -14,6 +14,7 @@
 	* @USER
 	* @PASS
 	**/	
+	print_r($_ENV);
 $apidata_url  = $_ENV["REACT_APP_URL"];
 $apidata_user = $_ENV["REACT_APP_USER"];
 $apidata_pass = $_ENV["REACT_APP_PASS"];
