@@ -40,10 +40,10 @@ const BoxLoginValidate = () => {
           if (redirectUrl !== "") {
             localStorage.setItem("redirectUrl", "");
             window.location.replace(
-              `https://mi-ropero-web-app.vercel.app${redirectUrl}`
+              `https://www.miropero.ar${redirectUrl}`
             );
           } else {
-            window.location.replace("https://mi-ropero-web-app.vercel.app/");
+            window.location.replace("https://www.miropero.ar/");
           }
         } else {
           setLoad(false);
