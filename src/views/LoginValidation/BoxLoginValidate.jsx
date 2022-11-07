@@ -40,7 +40,7 @@ const BoxLoginValidate = () => {
           if (redirectUrl !== "") {
             localStorage.setItem("redirectUrl", "");
             window.location.replace(
-              `https://www.miropero.ar${redirectUrl}`
+              `https://www.miropero.ar/${redirectUrl}`
             );
           } else {
             window.location.replace("https://www.miropero.ar/");

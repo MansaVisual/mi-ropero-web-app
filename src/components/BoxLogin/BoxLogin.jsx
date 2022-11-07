@@ -42,7 +42,7 @@ const BoxLogin = () => {
       if (res.status === "success") {
         if(redireccionCompra!==undefined){
           window.location.replace(
-            `https://www.miropero.ar${redireccionCompra}`
+            `https://www.miropero.ar/${redireccionCompra}`
           );
         }
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
@@ -53,7 +53,7 @@ const BoxLogin = () => {
         if (redirectUrl) {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(
-            `https://www.miropero.ar${redirectUrl}`
+            `https://www.miropero.ar/${redirectUrl}`
           );
         } else {
           window.location.replace("https://www.miropero.ar/");
