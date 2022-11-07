@@ -29,22 +29,29 @@ const FAQ = () => {
     }, 200);
   };
 
+  const handleClick=(data)=>{
+    setTimeout(() => {
+      handleChange(data)
+    }, 100);
+  }
+  
+
   const comoVendo = [
     "• En Mi Ropero publicar es Gratis!.",
-    "• Prepara la ropa que vas a vender (Tips de ventas)",
+    "",
     "• Ingresa a la app con tu usuario.",
     "• Selecciona ¿Queres Publicar?",
-    "• Agrega las fotos de las prendas que queres vender, podes hacerlo en el momento o subirlas desde la galería (Tips de Fotos)",
+    "",
     "• Selecciona la Categoría",
     "• Selecciona las características (color, condición, estilo, talle, etc..)",
     "• Elegí un “Nombre para la Publicación”, por Ejemplo: Producto+Marca, o lo que quieras resaltar.",
     "• En Descripción, si queres podes agregar medidas o sumarle mas detalle.",
     "• Ponele precio y cantidad.",
     "• Publícalas!!",
-    "• Listo ya tenes Tu Tienda armada (cómo configurar Mi Tienda)",
-    "• Si vendes, tenes 5 días hábiles para enviar el pedido si es por OCA o inmediato si el envío es por Moto (antes de las 14hs será en el día y después de las 14hs para el día siguiente), te informaremos por mail. Te recomendamos ver Métodos de Envío.",
+    "",
+    "",
     "• Una vez entregado el pedido, te califican ( Lxs Compradorxs tienen 2 días para calificarte), en el caso que no lo hagan, nosotros te calificamos neutral.",
-    "• Esta todo OK!, elegí como cobrar o elegí que queres comprarte en Mi Ropero (Como cobro mis ventas)",
+    ""
   ];
   const miTiendaConfig1 = [
     "• Configurar los datos de la Tienda",
@@ -210,7 +217,7 @@ const FAQ = () => {
               id="panel3-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle">
+              <Typography className="questionTitle" id="configTienda">
                 3. ¿Cómo me registro?
               </Typography>
             </AccordionSummary>
@@ -234,28 +241,60 @@ const FAQ = () => {
               id="panel4-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle">4. ¿Cómo vendo?</Typography>
+              <Typography className="questionTitle" id="TipParaVentas">4. ¿Cómo vendo?</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{
               display:time?"none":"block"
             }}>
-              {comoVendo.map((res, i) => (
+              {comoVendo.map((res, i) => (<>
+                {i===1 ?
+                <Typography className="answerText" key={i}>
+                  • Prepara la ropa que vas a vender (
+                  <a onClickCapture={handleChange("panel6")} href="#TipParaVentas">Tips de ventas</a>)
+                </Typography>
+                :
+                i===4?
+                <Typography className="answerText" key={i}>
+                  • Agrega las fotos de las prendas que queres vender, podes hacerlo en el momento o subirlas desde la galería (
+                  <a onClickCapture={handleChange("panel6")} href="#TipParaFotos">Tips de Fotos</a>)
+                </Typography>
+                :
+                i===11?
+                <Typography className="answerText" key={i}>
+                  • Listo ya tenes Tu Tienda armada (
+                  <a onClickCapture={handleChange("panel6")} href="#configTienda">cómo configurar Mi Tienda</a>)
+                </Typography>
+                :
+                i===12?
+                <Typography className="answerText" key={i}>
+                  • Si vendes, tenes 5 días hábiles para enviar el pedido si es por OCA o inmediato si el envío es por Moto (antes de las 14hs será en el día y después de las 14hs para el día siguiente), te informaremos por mail. Te recomendamos ver  
+                  <a onClickCapture={handleChange("panel6")} href="#metodosEnvio"> Métodos de Envío.</a>
+                </Typography>
+                :
+                i===14?
+                <Typography className="answerText" key={i}>
+                  • Esta todo OK!, elegí como cobrar o elegí que queres comprarte en Mi Ropero (
+                  <a onClickCapture={handleChange("panel6")} href="#comoCobro"> Como cobro mis ventas</a>)
+                </Typography>
+                :
                 <Typography className="answerText" key={i}>
                   {res}
                 </Typography>
-              ))}
+                }
+              </>))}
             </AccordionDetails>
           </Accordion>
           <Accordion
             expanded={expanded === "panel5"}
             onChange={handleChange("panel5")}
+            className="accordion"
           >
             <AccordionSummary
               aria-controls="panel5-content"
               id="panel5-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography>4.1. ¿Cómo configuro Mi Tienda?</Typography>
+              <Typography className="questionTitle">4.1. ¿Cómo configuro Mi Tienda?</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{
               display:time?"none":"block"
@@ -318,13 +357,14 @@ const FAQ = () => {
             expanded={expanded === "panel6"}
             onChange={handleChange("panel6")}
             className="accordion"
+            id="tipsVentas"
           >
             <AccordionSummary
               aria-controls="panel6-content"
               id="panel6-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle">
+              <Typography className="questionTitle" id="TipParaFotos">
                 4.2 Tips de Ventas:
               </Typography>
             </AccordionSummary>
@@ -402,7 +442,7 @@ const FAQ = () => {
               <Typography className="questionTitle">
                 ¿Porque no puedo ver las Fotos de Mi Galería?
               </Typography>
-              <Typography className="questionTitle">
+              <Typography className="answerText">
                 Cuando publicas imágenes tene en cuenta que si no habilitas tu
                 celular para que la app MI Ropero puedo ingresara a tu galería
                 de fotos, no vas a poder seleccionarlas. Te recomendamos que
@@ -421,7 +461,7 @@ const FAQ = () => {
               id="panel9-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle">
+              <Typography className="questionTitle" id="comoCobro">
                 4.4 ¿Dónde veo el detalle de mis ventas?
               </Typography>
             </AccordionSummary>
@@ -539,14 +579,14 @@ const FAQ = () => {
               id="panel12-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle">
+              <Typography className="questionTitle" id="metodosEnvio">
                 5. ¿Cómo compro?
               </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{
               display:time?"none":"block"
             }}>
-              <Typography className="answerText">
+              <Typography className="questionTitle">
                 Es muy fácil, rápido, seguro y conómico.
               </Typography>
               {comoCompro.map((res, i) => (
@@ -554,7 +594,7 @@ const FAQ = () => {
                   {res}
                 </Typography>
               ))}
-              <Typography className="answerText">
+              <Typography className="questionTitle">
                 Listo!. A disfrutar de tu nueva Prenda!
               </Typography>
             </AccordionDetails>
