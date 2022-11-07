@@ -18,10 +18,17 @@ import foto8 from "../../assets/FAQ/8.png";
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
+  const [time,setTime]=React.useState(false)
+
 
   const handleChange = (panel) => (event, newExpanded) => {
+    setTime(true)
     setExpanded(newExpanded ? panel : false);
+    setTimeout(() => {
+      setTime(false)
+    }, 200);
   };
+
   const comoVendo = [
     "• En Mi Ropero publicar es Gratis!.",
     "• Prepara la ropa que vas a vender (Tips de ventas)",
@@ -107,7 +114,11 @@ const FAQ = () => {
                 1. ¿Qué es mi ropero?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }} sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="questionTitle">
                 Escencia & filosofía
               </Typography>
@@ -179,7 +190,9 @@ const FAQ = () => {
                 2. ¿Cómo lo instalo?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Fácil. Ingresando a{" "}
                 <a href="www.miropero.com.ar">www.miropero.com.ar</a> ,
@@ -203,7 +216,9 @@ const FAQ = () => {
                 3. ¿Cómo me registro?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Tenes que tener un mail o usuario de Facebook, si tenes IOS
                 podes ingresar con tu AppleID
@@ -223,7 +238,9 @@ const FAQ = () => {
             >
               <Typography className="questionTitle">4. ¿Cómo vendo?</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               {comoVendo.map((res, i) => (
                 <Typography className="answerText" key={i}>
                   {res}
@@ -242,7 +259,9 @@ const FAQ = () => {
             >
               <Typography>4.1. ¿Cómo configuro Mi Tienda?</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Para tener una Tienda lo primero que tenes que hacer es Publicar
                 un producto. Vas a tener una Tienda asignada si pones productos
@@ -311,7 +330,9 @@ const FAQ = () => {
                 4.2 Tips de Ventas:
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 La primera impresión es lo que cuenta, no pierdas la oportunidad
                 de lucir las prendas que queres vender.
@@ -348,7 +369,9 @@ const FAQ = () => {
                 4.2.1 Estado de una Prenda:
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               {miTiendaConfig4.map((res, i) => (
                 <Typography className="answerText" key={i}>
                   {res}
@@ -370,7 +393,9 @@ const FAQ = () => {
                 4.3 Tips de Fotos:
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               {miTiendaConfig5.map((res, i) => (
                 <Typography className="answerText" key={i}>
                   {res}
@@ -402,7 +427,9 @@ const FAQ = () => {
                 4.4 ¿Dónde veo el detalle de mis ventas?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Cuando realizas una venta, es decir cuando el pago esta
                 realizado y aprobado, podrás ver tu venta en Mi Tienda/Venta,
@@ -434,7 +461,9 @@ const FAQ = () => {
                 4.5 ¿Cómo realizo el envío?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Una vez que el pago esta realizado se te avisa por mail y por
                 notificación que la venta se realizo satisfactoriamente. Deberás
@@ -479,7 +508,9 @@ const FAQ = () => {
                 4.5.1 ¿Cómo cobro Mis Ventas?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Una vez que te califiquen de manera satisfactoria, tu comprador
                 o nosotros (máximo 48hs), podrás ver disponible tu dinero en Tu
@@ -514,7 +545,9 @@ const FAQ = () => {
                 5. ¿Cómo compro?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Es muy fácil, rápido, seguro y conómico.
               </Typography>
@@ -542,7 +575,9 @@ const FAQ = () => {
                 6. Medios de Pago
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Por el momento solo operamos con Mercado Pago, próximamente
                 estaremos ampliando con otros Medios de Pago. Al momento de
@@ -567,7 +602,9 @@ const FAQ = () => {
                 7. Medio de envío
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Dependiendo del destino, podrás seleccionar la forma de envío:
               </Typography>
@@ -618,7 +655,9 @@ const FAQ = () => {
                 7.1. ¿Cuánto tiempo demora en llegar el pedido?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="questionTitle">Envío por OCA:</Typography>
               <Typography className="answerText">
                 • Lx vendedorxs tiene 5 días hábiles para enviarte el pedido y
@@ -716,7 +755,9 @@ const FAQ = () => {
                 8. Cambios y devoluciones
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="questionTitle">
                 ¿Como hago un cambio o una devolucion
               </Typography>
@@ -790,7 +831,9 @@ const FAQ = () => {
                 9. ¿ Cuál es el costo por comprar o vender en MI ROPERO?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="questionTitle">Compradorxs</Typography>
               <Typography className="answerText">
                 Si sos Compradorx, solo pagas lo que compras y el costo del
@@ -827,7 +870,9 @@ const FAQ = () => {
                 10. ¿Porqué me piden que cargue mi dirección?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="questionTitle">Mis Direcciones</Typography>
               <Typography className="answerText">
                 En Mi Perfil/Mis Direcciones. Vas a poder cargar las direcciones
@@ -890,7 +935,9 @@ const FAQ = () => {
                 11. ¿Porqué me piden mi teléfono?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 El número de teléfono te lo pedimos, para coordinar el envío, en
                 caso de que no te encuentres en tu domicilio al momento de
@@ -913,7 +960,9 @@ const FAQ = () => {
                 12. ¿Cómo califico?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Para que ésta comunidad de moda circular funcione, es importante
                 la calificación de lxs compradorxs hacia lxs vendedorxs.
@@ -957,7 +1006,9 @@ const FAQ = () => {
                 13. ¿Por qué no puedo ver las fotos de mi galería de fotos?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Cuando publicas imágenes tene en cuenta que si no habilitas tu
                 celular para que la app MI Ropero puedo ingresara a tu galería
@@ -982,7 +1033,9 @@ const FAQ = () => {
                 moto?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Por el momento el servicio de Envío por Moto solo esta
                 disponible en los casos que vendedorxs y Compradorxs tengan
@@ -1006,7 +1059,9 @@ const FAQ = () => {
                 disponible, ya no lo esta cuando quiero finalizar la compra?.
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 La disponibilidad de los productos en Mi Ropero cambian
                 constantemente. Si añadis un producto a tu carrito no garantiza
@@ -1032,7 +1087,9 @@ const FAQ = () => {
                 esta en oferta cuando lo quiero comprar?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Si añadis un producto en tu carrito de compras cuando está en
                 oferta, el precio también cambiará cuando la oferta haya
@@ -1062,7 +1119,9 @@ const FAQ = () => {
                 17. Me olvidé la contraseña para ingresar, ¿como la recupero?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Si olvidaste tu contraseña, desde el inicio de App hace clic en
                 la opción “ingresa con tu email” y hace clic en “olvide mi
@@ -1092,7 +1151,9 @@ const FAQ = () => {
                 18. ¿Cómo sé que mi compra se realizo correctamente?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 ¿Cómo se que mi compra se realizo correctamente? Antes de
                 seleccionar el metodo de pago, podras ver el detalle de tu
@@ -1123,7 +1184,9 @@ const FAQ = () => {
                 realizado una compra?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{
+              display:time?"none":"block"
+            }}>
               <Typography className="answerText">
                 Podes cambiar tu dirección de entrega las veces que quieras y
                 también podrás guardar las direcciones de uso frecuente. Tene en
