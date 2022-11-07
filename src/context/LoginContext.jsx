@@ -101,6 +101,7 @@ export const LoginContext = ({ children }) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
+        console.log(redirectUrl);
         if (redirectUrl) {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
@@ -148,7 +149,6 @@ export const LoginContext = ({ children }) => {
 
       if (res.status === "success") {
         setInfoUser(res.result);
-        console.log(infoUser);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
         if (redirectUrl) {
           localStorage.setItem("redirectUrl", "");
