@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  Link,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Container, Link, Typography, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -21,7 +15,6 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
 import "react-multi-carousel/lib/styles.css";
 
-
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
@@ -29,7 +22,13 @@ const Home = () => {
   const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV } =
     useContext(UseColeccionContext);
 
+  const redirectUrl = localStorage.getItem("redirectUrl");
+
   useEffect(() => {
+    if (redirectUrl) {
+      localStorage.setItem("redirectUrl", "");
+      window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
+    }
     window.scrollTo({
       top: 0,
       behavior: "auto",
