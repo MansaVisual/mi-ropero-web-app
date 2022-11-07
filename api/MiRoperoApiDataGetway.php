@@ -73,6 +73,7 @@ if(!$method) die("El metodo no fue definido");
 	* TODO LOS QUE LLEGA POR $_POST SE ENVIA COMO PARAM AL SERVICIO
 	**/
 $params	= $_POST;
+$params['__'] = base64_encode(serialize(['u'=>$apidata_user,'p'=>$apidata_pass,'t'=>time()]));
 
 /**
 	* TODO LOS QUE LLEGA POR $_FILES 
