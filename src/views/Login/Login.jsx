@@ -2,12 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import banner from '../../assets/img/bannermvp4.png';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import BoxLogin from '../../components/BoxLogin/BoxLogin';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logoRopero from '../../assets/img/logoLogin.png';
 import { Grid } from '@mui/material';
 import { UseLoginContext } from '../../context/LoginContext';
-import Swal from 'sweetalert2';
-import logo from "../../assets/img/isologo.png"
+
 
 const Login = () => {
   const { loginStorage } = useContext(UseLoginContext);
@@ -15,7 +14,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
-  const { redireccionCompra } = useParams();
 
   useEffect(() => {
     window.scrollTo({
@@ -28,21 +26,6 @@ const Login = () => {
       }
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if(redireccionCompra!==undefined){
-      Swal.fire({
-        title: "¡SUMATE A LA MODA CIRCULAR!",
-        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
-        iconHtml: `<img src=${logo} alt="LOGO">`,
-        customClass: {
-          icon: 'no-border',
-          container:"popUpLoginAlert"
-        },
-        confirmButtonText: "CONTINUAR",
-      });
-    }
-  }, [redireccionCompra]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Grid>

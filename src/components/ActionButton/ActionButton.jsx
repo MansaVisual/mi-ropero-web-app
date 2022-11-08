@@ -8,6 +8,7 @@ import { IoFilter } from "react-icons/io5";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/img/isologo.png"
 
 export const LikeButton = ({
   idCliente,
@@ -44,8 +45,23 @@ export const LikeButton = ({
 
   const onLike = async () => {
     if (idCliente === "") {
-      localStorage.setItem("redirectUrl", location);
-      navigate("/login");
+      Swal.fire({
+        title: "¡SUMATE A LA MODA CIRCULAR!",
+        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: 'no-border',
+          container:"popUpLoginAlert",
+          cancelButton:"popUpLoginCancel"
+        },
+        confirmButtonText: "CONTINUAR",
+        cancelButtonText:"CANCELAR"
+      }).then((res)=>{
+        if(res.isConfirmed){
+          localStorage.setItem("redirectUrl", location);
+          navigate("/login");
+        }
+      })
       return;
     }
 
