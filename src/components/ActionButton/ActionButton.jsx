@@ -124,6 +124,9 @@ export const UpButton = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          "&:hover": {
+            backgroundColor: "#ffbce8",
+          },
         }}
       >
         <IoArrowUndoSharp fontSize="26px" color="hsl(0, 0%, 100%)" />
@@ -142,6 +145,9 @@ export const WspButton = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          "&:hover": {
+            backgroundColor: "#23ff58",
+          },
         }}
       >
         <FaWhatsapp fontSize="26px" color="hsl(0, 0%, 100%)" />
@@ -149,7 +155,6 @@ export const WspButton = () => {
     </Box>
   );
 };
-
 export const CommentButton = ({ onClick }) => {
   return (
     <Box onClick={onClick}>
