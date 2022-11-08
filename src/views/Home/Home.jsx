@@ -249,7 +249,7 @@ const Home = () => {
             </Link>
           </Box>
         </Container>
-        <Box sx={{ position: "absolute", right: 10 }}>
+        <Box sx={{ position: "fixed", right: 10, bottom: 10 }}>
           <Box sx={{ marginBottom: "16px" }} onClick={() => scrollTop()}>
             <UpButton />
           </Box>
