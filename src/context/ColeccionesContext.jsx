@@ -47,7 +47,7 @@ export const ColeccionContext = ({ children }) => {
     const col = new FormData();
     col.append("idcoleccion", 71);
     col.append("bypage", 8);
-    ColeccionAPI(col, "colecciones", "detail").then((res) => {
+    ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
       if (res.status === "success") {
         setColeccionNuevosIngresos(res.result.productos);
       }
