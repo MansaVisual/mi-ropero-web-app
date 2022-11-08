@@ -38,7 +38,7 @@ const Home = () => {
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "auto",
+      behavior: "smooth",
     });
   };
 
@@ -253,9 +253,9 @@ const Home = () => {
           <Box sx={{ marginBottom: "16px" }} onClick={() => scrollTop()}>
             <UpButton />
           </Box>
-          <Box>
+          {/* <Box>
             <WspButton />
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </>
