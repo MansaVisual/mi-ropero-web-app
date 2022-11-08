@@ -31,6 +31,7 @@ const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort: false,
     categoriasCol: true,
+    categoriasSearch:true
   });
 
   const { keyword, search } = useParams();
@@ -51,6 +52,7 @@ const Filter = (props) => {
   const setTotalPages=props.setTotalPages
   const rangoPrecio=props.rangoPrecio
   const setRangoPrecio=props.setRangoPrecio
+  const categoriasSearch = props.categoriasSearch
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -225,7 +227,56 @@ const Filter = (props) => {
         </Fragment>
       )}
 
-      {filtros !== undefined && search===undefined &&
+      {categoriasSearch !== undefined && categoriasSearch.length !== 0 && (
+        <Fragment>
+          <ListItemStyled onClick={() => handleClick('categoriasSearch')}>
+            <ListItemText primary='Categorias' sx={ListItemTextStyled} />
+            {openFilter.categoriasSearch ? <ExpandLess /> : <ExpandMore />}
+          </ListItemStyled>
+          <Collapse
+            in={openFilter.categoriasSearch}
+            timeout='auto'
+            unmountOnExit
+            className='scrollFilter'
+            sx={{
+              maxHeight: '60vh',
+              overflowY: 'scroll',
+            }}
+          >
+            {categoriasSearch.map((res2, i2) => {
+              return (
+                <Fragment key={i2}>
+                  {res2.nombre !== 'ROPA' &&
+                    res2.nombre !== 'CALZADO' &&
+                    res2.nombre !== 'ACCESORIOS' &&
+                    res2.nombre !== 'BELLEZA' && (
+                      <List component='div' sx={{ marginLeft: '6px' }}>
+                        <FormControlLabel
+                          label={res2.nombre!==undefined?res2.nombre:res2.Nombre}
+                          control={
+                            <Radio
+                              checked={
+                                putCategory === (res2.nombre!==undefined?res2.nombre:res2.Nombre) ? true : false
+                              }
+                              name={res2.valor!==undefined?res2.valor:res2.idcategoria}
+                              onClick={(e) => {
+                                setPutCategory(res2.nombre!==undefined?res2.nombre:res2.Nombre);
+                              }}
+                            />
+                          }
+                          sx={FormControlLabelStyled}
+                        />
+                      </List>
+                    )}
+                </Fragment>
+              );
+            })}
+          </Collapse>
+          <Divider />
+        </Fragment>
+      )}
+
+      {filtros !== undefined &&
         coleccion === undefined &&
         filtros.map((res, i) => {
           return (
@@ -314,7 +365,7 @@ const Filter = (props) => {
             </Fragment>
           );
       })}
-      {filtros !== undefined && search===undefined &&
+      {filtros !== undefined &&
         coleccion !== undefined &&
         filtros.map((res, i) => {
           return (

@@ -38,11 +38,11 @@ export const ColeccionContext = ({ children }) => {
   // segundoscroll mejoresV id=73
 
   useEffect(() => {
-    // ColeccionAPI(
-    //     "col",
-    //     "colecciones",
-    //     "all"
-    // ).then((res)=>{console.log(res)})
+    ColeccionAPI(
+        "col",
+        "colecciones",
+        "all"
+    ).then((res)=>{console.log(res)})
 
     const col = new FormData();
     col.append("idcoleccion", 71);

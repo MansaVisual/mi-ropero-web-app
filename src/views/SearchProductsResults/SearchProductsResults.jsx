@@ -56,6 +56,7 @@ const SearchProductsResults = () => {
   const [buscandoProds, setBuscandoProds] = useState(true);
   const [buscandoFiltros, setBuscandoFiltros] = useState(false);
   const [filtrosCategoria, setFiltrosCategoria] = useState([]);
+  const [putCategory,setPutCategory]=useState("")
 
   const [totalPages, setTotalPages] = useState(0);
 
@@ -97,6 +98,58 @@ const SearchProductsResults = () => {
       prodsCategoria(false);
     }
   }, [keyword, categorias]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if(putCategory!==""){
+      setLoad2(true)
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto',
+      });
+      busquedaPrimera()
+    }
+  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  const busquedaPrimera=()=>{
+    setBuscandoFiltros(true)
+    setPutSort("")
+    setPutFilters([])
+    setPags(1)
+    if(putCategory!==""){
+      let idCat=categorias.filter(e=>e.nombre===putCategory)
+      idCat=idCat[0].idcategoria
+
+      const col=new FormData()
+      col.append("text",keyword)
+      col.append("idcategoria",idCat)
+      col.append("bypage",15)
+      col.append("page",0)
+
+      ProdAPI(
+          col,
+          "productos",
+          "search"
+      ).then((res)=>{console.log(res)
+        if(res.status==="success"){
+          const catFilters = new FormData();
+          catFilters.append("idcategoria", idCat);
+          ProdAPI(catFilters, "categorias", "get").then((res) => {
+            if (res.status === "success") {
+              setFiltrosCategoria(res.result[0]);
+            }
+          });
+          setProds(res.result.productos)
+          setTotalPages(res.result.total_paginas)
+        }else if(res.result==="No se encontraron productos"){
+          setFiltrosCategoria([])
+          setProds([])
+          setTotalPages(0)
+        }
+        // setBuscandoCol(false)
+        setLoad2(false)
+      })
+    }
+  }
 
 
   const prodsCategoria = (paramSearch) => {
@@ -173,6 +226,11 @@ const SearchProductsResults = () => {
     }
     if (paramSearch) {
       catProd.append("text", keyword);
+      if(putCategory!==""){
+        let idCat=categorias.filter(e=>e.nombre===putCategory)
+        idCat=idCat[0].idcategoria
+        catProd.append("idcategoria", idCat);
+      }
     } else {
       idCat = categorias.find(
         (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
@@ -224,8 +282,13 @@ const SearchProductsResults = () => {
       const prod = new FormData();
       let idCat = [];
 
-      if (search !== undefined) {
+      if (search!==undefined) {
         prod.append("text", keyword);
+        if(putCategory!==""){
+          let idCat=categorias.filter(e=>e.nombre===putCategory)
+          idCat=idCat[0].idcategoria
+          prod.append("idcategoria", idCat);
+        }
       } else {
         idCat = categorias.find(
           (e) => e.nombre.toString().trim() === keyword.replaceAll("&", "/")
@@ -394,6 +457,9 @@ const SearchProductsResults = () => {
                           setTotalPages={setTotalPages}
                           rangoPrecio={rangoPrecio}
                           setRangoPrecio={setRangoPrecio}
+                          categoriasSearch={categorias}
+                          putCategory={putCategory}
+                          setPutCategory={setPutCategory}
                         />
                       </Box>
                     </Fade>
@@ -434,7 +500,7 @@ const SearchProductsResults = () => {
                         setProds={setProds}
                         ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
-                        categorias={categorias}
+                        categorias={search!==undefined?categorias:undefined}
                         clase={"productos"}
                         metodo={"search"}
                       />
@@ -478,6 +544,9 @@ const SearchProductsResults = () => {
                   setTotalPages={setTotalPages}
                   rangoPrecio={rangoPrecio}
                   setRangoPrecio={setRangoPrecio}
+                  categoriasSearch={search!==undefined?categorias:undefined}
+                  putCategory={putCategory}
+                  setPutCategory={setPutCategory}
                 />
               </>
             )}
