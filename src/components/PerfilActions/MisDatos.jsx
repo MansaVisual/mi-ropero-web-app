@@ -659,7 +659,7 @@ const MisDatos = () => {
 
           <div className="inputContainer">
             <div className="inputBox">
-              <p className="labelInput" id="Labelenero">
+              <p className="labelInput" id="labelGenero">
                 Género *
               </p>
               <Select
@@ -667,9 +667,14 @@ const MisDatos = () => {
                 className="selectInput"
                 size="small"
                 id="genero"
-                onChange={(e) =>
-                  setGenero(arrayGeneros.indexOf(e.target.value))
-                }
+                defaultValue=""
+                onChange={(e) => {
+                  setGenero(arrayGeneros.indexOf(e.target.value));
+                }}
+                onFocus={(e) => {
+                  setGeneroObligatorio(false);
+                  onFocus(e, clase, clase2, "labelGenero");
+                }}
                 value={
                   genero === "0"
                     ? "ejemplo"
@@ -682,6 +687,10 @@ const MisDatos = () => {
                     fontSize: "14px",
                     color: infoUser.genero === "" ? "#BABCBE" : "#423B3C",
                     fontWeight: "400",
+                    border: generoObligatorio && "0.5px solid #FF3F20",
+                    "&:hover": {
+                      border: generoObligatorio && "0.5px solid #FF3F20",
+                    },
                   },
                   height: 42,
                 }}
