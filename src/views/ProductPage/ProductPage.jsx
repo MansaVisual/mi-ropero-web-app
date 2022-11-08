@@ -25,6 +25,8 @@ import Loader from "../../components/Loader/Loader";
 import { useNavigate, useLocation } from "react-router-dom";
 import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
+import logo from "../../assets/img/isologo.png"
+import Swal from "sweetalert2";
 
 const ProductPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -78,8 +80,28 @@ const ProductPage = () => {
   }, [itemID]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCompraSinLogin = () => {
-    localStorage.setItem("redirectUrl", location.pathname);
-    navigate("/login");
+    if (userLog === "") {
+      Swal.fire({
+        title: "¡SUMATE A LA MODA CIRCULAR!",
+        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: 'no-border',
+          container:"popUpLoginAlert",
+          cancelButton:"popUpLoginCancel"
+        },
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: "CONTINUAR",
+        cancelButtonText:"CANCELAR"
+      }).then((res)=>{
+        if(res.isConfirmed){
+          localStorage.setItem("redirectUrl", location.pathname);
+          navigate("/login");
+        }
+      })
+      return;
+    }
   };
 
   return (

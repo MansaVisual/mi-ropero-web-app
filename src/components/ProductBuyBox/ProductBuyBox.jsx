@@ -26,7 +26,7 @@ import PopUpOfertaPP from "../Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../Dialog/PopUpMensajePP";
 import Swal from "sweetalert2";
 import MopedIcon from "@mui/icons-material/Moped";
-/* import Avatar from "@material-ui/core/Avatar"; */
+import logo from "../../assets/img/isologo.png";
 
 const ProductBuyBox = ({ prod, itemID }) => {
   const location = useLocation();
@@ -51,8 +51,28 @@ const ProductBuyBox = ({ prod, itemID }) => {
   };
 
   const handleCompraSinLogin = () => {
-    localStorage.setItem("redirectUrl", location.pathname);
-    navigate(`/login/${itemID}`);
+    if (userLog === "") {
+      Swal.fire({
+        title: "¡SUMATE A LA MODA CIRCULAR!",
+        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: 'no-border',
+          container:"popUpLoginAlert",
+          cancelButton:"popUpLoginCancel"
+        },
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: "CONTINUAR",
+        cancelButtonText:"CANCELAR"
+      }).then((res)=>{
+        if(res.isConfirmed){
+          localStorage.setItem("redirectUrl", location.pathname);
+          navigate("/login");
+        }
+      })
+      return;
+    }
   };
 
   const handleAgregarCarrito = () => {

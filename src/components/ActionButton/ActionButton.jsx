@@ -54,6 +54,8 @@ export const LikeButton = ({
           container:"popUpLoginAlert",
           cancelButton:"popUpLoginCancel"
         },
+        showCloseButton: true,
+        showCancelButton: true,
         confirmButtonText: "CONTINUAR",
         cancelButtonText:"CANCELAR"
       }).then((res)=>{
