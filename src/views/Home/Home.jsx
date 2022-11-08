@@ -25,7 +25,6 @@ const Home = () => {
   const redirectUrl = localStorage.getItem("redirectUrl");
 
   useEffect(() => {
-
     if (redirectUrl) {
       localStorage.setItem("redirectUrl", "");
       window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
@@ -34,7 +33,14 @@ const Home = () => {
       top: 0,
       behavior: "auto",
     });
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  };
 
   return (
     <>
@@ -244,7 +250,7 @@ const Home = () => {
           </Box>
         </Container>
         <Box sx={{ position: "absolute", right: 10 }}>
-          <Box sx={{ marginBottom: "16px" }}>
+          <Box sx={{ marginBottom: "16px" }} onClick={() => scrollTop()}>
             <UpButton />
           </Box>
           <Box>

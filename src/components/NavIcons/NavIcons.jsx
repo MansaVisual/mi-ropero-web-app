@@ -13,6 +13,7 @@ import {
 import BellNotif from "../../assets/img/BellNotif.png";
 import Cart from "../../assets/img/Cart.png";
 import Avatar from "../../assets/img/Avatar.png";
+/* import Avatar from "../../assets/img/AvatarSvg.svg"; */
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { StyledBadge, StyledMenu } from "./style";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -460,29 +461,28 @@ const NavIcons = () => {
                       }}
                       key={i}
                       onClick={
-                        (url === false || url==="")
+                        url === false || url === ""
                           ? null
                           : () => {
-                            const not = new FormData()
-                            not.append("idpush",item.idpush)
-                            CartAPI(
-                              not,
-                              "pushs",
-                              "readed"
-                            )
-                            window.location.assign(`${url}`)
-                          }
+                              const not = new FormData();
+                              not.append("idpush", item.idpush);
+                              CartAPI(not, "pushs", "readed");
+                              window.location.assign(`${url}`);
+                            }
                       }
                     >
-                      {itemURL.indexOf("messagges")!==-1 ?
-                      <Box sx={{ mr: "10px" }}>
-                        <img src={iconoMensaje} alt="isologo de Mi Ropero" />
-                      </Box>
-                      :
-                      <Box sx={{ mr: "10px" }}>
-                        <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
-                      </Box>
-                      }
+                      {itemURL.indexOf("messagges") !== -1 ? (
+                        <Box sx={{ mr: "10px" }}>
+                          <img src={iconoMensaje} alt="isologo de Mi Ropero" />
+                        </Box>
+                      ) : (
+                        <Box sx={{ mr: "10px" }}>
+                          <img
+                            src={MiRoperoNavbar}
+                            alt="isologo de Mi Ropero"
+                          />
+                        </Box>
+                      )}
                       <Box
                         sx={{
                           display: "flex",
@@ -536,17 +536,18 @@ const NavIcons = () => {
             display: "flex",
             alignItems: "center",
             textAlign: "center",
-            justifyContent:"center",
+            justifyContent: "center",
             textDecoration: "underline",
             color: "#443988",
             margin: "auto",
-            cursor:"pointer"
+            cursor: "pointer",
           }}
-          onClick={()=>{handleCloseNotif();navigate("/notificaciones")}}
+          onClick={() => {
+            handleCloseNotif();
+            navigate("/notificaciones");
+          }}
         >
-          <p>
-            VER TODAS LAS NOTIFICACIONES
-          </p>
+          <p>VER TODAS LAS NOTIFICACIONES</p>
         </Box>
       </Stack>
     );
@@ -769,7 +770,7 @@ const NavIcons = () => {
       {userLog !== "" && (
         <IconButton onClick={userLog !== "" && handleClickNotif}>
           <StyledBadge
-            badgeContent={notis.mensajes!==undefined ? notis.total:0}
+            badgeContent={notis.mensajes !== undefined ? notis.total : 0}
             color="secondary"
             anchorOrigin={{
               vertical: "top",
