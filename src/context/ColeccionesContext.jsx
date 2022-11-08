@@ -7,12 +7,13 @@ export const ColeccionContext = ({ children }) => {
   const [coleccionNuevosIngresos, setColeccionNuevosIngresos] = useState([]);
   const [coleccionRecomendados, setColeccionRecomendados] = useState([]);
   const [coleccionMejoresV, setColeccionMejoresV] = useState([]);
+  const [colecciones, setColecciones] = useState([]);
 
   const ColeccionAPI = async (data, clase, metodo) => {
     let resFinal = "";
 
     await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
+      `https://soap.miropero.pupila.biz/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
       {
         method: "POST",
         body: data,
@@ -42,12 +43,12 @@ export const ColeccionContext = ({ children }) => {
         "col",
         "colecciones",
         "all"
-    ).then((res)=>{console.log(res)})
+    ).then((res)=>{setColecciones(res.result)})
 
     const col = new FormData();
     col.append("idcoleccion", 71);
     col.append("bypage", 8);
-    ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
+    ColeccionAPI(col, "colecciones", "detail").then((res) => {
       if (res.status === "success") {
         setColeccionNuevosIngresos(res.result.productos);
       }
@@ -79,6 +80,7 @@ export const ColeccionContext = ({ children }) => {
         coleccionNuevosIngresos,
         coleccionRecomendados,
         coleccionMejoresV,
+        colecciones
       }}
     >
       {children}

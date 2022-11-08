@@ -1,9 +1,9 @@
 import { Box, Container, Link, Typography, useMediaQuery } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect,Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   UpButton,
-  WspButton,
+  /*  WspButton, */
 } from "../../components/ActionButton/ActionButton";
 import Banner from "../../components/Banner/Banner";
 import Chip from "../../components/Chip/Chip";
@@ -19,21 +19,15 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV } =
+  const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV,colecciones } =
     useContext(UseColeccionContext);
 
-  const redirectUrl = localStorage.getItem("redirectUrl");
-
   useEffect(() => {
-    if (redirectUrl) {
-      localStorage.setItem("redirectUrl", "");
-      window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
-    }
     window.scrollTo({
       top: 0,
       behavior: "auto",
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const scrollTop = () => {
     window.scrollTo({
@@ -58,27 +52,68 @@ const Home = () => {
         }}
       >
         <Container maxWidth="xl">
-          <Box sx={{ pt: "40px", textAlign: "center" }}>
-            <Chip primary>Nuevos ingresos</Chip>
-          </Box>
-          <Box sx={{ pt: "24px" }}>
-            <SliderProd contenido={coleccionNuevosIngresos} />
-          </Box>
-          <Box sx={{ textAlign: "center" }}>
-            <Link
-              sx={{
-                color: "hsla(0, 0%, 53%, 1)",
-                fontSize: theme.typography.fontSize[4],
-                cursor: "pointer",
-                "&:hover": {
-                  fontWeight: "700",
-                },
-              }}
-              onClick={() => navigate("/colecciones/NuevosIngresos")}
-            >
-              VER TODOS LOS INGRESOS
-            </Link>
-          </Box>
+          {colecciones.map((res,i)=>{
+            if(res.tipo_text==="Coleccion 1er Scroll"){
+              return(
+                <Fragment key={i}>
+                  <Box sx={{ pt: "40px", textAlign: "center" }}>
+                    <Chip primary>{res.nombre}</Chip>
+                  </Box>
+                  <Box sx={{ pt: "24px" }}>
+                    <SliderProd contenido={coleccionNuevosIngresos} />
+                  </Box>
+                  <Box sx={{ textAlign: "center" }}>
+                    <Link
+                      sx={{
+                        color: "hsla(0, 0%, 53%, 1)",
+                        fontSize: theme.typography.fontSize[4],
+                        cursor: "pointer",
+                        "&:hover": {
+                          fontWeight: "700",
+                        },
+                      }}
+                      onClick={() => navigate("/colecciones/NuevosIngresos")}
+                    >
+                      VER "{res.nombre}"
+                    </Link>
+                  </Box>
+                </Fragment>
+              )
+            }else{
+              return(<Fragment key={i}></Fragment>)
+            }
+          })}
+          {colecciones.map((res,i)=>{
+            if(res.tipo_text==="Coleccion 2do Scroll"){
+              return(
+                <Fragment key={i}>
+                  <Box sx={{ pt: "40px", textAlign: "center" }}>
+                    <Chip primary>{res.nombre}</Chip>
+                  </Box>
+                  <Box sx={{ pt: "24px" }}>
+                    <SliderProd contenido={coleccionNuevosIngresos} />
+                  </Box>
+                  <Box sx={{ textAlign: "center" }}>
+                    <Link
+                      sx={{
+                        color: "hsla(0, 0%, 53%, 1)",
+                        fontSize: theme.typography.fontSize[4],
+                        cursor: "pointer",
+                        "&:hover": {
+                          fontWeight: "700",
+                        },
+                      }}
+                      onClick={() => navigate("/colecciones/NuevosIngresos")}
+                    >
+                      VER "{res.nombre}"
+                    </Link>
+                  </Box>
+                </Fragment>
+              )
+            }else{
+              return(<Fragment key={i}></Fragment>)
+            }
+          })}
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip>Zapatillas</Chip>
           </Box>
