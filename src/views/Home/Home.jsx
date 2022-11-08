@@ -25,6 +25,7 @@ const Home = () => {
   const redirectUrl = localStorage.getItem("redirectUrl");
 
   useEffect(() => {
+
     if (redirectUrl) {
       localStorage.setItem("redirectUrl", "");
       window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
@@ -33,7 +34,7 @@ const Home = () => {
       top: 0,
       behavior: "auto",
     });
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

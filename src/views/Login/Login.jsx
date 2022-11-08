@@ -7,6 +7,7 @@ import logoRopero from '../../assets/img/logoLogin.png';
 import { Grid } from '@mui/material';
 import { UseLoginContext } from '../../context/LoginContext';
 import Swal from 'sweetalert2';
+import logo from "../../assets/img/isologo.png"
 
 const Login = () => {
   const { loginStorage } = useContext(UseLoginContext);
@@ -31,10 +32,13 @@ const Login = () => {
   useEffect(() => {
     if(redireccionCompra!==undefined){
       Swal.fire({
-        title: "LOGUEATE O REGISTRATE",
-        text: "Es necesario que te loguees o te registres para continuar la compra.",
-        icon: "info",
-        confirmButtonText: "ACEPTAR",
+        title: "¡SUMATE A LA MODA CIRCULAR!",
+        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: 'no-border'
+        },
+        confirmButtonText: "CONTINUAR",
       });
     }
   }, [redireccionCompra]); // eslint-disable-line react-hooks/exhaustive-deps
