@@ -31,6 +31,7 @@ const footerContent = {
       { title: "FAQ's", href: "/FAQ" },
       { title: "Términos y condiciones", href: "/terminos&y&condiciones" },
       { title: "Políticas de privacidad", href: "/politica&de&privacidad" },
+      { title: "Acerca de Mi Ropero", href: "/acercaDe" },
     ],
   },
 };
@@ -117,6 +118,12 @@ const Footer = () => {
                   {item}
                 </StyledLink>
               ))}
+              <StyledLink
+                sx={{ mt: isMobile ? "30px" : "12px", lineHeight: "18px" }}
+                href={"/"}
+              >
+                Ver todos
+              </StyledLink>
             </Box>
             <Box sx={{ pt: isMobile ? "78px" : null, lineHeight: "18px" }}>
               {/* <StyledLink>VENDER</StyledLink> */}

@@ -19,7 +19,7 @@ const AppleButton = () => {
         }}
       >
         <Button className="botonApple">
-          INGRESAR CON APLEE <i className="appleIcon"></i>
+          INGRESAR CON APPLE <i className="appleIcon"></i>
         </Button>
       </LoginSocialApple>
     </div>
