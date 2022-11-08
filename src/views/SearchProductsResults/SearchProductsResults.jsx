@@ -131,7 +131,13 @@ const SearchProductsResults = () => {
           "search"
       ).then((res)=>{console.log(res)
         if(res.status==="success"){
-          // setFiltrosCategoria(res.result.productos_categorias[0].caracteristica)
+          const catFilters = new FormData();
+          catFilters.append("idcategoria", idCat);
+          ProdAPI(catFilters, "categorias", "get").then((res) => {
+            if (res.status === "success") {
+              setFiltrosCategoria(res.result[0]);
+            }
+          });
           setProds(res.result.productos)
           setTotalPages(res.result.total_paginas)
         }else if(res.result==="No se encontraron productos"){
