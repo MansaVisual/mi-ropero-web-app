@@ -236,8 +236,20 @@ const InfoContact = ({
     if (resFinal) {
       setLoader(false);
       if (direccionCargada === null) {
+        if(form.length===0){
+          await setForm({...form,
+            nombreApellido:document.getElementById("nombreApellido").value,
+            telefono:document.getElementById("telefono").value,
+          })  
+        }
         validarDireccion();
       } else {
+        if(form.length===0){
+          await setForm({...form,
+            nombreApellido:document.getElementById("nombreApellido").value,
+            telefono:document.getElementById("telefono").value,
+          })  
+        }
         setTypeNav('envio');
       }
     } else {
