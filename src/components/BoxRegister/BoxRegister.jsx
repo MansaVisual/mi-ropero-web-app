@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { Button, InputAdornment, TextField } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import Loader from '../Loader/Loader';
-import { UseLoginContext } from '../../context/LoginContext';
+import React, { useState, useContext } from "react";
+import { Button, InputAdornment, TextField } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import Loader from "../Loader/Loader";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const BoxRegister = () => {
   const navigate = useNavigate();
@@ -37,11 +37,11 @@ const BoxRegister = () => {
     setCampoObligatorio(false);
     setLoad(true);
     if (
-      document.getElementById('nombre').value === '' ||
-      document.getElementById('apellido').value === '' ||
-      document.getElementById('email').value === '' ||
-      document.getElementById('password').value === '' ||
-      document.getElementById('password2').value === ''
+      document.getElementById("nombre").value === "" ||
+      document.getElementById("apellido").value === "" ||
+      document.getElementById("email").value === "" ||
+      document.getElementById("password").value === "" ||
+      document.getElementById("password2").value === ""
     ) {
       setCampoObligatorio(true);
       scrollTop();
@@ -49,23 +49,23 @@ const BoxRegister = () => {
       return;
     }
     if (
-      document.getElementById('password').value !==
-      document.getElementById('password2').value
+      document.getElementById("password").value !==
+      document.getElementById("password2").value
     ) {
       setErrorPass(true);
       scrollTop();
       setLoad(false);
       return;
     } else if (
-      document.getElementById('password').value.length < 7 ||
-      document.getElementById('password2').value.length < 7
+      document.getElementById("password").value.length < 7 ||
+      document.getElementById("password2").value.length < 7
     ) {
       setErrorPassLength(true);
       scrollTop();
       setLoad(false);
       return;
     }
-    if (emailRegex.test(document.getElementById('email').value)) {
+    if (emailRegex.test(document.getElementById("email").value)) {
     } else {
       setErrorMail(true);
       scrollTop();
@@ -74,25 +74,25 @@ const BoxRegister = () => {
     }
 
     const loginUser = new FormData();
-    loginUser.append('email', document.getElementById('email').value);
-    loginUser.append('clave', document.getElementById('password').value);
-    loginUser.append('nombre', document.getElementById('nombre').value);
-    loginUser.append('apellido', document.getElementById('apellido').value);
-    await LoginAPI(loginUser, 'clientes', 'insert').then(async (res) => {
-      if (res.status === 'success') {
+    loginUser.append("email", document.getElementById("email").value);
+    loginUser.append("clave", document.getElementById("password").value);
+    loginUser.append("nombre", document.getElementById("nombre").value);
+    loginUser.append("apellido", document.getElementById("apellido").value);
+    await LoginAPI(loginUser, "clientes", "insert").then(async (res) => {
+      if (res.status === "success") {
         const validateCod = new FormData();
-        validateCod.append('idcliente', res.result.idcliente);
+        validateCod.append("idcliente", res.result.idcliente);
         localStorage.setItem(
-          'sendCodMiRopero',
-          JSON.stringify({ id: res.result.idcliente, mail: res.result.email }),
+          "sendCodMiRopero",
+          JSON.stringify({ id: res.result.idcliente, mail: res.result.email })
         );
-        await LoginAPI(validateCod, 'clientes', 'validate_send').then((res) => {
+        await LoginAPI(validateCod, "clientes", "validate_send").then((res) => {
           setLoad(false);
           scrollTop();
-          navigate('/validacionLogin');
+          navigate("/validacionLogin");
         });
       } else {
-        if (res.result === 'El email ya se encuentra registrado') {
+        if (res.result === "El email ya se encuentra registrado") {
           setErrorNewMail(true);
           setLoad(false);
           scrollTop();
@@ -104,87 +104,87 @@ const BoxRegister = () => {
   const scrollTop = (param) => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   return (
-    <div className='boxRegisterContainer'>
-      <div className='titleContainer'>
-        <p className='registerTitle'>REGISTRATE</p>
+    <div className="boxRegisterContainer">
+      <div className="titleContainer">
+        <p className="registerTitle">REGISTRATE</p>
       </div>
       {campoObligatorio && (
-        <div className='errorBoxContainer'>
-          <div className='errorBox'>
-            <CancelOutlinedIcon color='secondary' className='cruz' />
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
             <p>Debe completar los campos.</p>
           </div>
         </div>
       )}
       {errorPass && (
-        <div className='errorBoxContainer'>
-          <div className='errorBox'>
-            <CancelOutlinedIcon color='secondary' className='cruz' />
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
             <p>Las contraseñas no coinciden.</p>
           </div>
         </div>
       )}
       {errorNewMail && (
-        <div className='errorBoxContainer'>
-          <div className='errorBox'>
-            <CancelOutlinedIcon color='secondary' className='cruz' />
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
             <p>El mail ya se encuentra en uso.</p>
           </div>
         </div>
       )}
       {errorMail && (
-        <div className='errorBoxContainer'>
-          <div className='errorBox'>
-            <CancelOutlinedIcon color='secondary' className='cruz' />
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
             <p>El mail no es correcto.</p>
           </div>
         </div>
       )}
       {errorPassLength && (
-        <div className='errorBoxContainer'>
-          <div className='errorBox'>
-            <CancelOutlinedIcon color='secondary' className='cruz' />
+        <div className="errorBoxContainer">
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
             <p>La contraseña debe tener al menos 7 caracteres.</p>
           </div>
         </div>
       )}
 
-      <div className='inputContainer'>
-        <div className='inputBox'>
+      <div className="inputContainer">
+        <div className="inputBox">
           <p
-            className='labelInput'
+            className="labelInput"
             style={{
               color:
                 campoObligatorio &&
-                document.getElementById('nombre').value === '' &&
-                '#FF3F20',
+                document.getElementById("nombre").value === "" &&
+                "#FF3F20",
             }}
           >
             Nombre *
           </p>
           <TextField
             color={
-              campoObligatorio && document.getElementById('nombre').value === ''
-                ? 'secondary'
-                : 'primary'
+              campoObligatorio && document.getElementById("nombre").value === ""
+                ? "secondary"
+                : "primary"
             }
-            className='input'
-            size='small'
-            placeholder='Sabrina'
-            id='nombre'
+            className="input"
+            size="small"
+            placeholder="Sabrina"
+            id="nombre"
             onChangeCapture={() => setCampoObligatorio(false)}
             sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
                   borderColor:
                     campoObligatorio &&
-                    document.getElementById('nombre').value === '' &&
-                    '#FF3F20',
+                    document.getElementById("nombre").value === "" &&
+                    "#FF3F20",
                 },
               },
             }}
@@ -192,20 +192,20 @@ const BoxRegister = () => {
               style: {
                 border:
                   campoObligatorio &&
-                  document.getElementById('nombre').value === '' &&
-                  '1px solid #FF3F20',
+                  document.getElementById("nombre").value === "" &&
+                  "1px solid #FF3F20",
               },
             }}
           />
         </div>
-        <div className='inputBox2'>
+        <div className="inputBox2">
           <p
-            className='labelInput'
+            className="labelInput"
             style={{
               color:
                 campoObligatorio &&
-                document.getElementById('apellido').value === '' &&
-                '#FF3F20',
+                document.getElementById("apellido").value === "" &&
+                "#FF3F20",
             }}
           >
             Apellido *
@@ -214,22 +214,22 @@ const BoxRegister = () => {
           <TextField
             color={
               campoObligatorio &&
-              document.getElementById('apellido').value === ''
-                ? 'secondary'
-                : 'primary'
+              document.getElementById("apellido").value === ""
+                ? "secondary"
+                : "primary"
             }
-            className='input'
-            size='small'
-            placeholder='Godoy'
-            id='apellido'
+            className="input"
+            size="small"
+            placeholder="Godoy"
+            id="apellido"
             onChangeCapture={() => setCampoObligatorio(false)}
             sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
                   borderColor:
                     campoObligatorio &&
-                    document.getElementById('apellido').value === '' &&
-                    '#FF3F20',
+                    document.getElementById("apellido").value === "" &&
+                    "#FF3F20",
                 },
               },
             }}
@@ -237,24 +237,24 @@ const BoxRegister = () => {
               style: {
                 border:
                   campoObligatorio &&
-                  document.getElementById('apellido').value === '' &&
-                  '1px solid #FF3F20',
+                  document.getElementById("apellido").value === "" &&
+                  "1px solid #FF3F20",
               },
             }}
           />
         </div>
       </div>
-      <div className='inputContainer'>
-        <div className='inputBox'>
+      <div className="inputContainer">
+        <div className="inputBox">
           <p
-            className='labelInput'
+            className="labelInput"
             style={{
               color:
                 ((campoObligatorio &&
-                  document.getElementById('email').value === '') ||
+                  document.getElementById("email").value === "") ||
                   errorNewMail ||
                   errorMail) &&
-                '#FF3F20',
+                "#FF3F20",
             }}
           >
             Dirección de correo electrónico *
@@ -262,30 +262,30 @@ const BoxRegister = () => {
           <TextField
             color={
               (campoObligatorio &&
-                document.getElementById('email').value === '') ||
+                document.getElementById("email").value === "") ||
               errorNewMail ||
               errorMail
-                ? 'secondary'
-                : 'primary'
+                ? "secondary"
+                : "primary"
             }
-            className='input'
-            size='small'
-            placeholder='nombre@dominio.com'
-            id='email'
+            className="input"
+            size="small"
+            placeholder="nombre@dominio.com"
+            id="email"
             onChangeCapture={() => {
               setCampoObligatorio(false);
               setErrorNewMail(false);
               setErrorMail(false);
             }}
             sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
                   borderColor:
                     ((campoObligatorio &&
-                      document.getElementById('email').value === '') ||
+                      document.getElementById("email").value === "") ||
                       errorNewMail ||
                       errorMail) &&
-                    '#FF3F20',
+                    "#FF3F20",
                 },
               },
             }}
@@ -293,27 +293,27 @@ const BoxRegister = () => {
               style: {
                 border:
                   ((campoObligatorio &&
-                    document.getElementById('email').value === '') ||
+                    document.getElementById("email").value === "") ||
                     errorNewMail ||
                     errorMail) &&
-                  '1px solid #FF3F20',
+                  "1px solid #FF3F20",
               },
             }}
           />
         </div>
-        <div className='inputBox'></div>
+        <div className="inputBox"></div>
       </div>
-      <div className='inputContainer'>
-        <div className='inputBox'>
+      <div className="inputContainer">
+        <div className="inputBox">
           <p
-            className='labelInput'
+            className="labelInput"
             style={{
               color:
                 ((campoObligatorio &&
-                  document.getElementById('password').value === '') ||
+                  document.getElementById("password").value === "") ||
                   errorPass ||
                   errorPassLength) &&
-                '#FF3F20',
+                "#FF3F20",
             }}
           >
             Contraseña *
@@ -321,46 +321,46 @@ const BoxRegister = () => {
           <TextField
             color={
               (campoObligatorio &&
-                document.getElementById('password').value === '') ||
+                document.getElementById("password").value === "") ||
               errorPass ||
               errorPassLength
-                ? 'secondary'
-                : 'primary'
+                ? "secondary"
+                : "primary"
             }
-            className='passwordInput'
-            size='small'
-            placeholder={showPassword ? 'contraseña' : '● ● ● ● ● ● ● ● ● ● ●'}
-            type={showPassword ? 'text' : 'password'}
-            id='password'
+            className="passwordInput"
+            size="small"
+            placeholder={showPassword ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
+            type={showPassword ? "text" : "password"}
+            id="password"
             onChangeCapture={() => {
               setCampoObligatorio(false);
               setErrorPass(false);
               setErrorPassLength(false);
             }}
             sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
                   borderColor:
                     ((campoObligatorio &&
-                      document.getElementById('password').value === '') ||
+                      document.getElementById("password").value === "") ||
                       errorPass ||
                       errorPassLength) &&
-                    '#FF3F20',
+                    "#FF3F20",
                 },
               },
             }}
             InputProps={{
               minLength: 7,
               endAdornment: (
-                <InputAdornment position='end'>
+                <InputAdornment position="end">
                   {showPassword ? (
                     <Visibility
-                      sx={{ fontSize: '20px', cursor: 'pointer' }}
+                      sx={{ fontSize: "20px", cursor: "pointer" }}
                       onClick={() => setShowPassword(!showPassword)}
                     />
                   ) : (
                     <VisibilityOff
-                      sx={{ fontSize: '20px', cursor: 'pointer' }}
+                      sx={{ fontSize: "20px", cursor: "pointer" }}
                       onClick={() => setShowPassword(!showPassword)}
                     />
                   )}
@@ -370,24 +370,24 @@ const BoxRegister = () => {
                 fontSize: 15,
                 border:
                   ((campoObligatorio &&
-                    document.getElementById('password').value === '') ||
+                    document.getElementById("password").value === "") ||
                     errorPass ||
                     errorPassLength) &&
-                  '1px solid #FF3F20',
+                  "1px solid #FF3F20",
               },
             }}
           />
         </div>
-        <div className='inputBox2'>
+        <div className="inputBox2">
           <p
-            className='labelInput'
+            className="labelInput"
             style={{
               color:
                 ((campoObligatorio &&
-                  document.getElementById('password').value === '') ||
+                  document.getElementById("password").value === "") ||
                   errorPass ||
                   errorPassLength) &&
-                '#FF3F20',
+                "#FF3F20",
             }}
           >
             Confirmar contraseña *
@@ -395,46 +395,46 @@ const BoxRegister = () => {
           <TextField
             color={
               (campoObligatorio &&
-                document.getElementById('password2').value === '') ||
+                document.getElementById("password2").value === "") ||
               errorPass ||
               errorPassLength
-                ? 'secondary'
-                : 'primary'
+                ? "secondary"
+                : "primary"
             }
-            className='passwordInput'
-            size='small'
-            placeholder={showPassword2 ? 'contraseña' : '● ● ● ● ● ● ● ● ● ● ●'}
-            id='password2'
+            className="passwordInput"
+            size="small"
+            placeholder={showPassword2 ? "contraseña" : "● ● ● ● ● ● ● ● ● ● ●"}
+            id="password2"
             onChangeCapture={() => {
               setCampoObligatorio(false);
               setErrorPass(false);
               setErrorPassLength(false);
             }}
-            type={showPassword2 ? 'text' : 'password'}
+            type={showPassword2 ? "text" : "password"}
             sx={{
-              '& .MuiOutlinedInput-root:hover': {
-                '& > fieldset': {
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
                   borderColor:
                     ((campoObligatorio &&
-                      document.getElementById('password2').value === '') ||
+                      document.getElementById("password2").value === "") ||
                       errorPass ||
                       errorPassLength) &&
-                    '#FF3F20',
+                    "#FF3F20",
                 },
               },
             }}
             InputProps={{
               minLength: 7,
               endAdornment: (
-                <InputAdornment position='end'>
+                <InputAdornment position="end">
                   {showPassword2 ? (
                     <Visibility
-                      sx={{ fontSize: '20px', cursor: 'pointer' }}
+                      sx={{ fontSize: "20px", cursor: "pointer" }}
                       onClick={() => setShowPassword2(!showPassword2)}
                     />
                   ) : (
                     <VisibilityOff
-                      sx={{ fontSize: '20px', cursor: 'pointer' }}
+                      sx={{ fontSize: "20px", cursor: "pointer" }}
                       onClick={() => setShowPassword2(!showPassword2)}
                     />
                   )}
@@ -444,40 +444,49 @@ const BoxRegister = () => {
                 fontSize: 15,
                 border:
                   ((campoObligatorio &&
-                    document.getElementById('password2').value === '') ||
+                    document.getElementById("password2").value === "") ||
                     errorPass ||
                     errorPassLength) &&
-                  '1px solid #FF3F20',
+                  "1px solid #FF3F20",
               },
             }}
           />
         </div>
       </div>
-      <div className='buttonContainer'>
-        <Button
-          className='left-button'
-          onClick={load ? null : () => navigate('/login')}
-        >
-          VOLVER
-        </Button>
+      <div className="buttonContainer">
         {load ? (
-          <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
-            <Loader spin={'spinnerM'} />
+          <div
+            style={{
+              marginTop: "24px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Loader spin={"spinnerM"} />
           </div>
         ) : (
-          <Button
-            className='right-button'
-            onClick={load ? null : () => handleRegistrar()}
-          >
-            REGISTRATE
-          </Button>
+          <>
+            <Button
+              className="left-button"
+              onClick={load ? null : () => navigate("/login")}
+            >
+              VOLVER
+            </Button>
+            <Button
+              className="right-button"
+              onClick={load ? null : () => handleRegistrar()}
+            >
+              REGISTRATE
+            </Button>
+          </>
         )}
       </div>
-      <p className='bottomText'>
-        Al oprimir REGISTRÁTE se aceptan los{' '}
-        <span className='spanLink' style={{ cursor: 'pointer' }}>
+      <p className="bottomText">
+        Al oprimir REGISTRÁTE se aceptan los{" "}
+        <span className="spanLink" style={{ cursor: "pointer" }}>
           términos y condiciones
-        </span>{' '}
+        </span>{" "}
         de Mi Ropero.
       </p>
     </div>
