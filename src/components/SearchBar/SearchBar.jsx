@@ -138,7 +138,7 @@ const SearchBar = () => {
               disabled={keyword.length === 0}
               sx={{
                 textTransform: "none",
-                color: buscador==="productos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
+                color: buscador==="roperos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
                 "&:hover": {
                   color: "hsla(8, 100%, 56%, 1)",
                 },
