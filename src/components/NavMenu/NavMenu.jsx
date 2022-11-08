@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Drawer,
@@ -12,15 +12,14 @@ import {
   IconButton,
   Toolbar,
 } from "@mui/material";
-import isologoMR from "../../assets/img/isologoMR.png";
+import isologoMR from "../../assets/img/isologoMR2.svg";
 import theme from "../../styles/theme";
 import CloseIcon from "@mui/icons-material/Close";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FiMenu } from "react-icons/fi";
 import { UseProdsContext } from "../../context/ProdsContext";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 const NavMenu = () => {
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ const NavMenu = () => {
     right: false,
   });
 
-  const {categorias}=useContext(UseProdsContext)
+  const { categorias } = useContext(UseProdsContext);
 
   const [open, setOpen] = useState(true);
   const [clothes, setClothes] = useState("");
@@ -40,23 +39,28 @@ const NavMenu = () => {
   };
 
   const showItems = (category) => {
-
-    let idCatPadre = ""
-    if(category==="Ropa"){
-      idCatPadre="1"
-    }else if(category==="Calzado"){
-      idCatPadre="2"
-    }else if(category==="Accesorios"){
-      idCatPadre="3"
-    }else if(category==="Belleza"){
-      idCatPadre="1000018"
+    let idCatPadre = "";
+    if (category === "Ropa") {
+      idCatPadre = "1";
+    } else if (category === "Calzado") {
+      idCatPadre = "2";
+    } else if (category === "Accesorios") {
+      idCatPadre = "3";
+    } else if (category === "Belleza") {
+      idCatPadre = "1000018";
     }
     if (!open) {
       return categorias.map((item, index) => {
-        return(
+        return (
           <>
-            {item.idcategoriapadre===idCatPadre &&
-              <ListItem key={index} disablePadding onClick={()=>navigate(`/productos/${(item.nombre).replaceAll("/","&")}`)}>
+            {item.idcategoriapadre === idCatPadre && (
+              <ListItem
+                key={index}
+                disablePadding
+                onClick={() =>
+                  navigate(`/productos/${item.nombre.replaceAll("/", "&")}`)
+                }
+              >
                 <ListItemButton>
                   <ListItemText
                     primary={item.nombre}
@@ -65,12 +69,13 @@ const NavMenu = () => {
                       fontWeight: theme.typography.fontWeightRegular,
                       color: "hsla(210, 3%, 74%, 1)",
                     }}
-                    />
+                  />
                 </ListItemButton>
               </ListItem>
-            }
+            )}
           </>
-      )});
+        );
+      });
     }
   };
 
@@ -93,9 +98,7 @@ const NavMenu = () => {
             justifyContent: "space-between",
           }}
         >
-          <Box>
-            <img src={isologoMR} alt="" />
-          </Box>
+          <img src={isologoMR} alt="" />
           <IconButton onClick={toggleDrawer(anchor, false)}>
             <CloseIcon
               sx={{ color: theme.palette.secondary.main, fontSize: "25px" }}
@@ -138,27 +141,29 @@ const NavMenu = () => {
         </>
       ) : (
         <List sx={{ flex: 1 }}>
-          {["Ropa", "Calzado", "Accesorios", "Belleza"].map((text, index) => {return(
-            <ListItem key={text} disablePadding>
-              <ListItemButton
-                onClick={() => {
-                  setClothes(text);
-                  setOpen(false);
-                }}
-              >
-                <ListItemText
-                  primary={text}
-                  sx={{
-                    color: "hsla(0, 0%, 53%, 1)",
-                    fontSize: theme.typography.fontSize[4],
+          {["Ropa", "Calzado", "Accesorios", "Belleza"].map((text, index) => {
+            return (
+              <ListItem key={text} disablePadding>
+                <ListItemButton
+                  onClick={() => {
+                    setClothes(text);
+                    setOpen(false);
                   }}
-                />
-                <ListItemIcon sx={{ justifyContent: "end" }}>
-                  <ChevronRightIcon />
-                </ListItemIcon>
-              </ListItemButton>
-            </ListItem>
-          )})}
+                >
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      color: "hsla(0, 0%, 53%, 1)",
+                      fontSize: theme.typography.fontSize[4],
+                    }}
+                  />
+                  <ListItemIcon sx={{ justifyContent: "end" }}>
+                    <ChevronRightIcon />
+                  </ListItemIcon>
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
           <ListItem
             sx={{
               color: theme.palette.secondary.main,
@@ -166,8 +171,7 @@ const NavMenu = () => {
               fontWeight: theme.typography.fontWeightMedium,
             }}
             disablePadding
-          >
-          </ListItem>
+          ></ListItem>
         </List>
       )}
 
