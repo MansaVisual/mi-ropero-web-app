@@ -17,6 +17,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
     const [load,setLoad]=useState(false)
     const {userLog}=useContext(UseLoginContext)
 
+    console.log(form)
     const handlePagar=()=>{
         setLoad(true)
 
