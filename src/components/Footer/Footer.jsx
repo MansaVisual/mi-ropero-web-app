@@ -141,7 +141,6 @@ const Footer = () => {
               <Box sx={{ color: "hsla(151, 100%, 76%, 1)" }}>
                 <Typography
                   sx={{
-                    pt: isMobile ? "69px" : "48px",
                     lineHeight: "14px",
                     cursor: "pointer",
                   }}
