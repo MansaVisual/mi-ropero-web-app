@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Box,
   IconButton,
@@ -16,6 +16,21 @@ const SearchBar = () => {
   const [keyword, setKeyword] = useState("");
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [buscador,setBuscador]=useState("productos")
+
+
+  useEffect(() => {
+    const x = window.location.pathname.split("/")
+    if(x[1]==="roperos"){
+      setBuscador("roperos")
+    }else{
+      setBuscador("productos")
+    }
+    if(x[3]!=="search"){
+      document.getElementById("inputSearch").value=""
+      setKeyword("")
+    }
+  }, [window.location.pathname]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const navigate = useNavigate();
 
@@ -25,14 +40,12 @@ const SearchBar = () => {
 
   const handleSubmit = (evt, route) => {
     evt.preventDefault();
-    setOpenSearch(false);
     navigate(`/${route}/search/${keyword}`);
     setKeyword("");
   };
   const handleSubmitEnter = (evt, route) => {
     if(evt.key==="Enter"){
       evt.preventDefault();
-      setOpenSearch(false);
       navigate(`/${route}/search/${keyword}`);
       setKeyword("");
     }
@@ -60,6 +73,7 @@ const SearchBar = () => {
         <StyledInput
           type="text"
           value={keyword}
+          id="inputSearch"
           placeholder="Buscá por ropero, producto, marca o talle"
           inputProps={{
             "aria-label": "Buscá por ropero, producto, marca o talle",
@@ -73,7 +87,7 @@ const SearchBar = () => {
           }}
           onFocus={handleFocus}
           onChange={handleChange}
-          onKeyPress={(e) => handleSubmitEnter(e, "productos")}
+          onKeyPress={(e) => handleSubmitEnter(e, buscador==="productos"?"productos":"roperos")}
         />
         <IconButton
           type="button"
@@ -84,7 +98,7 @@ const SearchBar = () => {
           }}
         >
           <IoSearch fontSize="15px" color="red" 
-            onClick={(e) => handleSubmit(e, "productos")}
+            onClick={(e) => handleSubmitEnter(e, buscador==="productos"?"productos":"roperos")}
           />
         </IconButton>
         {openSearch && (
@@ -110,7 +124,7 @@ const SearchBar = () => {
               disabled={keyword.length === 0}
               sx={{
                 textTransform: "none",
-                color: "hsla(0, 0%, 53%, 1)",
+                color: buscador==="productos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
                 backgroundColor: "transparent",
                 "&:hover": {
                   color: "hsla(8, 100%, 56%, 1)",
@@ -124,7 +138,7 @@ const SearchBar = () => {
               disabled={keyword.length === 0}
               sx={{
                 textTransform: "none",
-                color: "hsla(0, 0%, 53%, 1)",
+                color: buscador==="productos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
                 "&:hover": {
                   color: "hsla(8, 100%, 56%, 1)",
                 },
