@@ -36,7 +36,8 @@ const Login = () => {
         text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
-          icon: 'no-border'
+          icon: 'no-border',
+          container:"popUpLoginAlert"
         },
         confirmButtonText: "CONTINUAR",
       });

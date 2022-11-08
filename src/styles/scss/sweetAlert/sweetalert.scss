@@ -50,6 +50,10 @@
 .swal2-error{
     border-color: #FF3F20 !important;
 }
-.no-border {
-    border: 0 !important;
+.popUpLoginAlert{
+    .no-border {
+        border: 0 !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
 }
