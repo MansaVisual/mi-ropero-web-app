@@ -136,14 +136,14 @@ const Cart = () => {
                                                     {prod.producto.tienda.nombre}
                                                 </p>
                                                 <div className="preciosDeleteMobile">
-                                                    {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : null}
-                                                    <p className="precioProd">$ {prod.producto.precio}</p>
+                                                    {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ {prod.producto.precio}</p> : <div style={{width:"52px"}}></div>}
+                                                    {prod.producto.precio_oferta !== "0.00" ? <p style={{color:"#FF3F20"}} className="precioProd">$ {prod.producto.precio_oferta}</p> : <p className="precioProd">$ {prod.producto.precio}</p>}
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="preciosDelete">
-                                            {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ 15.000</p> : <div style={{width:"52px"}}></div>}
-                                            <p className="precioProd">$ {prod.producto.precio}</p>
+                                            {prod.producto.precio_oferta !== "0.00" ? <p style={{textDecoration:"line-through"}} className="precioDesc">$ {prod.producto.precio}</p> : <div style={{width:"52px"}}></div>}
+                                            {prod.producto.precio_oferta !== "0.00" ? <p style={{color:"#FF3F20"}} className="precioProd">$ {prod.producto.precio_oferta}</p> : <p className="precioProd">$ {prod.producto.precio}</p>}
                                         </div>
                                         <IconButton
                                                 aria-label="delete"

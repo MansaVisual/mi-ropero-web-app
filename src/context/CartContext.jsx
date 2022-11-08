@@ -65,7 +65,7 @@ export const CartContext = ({children}) => {
         let cantidad = 0
         if(carrito.length!==0){
             for(let i=0;i<carrito.length;i++){
-                suma = suma + Number(carrito[i].producto.precio)
+                suma = suma + (carrito[i].producto.precio_oferta==="0.00"?Number(carrito[i].producto.precio):Number(carrito[i].producto.precio_oferta))
                 cantidad=cantidad+1
             }
         }

@@ -728,14 +728,36 @@ const NavIcons = () => {
                               >
                                 {prod.producto.tienda.nombre}
                               </Typography>
-                              <Typography
+                              {prod.producto.precio_oferta==="0.00" ?
+                                <Typography
                                 sx={{
                                   fontSize: theme.typography.fontSize[1],
                                   pt: "6px",
                                 }}
-                              >
-                                ${prod.producto.precio}
-                              </Typography>
+                                >
+                                  ${prod.producto.precio}
+                                </Typography>
+                              :<Box sx={{display:"flex"}}>
+                              <Typography
+                                sx={{
+                                  fontSize: "10px",
+                                  textDecoration:"line-through",
+                                  pt: "6px",
+                                  mr:"6px"
+                                }}
+                                >
+                                  ${prod.producto.precio}
+                                </Typography>
+                                <Typography
+                                sx={{
+                                  fontSize: theme.typography.fontSize[2],
+                                  pt: "6px",
+                                  color:"#FF3F20"
+                                }}
+                                >
+                                  ${prod.producto.precio}
+                                </Typography>
+                              </Box>}
                             </Box>
                             <Box>
                               <IconButton
