@@ -291,6 +291,7 @@ const MisDatos = () => {
         if (res.result === "El campo sexo es necesario") {
           setLoading(false);
           setGeneroObligatorio("Seleccioná tu género");
+          throwError("genero", "labelGenero");
           ScrollTop();
         } /* else if (res.result === "El campo telefono es necesario") {
           setLoading(false);
@@ -658,11 +659,14 @@ const MisDatos = () => {
 
           <div className="inputContainer">
             <div className="inputBox">
-              <p className="labelInput">Género *</p>
+              <p className="labelInput" id="Labelenero">
+                Género *
+              </p>
               <Select
                 color="primary"
                 className="selectInput"
                 size="small"
+                id="genero"
                 onChange={(e) =>
                   setGenero(arrayGeneros.indexOf(e.target.value))
                 }
@@ -684,6 +688,7 @@ const MisDatos = () => {
                 MenuProps={{
                   style: {
                     maxHeight: 250,
+                    border: generoObligatorio && "0.5px solid #FF3F20",
                   },
                 }}
               >
