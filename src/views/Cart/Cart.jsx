@@ -8,7 +8,6 @@ import basura from "../../assets/img/basura.png"
 import cart from "../../assets/img/cartVacio.png"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import "../../styles/scss/styles.scss"
-import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import { UseCartContext } from "../../context/CartContext";
 import cruz from "../../assets/img/cruz.png";
 import Loader from "../../components/Loader/Loader";

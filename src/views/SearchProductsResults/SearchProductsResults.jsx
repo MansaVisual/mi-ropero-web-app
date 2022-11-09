@@ -23,7 +23,6 @@ import Pagination from "../../components/Pagination/Pagination";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
-import ProdsRelation from "../../components/ProdsRelation/ProdsRelation";
 import Swal from "sweetalert2";
 import lupa from "../../assets/img/lupaFilters.png"
 
