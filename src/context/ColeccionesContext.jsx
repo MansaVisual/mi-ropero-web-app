@@ -3,9 +3,6 @@ import { createContext, useState, useEffect } from "react";
 export const UseColeccionContext = createContext();
 
 export const ColeccionContext = ({ children }) => {
-  const [coleccionNuevosIngresos, setColeccionNuevosIngresos] = useState([]);
-  const [coleccionRecomendados, setColeccionRecomendados] = useState([]);
-  const [coleccionMejoresV, setColeccionMejoresV] = useState([]);
   const [coleccionesBuscadas, setColeccionesBuscadas] = useState([]);
   const [colecciones, setColecciones] = useState([]);
   const [buscandoCols,setBuscandoCols]=useState(true)
@@ -39,33 +36,6 @@ export const ColeccionContext = ({ children }) => {
         "colecciones",
         "all"
     ).then((res)=>{setColeccionesBuscadas(res.result)})
-
-    const col = new FormData();
-    col.append("idcoleccion", 71);
-    col.append("bypage", 8);
-    ColeccionAPI(col, "colecciones", "detail").then((res) => {
-      if (res.status === "success") {
-        setColeccionNuevosIngresos(res.result.productos);
-      }
-    });
-
-    const col2 = new FormData();
-    col2.append("idcoleccion", 72);
-    col2.append("bypage", 8);
-    ColeccionAPI(col2, "colecciones", "detail").then((res) => {
-      if (res.status === "success") {
-        setColeccionRecomendados(res.result.productos);
-      }
-    });
-
-    const col3 = new FormData();
-    col3.append("idcoleccion", 73);
-    col3.append("bypage", 8);
-    ColeccionAPI(col3, "colecciones", "detail").then((res) => {
-      if (res.status === "success") {
-        setColeccionMejoresV(res.result.productos);
-      }
-    });
   }, []);
 
   useEffect(() => {
@@ -101,9 +71,6 @@ export const ColeccionContext = ({ children }) => {
     <UseColeccionContext.Provider
       value={{
         ColeccionAPI,
-        coleccionNuevosIngresos,
-        coleccionRecomendados,
-        coleccionMejoresV,
         colecciones,
         buscandoCols
       }}

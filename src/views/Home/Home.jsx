@@ -20,7 +20,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { coleccionRecomendados, coleccionMejoresV,colecciones,buscandoCols } =
+  const { colecciones,buscandoCols } =
     useContext(UseColeccionContext);
     const {reBuscarInfo}=useContext(UseLoginContext)
 
@@ -244,50 +244,6 @@ const Home = () => {
             </Button> */}
           </Box>
         </Box>
-        <Container maxWidth="xl">
-          <Box sx={{ pt: "43px", textAlign: "center" }}>
-            <Chip primary>Productos recomendados</Chip>
-          </Box>
-          <Box sx={{ pt: "24px" }}>
-            <SliderProd contenido={coleccionRecomendados} />
-          </Box>
-          <Box sx={{ pt: "27px", textAlign: "center" }}>
-            <Link
-              sx={{
-                color: "hsla(0, 0%, 53%, 1)",
-                fontSize: theme.typography.fontSize[4],
-                cursor: "pointer",
-                "&:hover": {
-                  fontWeight: "700",
-                },
-              }}
-              onClick={() => navigate("/colecciones/Recomendados")}
-            >
-              VER TODOS LOS PRODUCTOS RECOMENDADOS
-            </Link>
-          </Box>
-          <Box sx={{ pt: "43px", textAlign: "center" }}>
-            <Chip primary>Mejores Vendedores</Chip>
-          </Box>
-          <Box sx={{ pt: "24px" }}>
-            <SliderProd contenido={coleccionMejoresV} />
-          </Box>
-          <Box sx={{ pt: "27px", textAlign: "center" }}>
-            <Link
-              sx={{
-                color: "hsla(0, 0%, 53%, 1)",
-                fontSize: theme.typography.fontSize[4],
-                cursor: "pointer",
-                "&:hover": {
-                  fontWeight: "700",
-                },
-              }}
-              onClick={() => navigate("/colecciones/MejoresVendedores")}
-            >
-              VER TODOS LOS MEJORES VENDEDORES
-            </Link>
-          </Box>
-        </Container>
         <Box sx={{ position: "fixed", right: 10, bottom: 10 }}>
           <Box sx={{ marginBottom: "16px" }} onClick={() => scrollTop()}>
             <UpButton />
