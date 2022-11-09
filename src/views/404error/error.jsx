@@ -1,18 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { Box, Button, Link } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box, Button } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import pag from "../../assets/img/PAGINANOT.png";
-import Chip from "../../components/Chip/Chip";
 import error from "../../assets/img/#404.png";
 import { useNavigate } from "react-router-dom";
-import theme from "../../styles/theme";
-import SliderProd from "../../components/SliderProd/SliderProd";
-import { UseColeccionContext } from "../../context/ColeccionesContext";
 import Onboarding from "../../components/Onboarding/Onboarding";
 
 const Error = () => {
   const navigate = useNavigate();
-  const { coleccionNuevosIngresos } = useContext(UseColeccionContext);
 
   useEffect(() => {
     window.scrollTo({
@@ -50,7 +45,7 @@ const Error = () => {
             con nosotros.
           </p>
 
-          <Button className="button" onClick={() => navigate(-1)}>
+          <Button className="button" sx={{mb:"72px"}} onClick={() => navigate(-1)}>
             VOLVER ATRAS
           </Button>
 
