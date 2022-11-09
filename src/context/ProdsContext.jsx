@@ -71,6 +71,8 @@ export const ProdsContext = ({children}) => {
         const slid1 = new FormData()
         slid1.append("idcategoria",17)
         slid1.append("bypage",8)
+        slid1.append("order_type","desc")
+        slid1.append("order","idproducto")
         ProdAPI(
             slid1,
             "productos",
@@ -83,6 +85,8 @@ export const ProdsContext = ({children}) => {
         const slid2 = new FormData()
         slid2.append("idcategoria",26)
         slid2.append("bypage",8)
+        slid2.append("order_type","desc")
+        slid2.append("order","idproducto")
         ProdAPI(
             slid2,
             "productos",
@@ -95,6 +99,8 @@ export const ProdsContext = ({children}) => {
         const slid3 = new FormData()
         slid3.append("idcategoria",1000027)
         slid3.append("bypage",8)
+        slid3.append("order_type","desc")
+        slid3.append("order","idproducto")
         ProdAPI(
             slid3,
             "productos",
