@@ -89,6 +89,7 @@ const EditarDireccion = () => {
         (e) => e.nombre === direccionSelecc.provincia
       );
       setProvincia(provGuardada.idprovincia);
+      console.log(provGuardada, provincias);
     }
   }, [provincias, direccionSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
 
