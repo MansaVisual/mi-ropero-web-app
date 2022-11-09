@@ -159,7 +159,7 @@ function App() {
                           path="MiTienda/cargaProducto/:seccion"
                           element={<CargaProducto />}
                         />
-                        <Route path="/PRODUCTO" element={navigate("/")} />
+                        <Route path="/PRODUCTO" element={<Home />} />
                       </Routes>
                       <Footer />
                     </ThemeProvider>
