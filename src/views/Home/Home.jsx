@@ -14,6 +14,7 @@ import { UseColeccionContext } from "../../context/ColeccionesContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
 import "react-multi-carousel/lib/styles.css";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -21,13 +22,15 @@ const Home = () => {
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
   const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV,colecciones } =
     useContext(UseColeccionContext);
+    const {reBuscarInfo}=useContext(UseLoginContext)
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "auto",
     });
-  }, []);
+    reBuscarInfo()
+  }, [window.location.pathname]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = () => {
     window.scrollTo({
