@@ -10,6 +10,7 @@ const PopUpLocalidad = ({
   infoLocFinal,
   setInfoLocFinal,
 }) => {
+  console.log(infoLoc);
   return (
     <>
       {infoLoc !== undefined && (
@@ -33,6 +34,7 @@ const PopUpLocalidad = ({
             <p>Selecciona tu localidad.</p>
             <div className="cardContainer">
               {infoLoc.map((loc, i) => {
+                console.log(loc);
                 return (
                   <div
                     key={i}

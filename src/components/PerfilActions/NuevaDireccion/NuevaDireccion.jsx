@@ -180,6 +180,12 @@ const NuevaDireccion = () => {
 
   useEffect(() => {
     if (guardarDireccion) {
+      console.log(
+        Number(infoLocFinal.idprovincia),
+        infoLocFinal.idprovincia,
+        Number(infoLocFinal.idlocalidad),
+        infoLocFinal.idlocalidad
+      );
       const formDireccion = new FormData();
       formDireccion.append("idcliente", userLog);
       formDireccion.append("nombre", document.getElementById("alias").value);
