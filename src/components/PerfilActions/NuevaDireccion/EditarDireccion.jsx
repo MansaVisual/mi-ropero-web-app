@@ -66,6 +66,8 @@ const EditarDireccion = () => {
     }
   }, [direccionSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(form, direccionSelecc);
+
   const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
 
@@ -135,6 +137,7 @@ const EditarDireccion = () => {
             document.getElementById("barrioLocalidad").value
           );
           FormAPI(localidad, "direcciones", "localidades").then((res) => {
+            console.log(res);
             if (res.status === "error") {
               setErrorLocalidad(true);
               scrollTop();
