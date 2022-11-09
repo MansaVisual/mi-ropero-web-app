@@ -11,7 +11,7 @@ import SearchProductsResults from "./views/SearchProductsResults/SearchProductsR
 import SearchClosetResults from "./views/SearchClosetResults/SearchClosetResults";
 import ViewCloset from "./views/ViewCloset/ViewCloset";
 import ProductPage from "./views/ProductPage/ProductPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Cart from "./views/Cart/Cart";
 import Checkout from "./views/Checkout/Checkout";
 import { FormContext } from "./context/FormContext";
@@ -39,6 +39,7 @@ import CargaProducto from "./views/MiTienda/CargaProducto/CargaProducto";
 import { MiTiendaContext } from "./context/MiTiendaContext";
 
 function App() {
+  const navigate=useNavigate()
   useEffect(() => {
     const handleFooterClick = (e) => {
       if (e.target.id === "Ropa") {
@@ -158,7 +159,7 @@ function App() {
                           path="MiTienda/cargaProducto/:seccion"
                           element={<CargaProducto />}
                         />
-                        <Route path="/PRODUCTO" element={<Home />} />
+                        <Route path="/PRODUCTO" element={navigate("/")} />
                       </Routes>
                       <Footer />
                     </ThemeProvider>
