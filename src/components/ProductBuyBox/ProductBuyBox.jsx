@@ -57,20 +57,20 @@ const ProductBuyBox = ({ prod, itemID }) => {
         text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
-          icon: 'no-border',
-          container:"popUpLoginAlert",
-          cancelButton:"popUpLoginCancel"
+          icon: "no-border",
+          container: "popUpLoginAlert",
+          cancelButton: "popUpLoginCancel",
         },
         showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "CONTINUAR",
-        cancelButtonText:"CANCELAR"
-      }).then((res)=>{
-        if(res.isConfirmed){
+        cancelButtonText: "CANCELAR",
+      }).then((res) => {
+        if (res.isConfirmed) {
           localStorage.setItem("redirectUrl", location.pathname);
           navigate("/login");
         }
-      })
+      });
       return;
     }
   };
@@ -162,49 +162,118 @@ const ProductBuyBox = ({ prod, itemID }) => {
             >
               <Box>
                 {prod.precio_oferta !== "0.00" ? (
+                  <Box>
+                    <Box sx={{ display: "flex" }}>
+                      <Typography
+                        sx={{
+                          lineHeight: "40px",
+                          fontSize: isMobile ? "13px" : "20px",
+                          fontWeight: 700,
+                          pl: "16px",
+                          color: "#443988",
+                          textDecoration: `${theme.palette.secondary.main} line-through`,
+                          opacity: "0.5",
+                        }}
+                      >
+                        ${prod.precio}
+                      </Typography>
+                      <Typography
+                        component="span"
+                        sx={{
+                          lineHeight: "40px",
+                          fontSize: isMobile ? "13px" : "20px",
+                          fontWeight: theme.typography.fontWeightRegular,
+                          pl: "16px",
+                          color: theme.palette.secondary.main,
+                        }}
+                      >
+                        ${prod.precio_oferta}
+                      </Typography>
+                    </Box>
+
+                    <Button
+                      endIcon={
+                        <Avatar
+                          src={ofertIcon}
+                          sx={{ width: 16, height: 16 }}
+                        />
+                      }
+                      disabled={prod.precio_oferta !== "0.00" ? true : false}
+                      onClick={
+                        prod.precio_oferta !== "0.00"
+                          ? null
+                          : userLog !== ""
+                          ? () => handleClickOpen()
+                          : () => handleCompraSinLogin()
+                      }
+                      sx={{
+                        backgroundColor: "#E7F1FC",
+                        boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
+                        borderRadius: "20px",
+                        width: "219px",
+                        height: "36px",
+                        marginTop: "10px",
+                        "&:hover": {
+                          backgroundColor: "#e7f1fc",
+                        },
+                      }}
+                    >
+                      Ofertar
+                    </Button>
+                    {open && (
+                      <PopUpOfertaPP
+                        open={open}
+                        setOpen={setOpen}
+                        prod={prod}
+                      />
+                    )}
+                  </Box>
+                ) : (
                   <>
                     <Typography
                       sx={{
                         lineHeight: "40px",
-                        fontSize: isMobile ? "13px" : "20px",
-                        fontWeight: 700,
+                        fontSize: isMobile ? "13px" : "42px",
+                        fontWeight: theme.typography.fontWeightMedium,
                         pl: "16px",
                         color: "#443988",
-                        textDecoration: `${theme.palette.secondary.main} line-through`,
-                        opacity: "0.5",
                       }}
                     >
-                      ${prod.precio}
+                      $ {prod.precio}
                     </Typography>
-                    <Typography
-                      component="span"
+                    <Button
+                      endIcon={
+                        <Avatar
+                          src={ofertIcon}
+                          sx={{ width: 16, height: 16 }}
+                        />
+                      }
+                      disabled={prod.precio_oferta !== "0.00" ? true : false}
+                      onClick={
+                        prod.precio_oferta !== "0.00"
+                          ? null
+                          : userLog !== ""
+                          ? () => handleClickOpen()
+                          : () => handleCompraSinLogin()
+                      }
                       sx={{
-                        lineHeight: "40px",
-                        fontSize: isMobile ? "13px" : "20px",
-                        fontWeight: theme.typography.fontWeightRegular,
-                        pl: "16px",
-                        color: theme.palette.secondary.main,
+                        backgroundColor: "#E7F1FC",
+                        boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
+                        borderRadius: "20px",
+                        width: "219px",
+                        height: "36px",
+                        marginTop: "10px",
+                        "&:hover": {
+                          backgroundColor: "#e7f1fc",
+                        },
                       }}
                     >
-                      ${prod.precio_oferta}
-                    </Typography>
+                      Ofertar
+                    </Button>
                   </>
-                ) : (
-                  <Typography
-                    sx={{
-                      lineHeight: "40px",
-                      fontSize: isMobile ? "13px" : "42px",
-                      fontWeight: theme.typography.fontWeightMedium,
-                      pl: "16px",
-                      color:"#443988"
-                    }}
-                  >
-                    $ {prod.precio}
-
-                  </Typography>
                 )}
               </Box>
-              <Box sx={{ maxWidth: "120px" }}>
+              {/* <Box sx={{ maxWidth: "120px" }}>
                 <Button
                   disabled={prod.precio_oferta !== "0.00" ? true : false}
                   onClick={
@@ -218,7 +287,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 {open && (
                   <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                 )}
-              </Box>
+              </Box> */}
               <CommentButton
                 onClick={
                   userLog === ""
@@ -328,7 +397,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 mt: "24px",
-                mb: costoEnvio.length !== 0 ? "24px":"72px",
+                mb: costoEnvio.length !== 0 ? "24px" : "72px",
               }}
             >
               <Box>
@@ -367,11 +436,10 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       fontSize: "42px",
                       fontWeight: theme.typography.fontWeightMedium,
                       pl: "16px",
-                      color:"#443988"
+                      color: "#443988",
                     }}
                   >
                     $ {prod.precio}
-
                   </Typography>
                 )}
                 <Box sx={{ mt: "16px" }}>
@@ -596,7 +664,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
               height: "50px",
               fontSize: "16px",
               fontWeight: "700",
-              mt:isMobileBigScreen?"32px":"0px",
+              mt: isMobileBigScreen ? "32px" : "0px",
               "&:hover": {
                 backgroundColor: "#fffd76",
               },
