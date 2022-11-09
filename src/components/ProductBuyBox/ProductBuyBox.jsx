@@ -45,6 +45,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
   const { userLog } = useContext(UseLoginContext);
   const { CartAPI, setCarrito } = useContext(UseCartContext);
+  const [codigoBoton,setCodigoBoton]=useState("")
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -348,6 +349,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                   id="outlined-number"
                   type="number"
                   placeholder="Código postal"
+                  onChange={(e)=>setCodigoBoton(e.target.value)}
                   InputProps={{
                     sx: {
                       "& input": {
@@ -388,7 +390,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     <BiRightArrow
                       style={{
                         fontSize: "32px",
-                        color: document.getElementById("outlined-number").value!==""?"#FF3F20":"hsla(0, 0%, 100%, 1)",
+                        color: codigoBoton!==""?"#FF3F20":"hsla(0, 0%, 100%, 1)",
                       }}
                     />
                   </IconButton>
@@ -497,6 +499,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     id="outlined-number"
                     type="number"
                     placeholder="Código postal"
+                    onChange={(e)=>setCodigoBoton(e.target.value)}
                     InputProps={{
                       sx: {
                         "& input": {
@@ -538,7 +541,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       <BiRightArrow
                         style={{
                           fontSize: "32px",
-                          color: document.getElementById("outlined-number").value!==""?"#FF3F20":"hsla(0, 0%, 100%, 1)",
+                          color: codigoBoton!==""?"#FF3F20":"hsla(0, 0%, 100%, 1)",
                         }}
                       />
                     </IconButton>
