@@ -44,12 +44,12 @@
       border-radius: 8px;
       .accordion {
         box-shadow: none !important;
-        padding: 0px 72px;
-        border-bottom: 0.1px solid #babcbe !important;
+        margin: 10px 72px;
+        @include screen_705 {
+          margin: 10px 16px;
+        }
       }
-      p {
-        margin-bottom: 8px !important;
-      }
+
       .questionTitle {
         font-family: "Open Sans" !important;
         font-weight: 600 !important;
@@ -65,6 +65,7 @@
         color: #878787 !important;
         a {
           text-decoration: none !important;
+          color: #443988;
         }
       }
     }
