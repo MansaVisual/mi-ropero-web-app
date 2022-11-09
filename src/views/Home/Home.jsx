@@ -82,7 +82,7 @@ const Home = () => {
                     }}
                     onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
                     >
-                    VER "{res.nombre.trim()}"
+                    VER "{res.nombre.trim().toUpperCase()}"
                   </Link>
                 </Box></>
                 :<></>}
@@ -111,7 +111,7 @@ const Home = () => {
                     }}
                     onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
                     >
-                    VER "{res.nombre.trim()}"
+                    VER "{res.nombre.trim().toUpperCase()}"
                   </Link>
                 </Box></>
                 :<></>}

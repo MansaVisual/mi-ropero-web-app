@@ -776,7 +776,7 @@ const NavIcons = () => {
                                       color: "#FF3F20",
                                     }}
                                   >
-                                    ${prod.producto.precio}
+                                    ${prod.producto.precio_oferta}
                                   </Typography>
                                 </Box>
                               )}

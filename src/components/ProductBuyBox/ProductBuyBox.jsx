@@ -388,7 +388,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     <BiRightArrow
                       style={{
                         fontSize: "32px",
-                        color: "hsla(0, 0%, 100%, 1)",
+                        color: document.getElementById("outlined-number").value!==""?"#FF3F20":"hsla(0, 0%, 100%, 1)",
                       }}
                     />
                   </IconButton>
@@ -538,7 +538,7 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       <BiRightArrow
                         style={{
                           fontSize: "32px",
-                          color: "hsla(0, 0%, 100%, 1)",
+                          color: document.getElementById("outlined-number").value!==""?"#FF3F20":"hsla(0, 0%, 100%, 1)",
                         }}
                       />
                     </IconButton>
