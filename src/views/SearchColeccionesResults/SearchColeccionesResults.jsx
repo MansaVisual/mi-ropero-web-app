@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Backdrop,
   Box,
@@ -20,10 +20,10 @@ import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
-import {UseProdsContext} from "../../context/ProdsContext"
+import { UseProdsContext } from "../../context/ProdsContext";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Swal from "sweetalert2";
-import lupa from "../../assets/img/lupaFilters.png"
+import lupa from "../../assets/img/lupaFilters.png";
 
 const style = {
   position: "absolute",
@@ -41,259 +41,254 @@ const style = {
 };
 
 const SearchProductsResults = () => {
-  const { coleccionName,idColeccion } = useParams();
-  const {ColeccionAPI}=useContext(UseColeccionContext)
+  const { coleccionName, idColeccion } = useParams();
+  const { ColeccionAPI } = useContext(UseColeccionContext);
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { categorias, ProdAPI } = useContext(UseProdsContext);
-  const isTablet = useMediaQuery(theme.breakpoints.down("lg"))
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
 
   const [load2, setLoad2] = useState(false);
-  
-  const [prods,setProds]=useState([])
-  const [filtrosCategoria,setFiltrosCategoria]=useState([])
-  const [buscandoCol,setBuscandoCol]=useState(true)
 
-  const [totalPages,setTotalPages]=useState(0)
+  const [prods, setProds] = useState([]);
+  const [filtrosCategoria, setFiltrosCategoria] = useState([]);
+  const [buscandoCol, setBuscandoCol] = useState(true);
 
-  const [coleccion,setColeccion]=useState([])
+  const [totalPages, setTotalPages] = useState(0);
 
-  const [putCategory,setPutCategory]=useState("")
-  const [putFilters,setPutFilters]=useState([])
-  const [putSort,setPutSort]=useState("")
+  const [coleccion, setColeccion] = useState([]);
+
+  const [putCategory, setPutCategory] = useState("");
+  const [putFilters, setPutFilters] = useState([]);
+  const [putSort, setPutSort] = useState("");
   const [filtrosFin, setFiltrosFin] = useState("");
-  const [rangoPrecio,setRangoPrecio]=useState({min:0,max:999999})
+  const [rangoPrecio, setRangoPrecio] = useState({ min: 0, max: 999999 });
 
-  const [pags,setPags]=useState(1)
+  const [pags, setPags] = useState(1);
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
 
-    setProds([])
-    setPags(1)
+    setProds([]);
+    setPags(1);
 
-    const col=new FormData()
-    col.append("idcoleccion",Number(idColeccion))
-    col.append("bypage",15)
-    col.append("page",0)
+    const col = new FormData();
+    col.append("idcoleccion", Number(idColeccion));
+    col.append("bypage", 15);
+    col.append("page", 0);
 
-    ColeccionAPI(
-        col,
-        "colecciones",
-        "detail"
-    ).then((res)=>{
-      if(res.status==="success"){
-        setColeccion(res.result)
-        setProds(res.result.productos)
-        setTotalPages(res.result.productos_total_paginas)
+    ColeccionAPI(col, "colecciones", "detail").then((res) => {
+      if (res.status === "success") {
+        setColeccion(res.result);
+        setProds(res.result.productos);
+        setTotalPages(res.result.productos_total_paginas);
       }
-      setLoad2(false)
-  })
-  }, [idColeccion]);// eslint-disable-line react-hooks/exhaustive-deps
+      setLoad2(false);
+    });
+  }, [idColeccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    setLoad2(true)
+    setLoad2(true);
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
-    busquedaPrimera()
-  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
+    busquedaPrimera();
+  }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const busquedaPrimera=()=>{
-    setPutSort("")
-    setPutFilters([])
-    setPags(1)
-    if(putCategory!=="" ){
-      let idCat=coleccion.productos_categorias.filter(e=>e!==null && e.nombre===putCategory)
-      idCat=idCat[0].idcategoria
+  const busquedaPrimera = () => {
+    setPutSort("");
+    setPutFilters([]);
+    setPags(1);
+    if (putCategory !== "") {
+      let idCat = coleccion.productos_categorias.filter(
+        (e) => e !== null && e.nombre === putCategory
+      );
+      idCat = idCat[0].idcategoria;
 
-      const col=new FormData()
-      col.append("idcoleccion",Number(idColeccion))
-      col.append("idcategoria",idCat)
-      col.append("bypage",15)
-      col.append("page",0)
+      const col = new FormData();
+      col.append("idcoleccion", Number(idColeccion));
+      col.append("idcategoria", idCat);
+      col.append("bypage", 15);
+      col.append("page", 0);
 
-      ColeccionAPI(
-          col,
-          "colecciones",
-          "detail"
-      ).then((res)=>{
-        if(res.status==="success"){
-          setFiltrosCategoria(res.result.productos_categorias[0].caracteristica)
-          setProds(res.result.productos)
-          setTotalPages(res.result.productos_total_paginas)
+      ColeccionAPI(col, "colecciones", "detail").then((res) => {
+        if (res.status === "success") {
+          setFiltrosCategoria(
+            res.result.productos_categorias[0].caracteristica
+          );
+          setProds(res.result.productos);
+          setTotalPages(res.result.productos_total_paginas);
         }
-        setBuscandoCol(false)
-        setLoad2(false)
-      })
-    }else{
+        setBuscandoCol(false);
+        setLoad2(false);
+      });
+    } else {
+      const col = new FormData();
+      col.append("idcoleccion", Number(idColeccion));
+      col.append("bypage", 15);
+      col.append("page", 0);
 
-    const col=new FormData()
-    col.append("idcoleccion",Number(idColeccion))
-    col.append("bypage",15)
-    col.append("page",0)
-
-    ColeccionAPI(
-        col,
-        "colecciones",
-        "detail"
-    ).then((res)=>{
-      if(res.status==="success"){
-        setProds(res.result.productos)
-        setTotalPages(res.result.productos_total_paginas)
-      }
-      setBuscandoCol(false)
-      setLoad2(false)
-  })
+      ColeccionAPI(col, "colecciones", "detail").then((res) => {
+        if (res.status === "success") {
+          setProds(res.result.productos);
+          setTotalPages(res.result.productos_total_paginas);
+        }
+        setBuscandoCol(false);
+        setLoad2(false);
+      });
     }
-  }
+  };
 
-  const buscarPage=(paramSearch,value)=>{
-    if(rangoPrecio.min>rangoPrecio.max){
+  const buscarPage = (paramSearch, value) => {
+    if (rangoPrecio.min > rangoPrecio.max) {
       Swal.fire({
-        title:'RANGOS INCORRECTOS',
-        text:"Los rangos de precios son incorrectos. Volvé a intentarlo",
-        icon:'error',
-        confirmButtonText: 'ACEPTAR',
-      })
-      return
+        title: "RANGOS INCORRECTOS",
+        text: "Los rangos de precios son incorrectos. Volvé a intentarlo",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
+      return;
     }
     window.scrollTo({
       top: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
-    setLoad2(true)
+    setLoad2(true);
 
-    const catProd=new FormData()
+    const catProd = new FormData();
 
-    if(putCategory!==""){
-      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
-      idCat=idCat[0].idcategoria
-      catProd.append("idcategoria",Number(idCat))
-    }
-    
-    if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
-      catProd.append("precio_desde",rangoPrecio.min)
-      catProd.append("precio_hasta",rangoPrecio.max)
+    if (putCategory !== "") {
+      let idCat = coleccion.productos_categorias.filter(
+        (e) => e.nombre === putCategory
+      );
+      idCat = idCat[0].idcategoria;
+      catProd.append("idcategoria", Number(idCat));
     }
 
-    catProd.append("idcoleccion",Number(idColeccion))
-    catProd.append("bypage",15)
-    catProd.append("page",value)
-
-    if(putSort==="Mas relevante primero"){
-      catProd.append("order_type","desc")
-      catProd.append("order","relevancia")
-    }else if(putSort==="Menos relevante primero"){
-      catProd.append("order_type","asc")
-      catProd.append("order","relevancia")
-    }else if(putSort==="Mayor precio primero"){
-      catProd.append("order_type","desc")
-      catProd.append("order","precio")
-    }else if(putSort==="Menor precio primero"){
-      catProd.append("order_type","asc")
-      catProd.append("order","precio")
+    if (rangoPrecio.min !== 0 || rangoPrecio.max !== 0) {
+      catProd.append("precio_desde", rangoPrecio.min);
+      catProd.append("precio_hasta", rangoPrecio.max);
     }
 
-    if(putFilters.length!==0){
-      catProd.append("caracteristicas",filtrosFin)
+    catProd.append("idcoleccion", Number(idColeccion));
+    catProd.append("bypage", 15);
+    catProd.append("page", value);
+
+    if (putSort === "Mas relevante primero") {
+      catProd.append("order_type", "desc");
+      catProd.append("order", "relevancia");
+    } else if (putSort === "Menos relevante primero") {
+      catProd.append("order_type", "asc");
+      catProd.append("order", "relevancia");
+    } else if (putSort === "Mayor precio primero") {
+      catProd.append("order_type", "desc");
+      catProd.append("order", "precio");
+    } else if (putSort === "Menor precio primero") {
+      catProd.append("order_type", "asc");
+      catProd.append("order", "precio");
     }
 
-    ColeccionAPI(
-      catProd,
-      "colecciones",
-      "detail"
-    ).then((res)=>{
-      if(res.status==="success"){
-        setProds(res.result.productos)
+    if (putFilters.length !== 0) {
+      catProd.append("caracteristicas", filtrosFin);
+    }
+
+    ColeccionAPI(catProd, "colecciones", "detail").then((res) => {
+      if (res.status === "success") {
+        setProds(res.result.productos);
       }
-      setLoad2(false)
+      setLoad2(false);
       window.scrollTo({
         top: 0,
-        behavior: 'auto',
+        behavior: "auto",
       });
-    })
-  }
+    });
+  };
 
   const handleAplicarFiltros = () => {
-    setBuscandoCol(true)
+    setBuscandoCol(true);
 
-    if(rangoPrecio.min>rangoPrecio.max){
+    if (rangoPrecio.min > rangoPrecio.max) {
       Swal.fire({
-        title:'RANGOS INCORRECTOS',
-        text:"Los rangos de precios son incorrectos. Volvé a intentarlo",
-        icon:'error',
-        confirmButtonText: 'ACEPTAR',
-      })
-      return
+        title: "RANGOS INCORRECTOS",
+        text: "Los rangos de precios son incorrectos. Volvé a intentarlo",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
+      return;
     }
-    setPags(1)
-    setLoad2(true)
+    setPags(1);
+    setLoad2(true);
     let array = [];
     for (let i = 0; i < putFilters.length; i++) {
       array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
     }
     setFiltrosFin(array.toString());
 
-    if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
-        const prod=new FormData()
+    if (
+      putFilters.length !== 0 ||
+      putSort !== "" ||
+      rangoPrecio.min !== 0 ||
+      rangoPrecio.max !== 0
+    ) {
+      const prod = new FormData();
 
-        if(putCategory!==""){
-          let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
-          idCat=idCat[0].idcategoria
-          prod.append("idcategoria",Number(idCat))
+      if (putCategory !== "") {
+        let idCat = coleccion.productos_categorias.filter(
+          (e) => e.nombre === putCategory
+        );
+        idCat = idCat[0].idcategoria;
+        prod.append("idcategoria", Number(idCat));
+      }
+
+      if (rangoPrecio.min !== 0 || rangoPrecio.max !== 0) {
+        prod.append("precio_desde", rangoPrecio.min);
+        prod.append("precio_hasta", rangoPrecio.max);
+      }
+
+      prod.append("idcoleccion", Number(idColeccion));
+
+      prod.append("bypage", 15);
+      prod.append("page", 0);
+
+      if (putSort === "Mas relevante primero") {
+        prod.append("order_type", "desc");
+        prod.append("order", "relevancia");
+      } else if (putSort === "Menos relevante primero") {
+        prod.append("order_type", "asc");
+        prod.append("order", "relevancia");
+      } else if (putSort === "Mayor precio primero") {
+        prod.append("order_type", "desc");
+        prod.append("order", "precio");
+      } else if (putSort === "Menor precio primero") {
+        prod.append("order_type", "asc");
+        prod.append("order", "precio");
+      }
+
+      if (putFilters.length !== 0) {
+        prod.append("caracteristicas", array.toString());
+      }
+
+      ProdAPI(prod, "colecciones", "detail").then((res) => {
+        console.log(Object.fromEntries(prod));
+        setLoad2(false);
+        setBuscandoCol(false);
+        if (res.status === "success") {
+          setProds(res.result.productos);
+          setTotalPages(res.result.productos_total_paginas);
+        } else if (
+          res.result === "No se encontraron producto para la coleccion"
+        ) {
+          setProds([]);
+          setTotalPages(0);
         }
-
-        if(rangoPrecio.min!==0 || rangoPrecio.max!==0){
-          prod.append("precio_desde",rangoPrecio.min)
-          prod.append("precio_hasta",rangoPrecio.max)
-        }
-
-        prod.append("idcoleccion",Number(idColeccion))
-
-        prod.append("bypage",15)
-        prod.append("page",0)
-
-        if(putSort==="Mas relevante primero"){
-          prod.append("order_type","desc")
-          prod.append("order","relevancia")
-        }else if(putSort==="Menos relevante primero"){
-          prod.append("order_type","asc")
-          prod.append("order","relevancia")
-        }else if(putSort==="Mayor precio primero"){
-          prod.append("order_type","desc")
-          prod.append("order","precio")
-        }else if(putSort==="Menor precio primero"){
-          prod.append("order_type","asc")
-          prod.append("order","precio")
-        }
-
-        if(putFilters.length!==0){
-          prod.append("caracteristicas",array.toString())
-        }
-
-        ProdAPI(
-          prod,
-          "colecciones",
-          "detail"
-        ).then((res)=>{
-          setLoad2(false)
-          setBuscandoCol(false)
-          if (res.status === 'success') {
-            setProds(res.result.productos);
-            setTotalPages(res.result.productos_total_paginas);
-          }else if(res.result==="No se encontraron producto para la coleccion"){
-            setProds([])
-            setTotalPages(0);
-          }
-        })
+      });
     }
   };
 
@@ -305,7 +300,12 @@ const SearchProductsResults = () => {
         <Grid
           container
           sx={{
-            px: isMobile || isMobileBigScreen ? "16px" : isTablet ? "20px" : "74px",
+            px:
+              isMobile || isMobileBigScreen
+                ? "16px"
+                : isTablet
+                ? "20px"
+                : "74px",
             py: "40px",
           }}
           spacing={5}
@@ -358,11 +358,10 @@ const SearchProductsResults = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-
                         </Box>
                         {putFilters.map((res, index) => {
                           return (
-                            <Stack direction='row' spacing={1}>
+                            <Stack direction="row" spacing={1}>
                               <ChipFilterCategories
                                 filteredCategory={res}
                                 key={index}
@@ -380,37 +379,48 @@ const SearchProductsResults = () => {
                             </Stack>
                           );
                         })}
-                        {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                            <Typography
+                        {putCategory !== "" ||
+                        putSort !== "" ||
+                        putFilters.length !== 0 ||
+                        rangoPrecio.min !== 0 ||
+                        rangoPrecio.max !== 999999 ? (
+                          <Typography
                             sx={{
                               fontSize: theme.typography.fontSize[2],
                               fontWeight: theme.typography.fontWeightRegular,
-                              textDecoration: 'underline',
-                              mt: '12px',
-                              mb: '16px',
-                              cursor:"pointer"
+                              textDecoration: "underline",
+                              mt: "12px",
+                              mb: "16px",
+                              cursor: "pointer",
                             }}
-                            onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                                ()=>{
-                                  setPutCategory("")
-                                  setRangoPrecio({ min: 0, max: 999999 })
-                                  busquedaPrimera()
-                                }
-                                :null
-                              }
-                              >
-                              Limpiar filtros
-                            </Typography>
-                            :<></>}
-                        <Filter 
+                            onClick={
+                              putCategory !== "" ||
+                              putSort !== "" ||
+                              putFilters.length !== 0 ||
+                              rangoPrecio.min !== 0 ||
+                              rangoPrecio.max !== 999999
+                                ? () => {
+                                    setPutCategory("");
+                                    setRangoPrecio({ min: 0, max: 999999 });
+                                    busquedaPrimera();
+                                  }
+                                : null
+                            }
+                          >
+                            Limpiar filtros
+                          </Typography>
+                        ) : (
+                          <></>
+                        )}
+                        <Filter
                           filtrosCol={filtrosCategoria}
-                          setPutCategory={setPutCategory} 
-                          putCategory={putCategory} 
-                          filtros={filtrosCategoria} 
-                          setPutFilters={setPutFilters} 
-                          putFilters={putFilters} 
-                          putSort={putSort} 
-                          setPutSort={setPutSort} 
+                          setPutCategory={setPutCategory}
+                          putCategory={putCategory}
+                          filtros={filtrosCategoria}
+                          setPutFilters={setPutFilters}
+                          putFilters={putFilters}
+                          putSort={putSort}
+                          setPutSort={setPutSort}
                           coleccion={coleccion}
                           handleAplicarFiltros={handleAplicarFiltros}
                           rangoPrecio={rangoPrecio}
@@ -439,7 +449,7 @@ const SearchProductsResults = () => {
                 </Box>
                 {putFilters.map((res, index) => {
                   return (
-                    <Stack direction='row' spacing={1}>
+                    <Stack direction="row" spacing={1}>
                       <ChipFilterCategories
                         filteredCategory={res}
                         key={index}
@@ -453,41 +463,52 @@ const SearchProductsResults = () => {
                         metodo={"detail"}
                         putCategory={putCategory}
                         coleccionName={coleccionName}
-                        />
+                      />
                     </Stack>
                   );
                 })}
-                {(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
+                {putCategory !== "" ||
+                putSort !== "" ||
+                putFilters.length !== 0 ||
+                rangoPrecio.min !== 0 ||
+                rangoPrecio.max !== 999999 ? (
                   <Typography
-                  sx={{
-                    fontSize: theme.typography.fontSize[2],
-                    fontWeight: theme.typography.fontWeightRegular,
-                    textDecoration: 'underline',
-                    mt: '12px',
-                    mb: '16px',
-                    cursor:"pointer"
-                  }}
-                  onClick={(putCategory !== "" || putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                      ()=>{
-                        setPutCategory("")
-                        setRangoPrecio({ min: 0, max: 999999 })
-                        busquedaPrimera()
-                      }
-                      :null
+                    sx={{
+                      fontSize: theme.typography.fontSize[2],
+                      fontWeight: theme.typography.fontWeightRegular,
+                      textDecoration: "underline",
+                      mt: "12px",
+                      mb: "16px",
+                      cursor: "pointer",
+                    }}
+                    onClick={
+                      putCategory !== "" ||
+                      putSort !== "" ||
+                      putFilters.length !== 0 ||
+                      rangoPrecio.min !== 0 ||
+                      rangoPrecio.max !== 999999
+                        ? () => {
+                            setPutCategory("");
+                            setRangoPrecio({ min: 0, max: 999999 });
+                            busquedaPrimera();
+                          }
+                        : null
                     }
-                    >
+                  >
                     Limpiar filtros
                   </Typography>
-                  :<></>}
-                <Filter 
+                ) : (
+                  <></>
+                )}
+                <Filter
                   filtrosCol={filtrosCategoria}
-                  setPutCategory={setPutCategory} 
-                  putCategory={putCategory} 
-                  filtros={filtrosCategoria} 
-                  setPutFilters={setPutFilters} 
-                  putFilters={putFilters} 
-                  putSort={putSort} 
-                  setPutSort={setPutSort} 
+                  setPutCategory={setPutCategory}
+                  putCategory={putCategory}
+                  filtros={filtrosCategoria}
+                  setPutFilters={setPutFilters}
+                  putFilters={putFilters}
+                  putSort={putSort}
+                  setPutSort={setPutSort}
                   coleccion={coleccion}
                   handleAplicarFiltros={handleAplicarFiltros}
                   rangoPrecio={rangoPrecio}
@@ -498,101 +519,127 @@ const SearchProductsResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={9}>
-            {load2 ? <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}><Loader spin={"spinnerG"}/></div>:
-              <>{!buscandoCol && prods.length===0 ? 
-                <Box
+            {load2 ? (
+              <div
+                style={{
+                  marginTop: "24px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader spin={"spinnerG"} />
+              </div>
+            ) : (
+              <>
+                {!buscandoCol && prods.length === 0 ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      mt: "16px",
+                      flexDirection: !buscandoCol ? "column" : "row",
+                    }}
+                  >
+                    <Box sx={{ mr: "20px" }}>
+                      <img
+                        src={lupa}
+                        width={40}
+                        height={40}
+                        alt="not found icon"
+                      />
+                    </Box>
+                    <Box>
+                      <Typography
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          mt: "16px",
-                          flexDirection:!buscandoCol ? "column" : "row"
+                          fontSize: theme.typography.fontSize[6],
+                          fontWeight: theme.typography.fontWeightMedium,
+                          color: theme.palette.secondary.main,
+                          textTransform: "uppercase",
+                          textAlign:
+                            isMobile || isMobileBigScreen
+                              ? "center"
+                              : !buscandoCol
+                              ? "center"
+                              : "unset",
+                          mb: 4,
                         }}
                       >
-                        <Box sx={{ mr: "20px" }}>
-                          <img
-                            src={lupa}
-                            width={40}
-                            height={40}
-                            alt="not found icon"
-                          />
-                        </Box>
-                        <Box>
-                          <Typography
-                            sx={{
-                              fontSize: theme.typography.fontSize[6],
-                              fontWeight: theme.typography.fontWeightMedium,
-                              color: theme.palette.secondary.main,
-                              textTransform: "uppercase",
-                              textAlign:
-                                isMobile || isMobileBigScreen
-                                  ? "center"
-                                  : !buscandoCol?"center":"unset",
-                              mb: 4,
-                            }}
-                          >
-                            No encontramos resultados para esos filtros
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: theme.typography.fontSize[6],
-                              fontWeight: theme.typography.fontWeightRegular,
-                              color: theme.palette.tertiary.main,
-                              textAlign:!buscandoCol?"center":"unset"
-                            }}
-                          >
-                            Intentá con filtros diferentes.
-                          </Typography>
-                        </Box>
-                      </Box>
-              :
-              
+                        No encontramos resultados para esos filtros
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: theme.typography.fontSize[6],
+                          fontWeight: theme.typography.fontWeightRegular,
+                          color: theme.palette.tertiary.main,
+                          textAlign: !buscandoCol ? "center" : "unset",
+                        }}
+                      >
+                        Intentá con filtros diferentes.
+                      </Typography>
+                    </Box>
+                  </Box>
+                ) : (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      flexWrap: "wrap",
+                      gap: "32px",
+                      mb: "32px",
+                    }}
+                  >
+                    {prods.length !== 0 && coleccionName ? (
+                      prods.map((product, index) => {
+                        return (
+                          <>
+                            {product.imagenes.length !== 0 && (
+                              <ProductCard
+                                key={index}
+                                imageCard={product.imagenes[0].imagen_vertical}
+                                productName={product.nombre}
+                                productPrice={product.precio}
+                                idProducto={product.idproducto}
+                                idTienda={product.idtienda}
+                                tag={product.tag}
+                                datosTienda={product.tienda}
+                                precioOferta={product.precio_oferta}
+                              />
+                            )}
+                          </>
+                        );
+                      })
+                    ) : (
+                      <div
+                        style={{
+                          marginTop: "24px",
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Loader spin={"spinnerG"} />
+                      </div>
+                    )}
+                  </Box>
+                )}
+              </>
+            )}
+            {prods.length !== 0 && totalPages > 1 && coleccionName && !load2 && (
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "flex-start",
-                  flexWrap: "wrap",
-                  gap: "32px",
-                  mb: "32px",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                {prods.length !== 0 && coleccionName ? (
-                  prods.map((product, index) => {
-                    return (
-                      <>
-                        {product.imagenes.length !== 0 &&
-                          <ProductCard
-                          key={index}
-                          imageCard={product.imagenes[0].imagen_vertical}
-                          productName={product.nombre}
-                          productPrice={product.precio}
-                          idProducto={product.idproducto}
-                          idTienda={product.idtienda}
-                          tag={product.tag}
-                          datosTienda={product.tienda}
-                          precioOferta={product.precio_oferta}
-                          />
-                        }
-                      </>
-                    );
-                  })
-                ) : 
-                  <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
-                    <Loader spin={"spinnerG"}/>
-                  </div>
-                }
-              </Box>
-            }</>
-            } 
-            {prods.length!==0 && totalPages>1 && coleccionName && !load2 && (
-              <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              >
-                <Pagination cantidad={totalPages} buscarPage={buscarPage} pags={pags} setPags={setPags}/>
+                <Pagination
+                  cantidad={totalPages}
+                  buscarPage={buscarPage}
+                  pags={pags}
+                  setPags={setPags}
+                />
               </Box>
             )}
           </Grid>
