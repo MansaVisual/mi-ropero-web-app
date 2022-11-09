@@ -305,10 +305,10 @@ const SearchProductsResults = () => {
 
       if (putSort === "Mas relevante primero") {
         prod.append("order_type", "desc");
-        prod.append("order", "relevancia");
+        prod.append("order", "idproducto");
       } else if (putSort === "Menos relevante primero") {
         prod.append("order_type", "asc");
-        prod.append("order", "relevancia");
+        prod.append("order", "idproducto");
       } else if (putSort === "Mayor precio primero") {
         prod.append("order_type", "desc");
         prod.append("order", "precio");
