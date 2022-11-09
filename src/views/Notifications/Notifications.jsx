@@ -190,8 +190,9 @@ useEffect(()=>{
                 url = "/perfil/OFERTAS REALIZADAS";
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
+                let buscarI2=itemURL.indexOf("&backLink");
                 buscarI = itemURL.indexOf("idproducto=");
-                id = itemURL.substring(buscarI + 11, itemURL.length);
+                id = itemURL.substring(buscarI + 11, buscarI2);
                 url = `/productoCard/${id}`;
               } else if (itemURL.indexOf("/app/profile/offers") !== -1) {
                 //-------------------|-----------------------------
