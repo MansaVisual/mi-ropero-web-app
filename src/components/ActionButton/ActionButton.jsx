@@ -67,8 +67,7 @@ export const LikeButton = ({
       return;
     }
 
-    setLike(!like);
-    console.log(infoUser.productos_favoritos.find((e) => e === idProd))
+    
     if (
       infoUser.productos_favoritos !== undefined &&
       infoUser.productos_favoritos.find((e) => e === idProd)
@@ -88,6 +87,7 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
+            setLike(!like);
             await handleListFavs(idProd,"delete",infoUser);
         }
       });
@@ -104,6 +104,7 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
+            setLike(!like);
             await handleListFavs(idProd,"insert",infoUser);
         }
       });
