@@ -43,7 +43,7 @@ export const ColeccionContext = ({ children }) => {
         "col",
         "colecciones",
         "all"
-    ).then((res)=>{console.log(res);setColecciones(res.result)})
+    ).then((res)=>{setColecciones(res.result)})
 
     const col = new FormData();
     col.append("idcoleccion", 71);

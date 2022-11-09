@@ -20,7 +20,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV,colecciones } =
+  const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV,colecciones,ColeccionAPI } =
     useContext(UseColeccionContext);
     const {reBuscarInfo}=useContext(UseLoginContext)
 
@@ -56,66 +56,71 @@ const Home = () => {
       >
         <Container maxWidth="xl">
           {colecciones.map((res,i)=>{
-            if(res.tipo_text==="Coleccion 1er Scroll"){
-              return(
-                <Fragment key={i}>
-                  <Box sx={{ pt: "40px", textAlign: "center" }}>
-                    <Chip primary>{res.nombre}</Chip>
-                  </Box>
-                  <Box sx={{ pt: "24px" }}>
-                    <SliderProd contenido={coleccionNuevosIngresos} />
-                  </Box>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Link
-                      sx={{
-                        color: "hsla(0, 0%, 53%, 1)",
-                        fontSize: theme.typography.fontSize[4],
-                        cursor: "pointer",
-                        "&:hover": {
-                          fontWeight: "700",
-                        },
-                      }}
-                      onClick={() => navigate("/colecciones/NuevosIngresos")}
+            let cont = []
+            const col = new FormData();
+            col.append("idcoleccion", res.idcoleccion);
+            col.append("bypage", 8);
+            ColeccionAPI(col, "colecciones", "detail").then((res) => {
+              if (res.status === "success") {
+                cont = res.result.productos
+              }
+            });
+            return(
+              <Fragment key={i}>
+                {res.type_text==="Coleccion 1er Scroll" ?<>
+                <Box sx={{ pt: "40px", textAlign: "center" }}>
+                  <Chip primary>{res.nombre}</Chip>
+                </Box>
+                <Box sx={{ pt: "24px" }}>
+                  <SliderProd contenido={cont} />
+                </Box>
+                <Box sx={{ textAlign: "center" }}>
+                  <Link
+                    sx={{
+                      color: "hsla(0, 0%, 53%, 1)",
+                      fontSize: theme.typography.fontSize[4],
+                      cursor: "pointer",
+                      "&:hover": {
+                        fontWeight: "700",
+                      },
+                    }}
+                    onClick={() => navigate("/colecciones/NuevosIngresos")}
                     >
-                      VER "{res.nombre}"
-                    </Link>
-                  </Box>
-                </Fragment>
-              )
-            }else{
-              return(<Fragment key={i}></Fragment>)
-            }
+                    VER "{res.nombre}"
+                  </Link>
+                </Box></>
+                :<></>}
+              </Fragment>
+            )
           })}
           {colecciones.map((res,i)=>{
-            if(res.tipo_text==="Coleccion 2do Scroll"){
-              return(
-                <Fragment key={i}>
-                  <Box sx={{ pt: "40px", textAlign: "center" }}>
-                    <Chip primary>{res.nombre}</Chip>
-                  </Box>
-                  <Box sx={{ pt: "24px" }}>
-                    <SliderProd contenido={coleccionNuevosIngresos} />
-                  </Box>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Link
-                      sx={{
-                        color: "hsla(0, 0%, 53%, 1)",
-                        fontSize: theme.typography.fontSize[4],
-                        cursor: "pointer",
-                        "&:hover": {
-                          fontWeight: "700",
-                        },
-                      }}
-                      onClick={() => navigate("/colecciones/NuevosIngresos")}
+            return(
+              <Fragment key={i}>
+              {res.tipo_text==="Coleccion 2do Scroll" ?<>
+                <Box sx={{ pt: "40px", textAlign: "center" }}>
+                  <Chip primary>{res.nombre}</Chip>
+                </Box>
+                <Box sx={{ pt: "24px" }}>
+                  <SliderProd contenido={coleccionNuevosIngresos} />
+                </Box>
+                <Box sx={{ textAlign: "center" }}>
+                  <Link
+                    sx={{
+                      color: "hsla(0, 0%, 53%, 1)",
+                      fontSize: theme.typography.fontSize[4],
+                      cursor: "pointer",
+                      "&:hover": {
+                        fontWeight: "700",
+                      },
+                    }}
+                    onClick={() => navigate("/colecciones/NuevosIngresos")}
                     >
-                      VER "{res.nombre}"
-                    </Link>
-                  </Box>
-                </Fragment>
-              )
-            }else{
-              return(<Fragment key={i}></Fragment>)
-            }
+                    VER "{res.nombre}"
+                  </Link>
+                </Box>
+              </>:<></>}
+              </Fragment>
+            )
           })}
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip>Zapatillas</Chip>
