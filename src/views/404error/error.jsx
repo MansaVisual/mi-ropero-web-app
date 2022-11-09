@@ -54,7 +54,7 @@ const Error = () => {
             VOLVER ATRAS
           </Button>
 
-          <Box sx={{ pt: "40px", textAlign: "center" }}>
+          {/* <Box sx={{ pt: "40px", textAlign: "center" }}>
             <Chip primary>Nuevos ingresos</Chip>
           </Box>
           <Box sx={{ pt: "24px"}}>
@@ -71,7 +71,7 @@ const Error = () => {
             >
               VER TODOS LOS INGRESOS
             </Link>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>
