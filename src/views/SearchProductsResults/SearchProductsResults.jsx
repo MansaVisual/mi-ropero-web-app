@@ -500,7 +500,7 @@ const SearchProductsResults = () => {
                         setProds={setProds}
                         ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
-                        categorias={search!==undefined?categorias:undefined}
+                        categorias={categorias}
                         clase={"productos"}
                         metodo={"search"}
                       />
