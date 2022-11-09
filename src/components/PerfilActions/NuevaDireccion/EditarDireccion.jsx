@@ -269,6 +269,13 @@ const EditarDireccion = () => {
         document.getElementById("infoAdicional").value
       );
       formDireccion.append("normalized", direccion.raw_data);
+      console.log(
+        infoLocFinal,
+        Number(infoLocFinal.idprovincia),
+        infoLocFinal.idprovincia,
+        Number(infoLocFinal.idlocalidad),
+        infoLocFinal.idlocalidad
+      );
       FormAPI(formDireccion, "direcciones", "update").then(async (res) => {
         console.log(res);
         console.table(Object.fromEntries(formDireccion));
