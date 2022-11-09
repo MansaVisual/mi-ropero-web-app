@@ -122,7 +122,7 @@ const SearchBar = () => {
             <Button
               onClick={(e) => handleSubmit(e, "productos")}
               disabled={keyword.length === 0}
-              className="buscadorDisabled"
+              className={buscador==="productos"?"buscadorDisabled":null}
               sx={{
                 textTransform: "none",
                 color: buscador==="productos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
@@ -137,6 +137,7 @@ const SearchBar = () => {
             <Button
               onClick={(e) => handleSubmit(e, "roperos")}
               disabled={keyword.length === 0}
+              className={buscador==="productos"?"buscadorDisabled":null}
               sx={{
                 textTransform: "none",
                 color: buscador==="roperos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
