@@ -110,8 +110,9 @@ const SearchProductsResults = () => {
       let idCat = coleccion.productos_categorias.filter(
         (e) => e !== null && e.nombre === putCategory
       );
-      idCat = idCat[0].idcategoria;
+      console.log(coleccion.productos_categorias)
       console.log(idCat)
+      idCat = idCat[0].idcategoria;
 
       const col = new FormData();
       col.append("idcoleccion", Number(idColeccion));
