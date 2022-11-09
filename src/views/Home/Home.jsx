@@ -30,7 +30,7 @@ const Home = () => {
       behavior: "auto",
     });
     reBuscarInfo()
-  }, [window.location.pathname]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = () => {
     window.scrollTo({
