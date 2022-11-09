@@ -15,26 +15,27 @@ import foto5 from "../../assets/FAQ/5.png";
 import foto6 from "../../assets/FAQ/6.png";
 import foto7 from "../../assets/FAQ/7.png";
 import foto8 from "../../assets/FAQ/8.png";
+import leftArrow from "../../assets/img/leftArrow.png";
+import { useNavigate } from "react-router-dom";
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState("panel1");
-  const [time,setTime]=React.useState(false)
-
+  const [time, setTime] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (panel) => (event, newExpanded) => {
-    setTime(true)
+    setTime(true);
     setExpanded(newExpanded ? panel : false);
     setTimeout(() => {
-      setTime(false)
+      setTime(false);
     }, 200);
   };
 
-  const handleClick=(data)=>{
+  const handleClick = (data) => {
     setTimeout(() => {
-      handleChange(data)
+      handleChange(data);
     }, 100);
-  }
-  
+  };
 
   const comoVendo = [
     "• En Mi Ropero publicar es Gratis!.",
@@ -51,7 +52,7 @@ const FAQ = () => {
     "",
     "",
     "• Una vez entregado el pedido, te califican ( Lxs Compradorxs tienen 2 días para calificarte), en el caso que no lo hagan, nosotros te calificamos neutral.",
-    ""
+    "",
   ];
   const miTiendaConfig1 = [
     "• Configurar los datos de la Tienda",
@@ -121,9 +122,11 @@ const FAQ = () => {
                 1. ¿Qué es mi ropero?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="questionTitle">
                 Escencia & filosofía
               </Typography>
@@ -195,9 +198,11 @@ const FAQ = () => {
                 2. ¿Cómo lo instalo?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Fácil. Ingresando a{" "}
                 <a href="www.miropero.com.ar">www.miropero.com.ar</a> ,
@@ -221,9 +226,11 @@ const FAQ = () => {
                 3. ¿Cómo me registro?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Tenes que tener un mail o usuario de Facebook, si tenes IOS
                 podes ingresar con tu AppleID
@@ -241,47 +248,85 @@ const FAQ = () => {
               id="panel4-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle" id="TipParaVentas">4. ¿Cómo vendo?</Typography>
+              <Typography className="questionTitle" id="TipParaVentas">
+                4. ¿Cómo vendo?
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
-              {comoVendo.map((res, i) => (<>
-                {i===1 ?
-                <Typography className="answerText" key={i}>
-                  • Prepara la ropa que vas a vender (
-                  <a onClickCapture={handleChange("panel6")} href="#TipParaVentas">Tips de ventas</a>)
-                </Typography>
-                :
-                i===4?
-                <Typography className="answerText" key={i}>
-                  • Agrega las fotos de las prendas que queres vender, podes hacerlo en el momento o subirlas desde la galería (
-                  <a onClickCapture={handleChange("panel6")} href="#TipParaFotos">Tips de Fotos</a>)
-                </Typography>
-                :
-                i===11?
-                <Typography className="answerText" key={i}>
-                  • Listo ya tenes Tu Tienda armada (
-                  <a onClickCapture={handleChange("panel6")} href="#configTienda">cómo configurar Mi Tienda</a>)
-                </Typography>
-                :
-                i===12?
-                <Typography className="answerText" key={i}>
-                  • Si vendes, tenes 5 días hábiles para enviar el pedido si es por OCA o inmediato si el envío es por Moto (antes de las 14hs será en el día y después de las 14hs para el día siguiente), te informaremos por mail. Te recomendamos ver  
-                  <a onClickCapture={handleChange("panel6")} href="#metodosEnvio"> Métodos de Envío.</a>
-                </Typography>
-                :
-                i===14?
-                <Typography className="answerText" key={i}>
-                  • Esta todo OK!, elegí como cobrar o elegí que queres comprarte en Mi Ropero (
-                  <a onClickCapture={handleChange("panel6")} href="#comoCobro"> Como cobro mis ventas</a>)
-                </Typography>
-                :
-                <Typography className="answerText" key={i}>
-                  {res}
-                </Typography>
-                }
-              </>))}
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
+              {comoVendo.map((res, i) => (
+                <>
+                  {i === 1 ? (
+                    <Typography className="answerText" key={i}>
+                      • Prepara la ropa que vas a vender (
+                      <a
+                        onClickCapture={handleChange("panel6")}
+                        href="#TipParaVentas"
+                      >
+                        Tips de ventas
+                      </a>
+                      )
+                    </Typography>
+                  ) : i === 4 ? (
+                    <Typography className="answerText" key={i}>
+                      • Agrega las fotos de las prendas que queres vender, podes
+                      hacerlo en el momento o subirlas desde la galería (
+                      <a
+                        onClickCapture={handleChange("panel6")}
+                        href="#TipParaFotos"
+                      >
+                        Tips de Fotos
+                      </a>
+                      )
+                    </Typography>
+                  ) : i === 11 ? (
+                    <Typography className="answerText" key={i}>
+                      • Listo ya tenes Tu Tienda armada (
+                      <a
+                        onClickCapture={handleChange("panel6")}
+                        href="#configTienda"
+                      >
+                        cómo configurar Mi Tienda
+                      </a>
+                      )
+                    </Typography>
+                  ) : i === 12 ? (
+                    <Typography className="answerText" key={i}>
+                      • Si vendes, tenes 5 días hábiles para enviar el pedido si
+                      es por OCA o inmediato si el envío es por Moto (antes de
+                      las 14hs será en el día y después de las 14hs para el día
+                      siguiente), te informaremos por mail. Te recomendamos ver
+                      <a
+                        onClickCapture={handleChange("panel6")}
+                        href="#metodosEnvio"
+                      >
+                        {" "}
+                        Métodos de Envío.
+                      </a>
+                    </Typography>
+                  ) : i === 14 ? (
+                    <Typography className="answerText" key={i}>
+                      • Esta todo OK!, elegí como cobrar o elegí que queres
+                      comprarte en Mi Ropero (
+                      <a
+                        onClickCapture={handleChange("panel6")}
+                        href="#comoCobro"
+                      >
+                        {" "}
+                        Como cobro mis ventas
+                      </a>
+                      )
+                    </Typography>
+                  ) : (
+                    <Typography className="answerText" key={i}>
+                      {res}
+                    </Typography>
+                  )}
+                </>
+              ))}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -294,11 +339,15 @@ const FAQ = () => {
               id="panel5-header"
               expandIcon={<ExpandMoreIcon />}
             >
-              <Typography className="questionTitle">4.1. ¿Cómo configuro Mi Tienda?</Typography>
+              <Typography className="questionTitle">
+                4.1. ¿Cómo configuro Mi Tienda?
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Para tener una Tienda lo primero que tenes que hacer es Publicar
                 un producto. Vas a tener una Tienda asignada si pones productos
@@ -368,9 +417,11 @@ const FAQ = () => {
                 4.2 Tips de Ventas:
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 La primera impresión es lo que cuenta, no pierdas la oportunidad
                 de lucir las prendas que queres vender.
@@ -407,9 +458,11 @@ const FAQ = () => {
                 4.2.1 Estado de una Prenda:
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               {miTiendaConfig4.map((res, i) => (
                 <Typography className="answerText" key={i}>
                   {res}
@@ -431,9 +484,11 @@ const FAQ = () => {
                 4.3 Tips de Fotos:
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               {miTiendaConfig5.map((res, i) => (
                 <Typography className="answerText" key={i}>
                   {res}
@@ -465,9 +520,11 @@ const FAQ = () => {
                 4.4 ¿Dónde veo el detalle de mis ventas?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Cuando realizas una venta, es decir cuando el pago esta
                 realizado y aprobado, podrás ver tu venta en Mi Tienda/Venta,
@@ -499,9 +556,11 @@ const FAQ = () => {
                 4.5 ¿Cómo realizo el envío?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Una vez que el pago esta realizado se te avisa por mail y por
                 notificación que la venta se realizo satisfactoriamente. Deberás
@@ -546,9 +605,11 @@ const FAQ = () => {
                 4.5.1 ¿Cómo cobro Mis Ventas?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Una vez que te califiquen de manera satisfactoria, tu comprador
                 o nosotros (máximo 48hs), podrás ver disponible tu dinero en Tu
@@ -583,9 +644,11 @@ const FAQ = () => {
                 5. ¿Cómo compro?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="questionTitle">
                 Es muy fácil, rápido, seguro y conómico.
               </Typography>
@@ -613,9 +676,11 @@ const FAQ = () => {
                 6. Medios de Pago
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Por el momento solo operamos con Mercado Pago, próximamente
                 estaremos ampliando con otros Medios de Pago. Al momento de
@@ -640,9 +705,11 @@ const FAQ = () => {
                 7. Medio de envío
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Dependiendo del destino, podrás seleccionar la forma de envío:
               </Typography>
@@ -693,9 +760,11 @@ const FAQ = () => {
                 7.1. ¿Cuánto tiempo demora en llegar el pedido?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="questionTitle">Envío por OCA:</Typography>
               <Typography className="answerText">
                 • Lx vendedorxs tiene 5 días hábiles para enviarte el pedido y
@@ -793,9 +862,11 @@ const FAQ = () => {
                 8. Cambios y devoluciones
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="questionTitle">
                 ¿Como hago un cambio o una devolucion
               </Typography>
@@ -869,9 +940,11 @@ const FAQ = () => {
                 9. ¿ Cuál es el costo por comprar o vender en MI ROPERO?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="questionTitle">Compradorxs</Typography>
               <Typography className="answerText">
                 Si sos Compradorx, solo pagas lo que compras y el costo del
@@ -908,9 +981,11 @@ const FAQ = () => {
                 10. ¿Porqué me piden que cargue mi dirección?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="questionTitle">Mis Direcciones</Typography>
               <Typography className="answerText">
                 En Mi Perfil/Mis Direcciones. Vas a poder cargar las direcciones
@@ -973,9 +1048,11 @@ const FAQ = () => {
                 11. ¿Porqué me piden mi teléfono?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 El número de teléfono te lo pedimos, para coordinar el envío, en
                 caso de que no te encuentres en tu domicilio al momento de
@@ -998,9 +1075,11 @@ const FAQ = () => {
                 12. ¿Cómo califico?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Para que ésta comunidad de moda circular funcione, es importante
                 la calificación de lxs compradorxs hacia lxs vendedorxs.
@@ -1044,9 +1123,11 @@ const FAQ = () => {
                 13. ¿Por qué no puedo ver las fotos de mi galería de fotos?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Cuando publicas imágenes tene en cuenta que si no habilitas tu
                 celular para que la app MI Ropero puedo ingresara a tu galería
@@ -1071,9 +1152,11 @@ const FAQ = () => {
                 moto?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Por el momento el servicio de Envío por Moto solo esta
                 disponible en los casos que vendedorxs y Compradorxs tengan
@@ -1097,9 +1180,11 @@ const FAQ = () => {
                 disponible, ya no lo esta cuando quiero finalizar la compra?.
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 La disponibilidad de los productos en Mi Ropero cambian
                 constantemente. Si añadis un producto a tu carrito no garantiza
@@ -1125,9 +1210,11 @@ const FAQ = () => {
                 esta en oferta cuando lo quiero comprar?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Si añadis un producto en tu carrito de compras cuando está en
                 oferta, el precio también cambiará cuando la oferta haya
@@ -1157,9 +1244,11 @@ const FAQ = () => {
                 17. Me olvidé la contraseña para ingresar, ¿como la recupero?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Si olvidaste tu contraseña, desde el inicio de App hace clic en
                 la opción “ingresa con tu email” y hace clic en “olvide mi
@@ -1189,9 +1278,11 @@ const FAQ = () => {
                 18. ¿Cómo sé que mi compra se realizo correctamente?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 ¿Cómo se que mi compra se realizo correctamente? Antes de
                 seleccionar el metodo de pago, podras ver el detalle de tu
@@ -1222,9 +1313,11 @@ const FAQ = () => {
                 realizado una compra?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{
-              display:time?"none":"block"
-            }}>
+            <AccordionDetails
+              sx={{
+                display: time ? "none" : "block",
+              }}
+            >
               <Typography className="answerText">
                 Podes cambiar tu dirección de entrega las veces que quieras y
                 también podrás guardar las direcciones de uso frecuente. Tene en
@@ -1238,6 +1331,10 @@ const FAQ = () => {
             </AccordionDetails>
           </Accordion>
         </div>
+      </div>
+      <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+        <img src={leftArrow} alt="leftArrow" />
+        <p>VOLVER A MI PERFIL</p>
       </div>
     </div>
   );
