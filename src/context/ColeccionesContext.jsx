@@ -80,6 +80,7 @@ export const ColeccionContext = ({ children }) => {
         col3.append("idcoleccion", coleccionesBuscadas[i].idcoleccion);
         col3.append("bypage", 8);
         col3.append("order_type","desc")
+        col3.append("order","relevancia")
         await ColeccionAPI(col3, "colecciones", "detail").then((res) => {
           if (res.status === "success") {
             newCols.push({
