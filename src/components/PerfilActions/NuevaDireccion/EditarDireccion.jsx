@@ -116,7 +116,7 @@ const EditarDireccion = () => {
     setProvincia(event.target.value);
     setForm({ ...form, provincia: event.target.value });
     if (event.target.value === 1) {
-      /* document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";  */
+      document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
       setForm({ codigoPostal: "", barrioLocalidad: "CAPITAL FEDERAL" });
     } else {
       setForm({ ...form, barrioLocalidad: "", codigoPostal: "" });
