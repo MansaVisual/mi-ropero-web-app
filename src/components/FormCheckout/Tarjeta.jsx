@@ -27,6 +27,9 @@ const Tarjeta = ({
   const [load, setLoad] = useState(false);
   const { userLog } = useContext(UseLoginContext);
 
+
+  console.log(direccion)
+  
   const handlePagar = () => {
     setLoad(true);
 
