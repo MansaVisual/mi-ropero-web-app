@@ -119,6 +119,8 @@ const SearchProductsResults = () => {
       col.append("page", 0);
 
       ColeccionAPI(col, "colecciones", "detail").then((res) => {
+        console.log(Object.fromEntries(col));
+
         if (res.status === "success") {
           setFiltrosCategoria(
             res.result.productos_categorias[0].caracteristica
@@ -276,6 +278,7 @@ const SearchProductsResults = () => {
       }
 
       ProdAPI(prod, "colecciones", "detail").then((res) => {
+        console.log(Object.fromEntries(prod));
         console.log(Object.fromEntries(prod));
         setLoad2(false);
         setBuscandoCol(false);
