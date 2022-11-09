@@ -384,6 +384,9 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       borderRadius: "3px",
                       border: "1px solid hsla(210, 3%, 74%, 1)",
                       backgroundColor: codigoBoton!==""?"white":"hsla(210, 3%, 74%, 1)",
+                      "&:hover":{
+                        backgroundColor: codigoBoton!==""?"white":"#ffe1dc",
+                      }
                     }}
                     onClick={() => handleCostoEnvio()}
                   >
@@ -535,7 +538,9 @@ const ProductBuyBox = ({ prod, itemID }) => {
                         borderRadius: "3px",
                         border: "1px solid hsla(210, 3%, 74%, 1)",
                         backgroundColor: codigoBoton!==""?"white":"hsla(210, 3%, 74%, 1)",
-                        
+                        "&:hover":{
+                          backgroundColor: codigoBoton!==""?"white":"#ffe1dc",
+                        }
                       }}
                       onClick={() => handleCostoEnvio()}
                     >
