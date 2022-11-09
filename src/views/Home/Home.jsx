@@ -56,7 +56,7 @@ const Home = () => {
       >
         <Container maxWidth="xl">
           {buscandoCols && 
-            <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+            <div style={{ marginTop: "40px",width:"100%",display:"flex",justifyContent:"center" }}>
               <Loader spin={'spinnerG'} />
             </div>
           }

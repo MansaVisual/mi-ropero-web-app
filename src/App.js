@@ -100,7 +100,7 @@ function App() {
                           element={<ProductPage />}
                         />
                         <Route
-                          path="/colecciones/:coleccionName"
+                          path="/colecciones/:idColeccion/:coleccionName"
                           element={<SearchColeccionesResults />}
                         />
                         <Route path="/carrito" element={<Cart />} />
