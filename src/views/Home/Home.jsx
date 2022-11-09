@@ -20,7 +20,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { coleccionNuevosIngresos, coleccionRecomendados, coleccionMejoresV,colecciones,ColeccionAPI } =
+  const { coleccionRecomendados, coleccionMejoresV,colecciones,ColeccionAPI } =
     useContext(UseColeccionContext);
     const {reBuscarInfo}=useContext(UseLoginContext)
 
@@ -57,14 +57,17 @@ const Home = () => {
         <Container maxWidth="xl">
           {colecciones.map((res,i)=>{
             let cont = []
-            const col = new FormData();
-            col.append("idcoleccion", res.idcoleccion);
-            col.append("bypage", 8);
-            ColeccionAPI(col, "colecciones", "detail").then((res) => {
-              if (res.status === "success") {
-                cont = res.result.productos
-              }
-            });
+            if(res.type_text==="Coleccion 1er Scroll"){
+              const col = new FormData();
+              col.append("idcoleccion", Number(res.idcoleccion));
+              col.append("bypage", 8);
+              ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
+                if (res.status === "success") {
+                  cont = res.result.productos
+                }
+              });
+            }
+            console.log(i, cont)
             return(
               <Fragment key={i}>
                 {res.type_text==="Coleccion 1er Scroll" ?<>
@@ -94,6 +97,17 @@ const Home = () => {
             )
           })}
           {colecciones.map((res,i)=>{
+            let cont = []
+            if(res.tipo_text==="Coleccion 2do Scroll"){
+              const col = new FormData();
+              col.append("idcoleccion", res.idcoleccion);
+              col.append("bypage", 8);
+              ColeccionAPI(col, "colecciones", "detail").then((res) => {
+                if (res.status === "success") {
+                  cont = res.result.productos
+                }
+              });
+            }
             return(
               <Fragment key={i}>
               {res.tipo_text==="Coleccion 2do Scroll" ?<>
@@ -101,7 +115,7 @@ const Home = () => {
                   <Chip primary>{res.nombre}</Chip>
                 </Box>
                 <Box sx={{ pt: "24px" }}>
-                  <SliderProd contenido={coleccionNuevosIngresos} />
+                  <SliderProd contenido={cont} />
                 </Box>
                 <Box sx={{ textAlign: "center" }}>
                   <Link
