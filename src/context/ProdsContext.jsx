@@ -5,7 +5,7 @@ export const UseProdsContext = createContext();
 
 export const ProdsContext = ({children}) => {
 
-    const {userLog}=useContext(UseLoginContext)
+    const {userLog,reBuscarInfo}=useContext(UseLoginContext)
 
     const [categorias,setCategorias]=useState([])
     
@@ -113,7 +113,7 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
     }
 
-    const handleListFavs = ()=>{
+    const handleListFavs = (idProd,type,infoUser)=>{
         const fav = new FormData()
         fav.append("idcliente",userLog)
         ProdAPI(
@@ -124,6 +124,12 @@ export const ProdsContext = ({children}) => {
             setListFavFinBusqueda(true)
             if(res.status==="success"){
                 setListFavs(res.result)
+                // reBuscarInfo()
+                if(infoUser.productos_favoritos!==undefined){
+                    infoUser.productos_favoritos.push(idProd)
+                }else{
+                    infoUser['productos_favoritos'] = [idProd]
+                }
             }else{
                 setListFavs([])
             }

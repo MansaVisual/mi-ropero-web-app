@@ -67,10 +67,13 @@ export const LikeButton = ({
       return;
     }
 
-    setLike(!like);
+    if(infoUser.productos_favoritos!==undefined){
+      console.log(infoUser.productos_favoritos.find((e) => e === idProd))
+    }
+
     if (
       infoUser.productos_favoritos !== undefined &&
-      infoUser.productos_favoritos.find((e) => e === idProd)
+      infoUser.productos_favoritos.find((e) => e === idProd)!==undefined
     ) {
       const idFavorito = listFavs.find((e) => e.producto_id === idProd);
 
@@ -78,7 +81,7 @@ export const LikeButton = ({
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
       favAdd.append("idfavorito", idFavorito.idfavorito);
-      ProdAPI(favAdd, "favoritos", "delete").then((res) => {
+      ProdAPI(favAdd, "favoritos", "delete").then(async(res) => {console.log("RESPUESTA DELETE",res)
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL BORRAR",
@@ -87,15 +90,15 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
-           handleListFavs();
-          infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
+            setLike(!like);
+            await handleListFavs(idProd,"delete",infoUser);
         }
       });
     } else {
       const favAdd = new FormData();
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
-      await ProdAPI(favAdd, "favoritos", "insert").then((res) => {
+      await ProdAPI(favAdd, "favoritos", "insert").then(async(res) => {console.log("RESPUESTA INSERT",res)
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL AGREGAR A FAVORITOS",
@@ -104,12 +107,14 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
-           handleListFavs();
-          infoUser.productos_favoritos.push(idProd);
+            setLike(!like);
+            await handleListFavs(idProd,"insert",infoUser);
         }
       });
     }
   };
+  console.log("LISTFAV",listFavs)
+  console.log("INFOUSER",infoUser)
 
   return (
     <Box>
