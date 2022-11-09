@@ -3,10 +3,10 @@ import { createContext, useState, useEffect } from "react";
 export const UseColeccionContext = createContext();
 
 export const ColeccionContext = ({ children }) => {
-  // const [coleccionBanner,setColeccionBanner]=useState([])
   const [coleccionNuevosIngresos, setColeccionNuevosIngresos] = useState([]);
   const [coleccionRecomendados, setColeccionRecomendados] = useState([]);
   const [coleccionMejoresV, setColeccionMejoresV] = useState([]);
+  const [coleccionesBuscadas, setColeccionesBuscadas] = useState([]);
   const [colecciones, setColecciones] = useState([]);
 
   const ColeccionAPI = async (data, clase, metodo) => {
@@ -32,18 +32,12 @@ export const ColeccionContext = ({ children }) => {
     return resFinal;
   };
 
-  // colleciones all
-  // destacadas banner pirncipal id=66
-  // primerscroll nuevosingresos id=71
-  // segundoscroll recomendados id=72
-  // segundoscroll mejoresV id=73
-
   useEffect(() => {
     ColeccionAPI(
         "col",
         "colecciones",
         "all"
-    ).then((res)=>{setColecciones(res.result)})
+    ).then((res)=>{setColeccionesBuscadas(res.result)})
 
     const col = new FormData();
     col.append("idcoleccion", 71);
@@ -72,6 +66,32 @@ export const ColeccionContext = ({ children }) => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    completarColecciones()
+  }, [coleccionesBuscadas]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  const completarColecciones=async()=>{
+    if(coleccionesBuscadas.length!==0){
+      let newCols=[]
+      for(const i in coleccionesBuscadas){
+        const col3 = new FormData();
+        col3.append("idcoleccion", coleccionesBuscadas[i].idcoleccion);
+        col3.append("bypage", 8);
+        await ColeccionAPI(col3, "colecciones", "detail").then((res) => {
+          if (res.status === "success") {
+            newCols.push({
+              idcoleccion:coleccionesBuscadas[i].idcoleccion,
+              nombre:coleccionesBuscadas[i].nombre,
+              tipo_text:coleccionesBuscadas[i].tipo_text,
+              productos:res.result.productos
+            })
+          }
+        });
+      }
+      setColecciones(newCols)
+    }
+  }
 
   return (
     <UseColeccionContext.Provider

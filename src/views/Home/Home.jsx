@@ -55,27 +55,15 @@ const Home = () => {
         }}
       >
         <Container maxWidth="xl">
-          {colecciones.map((res,i)=>{
-            let cont = []
-            if(res.type_text==="Coleccion 1er Scroll"){
-              const col = new FormData();
-              col.append("idcoleccion", Number(res.idcoleccion));
-              col.append("bypage", 8);
-              ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
-                if (res.status === "success") {
-                  cont = res.result.productos
-                }
-              });
-            }
-            console.log(i, cont)
+          {colecciones.length!==0 && colecciones.map((res,i)=>{
             return(
               <Fragment key={i}>
-                {res.type_text==="Coleccion 1er Scroll" ?<>
+                {res.tipo_text==="Coleccion 1er Scroll" ?<>
                 <Box sx={{ pt: "40px", textAlign: "center" }}>
                   <Chip primary>{res.nombre}</Chip>
                 </Box>
                 <Box sx={{ pt: "24px" }}>
-                  <SliderProd contenido={cont} />
+                  <SliderProd contenido={res.productos} />
                 </Box>
                 <Box sx={{ textAlign: "center" }}>
                   <Link
