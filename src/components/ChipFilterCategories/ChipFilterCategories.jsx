@@ -21,7 +21,7 @@ const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
         );
 
         if(idColeccion!==undefined){
-            catProd.append("idcoleccion",idColeccion)
+            catProd.append("idcoleccion",Number(idColeccion))
         }
         if(closetId!==undefined){
           catProd.append("idtienda",closetId)

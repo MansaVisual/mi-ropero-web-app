@@ -79,7 +79,7 @@ const SearchProductsResults = () => {
     setPags(1)
 
     const col=new FormData()
-    col.append("idcoleccion",idColeccion)
+    col.append("idcoleccion",Number(idColeccion))
     col.append("bypage",15)
     col.append("page",0)
 
@@ -115,7 +115,7 @@ const SearchProductsResults = () => {
       idCat=idCat[0].idcategoria
 
       const col=new FormData()
-      col.append("idcoleccion",idColeccion)
+      col.append("idcoleccion",Number(idColeccion))
       col.append("idcategoria",idCat)
       col.append("bypage",15)
       col.append("page",0)
@@ -136,7 +136,7 @@ const SearchProductsResults = () => {
     }else{
 
     const col=new FormData()
-    col.append("idcoleccion",idColeccion)
+    col.append("idcoleccion",Number(idColeccion))
     col.append("bypage",15)
     col.append("page",0)
 
@@ -184,7 +184,7 @@ const SearchProductsResults = () => {
       catProd.append("precio_hasta",rangoPrecio.max)
     }
 
-    catProd.append("idcoleccion",idColeccion)
+    catProd.append("idcoleccion",Number(idColeccion))
     catProd.append("bypage",15)
     catProd.append("page",value)
 
@@ -256,7 +256,7 @@ const SearchProductsResults = () => {
           prod.append("precio_hasta",rangoPrecio.max)
         }
 
-        prod.append("idcoleccion",idColeccion)
+        prod.append("idcoleccion",Number(idColeccion))
 
         prod.append("bypage",15)
         prod.append("page",0)
