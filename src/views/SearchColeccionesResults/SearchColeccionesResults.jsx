@@ -118,7 +118,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
+      ColeccionAPI(col, "colecciones", "detail").then((res) => {
 
         if (res.status === "success") {
           setFiltrosCategoria(
@@ -199,7 +199,7 @@ const SearchProductsResults = () => {
     if (putFilters.length !== 0) {
       catProd.append("caracteristicas", filtrosFin);
     }
-
+    console.log(Object.fromEntries(catProd))
     ColeccionAPI(catProd, "colecciones", "detail").then((res) => {
       if (res.status === "success") {
         setProds(res.result.productos);
