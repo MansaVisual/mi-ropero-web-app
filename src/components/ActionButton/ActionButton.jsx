@@ -87,8 +87,7 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
-            await handleListFavs();
-            infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
+            await handleListFavs(idProd,"delete",infoUser);
         }
       });
     } else {
@@ -104,8 +103,7 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
-            await handleListFavs();
-            infoUser.productos_favoritos.push(idProd);
+            await handleListFavs(idProd,"insert",infoUser);
         }
       });
     }

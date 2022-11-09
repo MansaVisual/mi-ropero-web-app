@@ -113,7 +113,7 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
     }
 
-    const handleListFavs = ()=>{
+    const handleListFavs = (idProd,type,infoUser)=>{
         const fav = new FormData()
         fav.append("idcliente",userLog)
         ProdAPI(
@@ -124,6 +124,11 @@ export const ProdsContext = ({children}) => {
             setListFavFinBusqueda(true)
             if(res.status==="success"){
                 setListFavs(res.result)
+                if(type === "delete"){
+                    infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
+                }else if(type==="insert"){
+                    infoUser.productos_favoritos.push(idProd);
+                }
             }else{
                 setListFavs([])
             }
