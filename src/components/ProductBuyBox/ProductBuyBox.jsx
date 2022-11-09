@@ -270,6 +270,13 @@ const ProductBuyBox = ({ prod, itemID }) => {
                     >
                       Ofertar
                     </Button>
+                    {open && (
+                      <PopUpOfertaPP
+                        open={open}
+                        setOpen={setOpen}
+                        prod={prod}
+                      />
+                    )}
                   </>
                 )}
               </Box>
