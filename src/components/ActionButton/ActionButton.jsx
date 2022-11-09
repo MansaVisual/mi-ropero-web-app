@@ -87,7 +87,7 @@ export const LikeButton = ({
           });
         }else{
             setLike(!like);
-            await handleListFavs(idProd,"delete",infoUser);
+            await handleListFavs(idProd,"delete");
         }
       });
     } else {
@@ -104,7 +104,7 @@ export const LikeButton = ({
           });
         }else{
             setLike(!like);
-            await handleListFavs(idProd,"insert",infoUser);
+            await handleListFavs(idProd,"insert");
         }
       });
     }

@@ -198,7 +198,6 @@ export const LoginContext = ({ children }) => {
         notis,
         buscandoNotis,
         AppleLogin,
-        reBuscarInfo
       }}
     >
       {children}

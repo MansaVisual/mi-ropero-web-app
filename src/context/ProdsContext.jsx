@@ -54,7 +54,7 @@ export const ProdsContext = ({children}) => {
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-        if(userLog!=="" && infoUser!==undefined){
+        if(userLog!=="" && infoUser!==""){
             if(listFavs.length===0){
                 handleListFavs()
             }
@@ -113,7 +113,7 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
     }
 
-    const handleListFavs = (idProd,infoUser)=>{
+    const handleListFavs = (idProd)=>{
         const fav = new FormData()
         fav.append("idcliente",userLog)
         ProdAPI(
