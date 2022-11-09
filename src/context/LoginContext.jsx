@@ -83,7 +83,7 @@ export const LoginContext = ({ children }) => {
     if (userLog !== "") {
       const user = new FormData();
       user.append("idcliente", userLog);
-      LoginAPI(user, "clientes", "get").then((res) => {
+      LoginAPI(user, "clientes", "get").then((res) => {console.log(res)
         if (res.status === "success") {
           setInfoUser(res.result);
         } else {
