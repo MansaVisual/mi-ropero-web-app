@@ -100,6 +100,7 @@ const Cart = () => {
                 setCarrito(res.result)
                 setBuscandoCart(false)
             }else if(res.status==="error"){
+                setCarrito([])
                 setBuscandoCart(false)
             }
         })
