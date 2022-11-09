@@ -67,10 +67,13 @@ export const LikeButton = ({
       return;
     }
 
-    
+    if(infoUser.productos_favoritos!==undefined){
+      console.log(infoUser.productos_favoritos.find((e) => e === idProd))
+    }
+
     if (
       infoUser.productos_favoritos !== undefined &&
-      infoUser.productos_favoritos.find((e) => e === idProd)
+      infoUser.productos_favoritos.find((e) => e === idProd)!==undefined
     ) {
       const idFavorito = listFavs.find((e) => e.producto_id === idProd);
 
