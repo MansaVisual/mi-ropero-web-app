@@ -66,7 +66,7 @@ const EditarDireccion = () => {
     }
   }, [direccionSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(form);
+  console.log(form, direccionSelecc);
 
   const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
