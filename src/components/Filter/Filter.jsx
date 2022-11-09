@@ -76,6 +76,7 @@ const Filter = (props) => {
     setPutSort(e.target.value);
   };
 
+  console.log(coleccion)
   
   return (
     <List
