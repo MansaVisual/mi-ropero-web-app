@@ -121,10 +121,11 @@ const MetodoEnvio = ({
               {direccion.localidad} ({direccion.codigo_postal}).
             </h3>
             <h3>
-              {direccion.entre_calle_1 !== "" && "Entre"}{" "}
-              {direccion.entre_calle_1 !== "" && direccion.entre_calle_1}{" "}
-              {direccion.entre_calle_1 !== "" && "y"}{" "}
-              {direccion.entre_calle_2 !== "" && direccion.entre_calle_2}
+              {}
+              {direccion.entre_calle_1 && "Entre"}{" "}
+              {direccion.entre_calle_1 && direccion.entre_calle_1}{" "}
+              {direccion.entre_calle_1 && "y"}{" "}
+              {direccion.entre_calle_2 && direccion.entre_calle_2}
             </h3>
             <h3>{direccion.informacion_adicional}</h3>
           </div>
