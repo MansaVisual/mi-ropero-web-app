@@ -207,6 +207,8 @@ const EditarDireccion = () => {
     );
 
     FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
+      console.log(res);
+      console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
         res.result[0].calle !== "" &&
@@ -268,6 +270,8 @@ const EditarDireccion = () => {
       );
       formDireccion.append("normalized", direccion.raw_data);
       FormAPI(formDireccion, "direcciones", "update").then(async (res) => {
+        console.log(res);
+        console.table(Object.fromEntries(formDireccion));
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {

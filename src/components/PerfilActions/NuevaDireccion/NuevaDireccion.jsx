@@ -155,6 +155,8 @@ const NuevaDireccion = () => {
     );
 
     FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
+      console.log(res);
+      console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
         res.result[0].calle !== "" &&

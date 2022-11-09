@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext,Fragment } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import {
   IconButton,
   MenuItem,
@@ -227,8 +227,29 @@ const NavIcons = () => {
                   color: theme.palette.secondary.main,
                 }}
               >
-                NO TENÉS NOTIFICACIONES
+                NO TENÉS NUEVAS NOTIFICACIONES
               </Typography>
+              <Box
+                sx={{
+                  fontWeight: " 600",
+                  fontSize: " 11px",
+                  lineHeight: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                  justifyContent: "center",
+                  textDecoration: "underline",
+                  color: "#443988",
+                  margin: "auto",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  handleCloseNotif();
+                  navigate("/notificaciones");
+                }}
+              >
+                <p>VER TODAS LAS NOTIFICACIONES</p>
+              </Box>
             </Box>
           </Stack>
         )}
@@ -460,29 +481,28 @@ const NavIcons = () => {
                       }}
                       key={i}
                       onClick={
-                        (url === false || url==="")
+                        url === false || url === ""
                           ? null
                           : () => {
-                            const not = new FormData()
-                            not.append("idpush",item.idpush)
-                            CartAPI(
-                              not,
-                              "pushs",
-                              "readed"
-                            )
-                            window.location.assign(`${url}`)
-                          }
+                              const not = new FormData();
+                              not.append("idpush", item.idpush);
+                              CartAPI(not, "pushs", "readed");
+                              window.location.assign(`${url}`);
+                            }
                       }
                     >
-                      {itemURL.indexOf("messagges")!==-1 ?
-                      <Box sx={{ mr: "10px" }}>
-                        <img src={iconoMensaje} alt="isologo de Mi Ropero" />
-                      </Box>
-                      :
-                      <Box sx={{ mr: "10px" }}>
-                        <img src={MiRoperoNavbar} alt="isologo de Mi Ropero" />
-                      </Box>
-                      }
+                      {itemURL.indexOf("messagges") !== -1 ? (
+                        <Box sx={{ mr: "10px" }}>
+                          <img src={iconoMensaje} alt="isologo de Mi Ropero" />
+                        </Box>
+                      ) : (
+                        <Box sx={{ mr: "10px" }}>
+                          <img
+                            src={MiRoperoNavbar}
+                            alt="isologo de Mi Ropero"
+                          />
+                        </Box>
+                      )}
                       <Box
                         sx={{
                           display: "flex",
@@ -536,17 +556,18 @@ const NavIcons = () => {
             display: "flex",
             alignItems: "center",
             textAlign: "center",
-            justifyContent:"center",
+            justifyContent: "center",
             textDecoration: "underline",
             color: "#443988",
             margin: "auto",
-            cursor:"pointer"
+            cursor: "pointer",
           }}
-          onClick={()=>{handleCloseNotif();navigate("/notificaciones")}}
+          onClick={() => {
+            handleCloseNotif();
+            navigate("/notificaciones");
+          }}
         >
-          <p>
-            VER TODAS LAS NOTIFICACIONES
-          </p>
+          <p>VER TODAS LAS NOTIFICACIONES</p>
         </Box>
       </Stack>
     );
@@ -727,36 +748,38 @@ const NavIcons = () => {
                               >
                                 {prod.producto.tienda.nombre}
                               </Typography>
-                              {prod.producto.precio_oferta==="0.00" ?
+                              {prod.producto.precio_oferta === "0.00" ? (
                                 <Typography
-                                sx={{
-                                  fontSize: theme.typography.fontSize[1],
-                                  pt: "6px",
-                                }}
+                                  sx={{
+                                    fontSize: theme.typography.fontSize[1],
+                                    pt: "6px",
+                                  }}
                                 >
                                   ${prod.producto.precio}
                                 </Typography>
-                              :<Box sx={{display:"flex"}}>
-                              <Typography
-                                sx={{
-                                  fontSize: "10px",
-                                  textDecoration:"line-through",
-                                  pt: "6px",
-                                  mr:"6px"
-                                }}
-                                >
-                                  ${prod.producto.precio}
-                                </Typography>
-                                <Typography
-                                sx={{
-                                  fontSize: theme.typography.fontSize[2],
-                                  pt: "6px",
-                                  color:"#FF3F20"
-                                }}
-                                >
-                                  ${prod.producto.precio}
-                                </Typography>
-                              </Box>}
+                              ) : (
+                                <Box sx={{ display: "flex" }}>
+                                  <Typography
+                                    sx={{
+                                      fontSize: "10px",
+                                      textDecoration: "line-through",
+                                      pt: "6px",
+                                      mr: "6px",
+                                    }}
+                                  >
+                                    ${prod.producto.precio}
+                                  </Typography>
+                                  <Typography
+                                    sx={{
+                                      fontSize: theme.typography.fontSize[2],
+                                      pt: "6px",
+                                      color: "#FF3F20",
+                                    }}
+                                  >
+                                    ${prod.producto.precio}
+                                  </Typography>
+                                </Box>
+                              )}
                             </Box>
                             <Box>
                               <IconButton
@@ -791,7 +814,7 @@ const NavIcons = () => {
       {userLog !== "" && (
         <IconButton onClick={userLog !== "" && handleClickNotif}>
           <StyledBadge
-            badgeContent={notis.mensajes!==undefined ? notis.total:0}
+            badgeContent={notis.mensajes !== undefined ? notis.total : 0}
             color="secondary"
             anchorOrigin={{
               vertical: "top",
