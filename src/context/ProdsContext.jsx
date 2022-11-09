@@ -125,9 +125,9 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){
                 setListFavs(res.result)
                 if(type === "delete"){
-                    infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
+                    // infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
                 }else if(type==="insert"){
-                    infoUser.productos_favoritos.push(idProd);
+                    // infoUser.productos_favoritos.push(idProd);
                 }
             }else{
                 setListFavs([])

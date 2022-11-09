@@ -68,6 +68,7 @@ export const LikeButton = ({
     }
 
     setLike(!like);
+    console.log(infoUser.productos_favoritos.find((e) => e === idProd))
     if (
       infoUser.productos_favoritos !== undefined &&
       infoUser.productos_favoritos.find((e) => e === idProd)
