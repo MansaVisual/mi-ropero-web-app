@@ -83,7 +83,7 @@ const SearchProductsResults = () => {
     col.append("bypage", 15);
     col.append("page", 0);
 
-    ColeccionAPI(col, "colecciones", "detail").then((res) => {
+    ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
       if (res.status === "success") {
         setColeccion(res.result);
         setProds(res.result.productos);
