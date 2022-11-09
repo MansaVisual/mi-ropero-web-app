@@ -137,7 +137,7 @@ const SearchBar = () => {
             <Button
               onClick={(e) => handleSubmit(e, "roperos")}
               disabled={keyword.length === 0}
-              className={buscador==="productos"?"buscadorDisabled":null}
+              className={buscador==="roperos"?"buscadorDisabled":null}
               sx={{
                 textTransform: "none",
                 color: buscador==="roperos"?"#FF3F20":"hsla(0, 0%, 53%, 1)",
