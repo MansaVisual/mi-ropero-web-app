@@ -78,7 +78,7 @@ export const LikeButton = ({
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
       favAdd.append("idfavorito", idFavorito.idfavorito);
-      ProdAPI(favAdd, "favoritos", "delete").then((res) => {console.log("RESPUESTA DELETE",res)
+      ProdAPI(favAdd, "favoritos", "delete").then(async(res) => {console.log("RESPUESTA DELETE",res)
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL BORRAR",
@@ -87,7 +87,7 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
-            handleListFavs();
+            await handleListFavs();
             infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
         }
       });
@@ -95,7 +95,7 @@ export const LikeButton = ({
       const favAdd = new FormData();
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
-      await ProdAPI(favAdd, "favoritos", "insert").then((res) => {console.log("RESPUESTA INSERT",res)
+      await ProdAPI(favAdd, "favoritos", "insert").then(async(res) => {console.log("RESPUESTA INSERT",res)
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL AGREGAR A FAVORITOS",
@@ -104,7 +104,7 @@ export const LikeButton = ({
             confirmButtonText: "ACEPTAR",
           });
         }else{
-            handleListFavs();
+            await handleListFavs();
             infoUser.productos_favoritos.push(idProd);
         }
       });
