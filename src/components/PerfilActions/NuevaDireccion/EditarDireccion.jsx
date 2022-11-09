@@ -89,6 +89,7 @@ const EditarDireccion = () => {
         (e) => e.nombre === direccionSelecc.provincia
       );
       setProvincia(provGuardada.idprovincia);
+      console.log(first);
     }
   }, [provincias, direccionSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -198,7 +199,8 @@ const EditarDireccion = () => {
     formDireccion.append("numero", document.getElementById("alturaKM").value);
     formDireccion.append(
       "provincia",
-      document.getElementById("provincia").innerHTML
+      /* document.getElementById("provincia").innerHTML */
+      provincia
     );
     formDireccion.append(
       "localidad",
