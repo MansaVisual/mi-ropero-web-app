@@ -22,7 +22,7 @@
       margin-bottom: 50px;
       width: 100%;
     }
-    
+
     .title {
       font-style: normal;
       font-weight: 700;
@@ -42,7 +42,27 @@
       .accordion {
         box-shadow: none !important;
         padding: 0px 72px;
-        border-bottom: 0.1px solid #BABCBE !important;
+        border-bottom: 0.1px solid #babcbe !important;
+      }
+      p {
+        margin-bottom: 8px !important;
+      }
+      .questionTitle {
+        font-family: "Open Sans" !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        line-height: 20px !important;
+        color: #878787 !important;
+      }
+      .answerText {
+        font-family: "Open Sans" !important;
+        font-weight: 400 !important;
+        font-size: 13px !important;
+        line-height: 20px !important;
+        color: #878787 !important;
+        a {
+          text-decoration: none !important;
+        }
       }
     }
     .returnLink {
@@ -78,33 +98,8 @@
   }
 }
 
-.Questions{
+.Questions {
   .css-pwcg7p-MuiCollapse-root {
-  padding: 0px 20px !important;
-  p {
-    margin-bottom: 8px !important;
-  }
-  .questionTitle {
-    font-family: "Open Sans" !important;
-    font-weight: 600 !important;
-    font-size: 13px !important;
-    line-height: 20px !important;
-    color: #878787 !important;
-  }
-  .answerText {
-    font-family: "Open Sans" !important;
-    font-weight: 400 !important;
-    font-size: 13px !important;
-    line-height: 20px !important;
-    color: #878787 !important;
-    a {
-      text-decoration: none !important;
-    }
-  }
-}
-
-.Questions{
-  div .MuiCollapse-root{
     padding: 0px 20px !important;
     p {
       margin-bottom: 8px !important;
@@ -125,7 +120,32 @@
       a {
         text-decoration: none !important;
       }
+    }
   }
+
+  .Questions {
+    div .MuiCollapse-root {
+      padding: 0px 20px !important;
+      p {
+        margin-bottom: 8px !important;
+      }
+      .questionTitle {
+        font-family: "Open Sans" !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        line-height: 20px !important;
+        color: #878787 !important;
+      }
+      .answerText {
+        font-family: "Open Sans" !important;
+        font-weight: 400 !important;
+        font-size: 13px !important;
+        line-height: 20px !important;
+        color: #878787 !important;
+        a {
+          text-decoration: none !important;
+        }
+      }
+    }
   }
-}
 }
