@@ -124,7 +124,12 @@ export const ProdsContext = ({children}) => {
             setListFavFinBusqueda(true)
             if(res.status==="success"){
                 setListFavs(res.result)
-                reBuscarInfo()
+                // reBuscarInfo()
+                if(infoUser.productos_favoritos!==undefined){
+                    infoUser.productos_favoritos.push(idProd)
+                }else{
+                    infoUser['productos_favoritos'] = [idProd]
+                }
             }else{
                 setListFavs([])
             }
