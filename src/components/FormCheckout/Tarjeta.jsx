@@ -222,9 +222,6 @@ const Tarjeta = ({
       {isDesktop && (
         <>
           <div className="botones">
-            <Button className="botonVolver" onClick={() => setTypeNav("envio")}>
-              VOLVER
-            </Button>
             {load ? (
               <div
                 style={{
@@ -237,9 +234,17 @@ const Tarjeta = ({
                 <Loader spin={"spinnerM"} />
               </div>
             ) : (
-              <Button className="botonPagar" onClick={() => handlePagar()}>
-                IR A PAGAR
-              </Button>
+              <>
+                <Button
+                  className="botonVolver"
+                  onClick={() => setTypeNav("envio")}
+                >
+                  VOLVER
+                </Button>
+                <Button className="botonPagar" onClick={() => handlePagar()}>
+                  IR A PAGAR
+                </Button>
+              </>
             )}
             <p
               className="botonVolverMobile"
