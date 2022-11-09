@@ -198,7 +198,8 @@ const EditarDireccion = () => {
     formDireccion.append("numero", document.getElementById("alturaKM").value);
     formDireccion.append(
       "provincia",
-      document.getElementById("provincia").innerHTML
+      /* document.getElementById("provincia").innerHTML */
+      provincia
     );
     formDireccion.append(
       "localidad",
