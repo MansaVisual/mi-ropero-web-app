@@ -167,7 +167,7 @@ const SearchProductsResults = () => {
 
     if (putCategory !== "") {
       let idCat = coleccion.productos_categorias.filter(
-        (e) => e.nombre === putCategory
+        (e) => e !== null && e.nombre === putCategory
       );
       idCat = idCat[0].idcategoria;
       catProd.append("idcategoria", Number(idCat));
@@ -242,7 +242,7 @@ const SearchProductsResults = () => {
 
       if (putCategory !== "") {
         let idCat = coleccion.productos_categorias.filter(
-          (e) => e.nombre === putCategory
+          (e) => e !== null && e.nombre === putCategory
         );
         idCat = idCat[0].idcategoria;
         prod.append("idcategoria", Number(idCat));
