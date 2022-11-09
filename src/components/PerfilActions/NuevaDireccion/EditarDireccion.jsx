@@ -214,6 +214,7 @@ const EditarDireccion = () => {
         res.result[0].calle !== "" &&
         res.result[0].numero !== ""
       ) {
+        console.log(res.result[0].calle, res.result[0].numero);
         scrollTop();
         await setResDirecciones(res.result);
         setViewDireccion(true);
