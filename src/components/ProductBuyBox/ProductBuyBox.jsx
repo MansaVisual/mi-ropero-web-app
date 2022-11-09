@@ -619,7 +619,10 @@ const ProductBuyBox = ({ prod, itemID }) => {
                       mb: "18px",
                     }}
                   >
-                    $500 moto a domicilio
+                    ${" "}
+                    {Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio).toFixed(
+                      2
+                    )}{" "} moto a domicilio
                   </Typography>
                 </>
               )}
