@@ -39,14 +39,12 @@ const MisMensajes = () => {
 
   useEffect(() => {
     if (id) {
-      console.log(id);
       setMensajeId(id);
       navigate(`/perfil/MI CHAT`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(mensajes);
 
   useEffect(() => {
     if (mensajes.length > 0) {

@@ -5,7 +5,7 @@ export const UseProdsContext = createContext();
 
 export const ProdsContext = ({children}) => {
 
-    const {userLog,reBuscarInfo}=useContext(UseLoginContext)
+    const {userLog}=useContext(UseLoginContext)
 
     const [categorias,setCategorias]=useState([])
     
@@ -124,7 +124,6 @@ export const ProdsContext = ({children}) => {
             setListFavFinBusqueda(true)
             if(res.status==="success"){
                 setListFavs(res.result)
-                // reBuscarInfo()
                 if(infoUser.productos_favoritos!==undefined){
                     infoUser.productos_favoritos.push(idProd)
                 }else{

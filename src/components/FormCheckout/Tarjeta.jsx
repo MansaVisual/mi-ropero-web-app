@@ -27,8 +27,6 @@ const Tarjeta = ({
   const [load, setLoad] = useState(false);
   const { userLog } = useContext(UseLoginContext);
 
-  console.log(direccion.entre_calle_1, direccion.entre_calle_2);
-
   const handlePagar = () => {
     setLoad(true);
 
@@ -92,7 +90,6 @@ const Tarjeta = ({
         <p>Productos</p>
         <div className="prodsContainer">
           {carrito.map((prod, i) => {
-            console.log(prod);
             return (
               <div className="prodCard" key={i}>
                 <div

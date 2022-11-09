@@ -27,7 +27,7 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
     mensaje.append("idcliente", userLog);
     mensaje.append("idproducto", prod.idproducto);
     mensaje.append("mensaje", message);
-    ProdAPI(mensaje, "mensajes", "insert").then((res) => {console.log(res)
+    ProdAPI(mensaje, "mensajes", "insert").then((res) => {
       if (res.status === "success") {
         setTimeout(() => {
           setLoading(false);

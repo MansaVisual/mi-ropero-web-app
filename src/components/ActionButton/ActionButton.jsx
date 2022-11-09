@@ -67,10 +67,6 @@ export const LikeButton = ({
       return;
     }
 
-    if(infoUser.productos_favoritos!==undefined){
-      console.log(infoUser.productos_favoritos.find((e) => e === idProd))
-    }
-
     if (
       infoUser.productos_favoritos !== undefined &&
       infoUser.productos_favoritos.find((e) => e === idProd)!==undefined
@@ -81,7 +77,7 @@ export const LikeButton = ({
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
       favAdd.append("idfavorito", idFavorito.idfavorito);
-      ProdAPI(favAdd, "favoritos", "delete").then(async(res) => {console.log("RESPUESTA DELETE",res)
+      ProdAPI(favAdd, "favoritos", "delete").then(async(res) => {
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL BORRAR",
@@ -98,7 +94,7 @@ export const LikeButton = ({
       const favAdd = new FormData();
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
-      await ProdAPI(favAdd, "favoritos", "insert").then(async(res) => {console.log("RESPUESTA INSERT",res)
+      await ProdAPI(favAdd, "favoritos", "insert").then(async(res) => {
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL AGREGAR A FAVORITOS",
@@ -113,8 +109,6 @@ export const LikeButton = ({
       });
     }
   };
-  console.log("LISTFAV",listFavs)
-  console.log("INFOUSER",infoUser)
 
   return (
     <Box>

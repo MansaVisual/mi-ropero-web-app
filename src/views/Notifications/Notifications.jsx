@@ -58,7 +58,6 @@ useEffect(()=>{
       notis.append("estado", type);
       notis.append("idcliente", userLog);
       LoginAPI(notis, "pushs", "all").then((res) => {
-        console.log(res);
         setLoading(false);
         if (res.status === "success") {
           setNotis(res.result.mensajes);
@@ -88,7 +87,6 @@ useEffect(()=>{
     notis.append("estado", type);
     notis.append("idcliente", userLog);
     LoginAPI(notis, "pushs", "all").then((res) => {
-      console.log(res);
       if (res.status === "success") {
         setNotis(res.result.mensajes);
       }

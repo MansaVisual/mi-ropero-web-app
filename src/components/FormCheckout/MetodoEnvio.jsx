@@ -102,7 +102,6 @@ const MetodoEnvio = ({
       setTypeNav("tarjeta");
     }
   };
-  console.log(direccion.entre_calle_1, direccion.entre_calle_2);
   return (
     <div className="metodoEnvio">
       <h2 className="TituloCartCheck" style={{ width: "100%" }} id="datos">

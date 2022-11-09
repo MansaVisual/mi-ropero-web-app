@@ -277,7 +277,6 @@ const ViewCloset = () => {
     }
   };
 
-  console.log(prods)
 
   return (
     <Container maxWidth="xl">

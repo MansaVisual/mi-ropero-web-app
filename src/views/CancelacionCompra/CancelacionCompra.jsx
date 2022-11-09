@@ -56,12 +56,10 @@ const CancelacionCompra = () => {
 
     FormAPI(data, "reclamos", "insert").then((res) => {
       setLoading(false);
-      console.log(res);
       if (res.status === "success") {
         navigate("/cancelacionCompraOk");
       } else {
         if (res.result === "La operacion no existe") {
-          console.log("first");
           Swal.fire({
             title: "ERROR AL BORRAR",
             text: "Error al cargar reclamo. Revisá el id de operación y volvé a intentarlo",

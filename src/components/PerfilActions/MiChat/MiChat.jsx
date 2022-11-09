@@ -42,7 +42,6 @@ const MiChat = () => {
           setProductoId(res.result[0].producto.idproducto);
           let array = [];
           for (const ii in res.result) {
-            console.log(res.result[ii]);
             array.push({
               type:
                 res.result[ii].cliente_email === infoUser.email ? "" : "other",
