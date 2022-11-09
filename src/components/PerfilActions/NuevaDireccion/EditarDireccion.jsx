@@ -135,6 +135,7 @@ const EditarDireccion = () => {
             document.getElementById("barrioLocalidad").value
           );
           FormAPI(localidad, "direcciones", "localidades").then((res) => {
+            console.log(res);
             if (res.status === "error") {
               setErrorLocalidad(true);
               scrollTop();
