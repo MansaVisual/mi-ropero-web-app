@@ -252,8 +252,13 @@ const EditarDireccion = () => {
         "localidad",
         document.getElementById("barrioLocalidad").value
       );
-      formDireccion.append("idprovincia", Number(infoLocFinal.idprovincia));
-      formDireccion.append("idlocalidad", Number(infoLocFinal.idlocalidad));
+      if (cambioProvincia) {
+        formDireccion.append("idprovincia", Number(infoLocFinal.idprovincia));
+        formDireccion.append("idlocalidad", Number(infoLocFinal.idlocalidad));
+      } else {
+        formDireccion.append("idprovincia", direccionSelecc.idprovincia);
+        formDireccion.append("idlocalidad", direccionSelecc.idlocalidad);
+      }
       formDireccion.append("piso", document.getElementById("piso").value);
       formDireccion.append(
         "departamento",
