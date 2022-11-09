@@ -54,7 +54,7 @@ export const ProdsContext = ({children}) => {
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-        if(userLog!=="" && infoUser!==""){
+        if(userLog!=="" && infoUser!==undefined){
             if(listFavs.length===0){
                 handleListFavs()
             }
