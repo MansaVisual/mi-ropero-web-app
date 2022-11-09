@@ -198,7 +198,8 @@ const Filter = (props) => {
             {coleccion.productos_categorias.map((res2, i2) => {
               return (
                 <Fragment key={i2}>
-                  {res2.nombre !== 'ROPA' &&
+                  { res2!==null &&
+                    res2.nombre !== 'ROPA' &&
                     res2.nombre !== 'CALZADO' &&
                     res2.nombre !== 'ACCESORIOS' &&
                     res2.nombre !== 'BELLEZA' && (
