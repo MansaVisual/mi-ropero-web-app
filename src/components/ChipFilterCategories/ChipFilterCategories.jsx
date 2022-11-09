@@ -12,6 +12,7 @@ const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
       (element) => element.id !== filteredCategory.id
     );
       console.log(newArrayId)
+      
     if(newArrayId.length===0){
       if(search===undefined){
         const catProd = new FormData();
