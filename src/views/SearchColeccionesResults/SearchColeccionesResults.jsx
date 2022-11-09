@@ -110,8 +110,6 @@ const SearchProductsResults = () => {
       let idCat = coleccion.productos_categorias.filter(
         (e) => e !== null && e.nombre === putCategory
       );
-      console.log(coleccion.productos_categorias)
-      console.log(idCat)
       idCat = idCat[0].idcategoria;
 
       const col = new FormData();
@@ -120,7 +118,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log("HOLAAA", res)
+      ColeccionAPI(col, "colecciones", "detail").then((res) => {
 
         if (res.status === "success") {
           setFiltrosCategoria(
@@ -128,6 +126,9 @@ const SearchProductsResults = () => {
           );
           setProds(res.result.productos);
           setTotalPages(res.result.productos_total_paginas);
+        }else if(res.status==="error"){
+          setProds([]);
+          setTotalPages(0);
         }
         setBuscandoCol(false);
         setLoad2(false);
