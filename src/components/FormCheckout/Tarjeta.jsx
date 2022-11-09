@@ -8,6 +8,7 @@ import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
+import Swal from "sweetalert2";
 
 const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion,metodoEnvio,codDesc,form,saveDirecc})=>{
 
@@ -45,7 +46,7 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
             finalizarCompra,
             "operaciones",
             "insert"
-        ).then((res)=>{console.log(res)
+        ).then((res)=>{
             if(res.status==="success"){
                 setLoad(false)
                 if(res.result.init_point!==undefined){
@@ -56,8 +57,14 @@ const Tarjeta = ({sucursales,sucursalEntrega,setTypeNav,setMetodoEnvio,direccion
                 }else{
                     setTypeNav("check")
                 }
-            }else{
+            }else if(res.result===false){
                 setLoad(false)
+                Swal.fire({
+                    title:'OCURRIÓ UN ERROR',
+                    text:"No se pudo procesar el pago. Volvé a intentarlo",
+                    icon:'error',
+                    confirmButtonText: 'ACEPTAR',
+                })
             }
         })
     }
