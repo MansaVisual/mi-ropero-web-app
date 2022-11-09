@@ -257,7 +257,7 @@ const InfoContact = ({
   };
   const validarDireccion = async() => {
     const formDireccion = new FormData();
-    console.log(direccion)
+
     if (direccionCargada !== null) {
       formDireccion.append('calle', direccion.calle);
       formDireccion.append('numero', direccion.numero);

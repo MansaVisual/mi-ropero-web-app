@@ -13,7 +13,8 @@ const PopUpInfoDir = ({direccion,setDireccion,setViewDireccion,resDirecciones,ha
             piso:form.piso,
             departamento:form.depto,
             idprovincia:provincia,
-            idlocalidad:infoLocFinal.idlocalidad
+            idlocalidad:infoLocFinal.idlocalidad,
+            googlemaps_normalize:dir.raw_data
         })
     }
     return(
