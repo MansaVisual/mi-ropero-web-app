@@ -234,12 +234,6 @@ const InfoContact = ({
       );
     }
     if (resFinal) {
-      if(form.length===0){
-        await setForm({...form,
-          nombreApellido:document.getElementById("nombreApellido").value,
-          telefono:document.getElementById("telefono").value,
-        })  
-      }
       setLoader(false);
       validarDireccion();
     } else {
@@ -261,14 +255,28 @@ const InfoContact = ({
       }
     }
   };
-  const validarDireccion = () => {
+  const validarDireccion = async() => {
     const formDireccion = new FormData();
+    console.log(direccion)
     if (direccionCargada !== null) {
       formDireccion.append('calle', direccion.calle);
       formDireccion.append('numero', direccion.numero);
       formDireccion.append('provincia', direccion.provincia);
       formDireccion.append('localidad', direccion.localidad);
       formDireccion.append('codigo_postal', direccion.codigo_postal);
+      await setForm({...form,
+        nombreApellido:document.getElementById("nombreApellido").value,
+        telefono:document.getElementById("telefono").value,
+        calle:direccion.calle,
+        alturaKM:direccion.numero,
+        piso:direccion.piso,
+        depto:direccion.departamento,
+        barrioLocalidad:direccion.localidad,
+        entrecalle1:direccion.entre_calle_1,
+        entrecalle2:direccion.entre_calle_2,
+        codigoPostal:direccion.codigo_postal,
+        comentario:direccion.informacion_adicional,
+    })
     } else {
       formDireccion.append('calle', document.getElementById('calle').value);
       formDireccion.append('numero', document.getElementById('alturaKM').value);
