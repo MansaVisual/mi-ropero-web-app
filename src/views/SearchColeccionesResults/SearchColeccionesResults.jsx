@@ -110,8 +110,8 @@ const SearchProductsResults = () => {
     setPutSort("")
     setPutFilters([])
     setPags(1)
-    if(putCategory!==""){
-      let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
+    if(putCategory!=="" ){
+      let idCat=coleccion.productos_categorias.filter(e=>e!==null && e.nombre===putCategory)
       idCat=idCat[0].idcategoria
 
       const col=new FormData()
