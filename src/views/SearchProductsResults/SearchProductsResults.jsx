@@ -756,7 +756,7 @@ const SearchProductsResults = () => {
               </Box>
             )}
           </Grid>
-          {!buscandoProds && <ProdsRelation />}
+          {/* {!buscandoProds && <ProdsRelation />} */}
         </Grid>
       </Container>
     </>

@@ -82,7 +82,7 @@ const Home = () => {
                     }}
                     onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
                     >
-                    VER "{res.nombre.trim().toUpperCase()}"
+                    VER {res.nombre.trim().toUpperCase()}
                   </Link>
                 </Box></>
                 :<></>}
@@ -137,7 +137,7 @@ const Home = () => {
               }}
               onClick={() => navigate(`/productos/Zapatillas`)}
             >
-              VER TODOS ZAPATILLAS
+              VER TODO ZAPATILLAS
             </Link>
           </Box>
           <Box
@@ -171,7 +171,7 @@ const Home = () => {
               }}
               onClick={() => navigate(`/productos/Remeras`)}
             >
-              VER TODOS REMERAS
+              VER TODO REMERAS
             </Link>
           </Box>
           <Box sx={{ pt: "43px", textAlign: "center" }}>
@@ -193,7 +193,7 @@ const Home = () => {
               }}
               onClick={() => navigate(`/productos/Bluse&top`)}
             >
-              VER TODOS BLUSA/TOP
+              VER TODO BLUSA/TOP
             </Link>
           </Box>
         </Container>

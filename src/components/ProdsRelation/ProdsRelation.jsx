@@ -32,7 +32,7 @@ const ProdsRelation = () => {
           }}
           onClick={() => navigate("/colecciones/Recomendados")}
         >
-          VER TODOS LOS PRODUCTOS RELACIONADOS
+          VER TODO LOS PRODUCTOS RELACIONADOS
         </Link>
       </Box>
     </Grid>
