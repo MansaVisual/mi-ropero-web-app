@@ -8,6 +8,7 @@ export const ColeccionContext = ({ children }) => {
   const [coleccionMejoresV, setColeccionMejoresV] = useState([]);
   const [coleccionesBuscadas, setColeccionesBuscadas] = useState([]);
   const [colecciones, setColecciones] = useState([]);
+  const [buscandoCols,setBuscandoCols]=useState(true)
 
   const ColeccionAPI = async (data, clase, metodo) => {
     let resFinal = "";
@@ -90,6 +91,7 @@ export const ColeccionContext = ({ children }) => {
         });
       }
       setColecciones(newCols)
+      setBuscandoCols(false)
     }
   }
 
@@ -100,7 +102,8 @@ export const ColeccionContext = ({ children }) => {
         coleccionNuevosIngresos,
         coleccionRecomendados,
         coleccionMejoresV,
-        colecciones
+        colecciones,
+        buscandoCols
       }}
     >
       {children}

@@ -3,7 +3,6 @@ import React, { useContext, useEffect,Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   UpButton,
-  /*  WspButton, */
 } from "../../components/ActionButton/ActionButton";
 import Banner from "../../components/Banner/Banner";
 import Chip from "../../components/Chip/Chip";
@@ -15,12 +14,13 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
 import "react-multi-carousel/lib/styles.css";
 import { UseLoginContext } from "../../context/LoginContext";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { coleccionRecomendados, coleccionMejoresV,colecciones,ColeccionAPI } =
+  const { coleccionRecomendados, coleccionMejoresV,colecciones,buscandoCols } =
     useContext(UseColeccionContext);
     const {reBuscarInfo}=useContext(UseLoginContext)
 
@@ -55,12 +55,17 @@ const Home = () => {
         }}
       >
         <Container maxWidth="xl">
+          {buscandoCols && 
+            <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+              <Loader spin={'spinnerG'} />
+            </div>
+          }
           {colecciones.length!==0 && colecciones.map((res,i)=>{
             return(
               <Fragment key={i}>
                 {res.tipo_text==="Coleccion 1er Scroll" ?<>
                 <Box sx={{ pt: "40px", textAlign: "center" }}>
-                  <Chip primary>{res.nombre}</Chip>
+                  <Chip primary>{res.nombre.trim()}</Chip>
                 </Box>
                 <Box sx={{ pt: "24px" }}>
                   <SliderProd contenido={res.productos} />
@@ -75,35 +80,24 @@ const Home = () => {
                         fontWeight: "700",
                       },
                     }}
-                    onClick={() => navigate("/colecciones/NuevosIngresos")}
+                    onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
                     >
-                    VER "{res.nombre}"
+                    VER "{res.nombre.trim()}"
                   </Link>
                 </Box></>
                 :<></>}
               </Fragment>
             )
           })}
-          {colecciones.map((res,i)=>{
-            let cont = []
-            if(res.tipo_text==="Coleccion 2do Scroll"){
-              const col = new FormData();
-              col.append("idcoleccion", res.idcoleccion);
-              col.append("bypage", 8);
-              ColeccionAPI(col, "colecciones", "detail").then((res) => {
-                if (res.status === "success") {
-                  cont = res.result.productos
-                }
-              });
-            }
+          {colecciones.length!==0 && colecciones.map((res,i)=>{
             return(
               <Fragment key={i}>
-              {res.tipo_text==="Coleccion 2do Scroll" ?<>
+                {res.tipo_text==="Coleccion 2do Scroll" ?<>
                 <Box sx={{ pt: "40px", textAlign: "center" }}>
-                  <Chip primary>{res.nombre}</Chip>
+                  <Chip primary>{res.nombre.trim()}</Chip>
                 </Box>
                 <Box sx={{ pt: "24px" }}>
-                  <SliderProd contenido={cont} />
+                  <SliderProd contenido={res.productos} />
                 </Box>
                 <Box sx={{ textAlign: "center" }}>
                   <Link
@@ -115,12 +109,12 @@ const Home = () => {
                         fontWeight: "700",
                       },
                     }}
-                    onClick={() => navigate("/colecciones/NuevosIngresos")}
+                    onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
                     >
-                    VER "{res.nombre}"
+                    VER "{res.nombre.trim()}"
                   </Link>
-                </Box>
-              </>:<></>}
+                </Box></>
+                :<></>}
               </Fragment>
             )
           })}
