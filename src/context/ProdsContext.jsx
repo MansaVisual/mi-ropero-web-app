@@ -5,7 +5,7 @@ export const UseProdsContext = createContext();
 
 export const ProdsContext = ({children}) => {
 
-    const {userLog}=useContext(UseLoginContext)
+    const {userLog,infoUser}=useContext(UseLoginContext)
 
     const [categorias,setCategorias]=useState([])
     
@@ -54,12 +54,12 @@ export const ProdsContext = ({children}) => {
     }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-        if(userLog!==""){
+        if(userLog!=="" && infoUser!==""){
             if(listFavs.length===0){
                 handleListFavs()
             }
         }
-    }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
+    }, [userLog,infoUser]);// eslint-disable-line react-hooks/exhaustive-deps
     
     // colleciones all
     // destacadas banner pirncipal
@@ -113,7 +113,7 @@ export const ProdsContext = ({children}) => {
             if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
     }
 
-    const handleListFavs = (idProd,type,infoUser)=>{
+    const handleListFavs = (idProd,infoUser)=>{
         const fav = new FormData()
         fav.append("idcliente",userLog)
         ProdAPI(
