@@ -205,7 +205,7 @@ const Cart = () => {
                     </Grid>
                 }
 
-                <ProdsRelation/>
+                {/* <ProdsRelation/> */}
                 
             </Grid>
             {eliminar &&
