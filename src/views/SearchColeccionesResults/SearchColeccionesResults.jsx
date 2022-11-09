@@ -41,7 +41,7 @@ const style = {
 };
 
 const SearchProductsResults = () => {
-  const { coleccionName } = useParams();
+  const { coleccionName,idColeccion } = useParams();
   const {ColeccionAPI}=useContext(UseColeccionContext)
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -78,18 +78,8 @@ const SearchProductsResults = () => {
     setProds([])
     setPags(1)
 
-    let numCol=0
-
-    if(coleccionName==="NuevosIngresos"){
-        numCol=71
-    }else if(coleccionName==="Recomendados"){
-        numCol=72
-    }else if(coleccionName==="MejoresVendedores"){
-        numCol=73
-    }
-
     const col=new FormData()
-    col.append("idcoleccion",numCol)
+    col.append("idcoleccion",idColeccion)
     col.append("bypage",15)
     col.append("page",0)
 
@@ -105,7 +95,7 @@ const SearchProductsResults = () => {
       }
       setLoad2(false)
   })
-  }, [coleccionName]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [idColeccion]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setLoad2(true)
@@ -124,17 +114,8 @@ const SearchProductsResults = () => {
       let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
       idCat=idCat[0].idcategoria
 
-      let numCol=0
-      if(coleccionName==="NuevosIngresos"){
-        numCol=71
-      }else if(coleccionName==="Recomendados"){
-          numCol=72
-      }else if(coleccionName==="MejoresVendedores"){
-          numCol=73
-      }
-
       const col=new FormData()
-      col.append("idcoleccion",numCol)
+      col.append("idcoleccion",idColeccion)
       col.append("idcategoria",idCat)
       col.append("bypage",15)
       col.append("page",0)
@@ -153,17 +134,9 @@ const SearchProductsResults = () => {
         setLoad2(false)
       })
     }else{
-      let numCol=0
-      if(coleccionName==="NuevosIngresos"){
-        numCol=71
-    }else if(coleccionName==="Recomendados"){
-        numCol=72
-    }else if(coleccionName==="MejoresVendedores"){
-        numCol=73
-    }
 
     const col=new FormData()
-    col.append("idcoleccion",numCol)
+    col.append("idcoleccion",idColeccion)
     col.append("bypage",15)
     col.append("page",0)
 
@@ -198,15 +171,6 @@ const SearchProductsResults = () => {
     });
     setLoad2(true)
 
-    let numCol=0
-    if(coleccionName==="NuevosIngresos"){
-      numCol=71
-    }else if(coleccionName==="Recomendados"){
-        numCol=72
-    }else if(coleccionName==="MejoresVendedores"){
-        numCol=73
-    }
-
     const catProd=new FormData()
 
     if(putCategory!==""){
@@ -220,7 +184,7 @@ const SearchProductsResults = () => {
       catProd.append("precio_hasta",rangoPrecio.max)
     }
 
-    catProd.append("idcoleccion",numCol)
+    catProd.append("idcoleccion",idColeccion)
     catProd.append("bypage",15)
     catProd.append("page",value)
 
@@ -281,15 +245,6 @@ const SearchProductsResults = () => {
     if (putFilters.length !== 0 || putSort !== '' || rangoPrecio.min!==0 || rangoPrecio.max!==0) {
         const prod=new FormData()
 
-        let numCol=0
-        if(coleccionName==="NuevosIngresos"){
-          numCol=71
-        }else if(coleccionName==="Recomendados"){
-            numCol=72
-        }else if(coleccionName==="MejoresVendedores"){
-            numCol=73
-        }
-
         if(putCategory!==""){
           let idCat=coleccion.productos_categorias.filter(e=>e.nombre===putCategory)
           idCat=idCat[0].idcategoria
@@ -301,7 +256,7 @@ const SearchProductsResults = () => {
           prod.append("precio_hasta",rangoPrecio.max)
         }
 
-        prod.append("idcoleccion",numCol)
+        prod.append("idcoleccion",idColeccion)
 
         prod.append("bypage",15)
         prod.append("page",0)

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
   setPutFilters,setProds,ProdAPI,setTotalPages,categorias,setTienda,clase,metodo,closetId,coleccionName }) => {
-  const { keyword, search } = useParams();
+  const { keyword, search, idColeccion } = useParams();
   
   const handleDelete = () => {
     let newArrayId = putFilters.filter(
@@ -20,16 +20,8 @@ const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
           (e) => e.nombre.toString().trim() === (keyword!==undefined? keyword.replaceAll('&', '/'):putCategory),
         );
 
-        if(coleccionName!==undefined){
-          let numCol=0
-          if(coleccionName==="NuevosIngresos"){
-            numCol=71
-          }else if(coleccionName==="Recomendados"){
-              numCol=73
-          }else if(coleccionName==="MejoresVendedores"){
-              numCol=73
-          }
-            catProd.append("idcoleccion",numCol)
+        if(idColeccion!==undefined){
+            catProd.append("idcoleccion",idColeccion)
         }
         if(closetId!==undefined){
           catProd.append("idtienda",closetId)
