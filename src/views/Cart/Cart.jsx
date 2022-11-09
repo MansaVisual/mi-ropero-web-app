@@ -95,7 +95,7 @@ const Cart = () => {
             CartID,
             "carritos",
             "all"
-        ).then((res)=>{
+        ).then((res)=>{console.log(res)
             if(res.status==="success"){
                 setCarrito(res.result)
                 setBuscandoCart(false)
