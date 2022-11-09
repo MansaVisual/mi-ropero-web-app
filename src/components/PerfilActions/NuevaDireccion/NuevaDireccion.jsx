@@ -216,6 +216,8 @@ const NuevaDireccion = () => {
       );
       formDireccion.append("normalized", direccion.raw_data);
       FormAPI(formDireccion, "direcciones", "insert").then(async (res) => {
+        console.log(res);
+        console.table(Object.fromEntries(formDireccion));
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
