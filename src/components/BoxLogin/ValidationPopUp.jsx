@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 const ValidationPopUp = ({setSendCod}) => {
     const {LoginAPI}=useContext(UseLoginContext)
     const user = JSON.parse(localStorage.getItem("sendCodMiRopero"))
+    localStorage.delete("sendCodMiRopero")
   
     const [load,setLoad]=useState(false)
 
