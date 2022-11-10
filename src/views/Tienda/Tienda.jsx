@@ -48,7 +48,9 @@ const Tienda = () => {
       {params.seccion === "CATEGORIA" && (
         <ElegirCategoria setCategoria={setCategoria} />
       )}
-      {params.seccion === "TIPO" && <ElegirTipo setTipo={setTipo} />}
+      {params.seccion === "TIPO" && (
+        <ElegirTipo tipo={tipo} setTipo={setTipo} />
+      )}
       {params.seccion === "IMAGENES" && <ElegirImagenes />}
     </Grid>
   );

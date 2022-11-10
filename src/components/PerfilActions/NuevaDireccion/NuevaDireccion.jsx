@@ -180,52 +180,25 @@ const NuevaDireccion = () => {
 
   useEffect(() => {
     if (guardarDireccion) {
-      console.log(
-        Number(infoLocFinal.idprovincia),
-        infoLocFinal.idprovincia,
-        Number(infoLocFinal.idlocalidad),
-        infoLocFinal.idlocalidad
-      );
-      const formDireccion = new FormData();
-      formDireccion.append("idcliente", userLog);
-      formDireccion.append("nombre", document.getElementById("alias").value);
-      formDireccion.append("calle", document.getElementById("calle").value);
-      formDireccion.append("numero", document.getElementById("alturaKM").value);
-      formDireccion.append(
-        "provincia",
-        document.getElementById("provincia").innerHTML
-      );
-      formDireccion.append(
-        "localidad",
-        document.getElementById("barrioLocalidad").value
-      );
-      formDireccion.append("idprovincia", Number(infoLocFinal.idprovincia));
-      formDireccion.append("idlocalidad", Number(infoLocFinal.idlocalidad));
-      formDireccion.append("piso", document.getElementById("piso").value);
-      formDireccion.append(
-        "departamento",
-        document.getElementById("depto").value
-      );
-      formDireccion.append(
-        "codigo_postal",
-        document.getElementById("codigoPostal").value
-      );
-      formDireccion.append(
-        "entre_calle_1",
-        document.getElementById("entrecalle1").value
-      );
-      formDireccion.append(
-        "entre_calle_2",
-        document.getElementById("entrecalle2").value
-      );
-      formDireccion.append(
-        "informacion_adicional",
-        document.getElementById("infoAdicional").value
-      );
-      formDireccion.append("normalized", direccion.raw_data);
-      FormAPI(formDireccion, "direcciones", "insert").then(async (res) => {
+      const dir = new FormData();
+      dir.append("idcliente", userLog);
+      dir.append("nombre", direccion.alias);
+      dir.append("codigo_postal", direccion.codigo_postal);
+      dir.append("provincia", direccion.provincia);
+      dir.append("idprovincia", direccion.idprovincia);
+      dir.append("localidad", direccion.localidad);
+      dir.append("idlocalidad", direccion.idlocalidad);
+      dir.append("calle", direccion.calle);
+      dir.append("numero", direccion.numero);
+      dir.append("piso", direccion.piso);
+      dir.append("departamento", direccion.departamento);
+      dir.append("entre_calle_1", direccion.entre_calle_1);
+      dir.append("entre_calle_2", direccion.entre_calle_2);
+      dir.append("informacion_adicional", direccion.informacion_adicional);
+      dir.append("normalized", direccion.raw_data);
+      FormAPI(dir, "direcciones", "insert").then(async (res) => {
         console.log(res);
-        console.table(Object.fromEntries(formDireccion));
+        console.table(Object.fromEntries(dir));
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
