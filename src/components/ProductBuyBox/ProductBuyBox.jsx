@@ -78,6 +78,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
 
   const handleAgregarCarrito = () => {
     setLoad(true);
+    console.log(tienda.estado_text)
     if(tienda.estado_text!=="Activa"){
       Swal.fire({
         title: "TIENDA INACTIVA",
