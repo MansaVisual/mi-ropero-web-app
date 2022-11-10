@@ -70,6 +70,7 @@ const Tarjeta = ({
           );
           window.top.location.href = res.result.init_point;
         } else {
+          localStorage.setItem("compraFinalizadaMP","activo")
           setTypeNav("check");
         }
       } else if (res.result === false) {
