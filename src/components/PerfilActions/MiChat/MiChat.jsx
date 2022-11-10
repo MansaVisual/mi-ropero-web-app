@@ -52,6 +52,7 @@ const MiChat = () => {
                   ? infoUser.avatar
                   : res.result[0].producto.imagenes[0].imagen_chica,
               idMensaje: res.result[ii].idmensaje,
+              fecha: res.result[ii].fecha,
             });
           }
           setChatActual(array);

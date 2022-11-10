@@ -2,6 +2,7 @@ import React from "react";
 import Avatar from "./Avatar";
 
 const ChatItem = ({ msg, image, user, fecha }) => {
+  console.log(fecha);
   return (
     <div
       style={{ animationDelay: `0.8s` }}
