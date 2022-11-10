@@ -36,6 +36,7 @@ const MiChat = () => {
       dir.append("idcliente", userLog);
       dir.append("idmensaje", mensajeId);
       PerfilAPI(dir, "mensajes", "thread").then((res) => {
+        console.log(res);
         if (res.status === "success") {
           setProductoImg(res.result[0].producto.imagenes[0].imagen_chica);
           setNombreRemitente(res.result[0].cliente_nombre);
