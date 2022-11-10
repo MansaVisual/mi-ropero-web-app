@@ -56,11 +56,10 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log("GOLA")
     if(prod.length!==0){
       const ropero=new FormData()
       ropero.append("idtienda",prod.tienda.idtienda)
-      ProdAPI(ropero,"tiendas","detail").then((res)=>console.log(res))
+      ProdAPI(ropero,"tiendas","detail").then((res)=>{if(res.status==="success"){setTienda(res.result)}})
     }
   }, [prod]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -248,7 +247,7 @@ const ProductPage = () => {
             >
               {isMobile || isMobileBigScreen ? (
                 <>
-                  <ProductBuyBox prod={prod} itemID={itemID} />
+                  <ProductBuyBox prod={prod} itemID={itemID} tienda={tienda}/>
                 </>
               ) : (
                 <>
@@ -302,7 +301,7 @@ const ProductPage = () => {
                       />
                     </Box>
                   </Box>
-                  <ProductBuyBox prod={prod} itemID={itemID} />
+                  <ProductBuyBox prod={prod} itemID={itemID} tienda={tienda} />
                   {openMessagePop && (
                     <PopUpMensajePP
                       setOpenMessagePop={setOpenMessagePop}

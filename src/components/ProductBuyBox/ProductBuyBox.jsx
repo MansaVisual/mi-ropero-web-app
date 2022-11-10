@@ -28,7 +28,7 @@ import Swal from "sweetalert2";
 import MopedIcon from "@mui/icons-material/Moped";
 import logo from "../../assets/img/isologo.png";
 
-const ProductBuyBox = ({ prod, itemID }) => {
+const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const location = useLocation();
   // const pathnames = location.pathname.split("/").filter((x) => x);
   const [open, setOpen] = useState(false);
@@ -78,6 +78,16 @@ const ProductBuyBox = ({ prod, itemID }) => {
 
   const handleAgregarCarrito = () => {
     setLoad(true);
+    if(tienda.estado_text!=="Activa"){
+      Swal.fire({
+        title: "TIENDA INACTIVA",
+        text: "La tienda se encuentra inactiva en este momento.",
+        icon: "info",
+        confirmButtonText: "ACEPTAR",
+      });
+      setLoad(false)
+      return
+    }
     const add = new FormData();
     add.append("idcliente", userLog);
     add.append("idproducto", itemID);
