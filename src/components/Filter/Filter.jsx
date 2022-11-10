@@ -76,7 +76,11 @@ const Filter = (props) => {
     setPutSort(e.target.value);
   };
 
-  console.log(coleccion)
+  useEffect(() => {
+    Object.keys(openFilter).forEach(key => {
+      openFilter[key] = false;
+    });
+  }, [putFilters]); // eslint-disable-line react-hooks/exhaustive-deps
   
   return (
     <List
