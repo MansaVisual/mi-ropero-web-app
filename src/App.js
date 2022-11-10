@@ -34,9 +34,8 @@ import Notifications from "./views/Notifications/Notifications";
 import CancelacionCompra from "./views/CancelacionCompra/CancelacionCompra";
 import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 import FAQ from "./views/FAQ/FAQ";
-import MiTienda from "./views/MiTienda/MiTienda";
-import CargaProducto from "./views/MiTienda/CargaProducto/CargaProducto";
 import { MiTiendaContext } from "./context/MiTiendaContext";
+import Tienda from "./views/Tienda/Tienda";
 
 function App() {
   useEffect(() => {
@@ -153,12 +152,9 @@ function App() {
                           element={<CancelacionCompraOk />}
                         />
                         <Route path="FAQ" element={<FAQ />} />
-                        <Route path="MiTienda" element={<MiTienda />} />
-                        <Route
-                          path="MiTienda/cargaProducto/:seccion"
-                          element={<CargaProducto />}
-                        />
                         <Route path="/PRODUCTO" element={<Home />} />
+                        <Route path="MiTienda" element={<Tienda />} />
+                        <Route path="MiTienda/:seccion" element={<Tienda />} />
                       </Routes>
                       <Footer />
                     </ThemeProvider>

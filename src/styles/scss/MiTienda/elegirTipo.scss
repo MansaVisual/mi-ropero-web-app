@@ -1,0 +1,107 @@
+.elegirTipoContainer {
+  margin-top: 40px;
+  margin: 40px 72px 80px 72px;
+  display: flex;
+  justify-content: center;
+
+  @include screen_705 {
+    margin-top: 24px;
+  }
+  .container {
+    margin-top: 8px;
+    width: 100%;
+    max-width: 1366px;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+    }
+    .subtitle {
+      font-family: "Open Sans";
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 28px;
+      color: #878787;
+      margin-left: 24px;
+    }
+    .subTypeSection {
+      margin-top: 35px;
+      max-height: 240px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      .subType {
+        display: flex;
+        margin-top: 24px;
+        .radio {
+          span {
+            color: #babcbe;
+          }
+        }
+        .notSelected {
+          font-family: "Open Sans";
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 19px;
+          display: flex;
+          align-items: center;
+          color: #423b3c;
+        }
+        .selected {
+          font-family: "Open Sans";
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 19px;
+          display: flex;
+          align-items: center;
+          color: #443988;
+        }
+      }
+    }
+    .buttonContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+      button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 36px;
+        gap: 10px;
+        width: 100%;
+        max-width: 226px;
+        height: 36px;
+        background: #443988;
+        border: 0;
+        border-radius: 20px;
+        font-family: "Open Sans";
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+    .returnLink {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      width: 170px;
+      margin-top: 24px;
+      p {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+      }
+      img {
+        height: 7.94px;
+        width: 4.24px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
