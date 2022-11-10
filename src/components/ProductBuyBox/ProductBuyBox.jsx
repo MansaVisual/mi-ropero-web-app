@@ -78,7 +78,6 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
 
   const handleAgregarCarrito = () => {
     setLoad(true);
-    console.log(tienda.estado_text)
     if(tienda.estado_text!=="Activa"){
       Swal.fire({
         title: "TIENDA INACTIVA",
@@ -89,6 +88,17 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       setLoad(false)
       return
     }
+    if(prod.tienda.dias_sin_actividad>=20){
+      Swal.fire({
+        title: "TIENDA PAUSADA",
+        text: "La tienda se encuentra pausada en este momento.",
+        icon: "info",
+        confirmButtonText: "ACEPTAR",
+      });
+      setLoad(false)
+      return
+    }
+
     const add = new FormData();
     add.append("idcliente", userLog);
     add.append("idproducto", itemID);
