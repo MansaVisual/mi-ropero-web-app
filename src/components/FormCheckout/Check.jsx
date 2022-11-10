@@ -21,7 +21,7 @@ const CheckForm = ({estadoCompra})=>{
         if(userLog!==""){
             setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
-            const compraFinal = JSON.parse(localStorage.getItem("compraFinalizadaMP"))
+            const compraFinal = localStorage.getItem("compraFinalizadaMP")
             if(compraFinal){
                 setCompraConSaldo0(true)
                 localStorage.delete("compraFinalizadaMP")
