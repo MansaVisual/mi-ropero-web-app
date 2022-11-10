@@ -129,7 +129,7 @@ const DetalleCompra = () => {
                   })}
                 </div>
               </div>
-              {compraSelecc.promocion.monto && (
+              {compraSelecc.promocion && (
                 <div className="descuentos">
                   <p>PROMOCION</p>
                   <span>- ${compraSelecc.promocion.monto}</span>
