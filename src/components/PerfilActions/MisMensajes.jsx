@@ -45,7 +45,6 @@ const MisMensajes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   useEffect(() => {
     if (mensajes.length > 0) {
       if (typeMessage === "ver todos") {
@@ -85,6 +84,8 @@ const MisMensajes = () => {
     const formatoFinal = `Fecha: ${day} / ${month} / ${year} ${hora} Hs.`;
     return formatoFinal;
   };
+
+  console.log(mensajesFiltrados);
 
   return (
     <div className="misMensajesContainer">
