@@ -190,7 +190,7 @@ useEffect(()=>{
                 url = "/perfil/OFERTAS REALIZADAS";
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
-                let buscarI2=itemURL.indexOf("&backLink");
+                let buscarI2 = itemURL.indexOf("&backLink");
                 buscarI = itemURL.indexOf("idproducto=");
                 id = itemURL.substring(buscarI + 11, buscarI2);
                 url = `/productoCard/${id}`;
@@ -210,10 +210,11 @@ useEffect(()=>{
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("idtienda=");
                 id = itemURL.substring(buscarI + 9, itemURL.length);
+                console.log(id)
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                LoginAPI(llamada, "tiendas", "detail").then((res) => {
+                LoginAPI(llamada, "tiendas", "detail").then((res) => {console.log(res)
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
                   } else {
@@ -224,18 +225,18 @@ useEffect(()=>{
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //-------------------|-----------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (
                 itemURL.indexOf("/app/profile-showroom/transfers") !== -1
               ) {
                 //------------------|------------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (itemURL.indexOf("/app/cart") !== -1) {
                 //--------------------------|----------------------
                 url = "/carrito";
               } else if (itemURL.indexOf("/app/profile-showroom") !== -1) {
                 //--------------------|----------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (itemURL === "#") {
                 url = false;
               } else {

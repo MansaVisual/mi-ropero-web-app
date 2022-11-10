@@ -431,10 +431,11 @@ const NavIcons = () => {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("idtienda=");
                 id = itemURL.substring(buscarI + 9, itemURL.length);
+                console.log(id)
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                CartAPI(llamada, "tiendas", "detail").then((res) => {
+                CartAPI(llamada, "tiendas", "detail").then((res) => {console.log(res)
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
                   } else {
@@ -445,18 +446,18 @@ const NavIcons = () => {
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //-------------------|-----------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (
                 itemURL.indexOf("/app/profile-showroom/transfers") !== -1
               ) {
                 //------------------|------------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (itemURL.indexOf("/app/cart") !== -1) {
                 //--------------------------|----------------------
                 url = "/carrito";
               } else if (itemURL.indexOf("/app/profile-showroom") !== -1) {
                 //--------------------|----------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (itemURL === "#") {
                 url = false;
               } else {
