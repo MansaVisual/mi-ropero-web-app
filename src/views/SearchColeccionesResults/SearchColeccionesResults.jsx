@@ -83,7 +83,8 @@ const SearchProductsResults = () => {
     col.append("bypage", 15);
     col.append("page", 0);
 
-    ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
+    ColeccionAPI(col, "colecciones", "detail").then((res) => {
+      console.log(res);
       if (res.status === "success") {
         setColeccion(res.result);
         setProds(res.result.productos);
@@ -119,14 +120,13 @@ const SearchProductsResults = () => {
       col.append("page", 0);
 
       ColeccionAPI(col, "colecciones", "detail").then((res) => {
-
         if (res.status === "success") {
           setFiltrosCategoria(
             res.result.productos_categorias[0].caracteristica
           );
           setProds(res.result.productos);
           setTotalPages(res.result.productos_total_paginas);
-        }else if(res.status==="error"){
+        } else if (res.status === "error") {
           setProds([]);
           setTotalPages(0);
         }
@@ -202,7 +202,7 @@ const SearchProductsResults = () => {
     if (putFilters.length !== 0) {
       catProd.append("caracteristicas", filtrosFin);
     }
-    console.log(Object.fromEntries(catProd))
+    console.log(Object.fromEntries(catProd));
     ColeccionAPI(catProd, "colecciones", "detail").then((res) => {
       if (res.status === "success") {
         setProds(res.result.productos);
@@ -318,7 +318,7 @@ const SearchProductsResults = () => {
           <Grid item xs={12} sm={6} md={3}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
-                <Breadcrumbs links={pathnames} />
+                <Breadcrumbs links={["COLECCIONES", coleccionName]} />
                 <Box
                   sx={{
                     display: "flex",
@@ -439,7 +439,7 @@ const SearchProductsResults = () => {
             ) : (
               <>
                 <Box>
-                  <Breadcrumbs links={pathnames} />
+                  <Breadcrumbs links={["COLECCIONES", coleccionName]} />
                   <Typography
                     sx={{
                       fontSize: theme.typography.fontSize[9],

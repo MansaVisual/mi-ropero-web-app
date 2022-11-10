@@ -10,9 +10,9 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-import BellNotif from "../../assets/img/BellNotif.png";
-import Cart from "../../assets/img/Cart.png";
-import Avatar from "../../assets/img/Avatar.png";
+import BellNotif from "../../assets/img/BellNotif.svg";
+import Cart from "../../assets/img/Cart.svg";
+import Avatar from "../../assets/img/AvatarSvg.svg";
 import AvatarMR from "../AvatarMR/AvatarMR";
 import { StyledBadge, StyledMenu } from "./style";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -411,7 +411,7 @@ const NavIcons = () => {
                 url = "/perfil/OFERTAS REALIZADAS";
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
-                let buscarI2=itemURL.indexOf("&backLink");
+                let buscarI2 = itemURL.indexOf("&backLink");
                 buscarI = itemURL.indexOf("idproducto=");
                 id = itemURL.substring(buscarI + 11, buscarI2);
                 url = `/productoCard/${id}`;
