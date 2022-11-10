@@ -32,6 +32,12 @@ const Home = () => {
     reBuscarInfo()
   }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if(window.location.pathname==="/PRODUCTO" || window.location.pathname==="/productos"){
+      window.location.replace("/")
+    }
+  }, [window.location]);// eslint-disable-line react-hooks/exhaustive-deps
+
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
