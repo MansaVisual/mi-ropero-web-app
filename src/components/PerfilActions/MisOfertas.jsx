@@ -52,6 +52,8 @@ const MisOfertas = () => {
     'vencida'
   ] */
 
+  console.log(ofertasRealizadas);
+
   return (
     <div className="misOfertasContainer">
       <Breadcrumbs links={pathnames} />

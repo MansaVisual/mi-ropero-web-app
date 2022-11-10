@@ -74,8 +74,6 @@ const ElegirTipo = ({ tipo, setTipo }) => {
     },
   ];
 
-  console.log(tipo);
-
   return (
     <div className="elegirTipoContainer">
       <div className="container">
