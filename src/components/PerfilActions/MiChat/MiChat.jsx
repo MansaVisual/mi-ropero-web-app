@@ -158,6 +158,7 @@ const MiChat = () => {
                       user={itm.type ? itm.type : "me"}
                       msg={itm.msg}
                       image={itm.image}
+                      fecha={itm.fecha}
                     />
                   );
                 })}

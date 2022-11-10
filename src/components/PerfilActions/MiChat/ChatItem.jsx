@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "./Avatar";
 
-const ChatItem = ({ msg, image, user }) => {
+const ChatItem = ({ msg, image, user, fecha }) => {
   return (
     <div
       style={{ animationDelay: `0.8s` }}
@@ -9,10 +9,9 @@ const ChatItem = ({ msg, image, user }) => {
     >
       <div className="chatItemContent">
         <p className="chatMsg">{msg}</p>
-        {/* <div className="chatMeta">
-          <span>Hace 16 min</span>
-          <span>Visto 1.03PM</span>
-        </div> */}
+        <div className="chatMeta">
+          <span>{fecha}</span>
+        </div>
       </div>
       <Avatar isOnline="active" image={image} />
     </div>
