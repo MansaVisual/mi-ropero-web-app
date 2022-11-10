@@ -39,6 +39,7 @@ const ProductPage = () => {
 
   const { infoUser, userLog } = useContext(UseLoginContext);
   const { ProdAPI } = useContext(UseProdsContext);
+  const [tienda,setTienda]=useState([])
 
   const [open, setOpen] = useState(false);
   const [openMessagePop, setOpenMessagePop] = useState(false);
@@ -53,6 +54,15 @@ const ProductPage = () => {
       behavior: "auto",
     });
   }, []);
+
+  useEffect(() => {
+    console.log("GOLA")
+    if(prod.length!==0){
+      const ropero=new FormData()
+      ropero.append("idtienda",prod.tienda.idtienda)
+      ProdAPI(ropero,"tiendas","detail").then((res)=>console.log(res))
+    }
+  }, [prod]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (itemID !== undefined) {
