@@ -115,6 +115,8 @@ const MiChat = () => {
     }
   };
 
+  console.log(chatActual);
+
   return (
     <div className="miChatContainer">
       <Breadcrumbs links={pathnames} />
