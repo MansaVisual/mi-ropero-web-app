@@ -23,7 +23,7 @@ const MiChat = () => {
   const [chatActual, setChatActual] = useState([]);
   const [scroll, setScroll] = useState(true);
   const [productoImg, setProductoImg] = useState(false);
-  const [nombreRemitente, setNombreRemitente] = useState(false);
+  const [nombreProducto, setNombreProducto] = useState(false);
   const [productoId, setProductoId] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -39,7 +39,7 @@ const MiChat = () => {
         console.log(res);
         if (res.status === "success") {
           setProductoImg(res.result[0].producto.imagenes[0].imagen_chica);
-          setNombreRemitente(res.result[0].cliente_nombre);
+          setNombreProducto(res.result[0].producto.nombre);
           setProductoId(res.result[0].producto.idproducto);
           let array = [];
           for (const ii in res.result) {
@@ -137,7 +137,7 @@ const MiChat = () => {
       ) : !error ? (
         <>
           <div className="firstLine">
-            <p className="title">MI CHAT CON </p>
+            <p className="title">MI CHAT</p>
           </div>
           <div className="chatContainer">
             <div className="chatContent">
@@ -145,7 +145,7 @@ const MiChat = () => {
                 <div className="blocks">
                   <div className="current-chatting-user">
                     <Avatar isOnline="active" image={productoImg} />
-                    <p>{nombreRemitente}</p>
+                    <p>{nombreProducto}</p>
                   </div>
                 </div>
               </div>
