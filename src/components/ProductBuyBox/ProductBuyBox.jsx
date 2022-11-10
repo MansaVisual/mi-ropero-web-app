@@ -139,7 +139,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       }
     });
   };
-
+  console.log(prod)
   return (
     <>
       <Box
