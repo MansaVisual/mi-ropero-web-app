@@ -13,12 +13,14 @@ import MetodoEnvio from "../../components/FormCheckout/MetodoEnvio";
 import Tarjeta from "../../components/FormCheckout/Tarjeta";
 import CheckForm from "../../components/FormCheckout/Check";
 import { UseLoginContext } from "../../context/LoginContext";
+import { UseCartContext } from "../../context/CartContext";
 
 const Checkout = ()=>{
     const navigate = useNavigate();
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     const {userLog}=useContext(UseLoginContext)
+    const {carrito,buscandoCart}=useContext(UseCartContext)
 
     const [typeNav,setTypeNav]=useState("info")
     const [form,setForm]=useState([])
@@ -56,6 +58,12 @@ const Checkout = ()=>{
             setNum(2)
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        if(!buscandoCart && carrito.length===0){
+            navigate("/")
+        }
+    }, [carrito,buscandoCart]);// eslint-disable-line react-hooks/exhaustive-deps
     
     useEffect(()=>{
         if(num!==1){
