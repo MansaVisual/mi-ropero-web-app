@@ -25,8 +25,8 @@ const Home = () => {
 
   useEffect(() => {
     if (redirectUrl) {
-      localStorage.setItem("redirectUrl", "");
       window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
+      localStorage.setItem("redirectUrl", "");
     }
     window.scrollTo({
       top: 0,
