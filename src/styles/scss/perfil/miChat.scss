@@ -114,8 +114,8 @@
             user-select: none;
           }
           .chatMeta {
-            justify-content: space-between;
             display: flex;
+            justify-content: flex-end;
             margin-top: 10px;
             span {
               font-size: 10px;
@@ -158,10 +158,14 @@
           max-width: unset;
           width: 90%;
         }
-        .chatMeta span {
-          color: #d1d1d1;
-          text-align: start;
-          font-size: 10px;
+        .chatMeta {
+          display: flex;
+          justify-content: flex-start;
+          span {
+            color: #d1d1d1;
+            text-align: start;
+            font-size: 10px;
+          }
         }
       }
       .avatar {
