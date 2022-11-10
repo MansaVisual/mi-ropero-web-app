@@ -15,11 +15,17 @@ const CheckForm = ({estadoCompra})=>{
     const {FormAPI}=useContext(UseFormContext)
     const {userLog}=useContext(UseLoginContext)
 
+    const [compraConSaldo0,setCompraConSaldo0]=useState(false)
+
     useEffect(() => {
         if(userLog!==""){
             setMetodoEnvio(JSON.parse(localStorage.getItem("metodoEnvioMiRopero")))
             const saveDireccion = JSON.parse(localStorage.getItem("saveDireccionMiRopero"))
-            
+            const compraFinal = JSON.parse(localStorage.getItem("compraFinalizadaMP"))
+            if(compraFinal){
+                setCompraConSaldo0(true)
+            }
+
             if(saveDireccion){
 
                 const direccion = JSON.parse(localStorage.getItem("newDireccionMiRopero"))
@@ -50,7 +56,7 @@ const CheckForm = ({estadoCompra})=>{
 
     return(
         <div className="checkContainer">
-            {estadoCompra==="success" ?
+            {(estadoCompra==="success" || compraConSaldo0) ?
                 <>
                     <CheckCircleOutlineOutlinedIcon className="botonCheck"/>
                     <p className="felicidades">¡Felicidades!</p>

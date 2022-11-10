@@ -52,7 +52,7 @@ const Tarjeta = ({
     finalizarCompra.append("promocion_codigo", codDesc);
     finalizarCompra.append("medio_envio", metodoEnvio);
 
-    CartAPI(finalizarCompra, "operaciones", "insert").then((res) => {
+    CartAPI(finalizarCompra, "operaciones", "insert").then((res) => {console.log(res)
       if (res.status === "success") {
         setLoad(false);
         if (res.result.init_point !== undefined) {
@@ -70,6 +70,7 @@ const Tarjeta = ({
           );
           window.top.location.href = res.result.init_point;
         } else {
+          localStorage.setItem("compraFinalizadaMP","activo")
           setTypeNav("check");
         }
       } else if (res.result === false) {
