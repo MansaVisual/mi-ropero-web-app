@@ -101,7 +101,7 @@ const SearchBar = () => {
             onClick={(e) => handleSubmitEnter(e, buscador==="productos"?"productos":"roperos")}
           />
         </IconButton>
-        {keyword!=="" && (
+        {(keyword!=="" && openSearch) && (
           <Box
             sx={{
               position: "fixed",
