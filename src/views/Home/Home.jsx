@@ -1,9 +1,7 @@
 import { Box, Container, Link, Typography, useMediaQuery } from "@mui/material";
-import React, { useContext, useEffect,Fragment } from "react";
+import React, { useContext, useEffect, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  UpButton,
-} from "../../components/ActionButton/ActionButton";
+import { UpButton } from "../../components/ActionButton/ActionButton";
 import Banner from "../../components/Banner/Banner";
 import Chip from "../../components/Chip/Chip";
 import Onboarding from "../../components/Onboarding/Onboarding";
@@ -20,23 +18,31 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { colecciones,buscandoCols } =
-    useContext(UseColeccionContext);
-    const {reBuscarInfo}=useContext(UseLoginContext)
+  const { colecciones, buscandoCols } = useContext(UseColeccionContext);
+  const { reBuscarInfo } = useContext(UseLoginContext);
+
+  const redirectUrl = localStorage.getItem("redirectUrl");
 
   useEffect(() => {
+    if (redirectUrl) {
+      localStorage.setItem("redirectUrl", "");
+      window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
+    }
     window.scrollTo({
       top: 0,
       behavior: "auto",
     });
-    reBuscarInfo()
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    reBuscarInfo();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if(window.location.pathname==="/PRODUCTO" || window.location.pathname==="/productos"){
-      window.location.replace("/")
+    if (
+      window.location.pathname === "/PRODUCTO" ||
+      window.location.pathname === "/productos"
+    ) {
+      window.location.replace("/");
     }
-  }, [window.location]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [window.location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = () => {
     window.scrollTo({
@@ -61,69 +67,98 @@ const Home = () => {
         }}
       >
         <Container maxWidth="xl">
-          {buscandoCols && 
-            <div style={{ marginTop: "40px",width:"100%",display:"flex",justifyContent:"center" }}>
-              <Loader spin={'spinnerG'} />
+          {buscandoCols && (
+            <div
+              style={{
+                marginTop: "40px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Loader spin={"spinnerG"} />
             </div>
-          }
-          {colecciones.length!==0 && colecciones.map((res,i)=>{
-            return(
-              <Fragment key={i}>
-                {res.tipo_text==="Coleccion 1er Scroll" ?<>
-                <Box sx={{ pt: "40px", textAlign: "center" }}>
-                  <Chip primary>{res.nombre.trim()}</Chip>
-                </Box>
-                <Box sx={{ pt: "24px" }}>
-                  <SliderProd contenido={res.productos} />
-                </Box>
-                <Box sx={{ textAlign: "center" }}>
-                  <Link
-                    sx={{
-                      color: "hsla(0, 0%, 53%, 1)",
-                      fontSize: theme.typography.fontSize[4],
-                      cursor: "pointer",
-                      "&:hover": {
-                        fontWeight: "700",
-                      },
-                    }}
-                    onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
-                    >
-                    VER {res.nombre.trim().toUpperCase()}
-                  </Link>
-                </Box></>
-                :<></>}
-              </Fragment>
-            )
-          })}
-          {colecciones.length!==0 && colecciones.map((res,i)=>{
-            return(
-              <Fragment key={i}>
-                {res.tipo_text==="Coleccion 2do Scroll" ?<>
-                <Box sx={{ pt: "40px", textAlign: "center" }}>
-                  <Chip primary>{res.nombre.trim()}</Chip>
-                </Box>
-                <Box sx={{ pt: "24px" }}>
-                  <SliderProd contenido={res.productos} />
-                </Box>
-                <Box sx={{ textAlign: "center" }}>
-                  <Link
-                    sx={{
-                      color: "hsla(0, 0%, 53%, 1)",
-                      fontSize: theme.typography.fontSize[4],
-                      cursor: "pointer",
-                      "&:hover": {
-                        fontWeight: "700",
-                      },
-                    }}
-                    onClick={() => navigate(`/colecciones/${res.idcoleccion}/${res.nombre.trim()}`)}
-                    >
-                    VER "{res.nombre.trim().toUpperCase()}"
-                  </Link>
-                </Box></>
-                :<></>}
-              </Fragment>
-            )
-          })}
+          )}
+          {colecciones.length !== 0 &&
+            colecciones.map((res, i) => {
+              return (
+                <Fragment key={i}>
+                  {res.tipo_text === "Coleccion 1er Scroll" ? (
+                    <>
+                      <Box sx={{ pt: "40px", textAlign: "center" }}>
+                        <Chip primary>{res.nombre.trim()}</Chip>
+                      </Box>
+                      <Box sx={{ pt: "24px" }}>
+                        <SliderProd contenido={res.productos} />
+                      </Box>
+                      <Box sx={{ textAlign: "center" }}>
+                        <Link
+                          sx={{
+                            color: "hsla(0, 0%, 53%, 1)",
+                            fontSize: theme.typography.fontSize[4],
+                            cursor: "pointer",
+                            "&:hover": {
+                              fontWeight: "700",
+                            },
+                          }}
+                          onClick={() =>
+                            navigate(
+                              `/colecciones/${
+                                res.idcoleccion
+                              }/${res.nombre.trim()}`
+                            )
+                          }
+                        >
+                          VER {res.nombre.trim().toUpperCase()}
+                        </Link>
+                      </Box>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Fragment>
+              );
+            })}
+          {colecciones.length !== 0 &&
+            colecciones.map((res, i) => {
+              return (
+                <Fragment key={i}>
+                  {res.tipo_text === "Coleccion 2do Scroll" ? (
+                    <>
+                      <Box sx={{ pt: "40px", textAlign: "center" }}>
+                        <Chip primary>{res.nombre.trim()}</Chip>
+                      </Box>
+                      <Box sx={{ pt: "24px" }}>
+                        <SliderProd contenido={res.productos} />
+                      </Box>
+                      <Box sx={{ textAlign: "center" }}>
+                        <Link
+                          sx={{
+                            color: "hsla(0, 0%, 53%, 1)",
+                            fontSize: theme.typography.fontSize[4],
+                            cursor: "pointer",
+                            "&:hover": {
+                              fontWeight: "700",
+                            },
+                          }}
+                          onClick={() =>
+                            navigate(
+                              `/colecciones/${
+                                res.idcoleccion
+                              }/${res.nombre.trim()}`
+                            )
+                          }
+                        >
+                          VER "{res.nombre.trim().toUpperCase()}"
+                        </Link>
+                      </Box>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Fragment>
+              );
+            })}
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip>Zapatillas</Chip>
           </Box>
