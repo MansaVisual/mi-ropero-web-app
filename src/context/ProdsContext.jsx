@@ -126,7 +126,7 @@ export const ProdsContext = ({children}) => {
           fav,
           "favoritos",
           "all"
-        ).then((res)=>{
+        ).then((res)=>{console.log("DESDE CONTEXT",res)
             setListFavFinBusqueda(true)
             if(res.status==="success"){
                 setListFavs(res.result)

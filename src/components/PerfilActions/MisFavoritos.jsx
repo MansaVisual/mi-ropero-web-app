@@ -14,7 +14,7 @@ const MisFavoritos = ({setTypeNav}) => {
     const navigate = useNavigate();
 
     const {listFavs,listFavFinBusqueda}=useContext(UseProdsContext)
-
+  console.log("DESDE FAVS",listFavs)
     return (
       <div className="misFavsContainer">
           <Breadcrumbs links={pathnames}/>
