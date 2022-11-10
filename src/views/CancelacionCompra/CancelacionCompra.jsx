@@ -7,10 +7,12 @@ import { UseFormContext } from "../../context/FormContext";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Loader from "../../components/Loader/Loader";
 import Swal from "sweetalert2";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const CancelacionCompra = () => {
   const navigate = useNavigate();
   const { FormAPI } = useContext(UseFormContext);
+  const {userLog}=useContext(UseLoginContext)
 
   const [form, setForm] = useState({
     idOperacion: "",
@@ -49,26 +51,41 @@ const CancelacionCompra = () => {
       return;
     }
 
-    const data = new FormData();
-    data.append("idoperacion", form.idOperacion);
-    data.append("mensaje", form.mensaje);
-    data.append("remitente", 1);
-
-    FormAPI(data, "reclamos", "insert").then((res) => {
-      setLoading(false);
-      if (res.status === "success") {
-        navigate("/cancelacionCompraOk");
-      } else {
-        if (res.result === "La operacion no existe") {
-          Swal.fire({
-            title: "ERROR AL BORRAR",
-            text: "Error al cargar reclamo. Revisá el id de operación y volvé a intentarlo",
-            icon: "error",
-            confirmButtonText: "ACEPTAR",
-          });
-        }
+    const buscarCompra=new FormData()
+    buscarCompra.append("idcliente",userLog)
+    buscarCompra.append("idoperacion",Number(form.idOperacion))
+    FormAPI(buscarCompra,"operaciones","get").then((res)=>{
+      if(res.result==="success"){
+        const data = new FormData();
+        data.append("idoperacion", form.idOperacion);
+        data.append("mensaje", form.mensaje);
+        data.append("remitente", 1);
+    
+        FormAPI(data, "reclamos", "insert").then((res) => {
+          setLoading(false);
+          if (res.status === "success") {
+            navigate("/cancelacionCompraOk");
+          } else {
+            if (res.result === "La operacion no existe") {
+              Swal.fire({
+                title: "ERROR AL BORRAR",
+                text: "Error al cargar reclamo. Revisá el id de operación y volvé a intentarlo",
+                icon: "error",
+                confirmButtonText: "ACEPTAR",
+              });
+            }
+          }
+        });
+      }else{
+        setLoading(false);
+        Swal.fire({
+          title: "ERROR DE VALIDACIÓN",
+          text: "El código ingresado no fue encontrado o es incorrecto. Vuelva a intentarlo o pruebe con otro código",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
       }
-    });
+    })
   };
 
   return (
@@ -144,10 +161,8 @@ const CancelacionCompra = () => {
             />
             <p
               className="labelForm"
-              htmlFor="nuevaDir"
-              style={{ cursor: "pointer" }}
             >
-              Acepto los <span>términos y condiciones</span>
+              Acepto los <span onClick={()=>navigate("/terminos&y&condiciones")} style={{cursor:"pointer"}}>términos y condiciones</span>
             </p>
           </div>
         </div>
