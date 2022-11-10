@@ -271,7 +271,7 @@ const SearchProductsResults = () => {
       array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
     }
     setFiltrosFin(array.toString());
-
+    console.log(array.toString())
     if (
       putFilters.length !== 0 ||
       putSort !== "" ||
