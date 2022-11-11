@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Basura from "../../assets/img/basura.png";
 import { UsePerfilContext } from "../../context/PerfilContext";
@@ -14,6 +14,7 @@ const MisOfertas = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const { userLog } = useContext(UseLoginContext);
   const {
@@ -25,7 +26,14 @@ const MisOfertas = () => {
 
   const [borrarOferta, setBorrarOferta] = useState(false);
 
-  const [filtroSelecc, setFiltroSelecc] = useState("en proceso de evaluacion");
+  let filtroInicial;
+  if (id === "rechazadas") {
+    filtroInicial = "Rechazada por el vendedor";
+  } else {
+    filtroInicial = "en proceso de evaluacion";
+  }
+
+  const [filtroSelecc, setFiltroSelecc] = useState(filtroInicial);
   const [ofertaId, setOfertaId] = useState(false);
 
   useEffect(() => {
