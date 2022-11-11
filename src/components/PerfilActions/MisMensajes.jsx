@@ -55,14 +55,14 @@ const MisMensajes = () => {
       if (typeMessage === "ver no leídos") {
         setMensajesFiltrados(
           mensajes.filter(
-            (msg) => msg.estado === "2" && msg.cliente_id !== userLog
+            (msg) => msg.estado === "1" && msg.cliente_id !== userLog
           )
         );
       }
       if (typeMessage === "ver leídos") {
         setMensajesFiltrados(
           mensajes.filter(
-            (msg) => msg.estado === "1" /* && msg.cliente_id !== userLog */
+            (msg) => msg.estado === "2" && msg.cliente_id !== userLog
           )
         );
       }
