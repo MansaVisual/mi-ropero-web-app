@@ -106,6 +106,7 @@ const SearchProductsResults = () => {
     setPutSort("");
     setPutFilters([]);
     setPags(1);
+    console.log(putCategory)
     if (putCategory !== "") {
       let idCat = coleccion.productos_categorias.filter(
         (e) => e !== null && e.nombre === putCategory
@@ -143,7 +144,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      ColeccionAPI(col, "colecciones", "detail").then((res) => {
+      ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
         if (res.status === "success") {
           setProds(res.result.productos);
           setTotalPages(res.result.productos_total_paginas);
