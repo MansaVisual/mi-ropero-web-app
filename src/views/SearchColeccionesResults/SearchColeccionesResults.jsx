@@ -121,7 +121,7 @@ const SearchProductsResults = () => {
       ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log("RESPUESTA API",res)
         if (res.status === "success") {
           for(const i in res.result.productos_categorias){
-            if(res.result.idcoleccion[i] === idColeccion){
+            if(res.result.productos_categorias[i].idcategoria === idCat){
               setFiltrosCategoria(
                 res.result.productos_categorias[i].caracteristica
               );
