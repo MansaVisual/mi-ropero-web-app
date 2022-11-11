@@ -112,6 +112,12 @@ const MiChat = () => {
     if (mensaje !== "") {
       const mensajePadre = chatActual[chatActual.length - 1];
 
+      const d = new Date();
+
+      const fecha = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDay()} ${
+        d.getHours() + 1
+      }:${d.getMinutes() + 1}:12`;
+
       const dir = new FormData();
       dir.append("idcliente", userLog);
       dir.append("idmensajepadre", mensajePadre.idMensaje);
@@ -122,7 +128,7 @@ const MiChat = () => {
         if (res.status === "success") {
           setChatActual([
             ...chatActual,
-            { type: "", msg: mensaje, image: infoUser.avatar },
+            { type: "", msg: mensaje, image: infoUser.avatar, fecha: fecha },
           ]);
           setMensaje("");
           setScroll(true);
