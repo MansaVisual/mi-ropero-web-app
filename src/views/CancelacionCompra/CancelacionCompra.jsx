@@ -55,7 +55,7 @@ const CancelacionCompra = () => {
     buscarCompra.append("idcliente",userLog)
     buscarCompra.append("idoperacion",Number(form.idOperacion))
     FormAPI(buscarCompra,"operaciones","get").then((res)=>{console.log(res)
-      if(res.result==="success"){
+      if(res.status==="success"){
         const data = new FormData();
         data.append("idoperacion", form.idOperacion);
         data.append("mensaje", form.mensaje);
