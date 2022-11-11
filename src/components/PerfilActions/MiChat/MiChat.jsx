@@ -114,9 +114,9 @@ const MiChat = () => {
 
       const d = new Date();
 
-      const fecha = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDay()} ${
-        d.getHours() + 1
-      }:${d.getMinutes() + 1}:12`;
+      const fecha = `${d.getFullYear()}-${
+        d.getMonth() + 1
+      }-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:12`;
 
       const dir = new FormData();
       dir.append("idcliente", userLog);
