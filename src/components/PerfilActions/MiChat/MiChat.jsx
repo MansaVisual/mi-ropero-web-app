@@ -110,7 +110,7 @@ const MiChat = () => {
 
   const sendMessage = () => {
     if (mensaje !== "") {
-      const mensajePadre = chatActual[chatActual.length - 1];
+      const mensajePadre = chatActual[0];
 
       const d = new Date();
 
