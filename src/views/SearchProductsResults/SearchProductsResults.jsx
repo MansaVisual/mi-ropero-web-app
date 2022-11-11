@@ -240,6 +240,7 @@ const SearchProductsResults = () => {
     catProd.append("bypage", 15);
 
     catProd.append("page", value);
+    console.log(Object.fromEntries(catProd))
 
     ProdAPI(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
