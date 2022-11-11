@@ -18,6 +18,7 @@ console.log(ropero)
       sx={{
         maxWidth: 254,
         mb: "16px",
+        minWidth:"317px",
       }}
     >
       <CardContent
