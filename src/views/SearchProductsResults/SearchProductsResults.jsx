@@ -129,7 +129,7 @@ const SearchProductsResults = () => {
           col,
           "productos",
           "search"
-      ).then((res)=>{console.log(res)
+      ).then((res)=>{console.log("ERROR A RESOLVER YA",res)
         if(res.status==="success"){
           const catFilters = new FormData();
           catFilters.append("idcategoria", idCat);
