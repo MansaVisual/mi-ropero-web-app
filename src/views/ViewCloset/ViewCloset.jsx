@@ -90,7 +90,7 @@ const ViewCloset = () => {
       });
     }
   }, [closetId]); // eslint-disable-line react-hooks/exhaustive-deps
-
+console.log(totalPages)
   useEffect(() => {
     setBuscandoRoperos(true);
     window.scrollTo({
