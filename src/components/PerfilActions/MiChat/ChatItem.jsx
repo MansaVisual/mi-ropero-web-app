@@ -3,7 +3,6 @@ import Avatar from "./Avatar";
 import dobleTilde from "../../../assets/img/dobleTilde.png";
 
 const ChatItem = ({ msg, image, user, fecha, estado }) => {
-  console.log(fecha);
   return (
     <div
       style={{ animationDelay: `0.8s` }}
