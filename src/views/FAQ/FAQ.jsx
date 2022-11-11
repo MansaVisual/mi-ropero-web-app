@@ -205,7 +205,7 @@ const FAQ = () => {
             >
               <Typography className="answerText">
                 Fácil. Ingresando a{" "}
-                <a href="www.miropero.com.ar">www.miropero.com.ar</a> ,
+                <a href="/">www.miropero.com.ar</a> ,
                 descargate la app (disponibles en IOS y Androide), te registras
                 y listo!
               </Typography>
