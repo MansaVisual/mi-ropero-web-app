@@ -123,6 +123,10 @@
               user-select: none;
               text-align: end;
             }
+            img {
+              width: 15px;
+              height: 15px;
+            }
           }
         }
       }
@@ -165,6 +169,10 @@
             color: #d1d1d1;
             text-align: start;
             font-size: 10px;
+          }
+          img {
+            width: 15px;
+            height: 15px;
           }
         }
       }
