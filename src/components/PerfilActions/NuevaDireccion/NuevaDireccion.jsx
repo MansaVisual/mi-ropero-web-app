@@ -514,7 +514,7 @@ const NuevaDireccion = () => {
               className="input"
               size="small"
               id="codigoPostal"
-              placeholder="1428"
+              placeholder="C1428"
               onChangeCapture={(e) => {
                 handleInputChange(form, setForm);
                 setErrorCodPostal(false);
