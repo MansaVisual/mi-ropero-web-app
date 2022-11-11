@@ -146,6 +146,7 @@ const SearchProductsResults = () => {
       ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
         if (res.status === "success") {
           setProds(res.result.productos);
+          setFiltrosCategoria([])
           setTotalPages(res.result.productos_total_paginas);
         }
         setBuscandoCol(false);
@@ -409,7 +410,6 @@ const SearchProductsResults = () => {
                               rangoPrecio.min !== 0 ||
                               rangoPrecio.max !== 999999
                                 ? () => {
-                                    setFiltrosCategoria([])
                                     setRangoPrecio({ min: 0, max: 999999 });
                                     setPutCategory("");
                                   }
