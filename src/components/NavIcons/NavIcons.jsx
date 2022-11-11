@@ -408,7 +408,7 @@ const NavIcons = () => {
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //------------------|------------------------------
-                console.log(itemURL)
+                console.log(item)
                 url = "/perfil/OFERTAS REALIZADAS";
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
@@ -418,7 +418,7 @@ const NavIcons = () => {
                 url = `/productoCard/${id}`;
               } else if (itemURL.indexOf("/app/profile/offers") !== -1) {
                 //-------------------|-----------------------------
-                console.log(itemURL)
+                console.log(item)
                 url = "/perfil/OFERTAS REALIZADAS";
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
