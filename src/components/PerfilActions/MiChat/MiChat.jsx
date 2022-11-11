@@ -61,6 +61,7 @@ const MiChat = () => {
                   : res.result[0].producto.imagenes[0].imagen_chica,
               idMensaje: res.result[ii].idmensaje,
               fecha: res.result[ii].fecha,
+              estado: res.result[ii].estado,
             });
           }
           setChatActual(array);
@@ -168,6 +169,7 @@ const MiChat = () => {
                       msg={itm.msg}
                       image={itm.image}
                       fecha={itm.fecha.slice(0, -3)}
+                      estado={itm.estado}
                     />
                   );
                 })}
