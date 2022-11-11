@@ -158,8 +158,8 @@ const ViewCloset = () => {
             setProds(res.result)
             setTotalPages(Number(res.result.search_productos_total_paginas));
           }
-          setBuscandoRoperos(false);
         });
+        setBuscandoRoperos(false);
       }
     }
   };
@@ -631,7 +631,7 @@ const ViewCloset = () => {
                 })}
             </Grid>
           )}
-          {buscandoRoperos && prods!==undefined && prods.length!==0 && (
+          {!buscandoRoperos && prods!==undefined && prods.length!==0 && (
             <Box
               sx={{
                 display: "flex",
