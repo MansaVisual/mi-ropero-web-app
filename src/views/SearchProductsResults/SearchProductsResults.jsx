@@ -74,6 +74,7 @@ const SearchProductsResults = () => {
       behavior: "auto",
     });
 
+    console.log("HOLAAAAAAAAAAAAAAAAAA")
     setBuscandoProds(true);
     setProds([]);
     setPutFilters([]);
