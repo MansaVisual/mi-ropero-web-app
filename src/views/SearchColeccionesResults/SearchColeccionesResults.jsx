@@ -410,9 +410,8 @@ const SearchProductsResults = () => {
                               rangoPrecio.min !== 0 ||
                               rangoPrecio.max !== 999999
                                 ? () => {
-                                    setPutCategory("");
                                     setRangoPrecio({ min: 0, max: 999999 });
-                                    busquedaPrimera();
+                                    setPutCategory("");
                                   }
                                 : null
                             }
