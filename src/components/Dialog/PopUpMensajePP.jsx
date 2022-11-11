@@ -7,7 +7,7 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
 
-const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
+const PopUpMensajePP = ({ setOpenMessagePop, prod,descripcion }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -73,12 +73,13 @@ const PopUpMensajePP = ({ openMessagePop, setOpenMessagePop, prod }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">
-            {error ? "¡ERROR!" : "¡ENVIÁ UN MENSAJE!"}
+            {error ? "¡ERROR!" : descripcion===undefined?"¡ENVIÁ UN MENSAJE!":"TIENDA PAUSADA"}
           </p>
           <p className="popUpDescription">
-            Sacate todas las dudas que tengas escribiéndole al vendedor/a.
-            Recordá que no podés ingresar información de contacto como
-            direcciones de email, números de teléfono, etc.
+            {descripcion===undefined?
+            "Sacate todas las dudas que tengas escribiéndole al vendedor/a. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc."
+            :
+            descripcion}
           </p>
           <p className="popUpTitle">Tu mensaje para el vendedor/a</p>
 

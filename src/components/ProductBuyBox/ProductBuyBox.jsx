@@ -89,6 +89,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       return
     }
     if(prod.tienda.dias_sin_actividad>=20){
+      setOpenMessagePop(true)
       Swal.fire({
         title: "TIENDA PAUSADA",
         text: "La tienda se encuentra pausada en este momento.",
@@ -329,6 +330,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                   setOpenMessagePop={setOpenMessagePop}
                   openMessagePop={openMessagePop}
                   prod={prod}
+                  descripcion={"La tienda se encuentra pausada en este momento."}
                 />
               )}
             </Box>
