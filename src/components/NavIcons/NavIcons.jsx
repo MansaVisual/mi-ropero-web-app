@@ -396,7 +396,9 @@ const NavIcons = () => {
             let itemURL = item.url;
 
             if (i <= 7) {
-              if (itemURL.indexOf("/app/profile-showroom/sales-detail") !== -1) {
+              if (
+                itemURL.indexOf("/app/profile-showroom/sales-detail") !== -1
+              ) {
                 //-----------------------|-------------------------
                 url = "/mantenimiento";
               } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
@@ -410,7 +412,6 @@ const NavIcons = () => {
                 //------------------|------------------------------
 
                 url = "/mantenmiento";
-                
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
                 let buscarI2 = itemURL.indexOf("&backLink");
@@ -419,9 +420,9 @@ const NavIcons = () => {
                 url = `/productoCard/${id}`;
               } else if (itemURL.indexOf("/app/profile/offers") !== -1) {
                 //-------------------|-----------------------------
-                if(item.titulo==="Rechazaron tu oferta"){
+                if (item.titulo === "Rechazaron tu oferta") {
                   url = "/perfil/OFERTAS REALIZADAS/rechazadas";
-                }else if(item.titulo==="Aceptaron tu oferta"){
+                } else if (item.titulo === "Aceptaron tu oferta") {
                   url = "/perfil/OFERTAS REALIZADAS/aceptadas";
                 }
               } else if (
@@ -437,11 +438,12 @@ const NavIcons = () => {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("idtienda=");
                 id = itemURL.substring(buscarI + 9, itemURL.length);
-                console.log(id)
+                console.log(id);
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                CartAPI(llamada, "tiendas", "detail").then((res) => {console.log(res)
+                CartAPI(llamada, "tiendas", "detail").then((res) => {
+                  console.log(res);
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
                   } else {
@@ -713,6 +715,7 @@ const NavIcons = () => {
                   </Box>
                   <Box sx={{ pt: "10px" }}>
                     {carrito.map((prod, i) => {
+                      console.log(carrito, prod);
                       return (
                         <Fragment key={i}>
                           <Box
