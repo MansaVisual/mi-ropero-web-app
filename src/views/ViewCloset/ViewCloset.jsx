@@ -84,6 +84,8 @@ const ViewCloset = () => {
           }
           setColeccion({ productos_categorias: arrayCol });
           setTienda(res.result);
+          console.log(res.result.search_productos_total_paginas)
+          console.log(Number(res.result.search_productos_total_paginas))
           setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
