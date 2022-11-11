@@ -112,7 +112,7 @@ const SearchClosetResults = () => {
                       ? keyword.substring(0, 15) + "..."
                       : keyword : ""
                   ]} />
-                {bestRoperos !== undefined && bestRoperos.length !== 0 && (
+                {/* {bestRoperos !== undefined && bestRoperos.length !== 0 && (
                   <Typography
                     sx={{
                       fontSize: theme.typography.fontSize[9],
@@ -123,7 +123,7 @@ const SearchClosetResults = () => {
                   >
                     Top Roperos 🔥
                   </Typography>
-                )}
+                )} */}
               </Box>
             ) : (
               <>
@@ -171,7 +171,7 @@ const SearchClosetResults = () => {
                     ? "ropero"
                     : "roperos"}
                 </Typography>
-                {bestRoperos !== undefined && bestRoperos.length !== 0 && (
+                {/* {bestRoperos !== undefined && bestRoperos.length !== 0 && (
                   <Typography
                     sx={{
                       fontSize: theme.typography.fontSize[9],
@@ -187,7 +187,7 @@ const SearchClosetResults = () => {
                   bestRoperos.length !== 0 &&
                   bestRoperos.map((option, i) => {
                     return <>{i < 3 && <ClosetCard ropero={option} />}</>;
-                  })}
+                  })} */}
               </>
             )}
           </Grid>
