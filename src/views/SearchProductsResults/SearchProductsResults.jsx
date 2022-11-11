@@ -178,9 +178,9 @@ const SearchProductsResults = () => {
         }
       });
     }
-    catProd.append("bypage", 15);
+    catProd.append("bypage", 30);
     catProd.append("page", 0);
-    ProdAPI(catProd, "productos", "search").then((res) => {
+    ProdAPI(catProd, "productos", "search").then((res) => {console.log(res)
       setBuscandoProds(false);
       if (res.status === "success") {
         setProds(res.result.productos);
