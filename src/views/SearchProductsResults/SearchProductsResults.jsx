@@ -122,14 +122,14 @@ const SearchProductsResults = () => {
       const col=new FormData()
       col.append("text",keyword)
       col.append("idcategoria",idCat)
-      col.append("bypage",15)
+      col.append("bypage",30)
       col.append("page",0)
 
       ProdAPI(
           col,
           "productos",
           "search"
-      ).then((res)=>{
+      ).then((res)=>{console.log(res)
         if(res.status==="success"){
           const catFilters = new FormData();
           catFilters.append("idcategoria", idCat);
