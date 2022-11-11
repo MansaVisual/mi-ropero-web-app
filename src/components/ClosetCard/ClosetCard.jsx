@@ -79,7 +79,7 @@ console.log(ropero)
                     mr: "5px",
                   }}
                 >
-                  {ropero.productos.length} {ropero.productos.length===1?"producto":"productos"}
+                  {ropero.productos_total} {ropero.productos_total===1?"producto":"productos"}
                 </Typography>
                 <Rating
                   name="read-only"

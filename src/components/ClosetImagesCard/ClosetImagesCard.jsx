@@ -29,6 +29,7 @@ const ClosetImagesCard = ({
     idtienda,
     seguidores_count,
     seguidores,
+    productos_total
   },
   keyword,
 }) => {
@@ -171,8 +172,8 @@ const ClosetImagesCard = ({
                             mr: "5px",
                           }}
                         >
-                          {productos.length}{" "}
-                          {productos.length === 1 ? "producto" : "productos"}
+                          {productos_total}{" "}
+                          {productos_total === 1 ? "producto" : "productos"}
                         </Typography>
                         <Rating
                           name="read-only"
