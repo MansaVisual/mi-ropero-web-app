@@ -16,7 +16,7 @@ const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
       buscarPage(false,value-1)
     }
   };
-
+console.log(cantidad)
   return (
     <MuiPagination
       count={cantidad}
