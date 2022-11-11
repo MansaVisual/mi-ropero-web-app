@@ -157,7 +157,7 @@ const NuevaDireccion = () => {
 
     FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
       console.log("operacion normalize", res);
-      console.table(Object.fromEntries(formDireccion));
+      console.table(Object.fromEntries("operacion norm append", formDireccion));
       if (
         res.status === "success" &&
         res.result[0].calle !== "" &&
@@ -199,8 +199,8 @@ const NuevaDireccion = () => {
       dir.append("informacion_adicional", direccion.informacion_adicional);
       dir.append("normalized", direccion.raw_data);
       FormAPI(dir, "direcciones", "insert").then(async (res) => {
-        console.log(res);
-        console.table(Object.fromEntries(dir));
+        console.log("direcciones insert res", res);
+        console.table("direcciones insert dir", Object.fromEntries(dir));
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
