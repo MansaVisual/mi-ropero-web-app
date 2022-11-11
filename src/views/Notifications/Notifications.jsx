@@ -177,7 +177,7 @@ useEffect(()=>{
             if (i <= 7) {
               if (itemURL.indexOf("/app/profile-showroom/sales") !== -1) {
                 //-----------------------|-------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("/app/profile/messages?id=");

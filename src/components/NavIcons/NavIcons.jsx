@@ -396,9 +396,9 @@ const NavIcons = () => {
             let itemURL = item.url;
 
             if (i <= 7) {
-              if (itemURL.indexOf("/app/profile-showroom/sales") !== -1) {
+              if (itemURL.indexOf("/app/profile-showroom/sales-detail") !== -1) {
                 //-----------------------|-------------------------
-                url = "/perfil";
+                url = "/mantenimiento";
               } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("/app/profile/messages?id=");
@@ -408,11 +408,9 @@ const NavIcons = () => {
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //------------------|------------------------------
-                if(item.titulo==="Rechazaron tu oferta"){
-                  url = "/perfil/OFERTAS REALIZADAS/rechazadas";
-                }else if(item.titulo==="Aceptaron tu oferta"){
-                  url = "/perfil/OFERTAS REALIZADAS/aceptadas";
-                }
+
+                url = "/mantenmiento";
+                
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
                 let buscarI2 = itemURL.indexOf("&backLink");
