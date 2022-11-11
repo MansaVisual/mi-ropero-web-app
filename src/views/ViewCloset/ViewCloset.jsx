@@ -84,13 +84,13 @@ const ViewCloset = () => {
           }
           setColeccion({ productos_categorias: arrayCol });
           setTienda(res.result);
-          setTotalPages(res.result.search_productos_total_paginas);
+          setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
       });
     }
   }, [closetId]); // eslint-disable-line react-hooks/exhaustive-deps
-console.log(totalPages)
+
   useEffect(() => {
     setBuscandoRoperos(true);
     window.scrollTo({
@@ -131,7 +131,7 @@ console.log(totalPages)
         if (res.status === "success") {
           setFiltrosCategoria(res.result.search_productos_categorias[0].hijas[0].caracteristicas)
           setProds(res.result);
-          setTotalPages(res.result.productos_total_paginas);
+          setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
       });
@@ -154,7 +154,7 @@ console.log(totalPages)
             }
             setColeccion({ productos_categorias: arrayCol });
             setProds(res.result)
-            setTotalPages(res.result.search_productos_total_paginas);
+            setTotalPages(Number(res.result.search_productos_total_paginas));
           }
           setBuscandoRoperos(false);
         });
@@ -270,7 +270,7 @@ console.log(totalPages)
       ProdAPI(prod, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
           setProds(res.result)
-          setTotalPages(res.result.search_productos_total_paginas);
+          setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
       });
