@@ -74,7 +74,6 @@ const SearchProductsResults = () => {
       behavior: "auto",
     });
 
-    console.log("HOLAAAAAAAAAAAAAAAAAA")
     setBuscandoProds(true);
     setProds([]);
     setPutFilters([]);
@@ -460,7 +459,7 @@ const SearchProductsResults = () => {
                           rangoPrecio={rangoPrecio}
                           setRangoPrecio={setRangoPrecio}
                           categoriasSearch={categorias}
-                          putCategory={putCategory}
+                          putCategory={keyword}
                           setPutCategory={setPutCategory}
                         />
                       </Box>
@@ -547,7 +546,7 @@ const SearchProductsResults = () => {
                   rangoPrecio={rangoPrecio}
                   setRangoPrecio={setRangoPrecio}
                   categoriasSearch={search!==undefined?categorias:undefined}
-                  putCategory={putCategory}
+                  putCategory={keyword}
                   setPutCategory={setPutCategory}
                 />
               </>
