@@ -79,7 +79,7 @@ const SearchProductsResults = () => {
     setPutFilters([]);
     setPutSort("");
     setTotalPages(0);
-
+    setPags(1)
     if (
       categorias !== undefined &&
       categorias.length !== 0 &&
