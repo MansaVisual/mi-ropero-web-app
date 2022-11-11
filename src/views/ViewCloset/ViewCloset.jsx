@@ -72,7 +72,7 @@ const ViewCloset = () => {
       ropero.append("idtienda", closetId);
       ropero.append("page", 0);
       ropero.append("bypage", 15);
-      ProdAPI(ropero, "tiendas", "detail").then((res) => {
+      ProdAPI(ropero, "tiendas", "detail").then((res) => {console.log(res)
         if (res.status === "success") {
           let arrayCol = [];
           for (const i in res.result.search_productos_categorias) {
