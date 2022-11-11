@@ -43,7 +43,10 @@ const MiChat = () => {
           setProductoId(res.result[0].producto.idproducto);
           let array = [];
           for (const ii in res.result) {
-            if (res.result[ii].estado === "1") {
+            if (
+              res.result[ii].estado === "1" &&
+              res.result[ii].cliente_email !== infoUser.email
+            ) {
               const msg = new FormData();
               msg.append("idcliente", userLog);
               msg.append("idmensaje", res.result[ii].idmensaje);
