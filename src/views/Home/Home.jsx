@@ -232,7 +232,7 @@ const Home = () => {
                   fontWeight: "700",
                 },
               }}
-              onClick={() => navigate(`/productos/Bluse&top`)}
+              onClick={() => navigate(`/productos/Blusa&top`)}
             >
               VER TODO BLUSA/TOP
             </Link>
