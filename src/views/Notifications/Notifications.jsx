@@ -187,7 +187,11 @@ useEffect(()=>{
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //------------------|------------------------------
-                url = "/perfil/OFERTAS REALIZADAS";
+                if(item.titulo==="Rechazaron tu oferta"){
+                  url = "/perfil/OFERTAS REALIZADAS/rechazadas";
+                }else if(item.titulo==="Aceptaron tu oferta"){
+                  url = "/perfil/OFERTAS REALIZADAS/aceptadas";
+                }
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
                 let buscarI2 = itemURL.indexOf("&backLink");
@@ -196,7 +200,11 @@ useEffect(()=>{
                 url = `/productoCard/${id}`;
               } else if (itemURL.indexOf("/app/profile/offers") !== -1) {
                 //-------------------|-----------------------------
-                url = "/perfil/OFERTAS REALIZADAS";
+                if(item.titulo==="Rechazaron tu oferta"){
+                  url = "/perfil/OFERTAS REALIZADAS/rechazadas";
+                }else if(item.titulo==="Aceptaron tu oferta"){
+                  url = "/perfil/OFERTAS REALIZADAS/aceptadas";
+                }
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
               ) {
