@@ -97,6 +97,7 @@ const NuevaDireccion = () => {
   };
 
   const checkNuevaDireccion = async () => {
+    console.log("checkdir start");
     setLoader(true);
     if (document.getElementById("alias").value === "") {
       throwError("alias", "labelAlias");
@@ -155,7 +156,7 @@ const NuevaDireccion = () => {
     );
 
     FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
-      console.log(res);
+      console.log("operacion normalize", res);
       console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
@@ -179,6 +180,7 @@ const NuevaDireccion = () => {
   };
 
   useEffect(() => {
+    console.log("guardarDir:direccion", direccion);
     if (guardarDireccion) {
       const dir = new FormData();
       dir.append("idcliente", userLog);
