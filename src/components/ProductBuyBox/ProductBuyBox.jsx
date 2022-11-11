@@ -90,12 +90,12 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
     }
     if(prod.tienda.dias_sin_actividad>=20){
       setOpenMessagePop(true)
-      Swal.fire({
-        title: "TIENDA PAUSADA",
-        text: "La tienda se encuentra pausada en este momento.",
-        icon: "info",
-        confirmButtonText: "ACEPTAR",
-      });
+      // Swal.fire({
+      //   title: "TIENDA PAUSADA",
+      //   text: "La tienda se encuentra pausada en este momento.",
+      //   icon: "info",
+      //   confirmButtonText: "ACEPTAR",
+      // });
       setLoad(false)
       return
     }
