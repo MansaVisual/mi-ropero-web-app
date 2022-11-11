@@ -10,7 +10,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -44,8 +44,6 @@ const SearchProductsResults = () => {
   const { coleccionName, idColeccion } = useParams();
   const { ColeccionAPI } = useContext(UseColeccionContext);
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { categorias, ProdAPI } = useContext(UseProdsContext);
@@ -104,6 +102,7 @@ const SearchProductsResults = () => {
   }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const busquedaPrimera = () => {
+    setFiltrosCategoria([])
     setPutSort("");
     setPutFilters([]);
     setPags(1);
@@ -121,12 +120,17 @@ const SearchProductsResults = () => {
 
       ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log("RESPUESTA API",res)
         if (res.status === "success") {
-          setFiltrosCategoria(
-            res.result.productos_categorias[0].caracteristica
-          );
+          for(const i in res.result.productos_categorias){
+            if(res.result.idcoleccion[i] === idColeccion){
+              setFiltrosCategoria(
+                res.result.productos_categorias[i].caracteristica
+              );
+            }
+          }
           setProds(res.result.productos);
           setTotalPages(res.result.productos_total_paginas);
         } else if (res.status === "error") {
+          setFiltrosCategoria([])
           setProds([]);
           setTotalPages(0);
         }
