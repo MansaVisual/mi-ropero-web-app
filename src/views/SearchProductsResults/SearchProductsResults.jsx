@@ -74,12 +74,13 @@ const SearchProductsResults = () => {
       behavior: "auto",
     });
 
+    console.log("HOLAAAAAAAAAAAAAAAAAA")
     setBuscandoProds(true);
     setProds([]);
     setPutFilters([]);
     setPutSort("");
     setTotalPages(0);
-
+    setPags(1)
     if (
       categorias !== undefined &&
       categorias.length !== 0 &&
@@ -101,6 +102,7 @@ const SearchProductsResults = () => {
   useEffect(() => {
     if(putCategory!==""){
       setLoad2(true)
+      setPags(1)
       window.scrollTo({
         top: 0,
         behavior: 'auto',
@@ -239,6 +241,7 @@ const SearchProductsResults = () => {
     catProd.append("bypage", 15);
 
     catProd.append("page", value);
+    console.log(Object.fromEntries(catProd))
 
     ProdAPI(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
