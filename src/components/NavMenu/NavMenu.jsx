@@ -11,6 +11,7 @@ import {
   AppBar,
   IconButton,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import isologoMR from "../../assets/img/isologoMR2.svg";
 import theme from "../../styles/theme";
@@ -164,6 +165,9 @@ const NavMenu = () => {
               </ListItem>
             );
           })}
+          <Typography className="roperosMobile"
+            onClick={()=>navigate("/roperos")}
+          >ROPEROS</Typography>
           <ListItem
             sx={{
               color: theme.palette.secondary.main,
