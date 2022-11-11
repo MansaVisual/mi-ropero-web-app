@@ -157,7 +157,7 @@ const NuevaDireccion = () => {
 
     FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
       console.log("operacion normalize", res);
-      console.table(Object.fromEntries("operacion norm append", formDireccion));
+      console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
         res.result[0].calle !== "" &&
