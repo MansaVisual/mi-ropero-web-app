@@ -70,6 +70,10 @@ const Tarjeta = ({
           );
           window.top.location.href = res.result.init_point;
         } else {
+          await localStorage.setItem(
+            "metodoEnvioMiRopero",
+            JSON.stringify(metodoEnvio)
+          );
           await localStorage.setItem("compraFinalizadaMP","activo")
           setTimeout(() => {
             setTypeNav("check");
