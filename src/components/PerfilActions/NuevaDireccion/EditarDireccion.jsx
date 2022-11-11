@@ -237,6 +237,10 @@ const EditarDireccion = () => {
   };
 
   useEffect(() => {
+    console.log(Number(infoLocFinal.idprovincia));
+    console.log(Number(infoLocFinal.idprovincia));
+    console.log(direccionSelecc.idprovincia);
+    console.log(direccionSelecc.idlocalidad);
     if (guardarDireccion) {
       const formDireccion = new FormData();
       formDireccion.append("iddireccion", direccionSelecc.iddireccion);
