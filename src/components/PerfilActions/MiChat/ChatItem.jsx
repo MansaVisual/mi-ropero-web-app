@@ -1,7 +1,8 @@
 import React from "react";
 import Avatar from "./Avatar";
+import dobleTilde from "../../../assets/img/dobleTilde.png";
 
-const ChatItem = ({ msg, image, user, fecha }) => {
+const ChatItem = ({ msg, image, user, fecha, estado }) => {
   console.log(fecha);
   return (
     <div
@@ -12,6 +13,7 @@ const ChatItem = ({ msg, image, user, fecha }) => {
         <p className="chatMsg">{msg}</p>
         <div className="chatMeta">
           <span>{fecha}</span>
+          {estado === "2" && <img src={dobleTilde} alt="dobleTilde" />}
         </div>
       </div>
       <Avatar isOnline="active" image={image} />
