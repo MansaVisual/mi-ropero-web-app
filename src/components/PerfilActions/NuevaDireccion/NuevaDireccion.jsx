@@ -97,6 +97,7 @@ const NuevaDireccion = () => {
   };
 
   const checkNuevaDireccion = async () => {
+    console.log("checkdir start");
     setLoader(true);
     if (document.getElementById("alias").value === "") {
       throwError("alias", "labelAlias");
@@ -155,7 +156,7 @@ const NuevaDireccion = () => {
     );
 
     FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
-      console.log(res);
+      console.log("operacion normalize", res);
       console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
@@ -179,6 +180,7 @@ const NuevaDireccion = () => {
   };
 
   useEffect(() => {
+    console.log("guardarDir:direccion", direccion);
     if (guardarDireccion) {
       const dir = new FormData();
       dir.append("idcliente", userLog);
@@ -197,8 +199,8 @@ const NuevaDireccion = () => {
       dir.append("informacion_adicional", direccion.informacion_adicional);
       dir.append("normalized", direccion.raw_data);
       FormAPI(dir, "direcciones", "insert").then(async (res) => {
-        console.log(res);
-        console.table(Object.fromEntries(dir));
+        console.log("direcciones insert res", res);
+        console.table("direcciones insert dir", Object.fromEntries(dir));
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {
