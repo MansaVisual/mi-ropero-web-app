@@ -484,7 +484,11 @@ const BoxRegister = () => {
       </div>
       <p className="bottomText">
         Al oprimir REGISTRÁTE se aceptan los{" "}
-        <span className="spanLink" style={{ cursor: "pointer" }}>
+        <span
+          className="spanLink"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("terminos&y&condiciones")}
+        >
           términos y condiciones
         </span>{" "}
         de Mi Ropero.
