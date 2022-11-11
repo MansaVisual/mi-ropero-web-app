@@ -178,9 +178,10 @@ const SearchProductsResults = () => {
         }
       });
     }
+    console.log("PRUEBAS",Object.fromEntries(catProd))
     catProd.append("bypage", 30);
     catProd.append("page", 0);
-    ProdAPI(catProd, "productos", "search").then((res) => {console.log(res)
+    ProdAPI(catProd, "productos", "search").then((res) => {console.log("ERROR DESDE ACA",res)
       setBuscandoProds(false);
       if (res.status === "success") {
         setProds(res.result.productos);
