@@ -18,7 +18,6 @@ console.log(ropero)
       sx={{
         maxWidth: 254,
         mb: "16px",
-        minWidth:"317px",
       }}
     >
       <CardContent
@@ -30,7 +29,6 @@ console.log(ropero)
           alignItems: "center",
           p: "10px",
           paddingBottom: "10px",
-          minWidth:"317px",
           "&:last-child": {
             paddingBottom: "10px",
             cursor:"pointer"
