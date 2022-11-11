@@ -102,7 +102,6 @@ const SearchProductsResults = () => {
   }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const busquedaPrimera = () => {
-    setFiltrosCategoria([])
     setPutSort("");
     setPutFilters([]);
     setPags(1);
@@ -410,6 +409,7 @@ const SearchProductsResults = () => {
                               rangoPrecio.min !== 0 ||
                               rangoPrecio.max !== 999999
                                 ? () => {
+                                    setFiltrosCategoria([])
                                     setRangoPrecio({ min: 0, max: 999999 });
                                     setPutCategory("");
                                   }
