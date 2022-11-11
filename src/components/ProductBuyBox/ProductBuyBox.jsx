@@ -593,6 +593,14 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                 </Typography>
               </Box>
             </Box>
+            {openMessagePop && (
+              <PopUpMensajePP
+                setOpenMessagePop={setOpenMessagePop}
+                openMessagePop={openMessagePop}
+                prod={prod}
+                descripcion={"La tienda se encuentra pausada en este momento."}
+              />
+            )}
           </>
         )}
 
