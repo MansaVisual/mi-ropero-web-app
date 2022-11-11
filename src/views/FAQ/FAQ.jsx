@@ -1334,7 +1334,7 @@ const FAQ = () => {
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
-        <p>VOLVER A MI PERFIL</p>
+        <p>VOLVER A INICIO</p>
       </div>
     </div>
   );
