@@ -28,6 +28,8 @@ const MiChat = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  console.log(infoUser, mensajeId);
+
   useEffect(() => {
     if (!userLog && !mensajeId /* && !infoUser */) {
       navigate("/perfil/MIS MENSAJES");
