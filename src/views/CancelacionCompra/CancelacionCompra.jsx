@@ -54,14 +54,14 @@ const CancelacionCompra = () => {
     const buscarCompra=new FormData()
     buscarCompra.append("idcliente",userLog)
     buscarCompra.append("idoperacion",Number(form.idOperacion))
-    FormAPI(buscarCompra,"operaciones","get").then((res)=>{
+    FormAPI(buscarCompra,"operaciones","get").then((res)=>{console.log(res)
       if(res.result==="success"){
         const data = new FormData();
         data.append("idoperacion", form.idOperacion);
         data.append("mensaje", form.mensaje);
         data.append("remitente", 1);
     
-        FormAPI(data, "reclamos", "insert").then((res) => {
+        FormAPI(data, "reclamos", "insert").then((res) => {console.log(res)
           setLoading(false);
           if (res.status === "success") {
             navigate("/cancelacionCompraOk");
