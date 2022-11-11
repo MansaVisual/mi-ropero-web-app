@@ -9,6 +9,7 @@ const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
 
   const handleChange = (event, value) => {
     setPags(value)
+    console.log(value)
     if(search!==undefined){
       buscarPage(true,value-1)
     }
