@@ -80,6 +80,7 @@ const SearchProductsResults = () => {
     setPutSort("");
     setTotalPages(0);
     setPags(1)
+    setPutCategory(keyword)
     if (
       categorias !== undefined &&
       categorias.length !== 0 &&
