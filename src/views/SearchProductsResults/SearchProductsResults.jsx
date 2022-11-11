@@ -101,6 +101,7 @@ const SearchProductsResults = () => {
   useEffect(() => {
     if(putCategory!==""){
       setLoad2(true)
+      setPags(1)
       window.scrollTo({
         top: 0,
         behavior: 'auto',
