@@ -303,7 +303,7 @@ const SearchClosetResults = () => {
                   gap: "16px",
                 }}
               >
-                {roperos.map((ropero, index) => {
+                {roperos.map((ropero, index) => {console.log("ROPEROS DESDE ACA ", ropero)
                   return (
                     <ClosetImagesCard
                       key={index}
