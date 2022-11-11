@@ -81,7 +81,7 @@ const Filter = (props) => {
       openFilter[key] = false;
     });
   }, [putFilters]); // eslint-disable-line react-hooks/exhaustive-deps
-  
+  console.log(putCategory)
   return (
     <List
       sx={{
