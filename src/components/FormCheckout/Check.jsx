@@ -24,7 +24,7 @@ const CheckForm = ({estadoCompra})=>{
             const compraFinal = localStorage.getItem("compraFinalizadaMP")
             if(compraFinal){
                 setCompraConSaldo0(true)
-                localStorage.delete("compraFinalizadaMP")
+                localStorage.clear("compraFinalizadaMP")
             }
 
             if(saveDireccion){
@@ -51,9 +51,9 @@ const CheckForm = ({estadoCompra})=>{
                     "direcciones",
                     "insert"
                 )
-                localStorage.delete("newDireccionMiRopero")
-                localStorage.delete("metodoEnvioMiRopero")
-                localStorage.delete("saveDireccionMiRopero")
+                localStorage.clear("newDireccionMiRopero")
+                localStorage.clear("metodoEnvioMiRopero")
+                localStorage.clear("saveDireccionMiRopero")
             }
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
