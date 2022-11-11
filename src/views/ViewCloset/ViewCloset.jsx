@@ -84,7 +84,9 @@ const ViewCloset = () => {
           }
           setColeccion({ productos_categorias: arrayCol });
           setTienda(res.result);
-          setTotalPages(res.result.search_productos_total_paginas);
+          console.log(res.result.search_productos_total_paginas)
+          console.log(Number(res.result.search_productos_total_paginas))
+          setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
       });
@@ -131,7 +133,7 @@ const ViewCloset = () => {
         if (res.status === "success") {
           setFiltrosCategoria(res.result.search_productos_categorias[0].hijas[0].caracteristicas)
           setProds(res.result);
-          setTotalPages(res.result.productos_total_paginas);
+          setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
       });
@@ -154,7 +156,7 @@ const ViewCloset = () => {
             }
             setColeccion({ productos_categorias: arrayCol });
             setProds(res.result)
-            setTotalPages(res.result.search_productos_total_paginas);
+            setTotalPages(Number(res.result.search_productos_total_paginas));
           }
           setBuscandoRoperos(false);
         });
@@ -270,7 +272,7 @@ const ViewCloset = () => {
       ProdAPI(prod, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
           setProds(res.result)
-          setTotalPages(res.result.search_productos_total_paginas);
+          setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);
       });

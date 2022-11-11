@@ -86,7 +86,7 @@ const SearchProductsResults = () => {
       if (res.status === "success") {
         setColeccion(res.result);
         setProds(res.result.productos);
-        setTotalPages(res.result.productos_total_paginas);
+        setTotalPages(Number(res.result.productos_total_paginas));
       }
       setLoad2(false);
     });
@@ -102,7 +102,6 @@ const SearchProductsResults = () => {
   }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const busquedaPrimera = () => {
-    setFiltrosCategoria([])
     setPutSort("");
     setPutFilters([]);
     setPags(1);
@@ -129,7 +128,7 @@ const SearchProductsResults = () => {
             }
           }
           setProds(res.result.productos);
-          setTotalPages(res.result.productos_total_paginas);
+          setTotalPages(Number(res.result.productos_total_paginas));
         } else if (res.status === "error") {
           setFiltrosCategoria([])
           setProds([]);
@@ -147,7 +146,8 @@ const SearchProductsResults = () => {
       ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
         if (res.status === "success") {
           setProds(res.result.productos);
-          setTotalPages(res.result.productos_total_paginas);
+          setFiltrosCategoria([])
+          setTotalPages(Number(res.result.productos_total_paginas));
         }
         setBuscandoCol(false);
         setLoad2(false);
@@ -291,7 +291,7 @@ const SearchProductsResults = () => {
         setBuscandoCol(false);
         if (res.status === "success") {
           setProds(res.result.productos);
-          setTotalPages(res.result.productos_total_paginas);
+          setTotalPages(Number(res.result.productos_total_paginas));
         } else if (
           res.result === "No se encontraron producto para la coleccion"
         ) {
