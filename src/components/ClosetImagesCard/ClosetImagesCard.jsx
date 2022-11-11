@@ -85,6 +85,8 @@ const ClosetImagesCard = ({
     });
   };
 
+  console.log(productos)
+
   return (
     <Box sx={{ maxWidth: { sm: "420px" }, minWidth: { sm: "420px" } }}>
       <Box>
@@ -92,7 +94,7 @@ const ClosetImagesCard = ({
           sx={{
             position: "relative",
             boxSizing: "border-box",
-            minWidth: "270px",
+            minWidth: "317px",
             "&.MuiImageList-root": {
               overflow: "hidden",
               borderRadius: "12px",

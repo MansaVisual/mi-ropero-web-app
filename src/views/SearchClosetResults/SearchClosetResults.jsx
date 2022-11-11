@@ -54,7 +54,7 @@ const SearchClosetResults = () => {
     if (keyword !== undefined) {
       busqueda.append("text", keyword);
     }
-    ProdAPI(busqueda, "tiendas", "search").then((res) => {
+    ProdAPI(busqueda, "tiendas", "search").then((res) => {console.log(res)
       if (res.status === "success") {
         setTotalProds(res.result.total);
         setRoperos(res.result.tiendas);
@@ -303,7 +303,7 @@ const SearchClosetResults = () => {
                   gap: "16px",
                 }}
               >
-                {roperos.map((ropero, index) => {
+                {roperos.map((ropero, index) => {console.log("ROPEROS DESDE ACA ", ropero)
                   return (
                     <ClosetImagesCard
                       key={index}

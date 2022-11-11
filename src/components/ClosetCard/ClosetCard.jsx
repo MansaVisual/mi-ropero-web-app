@@ -29,7 +29,6 @@ console.log(ropero)
           alignItems: "center",
           p: "10px",
           paddingBottom: "10px",
-          minWidth:"317px",
           "&:last-child": {
             paddingBottom: "10px",
             cursor:"pointer"
