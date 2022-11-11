@@ -54,7 +54,7 @@ const SearchClosetResults = () => {
     if (keyword !== undefined) {
       busqueda.append("text", keyword);
     }
-    ProdAPI(busqueda, "tiendas", "search").then((res) => {
+    ProdAPI(busqueda, "tiendas", "search").then((res) => {console.log(res)
       if (res.status === "success") {
         setTotalProds(res.result.total);
         setRoperos(res.result.tiendas);
