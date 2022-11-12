@@ -589,6 +589,7 @@ const SearchProductsResults = () => {
                         tag="NUEVO"
                         datosTienda={product.tienda}
                         precioOferta={product.precio_oferta}
+                        paginaProductos={true}
                       />
                     );
                   })

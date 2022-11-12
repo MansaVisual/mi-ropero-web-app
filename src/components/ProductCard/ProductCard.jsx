@@ -25,6 +25,7 @@ const ProductCard = ({
   itemFav,
   precioOferta,
   idTienda,
+  paginaProductos
 }) => {
   const { userLog, infoUser } = useContext(UseLoginContext);
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const ProductCard = ({
   return (
     <Card
       sx={{
-        width: { xs: "160px", sm: "220px", md: "264px", xl: "264px" },
+        width: { xs: "160px", sm: paginaProductos?"200px":"220px", md: paginaProductos?"220px":"264px", xl: "264px" },
         position: "relative",
         overflow: "hidden",
         borderRadius: "10px",
