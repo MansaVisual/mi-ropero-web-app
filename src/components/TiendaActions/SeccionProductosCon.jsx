@@ -1,16 +1,25 @@
-import React, { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "../../assets/img/MiTiendaBanner.svg";
 import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
+import iconHide from "../../assets/img/iconHide.svg";
+import iconShow from "../../assets/img/iconShow.svg";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { UseLoginContext } from "../../context/LoginContext";
 
-const MiTiendaConProd = () => {
+const SeccionProductosCon = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+  const navigate = useNavigate();
 
   const { infoUser } = useContext(UseLoginContext);
+
+  const [notificationsOff, setNotificationsOff] = useState(false);
+  const [closeSession, setCloseSession] = useState(false);
+  const [deleteAccount, setDeleteAccount] = useState(false);
+
+  const [showMoney, setShowMoney] = useState(false);
 
   const prods = [
     {
@@ -23,7 +32,7 @@ const MiTiendaConProd = () => {
 
   console.log(infoUser);
   return (
-    <div className="MiTiendaConProd">
+    <div className="seccionProductosCon">
       <div className="breadcrumbs">
         <Breadcrumbs links={pathnames} />
       </div>
@@ -37,8 +46,20 @@ const MiTiendaConProd = () => {
           <div className="moneyCount">
             <div>
               <p>Cuenta corriente</p>
-              <span>$30.713,02</span>
-              {/* <img src="" alt="" /> */}
+              <span>{showMoney ? "$30.713,02" : "$**.***.**"}</span>
+              {showMoney ? (
+                <img
+                  src={iconHide}
+                  alt="iconHide"
+                  onClick={() => setShowMoney(false)}
+                />
+              ) : (
+                <img
+                  src={iconShow}
+                  alt="iconShow"
+                  onClick={() => setShowMoney(true)}
+                />
+              )}
             </div>
             <button>SOLICITAR TRANSFERENCIA</button>
           </div>
@@ -74,9 +95,8 @@ const MiTiendaConProd = () => {
                     </p>
                   </div>
                 </div>
-                <div className="rigthSide" style={{ display: "flex" }}>
-                  <p>${product.precio}</p>
-
+                <div className="ofertaData">
+                  <p className="monto">${product.precio}</p>
                   <img
                     onClick={() => {
                       /* setBorrarMsj(true);
@@ -91,9 +111,39 @@ const MiTiendaConProd = () => {
             );
           })}
         </div>
+        <div className="buttonContainer">
+          <button
+            onClick={() => {
+              navigate(`/MiTienda/CATEGORIA`);
+            }}
+          >
+            AGREGAR PRODUCTO
+          </button>
+        </div>
+        <div className="bottomSection">
+          <div className="bottomOptions">
+            <button>Acerca de la aplicación</button>
+            <button>Califica la aplicación</button>
+            {/* <button
+              onClick={() => setNotificationsOff(true)}
+              style={{ color: "#423B3C" }}
+            >
+              Desactivar notificaciones
+            </button> */}
+            <button
+              onClick={() => setCloseSession(true)}
+              style={{ color: "#FF3F20" }}
+            >
+              Cerrar Sesión
+            </button>
+            <button onClick={() => setDeleteAccount(true)}>
+              Eliminar mi cuenta
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default MiTiendaConProd;
+export default SeccionProductosCon;

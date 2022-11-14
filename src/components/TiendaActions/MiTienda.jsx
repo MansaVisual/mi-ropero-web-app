@@ -1,59 +1,84 @@
-import React, { useEffect } from "react";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import tienda from "../../assets/img/tienda.png";
-import { Button } from "@mui/material";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-import MiTiendaConProd from "./MiTiendaConProd";
+import TiendaCalif from "../../assets/img/TiendaCalif.svg";
+import TiendaDatos from "../../assets/img/TiendaDatos.svg";
+import TiendaMensajes from "../../assets/img/TiendaMensajes.svg";
+import TiendaOfertas from "../../assets/img/TiendaOfertas.svg";
+import TiendaProductos from "../../assets/img/TiendaProductos.svg";
+import TiendaTransfer from "../../assets/img/TiendaTransfer.svg";
+import TiendaVentas from "../../assets/img/TiendaVentas.svg";
+import TiendaBanner from "../TiendaBanner/TiendaBanner";
 
 const MiTienda = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "auto",
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const sections = [
+    // {
+    //   name: 'MI TIENDA',
+    //   icon: miTienda,
+    // },
+    {
+      name: "DATOS DE LA TIENDA",
+      icon: TiendaDatos,
+    },
+    {
+      name: "PRODUCTOS",
+      icon: TiendaProductos,
+    },
+    {
+      name: "VENTAS",
+      icon: TiendaVentas,
+    },
+    {
+      name: "OFERTAS RECIBIDAS",
+      icon: TiendaOfertas,
+    },
+    {
+      name: "MENSAJES",
+      icon: TiendaMensajes,
+    },
+    {
+      name: "CALIFICACIONES",
+      icon: TiendaCalif,
+    },
 
-  const prod = [
-    /*  {
-      prodName: "facu",
-    }, */
+    {
+      name: "TRANSFERENCIAS",
+      icon: TiendaTransfer,
+    },
   ];
 
   return (
-    <>
-      {prod.length > 0 ? (
-        <MiTiendaConProd />
-      ) : (
-        <div className="TiendaContainer">
-          <div className="breadcumbs">
-            <Breadcrumbs links={pathnames} />
-          </div>
-          <div className="contenedorInfo">
-            <p className="title">¡ABRÍ TU TIENDA!</p>
-            <p className="text">
-              Publica tu primer producto para habilitar tu tienda en Mi Ropero
-            </p>
-            <img src={tienda} alt="TIENDA" />
-            <Button
-              className="agregarProd"
-              onClick={() => navigate(`/MiTienda/CATEGORIA`)}
-            >
-              AGREGAR PRODUCTO
-            </Button>
-          </div>
-          <div className="returnLink" onClick={() => navigate(`/perfil`)}>
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A INICIO</p>
-          </div>
+    <div className="miTiendaContainer">
+      <TiendaBanner />
+      <div className="container">
+        <div className="tiendaSections">
+          {sections.map((section) => {
+            return (
+              <div
+                className="section"
+                onClick={() => navigate(`/MiTienda/${section.name}`)}
+              >
+                <div className="imgBox">
+                  <img src={section.icon} alt="icon" />
+                  <p className="sectionTitleMobile">{section.name}</p>
+                </div>
+                <p className="sectionTitle">{section.name}</p>
+              </div>
+            );
+          })}
         </div>
-      )}
-    </>
+        <div className="returnLink" onClick={() => navigate(`/`)}>
+          <img src={leftArrow} alt="leftArrow" />
+          <p>VOLVER A INICIO</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

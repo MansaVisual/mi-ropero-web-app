@@ -1,75 +1,158 @@
-.TiendaContainer{
-    min-height: 60vh;
-    padding: 0px 76px;
-    display: flex;
-    flex-direction: column;
-    font-style: normal;
-    font-family: 'Open Sans';
-    margin-bottom: 60px;
-    @include screen_1366{
-        min-width: 1366px;
-    }
-    @include screen_900{
-        padding: 0px 16px;
-    }
-    .breadcumbs{
-        margin-top: 72px;
-    }
-    .contenedorInfo{
+.miTiendaContainer {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans";
+  margin-bottom: 60px;
+  .breadcrumbs {
+    margin-top: 72px;
+    margin-left: 72px;
+  }
+  .banner {
+    position: relative;
+    .content {
+      max-width: 449.84px;
+      width: 100%;
+      margin-left: 72px;
+      position: absolute;
+      top: 16px;
+      left: 0;
+      .titleBox {
         display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
+        justify-content: space-between;
+        align-items: baseline;
+        .title {
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 33px;
+          color: #ffffff;
+        }
+        .subTitle {
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 25px;
+          text-decoration-line: underline;
+          color: #ffffff;
+        }
+      }
+      .moneyCount {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        .title{
+        margin-top: 20px;
+        padding: 16px;
+        background: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        div {
+          p {
             font-weight: 700;
-            font-size: 23px;
-            line-height: 31px;
-            color: #FF3F20;
-        }
-        .text{
-            font-weight: 700;
-            font-size: 17px;
-            line-height: 28px;
-            color: #878787;
-            margin-top: 1px;
-            @include screen_900{
-                padding: 0px 72px;
-            }
-            @include screen_506{
-                padding: 0px 16px;
-            }
-        }
-        img{
-            width: 133px;
-            height: 116px;
-        }
-        .agregarProd{
-            padding: 10px 36px;
-            width: 450px;
-            height: 36px;
-            background: #443988;
-            box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
-            border-radius: 20px;
-            color: white;
-            margin-top: 24px;
-            font-weight: 600;
             font-size: 12px;
             line-height: 16px;
-            letter-spacing: 0.05em;
-            @include screen_601{
-                padding: 0px 48px;
-                width: 290px;
-                height: 36px;
-                background: #443988;
-                box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
-                border-radius: 20px;
-                font-weight: 700;
-                font-size: 13px;
-                line-height: 36px;
-                color: white;
-            }
+            color: #878787;
+            margin: 0;
+          }
+          span {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 25px;
+            color: #878787;
+            width: 100px;
+            margin-right: 20px;
+          }
+          img {
+            cursor: pointer;
+          }
         }
+        button {
+          width: 100%;
+          max-width: 196px;
+          height: 36px;
+          font-weight: 700;
+          font-size: 11px;
+          line-height: 36px;
+          color: #443988;
+          background-color: transparent;
+          border: 1px solid #443988;
+          filter: drop-shadow(0px 2px 6px rgba(66, 65, 67, 0.1));
+          border-radius: 20px;
+          cursor: pointer;
+        }
+      }
     }
-
+  }
+  .container {
+    max-width: 1366px;
+    width: 100%;
+    padding: 0 72px;
+    .tiendaSections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-top: 50px;
+      margin-bottom: 58px;
+      @include screen_1190 {
+        width: 100%;
+      }
+      @include screen_820 {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        gap: 6px;
+      }
+      .section:first-child {
+        .imgBox {
+          @include screen_460 {
+            width: 282px;
+            height: 71px;
+            border-radius: 6px;
+            border: 1px solid #d9d9d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+      .section {
+        cursor: pointer;
+        .imgBox {
+          width: 138px;
+          height: 71px;
+          border-radius: 6px;
+          border: 1px solid #d9d9d9;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @include screen_705 {
+            flex-direction: column;
+            height: 80px;
+          }
+        }
+        .sectionTitleMobile {
+          display: none;
+          text-align: center;
+          margin-top: 12px;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 19px;
+          color: #443988;
+          @include screen_705 {
+            display: block;
+            margin: 8px 0px 0px 0px;
+          }
+        }
+        .sectionTitle {
+          text-align: center;
+          margin-top: 12px;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 16px;
+          color: #443988;
+          @include screen_705 {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }
