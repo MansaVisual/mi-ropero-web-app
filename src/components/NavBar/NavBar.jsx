@@ -11,7 +11,6 @@ import {
   Modal,
   styled,
 } from "@mui/material";
-import isologoMR from "../../assets/img/isologoMR.png";
 import isologoMR2 from "../../assets/img/isologoMR2.svg";
 import MRlogoModal from "../../assets/img/MRlogoModal.png";
 import SearchBar from "../SearchBar/SearchBar";

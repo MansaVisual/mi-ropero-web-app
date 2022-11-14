@@ -31,12 +31,6 @@ const FAQ = () => {
     }, 200);
   };
 
-  const handleClick = (data) => {
-    setTimeout(() => {
-      handleChange(data);
-    }, 100);
-  };
-
   const comoVendo = [
     "• En Mi Ropero publicar es Gratis!.",
     "",

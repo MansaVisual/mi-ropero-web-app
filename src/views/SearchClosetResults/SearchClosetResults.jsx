@@ -3,7 +3,6 @@ import { Box, Container, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import theme from "../../styles/theme";
-import ClosetCard from "../../components/ClosetCard/ClosetCard";
 import ClosetImagesCard from "../../components/ClosetImagesCard/ClosetImagesCard";
 import Onboarding from "../../components/Onboarding/Onboarding";
 import { UseProdsContext } from "../../context/ProdsContext";
@@ -26,7 +25,6 @@ const SearchClosetResults = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [totalProds, setTotalProds] = useState(0);
 
-  const [bestRoperos, setBestRoperos] = useState([]);
 
   const [pags, setPags] = useState(1);
 
@@ -38,14 +36,14 @@ const SearchClosetResults = () => {
   }, []);
 
   useEffect(() => {
-    const bestR = new FormData();
-    bestR.append("bypage", 3);
-    bestR.append("order_type", "desc");
-    ProdAPI(bestR, "tiendas", "featured").then((res) => {
-      if (res.status === "success") {
-        setBestRoperos(res.result);
-      }
-    });
+    // const bestR = new FormData();
+    // bestR.append("bypage", 3);
+    // bestR.append("order_type", "desc");
+    // ProdAPI(bestR, "tiendas", "featured").then((res) => {
+    //   if (res.status === "success") {
+    //     setBestRoperos(res.result);
+    //   }
+    // });
 
     const busqueda = new FormData();
     busqueda.append("page", 0);
