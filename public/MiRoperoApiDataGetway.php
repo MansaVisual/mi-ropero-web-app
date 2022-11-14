@@ -1,4 +1,5 @@
 <?php
+require _DIR_ . '/../public/MiRoperoApiDataGetway.php';
 /**
  	* MiRoperoApiDataGetway: Archivo de conexion al servicio de datos
  	* @author Pupila BIZ SRL <info@pupila.biz>
