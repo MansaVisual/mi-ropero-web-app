@@ -38,7 +38,7 @@ import Tienda from "./views/Tienda/Tienda";
 function App() {
   useEffect(() => {
     const handleFooterClick = (e) => {
-      
+      console.log("HOAL")
       if (e.target.id === "Ropa") {
         document.getElementById("ROPA").click();
       } else if (e.target.id === "Accesorios") {
