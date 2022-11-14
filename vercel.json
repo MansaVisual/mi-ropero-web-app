@@ -6,6 +6,6 @@
       }
     },
     "routes": [
-      { "src": "/MiRoperoApiDataGetway",  "dest": "/api/MiRoperoApiDataGetway.php" }
+      { "src": "/MiRoperoApiDataGetway",  "dest": "/public/api/MiRoperoApiDataGetway.php" }
     ]
 }
