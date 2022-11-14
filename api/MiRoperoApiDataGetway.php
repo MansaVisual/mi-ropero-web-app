@@ -11,10 +11,10 @@
 	* si no viene con referer 	
 	* informo 404
 	**/	
-// if(empty($_SERVER['HTTP_REFERER'])){
-// 	header("HTTP/1.0 404 Not Found");	
-// 	die();	
-// }
+if(empty($_SERVER['HTTP_REFERER'])){
+	header("HTTP/1.0 404 Not Found");	
+	die();	
+}
 
 /** validacion 2 
 	* cors
