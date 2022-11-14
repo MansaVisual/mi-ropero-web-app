@@ -2,15 +2,10 @@
     "functions": {
       "api/MiRoperoApiDataGetway.php": {
         "runtime": "vercel-php@0.5.2",
-        "excludeFiles":"{src/assets/**}"
+        "excludeFiles":"*/**"
       }
     },
     "routes": [
       { "src": "/MiRoperoApiDataGetway",  "dest": "/api/MiRoperoApiDataGetway.php" }
-    ],
-    "build": {
-      "env": {
-        "NOW_PHP_DEBUG": "1"
-      }
-    }
+    ]
 }
