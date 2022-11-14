@@ -2,7 +2,7 @@
     "functions": {
       "api/MiRoperoApiDataGetway.php": {
         "runtime": "vercel-php@0.5.2",
-        "excludeFiles":"assets/*"
+        "excludeFiles":"src/assets/*"
       }
     },
     "routes": [
