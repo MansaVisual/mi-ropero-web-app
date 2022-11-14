@@ -11,6 +11,8 @@ import TiendaDatos from "../../components/TiendaActions/TiendaDatos";
 import Ventas from "../../components/TiendaActions/Ventas";
 import OfertasRecibidas from "../../components/TiendaActions/OfertasRecibidas";
 import Mensajes from "../../components/TiendaActions/Mensajes";
+import Calificaciones from "../../components/TiendaActions/Calificaciones";
+import Transferencias from "../../components/TiendaActions/Transferencias";
 
 const Tienda = () => {
   const params = useParams();
@@ -61,6 +63,8 @@ const Tienda = () => {
       {params.seccion === "VENTAS" && <Ventas />}
       {params.seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
       {params.seccion === "MENSAJES" && <Mensajes />}
+      {params.seccion === "CALIFICACIONES" && <Calificaciones />}
+      {params.seccion === "TRANSFERENCIAS" && <Transferencias />}
     </div>
   );
 };

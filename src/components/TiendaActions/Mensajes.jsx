@@ -4,6 +4,7 @@ import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
 import error from "../../assets/img/error.png";
+import basura from "../../assets/img/basura.png";
 import mensaje from "../../assets/img/mensajesVacio.png";
 import { Button, MenuItem, Select } from "@mui/material";
 import Loader from "../Loader/Loader";
