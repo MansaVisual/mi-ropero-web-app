@@ -116,7 +116,7 @@ export const ProdsContext = ({children}) => {
             "categorias",
             "all"
         ).then((res)=>{
-            if(res.status==="success"){setCategorias(res.result)}else{handleCategorias()}})
+            if(res.status==="success"){setCategorias(res.result)}})
     }
 
     const handleListFavs = (idProd)=>{
