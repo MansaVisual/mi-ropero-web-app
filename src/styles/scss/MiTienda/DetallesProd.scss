@@ -4,8 +4,8 @@
     display: flex;
     justify-content: flex-start;
     @include screen_705 {
-      margin-top: 24px;
-      margin-right: 0px;
+        margin-top: 24px;
+        margin-right: 0px;
     }
     .container {
         margin-top: 8px;
