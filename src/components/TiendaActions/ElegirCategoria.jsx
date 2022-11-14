@@ -11,22 +11,26 @@ const categorias = [
   {
     nombre: "ROPA",
     img: RopaIcon,
+    idCategoriaPadre: "1",
   },
   {
     nombre: "CALZADO",
     img: CalzadoIcon,
+    idCategoriaPadre: "2",
   },
   {
     nombre: "ACCESORIOS",
     img: AccesorioICon,
+    idCategoriaPadre: "3",
   },
   {
     nombre: "BELLEZA",
     img: BellezaICon,
+    idCategoriaPadre: "1000018",
   },
 ];
 
-const ElegirCategoria = ({ setCategoria }) => {
+const ElegirCategoria = ({ setForm }) => {
   const navigate = useNavigate();
 
   return (
@@ -41,7 +45,10 @@ const ElegirCategoria = ({ setCategoria }) => {
               <div
                 className="section"
                 onClick={() => {
-                  setCategoria(section.nombre);
+                  setForm((prevState) => ({
+                    ...prevState,
+                    categoria: section.idCategoriaPadre,
+                  }));
                   navigate(`/MiTienda/TIPO`);
                 }}
               >
