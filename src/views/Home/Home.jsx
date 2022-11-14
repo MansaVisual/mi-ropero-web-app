@@ -10,6 +10,7 @@ import YoutubeEmbed from "../../components/YoutubeEmbed/YoutubeEmbed";
 import { UseColeccionContext } from "../../context/ColeccionesContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import theme from "../../styles/theme";
+import "react-multi-carousel/lib/styles.css";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../../components/Loader/Loader";
 
