@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { LoginSocialApple } from "reactjs-social-login";
-import { Button } from "reactstrap";
+import { Button} from "@mui/material";
 import { UseLoginContext } from "../../context/LoginContext";
 
 const AppleButton = () => {
