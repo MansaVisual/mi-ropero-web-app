@@ -23,16 +23,16 @@ export const PerfilContext = ({ children }) => {
 
 
     await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
-      {
-        method: "POST",
-        body: data,
-      }
-      // `https://apiData.miropero.com.ar/${clase}/${metodo}`,
+      // `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
       // {
       //   method: "POST",
-      //   body:data
+      //   body: data,
       // }
+      `https://apiData.miropero.com.ar/${clase}/${metodo}`,
+      {
+        method: "POST",
+        body:data
+      }
     )
       .then((response) => response.json())
       .then((data) => {
