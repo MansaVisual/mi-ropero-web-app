@@ -7,5 +7,10 @@
     },
     "routes": [
       { "src": "/MiRoperoApiDataGetway",  "dest": "/api/MiRoperoApiDataGetway.php" }
-    ]
+    ],
+    "build": {
+      "env": {
+        "NOW_PHP_DEBUG": "1"
+      }
+    }
 }
