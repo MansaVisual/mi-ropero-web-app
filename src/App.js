@@ -119,6 +119,7 @@ function App() {
                           path="/validacionLogin"
                           element={<LoginValidation />}
                         />
+                        
                         <Route path="/perfil" element={<Perfil />} />
                         <Route
                           path="perfil/:perfilSeccion"
