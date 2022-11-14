@@ -1,3 +1,3 @@
 <?php
-require _DIR_ . '/../public/MiRoperoApiDataGetway.php';
+require dirname(_FILE_).'/../public/MiRoperoApiDataGetway.php';
 ?>
