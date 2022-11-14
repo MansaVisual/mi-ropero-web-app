@@ -1,10 +1,10 @@
 {
     "functions": {
-      "public/api/MiRoperoApiDataGetway.php": {
+      "api/MiRoperoApiDataGetway.php": {
         "runtime": "vercel-php@0.5.2"
       }
     },
     "routes": [
-      { "src": "/MiRoperoApiDataGetway",  "dest": "/public/api/MiRoperoApiDataGetway.php" }
+      { "src": "/MiRoperoApiDataGetway",  "dest": "/api/MiRoperoApiDataGetway.php" }
     ]
 }
