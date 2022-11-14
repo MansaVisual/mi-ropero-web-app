@@ -24,7 +24,7 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Swal from "sweetalert2";
-import lupa from "../../assets/img/lupaFilters.png"
+import lupa from "../../assets/img/lupaFilters.png";
 
 const style = {
   position: "absolute",
@@ -47,15 +47,15 @@ const SearchProductsResults = () => {
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("lg"))
-  const navigate=useNavigate()
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
+  const navigate = useNavigate();
   const [load2, setLoad2] = useState(false);
 
   const [prods, setProds] = useState([]);
   const [buscandoProds, setBuscandoProds] = useState(true);
   const [buscandoFiltros, setBuscandoFiltros] = useState(false);
   const [filtrosCategoria, setFiltrosCategoria] = useState([]);
-  const [putCategory,setPutCategory]=useState("")
+  const [putCategory, setPutCategory] = useState("");
 
   const [totalPages, setTotalPages] = useState(0);
 
@@ -79,7 +79,7 @@ const SearchProductsResults = () => {
     setPutFilters([]);
     setPutSort("");
     setTotalPages(0);
-    setPags(1)
+    setPags(1);
     if (
       categorias !== undefined &&
       categorias.length !== 0 &&
@@ -99,38 +99,35 @@ const SearchProductsResults = () => {
   }, [keyword, categorias]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if(putCategory!==""){
-      setLoad2(true)
-      setPags(1)
+    if (putCategory !== "") {
+      setLoad2(true);
+      setPags(1);
       window.scrollTo({
         top: 0,
-        behavior: 'auto',
+        behavior: "auto",
       });
-      busquedaPrimera()
+      busquedaPrimera();
     }
-  }, [putCategory]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [putCategory]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const busquedaPrimera=()=>{
-    setBuscandoFiltros(true)
-    setPutSort("")
-    setPutFilters([])
-    setPags(1)
-    if(putCategory!==""){
-      let idCat=categorias.filter(e=>e.nombre===putCategory)
-      idCat=idCat[0].idcategoria
+  const busquedaPrimera = () => {
+    setBuscandoFiltros(true);
+    setPutSort("");
+    setPutFilters([]);
+    setPags(1);
+    if (putCategory !== "") {
+      let idCat = categorias.filter((e) => e.nombre === putCategory);
+      idCat = idCat[0].idcategoria;
 
-      const col=new FormData()
-      col.append("text",keyword)
-      col.append("idcategoria",idCat)
-      col.append("bypage",30)
-      col.append("page",0)
+      const col = new FormData();
+      col.append("text", keyword);
+      col.append("idcategoria", idCat);
+      col.append("bypage", 15);
+      col.append("page", 0);
 
-      ProdAPI(
-          col,
-          "productos",
-          "search"
-      ).then((res)=>{console.log("ERROR A RESOLVER YA",res)
-        if(res.status==="success"){
+      ProdAPI(col, "productos", "search").then((res) => {
+        console.log("ERROR A RESOLVER YA", res);
+        if (res.status === "success") {
           const catFilters = new FormData();
           catFilters.append("idcategoria", idCat);
           ProdAPI(catFilters, "categorias", "get").then((res) => {
@@ -138,19 +135,18 @@ const SearchProductsResults = () => {
               setFiltrosCategoria(res.result[0]);
             }
           });
-          setProds(res.result.productos)
-          setTotalPages(res.result.total_paginas)
-        }else if(res.result==="No se encontraron productos"){
-          setFiltrosCategoria([])
-          setProds([])
-          setTotalPages(0)
+          setProds(res.result.productos);
+          setTotalPages(res.result.total_paginas);
+        } else if (res.result === "No se encontraron productos") {
+          setFiltrosCategoria([]);
+          setProds([]);
+          setTotalPages(0);
         }
         // setBuscandoCol(false)
-        setLoad2(false)
-      })
+        setLoad2(false);
+      });
     }
-  }
-
+  };
 
   const prodsCategoria = (paramSearch) => {
     const catProd = new FormData();
@@ -180,8 +176,9 @@ const SearchProductsResults = () => {
     }
     catProd.append("bypage", 15);
     catProd.append("page", 0);
-    console.log("PRUEBAS",Object.fromEntries(catProd))
-    ProdAPI(catProd, "productos", "search").then((res) => {console.log("ERROR DESDE ACA",res)
+    console.log("PRUEBAS", Object.fromEntries(catProd));
+    ProdAPI(catProd, "productos", "search").then((res) => {
+      console.log("ERROR DESDE ACA", res);
       setBuscandoProds(false);
       if (res.status === "success") {
         setProds(res.result.productos);
@@ -193,11 +190,11 @@ const SearchProductsResults = () => {
   const buscarPage = (paramSearch, value) => {
     if (rangoPrecio.min > rangoPrecio.max) {
       Swal.fire({
-        title:'RANGOS INCORRECTOS',
-        text:"Los rangos de precios son incorrectos. Volvé a intentarlo",
-        icon:'error',
-        confirmButtonText: 'ACEPTAR',
-      })
+        title: "RANGOS INCORRECTOS",
+        text: "Los rangos de precios son incorrectos. Volvé a intentarlo",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
       return;
     }
     window.scrollTo({
@@ -227,9 +224,9 @@ const SearchProductsResults = () => {
     }
     if (paramSearch) {
       catProd.append("text", keyword);
-      if(putCategory!==""){
-        let idCat=categorias.filter(e=>e.nombre===putCategory)
-        idCat=idCat[0].idcategoria
+      if (putCategory !== "") {
+        let idCat = categorias.filter((e) => e.nombre === putCategory);
+        idCat = idCat[0].idcategoria;
         catProd.append("idcategoria", idCat);
       }
     } else {
@@ -241,7 +238,7 @@ const SearchProductsResults = () => {
     catProd.append("bypage", 15);
 
     catProd.append("page", value);
-    console.log(Object.fromEntries(catProd))
+    console.log(Object.fromEntries(catProd));
 
     ProdAPI(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
@@ -257,14 +254,14 @@ const SearchProductsResults = () => {
   };
 
   const handleAplicarFiltros = () => {
-    setBuscandoFiltros(true)
+    setBuscandoFiltros(true);
     if (rangoPrecio.min > rangoPrecio.max) {
       Swal.fire({
-        title:'RANGOS INCORRECTOS',
-        text:"Los rangos de precios son incorrectos. Volvé a intentarlo",
-        icon:'error',
-        confirmButtonText: 'ACEPTAR',
-      })
+        title: "RANGOS INCORRECTOS",
+        text: "Los rangos de precios son incorrectos. Volvé a intentarlo",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
       return;
     }
     setPags(1);
@@ -274,7 +271,7 @@ const SearchProductsResults = () => {
       array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
     }
     setFiltrosFin(array.toString());
-    console.log(array.toString())
+    console.log(array.toString());
     if (
       putFilters.length !== 0 ||
       putSort !== "" ||
@@ -284,11 +281,11 @@ const SearchProductsResults = () => {
       const prod = new FormData();
       let idCat = [];
 
-      if (search!==undefined) {
+      if (search !== undefined) {
         prod.append("text", keyword);
-        if(putCategory!==""){
-          let idCat=categorias.filter(e=>e.nombre===putCategory)
-          idCat=idCat[0].idcategoria
+        if (putCategory !== "") {
+          let idCat = categorias.filter((e) => e.nombre === putCategory);
+          idCat = idCat[0].idcategoria;
           prod.append("idcategoria", idCat);
         }
       } else {
@@ -328,7 +325,7 @@ const SearchProductsResults = () => {
         if (res.status === "success") {
           setProds(res.result.productos);
           setTotalPages(res.result.total_paginas);
-        }else if(res.result==="No se encontraron productos"){
+        } else if (res.result === "No se encontraron productos") {
           setProds([]);
           setTotalPages(0);
         }
@@ -344,7 +341,12 @@ const SearchProductsResults = () => {
         <Grid
           container
           sx={{
-            px: isMobile || isMobileBigScreen ? "16px" : isTablet ? "20px" : "74px",
+            px:
+              isMobile || isMobileBigScreen
+                ? "16px"
+                : isTablet
+                ? "20px"
+                : "74px",
             py: "40px",
             mb: "100px",
           }}
@@ -353,12 +355,14 @@ const SearchProductsResults = () => {
           <Grid item xs={12} sm={6} md={3}>
             {isMobile || isMobileBigScreen ? (
               <Box sx={{ mt: "16px" }}>
-                <Breadcrumbs links={[
-                  "productos",
-                  keyword.length > 15
-                    ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
-                    : keyword.replaceAll("&"," ")
-                ]} />
+                <Breadcrumbs
+                  links={[
+                    "productos",
+                    keyword.length > 15
+                      ? keyword.replaceAll("&", " ").substring(0, 15) + "..."
+                      : keyword.replaceAll("&", " "),
+                  ]}
+                />
                 <Box
                   sx={{
                     display: "flex",
@@ -374,9 +378,9 @@ const SearchProductsResults = () => {
                       textTransform: "capitalize",
                     }}
                   >
-                    {                        keyword.length > 15
-                          ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
-                          : keyword.replaceAll("&"," ")}
+                    {keyword.length > 15
+                      ? keyword.replaceAll("&", " ").substring(0, 15) + "..."
+                      : keyword.replaceAll("&", " ")}
                   </Typography>
                   <FilterButton onClick={() => setOpen(true)} />
                 </Box>
@@ -405,28 +409,37 @@ const SearchProductsResults = () => {
                           <Typography id="filter-modal-title" component="h2">
                             Filtrar
                           </Typography>
-                          {(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                          <Typography
-                          sx={{
-                            fontSize: theme.typography.fontSize[2],
-                            fontWeight: theme.typography.fontWeightRegular,
-                            textDecoration: 'underline',
-                            mt: '12px',
-                            mb: '16px',
-                          }}
-                          onClick={(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                          ()=>{
-                            setPutFilters([])
-                            setPutSort("")
-                            setRangoPrecio({ min: 0, max: 999999 })
-                            prodsCategoria(false)
-                          }
-                          :null
-                        }
-                          >
-                            Limpiar filtros
-                          </Typography>
-                          :<></>}
+                          {putSort !== "" ||
+                          putFilters.length !== 0 ||
+                          rangoPrecio.min !== 0 ||
+                          rangoPrecio.max !== 999999 ? (
+                            <Typography
+                              sx={{
+                                fontSize: theme.typography.fontSize[2],
+                                fontWeight: theme.typography.fontWeightRegular,
+                                textDecoration: "underline",
+                                mt: "12px",
+                                mb: "16px",
+                              }}
+                              onClick={
+                                putSort !== "" ||
+                                putFilters.length !== 0 ||
+                                rangoPrecio.min !== 0 ||
+                                rangoPrecio.max !== 999999
+                                  ? () => {
+                                      setPutFilters([]);
+                                      setPutSort("");
+                                      setRangoPrecio({ min: 0, max: 999999 });
+                                      prodsCategoria(false);
+                                    }
+                                  : null
+                              }
+                            >
+                              Limpiar filtros
+                            </Typography>
+                          ) : (
+                            <></>
+                          )}
                           {putFilters.map((res, index) => {
                             return (
                               <Stack direction="row" spacing={1}>
@@ -471,12 +484,14 @@ const SearchProductsResults = () => {
             ) : (
               <>
                 <Box>
-                  <Breadcrumbs links={[
-                    "productos",
-                    keyword.length > 15
-                      ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
-                      : keyword.replaceAll("&"," ")
-                  ]} />
+                  <Breadcrumbs
+                    links={[
+                      "productos",
+                      keyword.length > 15
+                        ? keyword.replaceAll("&", " ").substring(0, 15) + "..."
+                        : keyword.replaceAll("&", " "),
+                    ]}
+                  />
                   <Typography
                     sx={{
                       fontSize: theme.typography.fontSize[9],
@@ -486,9 +501,9 @@ const SearchProductsResults = () => {
                       mb: "20px",
                     }}
                   >
-                  {keyword.length > 15
-                          ? keyword.replaceAll("&"," ").substring(0, 15) + "..."
-                          : keyword.replaceAll("&"," ")}
+                    {keyword.length > 15
+                      ? keyword.replaceAll("&", " ").substring(0, 15) + "..."
+                      : keyword.replaceAll("&", " ")}
                   </Typography>
                 </Box>
                 {putFilters.map((res, index) => {
@@ -509,30 +524,39 @@ const SearchProductsResults = () => {
                     </Stack>
                   );
                 })}
-                {(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                <Typography
-                sx={{
-                  fontSize: theme.typography.fontSize[2],
-                  fontWeight: theme.typography.fontWeightRegular,
-                  textDecoration: 'underline',
-                  mt: '12px',
-                  mb: '16px',
-                  cursor:"pointer"
-                }}
-                onClick={(putSort!=="" || putFilters.length!==0 || (rangoPrecio.min!==0 || rangoPrecio.max!==999999))?
-                    ()=>{
-                      setPags(1);
-                      setPutFilters([])
-                      setPutSort("")
-                      setRangoPrecio({ min: 0, max: 999999 })
-                      prodsCategoria(false)
+                {putSort !== "" ||
+                putFilters.length !== 0 ||
+                rangoPrecio.min !== 0 ||
+                rangoPrecio.max !== 999999 ? (
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.fontSize[2],
+                      fontWeight: theme.typography.fontWeightRegular,
+                      textDecoration: "underline",
+                      mt: "12px",
+                      mb: "16px",
+                      cursor: "pointer",
+                    }}
+                    onClick={
+                      putSort !== "" ||
+                      putFilters.length !== 0 ||
+                      rangoPrecio.min !== 0 ||
+                      rangoPrecio.max !== 999999
+                        ? () => {
+                            setPags(1);
+                            setPutFilters([]);
+                            setPutSort("");
+                            setRangoPrecio({ min: 0, max: 999999 });
+                            prodsCategoria(false);
+                          }
+                        : null
                     }
-                    :null
-                  }
                   >
-                  Limpiar filtros
-                </Typography>
-                :<></>}
+                    Limpiar filtros
+                  </Typography>
+                ) : (
+                  <></>
+                )}
                 <Filter
                   filtros={filtrosCategoria}
                   setPutFilters={setPutFilters}
@@ -546,7 +570,9 @@ const SearchProductsResults = () => {
                   setTotalPages={setTotalPages}
                   rangoPrecio={rangoPrecio}
                   setRangoPrecio={setRangoPrecio}
-                  categoriasSearch={search!==undefined?categorias:undefined}
+                  categoriasSearch={
+                    search !== undefined ? categorias : undefined
+                  }
                   putCategory={keyword}
                   setPutCategory={setPutCategory}
                 />
@@ -613,28 +639,28 @@ const SearchProductsResults = () => {
                           alignItems: "center",
                           justifyContent: "center",
                           mt: "16px",
-                          flexDirection:buscandoFiltros ? "column" : "row"
+                          flexDirection: buscandoFiltros ? "column" : "row",
                         }}
                       >
-                        {buscandoFiltros ? 
-                        <Box sx={{ mr: "20px" }}>
-                          <img
-                            src={lupa}
-                            width={30}
-                            height={30}
-                            alt="not found icon"
+                        {buscandoFiltros ? (
+                          <Box sx={{ mr: "20px" }}>
+                            <img
+                              src={lupa}
+                              width={30}
+                              height={30}
+                              alt="not found icon"
                             />
-                        </Box>
-                        :
-                        <Box sx={{ mr: "20px" }}>
-                          <img
-                            src={notFoundIcon}
-                            width={40}
-                            height={40}
-                            alt="not found icon"
+                          </Box>
+                        ) : (
+                          <Box sx={{ mr: "20px" }}>
+                            <img
+                              src={notFoundIcon}
+                              width={40}
+                              height={40}
+                              alt="not found icon"
                             />
-                        </Box>
-                        }
+                          </Box>
+                        )}
                         <Box>
                           <Typography
                             sx={{
@@ -645,13 +671,15 @@ const SearchProductsResults = () => {
                               textAlign:
                                 isMobile || isMobileBigScreen
                                   ? "center"
-                                  : buscandoFiltros?"center":"unset",
+                                  : buscandoFiltros
+                                  ? "center"
+                                  : "unset",
                               mb: 4,
                             }}
                           >
-                            {buscandoFiltros ? "No encontramos resultados para esos filtros": 
-                            `No encontramos resultados para `
-                            }
+                            {buscandoFiltros
+                              ? "No encontramos resultados para esos filtros"
+                              : `No encontramos resultados para `}
                             <Typography
                               component="span"
                               sx={{
@@ -659,9 +687,7 @@ const SearchProductsResults = () => {
                                 textTransform: "capitalize",
                               }}
                             >
-                              {!buscandoFiltros ?
-                              `"${keyword}"`:""
-                              }
+                              {!buscandoFiltros ? `"${keyword}"` : ""}
                             </Typography>
                           </Typography>
                           <Typography
@@ -669,12 +695,12 @@ const SearchProductsResults = () => {
                               fontSize: theme.typography.fontSize[6],
                               fontWeight: theme.typography.fontWeightRegular,
                               color: theme.palette.tertiary.main,
-                              textAlign:buscandoFiltros?"center":"unset"
+                              textAlign: buscandoFiltros ? "center" : "unset",
                             }}
                           >
-                            {buscandoFiltros ? "Intentá con filtros diferentes":
-                              "Revisá la ortografía de la palabra"
-                            }
+                            {buscandoFiltros
+                              ? "Intentá con filtros diferentes"
+                              : "Revisá la ortografía de la palabra"}
                           </Typography>
                           <Typography
                             sx={{
@@ -683,9 +709,9 @@ const SearchProductsResults = () => {
                               color: theme.palette.tertiary.main,
                             }}
                           >
-                            {!buscandoFiltros ?
-                            "Utilizá palabras más genéricas o menos palabras.":""
-                            }
+                            {!buscandoFiltros
+                              ? "Utilizá palabras más genéricas o menos palabras."
+                              : ""}
                           </Typography>
                           <Typography
                             sx={{
@@ -694,46 +720,47 @@ const SearchProductsResults = () => {
                               color: theme.palette.tertiary.main,
                             }}
                           >
-                            {!buscandoFiltros ?
-                            "Navegá por las categorías para encontrar un producto similar":""
-                            }
+                            {!buscandoFiltros
+                              ? "Navegá por las categorías para encontrar un producto similar"
+                              : ""}
                           </Typography>
-                          {!buscandoFiltros &&
-                          <StyledLink
-                          to="/"
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            cursor: "default",
-                            }}
-                          >
-                            <Typography
-                              component="span"
+                          {!buscandoFiltros && (
+                            <StyledLink
+                              to="/"
                               sx={{
-                                boxSizing: "border-box",
-                                color: theme.palette.primary.main,
-                                fontSize: theme.typography.fontSize[2],
-                                fontWeight: theme.typography.fontWeightRegular,
-                                textTransform: "uppercase",
-                                padding: "10px 36px",
-                                height: "36px",
-                                width: "200px",
-                                textAlign: "center",
-                                border: "1px solid hsl(248.4, 40.9%, 37.8%)",
-                                borderRadius: "20px",
-                                mt: 4,
-                                cursor: "pointer",
                                 display: "flex",
-                                alignItems: "center",
                                 justifyContent: "center",
+                                alignItems: "center",
+                                cursor: "default",
                               }}
-                              onClick={() => navigate("/")}
+                            >
+                              <Typography
+                                component="span"
+                                sx={{
+                                  boxSizing: "border-box",
+                                  color: theme.palette.primary.main,
+                                  fontSize: theme.typography.fontSize[2],
+                                  fontWeight:
+                                    theme.typography.fontWeightRegular,
+                                  textTransform: "uppercase",
+                                  padding: "10px 36px",
+                                  height: "36px",
+                                  width: "200px",
+                                  textAlign: "center",
+                                  border: "1px solid hsl(248.4, 40.9%, 37.8%)",
+                                  borderRadius: "20px",
+                                  mt: 4,
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }}
+                                onClick={() => navigate("/")}
                               >
-                              Ir al Inicio
-                            </Typography>
-                          </StyledLink>
-                          }
+                                Ir al Inicio
+                              </Typography>
+                            </StyledLink>
+                          )}
                         </Box>
                       </Box>
                     )}
