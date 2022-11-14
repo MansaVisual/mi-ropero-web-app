@@ -1,6 +1,6 @@
 {
     "functions": {
-      "api/MiRoperoApiDataGetway.php": {
+      "/public/api/MiRoperoApiDataGetway.php": {
         "runtime": "vercel-php@0.5.2"
       }
     },
