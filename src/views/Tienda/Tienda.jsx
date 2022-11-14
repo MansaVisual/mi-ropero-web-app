@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Grid } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import ElegirCategoria from "../../components/TiendaActions/ElegirCategoria";
 import MiTienda from "../../components/TiendaActions/MiTienda";
 import ElegirTipo from "../../components/TiendaActions/ElegirTipo";
 import ElegirImagenes from "../../components/TiendaActions/ElegirImagenes";
-import DetallesProd from "../../components/TiendaActions/DetallesProd";
 
 const Tienda = () => {
   const params = useParams();
@@ -14,7 +14,8 @@ const Tienda = () => {
 
   const [num, setNum] = useState(1);
 
-  const [form, setForm] = useState({ categoria: "", tipo: "" });
+  const [categoria, setCategoria] = useState(false);
+  const [tipo, setTipo] = useState(false);
 
   useEffect(() => {
     window.scrollTo({
@@ -42,15 +43,16 @@ const Tienda = () => {
   }, [num]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
+    <Grid className="gridContainer">
       {params.seccion === undefined && <MiTienda />}
-      {params.seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
-      {params.seccion === "TIPO" && (
-        <ElegirTipo form={form} setForm={setForm} />
+      {params.seccion === "CATEGORIA" && (
+        <ElegirCategoria setCategoria={setCategoria} />
       )}
-      {params.seccion === "IMAGENES" && <ElegirImagenes setForm={setForm} />}
-      {params.seccion === "DETALLES" && <DetallesProd />}
-    </div>
+      {params.seccion === "TIPO" && (
+        <ElegirTipo tipo={tipo} setTipo={setTipo} />
+      )}
+      {params.seccion === "IMAGENES" && <ElegirImagenes />}
+    </Grid>
   );
 };
 
