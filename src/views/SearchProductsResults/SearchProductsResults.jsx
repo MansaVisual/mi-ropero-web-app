@@ -122,7 +122,7 @@ const SearchProductsResults = () => {
       const col = new FormData();
       col.append("text", keyword);
       col.append("idcategoria", idCat);
-      col.append("bypage", 15);
+      col.append("bypage", 10);
       col.append("page", 0);
 
       ProdAPI(col, "productos", "search").then((res) => {

@@ -87,7 +87,7 @@ export const LoginContext = ({ children }) => {
         if (res.status === "success") {
           setInfoUser(res.result);
         } else {
-          reBuscarInfo();
+          // reBuscarInfo();
         }
       });
     }

@@ -20,11 +20,21 @@ export const PerfilContext = ({ children }) => {
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = "";
 
+
+
     await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
+      // `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
+      // {
+      //   method: "POST",
+      //   body: data,
+      // }
+      `https://apiData.miropero.com.ar/${clase}/${metodo}`,
       {
         method: "POST",
-        body: data,
+        body:data,
+        headers: {
+          'custom_authorization':'YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA=='
+         }
       }
     )
       .then((response) => response.json())
@@ -43,7 +53,7 @@ export const PerfilContext = ({ children }) => {
   const handleBuscarDirecciones = (userLog) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
-    PerfilAPI(dir, "direcciones", "all").then((res) => {
+    PerfilAPI(dir, "direcciones", "all").then((res) => {console.log(res)
       setDirFinBusqueda(true);
       if (res.status === "success") {
         setDireccionesGuardadas(res.result);
