@@ -33,8 +33,7 @@ export const PerfilContext = ({ children }) => {
         method: "POST",
         body:data,
         headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Basic YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA=='
+          'custom_authorization':'YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA=='
          }
       }
     )
