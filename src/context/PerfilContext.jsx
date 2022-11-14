@@ -34,8 +34,7 @@ export const PerfilContext = ({ children }) => {
         body:data,
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Basic YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA==',
-          'Host': 'apidata.miropero.com.ar'
+          'Authorization': 'Basic YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA=='
          }
       }
     )
