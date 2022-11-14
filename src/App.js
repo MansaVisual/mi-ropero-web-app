@@ -119,7 +119,7 @@ function App() {
                           path="/validacionLogin"
                           element={<LoginValidation />}
                         />
-
+                        
                         <Route path="/perfil" element={<Perfil />} />
                         <Route
                           path="perfil/:perfilSeccion"
@@ -154,8 +154,8 @@ function App() {
                         />
                         <Route path="FAQ" element={<FAQ />} />
                         <Route path="/PRODUCTO" element={<Home />} />
-                        {/* <Route path="MiTienda" element={<Tienda />} />
-                        <Route path="MiTienda/:seccion" element={<Tienda />} /> */}
+                        <Route path="MiTienda" element={<Tienda />} />
+                        <Route path="MiTienda/:seccion" element={<Tienda />} />
                       </Routes>
                       <Footer />
                     </ThemeProvider>
