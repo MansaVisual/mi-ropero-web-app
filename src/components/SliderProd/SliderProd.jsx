@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Loader from "../Loader/Loader";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   desktop: {
