@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import fotoFrente from "../../assets/img/fotoFrente.svg";
-import fotoTrasera from "../../assets/img/fotoTrasera.svg";
+import fotoTrasera from "../../assets/img/fotoFrente.svg";
 import editIcon from "../../assets/img/editIcon.svg";
 import addButton from "../../assets/img/addButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
