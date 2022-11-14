@@ -53,7 +53,7 @@ export const PerfilContext = ({ children }) => {
   const handleBuscarDirecciones = (userLog) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
-    PerfilAPI(dir, "direcciones", "all").then((res) => {
+    PerfilAPI(dir, "direcciones", "all").then((res) => {console.log(res)
       setDirFinBusqueda(true);
       if (res.status === "success") {
         setDireccionesGuardadas(res.result);
