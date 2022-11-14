@@ -31,7 +31,13 @@ export const PerfilContext = ({ children }) => {
       `https://apiData.miropero.com.ar/${clase}/${metodo}`,
       {
         method: "POST",
-        body:data
+        body:data,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA==',
+          'Host': 'apidata.miropero.com.ar'
+         }
       }
     )
       .then((response) => response.json())
