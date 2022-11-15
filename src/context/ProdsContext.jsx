@@ -119,7 +119,7 @@ console.log(infoUser)
             if(res.status==="success"){setCategorias(res.result)}})
     }
 
-    const handleListFavs = (idProd)=>{
+    const handleListFavs = (idProd,type)=>{
         const fav = new FormData()
         fav.append("idcliente",userLog)
         ProdAPI(
@@ -130,10 +130,12 @@ console.log(infoUser)
             setListFavFinBusqueda(true)
             if(res.status==="success"){
                 setListFavs(res.result)
-                if(infoUser.productos_favoritos!==undefined){
-                    infoUser.productos_favoritos.push(idProd)
-                }else{
-                    infoUser['productos_favoritos'] = [idProd]
+                if(type!=="delete"){
+                    if(infoUser.productos_favoritos!==undefined){
+                        infoUser.productos_favoritos.push(idProd)
+                    }else{
+                        infoUser['productos_favoritos'] = [idProd]
+                    }
                 }
             }else{
                 setListFavs([])
