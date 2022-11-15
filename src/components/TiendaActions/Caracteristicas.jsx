@@ -27,12 +27,14 @@ const Caracteristicas = ({ form, setForm }) => {
         setGenerosList(array);
       }
     });
-    const form = new FormData();
-    form.append("idcategoria", form.categoria);
+    const dir = new FormData();
+    dir.append("idcategoria", form.categoria);
     PerfilAPI(form, "categorias", "get").then((res) => {
       console.log(res);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  console.log(form);
 
   const selectList = [
     {
