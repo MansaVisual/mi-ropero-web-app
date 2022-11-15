@@ -172,10 +172,10 @@ const Caracteristicas = () => {
                       select.options.map((option, i) => (
                         <MenuItem
                           key={i}
-                          value={option.id}
+                          value={option}
                           sx={{ fontSize: "14px", color: "#969696" }}
                         >
-                          {option.name}
+                          {option}
                         </MenuItem>
                       ))}
                   </Select>
