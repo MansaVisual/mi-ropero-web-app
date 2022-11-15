@@ -20,7 +20,7 @@ const Caracteristicas = () => {
     PerfilAPI("", "clientes", "get_sexos").then((res) => {
       console.log(res);
       if (res.status === "success") {
-        let array = [""];
+        let array = [];
         for (const gen in res.result) {
           array.push(res.result[gen]);
         }
