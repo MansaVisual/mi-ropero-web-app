@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Box, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
-import PopUpDetalles from "./PopUpDetalles";
+import PopUpDescProd from "./PopUpDescProd";
 
 const DetallesProd = () => {
     const navigate = useNavigate();
@@ -110,7 +110,7 @@ const DetallesProd = () => {
         </div>
       </div>
       {openDescPopUp && (
-            <PopUpDetalles
+            <PopUpDescProd
             setOpenMessagePop={setOpenDescPopUp}
             descripcion={"La tienda se encuentra pausada en este momento."}
             />

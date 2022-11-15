@@ -7,7 +7,7 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
 
-const PopUpDetalles = ({ setOpenMessagePop,descripcion }) => {
+const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -148,4 +148,4 @@ const PopUpDetalles = ({ setOpenMessagePop,descripcion }) => {
   );
 };
 
-export default PopUpDetalles;
+export default PopUpDescProd;
