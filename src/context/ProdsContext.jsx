@@ -16,7 +16,7 @@ export const ProdsContext = ({children}) => {
     const [listFavs,setListFavs]=useState([])
 
     const [listFavFinBusqueda,setListFavFinBusqueda]=useState(false)
-
+console.log(infoUser)
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
