@@ -169,15 +169,20 @@ const Caracteristicas = () => {
                       {select.placeholder}
                     </MenuItem>
                     {select.options.length > 0 &&
-                      select.options.map((option, i) => (
-                        <MenuItem
-                          key={i}
-                          value={option}
-                          sx={{ fontSize: "14px", color: "#969696" }}
-                        >
-                          {option}
-                        </MenuItem>
-                      ))}
+                      select.options.map((option, i) => {
+                        if (option === "") {
+                          return null;
+                        }
+                        return (
+                          <MenuItem
+                            key={i}
+                            value={option}
+                            sx={{ fontSize: "14px", color: "#969696" }}
+                          >
+                            {option}
+                          </MenuItem>
+                        );
+                      })}
                   </Select>
                 </div>
               );
