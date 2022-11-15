@@ -27,6 +27,11 @@ const Caracteristicas = () => {
         setGenerosList(array);
       }
     });
+    const form = new FormData();
+    form.append("idcategoria", 2);
+    PerfilAPI("", "categorias", "get").then((res) => {
+      console.log(res);
+    });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const selectList = [
