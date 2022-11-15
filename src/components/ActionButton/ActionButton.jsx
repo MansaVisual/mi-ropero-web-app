@@ -109,6 +109,7 @@ export const LikeButton = ({
       });
     }
   };
+  console.log(infoUser)
 
   return (
     <Box>
