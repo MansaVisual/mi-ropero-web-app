@@ -110,8 +110,8 @@ const MiPerfil = () => {
         </p>
         <div className="buttonsContainer">
           <div className="bottomOptions">
-            <button>Acerca de la aplicación</button>
-            <button>Califica la aplicación</button>
+            {/* <button>Acerca de la aplicación</button>
+            <button>Califica la aplicación</button> */}
             {/* <button
               onClick={() => setNotificationsOff(true)}
               style={{ color: "#423B3C" }}

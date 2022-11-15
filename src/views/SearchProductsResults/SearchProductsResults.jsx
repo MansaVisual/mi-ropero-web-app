@@ -168,7 +168,7 @@ const SearchProductsResults = () => {
         catProd.append("precio_hasta", rangoPrecio.max);
       }
 
-      ProdAPI(catFilters, "categorias", "get").then((res) => {
+      ProdAPI(catFilters, "categorias", "get").then((res) => {console.log("CATEGORIASSSS",res)
         if (res.status === "success") {
           setFiltrosCategoria(res.result[0]);
         }
