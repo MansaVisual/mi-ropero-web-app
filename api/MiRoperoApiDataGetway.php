@@ -11,20 +11,20 @@
 	* si no viene con referer 	
 	* informo 404
 	**/	
-// if(empty($_SERVER['HTTP_REFERER'])){
-// 	header("HTTP/1.0 404 Not Found");	
-// 	die();	
-// }
+if(empty($_SERVER['HTTP_REFERER'])){
+	header("HTTP/1.0 404 Not Found");	
+	die();	
+}
 
 /** validacion 2 
 	* cors
 	**/
 	
-// Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
-// you want to allow, and if so:
-// header("Access-Control-Allow-Origin: apidata.miropero.com.ar");
-// header('Access-Control-Allow-Credentials: true');
-// header('Access-Control-Max-Age: 86400');    // cache for 1 day
+Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+you want to allow, and if so:
+header("Access-Control-Allow-Origin: apidata.miropero.com.ar");
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Max-Age: 86400');    // cache for 1 day
  
 
 /** Validacion 2
@@ -32,10 +32,10 @@
 	* Sino, informo 404
 	**/	
 
-// if(strpos($_SERVER['HTTP_REFERER'], 'www.miropero.ar') === false){
-// 	header("HTTP/1.0 404 Not Found");	
-// 	die();	
-// }
+if(strpos($_SERVER['HTTP_REFERER'], 'www.miropero.ar') === false){
+	header("HTTP/1.0 404 Not Found");	
+	die();	
+}
 
 /*
 echo "<pre>";
