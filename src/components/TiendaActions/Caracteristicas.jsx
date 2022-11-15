@@ -27,6 +27,11 @@ const Caracteristicas = () => {
         setGenerosList(array);
       }
     });
+    const form = new FormData();
+    form.append("idcategoria", 2);
+    PerfilAPI("", "categorias", "get").then((res) => {
+      console.log(res);
+    });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const selectList = [
@@ -169,15 +174,20 @@ const Caracteristicas = () => {
                       {select.placeholder}
                     </MenuItem>
                     {select.options.length > 0 &&
-                      select.options.map((option, i) => (
-                        <MenuItem
-                          key={i}
-                          value={option}
-                          sx={{ fontSize: "14px", color: "#969696" }}
-                        >
-                          {option}
-                        </MenuItem>
-                      ))}
+                      select.options.map((option, i) => {
+                        if (option === "") {
+                          return null;
+                        }
+                        return (
+                          <MenuItem
+                            key={i}
+                            value={option}
+                            sx={{ fontSize: "14px", color: "#969696" }}
+                          >
+                            {option}
+                          </MenuItem>
+                        );
+                      })}
                   </Select>
                 </div>
               );
