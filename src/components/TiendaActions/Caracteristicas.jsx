@@ -28,7 +28,7 @@ const Caracteristicas = ({ form, setForm }) => {
       }
     });
     const form = new FormData();
-    form.append("idcategoria", 2);
+    form.append("idcategoria", form.categoria);
     PerfilAPI(form, "categorias", "get").then((res) => {
       console.log(res);
     });

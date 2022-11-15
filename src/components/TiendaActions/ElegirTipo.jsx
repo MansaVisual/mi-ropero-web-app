@@ -22,7 +22,7 @@ const ElegirTipo = ({ form, setForm }) => {
           {categorias.map((cat, i) => {
             return (
               <Fragment key={i}>
-                {cat.idcategoriapadre === form.categoria && (
+                {cat.idcategoriapadre === form.categoria.toString() && (
                   <div className="subType">
                     <Radio
                       checked={form.tipo === cat.idcategoria}

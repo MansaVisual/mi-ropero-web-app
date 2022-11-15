@@ -91,7 +91,7 @@ const ElegirImagenes = () => {
         <div className="buttonContainer">
           <button
             onClick={() => {
-              navigate(`/MiTienda/IMAGENES`);
+              navigate(`/MiTienda/CARACTERISTICAS`);
             }}
           >
             IR A CARACTERÍSTICAS
