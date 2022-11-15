@@ -29,7 +29,7 @@ const Caracteristicas = ({ form, setForm }) => {
     });
     const dir = new FormData();
     dir.append("idcategoria", form.categoria);
-    PerfilAPI(form, "categorias", "get").then((res) => {
+    PerfilAPI(dir, "categorias", "get").then((res) => {
       console.log(res);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
