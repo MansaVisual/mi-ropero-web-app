@@ -136,6 +136,8 @@ console.log(infoUser)
                     }else{
                         infoUser['productos_favoritos'] = [idProd]
                     }
+                }else{
+                    infoUser.productos_favoritos=infoUser.productos_favoritos.filter(e=>e!==idProd)
                 }
             }else{
                 setListFavs([])
