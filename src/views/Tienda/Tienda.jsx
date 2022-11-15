@@ -52,7 +52,7 @@ const Tienda = () => {
     <div>
       {params.seccion === undefined && <MiTienda />}
       {/* {params.seccion === undefined && <SeccionProductosCon />} */}
-      {params.seccion === "PRODUCTOS" && <ElegirCategoria setForm={setForm} />}
+      {params.seccion === "PRODUCTOS" && <SeccionProductosCon />}
       {params.seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
       {params.seccion === "TIPO" && (
         <ElegirTipo form={form} setForm={setForm} />

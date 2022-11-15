@@ -1,4 +1,4 @@
-.calificacionesContainer {
+.transferenciasContainer {
   min-height: 60vh;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,7 @@
     max-width: 1366px;
     width: 100%;
     padding: 0 72px;
-    .calificacionesSections {
+    .sections {
       margin-top: 50px;
       .firstLine {
         display: flex;
@@ -120,7 +120,7 @@
           cursor: pointer;
         }
       }
-      .calificacionesList {
+      .list {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -130,137 +130,71 @@
         @include screen_820 {
           justify-content: center;
         }
-        .desktopCard {
-          max-width: 895px;
-          box-sizing: border-box;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+        .customTable {
+          max-width: 1066px;
           width: 100%;
-          background: #fdfeff;
-          box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25),
-            10px 10px 30px rgba(223, 229, 239, 0.25);
-          border-radius: 6px;
-          padding: 16px 40px 16px 32px;
-          cursor: pointer;
-          @include screen_705 {
+          border-collapse: collapse;
+          @include screen_950 {
             display: none;
           }
-          .basuraIcon {
-            cursor: pointer;
-            margin-left: 30px;
+          thead {
+            .titleRow {
+              th {
+                width: 20%;
+                font-size: 17px;
+                line-height: 23.15px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                color: #423b3c;
+              }
+            }
           }
-          .data {
-            display: flex;
-            align-items: center;
-            p {
-              margin: 0;
-            }
-            img {
-              height: 70px;
-              width: 70px;
-              margin-right: 32px;
-            }
-            div {
-              max-width: 540px;
-              font-weight: 700;
-              font-size: 17px;
-              line-height: 24px;
-              .id {
-                color: #423b3c;
-                cursor: pointer;
-                span {
-                  font-weight: 400;
-                  font-size: 17px;
-                  line-height: 24px;
-                  color: #878787;
-                }
-              }
-              .name {
-                margin-top: 8px;
-                font-weight: 700;
-                font-size: 17px;
-                line-height: 24px;
-                color: #423b3c;
-              }
-              .review {
-                margin-top: 8px;
-                font-style: italic;
-                font-weight: 400;
-                font-size: 17px;
-                line-height: 28px;
+          tbody .dataRow:not(:first-child) {
+            border-top: 1px solid #e5e6e7;
+          }
+          tbody {
+            .dataRow {
+              height: 72px;
+              th {
+                font-weight: 600;
+                font-size: 15px;
+                line-height: 20.43px;
+                text-align: left;
                 color: #878787;
               }
+              .estatusColumn {
+                display: flex;
+                justify-items: center;
+                flex-direction: column;
+                font-size: 14px;
+              }
+              .estatusColumn :first-child {
+                color: #423b3c;
+                font-weight: 700;
+                display: flex;
+                align-items: flex-end;
+              }
+              span {
+                height: 35px;
+              }
             }
-          }
-          .rigthSide {
-            display: flex;
-            .monto {
-              font-weight: 600;
-              font-size: 17px;
-              line-height: 23px;
-              color: #423b3c;
-              margin: 0 32px 0 0;
-            }
-            img {
-              height: 22px;
-              width: 18px;
-              cursor: pointer;
-              z-index: 999;
-            }
-          }
-        }
-        .mobileCard {
-          display: none !important;
-          background: #fdfeff;
-          box-sizing: border-box;
-          padding: 16px;
-          max-width: 329px;
-          min-width: 320px;
-          display: flex;
-          @include screen_705 {
-            display: flex !important;
-          }
-          .productImg {
-            height: 70px;
-            width: 70px;
-            margin-right: 16px;
-            @include screen_389 {
-              width: 100%;
-              max-width: 70px;
-              height: auto;
-              max-height: 70px;
-            }
-          }
-          .trashICon {
-            position: relative;
-            top: 6px;
-            right: 6px;
-            height: 16px;
-            width: 14px;
-          }
-          div {
-            max-width: 180px;
-            min-width: 170px;
-            p:not(:last-child) {
-              margin-bottom: 8px;
-            }
-            p,
-            span {
-              margin: 0;
-              font-weight: 600;
-              font-size: 12px;
-              line-height: 18px;
-            }
-            .messageTitle,
-            .messageDate {
-              color: #878787;
-            }
-            .messageMessage {
-              color: #423b3c;
-            }
-            .messageState {
+            .tableButton {
+              background: #ffffff;
+              border-radius: 20px;
               color: #443988;
+              font-size: 13px;
+              line-height: 36px;
+              border: 1px solid #443988;
+              margin-right: 8px;
+              height: 32px;
+              width: 208px;
+              @include screen_705 {
+                margin-right: 0;
+                margin-top: 8px;
+                border: 0;
+                text-decoration: underline;
+              }
             }
           }
         }

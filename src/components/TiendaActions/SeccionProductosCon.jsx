@@ -67,7 +67,7 @@ const SeccionProductosCon = () => {
       </div>
       <div className="productContainer">
         <div className="firstLine">
-          <p className="title">MIS MENSAJES</p>
+          <p className="title">MIS PRODUCTOS</p>
           <p className="discountLink">CREAR DESCUENTO PARA TU TIENDA</p>
         </div>
         <div className="productList">

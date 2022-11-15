@@ -1,63 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import foto from "../../assets/img/fotoProd.png";
 import error from "../../assets/img/error.png";
 import basura from "../../assets/img/basura.png";
+import StarIcon from "@mui/icons-material/Star";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Rating, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Calificaciones = () => {
   const navigate = useNavigate();
 
+  const [selected, setSelected] = useState("mejor valoración primero");
+
   const array = [
     {
       img: foto,
-      nombreProd: "Conjunto Grisino (1 a 3 meses)",
-      fecha: "9/8/2022  15:09:22 hs",
-      estado: "Pago realizado",
-      monto: 2000,
-      oferta: 2500,
+      id: 1371,
+      nombre: "Marcelo Moda",
+      reseña:
+        "“El producto está igual a lo que decía la publicación, estoy más que satisfecho con la compra”",
+      rating: 3.5,
     },
   ];
-  const stateList = ["pago Realizado", "en espera"];
+  const stateList = ["mejor valoración primero", "en espera"];
   return (
-    <div className="ofertasContainer">
+    <div className="calificacionesContainer">
       <TiendaBanner />
       <div className="container">
-        <div className="ofertasSections">
+        <div className="calificacionesSections">
           <div className="firstLine">
-            <p className="title">OFERTAS RECIBIDAS</p>
-            <button>AGREGAR PRODUCTO</button>
+            <p className="title">CALIFICACIONES</p>
           </div>
-          <div className="ofertasList">
+          <div className="calificacionesList">
             {array.map((venta, id) => {
               return (
                 <div key={id} className="desktopCard">
                   <div className="data">
                     <img src={venta.img} alt="cardImage" />
                     <div>
-                      <p className="title">{venta.nombreProd}</p>
-                      <div>
-                        <p className="offert">
-                          Precio: <span>${venta.monto}</span>
-                        </p>
-                        <p className="offert">
-                          Oferta: <span>${venta.oferta}</span>
-                        </p>
-                      </div>
-                      <p className="date">
-                        Fecha: <span>{venta.fecha}</span>
+                      <p className="id">
+                        Operacion: <span>{venta.id}</span>
                       </p>
-                      <p className="state">{venta.estado}</p>
+                      <p className="name">{venta.nombre}</p>
+                      <p className="review">{venta.reseña}</p>
                     </div>
                   </div>
                   <div className="rigthSide">
-                    <p className="monto">${venta.monto}</p>
+                    <Rating
+                      name="text-feedback"
+                      value={venta.rating}
+                      readOnly
+                      precision={0.5}
+                      icon={
+                        <StarIcon
+                          style={{ width: "20px", height: "20px" }}
+                        ></StarIcon>
+                      }
+                      emptyIcon={
+                        <StarIcon
+                          style={{
+                            opacity: 0.55,
+                            width: "20px",
+                            height: "20px",
+                          }}
+                        />
+                      }
+                    />
                     <img
                       onClick={() => {
                         /* setBorrarMsj(true);
-                          setMensajeId(mensaje.idmensaje); */
+                      setMensajeId(mensaje.idmensaje); */
                       }}
                       className="basuraIcon"
                       src={basura}
@@ -77,8 +90,8 @@ const Calificaciones = () => {
           <Select
             displayEmpty
             className="selectInput"
-            /* onChange={(e) => setTypeMessage(e.target.value)}
-                value={typeMessage} */
+            onChange={(e) => setSelected(e.target.value)}
+            value={selected}
             renderValue={(selected) => {
               if (selected === "") {
                 return <em>Seleccioná una opción</em>;

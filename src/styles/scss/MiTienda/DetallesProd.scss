@@ -1,187 +1,188 @@
 .detallesProdContainer {
-    margin-top: 40px;
-    margin: 40px 72px 80px 0px;
-    display: flex;
-    justify-content: flex-start;
-    @include screen_705 {
-        margin-top: 24px;
-        margin-right: 0px;
+  margin-top: 40px;
+  margin: 40px 72px 80px 0px;
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1366px;
+  width: 100%;
+  @include screen_705 {
+    margin-top: 24px;
+    margin-right: 0px;
+  }
+  .container {
+    margin-top: 8px;
+    width: 100%;
+    max-width: 758px;
+    @include screen_900 {
+      padding-top: 16px;
     }
-    .container {
-        margin-top: 8px;
+    @include screen_601 {
+      padding-top: 0px;
+    }
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      @include screen_900 {
+        font-size: 16px;
+      }
+      @include screen_360 {
+        margin-right: 24px;
+      }
+    }
+    .titleRight {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      text-decoration-line: underline;
+      color: #443988;
+      mix-blend-mode: normal;
+      cursor: pointer;
+      text-align: right;
+    }
+    .subtitle {
+      font-family: "Open Sans";
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 28px;
+      color: #878787;
+      margin-left: 24px;
+    }
+    .firstLine {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      @include screen_900 {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .margenInput {
+        margin-bottom: 24px;
+        width: 50%;
+        @include screen_900 {
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .margenInputEspecial {
+        padding-right: 12px;
+        @include screen_900 {
+          padding-right: 0px;
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .checkDirecc {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: start;
+        color: #878787;
+        margin: 16px;
+        margin-left: 0px;
+      }
+    }
+    .contenedorTextarea {
+      @include screen_900 {
         width: 100%;
-        max-width: 758px;
-        @include screen_900{
-            padding-top: 16px;
+      }
+      .textarea div {
+        height: 88px;
+        textarea {
+          position: relative;
+          top: 5px;
         }
-        @include screen_601{
-            padding-top: 0px;
-        }
-        .title {
-            font-style: normal;
-            font-weight: 700;
-            font-size: 23px;
-            line-height: 31px;
-            color: #443988;
-            @include screen_900{
-                font-size: 16px;
-            }
-            @include screen_360{
-                margin-right: 24px;
-            }
-        }
-        .titleRight{
-            font-family: 'Open Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 16px;
-            text-decoration-line: underline;
-            color: #443988;
-            mix-blend-mode: normal;
-            cursor: pointer;
-            text-align: right;
-        }
-        .subtitle {
-            font-family: "Open Sans";
-            font-weight: 700;
-            font-size: 17px;
-            line-height: 28px;
-            color: #878787;
-            margin-left: 24px;
-        }
-        .firstLine{
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            @include screen_900{
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-            }
-            .margenInput{
-                margin-bottom: 24px;
-                width: 50%;
-                @include screen_900{
-                    width: 100%;
-                    text-align: center;
-                }
-            }
-            .margenInputEspecial{
-                padding-right: 12px;
-                @include screen_900{
-                    padding-right: 0px;
-                    width: 100%;
-                    text-align: center;
-                }
-            }
-            .checkDirecc{
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 22px;
-                text-align: start;
-                color: #878787;
-                margin: 16px;
-                margin-left: 0px;
-            }
-        }
-        .contenedorTextarea{
-            @include screen_900{
-                width: 100%;
-            }
-            .textarea div{
-                height: 88px;
-                textarea{
-                    position: relative;
-                    top: 5px;
-                }
-            }
-        }
-        .inputForm{
-            font-style: italic;
-            font-weight: 400;
-            color: #BABCBE;
-            font-size: 14px;
-            width: 100%;
-            background: #FFFFFF;
-            mix-blend-mode: normal;
-            border: 0.5px solid #878787;
-            border-radius: 4px;
-            @include screen_900{
-                width: 100%;
-                font-size: 13PX;
-            }
-            div{
-                height: 40px;
-            }
-        }
-        .labelForm{
-            font-weight: 600;
-            font-size: 13px;
-            text-indent: 16px;
-            color: #423B3C;
-            margin-bottom: 8px;
-            @include screen_900{
-                text-indent: 0px;
-                text-align: start;
-            }   
-        }
-        .subTypeSection {
-            margin-top: 35px;
-            max-height: 240px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            .subType {
-                display: flex;
-                margin-top: 24px;
-                .radio {
-                span {
-                    color: #babcbe;
-                }
-                }
-                .notSelected {
-                font-family: "Open Sans";
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 19px;
-                display: flex;
-                align-items: center;
-                color: #423b3c;
-                }
-                .selected {
-                font-family: "Open Sans";
-                font-weight: 700;
-                font-size: 14px;
-                line-height: 19px;
-                display: flex;
-                align-items: center;
-                color: #443988;
-                }
-            }
-        }
-        .buttonContainer {
-            display: flex;
-            justify-content: center;
-            margin-top: 32px;
-            button {
-                font-family: 'Open Sans';
-                font-style: normal;
-                font-weight: 600;
-                font-size: 12px;
-                line-height: 16px;
-                letter-spacing: 0.05em;
-                color: #FFFFFF;
-                padding: 10px 3px;
-                width: 226px;
-                background: #443988;
-                box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
-                border-radius: 20px;
-                border-width: 0px;
-                cursor: pointer;
-            }
-        }
+      }
     }
+    .inputForm {
+      font-style: italic;
+      font-weight: 400;
+      color: #babcbe;
+      font-size: 14px;
+      width: 100%;
+      background: #ffffff;
+      mix-blend-mode: normal;
+      border: 0.5px solid #878787;
+      border-radius: 4px;
+      @include screen_900 {
+        width: 100%;
+        font-size: 13px;
+      }
+      div {
+        height: 40px;
+      }
+    }
+    .labelForm {
+      font-weight: 600;
+      font-size: 13px;
+      text-indent: 16px;
+      color: #423b3c;
+      margin-bottom: 8px;
+      @include screen_900 {
+        text-indent: 0px;
+        text-align: start;
+      }
+    }
+    .subTypeSection {
+      margin-top: 35px;
+      max-height: 240px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      .subType {
+        display: flex;
+        margin-top: 24px;
+        .radio {
+          span {
+            color: #babcbe;
+          }
+        }
+        .notSelected {
+          font-family: "Open Sans";
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 19px;
+          display: flex;
+          align-items: center;
+          color: #423b3c;
+        }
+        .selected {
+          font-family: "Open Sans";
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 19px;
+          display: flex;
+          align-items: center;
+          color: #443988;
+        }
+      }
+    }
+    .buttonContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+      button {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        padding: 10px 3px;
+        width: 226px;
+        background: #443988;
+        box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        border-width: 0px;
+        cursor: pointer;
+      }
+    }
+  }
 }
-  
