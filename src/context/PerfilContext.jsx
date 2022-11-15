@@ -32,9 +32,7 @@ export const PerfilContext = ({ children }) => {
       {
         method: "POST",
         body:data,
-        headers: {
-          'custom_authorization':'YWNjZXNvbWlyb3Blcm93ZWI6I2FjYzNzNDdkbTFwcA=='
-         }
+
       }
     )
       .then((response) => response.json())
