@@ -69,7 +69,7 @@ const CancelacionCompra = () => {
             if (res.result === "La operacion no existe") {
               Swal.fire({
                 title: "ERROR AL BORRAR",
-                text: "Error al cargar reclamo. Revisá el id de operación y volvé a intentarlo",
+                text: "Error al cargar reclamo. Revisá el número de operación y volvé a intentarlo",
                 icon: "error",
                 confirmButtonText: "ACEPTAR",
               });
@@ -80,7 +80,7 @@ const CancelacionCompra = () => {
         setLoading(false);
         Swal.fire({
           title: "ERROR DE VALIDACIÓN",
-          text: "El código ingresado no fue encontrado o es incorrecto. Vuelva a intentarlo o pruebe con otro código",
+          text: "El Número de Operación ingresado no fue encontrado o es incorrecto. Vuelva a intentarlo o pruebe con otro.",
           icon: "error",
           confirmButtonText: "ACEPTAR",
         });
