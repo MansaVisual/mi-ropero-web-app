@@ -34,20 +34,7 @@ const Caracteristicas = () => {
       label: "Género *",
       placeholder: "Seleccionar género(s)",
       multiple: false,
-      options: [
-        {
-          name: "Hombre",
-          id: "10:1",
-        },
-        {
-          name: "Mujer",
-          id: "10:2",
-        },
-        {
-          name: "Otros",
-          id: "10:3",
-        },
-      ],
+      options: generosList,
       caractValue: genero,
       changeFunction: setGenero,
     },
