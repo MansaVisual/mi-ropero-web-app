@@ -110,8 +110,6 @@ console.log("INFOUSER VIEJO", infoUser.productos_favoritos)
       });
     }
   };
-console.log("INFOUSER NUEVO", infoUser.productos_favoritos)
-
 
   return (
     <Box>
