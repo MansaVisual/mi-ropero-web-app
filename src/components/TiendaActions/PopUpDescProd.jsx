@@ -1,61 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
-import { UseProdsContext } from "../../context/ProdsContext";
-import { UseLoginContext } from "../../context/LoginContext";
-import Swal from "sweetalert2";
 
 const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const { ProdAPI } = useContext(UseProdsContext);
-  const { userLog } = useContext(UseLoginContext);
   const [error, setError] = useState(false);
-  const [aparece, setAparece] = useState(true);
+  const [fin,setFin]=useState(false)
 
   const submit = () => {
-    setLoading(true);
-    if (message === "") {
-      setError(true);
-      setLoading(false);
-      return;
-    }
-    const mensaje = new FormData();
-    mensaje.append("idcliente", userLog);
-    mensaje.append("mensaje", message);
-    ProdAPI(mensaje, "mensajes", "insert").then((res) => {
-      if (res.status === "success") {
-        setTimeout(() => {
-          setLoading(false);
-          setOpenMessagePop(false);
-          Swal.fire({
-            title: "MENSAJE ENVIADO",
-            icon: "success",
-            confirmButtonText: "ACEPTAR",
-          });
-        }, 1000);
-      } else {
-        setTimeout(() => {
-          setLoading(false);
-          setAparece(false);
-          Swal.fire({
-            title: "MENSAJE NO ENVIADO",
-            text: "Ocurrió un error. Vuelva a intentarlo",
-            icon: "error",
-            confirmButtonText: "ACEPTAR",
-          }).then(() => setAparece(true));
-        }, 1000);
-      }
-    });
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      setFin(true)
+    }, 1500);
   };
 
   return (
     <div
       className="PopUpMensajePP"
-      style={{ display: aparece ? "flex" : "none" }}
     >
       <div
         className="fondoPopUp"
@@ -72,39 +38,40 @@ const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">
-            {error ? "¡ERROR!" : descripcion===undefined?"¡ENVIÁ UN MENSAJE!":"TIENDA PAUSADA"}
+            {fin ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE" : 
+              "DESCUENTO POR PRODUCTO"
+            }
           </p>
-          <p className="popUpDescription">
-            {descripcion===undefined?
-            "Sacate todas las dudas que tengas escribiéndole al vendedor/a. Recordá que no podés ingresar información de contacto como direcciones de email, números de teléfono, etc."
-            :
-            descripcion}
-          </p>
-          <p className="popUpTitle">Tu mensaje para el vendedor/a</p>
-
-          <TextField
-            multiline
-            rows={4}
-            className="textArea"
-            size="small"
-            placeholder="Ingresar Mensaje"
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-              setError(false);
-            }}
-            inputProps={{ maxLength: 220 }}
-            sx={{
-              width: "100%",
-              border: error && "1px solid #ff3f20 !important",
-              borderRadius: error && "4px",
-              "& .MuiOutlinedInput-root:hover": {
-                "& > fieldset": {
-                  borderColor: error && "#FF3F20",
+          {!fin && 
+            <p className="popUpDescription" style={{marginTop:"8px"}}>
+              Ingresá el porcentaje de descuento para este producto
+            </p>
+          }
+          {!fin &&
+            <TextField
+              multiline
+              rows={1}
+              className="textArea"
+              size="small"
+              placeholder="% de descuento"
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+                setError(false);
+              }}
+              inputProps={{ maxLength: 2 }}
+              sx={{
+                width: "100%",
+                border: error && "1px solid #ff3f20 !important",
+                borderRadius: error && "4px",
+                "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor: error && "#FF3F20",
+                  },
                 },
-              },
-            }}
-          />
+              }}
+            />
+          }
           <div className="buttonContainer">
             {loading ? (
               <div
@@ -120,19 +87,31 @@ const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
               </div>
             ) : (
               <>
-                <Button
+                {!loading && !fin && 
+                  <Button
                   onClick={() => setOpenMessagePop(false)}
                   className="volver"
-                >
-                  CANCELAR
-                </Button>
-                <Button
+                  >
+                    CANCELAR
+                  </Button>
+                }
+                {!fin ? 
+                  <Button
                   disabled={message === "" ? true : false}
                   className={message === "" ? "mensajeDisabled" : "recordar"}
                   onClick={() => submit()}
-                >
-                  ENVIAR MENSAJE
-                </Button>
+                  >
+                    APLICAR
+                  </Button>
+                :
+                  <Button
+                  disabled={message === "" ? true : false}
+                  className={message === "" ? "mensajeDisabled" : "recordar"}
+                  onClick={() => setOpenMessagePop(false) }
+                  >
+                    LISTO
+                  </Button>
+                }
               </>
             )}
           </div>
