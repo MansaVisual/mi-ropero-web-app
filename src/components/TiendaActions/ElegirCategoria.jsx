@@ -11,22 +11,22 @@ const categorias = [
   {
     nombre: "ROPA",
     img: RopaIcon,
-    idCategoriaPadre: "1",
+    idCategoriaPadre: 1,
   },
   {
     nombre: "CALZADO",
     img: CalzadoIcon,
-    idCategoriaPadre: "2",
+    idCategoriaPadre: 2,
   },
   {
     nombre: "ACCESORIOS",
     img: AccesorioICon,
-    idCategoriaPadre: "3",
+    idCategoriaPadre: 3,
   },
   {
     nombre: "BELLEZA",
     img: BellezaICon,
-    idCategoriaPadre: "1000018",
+    idCategoriaPadre: 1000018,
   },
 ];
 

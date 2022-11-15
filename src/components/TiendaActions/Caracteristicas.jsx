@@ -5,7 +5,7 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import { useNavigate } from "react-router-dom";
 import { UsePerfilContext } from "../../context/PerfilContext";
 
-const Caracteristicas = () => {
+const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
 
   const [generosList, setGenerosList] = useState([]);

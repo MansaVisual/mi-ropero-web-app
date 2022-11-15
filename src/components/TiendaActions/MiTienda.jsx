@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
 import TiendaCalif from "../../assets/img/TiendaCalif.svg";
 import TiendaDatos from "../../assets/img/TiendaDatos.svg";
@@ -12,16 +11,9 @@ import TiendaVentas from "../../assets/img/TiendaVentas.svg";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 
 const MiTienda = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const pathnames = location.pathname.split("/").filter((x) => x);
-
   const sections = [
-    // {
-    //   name: 'MI TIENDA',
-    //   icon: miTienda,
-    // },
     {
       name: "DATOS DE LA TIENDA",
       icon: TiendaDatos,

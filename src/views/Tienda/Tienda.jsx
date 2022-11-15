@@ -16,7 +16,7 @@ import Transferencias from "../../components/TiendaActions/Transferencias";
 import Caracteristicas from "../../components/TiendaActions/Caracteristicas";
 
 const Tienda = () => {
-  const params = useParams();
+  const { seccion } = useParams();
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
 
@@ -39,7 +39,7 @@ const Tienda = () => {
       top: 0,
       behavior: "auto",
     });
-  }, [params]);
+  }, [seccion]);
 
   useEffect(() => {
     if (num !== 1) {
@@ -51,22 +51,22 @@ const Tienda = () => {
 
   return (
     <div>
-      {params.seccion === undefined && <MiTienda />}
+      {seccion === undefined && <MiTienda />}
       {/* {params.seccion === undefined && <SeccionProductosCon />} */}
-      {params.seccion === "PRODUCTOS" && <SeccionProductosCon />}
-      {params.seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
-      {params.seccion === "TIPO" && (
-        <ElegirTipo form={form} setForm={setForm} />
+      {seccion === "PRODUCTOS" && <SeccionProductosCon />}
+      {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
+      {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
+      {seccion === "IMAGENES" && <ElegirImagenes setForm={setForm} />}
+      {seccion === "CARACTERISTICAS" && (
+        <Caracteristicas form={form} setForm={setForm} />
       )}
-      {params.seccion === "CARACTERISTICAS" && <Caracteristicas />}
-      {params.seccion === "IMAGENES" && <ElegirImagenes setForm={setForm} />}
-      {params.seccion === "DETALLES" && <DetallesProd />}
-      {params.seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
-      {params.seccion === "VENTAS" && <Ventas />}
-      {params.seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
-      {params.seccion === "MENSAJES" && <Mensajes />}
-      {params.seccion === "CALIFICACIONES" && <Calificaciones />}
-      {params.seccion === "TRANSFERENCIAS" && <Transferencias />}
+      {seccion === "DETALLES" && <DetallesProd />}
+      {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
+      {seccion === "VENTAS" && <Ventas />}
+      {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
+      {seccion === "MENSAJES" && <Mensajes />}
+      {seccion === "CALIFICACIONES" && <Calificaciones />}
+      {seccion === "TRANSFERENCIAS" && <Transferencias />}
     </div>
   );
 };
