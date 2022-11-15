@@ -13,6 +13,7 @@ import OfertasRecibidas from "../../components/TiendaActions/OfertasRecibidas";
 import Mensajes from "../../components/TiendaActions/Mensajes";
 import Calificaciones from "../../components/TiendaActions/Calificaciones";
 import Transferencias from "../../components/TiendaActions/Transferencias";
+import Caracteristicas from "../../components/TiendaActions/Caracteristicas";
 
 const Tienda = () => {
   const params = useParams();
@@ -57,6 +58,7 @@ const Tienda = () => {
       {params.seccion === "TIPO" && (
         <ElegirTipo form={form} setForm={setForm} />
       )}
+      {params.seccion === "CARACTERISTICAS" && <Caracteristicas />}
       {params.seccion === "IMAGENES" && <ElegirImagenes setForm={setForm} />}
       {params.seccion === "DETALLES" && <DetallesProd />}
       {params.seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}

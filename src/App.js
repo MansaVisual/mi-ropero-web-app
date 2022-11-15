@@ -38,7 +38,6 @@ import Tienda from "./views/Tienda/Tienda";
 function App() {
   useEffect(() => {
     const handleFooterClick = (e) => {
-      console.log("HOAL")
       if (e.target.id === "Ropa") {
         document.getElementById("ROPA").click();
       } else if (e.target.id === "Accesorios") {
@@ -118,7 +117,7 @@ function App() {
                           path="/validacionLogin"
                           element={<LoginValidation />}
                         />
-                        
+
                         <Route path="/perfil" element={<Perfil />} />
                         <Route
                           path="perfil/:perfilSeccion"
