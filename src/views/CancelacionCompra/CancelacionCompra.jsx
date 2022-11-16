@@ -144,7 +144,7 @@ const CancelacionCompra = () => {
                 setForm({ ...form, mensaje: e.target.value });
                 setCampoObligatorio(false);
               }}
-              inputProps={{ maxLength: 50 }}
+              inputProps={{ maxLength: 150 }}
             />
           </div>
         </div>

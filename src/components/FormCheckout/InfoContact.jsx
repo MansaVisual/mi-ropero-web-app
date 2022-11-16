@@ -749,7 +749,7 @@ const InfoContact = ({
                     handleChangeForm(setForm, form);
                   }
                 }}
-                inputProps={{ maxLength: 50 }}
+                inputProps={{ maxLength: 100 }}
               ></TextField>
             </div>
             <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>

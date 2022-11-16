@@ -33,7 +33,20 @@
       }
     }
   }
-
+  .subLabelForm{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    align-items: center;
+    color: #878787;
+    margin-top: 8px;
+    text-indent: 9px;
+    @include screen_601{
+        font-size: 12px;
+        text-align: start;
+        text-indent: 0px;
+    }
+  }
   .formObligatorio {
     border: 0.5px solid #ff3f20 !important;
     border-radius: 4px !important;
