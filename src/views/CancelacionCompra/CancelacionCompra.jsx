@@ -175,7 +175,7 @@ const CancelacionCompra = () => {
             </Button>
           )}
         </div>
-        <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+        <div className="returnLink" onClick={() => navigate(`/`)}>
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A INICIO</p>
         </div>
