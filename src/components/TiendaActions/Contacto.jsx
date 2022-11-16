@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -9,7 +9,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../../FormCheckout/PopUpLocalidad";
 import PopUpFinalDir from "./PopUpFinalDir";
-import Loader from "../../Loader/Loader";
+import Loader from "../Loader/Loader";
 
 const Contacto = () => {
   const location = useLocation();
