@@ -3,7 +3,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
@@ -39,6 +39,7 @@ const Contacto = () => {
   const [errorCodPostal, setErrorCodPostal] = useState(false);
   const [errorDireccion, setErrorDireccion] = useState(false);
   const [errorLocalidad, setErrorLocalidad] = useState(false);
+  const [errorPhone, setErrorPhone] = useState(false);
 
   const [viewDireccion, setViewDireccion] = useState(false);
   const [resDirecciones, setResDirecciones] = useState([]);
@@ -99,13 +100,21 @@ const Contacto = () => {
   const checkNuevaDireccion = async () => {
     console.log("checkdir start");
     setLoader(true);
-    if (document.getElementById("alias").value === "") {
-      throwError("alias", "labelAlias");
+    if (document.getElementById("telefono").value === "") {
+      throwError("telefono", "labelTelefono");
       setLoader(false);
       scrollTop();
       setCampoObligatorio(true);
       return;
     }
+    const formPhone = new FormData();
+    formPhone.append('telefono', document.getElementById('telefono').value);
+    await FormAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
+    if (res.status === 'error') {
+        setErrorPhone(true);
+        throwError('telefono', 'labelTelefono');
+    }
+    });
     if (document.getElementById("calle").value === "") {
       throwError("calle", "labelCalle");
       setLoader(false);
@@ -247,6 +256,7 @@ const Contacto = () => {
   };
 
   return (
+    <Grid className="gridContainer">
     <div className="nuevaDirecContainer">
       <Breadcrumbs links={pathnames} />
       <div className="titleSection">
@@ -256,6 +266,12 @@ const Contacto = () => {
         <div className="errorBox">
           <CancelOutlinedIcon color="secondary" className="cruz" />
           <p>Debe completar los campos obligatorios para avanzar</p>
+        </div>
+      )}
+        {errorPhone && (
+        <div className='errorBox'>
+          <CancelOutlinedIcon color='secondary' className='cruz' />
+          <p>El número de telefono no es válido.</p>
         </div>
       )}
       {errorCodPostal && (
@@ -280,20 +296,21 @@ const Contacto = () => {
 
       <div className="inputContainer">
         <div className="inputBox">
-          <p className="labelInput" id="labelAlias">
+          <p className="labelInput" id="labelTelefono">
             Teléfono *
           </p>
           <TextField
             color="primary"
             className="input"
             size="small"
-            id="alias"
+            id="telefono"
             placeholder="5411291029"
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
+              setErrorPhone(false)
             }}
-            onFocus={(e) => onFocus(e, clase, clase2, "labelAlias")}
+            onFocus={(e) => onFocus(e, clase, clase2, "labelTelefono")}
             sx={{
               "& .MuiOutlinedInput-root:hover": {
                 "& > fieldset": {
@@ -555,9 +572,9 @@ const Contacto = () => {
             }}
             inputProps={{ maxLength: 100 }}
           />
-          <p className="bottomText">
-            Agregar información útil para encontrar la dirección.
-          </p>
+            <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
+                Agregar información útil para encontrar la dirección.
+            </InputLabel>
         </div>
       </div>
       {loader ? (
@@ -605,6 +622,7 @@ const Contacto = () => {
         />
       )}
     </div>
+    </Grid>
   );
 };
 
