@@ -8,7 +8,7 @@ import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../FormCheckout/PopUpLocalidad";
-import PopUpFinalDir from "./PopUpFinalDir";
+import PopUpFinalDir from "./PopUpFinal/PopUpFinalDir";
 import Loader from "../Loader/Loader";
 
 const Contacto = () => {
