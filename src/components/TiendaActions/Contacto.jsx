@@ -3,7 +3,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { Button, MenuItem, Select, TextField } from "@mui/material";
+import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
@@ -250,7 +250,7 @@ const Contacto = () => {
     <div className="nuevaDirecContainer">
       <Breadcrumbs links={pathnames} />
       <div className="titleSection">
-        <p className="title">NUEVA DIRECCION</p>
+        <p className="title">CONTACTO</p>
       </div>
       {campoObligatorio && (
         <div className="errorBox">
@@ -281,14 +281,14 @@ const Contacto = () => {
       <div className="inputContainer">
         <div className="inputBox">
           <p className="labelInput" id="labelAlias">
-            Alias
+            Teléfono *
           </p>
           <TextField
             color="primary"
             className="input"
             size="small"
             id="alias"
-            placeholder="Casa, trabajo, etc."
+            placeholder="5411291029"
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
@@ -302,13 +302,16 @@ const Contacto = () => {
               },
             }}
           />
+        <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
+            Llamarán a este número sólo si hay algún problema.
+        </InputLabel>
         </div>
         <div className="inputBox"></div>
       </div>
       <div className="inputContainer">
         <div className="inputBox">
           <p className="labelInput" id="labelCalle">
-            Calle
+            Calle *
           </p>
           <TextField
             color="primary"
@@ -330,7 +333,9 @@ const Contacto = () => {
               },
             }}
           />
-          <p className="bottomText">Domicilio de entrega </p>
+            <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
+                Utilizaremos tu dirección para retirar y entregar tus productos, además de calcular el costo de envío.
+            </InputLabel>
         </div>
         <div className="inputBoxLocation">
           <div>
@@ -569,18 +574,15 @@ const Contacto = () => {
         </div>
       ) : (
         <div className="buttonContainer">
-          <Button className="leftButton" onClick={() => navigate(`/perfil`)}>
-            CANCELAR
-          </Button>
           <Button className="rightButton" onClick={() => checkNuevaDireccion()}>
-            GUARDAR DIRECCIÓN
+            CONFIRMAR CONTACTO
           </Button>
         </div>
       )}
 
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
-        <p>VOLVER A MI PERFIL</p>
+        <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
       </div>
       {viewDireccion && (
         <PopUpFinalDir
