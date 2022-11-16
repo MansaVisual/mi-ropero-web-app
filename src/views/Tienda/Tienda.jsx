@@ -16,6 +16,7 @@ import Transferencias from "../../components/TiendaActions/Transferencias";
 import Caracteristicas from "../../components/TiendaActions/Caracteristicas";
 import CargaProdExito from "../../components/TiendaActions/ProductoPublicado";
 import ProductoPublicado from "../../components/TiendaActions/ProductoPublicado";
+import Contacto from "../../components/TiendaActions/Contacto";
 
 const Tienda = () => {
   const { seccion } = useParams();
@@ -70,6 +71,7 @@ const Tienda = () => {
       {seccion === "CALIFICACIONES" && <Calificaciones />}
       {seccion === "TRANSFERENCIAS" && <Transferencias />}
       {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
+      {seccion === "CONTACTO" && <Contacto />}
     </div>
   );
 };
