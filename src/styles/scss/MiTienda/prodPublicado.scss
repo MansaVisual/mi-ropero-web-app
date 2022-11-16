@@ -1,0 +1,77 @@
+.prodPublicadoContainer {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans";
+  margin-bottom: 60px;
+  margin-top: 50px;
+  .mainSection {
+    display: flex;
+    justify-content: space-between;
+    .successMessage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 758px;
+      width: 100%;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      p {
+        margin: 0;
+      }
+      .firstMessage {
+        margin-top: 8px;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 34px;
+        color: #443988;
+      }
+      .secondMessage {
+        margin-top: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 24px;
+        color: #878787;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 90px;
+        width: 100%;
+        button {
+          width: 100%;
+          max-width: 207px;
+          height: 36px;
+          border: 0.5px solid #443988;
+          filter: drop-shadow(0px 2px 6px rgba(66, 65, 67, 0.1));
+          border-radius: 20px;
+          font-weight: 700;
+          font-size: 13px;
+          line-height: 36px;
+          color: #443988;
+          box-sizing: border-box;
+          cursor: pointer;
+        }
+        .leftButton {
+          border: 0.5px solid #443988;
+          color: #443988;
+        }
+        .rightButton {
+          background: #443988;
+          color: #fff;
+          border: 0;
+        }
+      }
+    }
+    .adImage {
+      width: 100%;
+      max-width: 296px;
+      height: 296px;
+      border: 1px solid black;
+      border-radius: 8px;
+    }
+  }
+}

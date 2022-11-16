@@ -15,6 +15,7 @@ const Caracteristicas = ({ form, setForm }) => {
   const [colores, setColores] = useState("");
 
   const { PerfilAPI } = useContext(UsePerfilContext);
+  const [selectList, setSelectList] = useState([]);
 
   useEffect(() => {
     PerfilAPI("", "clientes", "get_sexos").then((res) => {
@@ -36,7 +37,7 @@ const Caracteristicas = ({ form, setForm }) => {
 
   console.log(form);
 
-  const selectList = [
+  /* const selectList = [
     {
       label: "Género *",
       placeholder: "Seleccionar género(s)",
@@ -110,7 +111,7 @@ const Caracteristicas = ({ form, setForm }) => {
       caractValue: colores,
       changeFunction: setColores,
     },
-  ];
+  ];  */
 
   const handleChange = (event, changeFunction) => {
     changeFunction(event.target.value);
