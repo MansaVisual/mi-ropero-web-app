@@ -20,7 +20,7 @@ const MisCompras = () => {
       setCompraId(id);
       navigate(`/perfil/MIS COMPRAS DETALLE`);
     }
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { userLog } = useContext(UseLoginContext);
   const {
@@ -55,6 +55,8 @@ const MisCompras = () => {
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
   };
+
+  console.log(comprasRealizadas);
 
   return (
     <div className="misComprasContainer">
