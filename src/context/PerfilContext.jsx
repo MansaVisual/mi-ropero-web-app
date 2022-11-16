@@ -20,19 +20,11 @@ export const PerfilContext = ({ children }) => {
   const PerfilAPI = async (data, clase, metodo) => {
     let resFinal = "";
 
-
-
     await fetch(
-      // `https://www.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
-      // {
-      //   method: "POST",
-      //   body: data,
-      // }
-      `https://apiData.miropero.com.ar/${clase}/${metodo}`,
+      `https://www2.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`,
       {
         method: "POST",
-        body:data,
-
+        body: data,
       }
     )
       .then((response) => response.json())
