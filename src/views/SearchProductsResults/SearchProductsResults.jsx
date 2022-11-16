@@ -128,13 +128,7 @@ const SearchProductsResults = () => {
       ProdAPI(col, "productos", "search").then((res) => {
         console.log("ERROR A RESOLVER YA", res);
         if (res.status === "success") {
-          const catFilters = new FormData();
-          catFilters.append("idcategoria", idCat);
-          ProdAPI(catFilters, "categorias", "get").then((res) => {
-            if (res.status === "success") {
-              setFiltrosCategoria(res.result[0]);
-            }
-          });
+          setFiltrosCategoria(res.result.productos_categorias[0].hijas);
           setProds(res.result.productos);
           setTotalPages(res.result.total_paginas);
         } else if (res.result === "No se encontraron productos") {
@@ -167,12 +161,6 @@ const SearchProductsResults = () => {
         catProd.append("precio_desde", rangoPrecio.min);
         catProd.append("precio_hasta", rangoPrecio.max);
       }
-
-      ProdAPI(catFilters, "categorias", "get").then((res) => {console.log("CATEGORIASSSS",res)
-        if (res.status === "success") {
-          setFiltrosCategoria(res.result[0]);
-        }
-      });
     }
     catProd.append("bypage", 15);
     catProd.append("page", 0);
@@ -181,6 +169,7 @@ const SearchProductsResults = () => {
       console.log("ERROR DESDE ACA", res);
       setBuscandoProds(false);
       if (res.status === "success") {
+        setFiltrosCategoria(res.result.productos_categorias[0].hijas);
         setProds(res.result.productos);
         setTotalPages(res.result.total_paginas);
       }
