@@ -48,7 +48,7 @@ const MiTienda = () => {
   return (
     <div className="miTiendaContainer">
       <TiendaBanner />
-      <div className="container">
+      {/* <div className="container">
         <div className="tiendaSections">
           {sections.map((section) => {
             return (
@@ -69,7 +69,7 @@ const MiTienda = () => {
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A INICIO</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
