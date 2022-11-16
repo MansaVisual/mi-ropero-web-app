@@ -14,7 +14,7 @@ export const MiTiendaContext = ({children}) => {
     const MiTiendaAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
-        await fetch(`https://www2.miropero.ar/MiRoperoApiDataGetway?class=${clase}&method=${metodo}`, {
+        await fetch(`https://www2.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
             method: 'POST',					
             body: data
         })
