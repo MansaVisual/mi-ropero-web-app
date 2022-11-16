@@ -7,7 +7,7 @@ import { Button, MenuItem, Select, TextField } from "@mui/material";
 import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
-import PopUpLocalidad from "../../FormCheckout/PopUpLocalidad";
+import PopUpLocalidad from "../FormCheckout/PopUpLocalidad";
 import PopUpFinalDir from "./PopUpFinalDir";
 import Loader from "../Loader/Loader";
 
