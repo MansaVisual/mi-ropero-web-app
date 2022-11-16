@@ -128,7 +128,7 @@ const SearchProductsResults = () => {
       ProdAPI(col, "productos", "search").then((res) => {
         console.log("ERROR A RESOLVER YA", res);
         if (res.status === "success") {
-          setFiltrosCategoria(res.result.productos_categorias[0].hijas);
+          setFiltrosCategoria(res.result.productos_categorias[0].hijas[0]);
           setProds(res.result.productos);
           setTotalPages(res.result.total_paginas);
         } else if (res.result === "No se encontraron productos") {
@@ -169,7 +169,7 @@ const SearchProductsResults = () => {
       console.log("ERROR DESDE ACA", res);
       setBuscandoProds(false);
       if (res.status === "success") {
-        setFiltrosCategoria(res.result.productos_categorias[0].hijas);
+        setFiltrosCategoria(res.result.productos_categorias[0].hijas[0]);
         setProds(res.result.productos);
         setTotalPages(res.result.total_paginas);
       }
