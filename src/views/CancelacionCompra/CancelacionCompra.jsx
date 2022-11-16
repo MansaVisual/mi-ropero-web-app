@@ -144,7 +144,7 @@ const CancelacionCompra = () => {
                 setForm({ ...form, mensaje: e.target.value });
                 setCampoObligatorio(false);
               }}
-              inputProps={{ maxLength: 50 }}
+              inputProps={{ maxLength: 150 }}
             />
           </div>
         </div>
@@ -175,7 +175,7 @@ const CancelacionCompra = () => {
             </Button>
           )}
         </div>
-        <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+        <div className="returnLink" onClick={() => navigate(`/`)}>
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A INICIO</p>
         </div>

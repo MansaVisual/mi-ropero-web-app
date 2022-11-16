@@ -1,17 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
-import leftArrow from "../../../assets/img/leftArrow.png";
-import { Button, MenuItem, Select, TextField } from "@mui/material";
-import { UseFormContext } from "../../../context/FormContext";
-import { UseLoginContext } from "../../../context/LoginContext";
+import leftArrow from "../../assets/img/leftArrow.png";
+import { Button, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { UseFormContext } from "../../context/FormContext";
+import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
-import PopUpLocalidad from "../../FormCheckout/PopUpLocalidad";
-import PopUpFinalDir from "./PopUpFinalDir";
-import Loader from "../../Loader/Loader";
+import PopUpLocalidad from "../FormCheckout/PopUpLocalidad";
+import PopUpFinalDir from "./PopUpFinal/PopUpFinalDir";
+import Loader from "../Loader/Loader";
 
-const NuevaDireccion = () => {
+const Contacto = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ const NuevaDireccion = () => {
   const [errorCodPostal, setErrorCodPostal] = useState(false);
   const [errorDireccion, setErrorDireccion] = useState(false);
   const [errorLocalidad, setErrorLocalidad] = useState(false);
+  const [errorPhone, setErrorPhone] = useState(false);
 
   const [viewDireccion, setViewDireccion] = useState(false);
   const [resDirecciones, setResDirecciones] = useState([]);
@@ -99,13 +100,21 @@ const NuevaDireccion = () => {
   const checkNuevaDireccion = async () => {
     console.log("checkdir start");
     setLoader(true);
-    if (document.getElementById("alias").value === "") {
-      throwError("alias", "labelAlias");
+    if (document.getElementById("telefono").value === "") {
+      throwError("telefono", "labelTelefono");
       setLoader(false);
       scrollTop();
       setCampoObligatorio(true);
       return;
     }
+    const formPhone = new FormData();
+    formPhone.append('telefono', document.getElementById('telefono').value);
+    await FormAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
+    if (res.status === 'error') {
+        setErrorPhone(true);
+        throwError('telefono', 'labelTelefono');
+    }
+    });
     if (document.getElementById("calle").value === "") {
       throwError("calle", "labelCalle");
       setLoader(false);
@@ -247,15 +256,22 @@ const NuevaDireccion = () => {
   };
 
   return (
+    <Grid className="gridContainer">
     <div className="nuevaDirecContainer">
       <Breadcrumbs links={pathnames} />
       <div className="titleSection">
-        <p className="title">NUEVA DIRECCION</p>
+        <p className="title">CONTACTO</p>
       </div>
       {campoObligatorio && (
         <div className="errorBox">
           <CancelOutlinedIcon color="secondary" className="cruz" />
           <p>Debe completar los campos obligatorios para avanzar</p>
+        </div>
+      )}
+        {errorPhone && (
+        <div className='errorBox'>
+          <CancelOutlinedIcon color='secondary' className='cruz' />
+          <p>El número de telefono no es válido.</p>
         </div>
       )}
       {errorCodPostal && (
@@ -280,20 +296,21 @@ const NuevaDireccion = () => {
 
       <div className="inputContainer">
         <div className="inputBox">
-          <p className="labelInput" id="labelAlias">
-            Alias
+          <p className="labelInput" id="labelTelefono">
+            Teléfono *
           </p>
           <TextField
             color="primary"
             className="input"
             size="small"
-            id="alias"
-            placeholder="Casa, trabajo, etc."
+            id="telefono"
+            placeholder="5411291029"
             onChangeCapture={(e) => {
               handleInputChange(form, setForm);
               setCampoObligatorio(false);
+              setErrorPhone(false)
             }}
-            onFocus={(e) => onFocus(e, clase, clase2, "labelAlias")}
+            onFocus={(e) => onFocus(e, clase, clase2, "labelTelefono")}
             sx={{
               "& .MuiOutlinedInput-root:hover": {
                 "& > fieldset": {
@@ -302,13 +319,16 @@ const NuevaDireccion = () => {
               },
             }}
           />
+        <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
+            Llamarán a este número sólo si hay algún problema.
+        </InputLabel>
         </div>
         <div className="inputBox"></div>
       </div>
       <div className="inputContainer">
         <div className="inputBox">
           <p className="labelInput" id="labelCalle">
-            Calle
+            Calle *
           </p>
           <TextField
             color="primary"
@@ -330,7 +350,9 @@ const NuevaDireccion = () => {
               },
             }}
           />
-          <p className="bottomText">Domicilio de entrega </p>
+            <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
+                Utilizaremos tu dirección para retirar y entregar tus productos, además de calcular el costo de envío.
+            </InputLabel>
         </div>
         <div className="inputBoxLocation">
           <div>
@@ -550,9 +572,9 @@ const NuevaDireccion = () => {
             }}
             inputProps={{ maxLength: 100 }}
           />
-          <p className="bottomText">
-            Agregar información útil para encontrar la dirección.
-          </p>
+            <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
+                Agregar información útil para encontrar la dirección.
+            </InputLabel>
         </div>
       </div>
       {loader ? (
@@ -569,18 +591,15 @@ const NuevaDireccion = () => {
         </div>
       ) : (
         <div className="buttonContainer">
-          <Button className="leftButton" onClick={() => navigate(`/perfil`)}>
-            CANCELAR
-          </Button>
           <Button className="rightButton" onClick={() => checkNuevaDireccion()}>
-            GUARDAR DIRECCIÓN
+            CONFIRMAR CONTACTO
           </Button>
         </div>
       )}
 
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />
-        <p>VOLVER A MI PERFIL</p>
+        <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
       </div>
       {viewDireccion && (
         <PopUpFinalDir
@@ -603,7 +622,8 @@ const NuevaDireccion = () => {
         />
       )}
     </div>
+    </Grid>
   );
 };
 
-export default NuevaDireccion;
+export default Contacto;

@@ -627,7 +627,7 @@ const EditarDireccion = () => {
       <div className="inputContainer">
         <div className="textAreaBox">
           <span className="label1">Información adicional</span>
-          <span className="label2"> (máximo 500 caractéres)</span>
+          <span className="label2"> (máximo 100 caractéres)</span>
           <TextField
             multiline
             rows={4}
@@ -640,7 +640,7 @@ const EditarDireccion = () => {
             onChangeCapture={() => {
               handleInputChange(form, setForm);
             }}
-            inputProps={{ maxLength: 50 }}
+            inputProps={{ maxLength: 100 }}
           />
           <p className="bottomText">
             Agregar información útil para encontrar la dirección.
