@@ -1,4 +1,6 @@
 import { createContext,useEffect,useState,useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { UseLoginContext } from "./LoginContext";
 
 export const UseProdsContext = createContext();
@@ -7,6 +9,7 @@ export const ProdsContext = ({children}) => {
 
     const {userLog,infoUser}=useContext(UseLoginContext)
 
+    const navigate=useNavigate()
     const [categorias,setCategorias]=useState([])
     
     const [slider1,setSlider1]=useState([])
@@ -27,6 +30,14 @@ console.log(infoUser)
         .then((response) => response.json())
             .then((data) => {
                 resFinal=data
+                if(data.status==="error"){
+                    Swal.fire({
+                        title: `${data.result}`,
+                        confirmButtonText: "CONTINUAR",
+                      }).then((res)=>{
+                        navigate("/login");
+                      })
+                }
             })
             .catch((error)=> {
                 console.log(error)
