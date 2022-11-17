@@ -424,6 +424,21 @@ const NavIcons = () => {
                   url = "/perfil/OFERTAS REALIZADAS/rechazadas";
                 } else if (item.titulo === "Aceptaron tu oferta") {
                   url = "/perfil/OFERTAS REALIZADAS/aceptadas";
+                } else{
+                  buscarI = itemURL.indexOf("id=");
+                  id = itemURL.substring(buscarI + 3, itemURL.length);
+                  console.log(id);
+                  const llamada = new FormData();
+                  llamada.append("idcliente", userLog);
+                  llamada.append("idtienda", id);
+                  CartAPI(llamada, "tiendas", "detail").then((res) => {
+                    console.log(res);
+                    if (res.status === "success") {
+                      url = `/roperos/${id}/${res.result.nombre}`;
+                    } else {
+                      url = "/roperos";
+                    }
+                  });
                 }
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
