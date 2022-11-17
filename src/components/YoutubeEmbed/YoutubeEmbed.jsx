@@ -13,6 +13,8 @@ const YoutubeEmbed = () => {
         src="https://www.youtube.com/embed/0Eucpoysz8M"
         title="YouTube video"
         frameBorder="0"
+        rel="0"
+        showinfo="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
