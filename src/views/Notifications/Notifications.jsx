@@ -206,6 +206,10 @@ useEffect(()=>{
                   url = "/perfil/OFERTAS REALIZADAS/rechazadas";
                 }else if(item.titulo==="Aceptaron tu oferta"){
                   url = "/perfil/OFERTAS REALIZADAS/aceptadas";
+                } else{
+                  buscarI = itemURL.indexOf("id=");
+                  id = itemURL.substring(buscarI + 3, itemURL.length);
+                  url = `/productCard/${id}`;
                 }
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
