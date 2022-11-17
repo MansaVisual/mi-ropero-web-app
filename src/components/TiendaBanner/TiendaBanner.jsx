@@ -22,11 +22,11 @@ const TiendaBanner = () => {
       <div className="banner">
         <img className="bannerImg" src={Banner} alt="banner" />
         <div className="content">
-          {/* <div className="titleBox">
+          <div className="titleBox">
             <span className="title">El Ropero de Sandra</span>
             <span className="subTitle">VER MI TIENDA</span>
-          </div> */}
-          {/* <div className="moneyCount">
+          </div>
+          <div className="moneyCount">
             <div>
               <p>Cuenta corriente</p>
               <span>{showMoney ? "$30.713,02" : "$**.***.**"}</span>
@@ -45,7 +45,7 @@ const TiendaBanner = () => {
               )}
             </div>
             <button>SOLICITAR TRANSFERENCIA</button>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
