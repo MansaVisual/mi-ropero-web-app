@@ -15,7 +15,7 @@ export const apiFetch=async(data, clase, metodo)=>{
           console.log(data)
           if (data.result === "El producto no existe") {
             Swal.fire({
-              title: `${data.result}`,
+              title: 'EL PRODUCTO NO EXISTE',
               confirmButtonText: "CONTINUAR",
             }).then((res) => {
               window.location.replace("https://www.miropero.ar/");
