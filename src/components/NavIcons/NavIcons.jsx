@@ -427,18 +427,7 @@ const NavIcons = () => {
                 } else{
                   buscarI = itemURL.indexOf("id=");
                   id = itemURL.substring(buscarI + 3, itemURL.length);
-                  console.log(id);
-                  const llamada = new FormData();
-                  llamada.append("idcliente", userLog);
-                  llamada.append("idtienda", id);
-                  CartAPI(llamada, "tiendas", "detail").then((res) => {
-                    console.log(res);
-                    if (res.status === "success") {
-                      url = `/roperos/${id}/${res.result.nombre}`;
-                    } else {
-                      url = "/roperos";
-                    }
-                  });
+                  url = `/productos/productCard/${id}`;
                 }
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
