@@ -8,6 +8,7 @@ import { UseLoginContext } from "../../../context/LoginContext";
 import { UsePerfilContext } from "../../../context/PerfilContext";
 import Loader from "../../Loader/Loader";
 import { Button } from "@mui/material";
+import { apiFetch } from "../../../apiFetch/apiFetch";
 
 const MiChat = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const MiChat = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   const { userLog, infoUser } = useContext(UseLoginContext);
-  const { mensajeId, PerfilAPI } = useContext(UsePerfilContext);
+  const { mensajeId } = useContext(UsePerfilContext);
 
   const messagesEndRef = createRef(null);
 
@@ -37,7 +38,7 @@ const MiChat = () => {
       const dir = new FormData();
       dir.append("idcliente", userLog);
       dir.append("idmensaje", mensajeId);
-      PerfilAPI(dir, "mensajes", "thread").then((res) => {
+      apiFetch(dir, "mensajes", "thread").then((res) => {
         console.log(res);
         if (res.status === "success") {
           setProductoImg(res.result[0].producto.imagenes[0].imagen_chica);
@@ -52,7 +53,7 @@ const MiChat = () => {
               const msg = new FormData();
               msg.append("idcliente", userLog);
               msg.append("idmensaje", res.result[ii].idmensaje);
-              PerfilAPI(msg, "mensajes", "readed").then((res) => {
+              apiFetch(msg, "mensajes", "readed").then((res) => {
                 console.log(res);
               });
             }
@@ -124,7 +125,7 @@ const MiChat = () => {
       dir.append("idproducto", productoId);
       dir.append("mensaje", mensaje);
 
-      PerfilAPI(dir, "mensajes", "insert").then((res) => {
+      apiFetch(dir, "mensajes", "insert").then((res) => {
         if (res.status === "success") {
           setChatActual([
             ...chatActual,

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, useContext } from "react";
-import Swal from "sweetalert2";
+import { apiFetch } from "../apiFetch/apiFetch";
 import { UseLoginContext } from "./LoginContext";
 
 export const UseProdsContext = createContext();
@@ -16,37 +16,7 @@ export const ProdsContext = ({ children }) => {
   const [listFavs, setListFavs] = useState([]);
 
   const [listFavFinBusqueda, setListFavFinBusqueda] = useState(false);
-  console.log(infoUser);
-  const ProdAPI = async (data, clase, metodo) => {
-    let resFinal = "";
 
-    await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
-      {
-        method: "POST",
-        body: data,
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        resFinal = data;
-        if (data.status === "error") {
-          Swal.fire({
-            title: `${data.result}`,
-            confirmButtonText: "CONTINUAR",
-          }).then((res) => {
-            window.location.replace("https://www.miropero.ar/");
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    return resFinal;
-  };
 
   useEffect(() => {
     if (categorias.length === 0) {
@@ -83,7 +53,7 @@ export const ProdsContext = ({ children }) => {
     slid1.append("bypage", 8);
     slid1.append("order_type", "desc");
     slid1.append("order", "idproducto");
-    ProdAPI(slid1, "productos", "search").then((res) => {
+    apiFetch(slid1, "productos", "search").then((res) => {
       if (res.status === "success") {
         setSlider1(res.result.productos);
       }
@@ -95,7 +65,7 @@ export const ProdsContext = ({ children }) => {
     slid2.append("bypage", 8);
     slid2.append("order_type", "desc");
     slid2.append("order", "idproducto");
-    ProdAPI(slid2, "productos", "search").then((res) => {
+    apiFetch(slid2, "productos", "search").then((res) => {
       if (res.status === "success") {
         setSlider2(res.result.productos);
       }
@@ -107,7 +77,7 @@ export const ProdsContext = ({ children }) => {
     slid3.append("bypage", 8);
     slid3.append("order_type", "desc");
     slid3.append("order", "idproducto");
-    ProdAPI(slid3, "productos", "search").then((res) => {
+    apiFetch(slid3, "productos", "search").then((res) => {
       if (res.status === "success") {
         setSlider3(res.result.productos);
       }
@@ -115,7 +85,7 @@ export const ProdsContext = ({ children }) => {
   };
 
   const handleCategorias = () => {
-    ProdAPI(categorias, "categorias", "all").then((res) => {
+    apiFetch(categorias, "categorias", "all").then((res) => {
       if (res.status === "success") {
         setCategorias(res.result);
       }
@@ -125,7 +95,7 @@ export const ProdsContext = ({ children }) => {
   const handleListFavs = (idProd, type) => {
     const fav = new FormData();
     fav.append("idcliente", userLog);
-    ProdAPI(fav, "favoritos", "all").then((res) => {
+    apiFetch(fav, "favoritos", "all").then((res) => {
       setListFavFinBusqueda(true);
       if (res.status === "success") {
         setListFavs(res.result);
@@ -149,7 +119,6 @@ export const ProdsContext = ({ children }) => {
   return (
     <UseProdsContext.Provider
       value={{
-        ProdAPI,
         categorias,
         listFavs,
         slider1,

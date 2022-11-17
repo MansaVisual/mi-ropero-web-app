@@ -1,14 +1,14 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import theme from "../../styles/theme";
 import ClosetImagesCard from "../../components/ClosetImagesCard/ClosetImagesCard";
 import Onboarding from "../../components/Onboarding/Onboarding";
-import { UseProdsContext } from "../../context/ProdsContext";
 import { StyledLink } from "../../components/Footer/styles";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/Pagination/Pagination";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const SearchClosetResults = () => {
   const { keyword } = useParams();
@@ -17,7 +17,6 @@ const SearchClosetResults = () => {
 
   const navigate = useNavigate();
 
-  const { ProdAPI } = useContext(UseProdsContext);
 
   const [roperos, setRoperos] = useState([]);
   const [buscandoRoperos, setBuscandoRoperos] = useState(true);
@@ -36,14 +35,7 @@ const SearchClosetResults = () => {
   }, []);
 
   useEffect(() => {
-    // const bestR = new FormData();
-    // bestR.append("bypage", 3);
-    // bestR.append("order_type", "desc");
-    // ProdAPI(bestR, "tiendas", "featured").then((res) => {
-    //   if (res.status === "success") {
-    //     setBestRoperos(res.result);
-    //   }
-    // });
+
 
     const busqueda = new FormData();
     busqueda.append("page", 0);
@@ -52,7 +44,7 @@ const SearchClosetResults = () => {
     if (keyword !== undefined) {
       busqueda.append("text", keyword);
     }
-    ProdAPI(busqueda, "tiendas", "search").then((res) => {console.log(res)
+    apiFetch(busqueda, "tiendas", "search").then((res) => {console.log(res)
       if (res.status === "success") {
         setTotalProds(res.result.total);
         setRoperos(res.result.tiendas);
@@ -74,7 +66,7 @@ const SearchClosetResults = () => {
     newPage.append("bypage", 10);
     newPage.append("page", value);
 
-    ProdAPI(newPage, "tiendas", "search").then((res) => {
+    apiFetch(newPage, "tiendas", "search").then((res) => {
       if (res.status === "success") {
         setRoperos(res.result.tiendas);
       }

@@ -1,12 +1,11 @@
 import { TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 import Loader from "../../components/Loader/Loader";
-import { UseLoginContext } from "../../context/LoginContext";
 
 const BoxLoginValidate = () => {
-  const { LoginAPI } = useContext(UseLoginContext);
   const navigate = useNavigate();
 
   const [user, setUser] = useState("");
@@ -33,7 +32,7 @@ const BoxLoginValidate = () => {
       const loginUser = new FormData();
       loginUser.append("idcliente", Number(user.id));
       loginUser.append("codigo", String(cod));
-      LoginAPI(loginUser, "clientes", "validate_set").then((res) => {
+      apiFetch(loginUser, "clientes", "validate_set").then((res) => {
         if (res.status === "success") {
           setLoad(false);
           localStorage.setItem("idClienteMiRopero", user.id);
@@ -63,7 +62,7 @@ const BoxLoginValidate = () => {
     setLoad(true);
     const loginUser = new FormData();
     loginUser.append("idcliente", user.id);
-    LoginAPI(loginUser, "clientes", "validate_send").then((res) => {
+    apiFetch(loginUser, "clientes", "validate_send").then((res) => {
       if (res.status === "success") {
         setLoad(false);
         Swal.fire({

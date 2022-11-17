@@ -2,9 +2,10 @@ import React from "react";
 import { Chip, ListItem } from "@mui/material";
 import theme from "../../styles/theme";
 import { useParams } from "react-router-dom";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
-  setPutFilters,setProds,ProdAPI,setTotalPages,categorias,setTienda,clase,metodo,closetId,coleccionName }) => {
+  setPutFilters,setProds,setTotalPages,categorias,setTienda,clase,metodo,closetId,coleccionName }) => {
   const { keyword, search, idColeccion } = useParams();
   
   const handleDelete = () => {
@@ -31,7 +32,7 @@ const ChipFilterCategories = ({ filteredCategory, putCategory, putFilters,
         catProd.append('idcategoria', idCat.idcategoria);
         catProd.append('bypage', 15);
         catProd.append('page', 0);
-        ProdAPI(catProd, clase, metodo).then((res) => {
+        apiFetch(catProd, clase, metodo).then((res) => {
           if (res.status === 'success') {
             if(setTienda!==undefined){
               setTienda(res.result)

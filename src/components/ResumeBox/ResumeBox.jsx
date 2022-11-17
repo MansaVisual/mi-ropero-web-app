@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material"
 import React,{useState,useContext,useEffect} from "react"
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
@@ -10,7 +11,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const navigate = useNavigate();
 
     const {userLog}=useContext(UseLoginContext)
-    const {FormAPI,costoSucDom,costoSucSuc,costoMoto}=useContext(UseFormContext)
+    const {costoSucDom,costoSucSuc,costoMoto}=useContext(UseFormContext)
     const {costoCarrito,cantidadCarrito}=useContext(UseCartContext)
 
     const [errorCodigo,setErrorCodigo]=useState(false)
@@ -30,7 +31,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     useEffect(()=>{
         const cuentaCorriente=new FormData()
         cuentaCorriente.append("idcliente",userLog)
-        FormAPI(
+        apiFetch(
             cuentaCorriente,
             "cuentascorrientes",
             "balance"
@@ -73,7 +74,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
         formCodigo.append('codigo', codDesc)
         formCodigo.append('monto', 1800)
         formCodigo.append('idprovincia', 1)
-        FormAPI(
+        apiFetch(
             formCodigo,
             "promociones",
             "get_code"

@@ -1,0 +1,31 @@
+import Swal from "sweetalert2";
+
+export const apiFetch=async(data, clase, metodo)=>{
+    let resFinal = "";
+    await fetch(
+        `https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
+        {
+          method: "POST",
+          body: data,
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          resFinal = data;
+          if (data.status === "error") {
+            Swal.fire({
+              title: `${data.result}`,
+              confirmButtonText: "CONTINUAR",
+            }).then((res) => {
+              window.location.replace("https://www.miropero.ar/");
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      return resFinal;
+}

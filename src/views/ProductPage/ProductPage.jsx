@@ -20,13 +20,13 @@ import {
 } from "../../components/ActionButton/ActionButton";
 import Accordion from "../../components/Accordion/Accordion";
 import { UseLoginContext } from "../../context/LoginContext";
-import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 import { useNavigate, useLocation } from "react-router-dom";
 import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
 import logo from "../../assets/img/isologo.png"
 import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ProductPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -38,7 +38,6 @@ const ProductPage = () => {
   const location = useLocation();
 
   const { infoUser, userLog } = useContext(UseLoginContext);
-  const { ProdAPI } = useContext(UseProdsContext);
   const [tienda,setTienda]=useState([])
 
   const [open, setOpen] = useState(false);
@@ -59,7 +58,7 @@ const ProductPage = () => {
     if(prod.length!==0){
       const ropero=new FormData()
       ropero.append("idtienda",prod.tienda.idtienda)
-      ProdAPI(ropero,"tiendas","detail").then((res)=>{if(res.status==="success"){setTienda(res.result)}})
+      apiFetch(ropero,"tiendas","detail").then((res)=>{if(res.status==="success"){setTienda(res.result)}})
     }
   }, [prod]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -68,7 +67,7 @@ const ProductPage = () => {
       const prod = new FormData();
       prod.append("idproducto", itemID);
       prod.append("idcliente", userLog);
-      ProdAPI(prod, "productos", "details").then((res) => {
+      apiFetch(prod, "productos", "details").then((res) => {
         if (res.status === "success") {
           let arrayFotos = [];
           for (const i in res.result.imagenes) {

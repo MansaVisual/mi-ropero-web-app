@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { apiFetch } from "../apiFetch/apiFetch";
 
 export const UseColeccionContext = createContext();
 
@@ -7,31 +8,8 @@ export const ColeccionContext = ({ children }) => {
   const [colecciones, setColecciones] = useState([]);
   const [buscandoCols,setBuscandoCols]=useState(true)
 
-  const ColeccionAPI = async (data, clase, metodo) => {
-    let resFinal = "";
-
-    await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
-      {
-        method: "POST",
-        body: data,
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        resFinal = data;
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    return resFinal;
-  };
-
   useEffect(() => {
-    ColeccionAPI(
+    apiFetch(
         "col",
         "colecciones",
         "all"
@@ -51,7 +29,7 @@ export const ColeccionContext = ({ children }) => {
         col3.append("bypage", 8);
         col3.append("order_type","desc")
         col3.append("order","idproducto")
-        await ColeccionAPI(col3, "colecciones", "detail").then((res) => {console.log(res)
+        await apiFetch(col3, "colecciones", "detail").then((res) => {console.log(res)
           if (res.status === "success") {
             newCols.push({
               idcoleccion:coleccionesBuscadas[i].idcoleccion,
@@ -70,7 +48,6 @@ export const ColeccionContext = ({ children }) => {
   return (
     <UseColeccionContext.Provider
       value={{
-        ColeccionAPI,
         colecciones,
         buscandoCols
       }}

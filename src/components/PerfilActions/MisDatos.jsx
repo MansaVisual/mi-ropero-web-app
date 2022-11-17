@@ -5,9 +5,9 @@ import Select from "@mui/material/Select";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { UseLoginContext } from "../../context/LoginContext";
-import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const MisDatos = () => {
   const location = useLocation();
@@ -18,7 +18,6 @@ const MisDatos = () => {
   let clase2 = "formObligatorioTitle";
 
   const { infoUser, userLog } = useContext(UseLoginContext);
-  const { PerfilAPI } = useContext(UsePerfilContext);
   const emailRegex =
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
@@ -84,7 +83,7 @@ const MisDatos = () => {
   };
 
   useEffect(() => {
-    PerfilAPI("", "clientes", "get_sexos").then((res) => {
+    apiFetch("", "clientes", "get_sexos").then((res) => {
       if (res.status === "success") {
         let array = [""];
         for (const gen in res.result) {
@@ -93,7 +92,7 @@ const MisDatos = () => {
         setArrayGeneros(array);
       }
     });
-    PerfilAPI("", "clientes", "get_caracteristicas_favoritas").then((res) => {
+    apiFetch("", "clientes", "get_caracteristicas_favoritas").then((res) => {
       if (res.status === "success") {
         setCaracteristicasFavs(res.result);
       }
@@ -238,7 +237,7 @@ const MisDatos = () => {
     if (document.getElementById("telefono").value !== "") {
       const formPhone = new FormData();
       formPhone.append("telefono", document.getElementById("telefono").value);
-      PerfilAPI(formPhone, "clientes", "validate_phone").then((res) => {
+      apiFetch(formPhone, "clientes", "validate_phone").then((res) => {
         if (res.status === "error") {
           setLoading(false);
           throwError("telefono", "labelTelefono");
@@ -283,7 +282,7 @@ const MisDatos = () => {
     }
     mail.append("caracteristicas_favoritas", caracteristicasFin);
 
-    PerfilAPI(mail, "clientes", "update").then((res) => {
+    apiFetch(mail, "clientes", "update").then((res) => {
       if (res.status === "success") {
         setLoading(false);
         window.location.reload();

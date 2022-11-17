@@ -27,6 +27,7 @@ import PopUpMensajePP from "../Dialog/PopUpMensajePP";
 import Swal from "sweetalert2";
 import MopedIcon from "@mui/icons-material/Moped";
 import logo from "../../assets/img/isologo.png";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const location = useLocation();
@@ -44,7 +45,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const [openMessagePop, setOpenMessagePop] = useState(false);
 
   const { userLog } = useContext(UseLoginContext);
-  const { CartAPI, setCarrito } = useContext(UseCartContext);
+  const { setCarrito } = useContext(UseCartContext);
   const [codigoBoton,setCodigoBoton]=useState("")
 
   const handleClickOpen = () => {
@@ -104,11 +105,11 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
     add.append("idcliente", userLog);
     add.append("idproducto", itemID);
     add.append("cantidad", 1);
-    CartAPI(add, "carritos", "insert").then((res) => {
+    apiFetch(add, "carritos", "insert").then((res) => {
       if (res.result === "El producto se agrego correctamente al carrito") {
         const CartID = new FormData();
         CartID.append("idcliente", userLog);
-        CartAPI(CartID, "carritos", "all").then((res) => {
+        apiFetch(CartID, "carritos", "all").then((res) => {
           if (res.status === "success") {
             setCarrito(res.result);
             Swal.fire({
@@ -142,7 +143,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       "codigo_postal",
       document.getElementById("outlined-number").value
     );
-    CartAPI(envio, "productos", "check_shipping_cost").then((res) => {
+    apiFetch(envio, "productos", "check_shipping_cost").then((res) => {
       setLoad2(false);
       if (res.status === "success") {
         setCostoEnvio(res.result);

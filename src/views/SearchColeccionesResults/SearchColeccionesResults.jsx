@@ -19,11 +19,11 @@ import { FilterButton } from "../../components/ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import Pagination from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
-import { UseColeccionContext } from "../../context/ColeccionesContext";
 import { UseProdsContext } from "../../context/ProdsContext";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Swal from "sweetalert2";
 import lupa from "../../assets/img/lupaFilters.png";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const style = {
   position: "absolute",
@@ -42,11 +42,10 @@ const style = {
 
 const SearchProductsResults = () => {
   const { coleccionName, idColeccion } = useParams();
-  const { ColeccionAPI } = useContext(UseColeccionContext);
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { categorias, ProdAPI } = useContext(UseProdsContext);
+  const { categorias } = useContext(UseProdsContext);
   const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
 
   const [load2, setLoad2] = useState(false);
@@ -81,7 +80,7 @@ const SearchProductsResults = () => {
     col.append("bypage", 15);
     col.append("page", 0);
 
-    ColeccionAPI(col, "colecciones", "detail").then((res) => {
+    apiFetch(col, "colecciones", "detail").then((res) => {
       console.log(res);
       if (res.status === "success") {
         setColeccion(res.result);
@@ -118,7 +117,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log("RESPUESTA API",res)
+      apiFetch(col, "colecciones", "detail").then((res) => {console.log("RESPUESTA API",res)
         if (res.status === "success") {
           for(const i in res.result.productos_categorias){
             if(res.result.productos_categorias[i]!==null && res.result.productos_categorias[i].idcategoria === idCat){
@@ -143,7 +142,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      ColeccionAPI(col, "colecciones", "detail").then((res) => {console.log(res)
+      apiFetch(col, "colecciones", "detail").then((res) => {console.log(res)
         if (res.status === "success") {
           setProds(res.result.productos);
           setFiltrosCategoria([])
@@ -208,7 +207,7 @@ const SearchProductsResults = () => {
       catProd.append("caracteristicas", filtrosFin);
     }
     console.log(Object.fromEntries(catProd));
-    ColeccionAPI(catProd, "colecciones", "detail").then((res) => {
+    apiFetch(catProd, "colecciones", "detail").then((res) => {
       if (res.status === "success") {
         setProds(res.result.productos);
       }
@@ -284,7 +283,7 @@ const SearchProductsResults = () => {
         prod.append("caracteristicas", array.toString());
       }
 
-      ProdAPI(prod, "colecciones", "detail").then((res) => {
+      apiFetch(prod, "colecciones", "detail").then((res) => {
         console.log(Object.fromEntries(prod));
         console.log(Object.fromEntries(prod));
         setLoad2(false);
@@ -378,7 +377,6 @@ const SearchProductsResults = () => {
                                 putFilters={putFilters}
                                 setPutFilters={setPutFilters}
                                 setProds={setProds}
-                                ProdAPI={ProdAPI}
                                 setTotalPages={setTotalPages}
                                 categorias={categorias}
                                 clase={"colecciones"}
@@ -465,7 +463,6 @@ const SearchProductsResults = () => {
                         putFilters={putFilters}
                         setPutFilters={setPutFilters}
                         setProds={setProds}
-                        ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
                         categorias={categorias}
                         clase={"colecciones"}

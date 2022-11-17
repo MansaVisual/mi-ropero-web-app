@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from "../../assets/img/isologo.png";
-import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const PopUpBorrarOferta = ({
   setBorrarOferta,
@@ -11,7 +11,6 @@ const PopUpBorrarOferta = ({
   userLog,
   setOfertasRealizadas,
 }) => {
-  const { PerfilAPI } = useContext(UsePerfilContext);
   const [loading, setLoading] = useState(false);
 
   const borrar = () => {
@@ -19,7 +18,7 @@ const PopUpBorrarOferta = ({
     const dir = new FormData();
     dir.append("idcliente", userLog);
     dir.append("idoferta", ofertaId);
-    PerfilAPI(dir, "ofertas", "cancel").then((res) => {
+    apiFetch(dir, "ofertas", "cancel").then((res) => {
       if (res.status === "success") {
         setBorrarOferta(false);
         setOfertasRealizadas((prevState) =>

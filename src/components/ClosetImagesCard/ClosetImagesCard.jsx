@@ -16,8 +16,8 @@ import {
 import theme from "../../styles/theme";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { UsePerfilContext } from "../../context/PerfilContext";
 import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ClosetImagesCard = ({
   ropero: {
@@ -33,7 +33,6 @@ const ClosetImagesCard = ({
   },
   keyword,
 }) => {
-  const { PerfilAPI } = useContext(UsePerfilContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [seg,setSeg]=useState(0)
@@ -62,10 +61,10 @@ const ClosetImagesCard = ({
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
-    PerfilAPI(follow, "tiendas", "follow").then((res) => {
+    apiFetch(follow, "tiendas", "follow").then((res) => {
       const newFollow=new FormData()
       newFollow.append("idtienda",idtienda)
-      PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
+      apiFetch(newFollow,"tiendas","detail").then((res)=>{
         setSeg(res.result.seguidores)
         setLike(!like)
       })
@@ -76,10 +75,10 @@ const ClosetImagesCard = ({
     const follow = new FormData();
     follow.append("idcliente", userLog);
     follow.append("idtienda", idtienda);
-    PerfilAPI(follow, "tiendas", "unfollow").then((res) => {
+    apiFetch(follow, "tiendas", "unfollow").then((res) => {
       const newFollow=new FormData()
       newFollow.append("idtienda",idtienda)
-      PerfilAPI(newFollow,"tiendas","detail").then((res)=>{
+      apiFetch(newFollow,"tiendas","detail").then((res)=>{
         setSeg(res.result.seguidores)
         setLike(!like)
       })

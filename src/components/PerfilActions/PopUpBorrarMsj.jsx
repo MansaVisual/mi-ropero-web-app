@@ -1,19 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from "../../assets/img/isologo.png";
-import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const PopUpBorrarMsj = ({ setBorrarMsj, mensajeId, setMensajesFiltrados }) => {
-  const { PerfilAPI } = useContext(UsePerfilContext);
   const [loading, setLoading] = useState(false);
 
   const borrarMensaje = () => {
     setLoading(true);
     const dir = new FormData();
     dir.append("idmensaje", mensajeId);
-    PerfilAPI(dir, "mensajes", "delete").then((res) => {
+    apiFetch(dir, "mensajes", "delete").then((res) => {
       if (res.status === "success") {
         setBorrarMsj(false);
         setMensajesFiltrados((prevState) =>

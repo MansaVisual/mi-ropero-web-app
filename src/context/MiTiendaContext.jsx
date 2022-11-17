@@ -1,4 +1,5 @@
 import { createContext,useEffect,useState,useContext } from "react";
+import { apiFetch } from "../apiFetch/apiFetch";
 import { UseLoginContext } from "./LoginContext";
 
 export const UseMiTiendaContext = createContext();
@@ -10,32 +11,11 @@ export const MiTiendaContext = ({children}) => {
     const [buscandoProds,setBuscandoProds]=useState(true)
     const [productos,setProductos]=useState([])
 
-
-    const MiTiendaAPI = async(data,clase,metodo) =>{
-        let resFinal = ''
-
-        await fetch(`https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
-            method: 'POST',					
-            body: data
-        })
-        .then((response) => response.json())
-            .then((data) => {
-                resFinal=data
-            })
-            .catch((error)=> {
-                console.log(error)
-            })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-        return resFinal
-    }
-
     useEffect(() => {
         if(userLog!==""){
             const prods=new FormData()
             prods.append("idcliente",userLog)
-            MiTiendaAPI(
+            apiFetch(
                 prods,
                 "tiendas",
                 "list"
@@ -49,7 +29,7 @@ export const MiTiendaContext = ({children}) => {
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <UseMiTiendaContext.Provider value={{MiTiendaAPI,buscandoProds,productos}}>
+        <UseMiTiendaContext.Provider value={{buscandoProds,productos}}>
             {children}
         </UseMiTiendaContext.Provider>
     )

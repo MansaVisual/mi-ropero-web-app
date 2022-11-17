@@ -38,6 +38,7 @@ import cruz from "../../assets/img/cruz.png";
 import MiRoperoNavbar from "../../assets/img/isologo.png";
 import iconoMensaje from "../../assets/img/iconMensaje.png";
 import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 // import MisMensajesNavbar from "../../assets/img/msj2.jpg";
 
 const NavIcons = () => {
@@ -48,7 +49,6 @@ const NavIcons = () => {
   const {
     carrito,
     costoCarrito,
-    CartAPI,
     setCarrito,
     buscandoCart,
     setBuscandoCart,
@@ -87,7 +87,7 @@ const NavIcons = () => {
     setLoad(true);
     const eliminar = new FormData();
     eliminar.append("idcarrito", prodEliminar);
-    await CartAPI(eliminar, "carritos", "delete").then(async (res) => {
+    await apiFetch(eliminar, "carritos", "delete").then(async (res) => {
       if (res.status === "success") {
         await chargeCarrito();
         setEliminar(false);
@@ -111,7 +111,7 @@ const NavIcons = () => {
     CartID.append("idcliente", userLog);
     // CartID.append('idproducto',10610)
     // CartID.append('cantidad',1)
-    CartAPI(CartID, "carritos", "all").then((res) => {
+    apiFetch(CartID, "carritos", "all").then((res) => {
       if (res.status === "success") {
         setCarrito(res.result);
         setBuscandoCart(false);
@@ -446,7 +446,7 @@ const NavIcons = () => {
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                CartAPI(llamada, "tiendas", "detail").then((res) => {
+                apiFetch(llamada, "tiendas", "detail").then((res) => {
                   console.log(res);
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
@@ -501,7 +501,7 @@ const NavIcons = () => {
                           : () => {
                               const not = new FormData();
                               not.append("idpush", item.idpush);
-                              CartAPI(not, "pushs", "readed");
+                              apiFetch(not, "pushs", "readed");
                               window.location.assign(`${url}`);
                             }
                       }

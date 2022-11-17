@@ -1,18 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Button, InputAdornment, TextField } from "@mui/material";
-// import FacebookIcon from '@mui/icons-material/Facebook';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import RestorePopUp from "./RestorePopUp";
-import { UseLoginContext } from "../../context/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Loader from "../Loader/Loader";
 import FacebookButton from "../FacebookButton/FacebookButton";
 import AppleButton from "../AppleButton/AppleButton";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const BoxLogin = () => {
   const navigate = useNavigate();
-  const { LoginAPI } = useContext(UseLoginContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const [restorePassword, setRestorePassword] = useState(false);
@@ -37,7 +35,7 @@ const BoxLogin = () => {
     const loginUser = new FormData();
     loginUser.append("email", document.getElementById("email").value);
     loginUser.append("clave", document.getElementById("password").value);
-    await LoginAPI(loginUser, "clientes", "login").then((res) => {
+    await apiFetch(loginUser, "clientes", "login").then((res) => {
       setLoad(false);
       if (res.status === "success") {
         if(redireccionCompra!==undefined){

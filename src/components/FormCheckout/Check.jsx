@@ -5,14 +5,13 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const CheckForm = ({estadoCompra})=>{
     const [metodoEnvio,setMetodoEnvio]=useState("")
     const navigate = useNavigate();
 
-    const {FormAPI}=useContext(UseFormContext)
     const {userLog}=useContext(UseLoginContext)
 
     const [compraConSaldo0,setCompraConSaldo0]=useState(false)
@@ -46,7 +45,7 @@ const CheckForm = ({estadoCompra})=>{
                 dir.append("entre_calle_2",direccion.entre_calle_2)
                 dir.append("informacion_adicional",direccion.informacion_adicional)
                 dir.append("normalized",direccion.raw_data)
-                FormAPI(
+                apiFetch(
                     dir,
                     "direcciones",
                     "insert"

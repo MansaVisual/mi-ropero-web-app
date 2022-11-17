@@ -3,15 +3,14 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
-import { UseProdsContext } from "../../context/ProdsContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const PopUpMensajePP = ({ setOpenMessagePop, prod,descripcion }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const { ProdAPI } = useContext(UseProdsContext);
   const { userLog } = useContext(UseLoginContext);
   const [error, setError] = useState(false);
   const [aparece, setAparece] = useState(true);
@@ -33,7 +32,7 @@ const PopUpMensajePP = ({ setOpenMessagePop, prod,descripcion }) => {
     mensaje.append("idcliente", userLog);
     mensaje.append("idproducto", prod.idproducto);
     mensaje.append("mensaje", message);
-    ProdAPI(mensaje, "mensajes", "insert").then((res) => {
+    apiFetch(mensaje, "mensajes", "insert").then((res) => {
       if (res.status === "success") {
         setTimeout(() => {
           setLoading(false);

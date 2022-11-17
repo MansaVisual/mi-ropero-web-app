@@ -1,13 +1,12 @@
 import { Button } from '@mui/material';
-import React,{useContext,useState} from 'react'
+import React,{useState} from 'react'
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/MRlogoModal.png'
 import Loader from '../Loader/Loader';
-import { UseLoginContext } from '../../context/LoginContext';
 import Swal from 'sweetalert2';
+import { apiFetch } from '../../apiFetch/apiFetch';
 
 const ValidationPopUp = ({setSendCod}) => {
-    const {LoginAPI}=useContext(UseLoginContext)
     const user = JSON.parse(localStorage.getItem("sendCodMiRopero"))
     localStorage.clear("sendCodMiRopero")
   
@@ -17,7 +16,7 @@ const ValidationPopUp = ({setSendCod}) => {
         setLoad(true)
         const loginUser = new FormData()
         loginUser.append('idcliente', user.id)
-        LoginAPI(
+        apiFetch(
             loginUser,
             "clientes",
             "validate_send"

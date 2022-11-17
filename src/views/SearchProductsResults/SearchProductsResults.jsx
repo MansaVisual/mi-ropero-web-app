@@ -25,6 +25,7 @@ import Loader from "../../components/Loader/Loader";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Swal from "sweetalert2";
 import lupa from "../../assets/img/lupaFilters.png";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const style = {
   position: "absolute",
@@ -42,7 +43,7 @@ const style = {
 };
 
 const SearchProductsResults = () => {
-  const { categorias, ProdAPI } = useContext(UseProdsContext);
+  const { categorias } = useContext(UseProdsContext);
   const { keyword, search } = useParams();
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -125,7 +126,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 10);
       col.append("page", 0);
 
-      ProdAPI(col, "productos", "search").then((res) => {
+      apiFetch(col, "productos", "search").then((res) => {
         console.log("ERROR A RESOLVER YA", res);
         if (res.status === "success") {
           setFiltrosCategoria(res.result.productos_categorias[0].hijas[0]);
@@ -165,7 +166,7 @@ const SearchProductsResults = () => {
     catProd.append("bypage", 15);
     catProd.append("page", 0);
     console.log("PRUEBAS", Object.fromEntries(catProd));
-    ProdAPI(catProd, "productos", "search").then((res) => {
+    apiFetch(catProd, "productos", "search").then((res) => {
       console.log("ERROR DESDE ACA", res);
       setBuscandoProds(false);
       if (res.status === "success") {
@@ -229,7 +230,7 @@ const SearchProductsResults = () => {
     catProd.append("page", value);
     console.log(Object.fromEntries(catProd));
 
-    ProdAPI(catProd, "productos", "search").then((res) => {
+    apiFetch(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
       if (res.status === "success") {
         setProds(res.result.productos);
@@ -309,7 +310,7 @@ const SearchProductsResults = () => {
       if (putFilters.length !== 0) {
         prod.append("caracteristicas", array.toString());
       }
-      ProdAPI(prod, "productos", "search").then((res) => {
+      apiFetch(prod, "productos", "search").then((res) => {
         setLoad2(false);
         if (res.status === "success") {
           setProds(res.result.productos);
@@ -438,7 +439,6 @@ const SearchProductsResults = () => {
                                   putFilters={putFilters}
                                   setPutFilters={setPutFilters}
                                   setProds={setProds}
-                                  ProdAPI={ProdAPI}
                                   setTotalPages={setTotalPages}
                                   categorias={categorias}
                                   clase={"productos"}
@@ -456,7 +456,6 @@ const SearchProductsResults = () => {
                           setPutSort={setPutSort}
                           handleAplicarFiltros={handleAplicarFiltros}
                           categorias={categorias}
-                          ProdAPI={ProdAPI}
                           setProds={setProds}
                           setTotalPages={setTotalPages}
                           rangoPrecio={rangoPrecio}
@@ -504,7 +503,6 @@ const SearchProductsResults = () => {
                         putFilters={putFilters}
                         setPutFilters={setPutFilters}
                         setProds={setProds}
-                        ProdAPI={ProdAPI}
                         setTotalPages={setTotalPages}
                         categorias={categorias}
                         clase={"productos"}
@@ -554,7 +552,6 @@ const SearchProductsResults = () => {
                   setPutSort={setPutSort}
                   handleAplicarFiltros={handleAplicarFiltros}
                   categorias={categorias}
-                  ProdAPI={ProdAPI}
                   setProds={setProds}
                   setTotalPages={setTotalPages}
                   rangoPrecio={rangoPrecio}

@@ -4,19 +4,18 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Button, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../FormCheckout/PopUpLocalidad";
 import PopUpFinalDir from "./PopUpFinal/PopUpFinalDir";
 import Loader from "../Loader/Loader";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Contacto = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
-  const { FormAPI } = useContext(UseFormContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [form, setForm] = useState([]);
@@ -25,7 +24,7 @@ const Contacto = () => {
   let clase2 = "formObligatorioTitle";
 
   useEffect(() => {
-    FormAPI("", "direcciones", "provincias").then((res) => {
+    apiFetch("", "direcciones", "provincias").then((res) => {
       if (res.status === "success") {
         setProvincias(res.result);
       }
@@ -83,7 +82,7 @@ const Contacto = () => {
             "string",
             document.getElementById("barrioLocalidad").value
           );
-          FormAPI(localidad, "direcciones", "localidades").then((res) => {
+          apiFetch(localidad, "direcciones", "localidades").then((res) => {
             if (res.status === "error") {
               setErrorLocalidad(true);
               scrollTop();
@@ -109,7 +108,7 @@ const Contacto = () => {
     }
     const formPhone = new FormData();
     formPhone.append('telefono', document.getElementById('telefono').value);
-    await FormAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
+    await apiFetch(formPhone, 'clientes', 'validate_phone').then((res) => {
     if (res.status === 'error') {
         setErrorPhone(true);
         throwError('telefono', 'labelTelefono');
@@ -164,7 +163,7 @@ const Contacto = () => {
       document.getElementById("codigoPostal").value
     );
 
-    FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
+    apiFetch(formDireccion, "direcciones", "normalize").then(async (res) => {
       console.log("operacion normalize", res);
       console.table(Object.fromEntries(formDireccion));
       if (
@@ -207,7 +206,7 @@ const Contacto = () => {
       dir.append("entre_calle_2", direccion.entre_calle_2);
       dir.append("informacion_adicional", direccion.informacion_adicional);
       dir.append("normalized", direccion.raw_data);
-      FormAPI(dir, "direcciones", "insert").then(async (res) => {
+      apiFetch(dir, "direcciones", "insert").then(async (res) => {
         console.log("direcciones insert res", res);
         console.table("direcciones insert dir", Object.fromEntries(dir));
         if (res.status === "success") {

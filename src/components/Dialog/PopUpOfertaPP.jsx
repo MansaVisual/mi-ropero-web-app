@@ -5,14 +5,13 @@ import isologo from "../../assets/img/isologo.png";
 import error from "../../assets/img/error.png";
 import theme from "../../styles/theme";
 import Loader from "../Loader/Loader";
-import { UseProdsContext } from "../../context/ProdsContext";
 import Swal from "sweetalert2";
 import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const PopUpOfertaPP = ({ open, setOpen, prod }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { ProdAPI } = useContext(UseProdsContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [aparece, setAparece] = useState(true);
@@ -41,7 +40,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     oferta.append("oferta", data.amount);
     oferta.append("mensaje", data.comment);
 
-    ProdAPI(oferta, "ofertas", "insert").then((res) => {
+    apiFetch(oferta, "ofertas", "insert").then((res) => {
       if (res.status === "success") {
         setTimeout(() => {
           setLoad(false);

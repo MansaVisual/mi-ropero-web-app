@@ -26,6 +26,7 @@ import {
 } from './styles';
 import theme from '../../styles/theme';
 import { useParams } from 'react-router-dom';
+import { apiFetch } from '../../apiFetch/apiFetch';
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
@@ -46,7 +47,6 @@ const Filter = (props) => {
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
   const handleAplicarFiltros = props.handleAplicarFiltros;
-  const ProdAPI=props.ProdAPI
   const setProds=props.setProds
   const categorias=props.categorias
   const setTotalPages=props.setTotalPages
@@ -340,7 +340,7 @@ const Filter = (props) => {
                                     catProd.append('idcategoria', idCat.idcategoria);
                                     catProd.append('bypage', 15);
                                     catProd.append('page', 0);
-                                    ProdAPI(catProd, 'productos', 'search').then((res) => {
+                                    apiFetch(catProd, 'productos', 'search').then((res) => {
                                       if (res.status === 'success') {
                                         setProds(res.result.productos);
                                         setTotalPages(res.result.total_paginas);

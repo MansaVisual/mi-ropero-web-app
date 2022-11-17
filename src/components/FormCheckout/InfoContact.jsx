@@ -16,11 +16,11 @@ import {
   onFocus,
   chargeForm,
 } from './funciones';
-import { UseFormContext } from '../../context/FormContext';
 import Loader from '../Loader/Loader';
 import PopUpInfoDir from './PopUpInfoDir';
 import PopUpLocalidad from './PopUpLocalidad';
 import { UseLoginContext } from '../../context/LoginContext';
+import { apiFetch } from '../../apiFetch/apiFetch';
 
 const InfoContact = ({
   setTypeNav,
@@ -36,7 +36,6 @@ const InfoContact = ({
   usaDireccionCargada,
   setUsaDireccionCargada,
 }) => {
-  const { FormAPI } = useContext(UseFormContext);
   const { userLog,infoUser } = useContext(UseLoginContext);
 
   const [direccionesCargadas, setDireccionesCargadas] = useState([]);
@@ -49,7 +48,7 @@ const InfoContact = ({
   let clase2 = 'formObligatorioTitle';
 
   useEffect(() => {
-    FormAPI('', 'direcciones', 'provincias').then((res) => {
+    apiFetch('', 'direcciones', 'provincias').then((res) => {
       if (res.status === 'success') {
         setProvincias(res.result);
       }
@@ -67,7 +66,7 @@ const InfoContact = ({
     if (userLog !== '') {
       const formDirecciones = new FormData();
       formDirecciones.append('idcliente', userLog);
-      FormAPI(formDirecciones, 'direcciones', 'all').then((res) => {
+      apiFetch(formDirecciones, 'direcciones', 'all').then((res) => {
         setLoader2(false);
         if (res.status === 'success') {
           setDireccionesCargadas(res.result);
@@ -138,7 +137,7 @@ const InfoContact = ({
             'string',
             document.getElementById('barrioLocalidad').value,
           );
-          FormAPI(localidad, 'direcciones', 'localidades').then((res) => {
+          apiFetch(localidad, 'direcciones', 'localidades').then((res) => {
             if (res.status === 'error') {
               throwError('barrioLocalidad', 'labelBarrioLocalidad');
               setErrorLocalidad(true);
@@ -197,7 +196,7 @@ const InfoContact = ({
     } else {
       const formPhone = new FormData();
       formPhone.append('telefono', document.getElementById('telefono').value);
-      await FormAPI(formPhone, 'clientes', 'validate_phone').then((res) => {
+      await apiFetch(formPhone, 'clientes', 'validate_phone').then((res) => {
         if (res.status === 'error') {
           resFinal = false;
           setErrorPhone(true);
@@ -215,7 +214,7 @@ const InfoContact = ({
           document.getElementById('codigoPostal').value,
         );
       }
-      await FormAPI(formCodPostal, 'operaciones', 'get_oca_offices').then(
+      await apiFetch(formCodPostal, 'operaciones', 'get_oca_offices').then(
         (res) => {
           if (res.status === 'error') {
             resFinal = false;
@@ -294,7 +293,7 @@ const InfoContact = ({
       );
     }
 
-    FormAPI(formDireccion, 'direcciones', 'normalize').then(async (res) => {
+    apiFetch(formDireccion, 'direcciones', 'normalize').then(async (res) => {
       if (
         res.status === 'success' &&
         res.result[0].calle !== '' &&

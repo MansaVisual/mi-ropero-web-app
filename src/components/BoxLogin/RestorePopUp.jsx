@@ -1,12 +1,11 @@
-import React,{useContext,useState} from 'react'
+import React,{useState} from 'react'
 import { Button, InputLabel, TextField } from '@mui/material';
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/MRlogoModal.png'
-import { UseLoginContext } from '../../context/LoginContext';
 import Loader from '../Loader/Loader';
+import { apiFetch } from '../../apiFetch/apiFetch';
 
 const RestorePopUp = ({setRestorePassword}) => {
-    const {LoginAPI}=useContext(UseLoginContext)
 
     const [campoObligatorio,setCampoObligatorio]=useState(false)
     const [errorMail,setErrorMail]=useState(false)
@@ -21,7 +20,7 @@ const RestorePopUp = ({setRestorePassword}) => {
         }
         const formMail=new FormData()
         formMail.append("email",document.getElementById("mail").value)
-        await LoginAPI(
+        await apiFetch(
             formMail,
             "clientes",
             "remember"

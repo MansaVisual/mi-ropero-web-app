@@ -14,7 +14,7 @@ import {
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { /* useLocation, */ useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import ChipFilterCategories from "../../components/ChipFilterCategories/ChipFilterCategories";
 import Pagination from "../../components/Pagination/Pagination";
 import IconGroupText from "../../components/IconGroupText/IconGroupText";
@@ -23,6 +23,7 @@ import theme from "../../styles/theme";
 import { UseProdsContext } from "../../context/ProdsContext";
 import Loader from "../../components/Loader/Loader";
 import lupa from "../../assets/img/lupaFilters.png"
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const style = {
   position: "absolute",
@@ -47,7 +48,7 @@ const ViewCloset = () => {
   const [open, setOpen] = useState(false);
   const isTablet = useMediaQuery(theme.breakpoints.down("lg"))
 
-  const { ProdAPI, categorias } = useContext(UseProdsContext);
+  const { categorias } = useContext(UseProdsContext);
   const [buscandoRoperos, setBuscandoRoperos] = useState(true);
 
   const { closetId, nombre } = useParams();
@@ -72,7 +73,7 @@ const ViewCloset = () => {
       ropero.append("idtienda", closetId);
       ropero.append("page", 0);
       ropero.append("bypage", 15);
-      ProdAPI(ropero, "tiendas", "detail").then((res) => {console.log(res)
+      apiFetch(ropero, "tiendas", "detail").then((res) => {console.log(res)
         if (res.status === "success") {
           let arrayCol = [];
           for (const i in res.result.search_productos_categorias) {
@@ -129,7 +130,7 @@ const ViewCloset = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      ProdAPI(col, "tiendas", "detail").then((res) => {
+      apiFetch(col, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
           setFiltrosCategoria(res.result.search_productos_categorias[0].hijas[0].caracteristicas)
           setProds(res.result);
@@ -143,7 +144,7 @@ const ViewCloset = () => {
         ropero.append("idtienda", closetId);
         ropero.append("page", 0);
         ropero.append("bypage", 15);
-        ProdAPI(ropero, "tiendas", "detail").then((res) => {
+        apiFetch(ropero, "tiendas", "detail").then((res) => {
           if (res.status === "success") {
             let arrayCol = [];
             for (const i in res.result.search_productos_categorias) {
@@ -204,7 +205,7 @@ const ViewCloset = () => {
 
     catProd.append("page", value);
 
-    ProdAPI(catProd, "tiendas", "detail").then((res) => {
+    apiFetch(catProd, "tiendas", "detail").then((res) => {
       if (res.status === "success") {
         setProds(res.result)
       }
@@ -269,7 +270,7 @@ const ViewCloset = () => {
         prod.append("caracteristicas", array.toString());
       }
 
-      ProdAPI(prod, "tiendas", "detail").then((res) => {
+      apiFetch(prod, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
           setProds(res.result)
           setTotalPages(Number(res.result.search_productos_total_paginas));
@@ -385,7 +386,6 @@ const ViewCloset = () => {
                                 putFilters={putFilters}
                                 setPutFilters={setPutFilters}
                                 setProds={setTienda}
-                                ProdAPI={ProdAPI}
                                 setTotalPages={setTotalPages}
                                 categorias={categorias}
                                 clase={"tiendas"}
@@ -463,7 +463,6 @@ const ViewCloset = () => {
                       putFilters={putFilters}
                       setPutFilters={setPutFilters}
                       setTienda={setProds}
-                      ProdAPI={ProdAPI}
                       setTotalPages={setTotalPages}
                       categorias={categorias}
                       clase={"tiendas"}

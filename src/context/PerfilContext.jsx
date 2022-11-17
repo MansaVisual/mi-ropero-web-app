@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { apiFetch } from "../apiFetch/apiFetch";
 
 export const UsePerfilContext = createContext();
 
@@ -17,33 +18,10 @@ export const PerfilContext = ({ children }) => {
   const [mensajes, setMensajes] = useState(false);
   const [mensajeId, setMensajeId] = useState(false);
 
-  const PerfilAPI = async (data, clase, metodo) => {
-    let resFinal = "";
-
-    await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
-      {
-        method: "POST",
-        body: data,
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        resFinal = data;
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    return resFinal;
-  };
-
   const handleBuscarDirecciones = (userLog) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
-    PerfilAPI(dir, "direcciones", "all").then((res) => {
+    apiFetch(dir, "direcciones", "all").then((res) => {
       console.log(res);
       setDirFinBusqueda(true);
       if (res.status === "success") {
@@ -80,7 +58,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("estado", itemEstadoSelecc);
     dir.append("page", 0);
     dir.append("bypage", 10);
-    PerfilAPI(dir, "operaciones", "all_buyer").then((res) => {
+    apiFetch(dir, "operaciones", "all_buyer").then((res) => {
       console.log(res);
       if (res.status === "success") {
         for (const ii in res.result.operaciones) {
@@ -116,7 +94,7 @@ export const PerfilContext = ({ children }) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
     dir.append("estado", Number(itemOfertasRealizadas));
-    PerfilAPI(dir, "ofertas", "all").then((res) => {
+    apiFetch(dir, "ofertas", "all").then((res) => {
       setOfertasFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {
@@ -154,7 +132,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("idcliente", userLog);
     dir.append("page", 0);
     dir.append("bypage", 10);
-    PerfilAPI(dir, "mensajes", "all").then((res) => {
+    apiFetch(dir, "mensajes", "all").then((res) => {
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {
@@ -168,7 +146,6 @@ export const PerfilContext = ({ children }) => {
   return (
     <UsePerfilContext.Provider
       value={{
-        PerfilAPI,
         handleBuscarDirecciones,
         dirFinBusqueda,
         direccionesGuardadas,

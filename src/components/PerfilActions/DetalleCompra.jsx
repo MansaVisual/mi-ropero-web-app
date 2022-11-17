@@ -2,14 +2,13 @@ import React, { useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-/* import greyLeftArrow from "../../assets/img/GreyLeftArrow.png";
-import greyRightArrow from "../../assets/img/GreyRightArrow.png";
- */ import { UseLoginContext } from "../../context/LoginContext";
+import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Swal from "sweetalert2";
 import Loader from "../Loader/Loader";
 import vacio from "../../assets/img/comprasVacio.png";
 import { Button } from "@mui/material";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const DetalleCompra = () => {
   const location = useLocation();
@@ -17,7 +16,7 @@ const DetalleCompra = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
-  const { compraId, PerfilAPI } = useContext(UsePerfilContext);
+  const { compraId } = useContext(UsePerfilContext);
   const [compraSelecc, setCompraSelecc] = useState(false);
   const [direccion, setDireccion] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -30,7 +29,7 @@ const DetalleCompra = () => {
       const dir = new FormData();
       dir.append("idcliente", userLog);
       dir.append("idoperacion", compraId);
-      PerfilAPI(dir, "operaciones", "get").then((res) => {
+      apiFetch(dir, "operaciones", "get").then((res) => {
         if (res.status === "success") {
           setCompraSelecc(res.result);
           setDireccion(res.result.direccion_entrega);

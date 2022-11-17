@@ -1,13 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from "../../assets/img/isologo.png";
-import { UsePerfilContext } from "../../context/PerfilContext";
 import { useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const PopUpEliminar = ({ setDeleteAccount, idCliente }) => {
-  const { PerfilAPI } = useContext(UsePerfilContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -15,7 +14,7 @@ const PopUpEliminar = ({ setDeleteAccount, idCliente }) => {
     setLoading(true);
     const dir = new FormData();
     dir.append("idcliente", idCliente);
-    PerfilAPI(dir, "clientes", "delete").then((res) => {
+    apiFetch(dir, "clientes", "delete").then((res) => {
       if (res.status === "success") {
         setDeleteAccount(false);
         navigate("/");

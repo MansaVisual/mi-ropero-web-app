@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, MenuItem, Select } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { useNavigate } from "react-router-dom";
-import { UsePerfilContext } from "../../context/PerfilContext";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
 
-  const { PerfilAPI } = useContext(UsePerfilContext);
   const [caracteristicas, setCaracteristicas] = useState({});
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
@@ -19,7 +18,7 @@ const Caracteristicas = ({ form, setForm }) => {
     const dir = new FormData();
     dir.append("idcategoria", 1);
     let caract = {};
-    PerfilAPI(dir, "categorias", "get").then((res) => {
+    apiFetch(dir, "categorias", "get").then((res) => {
       setData(res.result[0].caracteristicas);
       for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
         let obj = res.result[0].caracteristicas[i].nombre;

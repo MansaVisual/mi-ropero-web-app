@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import jwt_decode from "jwt-decode";
+import { apiFetch } from "../apiFetch/apiFetch";
 
 export const UseLoginContext = createContext();
 
@@ -19,33 +20,6 @@ export const LoginContext = ({ children }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const LoginAPI = async (data, clase, metodo) => {
-    let resFinal = "";
-    const res = localStorage.getItem("idClienteMiRopero");
-    if (res !== null && userLog !== "") {
-      setUserLog(res);
-    }
-
-    await fetch(
-      `https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`,
-      {
-        method: "POST",
-        body: data,
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        resFinal = data;
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    return resFinal;
-  };
-
   const loginStorage = async () => {
     const res = await localStorage.getItem("idClienteMiRopero");
     return res;
@@ -56,7 +30,7 @@ export const LoginContext = ({ children }) => {
       setBuscandoNotis(true);
       const user = new FormData();
       user.append("idcliente", userLog);
-      LoginAPI(user, "clientes", "get").then((res) => {
+      apiFetch(user, "clientes", "get").then((res) => {
         if (res.status === "success") {
           setInfoUser(res.result);
         } else if (res.status === "error") {
@@ -70,30 +44,20 @@ export const LoginContext = ({ children }) => {
       notis.append("estado", 1);
       notis.append("idcliente", userLog);
 
-      LoginAPI(notis, "pushs", "all").then((res) => {
+      apiFetch(notis, "pushs", "all").then((res) => {
         setBuscandoNotis(false);
         if (res.status === "success") {
           setNotis(res.result);
         }
-        setTimeout(() => {
-          LoginAPI(notis, "pushs", "all").then((res) => {
-            setBuscandoNotis(false);
-            if (res.status === "success") {
-              setNotis(res.result);
-            }
-            console.log("HOLA")
-          })
-        }, 300000);
       });
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
-
 
   const reBuscarInfo = () => {
     if (userLog !== "") {
       const user = new FormData();
       user.append("idcliente", userLog);
-      LoginAPI(user, "clientes", "get").then((res) => {console.log(res)
+      apiFetch(user, "clientes", "get").then((res) => {console.log(res)
         if (res.status === "success") {
           setInfoUser(res.result);
         } else {
@@ -107,7 +71,7 @@ export const LoginContext = ({ children }) => {
     const log = new FormData();
     log.append("social_login_type", 1);
     log.append("social_login_id", loginData.id);
-    LoginAPI(log, "clientes", "login_social").then((res) => {
+    apiFetch(log, "clientes", "login_social").then((res) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
@@ -133,7 +97,7 @@ export const LoginContext = ({ children }) => {
     log.append("email", loginData.email);
     log.append("apellido", loginData.last_name);
     log.append("avatar", loginData.picture.data.url);
-    LoginAPI(log, "clientes", "insert_social").then((res) => {
+    apiFetch(log, "clientes", "insert_social").then((res) => {
       if (res.status === "success") {
         FacebookLogin(loginData);
       } else if (res.status === "error") {
@@ -153,7 +117,7 @@ export const LoginContext = ({ children }) => {
     const log = new FormData();
     log.append("social_login_type", 3);
     log.append("social_login_id", decoded.sub);
-    LoginAPI(log, "clientes", "login_social").then((res) => {
+    apiFetch(log, "clientes", "login_social").then((res) => {
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
@@ -181,7 +145,7 @@ export const LoginContext = ({ children }) => {
     log.append("email", data.user.email);
     log.append("apellido", data.user.name.lastName);
 
-    LoginAPI(log, "clientes", "insert_social").then((res) => {
+    apiFetch(log, "clientes", "insert_social").then((res) => {
       if (res.status === "success") {
         AppleLogin(data);
       } else if (res.status === "error") {
@@ -198,7 +162,6 @@ export const LoginContext = ({ children }) => {
   return (
     <UseLoginContext.Provider
       value={{
-        LoginAPI,
         loginStorage,
         userLog,
         setUserLog,

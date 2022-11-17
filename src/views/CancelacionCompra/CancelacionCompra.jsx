@@ -3,15 +3,14 @@ import { Button, TextField } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { useNavigate } from "react-router-dom";
-import { UseFormContext } from "../../context/FormContext";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Loader from "../../components/Loader/Loader";
 import Swal from "sweetalert2";
 import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const CancelacionCompra = () => {
   const navigate = useNavigate();
-  const { FormAPI } = useContext(UseFormContext);
   const {userLog}=useContext(UseLoginContext)
 
   const [form, setForm] = useState({
@@ -54,14 +53,14 @@ const CancelacionCompra = () => {
     const buscarCompra=new FormData()
     buscarCompra.append("idcliente",userLog)
     buscarCompra.append("idoperacion",Number(form.idOperacion))
-    FormAPI(buscarCompra,"operaciones","get").then((res)=>{console.log(res)
+    apiFetch(buscarCompra,"operaciones","get").then((res)=>{console.log(res)
       if(res.status==="success"){
         const data = new FormData();
         data.append("idoperacion", form.idOperacion);
         data.append("mensaje", form.mensaje);
         data.append("remitente", 1);
     
-        FormAPI(data, "reclamos", "insert").then((res) => {console.log(res)
+        apiFetch(data, "reclamos", "insert").then((res) => {console.log(res)
           setLoading(false);
           if (res.status === "success") {
             navigate("/cancelacionCompraOk");

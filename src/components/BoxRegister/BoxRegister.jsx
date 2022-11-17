@@ -1,14 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Button, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Loader from "../Loader/Loader";
-import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const BoxRegister = () => {
   const navigate = useNavigate();
-  const { LoginAPI } = useContext(UseLoginContext);
   const emailRegex =
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
@@ -23,15 +22,7 @@ const BoxRegister = () => {
   const [load, setLoad] = useState(false);
 
   const handleRegistrar = async () => {
-    // const loginUserE = new FormData()
-    // loginUserE.append('idcliente', "24916")
-    // await LoginAPI(
-    //     loginUserE,
-    //     "clientes",
-    //     "delete"
-    // ).then((res)=>{
-    //     console.log(res)
-    // })
+
 
     setErrorPass(false);
     setCampoObligatorio(false);
@@ -78,7 +69,7 @@ const BoxRegister = () => {
     loginUser.append("clave", document.getElementById("password").value);
     loginUser.append("nombre", document.getElementById("nombre").value);
     loginUser.append("apellido", document.getElementById("apellido").value);
-    await LoginAPI(loginUser, "clientes", "insert").then(async (res) => {
+    await apiFetch(loginUser, "clientes", "insert").then(async (res) => {
       if (res.status === "success") {
         const validateCod = new FormData();
         validateCod.append("idcliente", res.result.idcliente);
@@ -86,7 +77,7 @@ const BoxRegister = () => {
           "sendCodMiRopero",
           JSON.stringify({ id: res.result.idcliente, mail: res.result.email })
         );
-        await LoginAPI(validateCod, "clientes", "validate_send").then((res) => {
+        await apiFetch(validateCod, "clientes", "validate_send").then((res) => {
           setLoad(false);
           scrollTop();
           navigate("/validacionLogin");

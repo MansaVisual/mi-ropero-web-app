@@ -4,19 +4,18 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../../assets/img/leftArrow.png";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
-import { UseFormContext } from "../../../context/FormContext";
 import { UsePerfilContext } from "../../../context/PerfilContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../../FormCheckout/PopUpLocalidad";
 import PopUpFinalDir from "./PopUpFinalDir";
 import Loader from "../../Loader/Loader";
+import { apiFetch } from "../../../apiFetch/apiFetch";
 
 const EditarDireccion = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
-  const { FormAPI } = useContext(UseFormContext);
   const { direccionSelecc } = useContext(UsePerfilContext);
 
   const [form, setForm] = useState({
@@ -38,7 +37,7 @@ const EditarDireccion = () => {
   let clase2 = "formObligatorioTitle";
 
   useEffect(() => {
-    FormAPI("", "direcciones", "provincias").then((res) => {
+    apiFetch("", "direcciones", "provincias").then((res) => {
       if (res.status === "success") {
         setProvincias(res.result);
       }
@@ -138,7 +137,7 @@ const EditarDireccion = () => {
             "string",
             document.getElementById("barrioLocalidad").value
           );
-          FormAPI(localidad, "direcciones", "localidades").then((res) => {
+          apiFetch(localidad, "direcciones", "localidades").then((res) => {
             console.log(res);
             if (res.status === "error") {
               setErrorLocalidad(true);
@@ -211,7 +210,7 @@ const EditarDireccion = () => {
       document.getElementById("codigoPostal").value
     );
 
-    FormAPI(formDireccion, "direcciones", "normalize").then(async (res) => {
+    apiFetch(formDireccion, "direcciones", "normalize").then(async (res) => {
       console.log(res);
       console.table(Object.fromEntries(formDireccion));
       if (
@@ -286,7 +285,7 @@ const EditarDireccion = () => {
       formDireccion.append("normalized", direccion.raw_data);
       console.table(Object.fromEntries(formDireccion));
 
-      FormAPI(formDireccion, "direcciones", "update").then(async (res) => {
+      apiFetch(formDireccion, "direcciones", "update").then(async (res) => {
         console.log(res);
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);

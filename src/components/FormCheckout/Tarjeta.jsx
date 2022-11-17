@@ -9,6 +9,7 @@ import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Tarjeta = ({
   sucursales,
@@ -22,7 +23,7 @@ const Tarjeta = ({
   saveDirecc,
 }) => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-  const { carrito, CartAPI } = useContext(UseCartContext);
+  const { carrito } = useContext(UseCartContext);
   const { setCostoSucDom, setCostoSucSuc } = useContext(UseFormContext);
   const [load, setLoad] = useState(false);
   const { userLog } = useContext(UseLoginContext);
@@ -52,7 +53,7 @@ const Tarjeta = ({
     finalizarCompra.append("promocion_codigo", codDesc);
     finalizarCompra.append("medio_envio", metodoEnvio);
 
-    CartAPI(finalizarCompra, "operaciones", "insert").then(async(res) => {console.log(res)
+    apiFetch(finalizarCompra, "operaciones", "insert").then(async(res) => {console.log(res)
       if (res.status === "success") {
         setLoad(false);
         if (res.result.init_point !== undefined) {

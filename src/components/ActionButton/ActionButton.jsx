@@ -9,6 +9,7 @@ import { UseProdsContext } from "../../context/ProdsContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/isologo.png"
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 export const LikeButton = ({
   idCliente,
@@ -17,7 +18,7 @@ export const LikeButton = ({
   itemFav,
   location,
 }) => {
-  const { ProdAPI, listFavs, handleListFavs } = useContext(UseProdsContext);
+  const { listFavs, handleListFavs } = useContext(UseProdsContext);
   const [like, setLike] = useState(null);
   const navigate = useNavigate();
 
@@ -78,7 +79,7 @@ console.log("INFOUSER VIEJO", infoUser.productos_favoritos)
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
       favAdd.append("idfavorito", idFavorito.idfavorito);
-      ProdAPI(favAdd, "favoritos", "delete").then(async(res) => {
+      apiFetch(favAdd, "favoritos", "delete").then(async(res) => {
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL BORRAR",
@@ -95,7 +96,7 @@ console.log("INFOUSER VIEJO", infoUser.productos_favoritos)
       const favAdd = new FormData();
       favAdd.append("idcliente", idCliente);
       favAdd.append("idproducto", idProd);
-      await ProdAPI(favAdd, "favoritos", "insert").then(async(res) => {
+      await apiFetch(favAdd, "favoritos", "insert").then(async(res) => {
         if (res.status === "error") {
           Swal.fire({
             title: "ERROR AL AGREGAR A FAVORITOS",

@@ -13,11 +13,12 @@ import cruz from "../../assets/img/cruz.png";
 import Loader from "../../components/Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Cart = () => {
     const navigate = useNavigate();
     const {userLog}=useContext(UseLoginContext)
-    const {CartAPI,setCarrito,carrito,buscandoCart,setBuscandoCart}=useContext(UseCartContext)
+    const {setCarrito,carrito,buscandoCart,setBuscandoCart}=useContext(UseCartContext)
   
     
     const [eliminar,setEliminar]=useState(false)
@@ -62,7 +63,7 @@ const Cart = () => {
         setLoad(true)
         const eliminar = new FormData()
         eliminar.append('idcarrito', prodEliminar)
-        await CartAPI(
+        await apiFetch(
             eliminar,
             "carritos",
             "delete"
@@ -90,7 +91,7 @@ const Cart = () => {
         CartID.append('idcliente', userLog)
         // CartID.append('idproducto',10610)
         // CartID.append('cantidad',1)
-        CartAPI(
+        apiFetch(
             CartID,
             "carritos",
             "all"

@@ -8,6 +8,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../../components/Loader/Loader";
 import mensaje from "../../assets/img/mensajesVacio.png";
 import Pagination from "../../components/Pagination/Pagination";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Notifications = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Notifications = () => {
   const [totalPages, settotalPages] = useState(false);
   const [loading, setLoading] = useState(true);
   const [pags, setPags] = useState(1);
-  const { userLog, LoginAPI } = useContext(UseLoginContext);
+  const { userLog } = useContext(UseLoginContext);
 
   const [num,setNum]=useState(1)
 
@@ -57,7 +58,7 @@ useEffect(()=>{
       notis.append("page", 0);
       notis.append("estado", type);
       notis.append("idcliente", userLog);
-      LoginAPI(notis, "pushs", "all").then((res) => {
+      apiFetch(notis, "pushs", "all").then((res) => {
         setLoading(false);
         if (res.status === "success") {
           setNotis(res.result.mensajes);
@@ -88,7 +89,7 @@ useEffect(()=>{
     notis.append("page", value);
     notis.append("estado", type);
     notis.append("idcliente", userLog);
-    LoginAPI(notis, "pushs", "all").then((res) => {
+    apiFetch(notis, "pushs", "all").then((res) => {
       if (res.status === "success") {
         setNotis(res.result.mensajes);
       }
@@ -228,7 +229,7 @@ useEffect(()=>{
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                LoginAPI(llamada, "tiendas", "detail").then((res) => {console.log(res)
+                apiFetch(llamada, "tiendas", "detail").then((res) => {console.log(res)
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
                   } else {
@@ -269,7 +270,7 @@ useEffect(()=>{
                       : () => {
                         const not = new FormData()
                         not.append("idpush",item.idpush)
-                        LoginAPI(
+                        apiFetch(
                           not,
                           "pushs",
                           "readed"

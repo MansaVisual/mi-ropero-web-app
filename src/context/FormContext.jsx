@@ -1,4 +1,5 @@
 import { createContext,useState,useContext } from "react";
+import { apiFetch } from "../apiFetch/apiFetch";
 import { UseLoginContext } from "./LoginContext";
 
 export const UseFormContext = createContext();
@@ -10,31 +11,12 @@ export function FormContext ({children}) {
     const [costoSucDom,setCostoSucDom]=useState(false)
     const [costoSucSuc,setCostoSucSuc]=useState(false)
 
-    const FormAPI = async(data,clase,metodo) =>{
-        let resFinal = ''
-
-        await fetch(`https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
-            method: 'POST',					
-            body: data
-        })
-        .then((response) => response.json())
-            .then((data) => {
-                resFinal=data
-            })
-            .catch((error)=> {
-                console.log(error)
-            })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-        return resFinal
-    }
-
+   
     const setCostos = (direccion)=>{
         const formCostos = new FormData()
         formCostos.append('idcliente', userLog)
         formCostos.append('address_shipping',JSON.stringify(direccion))
-        FormAPI(
+        apiFetch(
             formCostos,
             "carritos",
             "calc_shipping"
@@ -50,7 +32,7 @@ export function FormContext ({children}) {
     }
 
     return(
-        <UseFormContext.Provider value={{FormAPI,costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc,costoMoto}}>
+        <UseFormContext.Provider value={{costoSucDom,costoSucSuc,setCostos,setCostoSucDom,setCostoSucSuc,costoMoto}}>
             {children}
         </UseFormContext.Provider>
     )
