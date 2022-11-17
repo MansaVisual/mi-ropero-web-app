@@ -12,7 +12,8 @@ export const apiFetch=async(data, clase, metodo)=>{
         .then((response) => response.json())
         .then((data) => {
           resFinal = data;
-          if (data.status === "error") {
+          console.log(data)
+          if (data.result === "El producto no existe") {
             Swal.fire({
               title: `${data.result}`,
               confirmButtonText: "CONTINUAR",
