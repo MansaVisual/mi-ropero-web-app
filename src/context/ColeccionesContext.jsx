@@ -1,10 +1,8 @@
 import { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+
 export const UseColeccionContext = createContext();
 
 export const ColeccionContext = ({ children }) => {
-  const navigate=useNavigate()
   const [coleccionesBuscadas, setColeccionesBuscadas] = useState([]);
   const [colecciones, setColecciones] = useState([]);
   const [buscandoCols,setBuscandoCols]=useState(true)
@@ -22,14 +20,6 @@ export const ColeccionContext = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {
         resFinal = data;
-        if(data.error==="error"){
-          Swal.fire({
-              text: data.result,
-              icon: "error",
-              confirmButtonText: "ACEPTAR",
-          });
-          navigate("/")
-      }
       })
       .catch((error) => {
         console.log(error);

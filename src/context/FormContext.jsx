@@ -1,11 +1,10 @@
 import { createContext,useState,useContext } from "react";
 import { UseLoginContext } from "./LoginContext";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+
 export const UseFormContext = createContext();
 
 export function FormContext ({children}) {
-    const navigate=useNavigate()
+
     const {userLog}=useContext(UseLoginContext)
     const [costoMoto,setCostoMoto]=useState(false)
     const [costoSucDom,setCostoSucDom]=useState(false)
@@ -21,14 +20,6 @@ export function FormContext ({children}) {
         .then((response) => response.json())
             .then((data) => {
                 resFinal=data
-                if(data.error==="error"){
-                    Swal.fire({
-                        text: data.result,
-                        icon: "error",
-                        confirmButtonText: "ACEPTAR",
-                    });
-                    navigate("/")
-                }
             })
             .catch((error)=> {
                 console.log(error)

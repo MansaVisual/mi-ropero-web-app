@@ -1,13 +1,11 @@
 import { createContext, useState, useEffect,useContext } from "react";
 import { UseLoginContext } from "./LoginContext";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+
 export const UseCartContext = createContext();
 
 export const CartContext = ({children}) => {
     const {userLog} = useContext(UseLoginContext)
     
-    const navigate=useNavigate()
     const [carrito,setCarrito]=useState([])
     const [buscandoCart,setBuscandoCart]=useState(true)
     const [costoCarrito,setCostoCarrito]=useState(false)
@@ -23,14 +21,6 @@ export const CartContext = ({children}) => {
         .then((response) => response.json())
             .then((data) => {
                 resFinal=data
-                if(data.error==="error"){
-                    Swal.fire({
-                        text: data.result,
-                        icon: "error",
-                        confirmButtonText: "ACEPTAR",
-                    });
-                    navigate("/")
-                }
             })
             .catch((error)=> {
                 console.log(error)

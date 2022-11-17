@@ -1,12 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-import jwt_decode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 
 export const UseLoginContext = createContext();
 
 export const LoginContext = ({ children }) => {
-  const navigate=useNavigate()
   const [userLog, setUserLog] = useState("");
   const [infoUser, setInfoUser] = useState([]);
   const [notis, setNotis] = useState([]);
@@ -38,14 +36,6 @@ export const LoginContext = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {
         resFinal = data;
-        if(data.error==="error"){
-          Swal.fire({
-              text: data.result,
-              icon: "error",
-              confirmButtonText: "ACEPTAR",
-          });
-          navigate("/")
-      }
       })
       .catch((error) => {
         console.log(error);
@@ -91,8 +81,9 @@ export const LoginContext = ({ children }) => {
             if (res.status === "success") {
               setNotis(res.result);
             }
+            console.log("HOLA")
           })
-        }, 180000);
+        }, 300000);
       });
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
