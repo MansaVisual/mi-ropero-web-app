@@ -68,6 +68,8 @@ useEffect(()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, notificationsType]);
 
+  console.log(notis)
+
   const buscarPage = (paramSearch, value) => {
     setLoading(true);
     window.scrollTo({
