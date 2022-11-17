@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
@@ -15,6 +15,12 @@ const PopUpMensajePP = ({ setOpenMessagePop, prod,descripcion }) => {
   const { userLog } = useContext(UseLoginContext);
   const [error, setError] = useState(false);
   const [aparece, setAparece] = useState(true);
+
+  useEffect(() => {
+    if(descripcion!==undefined){
+      setMessage("¡HOLA! ¿El producto está disponible?")
+    }
+  }, []);
 
   const submit = () => {
     setLoading(true);
@@ -73,7 +79,7 @@ const PopUpMensajePP = ({ setOpenMessagePop, prod,descripcion }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">
-            {error ? "¡ERROR!" : descripcion===undefined?"¡ENVIÁ UN MENSAJE!":"TIENDA PAUSADA"}
+            {error ? "¡ERROR!" : descripcion===undefined?"¡ENVIÁ UN MENSAJE!":"¡Oops! Ropero sin actividad"}
           </p>
           <p className="popUpDescription">
             {descripcion===undefined?

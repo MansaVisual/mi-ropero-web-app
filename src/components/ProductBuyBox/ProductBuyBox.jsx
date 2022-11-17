@@ -150,7 +150,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       }
     });
   };
-  console.log(prod)
+  console.log(costoEnvio)
   return (
     <>
       <Box
@@ -330,7 +330,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                   setOpenMessagePop={setOpenMessagePop}
                   openMessagePop={openMessagePop}
                   prod={prod}
-                  descripcion={"La tienda se encuentra pausada en este momento."}
+                  descripcion={"Para comprar consulta al vendedor si el producto aún esta a la venta."}
                 />
               )}
             </Box>
@@ -598,7 +598,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                 setOpenMessagePop={setOpenMessagePop}
                 openMessagePop={openMessagePop}
                 prod={prod}
-                descripcion={"La tienda se encuentra pausada en este momento."}
+                descripcion={"Para comprar consulta al vendedor si el producto aún esta a la venta."}
               />
             )}
           </>
