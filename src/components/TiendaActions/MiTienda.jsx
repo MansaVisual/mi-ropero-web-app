@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
 import TiendaCalif from "../../assets/img/TiendaCalif.svg";
 import TiendaDatos from "../../assets/img/TiendaDatos.svg";
@@ -48,28 +49,30 @@ const MiTienda = () => {
   return (
     <div className="miTiendaContainer">
       <TiendaBanner />
-      <div className="container">
-        <div className="tiendaSections">
-          {sections.map((section) => {
-            return (
-              <div
-                className="section"
-                onClick={() => navigate(`/MiTienda/${section.name}`)}
-              >
-                <div className="imgBox">
-                  <img src={section.icon} alt="icon" />
-                  <p className="sectionTitleMobile">{section.name}</p>
+      <Grid className="tiendaGrid">
+        <div className="container">
+          <div className="tiendaSections">
+            {sections.map((section) => {
+              return (
+                <div
+                  className="section"
+                  onClick={() => navigate(`/MiTienda/${section.name}`)}
+                >
+                  <div className="imgBox">
+                    <img src={section.icon} alt="icon" />
+                    <p className="sectionTitleMobile">{section.name}</p>
+                  </div>
+                  <p className="sectionTitle">{section.name}</p>
                 </div>
-                <p className="sectionTitle">{section.name}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <div className="returnLink" onClick={() => navigate(`/`)}>
+            <img src={leftArrow} alt="leftArrow" />
+            <p>VOLVER A INICIO</p>
+          </div>
         </div>
-        <div className="returnLink" onClick={() => navigate(`/`)}>
-          <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A INICIO</p>
-        </div>
-      </div>
+      </Grid>
     </div>
   );
 };
