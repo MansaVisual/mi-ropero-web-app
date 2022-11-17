@@ -1,5 +1,4 @@
 import { createContext,useEffect,useState,useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { UseLoginContext } from "./LoginContext";
 
@@ -9,7 +8,6 @@ export const ProdsContext = ({children}) => {
 
     const {userLog,infoUser}=useContext(UseLoginContext)
 
-    const navigate=useNavigate()
     const [categorias,setCategorias]=useState([])
     
     const [slider1,setSlider1]=useState([])
@@ -35,7 +33,7 @@ console.log(infoUser)
                         title: `${data.result}`,
                         confirmButtonText: "CONTINUAR",
                       }).then((res)=>{
-                        navigate("/login");
+                        window.location.replace("/https://www.miropero.ar/")
                       })
                 }
             })
