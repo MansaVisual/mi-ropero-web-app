@@ -427,7 +427,7 @@ const NavIcons = () => {
                 } else{
                   buscarI = itemURL.indexOf("id=");
                   id = itemURL.substring(buscarI + 3, itemURL.length);
-                  url = `/productCard/${id}`;
+                  url = `/productoCard/${id}`;
                 }
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
