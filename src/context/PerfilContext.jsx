@@ -43,7 +43,8 @@ export const PerfilContext = ({ children }) => {
   const handleBuscarDirecciones = (userLog) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
-    PerfilAPI(dir, "direcciones", "all").then((res) => {console.log(res)
+    PerfilAPI(dir, "direcciones", "all").then((res) => {
+      console.log(res);
       setDirFinBusqueda(true);
       if (res.status === "success") {
         setDireccionesGuardadas(res.result);
@@ -153,7 +154,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("idcliente", userLog);
     dir.append("page", 0);
     dir.append("bypage", 10);
-    PerfilAPI(dir, "mensajes", "all_saler").then((res) => {
+    PerfilAPI(dir, "mensajes", "all").then((res) => {
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {

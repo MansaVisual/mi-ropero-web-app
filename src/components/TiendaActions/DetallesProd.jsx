@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import PopUpDescProd from "./PopUpDescProd";
 
-const DetallesProd = () => {
+const DetallesProd = ({ setForm }) => {
   const navigate = useNavigate();
 
   const [habilitado, setHabilitado] = useState(false);
@@ -40,6 +40,16 @@ const DetallesProd = () => {
       setHabilitado(true);
     }
   }, [detalles]);
+
+  const handleSubmit = () => {
+    setForm((prevState) => ({
+      ...prevState,
+      titulo: detalles.title,
+      precio: detalles.precio,
+      descripcion: detalles.descripcion,
+    }));
+    navigate(`/MiTienda/CONTACTO`);
+  };
 
   return (
     <Grid className="gridContainer">
@@ -119,7 +129,7 @@ const DetallesProd = () => {
               onClick={
                 habilitado
                   ? () => {
-                      navigate(`/MiTienda/IMAGENES`);
+                      handleSubmit();
                     }
                   : null
               }
@@ -133,7 +143,7 @@ const DetallesProd = () => {
           </div>
           <div
             className="returnLink"
-            onClick={() => navigate(`/MiTienda/IMAGENES`)}
+            onClick={() => navigate(`/MiTienda/CARACTERÍSTICAS`)}
           >
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A CARACTERÍSTICAS</p>

@@ -26,7 +26,14 @@ const Tienda = () => {
 
   const [num, setNum] = useState(1);
 
-  const [form, setForm] = useState({ categoria: "", tipo: "" });
+  const [form, setForm] = useState({
+    categoria: "",
+    tipo: "",
+    caracteristicas: [],
+    titulo: "",
+    precio: "",
+    descripcion: "",
+  });
 
   useEffect(() => {
     window.scrollTo({
@@ -64,7 +71,7 @@ const Tienda = () => {
       {seccion === "CARACTERISTICAS" && (
         <Caracteristicas form={form} setForm={setForm} />
       )}
-      {seccion === "DETALLES" && <DetallesProd />}
+      {seccion === "DETALLES" && <DetallesProd setForm={setForm} />}
       {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
       {seccion === "VENTAS" && <Ventas />}
       {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
