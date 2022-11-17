@@ -28,7 +28,7 @@ const MiChat = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  console.log(infoUser, mensajeId);
+  console.log(chatActual);
 
   useEffect(() => {
     if (!userLog && !mensajeId /* && !infoUser */) {

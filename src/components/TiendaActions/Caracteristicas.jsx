@@ -4,12 +4,15 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { useNavigate } from "react-router-dom";
 import { UsePerfilContext } from "../../context/PerfilContext";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
 
   const { PerfilAPI } = useContext(UsePerfilContext);
   const [caracteristicas, setCaracteristicas] = useState({});
+  const [errorObligatorio, setErrorObligatorio] = useState(false);
+  const [campoError, setCampoError] = useState("");
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -27,6 +30,8 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []);
 
   const handleChange = (event, value) => {
+    setCampoError("");
+    setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
       console.log("entra");
       setCaracteristicas((prevState) => ({
@@ -55,7 +60,46 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   };
 
-  console.log(caracteristicas);
+  const handleSubmit = () => {
+    const obligatorio = data.filter((info) => info.es_obligatoria === "1");
+
+    for (let i = 0; i < obligatorio.length; i++) {
+      for (const item in caracteristicas) {
+        if (
+          obligatorio[i].nombre === item &&
+          caracteristicas[item].length === 0
+        ) {
+          setCampoError(item);
+          setErrorObligatorio(true);
+          scrollTop();
+          return;
+        }
+      }
+    }
+    if (!errorObligatorio) {
+      setForm((prevState) => ({
+        ...prevState,
+        categoria: caracteristicas,
+      }));
+      navigate(`/MiTienda/DETALLES`);
+    }
+  };
+
+  const scrollTop = (param) => {
+    if (param !== undefined) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: param,
+          behavior: "auto",
+        });
+      }, 0);
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Grid className="gridContainer">
       <div className="caractContainer">
@@ -65,15 +109,18 @@ const Caracteristicas = ({ form, setForm }) => {
           <span className="subtitle">
             Podés seleccionar varias opciones en cada caso.
           </span>
-
+          {errorObligatorio && (
+            <div className="errorBox">
+              <CancelOutlinedIcon color="secondary" className="cruz" />
+              <p>Ingresar campo obligatorio "{campoError}</p>
+            </div>
+          )}
           <div className="inputContainer">
             {data.map((select) => {
-              /* let valor = caracteristicas.find((e) => select.nombre === e);
-              console.log(valor); */
               return (
                 <div className="inputBox">
-                  <p className="labelInput" id="labelProvincia">
-                    {select.nombre}
+                  <p className="labelInput" id="label">
+                    {select.nombre} {select.es_obligatoria === "1" ? "*" : ""}
                   </p>
                   <Select
                     displayEmpty
@@ -82,14 +129,16 @@ const Caracteristicas = ({ form, setForm }) => {
                     placeholder={`Selecciona ${select.nombre}`}
                     size="small"
                     id={select.nombre}
-                    value={
-                      caracteristicas[select.nombre] /* .length === 0
-                        ? "ejemplo"
-                        : caracteristicas[select.nombre] */
-                    }
+                    value={caracteristicas[select.nombre]}
                     renderValue={(selected) => {
                       if (selected.length === 0) {
-                        return <em>Seleccioná de 1 a 3 opciones</em>;
+                        return (
+                          <em>
+                            {select.valores_multiples === "0"
+                              ? `Selecciona ${select.nombre}`
+                              : "Seleccioná de 1 a 3 opciones"}
+                          </em>
+                        );
                       }
                       return selected.join(", ");
                     }}
@@ -143,12 +192,15 @@ const Caracteristicas = ({ form, setForm }) => {
               );
             })}
           </div>
+          <div className="buttonContainer">
+            <button onClick={() => handleSubmit()}>IR A DETALLES</button>
+          </div>
           <div
             className="returnLink"
             onClick={() => navigate(`/MiTienda/IMAGENES`)}
           >
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A CARACTERÍSTICAS</p>
+            <p>VOLVER A IMAGENES</p>
           </div>
         </div>
       </div>

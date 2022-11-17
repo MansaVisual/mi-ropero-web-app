@@ -7,6 +7,7 @@ import iconHide from "../../assets/img/iconHide.svg";
 import iconShow from "../../assets/img/iconShow.svg";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { useLocation } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 const TiendaBanner = () => {
   const location = useLocation();

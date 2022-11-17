@@ -26,6 +26,10 @@
       color: #878787;
       margin-left: 24px;
     }
+    .errorBox {
+      max-width: 758px;
+      width: 100%;
+    }
     .inputContainer {
       display: flex;
       max-width: 758px;
@@ -93,6 +97,8 @@
       display: flex;
       justify-content: center;
       margin-top: 32px;
+      max-width: 758px;
+      width: 100%;
       button {
         display: flex;
         flex-direction: row;
