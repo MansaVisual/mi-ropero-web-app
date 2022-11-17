@@ -2,6 +2,7 @@
   margin-top: 40px;
   @include screen_1450 {
     max-width: 1120px;
+    width: 100%;
   }
   @include screen_705 {
     margin-top: 0px;
@@ -248,5 +249,4 @@
       font-family: "Open Sans", sans-serif;
     }
   }
-
 }
