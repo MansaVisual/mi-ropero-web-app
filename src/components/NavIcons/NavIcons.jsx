@@ -411,7 +411,7 @@ const NavIcons = () => {
               ) {
                 //------------------|------------------------------
 
-                url = "/mantenmiento";
+                url = "/mantenimiento";
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
                 let buscarI2 = itemURL.indexOf("&backLink");
