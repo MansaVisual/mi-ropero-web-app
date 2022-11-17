@@ -1,8 +1,11 @@
 import { createContext, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 export const UsePerfilContext = createContext();
 
 export const PerfilContext = ({ children }) => {
+
+  const navigate=useNavigate()
   const [direccionesGuardadas, setDireccionesGuardadas] = useState([]);
   const [direccionSelecc, setDireccionSelecc] = useState(false);
   const [compraId, setCompraId] = useState(false);
@@ -30,6 +33,14 @@ export const PerfilContext = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {
         resFinal = data;
+        if(data.error==="error"){
+          Swal.fire({
+              text: data.result,
+              icon: "error",
+              confirmButtonText: "ACEPTAR",
+          });
+          navigate("/")
+      }
       })
       .catch((error) => {
         console.log(error);

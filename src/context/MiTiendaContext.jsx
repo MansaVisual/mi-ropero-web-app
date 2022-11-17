@@ -1,10 +1,12 @@
 import { createContext,useEffect,useState,useContext } from "react";
 import { UseLoginContext } from "./LoginContext";
-
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 export const UseMiTiendaContext = createContext();
 
 export const MiTiendaContext = ({children}) => {
 
+    const navigate=useNavigate()
     const {userLog}=useContext(UseLoginContext)
 
     const [buscandoProds,setBuscandoProds]=useState(true)
@@ -21,6 +23,14 @@ export const MiTiendaContext = ({children}) => {
         .then((response) => response.json())
             .then((data) => {
                 resFinal=data
+                if(data.error==="error"){
+                    Swal.fire({
+                        text: data.result,
+                        icon: "error",
+                        confirmButtonText: "ACEPTAR",
+                    });
+                    navigate("/")
+                }
             })
             .catch((error)=> {
                 console.log(error)

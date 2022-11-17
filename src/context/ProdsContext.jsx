@@ -1,10 +1,13 @@
 import { createContext,useEffect,useState,useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { UseLoginContext } from "./LoginContext";
 
 export const UseProdsContext = createContext();
 
 export const ProdsContext = ({children}) => {
 
+    const navigate = useNavigate()
     const {userLog,infoUser}=useContext(UseLoginContext)
 
     const [categorias,setCategorias]=useState([])
@@ -16,7 +19,7 @@ export const ProdsContext = ({children}) => {
     const [listFavs,setListFavs]=useState([])
 
     const [listFavFinBusqueda,setListFavFinBusqueda]=useState(false)
-console.log(infoUser)
+
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
@@ -27,6 +30,14 @@ console.log(infoUser)
         .then((response) => response.json())
             .then((data) => {
                 resFinal=data
+                if(data.error==="error"){
+                    Swal.fire({
+                        text: data.result,
+                        icon: "error",
+                        confirmButtonText: "ACEPTAR",
+                    });
+                    navigate("/")
+                }
             })
             .catch((error)=> {
                 console.log(error)
