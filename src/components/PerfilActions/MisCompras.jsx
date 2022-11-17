@@ -142,10 +142,7 @@ const MisCompras = () => {
                       <th>{formatoFecha(compra.fecha_alta)}</th>
                       <th>{compra.idoperacion}</th>
                       <th>${compra.total}</th>
-                      <th className="estatusColumn">
-                        <span>{compra.estado_text}</span>
-                        {/* <span>{formatoFecha(compra.fecha_notificacion)}</span> */}
-                      </th>
+                      <th>{compra.estado_text}</th>
                       <th>
                         <Button
                           className="tableButton"
@@ -181,7 +178,6 @@ const MisCompras = () => {
                     <div>
                       <span>ESTADO:</span>
                       <span>{compra.estado_text}</span>
-                      {/* <span>{formatoFecha(compra.fecha_notificacion)}</span> */}
                     </div>
                     <Button
                       className="comprasButton"
