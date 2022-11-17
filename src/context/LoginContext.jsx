@@ -75,9 +75,19 @@ export const LoginContext = ({ children }) => {
         if (res.status === "success") {
           setNotis(res.result);
         }
+        setTimeout(() => {
+          LoginAPI(notis, "pushs", "all").then((res) => {
+            setBuscandoNotis(false);
+            if (res.status === "success") {
+              setNotis(res.result);
+            }
+            console.log("HOLA")
+          })
+        }, 300000);
       });
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   const reBuscarInfo = () => {
     if (userLog !== "") {
