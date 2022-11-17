@@ -651,7 +651,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                     }}
                   >
                     ${" "}
-                    {Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio).toFixed(
+                    {Number(costoEnvio.moova.price.Table.Precio).toFixed(
                       2
                     )}{" "} moto a domicilio
                   </Typography>
