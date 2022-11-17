@@ -20,7 +20,7 @@ console.log(infoUser)
     const ProdAPI = async(data,clase,metodo) =>{
         let resFinal = ''
 
-        await fetch(`https://www2.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
+        await fetch(`https://www.miropero.ar/MiRoperoApiDataGetway.php?class=${clase}&method=${metodo}`, {
             method: 'POST',					
             body: data
         })
