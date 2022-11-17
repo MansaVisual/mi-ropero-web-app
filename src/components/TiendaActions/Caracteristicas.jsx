@@ -8,117 +8,54 @@ import { UsePerfilContext } from "../../context/PerfilContext";
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
 
-  const [generosList, setGenerosList] = useState([]);
-
-  const [genero, setGenero] = useState("");
-  const [talle, setTalle] = useState("");
-  const [colores, setColores] = useState("");
-
   const { PerfilAPI } = useContext(UsePerfilContext);
-  const [selectList, setSelectList] = useState([]);
+  const [caracteristicas, setCaracteristicas] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    PerfilAPI("", "clientes", "get_sexos").then((res) => {
-      console.log(res);
-      if (res.status === "success") {
-        let array = [];
-        for (const gen in res.result) {
-          array.push(res.result[gen]);
-        }
-        setGenerosList(array);
-      }
-    });
     const dir = new FormData();
-    dir.append("idcategoria", form.categoria);
+    dir.append("idcategoria", 1);
+    let caract = {};
     PerfilAPI(dir, "categorias", "get").then((res) => {
-      console.log(res);
+      setData(res.result[0].caracteristicas);
+      for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+        let obj = res.result[0].caracteristicas[i].nombre;
+        caract[obj] = [];
+      }
+      setCaracteristicas(caract);
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
-  console.log(form);
-
-  /* const selectList = [
-    {
-      label: "Género *",
-      placeholder: "Seleccionar género(s)",
-      multiple: false,
-      options: generosList,
-      caractValue: genero,
-      changeFunction: setGenero,
-    },
-    {
-      label: "Talle *",
-      placeholder: "Seleccionar talle(s)",
-      options: [
-        {
-          name: "xs",
-          id: "20:1",
-        },
-        {
-          name: "sm",
-          id: "20:2",
-        },
-        {
-          name: "md",
-          id: "20:3",
-        },
-      ],
-      caractValue: talle,
-      changeFunction: setTalle,
-    },
-    {
-      label: "Color/es *",
-      placeholder: "Seleccionar color/es ",
-      multiple: true,
-      options: [
-        {
-          name: "rojo",
-          id: "30:1",
-        },
-        {
-          name: "verde",
-          id: "30:2",
-        },
-        {
-          name: "amarillo",
-          id: "30:3",
-        },
-        {
-          name: "rojo",
-          id: "30:1",
-        },
-        {
-          name: "verde",
-          id: "30:2",
-        },
-        {
-          name: "amarillo",
-          id: "30:3",
-        },
-        {
-          name: "rojo",
-          id: "30:1",
-        },
-        {
-          name: "verde",
-          id: "30:2",
-        },
-        {
-          name: "amarillo",
-          id: "30:3",
-        },
-      ],
-      caractValue: colores,
-      changeFunction: setColores,
-    },
-  ];  */
-
-  const handleChange = (event, changeFunction) => {
-    changeFunction(event.target.value);
+  const handleChange = (event, value) => {
+    if (value.valores_multiples === "0") {
+      console.log("entra");
+      setCaracteristicas((prevState) => ({
+        ...prevState,
+        [value.nombre]: [event.target.value],
+      }));
+    } else {
+      let i = caracteristicas[value.nombre];
+      let ii = [];
+      const busqueda = i.find((e) => e === event.target.value);
+      if (busqueda !== undefined) {
+        ii = i.filter((e) => e !== event.target.value);
+        setCaracteristicas((prevState) => ({
+          ...prevState,
+          [value.nombre]: ii,
+        }));
+      } else {
+        if (event.target.value.length <= 3) {
+          console.log(i, event.target.value);
+          setCaracteristicas((prevState) => ({
+            ...prevState,
+            [value.nombre]: event.target.value,
+          }));
+        }
+      }
+    }
   };
 
-  console.log(generosList);
-
+  console.log(caracteristicas);
   return (
     <Grid className="gridContainer">
       <div className="caractContainer">
@@ -130,24 +67,34 @@ const Caracteristicas = ({ form, setForm }) => {
           </span>
 
           <div className="inputContainer">
-            {selectList.map((select) => {
+            {data.map((select) => {
+              /* let valor = caracteristicas.find((e) => select.nombre === e);
+              console.log(valor); */
               return (
                 <div className="inputBox">
                   <p className="labelInput" id="labelProvincia">
-                    {select.label}
+                    {select.nombre}
                   </p>
                   <Select
-                    /* {...(select.multiple && {multiple:multiple})} */
                     displayEmpty
+                    multiple={select.valores_multiples === "0" ? false : true}
                     className="selectInput"
-                    placeholder={select.placeholder}
+                    placeholder={`Selecciona ${select.nombre}`}
                     size="small"
-                    id="provincia"
+                    id={select.nombre}
                     value={
-                      select.caractValue === "" ? "ejemplo" : select.caractValue
+                      caracteristicas[select.nombre] /* .length === 0
+                        ? "ejemplo"
+                        : caracteristicas[select.nombre] */
                     }
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <em>Seleccioná de 1 a 3 opciones</em>;
+                      }
+                      return selected.join(", ");
+                    }}
                     onChange={(event) => {
-                      handleChange(event, select.changeFunction);
+                      handleChange(event, select);
                     }}
                     sx={{
                       "& div": {
@@ -174,20 +121,20 @@ const Caracteristicas = ({ form, setForm }) => {
                         fontWeight: "400",
                       }}
                     >
-                      {select.placeholder}
+                      {`Selecciona ${select.nombre}`}
                     </MenuItem>
-                    {select.options.length > 0 &&
-                      select.options.map((option, i) => {
+                    {select.valores.length > 0 &&
+                      select.valores.map((option, i) => {
                         if (option === "") {
                           return null;
                         }
                         return (
                           <MenuItem
                             key={i}
-                            value={option}
+                            value={option.valor}
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
-                            {option}
+                            {option.valor}
                           </MenuItem>
                         );
                       })}
