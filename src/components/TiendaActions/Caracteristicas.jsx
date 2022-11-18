@@ -22,16 +22,29 @@ const Caracteristicas = ({ form, setForm }) => {
     const dir = new FormData();
     dir.append("idcategoria", 1);
     let caract = {};
-    apiFetch(dir, "categorias", "get").then((res) => {
-      setData(res.result[0].caracteristicas);
-      for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
-        let obj = res.result[0].caracteristicas[i].nombre;
+    let caract2 = {};
+    if(caracteristicas.length!==0){
+      apiFetch(dir, "categorias", "get").then((res) => {
+        setData(res.result[0].caracteristicas);
+        for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+          let obj = res.result[0].caracteristicas[i].nombre;
+          caract[obj] = [];
+        }
+        setCaracteristicas(caract);
+        setIdCaracteristica(caract)
+      });
+    }else{
+      for (let i = 0; i < caracteristicas.length; i++) {
+        let obj = caracteristicas[i];
         caract[obj] = [];
       }
-      setCaracteristicas(caract);
-      setIdCaracteristica(caract)
-    });
-  }, []);
+      for (let i = 0; i < idCaracteristica.length; i++) {
+        let obj = idCaracteristica[i];
+        caract2[obj] = [];
+      }
+      setIdCaracteristica(caract2);
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (event, value) => {
     setCampoError("");
