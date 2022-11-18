@@ -4,7 +4,7 @@ import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
 import StarIcon from "@mui/icons-material/Star";
-import { Button, MenuItem, Rating, Select } from "@mui/material";
+import { Button, Grid, MenuItem, Rating, Select } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
 
 const Transferencias = () => {
@@ -40,38 +40,39 @@ const Transferencias = () => {
   return (
     <div className="transferenciasContainer">
       <TiendaBanner />
-      <div className="container">
-        <div className="sections">
-          <div className="firstLine">
-            <p className="title">TRANSFERENCIAS</p>
-          </div>
-          <div className="list">
-            <table className="customTable">
-              <thead>
-                <tr className="titleRow">
-                  <th>FECHA DE COMPRA</th>
-                  <th># ID DE PEDIDO</th>
-                  <th>MONTO TOTAL</th>
-                  <th>ESTADO</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {array.map((compra, i) => {
-                  return (
-                    <tr index={i} className="dataRow">
-                      <th>{/* formatoFecha( */ compra.fecha_alta /* ) */}</th>
-                      <th>{compra.idoperacion}</th>
-                      <th>${compra.total}</th>
-                      <th className="estatusColumn">
-                        <span>{compra.estado_text}</span>
-                        <span>
-                          {
-                            /* formatoFecha( */ compra.fecha_notificacion /* ) */
-                          }
-                        </span>
-                      </th>
-                      {/* <th>
+      <Grid className="tiendaGrid">
+        <div className="container">
+          <div className="sections">
+            <div className="firstLine">
+              <p className="title">TRANSFERENCIAS</p>
+            </div>
+            <div className="list">
+              <table className="customTable">
+                <thead>
+                  <tr className="titleRow">
+                    <th>FECHA DE COMPRA</th>
+                    <th># ID DE PEDIDO</th>
+                    <th>MONTO TOTAL</th>
+                    <th>ESTADO</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {array.map((compra, i) => {
+                    return (
+                      <tr index={i} className="dataRow">
+                        <th>{/* formatoFecha( */ compra.fecha_alta /* ) */}</th>
+                        <th>{compra.idoperacion}</th>
+                        <th>${compra.total}</th>
+                        <th className="estatusColumn">
+                          <span>{compra.estado_text}</span>
+                          <span>
+                            {
+                              /* formatoFecha( */ compra.fecha_notificacion /* ) */
+                            }
+                          </span>
+                        </th>
+                        {/* <th>
                         <Button
                           className="tableButton"
                           onClick={() => {
@@ -82,61 +83,62 @@ const Transferencias = () => {
                           VER COMPRA
                         </Button>
                       </th> */}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-        <div className="bottomContainer">
-          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A MI TIENDA</p>
-          </div>
-          <Select
-            displayEmpty
-            className="selectInput"
-            onChange={(e) => setSelected(e.target.value)}
-            value={selected}
-            renderValue={(selected) => {
-              if (selected === "") {
-                return <em>Seleccioná una opción</em>;
-              }
-              return selected;
-            }}
-            sx={{
-              "& div": {
-                fontSize: "14px",
-                fontWeight: "400",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderWidth: "1px",
-              },
-              height: 42,
-            }}
-          >
-            <MenuItem
-              disabled
-              value=""
-              className="selectOption"
-              sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
+          <div className="bottomContainer">
+            <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+              <img src={leftArrow} alt="leftArrow" />
+              <p>VOLVER A MI TIENDA</p>
+            </div>
+            <Select
+              displayEmpty
+              className="selectInput"
+              onChange={(e) => setSelected(e.target.value)}
+              value={selected}
+              renderValue={(selected) => {
+                if (selected === "") {
+                  return <em>Seleccioná una opción</em>;
+                }
+                return selected;
+              }}
+              sx={{
+                "& div": {
+                  fontSize: "14px",
+                  fontWeight: "400",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderWidth: "1px",
+                },
+                height: 42,
+              }}
             >
-              <em>Seleccioná </em>
-            </MenuItem>
-            {stateList.map((option) => (
               <MenuItem
-                key={option}
-                value={option}
-                sx={{ fontSize: "14px", color: "#969696" }}
+                disabled
+                value=""
                 className="selectOption"
+                sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
               >
-                {option}
+                <em>Seleccioná </em>
               </MenuItem>
-            ))}
-          </Select>
+              {stateList.map((option) => (
+                <MenuItem
+                  key={option}
+                  value={option}
+                  sx={{ fontSize: "14px", color: "#969696" }}
+                  className="selectOption"
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
         </div>
-      </div>
+      </Grid>
     </div>
   );
 };
