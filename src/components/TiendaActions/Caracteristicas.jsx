@@ -35,24 +35,23 @@ const Caracteristicas = ({ form, setForm }) => {
       console.log("entra");
       setCaracteristicas((prevState) => ({
         ...prevState,
-        [value.nombre]: [event.target.value],
+        [value.nombre]: [event.target.value.valor],
       }));
     } else {
       let i = caracteristicas[value.nombre];
       let ii = [];
-      const busqueda = i.find((e) => e === event.target.value);
+      const busqueda = i.find((e) => e === event.target.value.valor);
       if (busqueda !== undefined) {
-        ii = i.filter((e) => e !== event.target.value);
+        ii = i.filter((e) => e !== event.target.value.valor);
         setCaracteristicas((prevState) => ({
           ...prevState,
           [value.nombre]: ii,
         }));
       } else {
-        if (event.target.value.length <= 3) {
-          console.log(i, event.target.value);
+        if (event.target.value.valor.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
-            [value.nombre]: event.target.value,
+            [value.nombre]: event.target.value.valor,
           }));
         }
       }
@@ -182,7 +181,8 @@ const Caracteristicas = ({ form, setForm }) => {
                         return (
                           <MenuItem
                             key={i}
-                            value={`${option.idcaracteristica}:${option.idcaracteristicavalor}`}
+                            value={option}
+                            /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
                             /*  value={option.valor} */
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
