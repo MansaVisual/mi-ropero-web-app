@@ -106,7 +106,7 @@ export const PerfilContext = ({ children }) => {
     });
   };
 
-  const handleMensajes = async (userLog, filtroMensajes) => {
+  const handleMensajes = async (userLog, metodo) => {
     /*     const estados = [
       "Sin definir",
       "en proceso de evaluacion",
@@ -132,7 +132,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("idcliente", userLog);
     dir.append("page", 0);
     dir.append("bypage", 10);
-    apiFetch(dir, "mensajes", "all").then((res) => {
+    apiFetch(dir, "mensajes", metodo).then((res) => {
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {

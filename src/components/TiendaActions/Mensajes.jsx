@@ -23,18 +23,18 @@ const Mensajes = () => {
   const [borrarMsj, setBorrarMsj] = useState(false);
   const mensajesEstado = ["No leído", "Leído"];
 
-  /*   const { userLog } = useContext(UseLoginContext);
+  const { userLog } = useContext(UseLoginContext);
   const {
     handleMensajes,
     mensajes,
     mensajesFinBusqueda,
     setMensajeId,
     mensajeId,
-  } = useContext(UsePerfilContext); */
+  } = useContext(UsePerfilContext);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     if (userLog !== "") {
-      handleMensajes(userLog);
+      handleMensajes(userLog, "all_saler");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog]);
@@ -42,7 +42,7 @@ const Mensajes = () => {
   useEffect(() => {
     if (id) {
       setMensajeId(id);
-      navigate(`/perfil/MI CHAT`);
+      navigate(`/MI TIENDA/MI CHAT`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -70,7 +70,7 @@ const Mensajes = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mensajes, currentType]); */
+  }, [mensajes, currentType]);
 
   const array = [
     {
@@ -149,7 +149,7 @@ const Mensajes = () => {
           </div>
         </div>
         <div className="mensajesContainer">
-          {/* {!mensajesFinBusqueda ? (
+          {!mensajesFinBusqueda ? (
             <div
               style={{
                 height: "50vh",
@@ -170,7 +170,7 @@ const Mensajes = () => {
                     key={id}
                     className="desktopCard"
                     onClick={() => {
-                   setMensajeId(mensaje.idmensaje); 
+                      setMensajeId(mensaje.idmensaje);
                       navigate(`/perfil/MI CHAT`);
                     }}
                   >
@@ -193,21 +193,21 @@ const Mensajes = () => {
                         </p>
                       </div>
                     </div>
-                     <img
-                    onClick={() => {
-                      setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje);
-                    }}
-                    className="basuraIcon"
-                    src={Basura}
-                    alt="BasuraIcon"
-                  /> 
+                    <img
+                      onClick={() => {
+                        setBorrarMsj(true);
+                        setMensajeId(mensaje.idmensaje);
+                      }}
+                      className="basuraIcon"
+                      src={basura}
+                      alt="BasuraIcon"
+                    />
                   </div>
                   <div
                     key={`mobile${id}`}
                     className="mobileCard"
                     onClick={() => {
-                   setMensajeId(mensaje.idmensaje);
+                      setMensajeId(mensaje.idmensaje);
                       navigate(`/perfil/MI CHAT`);
                     }}
                   >
@@ -227,7 +227,7 @@ const Mensajes = () => {
                         {mensajesEstado[Number(mensaje.estado)]}
                       </p>
                     </div>
-                    <img src={Basura} className="trashICon" alt="basuraIcon" /> 
+                    <img src={basura} className="trashICon" alt="basuraIcon" />
                   </div>
                 </>
               );
@@ -240,7 +240,7 @@ const Mensajes = () => {
                 <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
               </div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>
