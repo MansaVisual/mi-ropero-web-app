@@ -31,6 +31,7 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []);
 
   const handleChange = (event, value) => {
+    console.log(estadoSeleccionado);
     setCampoError("");
     setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
