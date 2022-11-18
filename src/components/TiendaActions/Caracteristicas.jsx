@@ -67,7 +67,7 @@ const Caracteristicas = ({ form, setForm }) => {
   useEffect(() => {
     if(valueSeleccionado2!==undefined){
       if (valueSeleccionado2.valores_multiples === "0") {
-        setIdCaracteristica([...idCaracteristica,estadoSeleccionado]);
+        setIdCaracteristica(...idCaracteristica,estadoSeleccionado);
       } else {
         let jj = [];
         const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
@@ -77,7 +77,7 @@ const Caracteristicas = ({ form, setForm }) => {
           setIdCaracteristica(jj);
         } else {
           if (valueSeleccionado.length <= 3) {
-            setIdCaracteristica([...idCaracteristica,estadoSeleccionado]);
+            setIdCaracteristica(...idCaracteristica,estadoSeleccionado);
           }
         }
       }
@@ -145,7 +145,6 @@ const Caracteristicas = ({ form, setForm }) => {
           )}
           <div className="inputContainer">
             {data.map((select) => {
-              console.log(select);
               return (
                 <div className="inputBox">
                   <p className="labelInput" id="label">
