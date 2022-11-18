@@ -181,7 +181,8 @@ const Caracteristicas = ({ form, setForm }) => {
                         return (
                           <MenuItem
                             key={i}
-                            value={option.valor}
+                            value={`${option.idcaracteristica}:${option.idcaracteristicavalor}`}
+                            /*  value={option.valor} */
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
                             {option.valor}
