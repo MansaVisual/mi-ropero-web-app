@@ -16,7 +16,8 @@ const Mensajes = () => {
 
   let { id } = useParams();
 
-  const [typeMessages, setTypeMessages] = useState(false);
+  const [typeMessage, setTypeMessage] = useState("ver todos");
+  const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [currentType, setCurrentType] = useState(false);
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
   const [borrarMsj, setBorrarMsj] = useState(false);
