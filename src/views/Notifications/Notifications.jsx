@@ -191,9 +191,9 @@ useEffect(()=>{
               ) {
                 //------------------|------------------------------
                 if(item.titulo==="Rechazaron tu oferta"){
-                  url = "/perfil/OFERTAS REALIZADAS/rechazadas";
+                  url = "/mantenimiento";
                 }else if(item.titulo==="Aceptaron tu oferta"){
-                  url = "/perfil/OFERTAS REALIZADAS/aceptadas";
+                  url = "/mantenimiento";
                 }
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
@@ -207,10 +207,8 @@ useEffect(()=>{
                   url = "/perfil/OFERTAS REALIZADAS/rechazadas";
                 }else if(item.titulo==="Aceptaron tu oferta"){
                   url = "/perfil/OFERTAS REALIZADAS/aceptadas";
-                } else{
-                  buscarI = itemURL.indexOf("id=");
-                  id = itemURL.substring(buscarI + 3, itemURL.length);
-                  url = `/productoCard/${id}`;
+                } else if(item.titulo==="¡No te la pierdas!"){
+                  url = `/perfil/OFERTAS REALIZADAS/aceptadas`;
                 }
               } else if (
                 itemURL.indexOf("/app/profile/buys-detail?idoperacion=") !== -1
