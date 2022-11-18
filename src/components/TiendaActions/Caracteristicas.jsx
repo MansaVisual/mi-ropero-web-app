@@ -71,9 +71,11 @@ const Caracteristicas = ({ form, setForm }) => {
       } else {
         let jj = [];
         const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
-  
+        console.log(estadoSeleccionado)
+        console.log(busqueda)
         if (busqueda !== undefined) {
           jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
+          console.log(jj)
           setIdCaracteristica(jj);
         } else {
           if (valueSeleccionado.length <= 3) {

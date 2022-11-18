@@ -35,6 +35,8 @@ const TiendaBanner = () => {
                 <div
                   style={{
                     width: "100%",
+                    marginTop:"10px",
+                    marginBottom:"-10px",
                     display: "flex",
                     justifyContent: "center",
                   }}
