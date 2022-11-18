@@ -79,7 +79,7 @@ const Tienda = () => {
       {seccion === "CALIFICACIONES" && <Calificaciones />}
       {seccion === "TRANSFERENCIAS" && <Transferencias />}
       {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
-      {seccion === "CONTACTO" && <Contacto />}
+      {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
       {seccion === "SUMARIO" && <Sumario />}
     </div>
   );
