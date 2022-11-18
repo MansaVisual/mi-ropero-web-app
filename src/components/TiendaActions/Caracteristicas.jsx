@@ -78,7 +78,7 @@ const Caracteristicas = ({ form, setForm }) => {
     if (!errorObligatorio) {
       setForm((prevState) => ({
         ...prevState,
-        categoria: caracteristicas,
+        caracteristicas: caracteristicas,
       }));
       navigate(`/MiTienda/DETALLES`);
     }
@@ -98,6 +98,8 @@ const Caracteristicas = ({ form, setForm }) => {
       behavior: "smooth",
     });
   };
+
+  console.log(data);
 
   return (
     <Grid className="gridContainer">
