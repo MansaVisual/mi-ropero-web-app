@@ -97,7 +97,7 @@ const Mensajes = () => {
   };
 
   return (
-    <div className="ofertasContainer">
+    <div className="mensajesPage">
       <TiendaBanner />
       <div className="container">
         <div className="firstLine">
