@@ -131,7 +131,7 @@ export const PerfilContext = ({ children }) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
     dir.append("page", 0);
-    dir.append("bypage", 10);
+    dir.append("bypage", 20);
     apiFetch(dir, "mensajes", metodo).then((res) => {
       console.log(metodo, res);
       setMensajesFinBusqueda(true);
