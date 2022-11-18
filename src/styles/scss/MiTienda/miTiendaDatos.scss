@@ -7,6 +7,10 @@
   .breadcrumbs {
     margin-top: 72px;
     margin-left: 72px;
+    @include screen_705 {
+      margin-top: 16px;
+      margin-left: 16px;
+    }
   }
   .tiendaGrid {
     @include screen_1450 {
@@ -19,22 +23,34 @@
       max-width: 1366px;
       padding-left: 72px;
       box-sizing: border-box;
+      @include screen_950 {
+        padding: 0 48px;
+      }
       @include screen_705 {
         margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 0 16px;
       }
-      .title {
-        margin: 0;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 23px;
-        line-height: 31px;
-        color: #443988;
+      .titleContainer {
         @include screen_705 {
+          max-width: 370px;
+          width: 100%;
+        }
+        .title {
+          margin: 0;
+          font-style: normal;
           font-weight: 700;
-          font-size: 16px;
-          line-height: 22px;
+          font-size: 23px;
+          line-height: 31px;
           color: #443988;
+          @include screen_705 {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #443988;
+          }
         }
       }
       .inputContainer {
@@ -135,7 +151,7 @@
           margin-top: 24px;
           width: 100%;
           max-width: 758px;
-          @include screen_820 {
+          @include screen_705 {
             max-width: 370px;
             margin-top: 16px;
           }
@@ -144,7 +160,6 @@
             font-weight: 600;
             margin-top: 0;
             margin-left: 12px;
-
             @include screen_705 {
               margin-top: 16px;
               margin-bottom: 8px;
@@ -170,13 +185,24 @@
         margin-top: 16px;
         max-width: 758px;
         width: 100%;
-        span {
-          font-weight: 600;
-          font-size: 13px;
-          line-height: 18px;
-          text-indent: 16px;
-          color: #423b3c;
-          margin-left: 15px;
+        div {
+          display: flex;
+          justify-content: space-between;
+          span {
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 18px;
+            text-indent: 16px;
+            color: #423b3c;
+          }
+          img {
+            display: none;
+            cursor: pointer;
+            margin-right: 16px;
+            @include screen_705 {
+              display: block;
+            }
+          }
         }
         .description {
           display: flex;
@@ -184,11 +210,15 @@
           margin-top: 16px;
           box-sizing: border-box;
           padding: 24px;
+          max-width: 758px;
           width: 100%;
-          height: 86px;
           background: #fdfeff;
           border: 1px solid #babcbe;
           border-radius: 6px;
+          @include screen_705 {
+            max-width: 370px;
+            padding: 16px;
+          }
           p {
             font-weight: 600;
             font-size: 14px;
@@ -210,6 +240,9 @@
             filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
             border-radius: 20px;
             cursor: pointer;
+            @include screen_705 {
+              display: none;
+            }
           }
         }
       }

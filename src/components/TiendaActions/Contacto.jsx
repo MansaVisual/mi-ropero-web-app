@@ -3,7 +3,14 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { Button, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../FormCheckout/PopUpLocalidad";
@@ -11,14 +18,16 @@ import PopUpFinalDir from "./PopUpFinal/PopUpFinalDir";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
 
-const Contacto = () => {
+const Contacto = ({ form, setForm }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
 
-  const [form, setForm] = useState([]);
+  const [contactForm, setContactForm] = useState([]);
+
+  console.log(form);
 
   let clase = "formObligatorio";
   let clase2 = "formObligatorioTitle";
@@ -64,10 +73,10 @@ const Contacto = () => {
 
   const handleProvinciaInput = (event) => {
     setProvincia(event.target.value);
-    setForm({ ...form, provincia: event.target.value });
+    setContactForm({ ...contactForm, provincia: event.target.value });
     if (event.target.value === "1") {
       document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
-      setForm({ ...form, barrioLocalidad: "CAPITAL FEDERAL" });
+      setContactForm({ ...contactForm, barrioLocalidad: "CAPITAL FEDERAL" });
     }
   };
 
@@ -107,12 +116,12 @@ const Contacto = () => {
       return;
     }
     const formPhone = new FormData();
-    formPhone.append('telefono', document.getElementById('telefono').value);
-    await apiFetch(formPhone, 'clientes', 'validate_phone').then((res) => {
-    if (res.status === 'error') {
+    formPhone.append("telefono", document.getElementById("telefono").value);
+    await apiFetch(formPhone, "clientes", "validate_phone").then((res) => {
+      if (res.status === "error") {
         setErrorPhone(true);
-        throwError('telefono', 'labelTelefono');
-    }
+        throwError("telefono", "labelTelefono");
+      }
     });
     if (document.getElementById("calle").value === "") {
       throwError("calle", "labelCalle");
@@ -188,7 +197,6 @@ const Contacto = () => {
   };
 
   useEffect(() => {
-    console.log("guardarDir:direccion", direccion);
     if (guardarDireccion) {
       const dir = new FormData();
       dir.append("idcliente", userLog);
@@ -256,121 +264,60 @@ const Contacto = () => {
 
   return (
     <Grid className="gridContainer">
-    <div className="nuevaDirecContainer">
-      <Breadcrumbs links={pathnames} />
-      <div className="titleSection">
-        <p className="title">CONTACTO</p>
-      </div>
-      {campoObligatorio && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>Debe completar los campos obligatorios para avanzar</p>
+      <div className="nuevaDirecContainer">
+        <Breadcrumbs links={pathnames} />
+        <div className="titleSection">
+          <p className="title">CONTACTO</p>
         </div>
-      )}
+        {campoObligatorio && (
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>Debe completar los campos obligatorios para avanzar</p>
+          </div>
+        )}
         {errorPhone && (
-        <div className='errorBox'>
-          <CancelOutlinedIcon color='secondary' className='cruz' />
-          <p>El número de telefono no es válido.</p>
-        </div>
-      )}
-      {errorCodPostal && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>El código postal no se pudo validar. Vuelva a intentarlo</p>
-        </div>
-      )}
-      {errorDireccion && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>No se encontró la direccion establecida.</p>
-        </div>
-      )}
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>El número de telefono no es válido.</p>
+          </div>
+        )}
+        {errorCodPostal && (
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>El código postal no se pudo validar. Vuelva a intentarlo</p>
+          </div>
+        )}
+        {errorDireccion && (
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>No se encontró la direccion establecida.</p>
+          </div>
+        )}
 
-      {errorLocalidad && (
-        <div className="errorBox">
-          <CancelOutlinedIcon color="secondary" className="cruz" />
-          <p>Localidad no encontrada. Vuelva a intentarlo</p>
-        </div>
-      )}
+        {errorLocalidad && (
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>Localidad no encontrada. Vuelva a intentarlo</p>
+          </div>
+        )}
 
-      <div className="inputContainer">
-        <div className="inputBox">
-          <p className="labelInput" id="labelTelefono">
-            Teléfono *
-          </p>
-          <TextField
-            color="primary"
-            className="input"
-            size="small"
-            id="telefono"
-            placeholder="5411291029"
-            onChangeCapture={(e) => {
-              handleInputChange(form, setForm);
-              setCampoObligatorio(false);
-              setErrorPhone(false)
-            }}
-            onFocus={(e) => onFocus(e, clase, clase2, "labelTelefono")}
-            sx={{
-              "& .MuiOutlinedInput-root:hover": {
-                "& > fieldset": {
-                  borderColor: campoObligatorio && "#FF3F20",
-                },
-              },
-            }}
-          />
-        <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
-            Llamarán a este número sólo si hay algún problema.
-        </InputLabel>
-        </div>
-        <div className="inputBox"></div>
-      </div>
-      <div className="inputContainer">
-        <div className="inputBox">
-          <p className="labelInput" id="labelCalle">
-            Calle *
-          </p>
-          <TextField
-            color="primary"
-            className="input"
-            size="small"
-            id="calle"
-            placeholder="Avenida Anta"
-            onChangeCapture={(e) => {
-              handleInputChange(form, setForm);
-              setCampoObligatorio(false);
-              setErrorDireccion(false);
-            }}
-            onFocus={(e) => onFocus(e, clase, clase2, "labelCalle")}
-            sx={{
-              "& .MuiOutlinedInput-root:hover": {
-                "& > fieldset": {
-                  borderColor: campoObligatorio && "#FF3F20",
-                },
-              },
-            }}
-          />
-            <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
-                Utilizaremos tu dirección para retirar y entregar tus productos, además de calcular el costo de envío.
-            </InputLabel>
-        </div>
-        <div className="inputBoxLocation">
-          <div>
-            <p className="labelInput" id="labelAlturaKM">
-              Altura/Km *
+        <div className="inputContainer">
+          <div className="inputBox">
+            <p className="labelInput" id="labelTelefono">
+              Teléfono *
             </p>
             <TextField
               color="primary"
-              className="locationInput"
+              className="input"
               size="small"
-              id="alturaKM"
-              placeholder="5"
-              value={form.alturaKM}
-              onChangeCapture={() => {
-                handleInputChange(form, setForm);
+              id="telefono"
+              placeholder="5411291029"
+              onChangeCapture={(e) => {
+                handleInputChange(contactForm, setContactForm);
                 setCampoObligatorio(false);
-                setErrorDireccion(false);
+                setErrorPhone(false);
               }}
-              onFocus={(e) => onFocus(e, clase, clase2, "labelAlturaKM")}
+              onFocus={(e) => onFocus(e, clase, clase2, "labelTelefono")}
               sx={{
                 "& .MuiOutlinedInput-root:hover": {
                   "& > fieldset": {
@@ -379,248 +326,313 @@ const Contacto = () => {
                 },
               }}
             />
+            <InputLabel className="subLabelForm" sx={{ whiteSpace: "initial" }}>
+              Llamarán a este número sólo si hay algún problema.
+            </InputLabel>
           </div>
-          <div>
-            <p className="labelInput">Piso</p>
-            <TextField
-              color="primary"
-              className="locationInput"
-              size="small"
-              id="piso"
-              placeholder="3"
-              onChangeCapture={() => {
-                handleInputChange(form, setForm);
-                setCampoObligatorio(false);
-              }}
-            />
-          </div>
-          <div>
-            <p className="labelInput">Dpto.</p>
-            <TextField
-              color="primary"
-              className="locationInput"
-              size="small"
-              id="depto"
-              placeholder="2"
-              onChangeCapture={(e) => {
-                handleInputChange(form, setForm);
-                setCampoObligatorio(false);
-              }}
-            />
-          </div>
+          <div className="inputBox"></div>
         </div>
-      </div>
-      <div className="inputContainer">
-        <div className="inputBox">
-          <p className="labelInput" id="labelProvincia">
-            Provincia *
-          </p>
-          <Select
-            displayEmpty
-            className="selectInput"
-            placeholder="Ciudad Autónoma de Buenos Aires"
-            size="small"
-            id="provincia"
-            value={provincia === "" ? "ejemplo" : provincia}
-            onChange={(event) => {
-              setCambioProvincia(true);
-              handleProvinciaInput(event);
-              setErrorDireccion(false);
-              setCampoObligatorio(false);
-            }}
-            onFocus={(e) => onFocus(e, clase, clase2, "labelProvincia")}
-            sx={{
-              "& div": {
-                fontSize: "14px",
-                color: provincia === "" ? "#BABCBE" : "#423B3C",
-                fontWeight: "400",
-              },
-              height: 42,
-            }}
-            MenuProps={{
-              style: {
-                maxHeight: 150,
-              },
-            }}
-          >
-            <MenuItem
-              disabled
-              key={"ejemplo"}
-              value={"ejemplo"}
-              sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
-            >
-              {"Seleccioná una provincia"}
-            </MenuItem>
-            {provincias.length > 0 &&
-              provincias.map((option) => (
-                <MenuItem
-                  key={option.idprovincia}
-                  value={option.idprovincia}
-                  sx={{ fontSize: "14px", color: "#969696" }}
-                >
-                  {option.nombre}
-                </MenuItem>
-              ))}
-          </Select>
-        </div>
-        <div className="inputBox">
-          <p className="labelInput" id="labelBarrioLocalidad">
-            Localidad / Barrio *
-          </p>
-          <TextField
-            placeholder={
-              /* provincia === '' && */ "Primero debes ingresar una provincia"
-            }
-            disabled={provincia === "" || provincia === "1" ? true : false}
-            className="input"
-            size="small"
-            id="barrioLocalidad"
-            onChangeCapture={() => {
-              handleInputChange(form, setForm);
-              setCampoObligatorio(false);
-              setErrorDireccion(false);
-              setChangeLoc(true);
-              setErrorLocalidad(false);
-            }}
-            onFocus={(e) => onFocus(e, clase, clase2, "labelBarrioLocalidad")}
-            onBlur={() => handleChangeLoc()}
-            sx={{
-              "& .MuiOutlinedInput-root:hover": {
-                "& > fieldset": {
-                  borderColor:
-                    (campoObligatorio || errorDireccion || errorLocalidad) &&
-                    "#FF3F20",
-                },
-              },
-            }}
-          />
-        </div>
-      </div>
-      <div className="inputContainer">
-        <div className="inputBox">
-          <p className="labelInput">Entrecalle 1</p>
-          <TextField
-            color="primary"
-            className="input"
-            size="small"
-            id="entrecalle1"
-            placeholder="Avenida Callao"
-            onChangeCapture={() => {
-              handleInputChange(form, setForm);
-            }}
-          />
-        </div>
-        <div className="inputBox">
-          <p className="labelInput">Entrecalle 2</p>
-          <TextField
-            color="primary"
-            className="input"
-            size="small"
-            id="entrecalle2"
-            placeholder="Rodríguez Peña"
-            onChangeCapture={(e) => {
-              handleInputChange(form, setForm);
-            }}
-          />
-        </div>
-      </div>
-      <div className="inputContainer">
-        <div className="inputBox">
-          <p className="labelInput" id="labelCodigoPostal">
-            Código postal *
-          </p>
-          <div className="postalCode">
+        <div className="inputContainer">
+          <div className="inputBox">
+            <p className="labelInput" id="labelCalle">
+              Calle *
+            </p>
             <TextField
               color="primary"
               className="input"
               size="small"
-              id="codigoPostal"
-              placeholder="C1428"
+              id="calle"
+              placeholder="Avenida Anta"
               onChangeCapture={(e) => {
-                handleInputChange(form, setForm);
-                setErrorCodPostal(false);
+                handleInputChange(contactForm, setContactForm);
+                setCampoObligatorio(false);
+                setErrorDireccion(false);
+              }}
+              onFocus={(e) => onFocus(e, clase, clase2, "labelCalle")}
+              sx={{
+                "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor: campoObligatorio && "#FF3F20",
+                  },
+                },
+              }}
+            />
+            <InputLabel className="subLabelForm" sx={{ whiteSpace: "initial" }}>
+              Utilizaremos tu dirección para retirar y entregar tus productos,
+              además de calcular el costo de envío.
+            </InputLabel>
+          </div>
+          <div className="inputBoxLocation">
+            <div>
+              <p className="labelInput" id="labelAlturaKM">
+                Altura/Km *
+              </p>
+              <TextField
+                color="primary"
+                className="locationInput"
+                size="small"
+                id="alturaKM"
+                placeholder="5"
+                value={contactForm.alturaKM}
+                onChangeCapture={() => {
+                  handleInputChange(contactForm, setContactForm);
+                  setCampoObligatorio(false);
+                  setErrorDireccion(false);
+                }}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelAlturaKM")}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover": {
+                    "& > fieldset": {
+                      borderColor: campoObligatorio && "#FF3F20",
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div>
+              <p className="labelInput">Piso</p>
+              <TextField
+                color="primary"
+                className="locationInput"
+                size="small"
+                id="piso"
+                placeholder="3"
+                onChangeCapture={() => {
+                  handleInputChange(contactForm, setContactForm);
+                  setCampoObligatorio(false);
+                }}
+              />
+            </div>
+            <div>
+              <p className="labelInput">Dpto.</p>
+              <TextField
+                color="primary"
+                className="locationInput"
+                size="small"
+                id="depto"
+                placeholder="2"
+                onChangeCapture={(e) => {
+                  handleInputChange(contactForm, setContactForm);
+                  setCampoObligatorio(false);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="inputContainer">
+          <div className="inputBox">
+            <p className="labelInput" id="labelProvincia">
+              Provincia *
+            </p>
+            <Select
+              displayEmpty
+              className="selectInput"
+              placeholder="Ciudad Autónoma de Buenos Aires"
+              size="small"
+              id="provincia"
+              value={provincia === "" ? "ejemplo" : provincia}
+              onChange={(event) => {
+                setCambioProvincia(true);
+                handleProvinciaInput(event);
                 setErrorDireccion(false);
                 setCampoObligatorio(false);
               }}
-              onFocus={(e) => onFocus(e, clase, clase2, "labelCodigoPostal")}
-            />
-            <a
-              href="https://www.correoargentino.com.ar/formularios/cpa"
-              target={"_blank"}
-              rel="noreferrer"
+              onFocus={(e) => onFocus(e, clase, clase2, "labelProvincia")}
+              sx={{
+                "& div": {
+                  fontSize: "14px",
+                  color: provincia === "" ? "#BABCBE" : "#423B3C",
+                  fontWeight: "400",
+                },
+                height: 42,
+              }}
+              MenuProps={{
+                style: {
+                  maxHeight: 150,
+                },
+              }}
             >
-              No sé mi código postal
-            </a>
+              <MenuItem
+                disabled
+                key={"ejemplo"}
+                value={"ejemplo"}
+                sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
+              >
+                {"Seleccioná una provincia"}
+              </MenuItem>
+              {provincias.length > 0 &&
+                provincias.map((option) => (
+                  <MenuItem
+                    key={option.idprovincia}
+                    value={option.idprovincia}
+                    sx={{ fontSize: "14px", color: "#969696" }}
+                  >
+                    {option.nombre}
+                  </MenuItem>
+                ))}
+            </Select>
+          </div>
+          <div className="inputBox">
+            <p className="labelInput" id="labelBarrioLocalidad">
+              Localidad / Barrio *
+            </p>
+            <TextField
+              placeholder={
+                /* provincia === '' && */ "Primero debes ingresar una provincia"
+              }
+              disabled={provincia === "" || provincia === "1" ? true : false}
+              className="input"
+              size="small"
+              id="barrioLocalidad"
+              onChangeCapture={() => {
+                handleInputChange(contactForm, setContactForm);
+                setCampoObligatorio(false);
+                setErrorDireccion(false);
+                setChangeLoc(true);
+                setErrorLocalidad(false);
+              }}
+              onFocus={(e) => onFocus(e, clase, clase2, "labelBarrioLocalidad")}
+              onBlur={() => handleChangeLoc()}
+              sx={{
+                "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor:
+                      (campoObligatorio || errorDireccion || errorLocalidad) &&
+                      "#FF3F20",
+                  },
+                },
+              }}
+            />
           </div>
         </div>
-      </div>
-      <div className="inputContainer">
-        <div className="textAreaBox">
-          <span className="label1">Información adicional</span>
-          <span className="label2"> (máximo 100 caractéres)</span>
-          <TextField
-            multiline
-            rows={4}
-            id="infoAdicional"
-            color="primary"
-            className="textArea"
-            size="small"
-            placeholder="Ejemplo: Barrio Privado San Martín, Puerta roja, etc."
-            onChangeCapture={() => {
-              handleInputChange(form, setForm);
-            }}
-            inputProps={{ maxLength: 100 }}
-          />
-            <InputLabel className='subLabelForm' sx={{ whiteSpace: 'initial' }}>
-                Agregar información útil para encontrar la dirección.
+        <div className="inputContainer">
+          <div className="inputBox">
+            <p className="labelInput">Entrecalle 1</p>
+            <TextField
+              color="primary"
+              className="input"
+              size="small"
+              id="entrecalle1"
+              placeholder="Avenida Callao"
+              onChangeCapture={() => {
+                handleInputChange(contactForm, setContactForm);
+              }}
+            />
+          </div>
+          <div className="inputBox">
+            <p className="labelInput">Entrecalle 2</p>
+            <TextField
+              color="primary"
+              className="input"
+              size="small"
+              id="entrecalle2"
+              placeholder="Rodríguez Peña"
+              onChangeCapture={(e) => {
+                handleInputChange(contactForm, setContactForm);
+              }}
+            />
+          </div>
+        </div>
+        <div className="inputContainer">
+          <div className="inputBox">
+            <p className="labelInput" id="labelCodigoPostal">
+              Código postal *
+            </p>
+            <div className="postalCode">
+              <TextField
+                color="primary"
+                className="input"
+                size="small"
+                id="codigoPostal"
+                placeholder="C1428"
+                onChangeCapture={(e) => {
+                  handleInputChange(contactForm, setContactForm);
+                  setErrorCodPostal(false);
+                  setErrorDireccion(false);
+                  setCampoObligatorio(false);
+                }}
+                onFocus={(e) => onFocus(e, clase, clase2, "labelCodigoPostal")}
+              />
+              <a
+                href="https://www.correoargentino.com.ar/formularios/cpa"
+                target={"_blank"}
+                rel="noreferrer"
+              >
+                No sé mi código postal
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="inputContainer">
+          <div className="textAreaBox">
+            <span className="label1">Información adicional</span>
+            <span className="label2"> (máximo 100 caractéres)</span>
+            <TextField
+              multiline
+              rows={4}
+              id="infoAdicional"
+              color="primary"
+              className="textArea"
+              size="small"
+              placeholder="Ejemplo: Barrio Privado San Martín, Puerta roja, etc."
+              onChangeCapture={() => {
+                handleInputChange(contactForm, setContactForm);
+              }}
+              inputProps={{ maxLength: 100 }}
+            />
+            <InputLabel className="subLabelForm" sx={{ whiteSpace: "initial" }}>
+              Agregar información útil para encontrar la dirección.
             </InputLabel>
+          </div>
         </div>
-      </div>
-      {loader ? (
-        <div
-          style={{
-            marginTop: "24px",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            maxWidth: "768px",
-          }}
-        >
-          <Loader spin={"spinnerG"} />
-        </div>
-      ) : (
-        <div className="buttonContainer">
-          <Button className="rightButton" onClick={() => checkNuevaDireccion()}>
-            CONFIRMAR CONTACTO
-          </Button>
-        </div>
-      )}
+        {loader ? (
+          <div
+            style={{
+              marginTop: "24px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              maxWidth: "768px",
+            }}
+          >
+            <Loader spin={"spinnerG"} />
+          </div>
+        ) : (
+          <div className="buttonContainer">
+            <Button
+              className="rightButton"
+              onClick={() => checkNuevaDireccion()}
+            >
+              CONFIRMAR CONTACTO
+            </Button>
+          </div>
+        )}
 
-      <div className="returnLink" onClick={() => navigate(`/perfil`)}>
-        <img src={leftArrow} alt="leftArrow" />
-        <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
+        <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+          <img src={leftArrow} alt="leftArrow" />
+          <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
+        </div>
+        {viewDireccion && (
+          <PopUpFinalDir
+            direccion={direccion}
+            setDireccion={setDireccion}
+            provincia={provincia}
+            setViewDireccion={setViewDireccion}
+            resDirecciones={resDirecciones}
+            contactForm={contactForm}
+            setGuardarDireccion={setGuardarDireccion}
+            infoLocFinal={infoLocFinal}
+          />
+        )}
+        {popLoc && (
+          <PopUpLocalidad
+            infoLoc={infoLoc}
+            setPopLoc={setPopLoc}
+            infoLocFinal={infoLocFinal}
+            setInfoLocFinal={setInfoLocFinal}
+          />
+        )}
       </div>
-      {viewDireccion && (
-        <PopUpFinalDir
-          direccion={direccion}
-          setDireccion={setDireccion}
-          provincia={provincia}
-          setViewDireccion={setViewDireccion}
-          resDirecciones={resDirecciones}
-          form={form}
-          setGuardarDireccion={setGuardarDireccion}
-          infoLocFinal={infoLocFinal}
-        />
-      )}
-      {popLoc && (
-        <PopUpLocalidad
-          infoLoc={infoLoc}
-          setPopLoc={setPopLoc}
-          infoLocFinal={infoLocFinal}
-          setInfoLocFinal={setInfoLocFinal}
-        />
-      )}
-    </div>
     </Grid>
   );
 };

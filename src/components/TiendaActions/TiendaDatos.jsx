@@ -1,28 +1,27 @@
 import React, { useState } from "react";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
+import editIcon from "../../assets/img/editIcon.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Grid, TextField } from "@mui/material";
 
 const TiendaDatos = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const pathnames = location.pathname.split("/").filter((x) => x);
-
-  const [form, setForm] = useState({
+  /*  const [form, setForm] = useState({
     nombre: "",
     telefono: "",
     descripcion: "",
     domicilio: "",
-  });
+  }); */
   return (
     <div className="miTiendaDatos">
       <TiendaBanner />
       <Grid className="tiendaGrid">
         <div className="container">
-          <p className="title">DATOS</p>
+          <div className="titleContainer">
+            <p className="title">DATOS</p>
+          </div>
           <div className="formulario">
             <div className="inputContainer">
               <div className="inputBox">
@@ -63,7 +62,10 @@ const TiendaDatos = () => {
               </div>
             </div>
             <div className="address">
-              <span>Domicilio de entrega</span>
+              <div>
+                <span>Domicilio de entrega</span>
+                <img className="editIcon" src={editIcon} alt="editIcon" />
+              </div>
               <div className="description">
                 <p>
                   Cuenca 3440. CABA Comuna 11 (C1417). entre Francisco Beiró y

@@ -268,8 +268,13 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .bannerContainer {
   .breadcrumbs {
+    margin-top: 72px;
     margin-left: 72px;
+    @include screen_1450 {
+      margin-left: 110px;
+    }
     @include screen_705 {
+      margin-top: 32px;
       margin-left: 16px;
     }
   }
@@ -288,6 +293,9 @@ input[type="number"]::-webkit-outer-spin-button {
       position: absolute;
       top: 16px;
       left: 0;
+      @include screen_1450 {
+        margin-left: 110px;
+      }
       @include screen_705 {
         max-width: 288px;
         left: 0;
