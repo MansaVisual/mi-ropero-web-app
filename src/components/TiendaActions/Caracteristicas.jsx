@@ -5,6 +5,7 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import { useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import Loader from "../Loader/Loader";
 
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
@@ -38,7 +39,8 @@ const Caracteristicas = ({ form, setForm }) => {
         let obj = caracteristicas[i];
         caract[obj] = [];
       }
-      setCaracteristicas(caract);
+        setData(caract);
+        setCaracteristicas(caract);
       for (let i = 0; i < idCaracteristica.length; i++) {
         let obj = idCaracteristica[i];
         caract2[obj] = [];
@@ -178,6 +180,18 @@ const Caracteristicas = ({ form, setForm }) => {
             </div>
           )}
           <div className="inputContainer">
+            data.length===0 ? 
+              <div
+              style={{
+                marginTop: "24px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Loader spin={"spinnerG"} />
+            </div>
+          :<>
             {data.map((select) => {
               return (
                 <div className="inputBox">
@@ -262,7 +276,7 @@ const Caracteristicas = ({ form, setForm }) => {
                   </Select>
                 </div>
               );
-            })}
+            })}</>
           </div>
           <div className="buttonContainer">
             <button onClick={() => handleSubmit()}>IR A DETALLES</button>
