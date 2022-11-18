@@ -133,6 +133,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("page", 0);
     dir.append("bypage", 10);
     apiFetch(dir, "mensajes", metodo).then((res) => {
+      console.log(metodo, res);
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {
