@@ -52,7 +52,7 @@ const Caracteristicas = ({ form, setForm }) => {
         if (event.target.value.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
-            [value.nombre]: event.target.value,
+            [value.nombre]: event.target.value.valor,
           }));
         }
       }
