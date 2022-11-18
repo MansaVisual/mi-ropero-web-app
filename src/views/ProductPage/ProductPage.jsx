@@ -295,8 +295,8 @@ const ProductPage = () => {
                         onClick={
                           tienda.estado_text!=="Activa"?()=>
                             Swal.fire({
-                              title: "TIENDA INACTIVA",
-                              text: "La tienda se encuentra inactiva en este momento.",
+                              title: "TIENDA PAUSADA",
+                              text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
                               icon: "info",
                               confirmButtonText: "ACEPTAR",
                             }) :

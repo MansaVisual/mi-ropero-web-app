@@ -51,8 +51,8 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const handleClickOpen = () => {
     if(tienda.estado_text!=="Activa"){
       Swal.fire({
-        title: "TIENDA INACTIVA",
-        text: "La tienda se encuentra inactiva en este momento.",
+        title: "TIENDA PAUSADA",
+        text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
         icon: "info",
         confirmButtonText: "ACEPTAR",
       });
@@ -91,8 +91,8 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
     setLoad(true);
     if(tienda.estado_text!=="Activa"){
       Swal.fire({
-        title: "TIENDA INACTIVA",
-        text: "La tienda se encuentra inactiva en este momento.",
+        title: "TIENDA PAUSADA",
+        text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
         icon: "info",
         confirmButtonText: "ACEPTAR",
       });
@@ -333,8 +333,8 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                 onClick={
                   tienda.estado_text!=="Activa"?()=>
                     Swal.fire({
-                      title: "TIENDA INACTIVA",
-                      text: "La tienda se encuentra inactiva en este momento.",
+                      title: "TIENDA PAUSADA",
+                      text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
                       icon: "info",
                       confirmButtonText: "ACEPTAR",
                     }) :
