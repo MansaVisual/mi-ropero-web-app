@@ -1,14 +1,14 @@
 import React, { createRef, useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../../assets/img/leftArrow.png";
-import ChatItem from "./ChatItem";
-import Avatar from "./Avatar";
-import { UseLoginContext } from "../../../context/LoginContext";
-import { UsePerfilContext } from "../../../context/PerfilContext";
-import Loader from "../../Loader/Loader";
+import ChatItem from "../Chat/ChatItem";
+import { UsePerfilContext } from "../../context/PerfilContext";
+import Loader from "../Loader/Loader";
 import { Button } from "@mui/material";
-import { apiFetch } from "../../../apiFetch/apiFetch";
+import { apiFetch } from "../../apiFetch/apiFetch";
+import Avatar from "../Chat/Avatar";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const MiChat = () => {
   const navigate = useNavigate();

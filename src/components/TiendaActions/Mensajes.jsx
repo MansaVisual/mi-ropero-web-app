@@ -72,18 +72,6 @@ const Mensajes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensajes, currentType]);
 
-  const array = [
-    {
-      img: foto,
-      nombreProd: "Conjunto Grisino (1 a 3 meses)",
-      fecha: "9/8/2022  15:09:22 hs",
-      estado: "Pago realizado",
-      monto: 2000,
-      oferta: 2500,
-    },
-  ];
-  const stateList = ["pago Realizado", "en espera"];
-
   const formatoFecha = (fecha) => {
     const hora = fecha.substring(11, 16);
     const fechaSinHora = fecha.substring(0, 10);

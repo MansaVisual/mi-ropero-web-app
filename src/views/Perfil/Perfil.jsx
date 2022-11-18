@@ -12,7 +12,7 @@ import MisMensajes from "../../components/PerfilActions/MisMensajes";
 import NuevaDireccion from "../../components/PerfilActions/NuevaDireccion/NuevaDireccion";
 import { UseLoginContext } from "../../context/LoginContext";
 import EditarDireccion from "../../components/PerfilActions/NuevaDireccion/EditarDireccion";
-import MiChat from "../../components/PerfilActions/MiChat/MiChat";
+import MiChat from "../../components/PerfilActions/MiChat";
 
 const Perfil = () => {
   const params = useParams();
