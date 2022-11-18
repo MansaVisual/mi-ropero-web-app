@@ -49,6 +49,16 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const [codigoBoton,setCodigoBoton]=useState("")
 
   const handleClickOpen = () => {
+    if(tienda.estado_text!=="Activa"){
+      Swal.fire({
+        title: "TIENDA INACTIVA",
+        text: "La tienda se encuentra inactiva en este momento.",
+        icon: "info",
+        confirmButtonText: "ACEPTAR",
+      });
+      setLoad(false)
+      return
+    }
     setOpen(true);
   };
 
@@ -321,6 +331,13 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
               </Box> */}
               <CommentButton
                 onClick={
+                  tienda.estado_text!=="Activa"?
+                    Swal.fire({
+                      title: "TIENDA INACTIVA",
+                      text: "La tienda se encuentra inactiva en este momento.",
+                      icon: "info",
+                      confirmButtonText: "ACEPTAR",
+                    }) :
                   userLog === ""
                     ? () => handleCompraSinLogin()
                     : () => setOpenMessagePop(true)
