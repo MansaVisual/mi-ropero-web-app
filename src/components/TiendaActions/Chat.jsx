@@ -140,87 +140,89 @@ const Chat = () => {
   return (
     <div className="miChatContainer">
       <TiendaBanner />
-      {loading ? (
-        <div
-          style={{
-            height: "50vh",
-            marginTop: "42px",
-            width: "100%",
-            maxWidth: "895px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Loader spin={"spinnerM"} />
-        </div>
-      ) : !error ? (
-        <>
-          <div className="firstLine">
-            <p className="title">MI CHAT</p>
+      <Grid className="tiendaGrid">
+        {loading ? (
+          <div
+            style={{
+              height: "50vh",
+              marginTop: "42px",
+              width: "100%",
+              maxWidth: "895px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Loader spin={"spinnerM"} />
           </div>
-          <div className="chatContainer">
-            <div className="chatContent">
-              <div className="chatHeader">
-                <div className="blocks">
-                  <div className="current-chatting-user">
-                    <Avatar isOnline="active" image={productoImg} />
-                    <p>{nombreProducto}</p>
+        ) : !error ? (
+          <>
+            <div className="firstLine">
+              <p className="title">MI CHAT</p>
+            </div>
+            <div className="chatContainer">
+              <div className="chatContent">
+                <div className="chatHeader">
+                  <div className="blocks">
+                    <div className="current-chatting-user">
+                      <Avatar isOnline="active" image={productoImg} />
+                      <p>{nombreProducto}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="contentBody">
+                  {chatActual.map((itm, i) => {
+                    return (
+                      <ChatItem
+                        animationDelay={i + 2}
+                        key={i}
+                        user={itm.type ? itm.type : "me"}
+                        msg={itm.msg}
+                        image={itm.image}
+                        fecha={itm.fecha.slice(0, -3)}
+                        estado={itm.estado}
+                      />
+                    );
+                  })}
+                  <div ref={messagesEndRef} />
+                </div>
+                <div className="content__footer">
+                  <div className="sendNewMessage">
+                    <textarea
+                      type="text"
+                      placeholder="Escribe un mensaje"
+                      onChange={(e) => setMensaje(e.target.value)}
+                      value={mensaje}
+                      onKeyPress={handlePress}
+                    />
+                    <button
+                      className={`${
+                        mensaje === "" ? "disabledButton" : "btnSendMsg"
+                      }`}
+                      onClick={() => sendMessage()}
+                      disabled={mensaje === "" ? true : false}
+                    >
+                      Enviar
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="contentBody">
-                {chatActual.map((itm, i) => {
-                  return (
-                    <ChatItem
-                      animationDelay={i + 2}
-                      key={i}
-                      user={itm.type ? itm.type : "me"}
-                      msg={itm.msg}
-                      image={itm.image}
-                      fecha={itm.fecha.slice(0, -3)}
-                      estado={itm.estado}
-                    />
-                  );
-                })}
-                <div ref={messagesEndRef} />
-              </div>
-              <div className="content__footer">
-                <div className="sendNewMessage">
-                  <textarea
-                    type="text"
-                    placeholder="Escribe un mensaje"
-                    onChange={(e) => setMensaje(e.target.value)}
-                    value={mensaje}
-                    onKeyPress={handlePress}
-                  />
-                  <button
-                    className={`${
-                      mensaje === "" ? "disabledButton" : "btnSendMsg"
-                    }`}
-                    onClick={() => sendMessage()}
-                    disabled={mensaje === "" ? true : false}
-                  >
-                    Enviar
-                  </button>
-                </div>
-              </div>
+            </div>
+          </>
+        ) : (
+          <div className="perfilVacio">
+            <div>
+              <img src={mensaje} alt="LOGO" />
+              <p>Error al abrir chat. Vuelva a intentar en un momento</p>
+              <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
             </div>
           </div>
-        </>
-      ) : (
-        <div className="perfilVacio">
-          <div>
-            <img src={mensaje} alt="LOGO" />
-            <p>Error al abrir chat. Vuelva a intentar en un momento</p>
-            <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
-          </div>
-        </div>
-      )}
+        )}
 
-      <div className="returnLink" onClick={() => navigate(`/perfil`)}>
-        <img src={leftArrow} alt="leftArrow" />
-        <p>VOLVER A MI PERFIL</p>
-      </div>
+        <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+          <img src={leftArrow} alt="leftArrow" />
+          <p>VOLVER A MI PERFIL</p>
+        </div>
+      </Grid>
     </div>
   );
 };
