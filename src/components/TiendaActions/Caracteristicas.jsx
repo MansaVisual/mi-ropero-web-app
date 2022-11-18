@@ -160,7 +160,6 @@ const Caracteristicas = ({ form, setForm }) => {
                     id={select.nombre}
                     value={caracteristicas[select.nombre]}
                     renderValue={(selected) => {
-                      console.log(selected);
                       if (selected.length === 0) {
                         return (
                           <em>
