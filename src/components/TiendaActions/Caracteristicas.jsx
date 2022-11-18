@@ -15,6 +15,8 @@ const Caracteristicas = ({ form, setForm }) => {
   const [data, setData] = useState([]);
   const [estadoSeleccionado, setEstadoSeleccionado] = useState([]);
   const [idCaracteristica, setIdCaracteristica] = useState([]);
+  const [valueSeleccionado, setValueSeleccionado] = useState([]);
+  const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
   useEffect(() => {
     const dir = new FormData();
@@ -31,16 +33,17 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []);
 
   const handleChange = (event, value) => {
-    console.log(estadoSeleccionado);
     setCampoError("");
+    setValueSeleccionado(event.target.value)
+    setValueSeleccionado2(value)
     setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
       setCaracteristicas((prevState) => ({
         ...prevState,
         [value.nombre]: [event.target.value],
       }));
-
-      setIdCaracteristica(idCaracteristica.push(estadoSeleccionado));
+      let newArray=idCaracteristica.push(estadoSeleccionado)
+      setIdCaracteristica(newArray);
     } else {
       let i = caracteristicas[value.nombre];
       let ii = [];
@@ -61,12 +64,34 @@ const Caracteristicas = ({ form, setForm }) => {
             ...prevState,
             [value.nombre]: event.target.value,
           }));
-          setIdCaracteristica(idCaracteristica.push(estadoSeleccionado));
+          let newArray=idCaracteristica.push(estadoSeleccionado)
+          setIdCaracteristica(newArray);
         }
       }
     }
     console.log(idCaracteristica);
   };
+
+  useEffect(() => {
+    if (valueSeleccionado2.valores_multiples === "0") {
+      let newArray=idCaracteristica.push(estadoSeleccionado)
+      setIdCaracteristica(newArray);
+    } else {
+      let jj = [];
+      const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
+
+      if (busqueda !== undefined) {
+        jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
+        setIdCaracteristica(jj);
+      } else {
+        if (valueSeleccionado.length <= 3) {
+          let newArray=idCaracteristica.push(estadoSeleccionado)
+          setIdCaracteristica(newArray);
+        }
+      }
+    }
+    console.log(idCaracteristica);
+  }, [valueSeleccionado2]);
 
   const handleSubmit = () => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
@@ -196,7 +221,7 @@ const Caracteristicas = ({ form, setForm }) => {
                             value={option.valor}
                             /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
                             onClick={() =>
-                              setEstadoSeleccionado(
+                             setEstadoSeleccionado(
                                 `${option.idcaracteristica}:${option.idcaracteristicavalor}`
                               )
                             }

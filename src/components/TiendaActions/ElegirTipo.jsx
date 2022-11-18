@@ -41,6 +41,12 @@ const ElegirTipo = ({ form, setForm }) => {
                           ? "selected"
                           : "notSelected"
                       }
+                      onClick={() =>
+                        setForm((prevState) => ({
+                          ...prevState,
+                          tipo: cat.idcategoria,
+                        }))
+                      }
                     >
                       {cat.nombre}
                     </span>
