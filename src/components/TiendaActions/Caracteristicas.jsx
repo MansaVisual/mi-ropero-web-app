@@ -31,7 +31,6 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []);
 
   const handleChange = (event, value) => {
-    console.log(event.target.value, value);
     setCampoError("");
     setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
@@ -39,13 +38,8 @@ const Caracteristicas = ({ form, setForm }) => {
         ...prevState,
         [value.nombre]: [event.target.value],
       }));
-      let newArray = idCaracteristica.push(
-        `${estadoSeleccionado.idcaracteristica}:${estadoSeleccionado.idcaracteristicavalor}`
-      );
-      setIdCaracteristica((prevState) => ({
-        ...prevState,
-        newArray,
-      }));
+
+      setIdCaracteristica(idCaracteristica.push(estadoSeleccionado));
     } else {
       let i = caracteristicas[value.nombre];
       let ii = [];
@@ -54,32 +48,23 @@ const Caracteristicas = ({ form, setForm }) => {
 
       if (busqueda !== undefined) {
         ii = i.filter((e) => e !== event.target.value);
-        jj = idCaracteristica.filter(
-          (e) =>
-            e !==
-            `${estadoSeleccionado.idcaracteristica}:${estadoSeleccionado.idcaracteristicavalor}`
-        );
+        jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
         setCaracteristicas((prevState) => ({
           ...prevState,
           [value.nombre]: ii,
         }));
-        setIdCaracteristica((prevState) => ({
-          ...prevState,
-          jj,
-        }));
+        setIdCaracteristica(jj);
       } else {
         if (event.target.value.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
             [value.nombre]: event.target.value,
           }));
-          setIdCaracteristica((prevState) => ({
-            ...prevState,
-            jj,
-          }));
+          setIdCaracteristica(idCaracteristica.push(estadoSeleccionado));
         }
       }
     }
+    console.log(idCaracteristica);
   };
 
   const handleSubmit = () => {
@@ -102,6 +87,7 @@ const Caracteristicas = ({ form, setForm }) => {
       setForm((prevState) => ({
         ...prevState,
         caracteristicas: caracteristicas,
+        idCaracteristica: idCaracteristica,
       }));
       navigate(`/MiTienda/DETALLES`);
     }
@@ -136,7 +122,7 @@ const Caracteristicas = ({ form, setForm }) => {
           {errorObligatorio && (
             <div className="errorBox">
               <CancelOutlinedIcon color="secondary" className="cruz" />
-              <p>Ingresar campo obligatorio "{campoError}</p>
+              <p>Ingresar campo obligatorio "{campoError}"</p>
             </div>
           )}
           <div className="inputContainer">
