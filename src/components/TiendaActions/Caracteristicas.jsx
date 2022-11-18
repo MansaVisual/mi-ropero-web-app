@@ -42,8 +42,6 @@ const Caracteristicas = ({ form, setForm }) => {
         ...prevState,
         [value.nombre]: [event.target.value],
       }));
-      let newArray=idCaracteristica.push(estadoSeleccionado)
-      setIdCaracteristica(newArray);
     } else {
       let i = caracteristicas[value.nombre];
       let ii = [];
@@ -52,24 +50,19 @@ const Caracteristicas = ({ form, setForm }) => {
 
       if (busqueda !== undefined) {
         ii = i.filter((e) => e !== event.target.value);
-        jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
         setCaracteristicas((prevState) => ({
           ...prevState,
           [value.nombre]: ii,
         }));
-        setIdCaracteristica(jj);
       } else {
         if (event.target.value.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
             [value.nombre]: event.target.value,
           }));
-          let newArray=idCaracteristica.push(estadoSeleccionado)
-          setIdCaracteristica(newArray);
         }
       }
     }
-    console.log(idCaracteristica);
   };
 
   useEffect(() => {
@@ -91,7 +84,7 @@ const Caracteristicas = ({ form, setForm }) => {
       }
     }
     console.log(idCaracteristica);
-  }, [valueSeleccionado2]);
+  }, [valueSeleccionado2]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = () => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
