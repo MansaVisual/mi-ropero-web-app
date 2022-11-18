@@ -49,10 +49,10 @@ const Caracteristicas = ({ form, setForm }) => {
           [value.nombre]: ii,
         }));
       } else {
-        if (event.target.value.valor.length <= 3) {
+        if (event.target.value.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
-            [value.nombre]: event.target.value.valor,
+            [value.nombre]: event.target.value,
           }));
         }
       }
