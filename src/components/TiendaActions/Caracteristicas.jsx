@@ -72,11 +72,14 @@ const Caracteristicas = ({ form, setForm }) => {
   const arrayIdCaracteristicas=()=>{
     if(valueSeleccionado2.length!==0){
       if (valueSeleccionado2.valores_multiples === "0") {
+        console.log("PRIMER IF")
         setIdCaracteristica((prevState) => ({
           ...prevState,
           [valueSeleccionado2.nombre]: [estadoSeleccionado],
         }));
       } else {
+        console.log("SEGUNDO IF")
+
         let i = caracteristicas[valueSeleccionado2.nombre];
         let ii = [];
         const busqueda = i.find((e) => e === estadoSeleccionado);
@@ -91,7 +94,7 @@ const Caracteristicas = ({ form, setForm }) => {
           if (valueSeleccionado.length <= 3) {
             setIdCaracteristica((prevState) => ({
               ...prevState,
-              [valueSeleccionado2.nombre]: estadoSeleccionado,
+              [valueSeleccionado2.nombre]: i.concat(estadoSeleccionado),
             }));
           }
         }
