@@ -2,14 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Loader from "../../components/Loader/Loader";
 import Swal from "sweetalert2";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import logo from "../../assets/img/isologo.png";
 
 const CancelacionCompra = () => {
+  const location = useLocation();
+
   const navigate = useNavigate();
   const {userLog}=useContext(UseLoginContext)
 
@@ -47,6 +50,28 @@ const CancelacionCompra = () => {
         behavior: "auto",
       });
       setLoading(false);
+      return;
+    }
+    if(userLog===""){
+      Swal.fire({
+        title: "¡INGRESA A TU CUENTA!",
+        text: "Para cancelar una compra es necesario que estes logueado con tu cuenta",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: "no-border",
+          container: "popUpLoginAlert",
+          cancelButton: "popUpLoginCancel",
+        },
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: "CONTINUAR",
+        cancelButtonText: "CANCELAR",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          localStorage.setItem("redirectUrl", location.pathname);
+          navigate("/login");
+        }
+      });
       return;
     }
 
