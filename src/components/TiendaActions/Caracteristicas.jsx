@@ -121,12 +121,17 @@ const Caracteristicas = ({ form, setForm }) => {
       }
     }
     if (!errorObligatorio) {
+      let array=[]
+      for(const i in idCaracteristica){
+        array.concat(idCaracteristica[i])
+      }
+      console.log(array)
       setForm((prevState) => ({
         ...prevState,
         caracteristicas: caracteristicas,
         idCaracteristica: idCaracteristica,
       }));
-      navigate(`/MiTienda/DETALLES`);
+      // navigate(`/MiTienda/DETALLES`);
     }
   };
 
