@@ -82,8 +82,8 @@ const Caracteristicas = ({ form, setForm }) => {
         }
       }
     }
-    console.log(idCaracteristica);
   }, [estadoSeleccionado]);// eslint-disable-line react-hooks/exhaustive-deps
+  console.log(idCaracteristica);
 
   const handleSubmit = () => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
