@@ -45,7 +45,6 @@ const Caracteristicas = ({ form, setForm }) => {
     } else {
       let i = caracteristicas[value.nombre];
       let ii = [];
-      let jj = [];
       const busqueda = i.find((e) => e === event.target.value);
 
       if (busqueda !== undefined) {
@@ -84,7 +83,7 @@ const Caracteristicas = ({ form, setForm }) => {
       }
     }
     console.log(idCaracteristica);
-  }, [valueSeleccionado2]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [estadoSeleccionado]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = () => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
