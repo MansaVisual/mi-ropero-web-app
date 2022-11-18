@@ -16,6 +16,7 @@ export const apiFetch=async(data, clase, metodo)=>{
           if (data.result === "El producto no existe") {
             Swal.fire({
               title: 'EL PRODUCTO NO EXISTE O NO SE ENCUENTRA EN STOCK',
+              icon: "info",
               confirmButtonText: "CONTINUAR",
             }).then((res) => {
               window.location.replace("https://www.miropero.ar/");
