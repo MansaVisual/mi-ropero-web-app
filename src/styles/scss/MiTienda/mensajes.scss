@@ -5,6 +5,10 @@
       justify-content: center;
     }
     .container {
+      max-width: 1366px;
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 80px;
       .firstLine {
         display: flex;
         align-items: center;
