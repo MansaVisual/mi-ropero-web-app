@@ -14,7 +14,7 @@ const Caracteristicas = ({ form, setForm }) => {
   const [campoError, setCampoError] = useState("");
   const [data, setData] = useState([]);
   const [estadoSeleccionado, setEstadoSeleccionado] = useState([]);
-  const [idCaracteristica, setIdCaracteristica] = useState([]);
+  const [idCaracteristica, setIdCaracteristica] = useState({});
   const [valueSeleccionado, setValueSeleccionado] = useState([]);
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
@@ -29,6 +29,7 @@ const Caracteristicas = ({ form, setForm }) => {
         caract[obj] = [];
       }
       setCaracteristicas(caract);
+      setIdCaracteristica(caract)
     });
   }, []);
 
@@ -71,22 +72,27 @@ const Caracteristicas = ({ form, setForm }) => {
   const arrayIdCaracteristicas=()=>{
     if(valueSeleccionado2!==undefined){
       if (valueSeleccionado2.valores_multiples === "0") {
-        const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
-        if(busqueda===undefined){
-          setIdCaracteristica(idCaracteristica.concat(estadoSeleccionado));
-        }
+        setIdCaracteristica((prevState) => ({
+          ...prevState,
+          [valueSeleccionado2.nombre]: [estadoSeleccionado],
+        }));
       } else {
-        let jj = [];
-        const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
-        console.log(estadoSeleccionado)
-        console.log(busqueda)
+        let i = caracteristicas[valueSeleccionado2.nombre];
+        let ii = [];
+        const busqueda = i.find((e) => e === estadoSeleccionado);
+  
         if (busqueda !== undefined) {
-          jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
-          console.log(jj)
-          setIdCaracteristica(jj);
+          ii = i.filter((e) => e !== estadoSeleccionado);
+          setIdCaracteristica((prevState) => ({
+            ...prevState,
+            [valueSeleccionado2.nombre]: ii,
+          }));
         } else {
-          if (valueSeleccionado.length <= 3) {
-            setIdCaracteristica(idCaracteristica.concat(estadoSeleccionado));
+          if (estadoSeleccionado.length <= 3) {
+            setIdCaracteristica((prevState) => ({
+              ...prevState,
+              [valueSeleccionado2.nombre]: estadoSeleccionado,
+            }));
           }
         }
       }
