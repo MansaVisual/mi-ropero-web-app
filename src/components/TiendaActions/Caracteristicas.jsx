@@ -13,6 +13,8 @@ const Caracteristicas = ({ form, setForm }) => {
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
   const [data, setData] = useState([]);
+  const [estadoSeleccionado, setEstadoSeleccionado] = useState([]);
+  const [idCaracteristica, setIdCaracteristica] = useState([]);
 
   useEffect(() => {
     const dir = new FormData();
@@ -33,26 +35,47 @@ const Caracteristicas = ({ form, setForm }) => {
     setCampoError("");
     setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
-      console.log("entra");
       setCaracteristicas((prevState) => ({
         ...prevState,
-        [value.nombre]: [event.target.value.valor],
+        [value.nombre]: [event.target.value],
+      }));
+      let newArray = idCaracteristica.push(
+        `${estadoSeleccionado.idcaracteristica}:${estadoSeleccionado.idcaracteristicavalor}`
+      );
+      setIdCaracteristica((prevState) => ({
+        ...prevState,
+        newArray,
       }));
     } else {
       let i = caracteristicas[value.nombre];
       let ii = [];
-      const busqueda = i.find((e) => e === event.target.value.valor);
+      let jj = [];
+      const busqueda = i.find((e) => e === event.target.value);
+
       if (busqueda !== undefined) {
-        ii = i.filter((e) => e !== event.target.value.valor);
+        ii = i.filter((e) => e !== event.target.value);
+        jj = idCaracteristica.filter(
+          (e) =>
+            e !==
+            `${estadoSeleccionado.idcaracteristica}:${estadoSeleccionado.idcaracteristicavalor}`
+        );
         setCaracteristicas((prevState) => ({
           ...prevState,
           [value.nombre]: ii,
+        }));
+        setIdCaracteristica((prevState) => ({
+          ...prevState,
+          jj,
         }));
       } else {
         if (event.target.value.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
-            [value.nombre]: event.target.value.valor,
+            [value.nombre]: event.target.value,
+          }));
+          setIdCaracteristica((prevState) => ({
+            ...prevState,
+            jj,
           }));
         }
       }
@@ -183,9 +206,13 @@ const Caracteristicas = ({ form, setForm }) => {
                         return (
                           <MenuItem
                             key={i}
-                            value={option}
+                            value={option.valor}
                             /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
-                            /*  value={option.valor} */
+                            onClick={() =>
+                              setEstadoSeleccionado(
+                                `${option.idcaracteristica}:${option.idcaracteristicavalor}`
+                              )
+                            }
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
                             {option.valor}
