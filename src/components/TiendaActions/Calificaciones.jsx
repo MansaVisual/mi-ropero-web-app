@@ -5,7 +5,7 @@ import error from "../../assets/img/error.png";
 import basura from "../../assets/img/basura.png";
 import StarIcon from "@mui/icons-material/Star";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { MenuItem, Rating, Select } from "@mui/material";
+import { Grid, MenuItem, Rating, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Calificaciones = () => {
@@ -27,109 +27,111 @@ const Calificaciones = () => {
   return (
     <div className="calificacionesContainer">
       <TiendaBanner />
-      <div className="container">
-        <div className="calificacionesSections">
-          <div className="firstLine">
-            <p className="title">CALIFICACIONES</p>
-          </div>
-          <div className="calificacionesList">
-            {array.map((venta, id) => {
-              return (
-                <div key={id} className="desktopCard">
-                  <div className="data">
-                    <img src={venta.img} alt="cardImage" />
-                    <div>
-                      <p className="id">
-                        Operacion: <span>{venta.id}</span>
-                      </p>
-                      <p className="name">{venta.nombre}</p>
-                      <p className="review">{venta.reseña}</p>
+      <Grid className="tiendaGrid">
+        <div className="container">
+          <div className="calificacionesSections">
+            <div className="firstLine">
+              <p className="title">CALIFICACIONES</p>
+            </div>
+            <div className="calificacionesList">
+              {array.map((venta, id) => {
+                return (
+                  <div key={id} className="desktopCard">
+                    <div className="data">
+                      <img src={venta.img} alt="cardImage" />
+                      <div>
+                        <p className="id">
+                          Operacion: <span>{venta.id}</span>
+                        </p>
+                        <p className="name">{venta.nombre}</p>
+                        <p className="review">{venta.reseña}</p>
+                      </div>
+                    </div>
+                    <div className="rigthSide">
+                      <Rating
+                        name="text-feedback"
+                        value={venta.rating}
+                        readOnly
+                        precision={0.5}
+                        icon={
+                          <StarIcon
+                            style={{ width: "20px", height: "20px" }}
+                          ></StarIcon>
+                        }
+                        emptyIcon={
+                          <StarIcon
+                            style={{
+                              opacity: 0.55,
+                              width: "20px",
+                              height: "20px",
+                            }}
+                          />
+                        }
+                      />
+                      <img
+                        onClick={() => {
+                          /* setBorrarMsj(true);
+                      setMensajeId(mensaje.idmensaje); */
+                        }}
+                        className="basuraIcon"
+                        src={basura}
+                        alt="BasuraIcon"
+                      />
                     </div>
                   </div>
-                  <div className="rigthSide">
-                    <Rating
-                      name="text-feedback"
-                      value={venta.rating}
-                      readOnly
-                      precision={0.5}
-                      icon={
-                        <StarIcon
-                          style={{ width: "20px", height: "20px" }}
-                        ></StarIcon>
-                      }
-                      emptyIcon={
-                        <StarIcon
-                          style={{
-                            opacity: 0.55,
-                            width: "20px",
-                            height: "20px",
-                          }}
-                        />
-                      }
-                    />
-                    <img
-                      onClick={() => {
-                        /* setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje); */
-                      }}
-                      className="basuraIcon"
-                      src={basura}
-                      alt="BasuraIcon"
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className="bottomContainer">
-          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A MI TIENDA</p>
-          </div>
-          <Select
-            displayEmpty
-            className="selectInput"
-            onChange={(e) => setSelected(e.target.value)}
-            value={selected}
-            renderValue={(selected) => {
-              if (selected === "") {
-                return <em>Seleccioná una opción</em>;
-              }
-              return selected;
-            }}
-            sx={{
-              "& div": {
-                fontSize: "14px",
-                fontWeight: "400",
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderWidth: "1px",
-              },
-              height: 42,
-            }}
-          >
-            <MenuItem
-              disabled
-              value=""
-              className="selectOption"
-              sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
+          <div className="bottomContainer">
+            <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+              <img src={leftArrow} alt="leftArrow" />
+              <p>VOLVER A MI TIENDA</p>
+            </div>
+            <Select
+              displayEmpty
+              className="selectInput"
+              onChange={(e) => setSelected(e.target.value)}
+              value={selected}
+              renderValue={(selected) => {
+                if (selected === "") {
+                  return <em>Seleccioná una opción</em>;
+                }
+                return selected;
+              }}
+              sx={{
+                "& div": {
+                  fontSize: "14px",
+                  fontWeight: "400",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderWidth: "1px",
+                },
+                height: 42,
+              }}
             >
-              <em>Seleccioná </em>
-            </MenuItem>
-            {stateList.map((option) => (
               <MenuItem
-                key={option}
-                value={option}
-                sx={{ fontSize: "14px", color: "#969696" }}
+                disabled
+                value=""
                 className="selectOption"
+                sx={{ fontSize: "14px", color: "#BABCBE", fontWeight: "400" }}
               >
-                {option}
+                <em>Seleccioná </em>
               </MenuItem>
-            ))}
-          </Select>
+              {stateList.map((option) => (
+                <MenuItem
+                  key={option}
+                  value={option}
+                  sx={{ fontSize: "14px", color: "#969696" }}
+                  className="selectOption"
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
         </div>
-      </div>
+      </Grid>
     </div>
   );
 };
