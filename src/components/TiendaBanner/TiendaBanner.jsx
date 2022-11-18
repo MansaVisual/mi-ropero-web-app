@@ -33,16 +33,15 @@ const TiendaBanner = () => {
               {!saldoCuenta ? 
                 <div
                   style={{
-                    marginTop: "24px",
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
                   }}
                 >
-                  <Loader spin={"spinnerM"} />
+                  <Loader spin={"spinnerS"} />
                 </div>
               :
-                <span>{showMoney ? saldoCuenta : "$**.***.**"}</span>
+                <span>${saldoCuenta}</span>
                 }
               {showMoney ? (
                 <img
