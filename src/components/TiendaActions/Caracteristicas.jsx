@@ -31,7 +31,6 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []);
 
   const handleChange = (event, value) => {
-    console.log(event.target.value, value);
     setCampoError("");
     setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
@@ -80,6 +79,7 @@ const Caracteristicas = ({ form, setForm }) => {
         }
       }
     }
+    console.log(idCaracteristica);
   };
 
   const handleSubmit = () => {
@@ -102,6 +102,7 @@ const Caracteristicas = ({ form, setForm }) => {
       setForm((prevState) => ({
         ...prevState,
         caracteristicas: caracteristicas,
+        idCaracteristica: idCaracteristica,
       }));
       navigate(`/MiTienda/DETALLES`);
     }
@@ -136,7 +137,7 @@ const Caracteristicas = ({ form, setForm }) => {
           {errorObligatorio && (
             <div className="errorBox">
               <CancelOutlinedIcon color="secondary" className="cruz" />
-              <p>Ingresar campo obligatorio "{campoError}</p>
+              <p>Ingresar campo obligatorio "{campoError}"</p>
             </div>
           )}
           <div className="inputContainer">
