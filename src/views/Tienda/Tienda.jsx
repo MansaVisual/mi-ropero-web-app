@@ -30,10 +30,15 @@ const Tienda = () => {
     categoria: "",
     tipo: "",
     caracteristicas: [],
+    idCaracteristica: [],
     titulo: "",
     precio: "",
     descripcion: "",
   });
+
+  useEffect(() => {
+    console.log(form)
+  }, [form]);
 
   useEffect(() => {
     window.scrollTo({
