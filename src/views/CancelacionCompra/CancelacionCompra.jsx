@@ -55,7 +55,7 @@ const CancelacionCompra = () => {
     if(userLog===""){
       Swal.fire({
         title: "¡INGRESA A TU CUENTA!",
-        text: "Para cancelar una compra es necesario que estes logueado con tu cuenta",
+        text: "Para cancelar la compra es necesario que estes loguead@ con tu cuenta",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
           icon: "no-border",
