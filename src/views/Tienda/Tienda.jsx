@@ -30,6 +30,7 @@ const Tienda = () => {
     categoria: "",
     tipo: "",
     caracteristicas: [],
+    idCaracteristica: [],
     titulo: "",
     precio: "",
     descripcion: "",

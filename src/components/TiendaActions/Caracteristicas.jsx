@@ -121,7 +121,8 @@ const Caracteristicas = ({ form, setForm }) => {
     if (!errorObligatorio) {
       let array=[]
       for(const i in idCaracteristica){
-        array=array.concat(idCaracteristica[i][0])
+        console.log(idCaracteristica[i][0])
+        array=array.push(idCaracteristica[i][0])
       }
       setForm((prevState) => ({
         ...prevState,
