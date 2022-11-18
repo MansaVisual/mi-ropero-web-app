@@ -12,7 +12,6 @@ export const apiFetch=async(data, clase, metodo)=>{
         .then((response) => response.json())
         .then((data) => {
           resFinal = data;
-          console.log(data)
           if (data.result === "El producto no existe") {
             Swal.fire({
               title: 'EL PRODUCTO NO EXISTE O NO SE ENCUENTRA EN STOCK',

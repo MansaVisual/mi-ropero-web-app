@@ -81,7 +81,6 @@ const SearchProductsResults = () => {
     col.append("page", 0);
 
     apiFetch(col, "colecciones", "detail").then((res) => {
-      console.log(res);
       if (res.status === "success") {
         setColeccion(res.result);
         setProds(res.result.productos);
@@ -104,7 +103,6 @@ const SearchProductsResults = () => {
     setPutSort("");
     setPutFilters([]);
     setPags(1);
-    console.log(putCategory)
     if (putCategory !== "") {
       let idCat = coleccion.productos_categorias.filter(
         (e) => e !== null && e.nombre === putCategory
@@ -117,7 +115,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      apiFetch(col, "colecciones", "detail").then((res) => {console.log("RESPUESTA API",res)
+      apiFetch(col, "colecciones", "detail").then((res) => {
         if (res.status === "success") {
           for(const i in res.result.productos_categorias){
             if(res.result.productos_categorias[i]!==null && res.result.productos_categorias[i].idcategoria === idCat){
@@ -142,7 +140,7 @@ const SearchProductsResults = () => {
       col.append("bypage", 15);
       col.append("page", 0);
 
-      apiFetch(col, "colecciones", "detail").then((res) => {console.log(res)
+      apiFetch(col, "colecciones", "detail").then((res) => {
         if (res.status === "success") {
           setProds(res.result.productos);
           setFiltrosCategoria([])
@@ -206,7 +204,6 @@ const SearchProductsResults = () => {
     if (putFilters.length !== 0) {
       catProd.append("caracteristicas", filtrosFin);
     }
-    console.log(Object.fromEntries(catProd));
     apiFetch(catProd, "colecciones", "detail").then((res) => {
       if (res.status === "success") {
         setProds(res.result.productos);
@@ -284,8 +281,6 @@ const SearchProductsResults = () => {
       }
 
       apiFetch(prod, "colecciones", "detail").then((res) => {
-        console.log(Object.fromEntries(prod));
-        console.log(Object.fromEntries(prod));
         setLoad2(false);
         setBuscandoCol(false);
         if (res.status === "success") {

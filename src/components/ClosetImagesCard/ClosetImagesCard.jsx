@@ -85,7 +85,6 @@ const ClosetImagesCard = ({
     });
   };
 
-  console.log(productos)
 
   return (
     <Box sx={{ maxWidth: { sm: "420px" }, minWidth: { sm: "420px" } }}>

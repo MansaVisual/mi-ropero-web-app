@@ -29,7 +29,6 @@ const Tarjeta = ({
   const { userLog } = useContext(UseLoginContext);
 
 
-  console.log(direccion)
   
   const handlePagar = () => {
     setLoad(true);
@@ -53,7 +52,7 @@ const Tarjeta = ({
     finalizarCompra.append("promocion_codigo", codDesc);
     finalizarCompra.append("medio_envio", metodoEnvio);
 
-    apiFetch(finalizarCompra, "operaciones", "insert").then(async(res) => {console.log(res)
+    apiFetch(finalizarCompra, "operaciones", "insert").then(async(res) => {
       if (res.status === "success") {
         setLoad(false);
         if (res.result.init_point !== undefined) {

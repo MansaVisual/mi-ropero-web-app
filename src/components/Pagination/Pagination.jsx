@@ -9,7 +9,6 @@ const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
 
   const handleChange = (event, value) => {
     setPags(value)
-    console.log(value)
     if(search!==undefined){
       buscarPage(true,value-1)
     }
@@ -17,7 +16,6 @@ const Pagination = ({cantidad,buscarPage,pags,setPags}) => {
       buscarPage(false,value-1)
     }
   };
-console.log(cantidad)
   return (
     <MuiPagination
       count={cantidad}

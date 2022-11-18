@@ -73,7 +73,7 @@ const ViewCloset = () => {
       ropero.append("idtienda", closetId);
       ropero.append("page", 0);
       ropero.append("bypage", 15);
-      apiFetch(ropero, "tiendas", "detail").then((res) => {console.log(res)
+      apiFetch(ropero, "tiendas", "detail").then((res) => {
         if (res.status === "success") {
           let arrayCol = [];
           for (const i in res.result.search_productos_categorias) {
@@ -85,8 +85,7 @@ const ViewCloset = () => {
           }
           setColeccion({ productos_categorias: arrayCol });
           setTienda(res.result);
-          console.log(res.result.search_productos_total_paginas)
-          console.log(Number(res.result.search_productos_total_paginas))
+
           setTotalPages(Number(res.result.search_productos_total_paginas));
         }
         setBuscandoRoperos(false);

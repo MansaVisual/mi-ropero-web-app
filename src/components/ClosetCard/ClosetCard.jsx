@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 const ClosetCard = ({ropero}) => {
   const navigate = useNavigate()
-console.log(ropero)
   return (
     <Card
       sx={{

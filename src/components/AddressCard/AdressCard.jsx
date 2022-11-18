@@ -9,8 +9,6 @@ const AdressCard = ({ direccion, adressOption, setAdressOption, index }) => {
 
   const { setDireccionSelecc } = useContext(UsePerfilContext);
 
-  console.log(direccion);
-
   return (
     <div className="domicilioEntrega" onClick={() => setAdressOption(index)}>
       <div

@@ -15,7 +15,6 @@ const PopUpFinalDir = ({
   setGuardarDireccion,
 }) => {
   const handleAccept = async (dir) => {
-    console.log(dir, form, infoLocFinal);
     setDireccion({
       ...dir,
       alias: form.alias,

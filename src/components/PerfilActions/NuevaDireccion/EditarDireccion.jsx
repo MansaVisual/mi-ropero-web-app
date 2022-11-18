@@ -65,7 +65,6 @@ const EditarDireccion = () => {
     }
   }, [direccionSelecc]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(form, direccionSelecc);
 
   const [provincias, setProvincias] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -97,7 +96,6 @@ const EditarDireccion = () => {
     }
   }, [provincia]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(provincia);
 
   const [infoLoc, setInfoLoc] = useState([]);
   const [infoLocFinal, setInfoLocFinal] = useState([]);
@@ -138,7 +136,6 @@ const EditarDireccion = () => {
             document.getElementById("barrioLocalidad").value
           );
           apiFetch(localidad, "direcciones", "localidades").then((res) => {
-            console.log(res);
             if (res.status === "error") {
               setErrorLocalidad(true);
               scrollTop();
@@ -211,14 +208,12 @@ const EditarDireccion = () => {
     );
 
     apiFetch(formDireccion, "direcciones", "normalize").then(async (res) => {
-      console.log(res);
       console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
         res.result[0].calle !== "" &&
         res.result[0].numero !== ""
       ) {
-        console.log(res.result[0].calle, res.result[0].numero);
         scrollTop();
         await setResDirecciones(res.result);
         setViewDireccion(true);
@@ -236,10 +231,7 @@ const EditarDireccion = () => {
   };
 
   useEffect(() => {
-    console.log(Number(infoLocFinal.idprovincia));
-    console.log(Number(infoLocFinal.idprovincia));
-    console.log(direccionSelecc.idprovincia);
-    console.log(direccionSelecc.idlocalidad);
+
     if (guardarDireccion) {
       const formDireccion = new FormData();
       formDireccion.append("iddireccion", direccionSelecc.iddireccion);
@@ -286,7 +278,6 @@ const EditarDireccion = () => {
       console.table(Object.fromEntries(formDireccion));
 
       apiFetch(formDireccion, "direcciones", "update").then(async (res) => {
-        console.log(res);
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);
         } else {

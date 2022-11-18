@@ -67,8 +67,7 @@ export const LikeButton = ({
       })
       return;
     }
-console.log("HOLI TIMO", infoUser.productos_favoritos.find((e) => e === idProd))
-console.log("INFOUSER VIEJO", infoUser.productos_favoritos)
+
     if (
       infoUser.productos_favoritos !== undefined &&
       infoUser.productos_favoritos.find((e) => e === idProd)!==undefined

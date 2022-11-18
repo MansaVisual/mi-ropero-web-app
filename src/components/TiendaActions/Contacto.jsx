@@ -27,7 +27,6 @@ const Contacto = ({ form, setForm }) => {
 
   const [contactForm, setContactForm] = useState([]);
 
-  console.log(form);
 
   let clase = "formObligatorio";
   let clase2 = "formObligatorioTitle";
@@ -106,7 +105,6 @@ const Contacto = ({ form, setForm }) => {
   };
 
   const checkNuevaDireccion = async () => {
-    console.log("checkdir start");
     setLoader(true);
     if (document.getElementById("telefono").value === "") {
       throwError("telefono", "labelTelefono");
@@ -173,7 +171,6 @@ const Contacto = ({ form, setForm }) => {
     );
 
     apiFetch(formDireccion, "direcciones", "normalize").then(async (res) => {
-      console.log("operacion normalize", res);
       console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
@@ -215,7 +212,6 @@ const Contacto = ({ form, setForm }) => {
       dir.append("informacion_adicional", direccion.informacion_adicional);
       dir.append("normalized", direccion.raw_data);
       apiFetch(dir, "direcciones", "insert").then(async (res) => {
-        console.log("direcciones insert res", res);
         console.table("direcciones insert dir", Object.fromEntries(dir));
         if (res.status === "success") {
           navigate(`/perfil/MIS DIRECCIONES`);

@@ -78,14 +78,14 @@ const CancelacionCompra = () => {
     const buscarCompra=new FormData()
     buscarCompra.append("idcliente",userLog)
     buscarCompra.append("idoperacion",Number(form.idOperacion))
-    apiFetch(buscarCompra,"operaciones","get").then((res)=>{console.log(res)
+    apiFetch(buscarCompra,"operaciones","get").then((res)=>{
       if(res.status==="success"){
         const data = new FormData();
         data.append("idoperacion", form.idOperacion);
         data.append("mensaje", form.mensaje);
         data.append("remitente", 1);
     
-        apiFetch(data, "reclamos", "insert").then((res) => {console.log(res)
+        apiFetch(data, "reclamos", "insert").then((res) => {
           setLoading(false);
           if (res.status === "success") {
             navigate("/cancelacionCompraOk");

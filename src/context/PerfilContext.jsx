@@ -22,7 +22,6 @@ export const PerfilContext = ({ children }) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
     apiFetch(dir, "direcciones", "all").then((res) => {
-      console.log(res);
       setDirFinBusqueda(true);
       if (res.status === "success") {
         setDireccionesGuardadas(res.result);
@@ -59,7 +58,6 @@ export const PerfilContext = ({ children }) => {
     dir.append("page", 0);
     dir.append("bypage", 10);
     apiFetch(dir, "operaciones", "all_buyer").then((res) => {
-      console.log(res);
       if (res.status === "success") {
         for (const ii in res.result.operaciones) {
           array.push(res.result.operaciones[ii]);
@@ -133,7 +131,6 @@ export const PerfilContext = ({ children }) => {
     dir.append("page", 0);
     dir.append("bypage", 20);
     apiFetch(dir, "mensajes", metodo).then((res) => {
-      console.log(metodo, res);
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
         for (const ii in res.result) {

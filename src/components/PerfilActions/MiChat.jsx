@@ -29,7 +29,6 @@ const MiChat = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  console.log(chatActual);
 
   useEffect(() => {
     if (!userLog && !mensajeId /* && !infoUser */) {
@@ -39,7 +38,6 @@ const MiChat = () => {
       dir.append("idcliente", userLog);
       dir.append("idmensaje", mensajeId);
       apiFetch(dir, "mensajes", "thread").then((res) => {
-        console.log(res);
         if (res.status === "success") {
           setProductoImg(res.result[0].producto.imagenes[0].imagen_chica);
           setNombreProducto(res.result[0].producto.nombre);
@@ -54,7 +52,6 @@ const MiChat = () => {
               msg.append("idcliente", userLog);
               msg.append("idmensaje", res.result[ii].idmensaje);
               apiFetch(msg, "mensajes", "readed").then((res) => {
-                console.log(res);
               });
             }
             array.push({
@@ -138,7 +135,6 @@ const MiChat = () => {
     }
   };
 
-  console.log(chatActual);
 
   return (
     <div className="miChatContainer">

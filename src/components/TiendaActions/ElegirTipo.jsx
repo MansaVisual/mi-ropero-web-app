@@ -10,7 +10,6 @@ const ElegirTipo = ({ form, setForm }) => {
 
   const { categorias } = useContext(UseProdsContext);
 
-  console.log(categorias);
 
   return (
     <div className="elegirTipoContainer">

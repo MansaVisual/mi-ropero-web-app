@@ -69,7 +69,6 @@ useEffect(()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, notificationsType]);
 
-  console.log(notis)
 
   const buscarPage = (paramSearch, value) => {
     setLoading(true);
@@ -223,11 +222,10 @@ useEffect(()=>{
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("idtienda=");
                 id = itemURL.substring(buscarI + 9, itemURL.length);
-                console.log(id)
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
-                apiFetch(llamada, "tiendas", "detail").then((res) => {console.log(res)
+                apiFetch(llamada, "tiendas", "detail").then((res) => {
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
                   } else {

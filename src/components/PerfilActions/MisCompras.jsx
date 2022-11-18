@@ -56,7 +56,6 @@ const MisCompras = () => {
     return formatoFinal;
   };
 
-  console.log(comprasRealizadas);
 
   return (
     <div className="misComprasContainer">

@@ -161,7 +161,6 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       }
     });
   };
-  console.log(costoEnvio)
   return (
     <>
       <Box

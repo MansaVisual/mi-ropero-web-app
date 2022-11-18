@@ -85,7 +85,6 @@ const MisMensajes = () => {
     return formatoFinal;
   };
 
-  console.log(mensajesFiltrados);
 
   return (
     <div className="misMensajesContainer">

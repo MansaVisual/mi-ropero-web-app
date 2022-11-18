@@ -21,7 +21,6 @@ const SeccionProductosCon = () => {
     },
   ];
 
-  console.log(infoUser);
   return (
     <div className="seccionProductosCon">
       <TiendaBanner />

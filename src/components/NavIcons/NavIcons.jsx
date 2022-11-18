@@ -442,12 +442,10 @@ const NavIcons = () => {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("idtienda=");
                 id = itemURL.substring(buscarI + 9, itemURL.length);
-                console.log(id);
                 const llamada = new FormData();
                 llamada.append("idcliente", userLog);
                 llamada.append("idtienda", id);
                 apiFetch(llamada, "tiendas", "detail").then((res) => {
-                  console.log(res);
                   if (res.status === "success") {
                     url = `/roperos/${id}/${res.result.nombre}`;
                   } else {
@@ -719,7 +717,6 @@ const NavIcons = () => {
                   </Box>
                   <Box sx={{ pt: "10px" }}>
                     {carrito.map((prod, i) => {
-                      console.log(carrito, prod);
                       return (
                         <Fragment key={i}>
                           <Box

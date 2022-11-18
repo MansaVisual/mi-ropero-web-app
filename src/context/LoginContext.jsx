@@ -57,7 +57,7 @@ export const LoginContext = ({ children }) => {
     if (userLog !== "") {
       const user = new FormData();
       user.append("idcliente", userLog);
-      apiFetch(user, "clientes", "get").then((res) => {console.log(res)
+      apiFetch(user, "clientes", "get").then((res) => {
         if (res.status === "success") {
           setInfoUser(res.result);
         } else {

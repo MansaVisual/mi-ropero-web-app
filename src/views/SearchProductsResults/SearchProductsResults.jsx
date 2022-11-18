@@ -127,7 +127,6 @@ const SearchProductsResults = () => {
       col.append("page", 0);
 
       apiFetch(col, "productos", "search").then((res) => {
-        console.log("ERROR A RESOLVER YA", res);
         if (res.status === "success") {
           setFiltrosCategoria(res.result.productos_categorias[0].hijas[0]);
           setProds(res.result.productos);
@@ -165,9 +164,7 @@ const SearchProductsResults = () => {
     }
     catProd.append("bypage", 15);
     catProd.append("page", 0);
-    console.log("PRUEBAS", Object.fromEntries(catProd));
     apiFetch(catProd, "productos", "search").then((res) => {
-      console.log("ERROR DESDE ACA", res);
       setBuscandoProds(false);
       if (res.status === "success") {
         setFiltrosCategoria(res.result.productos_categorias[0].hijas[0]);
@@ -228,7 +225,6 @@ const SearchProductsResults = () => {
     catProd.append("bypage", 15);
 
     catProd.append("page", value);
-    console.log(Object.fromEntries(catProd));
 
     apiFetch(catProd, "productos", "search").then((res) => {
       setBuscandoProds(false);
@@ -261,7 +257,6 @@ const SearchProductsResults = () => {
       array.push(`${putFilters[i].idName}:${putFilters[i].id}`);
     }
     setFiltrosFin(array.toString());
-    console.log(array.toString());
     if (
       putFilters.length !== 0 ||
       putSort !== "" ||

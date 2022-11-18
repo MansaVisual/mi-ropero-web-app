@@ -29,7 +29,7 @@ export const ColeccionContext = ({ children }) => {
         col3.append("bypage", 8);
         col3.append("order_type","desc")
         col3.append("order","idproducto")
-        await apiFetch(col3, "colecciones", "detail").then((res) => {console.log(res)
+        await apiFetch(col3, "colecciones", "detail").then((res) => {
           if (res.status === "success") {
             newCols.push({
               idcoleccion:coleccionesBuscadas[i].idcoleccion,
