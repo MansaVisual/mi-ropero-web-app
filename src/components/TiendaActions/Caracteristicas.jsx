@@ -213,9 +213,13 @@ const Caracteristicas = ({ form, setForm }) => {
                             value={option.valor}
                             /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
                             onClick={() =>
-                             setEstadoSeleccionado(
-                                `${option.idcaracteristica}:${option.idcaracteristicavalor}`
-                              )
+                              {if(estadoSeleccionado===`${option.idcaracteristica}:${option.idcaracteristicavalor}`){
+                                setEstadoSeleccionado("")
+                              }else{
+                                setEstadoSeleccionado(
+                                   `${option.idcaracteristica}:${option.idcaracteristicavalor}`
+                                 )
+                              }}
                             }
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
