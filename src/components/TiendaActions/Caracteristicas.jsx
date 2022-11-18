@@ -80,7 +80,7 @@ const Caracteristicas = ({ form, setForm }) => {
       } else {
         console.log("SEGUNDO IF")
 
-        let i = caracteristicas[valueSeleccionado2.nombre];
+        let i = idCaracteristica[valueSeleccionado2.nombre];
         let ii = [];
         const busqueda = i.find((e) => e === estadoSeleccionado);
   
