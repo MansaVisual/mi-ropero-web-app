@@ -29,6 +29,7 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []);
 
   const handleChange = (event, value) => {
+    console.log(event.target.value, value);
     setCampoError("");
     setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
@@ -48,7 +49,7 @@ const Caracteristicas = ({ form, setForm }) => {
           [value.nombre]: ii,
         }));
       } else {
-        if (event.target.value.length <= 3) {
+        if (event.target.value.valor.length <= 3) {
           setCaracteristicas((prevState) => ({
             ...prevState,
             [value.nombre]: event.target.value.valor,
