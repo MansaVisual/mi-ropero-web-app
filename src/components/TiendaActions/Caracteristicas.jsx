@@ -123,7 +123,7 @@ const Caracteristicas = ({ form, setForm }) => {
       for(const i in idCaracteristica){
         if(idCaracteristica[i]!==undefined)
         for(const ii in idCaracteristica[i]){
-          array=array.concat([idCaracteristica[ii]])
+          array=array.concat([idCaracteristica[i][ii]])
         }
       }
       setForm((prevState) => ({
