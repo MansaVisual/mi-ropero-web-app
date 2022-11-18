@@ -1,7 +1,7 @@
 import React, { createRef, useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
-import leftArrow from "../../../assets/img/leftArrow.png";
+import leftArrow from "../../assets/img/leftArrow.png";
 import ChatItem from "../Chat/ChatItem";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";

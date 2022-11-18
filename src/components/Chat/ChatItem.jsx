@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "./Avatar";
-import dobleTilde from "../../../assets/img/dobleTilde.png";
+import dobleTilde from "../../assets/img/dobleTilde.png";
 
 const ChatItem = ({ msg, image, user, fecha, estado }) => {
   return (
