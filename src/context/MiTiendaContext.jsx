@@ -10,6 +10,7 @@ export const MiTiendaContext = ({children}) => {
 
     const [buscandoProds,setBuscandoProds]=useState(true)
     const [productos,setProductos]=useState([])
+    const [saldoCuenta,setSaldoCuenta]=useState(false)
 
     useEffect(() => {
         if(userLog!==""){
@@ -25,11 +26,24 @@ export const MiTiendaContext = ({children}) => {
                 }
                 setBuscandoProds(false)
             })
+            const ctacte=new FormData()
+            ctacte.append("idcliente",userLog)
+            apiFetch(
+                prods,
+                "cuentascorrientes",
+                "balance"
+            ).then((res)=>{
+                if(res.status==="success"){
+                    setSaldoCuenta(res.result)
+                }
+            })
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps
 
+    
+
     return(
-        <UseMiTiendaContext.Provider value={{buscandoProds,productos}}>
+        <UseMiTiendaContext.Provider value={{buscandoProds,productos,saldoCuenta}}>
             {children}
         </UseMiTiendaContext.Provider>
     )

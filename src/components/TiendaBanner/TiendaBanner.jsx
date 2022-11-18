@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Banner from "../../assets/img/bannerPng.png";
 import bannerXS from "../../assets/img/bannerXS.png";
 import iconHide from "../../assets/img/iconHide.svg";
 import iconShow from "../../assets/img/iconShow.svg";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { useLocation } from "react-router-dom";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import Loader from "../Loader/Loader";
 
 const TiendaBanner = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   const [showMoney, setShowMoney] = useState(false);
+  const {saldoCuenta}=useContext(UseMiTiendaContext)
 
   return (
     <div className="bannerContainer">
@@ -27,7 +30,20 @@ const TiendaBanner = () => {
           <div className="moneyCount">
             <div>
               <p>Cuenta corriente</p>
-              <span>{showMoney ? "$30.713,02" : "$**.***.**"}</span>
+              {!saldoCuenta ? 
+                <div
+                  style={{
+                    marginTop: "24px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+              :
+                <span>{showMoney ? saldoCuenta : "$**.***.**"}</span>
+                }
               {showMoney ? (
                 <img
                   src={iconHide}
