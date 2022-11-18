@@ -10,6 +10,10 @@
       margin-top: 50px;
       margin-bottom: 80px;
       padding: 0 72px;
+      box-sizing: border-box;
+      @include screen_705 {
+        padding: 0 16px;
+      }
       .firstLine {
         display: flex;
         align-items: center;
