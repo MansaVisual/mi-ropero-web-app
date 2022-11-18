@@ -32,7 +32,7 @@ const MisMensajes = () => {
 
   useEffect(() => {
     if (userLog !== "") {
-      handleMensajes(userLog);
+      handleMensajes(userLog, "all");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog]);
