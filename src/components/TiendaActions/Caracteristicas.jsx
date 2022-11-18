@@ -122,7 +122,7 @@ const Caracteristicas = ({ form, setForm }) => {
       let array=[]
       for(const i in idCaracteristica){
         console.log(idCaracteristica[i][0])
-        array=array.push(idCaracteristica[i][0])
+        array=array.concat([idCaracteristica[i][0]])
       }
       setForm((prevState) => ({
         ...prevState,
