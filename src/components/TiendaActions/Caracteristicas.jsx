@@ -102,8 +102,6 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   }
 
-  console.log(idCaracteristica);
-
   const handleSubmit = () => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
@@ -123,16 +121,14 @@ const Caracteristicas = ({ form, setForm }) => {
     if (!errorObligatorio) {
       let array=[]
       for(const i in idCaracteristica){
-        console.log(idCaracteristica[i])
-        array=array.concat(idCaracteristica[i])
+        array=array.concat(idCaracteristica[i][0])
       }
-      console.log(array)
       setForm((prevState) => ({
         ...prevState,
         caracteristicas: caracteristicas,
-        idCaracteristica: idCaracteristica,
+        idCaracteristica: array,
       }));
-      // navigate(`/MiTienda/DETALLES`);
+      navigate(`/MiTienda/DETALLES`);
     }
   };
 
@@ -150,8 +146,6 @@ const Caracteristicas = ({ form, setForm }) => {
       behavior: "smooth",
     });
   };
-
-  console.log(data);
 
   return (
     <Grid className="gridContainer">

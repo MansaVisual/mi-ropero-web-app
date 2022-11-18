@@ -36,6 +36,10 @@ const Tienda = () => {
   });
 
   useEffect(() => {
+    console.log(form)
+  }, [form]);
+
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "auto",
