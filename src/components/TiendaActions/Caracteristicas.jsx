@@ -71,7 +71,10 @@ const Caracteristicas = ({ form, setForm }) => {
   const arrayIdCaracteristicas=()=>{
     if(valueSeleccionado2!==undefined){
       if (valueSeleccionado2.valores_multiples === "0") {
-        setIdCaracteristica(idCaracteristica.concat(estadoSeleccionado));
+        const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
+        if(busqueda===undefined){
+          setIdCaracteristica(idCaracteristica.concat(estadoSeleccionado));
+        }
       } else {
         let jj = [];
         const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
