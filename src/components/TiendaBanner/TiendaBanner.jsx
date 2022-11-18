@@ -14,7 +14,7 @@ const TiendaBanner = () => {
 
   const [showMoney, setShowMoney] = useState(false);
   const {saldoCuenta}=useContext(UseMiTiendaContext)
-
+console.log(saldoCuenta)
   return (
     <div className="bannerContainer">
       <div className="breadcrumbs">
