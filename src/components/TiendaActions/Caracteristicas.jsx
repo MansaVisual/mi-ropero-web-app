@@ -180,19 +180,19 @@ const Caracteristicas = ({ form, setForm }) => {
             </div>
           )}
           <div className="inputContainer">
-            data.length===0 ? 
+            {data.length===0 ? 
               <div
-              style={{
-                marginTop: "24px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Loader spin={"spinnerG"} />
-            </div>
-          :<>
-            {data.map((select) => {
+                style={{
+                  marginTop: "24px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader spin={"spinnerG"} />
+              </div>
+            :
+            data.map((select) => {
               return (
                 <div className="inputBox">
                   <p className="labelInput" id="label">
@@ -276,7 +276,7 @@ const Caracteristicas = ({ form, setForm }) => {
                   </Select>
                 </div>
               );
-            })}</>
+            })}
           </div>
           <div className="buttonContainer">
             <button onClick={() => handleSubmit()}>IR A DETALLES</button>
