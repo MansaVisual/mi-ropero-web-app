@@ -608,7 +608,10 @@ const Contacto = ({ form, setForm }) => {
           </div>
         )}
 
-        <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+        <div
+          className="returnLink"
+          onClick={() => navigate(`/MiTienda/DETALLES`)}
+        >
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
         </div>

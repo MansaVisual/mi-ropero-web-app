@@ -118,6 +118,7 @@ const Caracteristicas = ({ form, setForm }) => {
           )}
           <div className="inputContainer">
             {data.map((select) => {
+              console.log(select);
               return (
                 <div className="inputBox">
                   <p className="labelInput" id="label">
