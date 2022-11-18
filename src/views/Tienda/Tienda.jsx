@@ -18,6 +18,7 @@ import CargaProdExito from "../../components/TiendaActions/ProductoPublicado";
 import ProductoPublicado from "../../components/TiendaActions/ProductoPublicado";
 import Contacto from "../../components/TiendaActions/Contacto";
 import Sumario from "../../components/TiendaActions/Sumario";
+import Chat from "../../components/TiendaActions/Chat";
 
 const Tienda = () => {
   const { seccion } = useParams();
@@ -37,7 +38,7 @@ const Tienda = () => {
   });
 
   useEffect(() => {
-    console.log(form)
+    console.log(form);
   }, [form]);
 
   useEffect(() => {
@@ -86,6 +87,7 @@ const Tienda = () => {
       {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
       {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
       {seccion === "SUMARIO" && <Sumario />}
+      {seccion === "MI CHAT" && <Chat />}
     </div>
   );
 };

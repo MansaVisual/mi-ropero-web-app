@@ -160,7 +160,7 @@ const Mensajes = () => {
                       className="desktopCard"
                       onClick={() => {
                         setMensajeId(mensaje.idmensaje);
-                        navigate(`/perfil/MI CHAT`);
+                        navigate(`/MI TIENDA/MI CHAT`);
                       }}
                     >
                       <div className="mensajeData">
@@ -197,7 +197,7 @@ const Mensajes = () => {
                       className="mobileCard"
                       onClick={() => {
                         setMensajeId(mensaje.idmensaje);
-                        navigate(`/perfil/MI CHAT`);
+                        navigate(`/MI TIENDA/MI CHAT`);
                       }}
                     >
                       <img
