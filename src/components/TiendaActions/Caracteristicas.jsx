@@ -23,7 +23,7 @@ const Caracteristicas = ({ form, setForm }) => {
     dir.append("idcategoria", 1);
     let caract = {};
     let caract2 = {};
-    if(form.caracteristicas.length!==0){
+    if(form.caracteristicas.length===0){
       apiFetch(dir, "categorias", "get").then((res) => {
         setData(res.result[0].caracteristicas);
         for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
