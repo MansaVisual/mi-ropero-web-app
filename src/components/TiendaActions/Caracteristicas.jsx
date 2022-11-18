@@ -65,6 +65,10 @@ const Caracteristicas = ({ form, setForm }) => {
   };
 
   useEffect(() => {
+    arrayIdCaracteristicas()
+  }, [estadoSeleccionado]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  const arrayIdCaracteristicas=()=>{
     if(valueSeleccionado2!==undefined){
       if (valueSeleccionado2.valores_multiples === "0") {
         setIdCaracteristica(idCaracteristica.concat(estadoSeleccionado));
@@ -84,7 +88,8 @@ const Caracteristicas = ({ form, setForm }) => {
         }
       }
     }
-  }, [estadoSeleccionado]);// eslint-disable-line react-hooks/exhaustive-deps
+  }
+
   console.log(idCaracteristica);
 
   const handleSubmit = () => {
@@ -214,7 +219,7 @@ const Caracteristicas = ({ form, setForm }) => {
                             /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
                             onClick={() =>
                               {if(estadoSeleccionado===`${option.idcaracteristica}:${option.idcaracteristicavalor}`){
-                                setEstadoSeleccionado("")
+                                arrayIdCaracteristicas()
                               }else{
                                 setEstadoSeleccionado(
                                    `${option.idcaracteristica}:${option.idcaracteristicavalor}`
