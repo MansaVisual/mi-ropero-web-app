@@ -397,4 +397,65 @@ input[type="number"]::-webkit-outer-spin-button {
       }
     }
   }
+  .popUp {
+    max-width: 480px !important;
+    width: 100% !important;
+    .popUpContainer {
+      max-width: 450px !important;
+      width: 100% !important;
+      .popUpDescription {
+        margin-bottom: 0 !important;
+      }
+      .inputContainer {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        @include screen_705 {
+          flex-wrap: wrap;
+        }
+        .inputBox {
+          width: 100%;
+          p {
+            margin-top: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            text-indent: 16px;
+            color: #423b3c;
+          }
+          div {
+            width: 100%;
+            input {
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 16px;
+              color: #babcbe;
+              font-style: italic;
+            }
+          }
+        }
+        .fullName {
+          max-width: unset;
+        }
+      }
+      .buttonContainer {
+        button {
+          @include screen_705 {
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+        .volver {
+          @include screen_705 {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            border: 0;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
 }
