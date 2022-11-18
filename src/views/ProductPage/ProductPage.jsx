@@ -293,7 +293,7 @@ const ProductPage = () => {
                       />
                       <CommentButton
                         onClick={
-                          tienda.estado_text!=="Activa"?
+                          tienda.estado_text!=="Activa"?()=>
                             Swal.fire({
                               title: "TIENDA INACTIVA",
                               text: "La tienda se encuentra inactiva en este momento.",
