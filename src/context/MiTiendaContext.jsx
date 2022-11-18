@@ -34,7 +34,7 @@ export const MiTiendaContext = ({children}) => {
                 "balance"
             ).then((res)=>{
                 if(res.status==="success"){
-                    setSaldoCuenta(res.result.debe-res.result.haber)
+                    setSaldoCuenta((res.result.debe-res.result.haber).toFixed(2))
                 }
             })
         }
