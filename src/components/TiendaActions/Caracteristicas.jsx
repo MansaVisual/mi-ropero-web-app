@@ -38,12 +38,10 @@ const Caracteristicas = ({ form, setForm }) => {
         ...prevState,
         [value.nombre]: [event.target.value],
       }));
-      let newArray = idCaracteristica.push(
-        `${estadoSeleccionado.idcaracteristica}:${estadoSeleccionado.idcaracteristicavalor}`
-      );
+
       setIdCaracteristica((prevState) => ({
         ...prevState,
-        newArray,
+        estadoSeleccionado,
       }));
     } else {
       let i = caracteristicas[value.nombre];
@@ -53,11 +51,7 @@ const Caracteristicas = ({ form, setForm }) => {
 
       if (busqueda !== undefined) {
         ii = i.filter((e) => e !== event.target.value);
-        jj = idCaracteristica.filter(
-          (e) =>
-            e !==
-            `${estadoSeleccionado.idcaracteristica}:${estadoSeleccionado.idcaracteristicavalor}`
-        );
+        jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
         setCaracteristicas((prevState) => ({
           ...prevState,
           [value.nombre]: ii,
@@ -74,7 +68,7 @@ const Caracteristicas = ({ form, setForm }) => {
           }));
           setIdCaracteristica((prevState) => ({
             ...prevState,
-            jj,
+            estadoSeleccionado,
           }));
         }
       }
