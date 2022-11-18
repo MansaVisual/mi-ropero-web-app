@@ -70,7 +70,7 @@ const Caracteristicas = ({ form, setForm }) => {
   }, [estadoSeleccionado]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const arrayIdCaracteristicas=()=>{
-    if(valueSeleccionado2!==undefined){
+    if(valueSeleccionado2.length!==0){
       if (valueSeleccionado2.valores_multiples === "0") {
         setIdCaracteristica((prevState) => ({
           ...prevState,
@@ -88,7 +88,7 @@ const Caracteristicas = ({ form, setForm }) => {
             [valueSeleccionado2.nombre]: ii,
           }));
         } else {
-          if (estadoSeleccionado.length <= 3) {
+          if (valueSeleccionado.length <= 3) {
             setIdCaracteristica((prevState) => ({
               ...prevState,
               [valueSeleccionado2.nombre]: estadoSeleccionado,
