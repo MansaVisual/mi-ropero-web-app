@@ -65,20 +65,22 @@ const Caracteristicas = ({ form, setForm }) => {
   };
 
   useEffect(() => {
-    if (valueSeleccionado2.valores_multiples === "0") {
-      let newArray=idCaracteristica.push(estadoSeleccionado)
-      setIdCaracteristica(newArray);
-    } else {
-      let jj = [];
-      const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
-
-      if (busqueda !== undefined) {
-        jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
-        setIdCaracteristica(jj);
+    if(valueSeleccionado2!==undefined){
+      if (valueSeleccionado2.valores_multiples === "0") {
+        let newArray=idCaracteristica.push(estadoSeleccionado)
+        setIdCaracteristica(newArray);
       } else {
-        if (valueSeleccionado.length <= 3) {
-          let newArray=idCaracteristica.push(estadoSeleccionado)
-          setIdCaracteristica(newArray);
+        let jj = [];
+        const busqueda = idCaracteristica.find((e) => e === estadoSeleccionado);
+  
+        if (busqueda !== undefined) {
+          jj = idCaracteristica.filter((e) => e !== estadoSeleccionado);
+          setIdCaracteristica(jj);
+        } else {
+          if (valueSeleccionado.length <= 3) {
+            let newArray=idCaracteristica.push(estadoSeleccionado)
+            setIdCaracteristica(newArray);
+          }
         }
       }
     }
