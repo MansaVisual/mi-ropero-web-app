@@ -4,12 +4,13 @@ import bannerXS from "../../assets/img/bannerXS.png";
 import iconHide from "../../assets/img/iconHide.svg";
 import iconShow from "../../assets/img/iconShow.svg";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import Loader from "../Loader/Loader";
 
 const TiendaBanner = () => {
   const location = useLocation();
+  const navigate = useNavigate()
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   const [showMoney, setShowMoney] = useState(false);
@@ -25,7 +26,7 @@ const TiendaBanner = () => {
         <div className="content">
           <div className="titleBox">
             <span className="title">El Ropero de Sandra</span>
-            <span className="subTitle">VER MI TIENDA</span>
+            <span className="subTitle" style={{cursor:"pointer"}} onClick={()=>navigate("/miTienda")}>VER MI TIENDA</span>
           </div>
           <div className="moneyCount">
             <div>
@@ -41,7 +42,7 @@ const TiendaBanner = () => {
                   <Loader spin={"spinnerS"} />
                 </div>
               :
-                <span>{showMoney ? `$${saldoCuenta}` : "$**.***.**"}</span>
+                <span>{showMoney ? `$ ${saldoCuenta}` : "$ **.***.**"}</span>
                 }
               {showMoney ? (
                 <img
