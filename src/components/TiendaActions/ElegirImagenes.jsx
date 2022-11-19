@@ -31,7 +31,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 src={editIcon}
                 alt="edit"
                 onClick={() => {
-                  setSection("fotoFrente");
+                  setSection("imgFrente");
                   setOpenPopUp(true);
                 }}
               />
@@ -50,8 +50,18 @@ const ElegirImagenes = ({ form, setForm }) => {
           </div>
           <div className="section">
             <div className="imgBox">
-              <p>Agregar imagen</p>
-              <img src={fotoTrasera} alt="fotoTrasera" />
+              <p
+                onClick={() => {
+                  setSection("imgTrasera");
+                  setOpenPopUp(true);
+                }}
+              >
+                Agregar imagen
+              </p>
+              <img
+                src={form.imgTrasera ? form.imgTrasera : fotoTrasera}
+                alt="fotoTrasera"
+              />
             </div>
             <div className="bottomContainer">
               <span>Foto trasera</span>

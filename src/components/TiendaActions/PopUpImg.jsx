@@ -32,12 +32,10 @@ const PopUpImg = ({ section, setOpenPopUp, setForm }) => {
   }
 
   const handleSave = () => {
-    if (section === "fotoFrente") {
-      setForm((prevState) => ({
-        ...prevState,
-        imgFrente: imageSrc,
-      }));
-    }
+    setForm((prevState) => ({
+      ...prevState,
+      section: imageSrc,
+    }));
 
     setOpenPopUp(false);
   };
