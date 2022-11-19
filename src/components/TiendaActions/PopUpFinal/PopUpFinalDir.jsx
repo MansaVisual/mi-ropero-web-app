@@ -8,7 +8,7 @@ const PopUpFinalDir = ({
   setDireccion,
   setViewDireccion,
   resDirecciones,
-  form,
+  contactForm,
   setBuscandoDir,
   provincia,
   infoLocFinal,
@@ -17,11 +17,11 @@ const PopUpFinalDir = ({
   const handleAccept = async (dir) => {
     setDireccion({
       ...dir,
-      informacion_adicional: form.infoAdicional,
-      entre_calle_1: form.entrecalle1,
-      entre_calle_2: form.entrecalle2,
-      piso: form.piso,
-      departamento: form.depto,
+      informacion_adicional: contactForm.infoAdicional,
+      entre_calle_1: contactForm.entrecalle1,
+      entre_calle_2: contactForm.entrecalle2,
+      piso: contactForm.piso,
+      departamento: contactForm.depto,
       idprovincia: provincia,
       idlocalidad: infoLocFinal.idlocalidad,
     });
