@@ -33,6 +33,8 @@ const Tienda = () => {
     caracteristicas: [],
     idCaracteristica: [],
     idCaracteristicaOld:[],
+    direccion:[],
+    telefono:"",
     titulo: "",
     precio: "",
     descripcion: "",

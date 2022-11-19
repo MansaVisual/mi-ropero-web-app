@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { UseLoginContext } from "../../context/LoginContext";
 import { handleInputChange, onFocus } from "./direccFunciones";
 import PopUpLocalidad from "../FormCheckout/PopUpLocalidad";
 import PopUpFinalDir from "./PopUpFinal/PopUpFinalDir";
@@ -22,8 +21,6 @@ const Contacto = ({ form, setForm }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
-
-  const { userLog } = useContext(UseLoginContext);
 
   const [contactForm, setContactForm] = useState([]);
 
@@ -103,6 +100,22 @@ const Contacto = ({ form, setForm }) => {
       }
     }
   };
+
+  useEffect(() => {
+    if(form.direccion!==0){
+      document.getElementById('telefono').value=form.teleofno
+      document.getElementById('calle').value=form.direccion.calle
+      document.getElementById('alturaKM').value=form.direccion.numero
+      document.getElementById('piso').value=form.direccion.piso
+      document.getElementById('depto').value=form.direccion.departamento
+      document.getElementById('provincia').value=form.direccion.provincia
+      document.getElementById('barrioLocalidad').value=form.direccion.localidad
+      document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
+      document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
+      document.getElementById('codigoPostal').value=form.direccion.codigo_postal
+      document.getElementById('infoAdicional').value=form.direccion.informacion_adicional
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const checkNuevaDireccion = async () => {
     setLoader(true);
@@ -195,38 +208,11 @@ const Contacto = ({ form, setForm }) => {
 
   useEffect(() => {
     if (guardarDireccion) {
-      // const dir = new FormData();
-      // dir.append("idcliente", userLog);
-      // dir.append("nombre", direccion.alias);
-      // dir.append("codigo_postal", direccion.codigo_postal);
-      // dir.append("provincia", direccion.provincia);
-      // dir.append("idprovincia", direccion.idprovincia);
-      // dir.append("localidad", direccion.localidad);
-      // dir.append("idlocalidad", direccion.idlocalidad);
-      // dir.append("calle", direccion.calle);
-      // dir.append("numero", direccion.numero);
-      // dir.append("piso", direccion.piso);
-      // dir.append("departamento", direccion.departamento);
-      // dir.append("entre_calle_1", direccion.entre_calle_1);
-      // dir.append("entre_calle_2", direccion.entre_calle_2);
-      // dir.append("informacion_adicional", direccion.informacion_adicional);
-      // dir.append("normalized", direccion.raw_data);
-      // apiFetch(dir, "direcciones", "insert").then(async (res) => {
-      //   console.table("direcciones insert dir", Object.fromEntries(dir));
-      //   if (res.status === "success") {
-      //     navigate(`/perfil/MIS DIRECCIONES`);
-      //   } else {
-      //     setLoader(false);
-      //     setErrorDireccion(true);
-      //     throwError("calle", "labelCalle");
-      //     throwError("alturaKM", "labelAlturaKM");
-      //     throwError("provincia", "labelProvincia");
-      //     throwError("barrioLocalidad", "labelBarrioLocalidad");
-      //     throwError("codigoPostal", "labelCodigoPostal");
-      //     scrollTop();
-      //   }
-      // });
-      console.log(direccion)
+      setForm((prevState) => ({
+        ...prevState,
+        direccion:direccion,
+        telefono:document.getElementById("telefono").value
+      }));
     }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
