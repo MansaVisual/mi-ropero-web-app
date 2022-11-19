@@ -614,6 +614,7 @@ console.log(infoLocFinal)
             contactForm={contactForm}
             setGuardarDireccion={setGuardarDireccion}
             infoLocFinal={infoLocFinal}
+            setLoader={setLoader}
           />
         )}
         {popLoc && (

@@ -13,6 +13,7 @@ const PopUpFinalDir = ({
   provincia,
   infoLocFinal,
   setGuardarDireccion,
+  setLoader
 }) => {
   const handleAccept = async (dir) => {
     setDireccion({
@@ -38,6 +39,7 @@ const PopUpFinalDir = ({
               if (setBuscandoDir !== undefined) {
                 setBuscandoDir(false);
               }
+              setLoader(false)
             }}
           ></div>
           <div className="popUp">
@@ -50,6 +52,7 @@ const PopUpFinalDir = ({
                 if (setBuscandoDir !== undefined) {
                   setBuscandoDir(false);
                 }
+                setLoader(false)
               }}
             />
             <img src={home} alt="SHOP" color="primary" className="botonLogo" />
@@ -97,6 +100,7 @@ const PopUpFinalDir = ({
               onClick={() => {
                 setGuardarDireccion(true);
                 setViewDireccion(false);
+                setLoader(false)
               }}
             >
               CONTINUAR
