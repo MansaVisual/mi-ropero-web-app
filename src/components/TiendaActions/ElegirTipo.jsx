@@ -31,6 +31,9 @@ const ElegirTipo = ({ form, setForm }) => {
                         setForm((prevState) => ({
                           ...prevState,
                           tipo: cat.idcategoria,
+                          caracteristicas: [],
+                          idCaracteristica: [],
+                          idCaracteristicaOld:[]
                         }))
                       }
                     />

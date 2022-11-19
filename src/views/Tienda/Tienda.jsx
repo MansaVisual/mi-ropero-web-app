@@ -32,6 +32,7 @@ const Tienda = () => {
     tipo: "",
     caracteristicas: [],
     idCaracteristica: [],
+    idCaracteristicaOld:[],
     titulo: "",
     precio: "",
     descripcion: "",
@@ -73,7 +74,7 @@ const Tienda = () => {
       {seccion === "CARACTERISTICAS" && (
         <Caracteristicas form={form} setForm={setForm} />
       )}
-      {seccion === "DETALLES" && <DetallesProd setForm={setForm} />}
+      {seccion === "DETALLES" && <DetallesProd form={form} setForm={setForm} />}
       {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
       {seccion === "VENTAS" && <Ventas />}
       {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}

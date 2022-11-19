@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import PopUpDescProd from "./PopUpDescProd";
 
-const DetallesProd = ({ setForm }) => {
+const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
 
   const [habilitado, setHabilitado] = useState(false);
@@ -30,6 +30,16 @@ const DetallesProd = ({ setForm }) => {
       descripcion: document.getElementById("descripcion").value,
     });
   };
+
+  useEffect(() => {
+    if(form.titulo!==""){
+      setDetalles({
+        title: form.titulo,
+        precio: form.precio,
+        descripcion: form.descripcion,
+      });
+    }
+  }, [form]);
 
   useEffect(() => {
     if (
@@ -64,9 +74,9 @@ const DetallesProd = ({ setForm }) => {
             }}
           >
             <span className="title">DETALLES</span>
-            <span className="titleRight" onClick={() => setOpenDescPopUp(true)}>
+            {/* <span className="titleRight" onClick={() => setOpenDescPopUp(true)}>
               CREAR DESCUENTO PARA PRODUCTO
-            </span>
+            </span> */}
           </Box>
           <div className="firstLine" style={{ marginTop: "24px" }}>
             <div className="margenInput margenInputEspecial">
