@@ -102,13 +102,14 @@ const Contacto = ({ form, setForm }) => {
   };
 
   useEffect(() => {
+    console.log(form)
     if(form.direccion.length!==0){
-      document.getElementById('telefono').value=form.teleofno
+      document.getElementById('telefono').value=form.telefono
       document.getElementById('calle').value=form.direccion.calle
       document.getElementById('alturaKM').value=form.direccion.numero
       document.getElementById('piso').value=form.direccion.piso
       document.getElementById('depto').value=form.direccion.departamento
-      document.getElementById('provincia').value=form.direccion.provincia
+      document.getElementById('provincia').value=form.direccion.idProvincia
       document.getElementById('barrioLocalidad').value=form.direccion.localidad
       document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
       document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
