@@ -132,6 +132,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           section={section}
           setOpenPopUp={setOpenPopUp}
           setForm={setForm}
+          form={form}
         />
       )}
     </div>

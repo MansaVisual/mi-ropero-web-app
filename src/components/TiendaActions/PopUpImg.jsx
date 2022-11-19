@@ -4,8 +4,10 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, Slider, Typography } from "@mui/material";
 import Loader from "../Loader/Loader";
 import Cropper from "react-easy-crop";
-const PopUpImg = ({ section, setOpenPopUp, setForm }) => {
-  const [imageSrc, setImageSrc] = useState(null);
+const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
+  const [imageSrc, setImageSrc] = useState(
+    form[section] ? form[section] : null
+  );
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
