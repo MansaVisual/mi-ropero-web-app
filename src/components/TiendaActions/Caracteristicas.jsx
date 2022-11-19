@@ -35,14 +35,14 @@ const Caracteristicas = ({ form, setForm }) => {
         setIdCaracteristica(caract)
       });
     }else{
-      for (let i = 0; i < caracteristicas.length; i++) {
+      for (const i in caracteristicas) {
         let obj = caracteristicas[i];
         caract[obj] = [];
       }
       console.log(caract)
         setData(caract);
         setCaracteristicas(caract);
-      for (let i = 0; i < idCaracteristica.length; i++) {
+      for (const i in idCaracteristica) {
         let obj = idCaracteristica[i];
         caract2[obj] = [];
       }
