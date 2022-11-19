@@ -39,12 +39,15 @@ const Caracteristicas = ({ form, setForm }) => {
         let obj = caracteristicas[i];
         caract[obj] = [];
       }
+      console.log(caract)
         setData(caract);
         setCaracteristicas(caract);
       for (let i = 0; i < idCaracteristica.length; i++) {
         let obj = idCaracteristica[i];
         caract2[obj] = [];
       }
+      console.log(caract2)
+
       setIdCaracteristica(caract2);
     }
   }, []);// eslint-disable-line react-hooks/exhaustive-deps
