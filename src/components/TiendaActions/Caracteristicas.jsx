@@ -35,22 +35,9 @@ const Caracteristicas = ({ form, setForm }) => {
         setIdCaracteristica(caract)
       });
     }else{
-      console.log(form.caracteristicas)
-      for (const i in form.caracteristicas) {
-        console.log(form.caracteristicas[i])
-        let obj = form.caracteristicas[i];
-        caract[obj] = [];
-      }
-      console.log(caract)
-        setData(caract);
-        setCaracteristicas(caract);
-      for (const i in form.idCaracteristica) {
-        let obj = form.idCaracteristica[i];
-        caract2[obj] = [];
-      }
-      console.log(caract2)
-
-      setIdCaracteristica(caract2);
+        setData(form.caracteristicas);
+        setCaracteristicas(form.caracteristicas);
+        setIdCaracteristica(form.idCaracteristicaold);
     }
   }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -149,6 +136,7 @@ const Caracteristicas = ({ form, setForm }) => {
         ...prevState,
         caracteristicas: caracteristicas,
         idCaracteristica: array,
+        idCaracteristicaold:idCaracteristica
       }));
       navigate(`/MiTienda/DETALLES`);
     }
