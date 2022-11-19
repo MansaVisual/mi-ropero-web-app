@@ -102,7 +102,7 @@ const Contacto = ({ form, setForm }) => {
   };
 
   useEffect(() => {
-    if(form.direccion!==0){
+    if(form.direccion.length!==0){
       document.getElementById('telefono').value=form.teleofno
       document.getElementById('calle').value=form.direccion.calle
       document.getElementById('alturaKM').value=form.direccion.numero
