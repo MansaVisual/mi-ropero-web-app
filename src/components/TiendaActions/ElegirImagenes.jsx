@@ -22,7 +22,10 @@ const ElegirImagenes = ({ form, setForm }) => {
         <div className="ImgSections">
           <div className="section">
             <div className="imgBox">
-              <img src={fotoFrente} alt="fotoFrente" />
+              <img
+                src={form.imgFrente ? form.imgFrente : fotoFrente}
+                alt="fotoFrente"
+              />
               <img
                 className="editButton"
                 src={editIcon}
