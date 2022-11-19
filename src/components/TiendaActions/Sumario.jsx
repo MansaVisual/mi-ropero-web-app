@@ -107,7 +107,7 @@ const Sumario = () => {
           </div>
           <div
             className="returnLink"
-            onClick={() => navigate(`/MiTienda/IMAGENES`)}
+            onClick={() => navigate(`/MiTienda/CONTACTO`)}
           >
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A CONTACTO</p>
