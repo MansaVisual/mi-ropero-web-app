@@ -61,49 +61,50 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
           <p className="popUpDescription" style={{ marginTop: "8px" }}>
             Te sugerimos ajustar el tamaño para que se vea lo mejor posible{" "}
           </p>
-          <>
-            <div className="cropContainer">
-              <Cropper
-                image={imageSrc}
-                crop={crop}
-                rotation={rotation}
-                zoom={zoom}
-                aspect={3 / 4}
-                onCropChange={setCrop}
-                onRotationChange={setRotation}
-                /* onCropComplete={onCropComplete} */
-                onZoomChange={setZoom}
-              />
-            </div>
-            <div /* className={classes.controls} */>
-              <div /* className={classes.sliderContainer} */>
-                <Typography
-                  variant="overline"
-                  /* classes={{ root: classes.sliderLabel }} */
-                >
-                  Zoom
-                </Typography>
-                <Slider
-                  value={zoom}
-                  min={1}
-                  max={3}
-                  step={0.1}
-                  aria-labelledby="Zoom"
-                  /* classes={{ root: classes.slider }} */
-                  onChange={(e, zoom) => setZoom(zoom)}
+          {imageSrc && (
+            <>
+              <div className="cropContainer">
+                <Cropper
+                  image={imageSrc}
+                  crop={crop}
+                  rotation={rotation}
+                  zoom={zoom}
+                  aspect={3 / 4}
+                  onCropChange={setCrop}
+                  onRotationChange={setRotation}
+                  /* onCropComplete={onCropComplete} */
+                  onZoomChange={setZoom}
                 />
               </div>
-              <Button
-                onClick={handleSave}
-                variant="contained"
-                color="primary"
-                /*    classes={{ root: classes.cropButton }} */
-              >
-                Guardar imagen
-              </Button>
-            </div>
-            {/*   <ImgDialog img={croppedImage} onClose={onClose} /> */}
-          </>
+              <div /* className={classes.controls} */>
+                <div /* className={classes.sliderContainer} */>
+                  <Typography
+                    variant="overline"
+                    /* classes={{ root: classes.sliderLabel }} */
+                  >
+                    Zoom
+                  </Typography>
+                  <Slider
+                    value={zoom}
+                    min={1}
+                    max={3}
+                    step={0.1}
+                    aria-labelledby="Zoom"
+                    /* classes={{ root: classes.slider }} */
+                    onChange={(e, zoom) => setZoom(zoom)}
+                  />
+                </div>
+                <Button
+                  onClick={handleSave}
+                  variant="contained"
+                  color="primary"
+                  /*    classes={{ root: classes.cropButton }} */
+                >
+                  Guardar imagen
+                </Button>
+              </div>
+            </>
+          )}
 
           <div className="buttonContainer">
             {loading ? (
