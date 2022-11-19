@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -7,8 +7,10 @@ import fotoTrasera from "../../assets/img/fotoFrente.svg";
 import editIcon from "../../assets/img/editIcon.svg";
 import addButton from "../../assets/img/addButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
+import PopUpImg from "./PopUpImg";
 
 const ElegirImagenes = () => {
+  const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
   return (
     <div className="elegirImgContainer">
@@ -19,7 +21,12 @@ const ElegirImagenes = () => {
           <div className="section">
             <div className="imgBox">
               <img src={fotoFrente} alt="fotoFrente" />
-              <img className="editButton" src={editIcon} alt="edit" />
+              <img
+                className="editButton"
+                src={editIcon}
+                alt="edit"
+                onClick={() => setOpenPopUp(true)}
+              />
             </div>
             <div className="bottomContainer">
               <span>Foto frente</span>
@@ -102,6 +109,7 @@ const ElegirImagenes = () => {
           <p>VOLVER A SUBCATEGORÍA</p>
         </div>
       </div>
+      {openPopUp && <PopUpImg setOpenPopUp={setOpenPopUp} />}
     </div>
   );
 };
