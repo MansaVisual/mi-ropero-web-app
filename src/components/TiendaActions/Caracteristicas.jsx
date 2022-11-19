@@ -18,7 +18,7 @@ const Caracteristicas = ({ form, setForm }) => {
   const [idCaracteristica, setIdCaracteristica] = useState({});
   const [valueSeleccionado, setValueSeleccionado] = useState([]);
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
-
+console.log(form)
   useEffect(() => {
     const dir = new FormData();
     dir.append("idcategoria", 1);
@@ -30,16 +30,15 @@ const Caracteristicas = ({ form, setForm }) => {
           let obj = res.result[0].caracteristicas[i].nombre;
           caract[obj] = [];
         }
-        console.log(caract)
         setCaracteristicas(caract);
         setIdCaracteristica(caract)
       });
     }else{
-      console.log(form.caracteristicas)
-      console.log(form.idCaracteristicaOld)
-        setData(form.caracteristicas);
+      apiFetch(dir, "categorias", "get").then((res) => {
+        setData(res.result[0].caracteristicas);
         setCaracteristicas(form.caracteristicas);
         setIdCaracteristica(form.idCaracteristicaOld);
+      })
     }
   }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
