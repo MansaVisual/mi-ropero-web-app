@@ -56,7 +56,7 @@ const Contacto = ({ form, setForm }) => {
   const [changeLoc, setChangeLoc] = useState(false);
 
   const [cambioProvincia, setCambioProvincia] = useState(false);
-
+console.log(infoLocFinal)
   useEffect(() => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById("codigoPostal").value =
@@ -109,7 +109,7 @@ const Contacto = ({ form, setForm }) => {
       document.getElementById('alturaKM').value=form.direccion.numero
       document.getElementById('piso').value=form.direccion.piso
       document.getElementById('depto').value=form.direccion.departamento
-      document.getElementById('provincia').value=form.direccion.idprovincia
+      setProvincia(form.direccion.idprovincia)
       document.getElementById('barrioLocalidad').value=form.direccion.localidad
       document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
       document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
@@ -214,6 +214,7 @@ const Contacto = ({ form, setForm }) => {
         direccion:direccion,
         telefono:document.getElementById("telefono").value
       }));
+      navigate("/MiTienda/SUMARIO")
     }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
