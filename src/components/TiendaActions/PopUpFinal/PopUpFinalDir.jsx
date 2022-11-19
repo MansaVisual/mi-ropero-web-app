@@ -17,7 +17,6 @@ const PopUpFinalDir = ({
   const handleAccept = async (dir) => {
     setDireccion({
       ...dir,
-      alias: form.alias,
       informacion_adicional: form.infoAdicional,
       entre_calle_1: form.entrecalle1,
       entre_calle_2: form.entrecalle2,
