@@ -110,6 +110,7 @@ console.log(infoLocFinal)
       document.getElementById('piso').value=form.direccion.piso
       document.getElementById('depto').value=form.direccion.departamento
       setProvincia(form.direccion.idprovincia)
+      setInfoLoc(form.infoLocalidad)
       document.getElementById('barrioLocalidad').value=form.direccion.localidad
       document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
       document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
@@ -212,7 +213,8 @@ console.log(infoLocFinal)
       setForm((prevState) => ({
         ...prevState,
         direccion:direccion,
-        telefono:document.getElementById("telefono").value
+        telefono:document.getElementById("telefono").value,
+        infoLocalidad:infoLocFinal
       }));
       navigate("/MiTienda/SUMARIO")
     }
