@@ -19,7 +19,7 @@ const Caracteristicas = ({ form, setForm }) => {
   const [valueSeleccionado, setValueSeleccionado] = useState([]);
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
-  console.log(form);
+  console.log(data);
 
   useEffect(() => {
     const dir = new FormData();
