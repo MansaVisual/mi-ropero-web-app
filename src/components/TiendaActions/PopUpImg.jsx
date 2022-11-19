@@ -34,7 +34,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm }) => {
   const handleSave = () => {
     setForm((prevState) => ({
       ...prevState,
-      section: imageSrc,
+      [section]: imageSrc,
     }));
 
     setOpenPopUp(false);
