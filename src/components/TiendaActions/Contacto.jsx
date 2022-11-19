@@ -109,7 +109,7 @@ const Contacto = ({ form, setForm }) => {
       document.getElementById('alturaKM').value=form.direccion.numero
       document.getElementById('piso').value=form.direccion.piso
       document.getElementById('depto').value=form.direccion.departamento
-      document.getElementById('provincia').value=form.direccion.idProvincia
+      document.getElementById('provincia').value=form.direccion.idprovincia
       document.getElementById('barrioLocalidad').value=form.direccion.localidad
       document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
       document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
