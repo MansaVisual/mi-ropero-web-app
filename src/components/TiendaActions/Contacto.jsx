@@ -102,7 +102,6 @@ console.log(infoLocFinal)
   };
 
   useEffect(() => {
-    console.log(form)
     if(form.direccion.length!==0){
       document.getElementById('telefono').value=form.telefono
       document.getElementById('calle').value=form.direccion.calle
@@ -111,7 +110,11 @@ console.log(infoLocFinal)
       document.getElementById('depto').value=form.direccion.departamento
       setProvincia(form.direccion.idprovincia)
       setInfoLoc(form.infoLocalidad)
-      document.getElementById('barrioLocalidad').value=form.direccion.localidad
+      if(form.direccion.idprovincia==="1"){
+        document.getElementById('barrioLocalidad').value="CAPITAL FEDERAL"
+      }else{
+        document.getElementById('barrioLocalidad').value=form.direccion.localidad
+      }
       document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
       document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
       document.getElementById('codigoPostal').value=form.direccion.codigo_postal
@@ -186,7 +189,6 @@ console.log(infoLocFinal)
     );
 
     apiFetch(formDireccion, "direcciones", "normalize").then(async (res) => {
-      console.table(Object.fromEntries(formDireccion));
       if (
         res.status === "success" &&
         res.result[0].calle !== "" &&
