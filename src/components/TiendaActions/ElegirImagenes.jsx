@@ -9,9 +9,11 @@ import addButton from "../../assets/img/addButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
 
-const ElegirImagenes = () => {
+const ElegirImagenes = ({ form, setForm }) => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
+
+  const [section, setSection] = useState(null);
   return (
     <div className="elegirImgContainer">
       <div className="container">
@@ -25,7 +27,10 @@ const ElegirImagenes = () => {
                 className="editButton"
                 src={editIcon}
                 alt="edit"
-                onClick={() => setOpenPopUp(true)}
+                onClick={() => {
+                  setSection("fotoFrente");
+                  setOpenPopUp(true);
+                }}
               />
             </div>
             <div className="bottomContainer">
@@ -109,7 +114,13 @@ const ElegirImagenes = () => {
           <p>VOLVER A SUBCATEGORÍA</p>
         </div>
       </div>
-      {openPopUp && <PopUpImg setOpenPopUp={setOpenPopUp} />}
+      {openPopUp && (
+        <PopUpImg
+          section={section}
+          setOpenPopUp={setOpenPopUp}
+          setForm={setForm}
+        />
+      )}
     </div>
   );
 };

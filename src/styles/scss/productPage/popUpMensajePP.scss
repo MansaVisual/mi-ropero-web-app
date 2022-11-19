@@ -100,6 +100,20 @@
         font-size: 12px;
         font-weight: 600;
       }
+      input[type="file"] {
+        display: none;
+      }
+      .custom-file-upload {
+        background: #443988;
+        border-radius: 20px;
+        padding: 0px 69px;
+        color: #fff;
+        font-size: 13px;
+        margin-right: 8px;
+        margin-top: 24px;
+        height: 32px;
+        cursor: pointer;
+      }
       .volver {
         background: #ffffff;
         border-radius: 20px;

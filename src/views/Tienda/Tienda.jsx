@@ -14,7 +14,7 @@ import Mensajes from "../../components/TiendaActions/Mensajes";
 import Calificaciones from "../../components/TiendaActions/Calificaciones";
 import Transferencias from "../../components/TiendaActions/Transferencias";
 import Caracteristicas from "../../components/TiendaActions/Caracteristicas";
-import CargaProdExito from "../../components/TiendaActions/ProductoPublicado";
+/* import CargaProdExito from "../../components/TiendaActions/ProductoPublicado"; */
 import ProductoPublicado from "../../components/TiendaActions/ProductoPublicado";
 import Contacto from "../../components/TiendaActions/Contacto";
 import Sumario from "../../components/TiendaActions/Sumario";
@@ -32,12 +32,16 @@ const Tienda = () => {
     tipo: "",
     caracteristicas: [],
     idCaracteristica: [],
-    idCaracteristicaOld:[],
-    direccion:[],
-    telefono:"",
+    idCaracteristicaOld: [],
+    direccion: [],
+    telefono: "",
     titulo: "",
     precio: "",
     descripcion: "",
+    imgFrente: null,
+    imgTrasera: null,
+    video: null,
+    imgExtra: null,
   });
 
   useEffect(() => {
@@ -72,7 +76,9 @@ const Tienda = () => {
       {seccion === "PRODUCTOS" && <SeccionProductosCon />}
       {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
       {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
-      {seccion === "IMAGENES" && <ElegirImagenes setForm={setForm} />}
+      {seccion === "IMAGENES" && (
+        <ElegirImagenes form={form} setForm={setForm} />
+      )}
       {seccion === "CARACTERISTICAS" && (
         <Caracteristicas form={form} setForm={setForm} />
       )}
