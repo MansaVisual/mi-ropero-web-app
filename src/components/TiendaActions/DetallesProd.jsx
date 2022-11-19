@@ -38,8 +38,11 @@ const DetallesProd = ({ form, setForm }) => {
         precio: form.precio,
         descripcion: form.descripcion,
       });
+      document.getElementById("titulo").value=form.titulo
+      document.getElementById("precio").value=form.precio
+      document.getElementById("descripcion").value=form.descripcion
     }
-  }, [form]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (
