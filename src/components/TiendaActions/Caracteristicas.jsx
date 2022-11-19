@@ -23,7 +23,6 @@ const Caracteristicas = ({ form, setForm }) => {
     const dir = new FormData();
     dir.append("idcategoria", 1);
     let caract = {};
-    let caract2 = {};
     if(form.caracteristicas.length===0){
       apiFetch(dir, "categorias", "get").then((res) => {
         setData(res.result[0].caracteristicas);
@@ -31,13 +30,16 @@ const Caracteristicas = ({ form, setForm }) => {
           let obj = res.result[0].caracteristicas[i].nombre;
           caract[obj] = [];
         }
+        console.log(caract)
         setCaracteristicas(caract);
         setIdCaracteristica(caract)
       });
     }else{
+      console.log(form.caracteristicas)
+      console.log(form.idCaracteristicaOld)
         setData(form.caracteristicas);
         setCaracteristicas(form.caracteristicas);
-        setIdCaracteristica(form.idCaracteristicaold);
+        setIdCaracteristica(form.idCaracteristicaOld);
     }
   }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -136,7 +138,7 @@ const Caracteristicas = ({ form, setForm }) => {
         ...prevState,
         caracteristicas: caracteristicas,
         idCaracteristica: array,
-        idCaracteristicaold:idCaracteristica
+        idCaracteristicaOld:idCaracteristica
       }));
       navigate(`/MiTienda/DETALLES`);
     }
