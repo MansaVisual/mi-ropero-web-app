@@ -226,7 +226,7 @@ const Contacto = ({ form, setForm }) => {
       //     scrollTop();
       //   }
       // });
-      console.log(contactForm)
+      console.log(direccion)
     }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
