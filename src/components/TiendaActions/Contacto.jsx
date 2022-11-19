@@ -193,41 +193,41 @@ const Contacto = ({ form, setForm }) => {
     });
   };
 
-  useEffect(() => {
-    if (guardarDireccion) {
-      const dir = new FormData();
-      dir.append("idcliente", userLog);
-      dir.append("nombre", direccion.alias);
-      dir.append("codigo_postal", direccion.codigo_postal);
-      dir.append("provincia", direccion.provincia);
-      dir.append("idprovincia", direccion.idprovincia);
-      dir.append("localidad", direccion.localidad);
-      dir.append("idlocalidad", direccion.idlocalidad);
-      dir.append("calle", direccion.calle);
-      dir.append("numero", direccion.numero);
-      dir.append("piso", direccion.piso);
-      dir.append("departamento", direccion.departamento);
-      dir.append("entre_calle_1", direccion.entre_calle_1);
-      dir.append("entre_calle_2", direccion.entre_calle_2);
-      dir.append("informacion_adicional", direccion.informacion_adicional);
-      dir.append("normalized", direccion.raw_data);
-      apiFetch(dir, "direcciones", "insert").then(async (res) => {
-        console.table("direcciones insert dir", Object.fromEntries(dir));
-        if (res.status === "success") {
-          navigate(`/perfil/MIS DIRECCIONES`);
-        } else {
-          setLoader(false);
-          setErrorDireccion(true);
-          throwError("calle", "labelCalle");
-          throwError("alturaKM", "labelAlturaKM");
-          throwError("provincia", "labelProvincia");
-          throwError("barrioLocalidad", "labelBarrioLocalidad");
-          throwError("codigoPostal", "labelCodigoPostal");
-          scrollTop();
-        }
-      });
-    }
-  }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   if (guardarDireccion) {
+  //     const dir = new FormData();
+  //     dir.append("idcliente", userLog);
+  //     dir.append("nombre", direccion.alias);
+  //     dir.append("codigo_postal", direccion.codigo_postal);
+  //     dir.append("provincia", direccion.provincia);
+  //     dir.append("idprovincia", direccion.idprovincia);
+  //     dir.append("localidad", direccion.localidad);
+  //     dir.append("idlocalidad", direccion.idlocalidad);
+  //     dir.append("calle", direccion.calle);
+  //     dir.append("numero", direccion.numero);
+  //     dir.append("piso", direccion.piso);
+  //     dir.append("departamento", direccion.departamento);
+  //     dir.append("entre_calle_1", direccion.entre_calle_1);
+  //     dir.append("entre_calle_2", direccion.entre_calle_2);
+  //     dir.append("informacion_adicional", direccion.informacion_adicional);
+  //     dir.append("normalized", direccion.raw_data);
+  //     apiFetch(dir, "direcciones", "insert").then(async (res) => {
+  //       console.table("direcciones insert dir", Object.fromEntries(dir));
+  //       if (res.status === "success") {
+  //         navigate(`/perfil/MIS DIRECCIONES`);
+  //       } else {
+  //         setLoader(false);
+  //         setErrorDireccion(true);
+  //         throwError("calle", "labelCalle");
+  //         throwError("alturaKM", "labelAlturaKM");
+  //         throwError("provincia", "labelProvincia");
+  //         throwError("barrioLocalidad", "labelBarrioLocalidad");
+  //         throwError("codigoPostal", "labelCodigoPostal");
+  //         scrollTop();
+  //       }
+  //     });
+  //   }
+  // }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = (param) => {
     if (param !== undefined) {
