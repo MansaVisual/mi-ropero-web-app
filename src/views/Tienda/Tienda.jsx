@@ -20,6 +20,7 @@ import Contacto from "../../components/TiendaActions/Contacto";
 import Sumario from "../../components/TiendaActions/Sumario";
 import Chat from "../../components/TiendaActions/Chat";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import SeccionProductos from "../../components/TiendaActions/SeccionProductos";
 
 const Tienda = () => {
   const { seccion } = useParams();
@@ -74,7 +75,7 @@ const Tienda = () => {
 
   return (
     <div>
-      {tiendaData.length===0 ? <SeccionProductosCon/> :<>
+      {tiendaData.length===0 ? <SeccionProductos/> :<>
       {seccion === undefined && <MiTienda />}
       {seccion === "PRODUCTOS" && <SeccionProductosCon />}
       {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
