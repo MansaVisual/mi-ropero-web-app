@@ -6,6 +6,7 @@ import Loader from "../Loader/Loader";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
+import Swal from "sweetalert2";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
 
@@ -47,7 +48,17 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
     trans.append("titular",data.titular)
     trans.append("documento",Number(data.dni))
     trans.append("monto",data.monto)
-    apiFetch(trans,"transferencias","insert").then((res)=>console.log(res))
+    apiFetch(trans,"transferencias","insert").then((res)=>{
+      if(data.result==="success"){
+        setLoading(false)
+        setTransfPopUp(false)
+        Swal.fire({
+          title: "TRANSFERENCIA SOLICITADA",
+          icon: "success",
+          confirmButtonText: "ACEPTAR",
+        })
+      }
+    })
   }
   
   return (
