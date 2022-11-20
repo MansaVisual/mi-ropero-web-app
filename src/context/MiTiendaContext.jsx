@@ -21,8 +21,6 @@ export const MiTiendaContext = ({ children }) => {
         }
         setBuscandoProds(false);
       });
-      const ctacte = new FormData();
-      ctacte.append("idcliente", userLog);
       apiFetch(prods, "cuentascorrientes", "balance").then((res) => {
         if (res.status === "success") {
           setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
@@ -33,7 +31,7 @@ export const MiTiendaContext = ({ children }) => {
 
   return (
     <UseMiTiendaContext.Provider
-      value={{ buscandoProds, productos, saldoCuenta }}
+      value={{ buscandoProds, productos, saldoCuenta, setSaldoCuenta }}
     >
       {children}
     </UseMiTiendaContext.Provider>

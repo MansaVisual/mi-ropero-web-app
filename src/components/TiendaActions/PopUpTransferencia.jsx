@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
 
-  const { saldoCuenta } = useContext(UseMiTiendaContext);
+  const { saldoCuenta, setSaldoCuenta } = useContext(UseMiTiendaContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [loading, setLoading] = useState(false);
@@ -52,9 +52,24 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
       if(res.status==="success"){
         setLoading(false)
         setTransfPopUp(false)
+        const ctacte = new FormData();
+        ctacte.append("idcliente", userLog);
+        apiFetch(ctacte, "cuentascorrientes", "balance").then((res) => {
+          if (res.status === "success") {
+            setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
+          }
+          Swal.fire({
+            title: "TRANSFERENCIA SOLICITADA",
+            icon: "success",
+            confirmButtonText: "ACEPTAR",
+          })
+        });
+      }else{
+        setLoading(false)
+        setTransfPopUp(false)
         Swal.fire({
-          title: "TRANSFERENCIA SOLICITADA",
-          icon: "success",
+          title: "OCURRIÓ UN ERROR",
+          icon: "error",
           confirmButtonText: "ACEPTAR",
         })
       }
