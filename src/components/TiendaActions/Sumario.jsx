@@ -64,11 +64,11 @@ const Sumario = ({ form }) => {
               <p className="title">Características</p>
               <div className="infoCaract">
                 <div>
-                  {Object.keys(sumario.caracteristicas).map((key, index) => {
+                  {Object.keys(form.caracteristicas).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
-                        <span>{sumario.caracteristicas[key]}</span>
+                        <span>{form.caracteristicas[key]}</span>
                       </div>
                     );
                   })}
@@ -82,14 +82,14 @@ const Sumario = ({ form }) => {
               <p className="title">Detalle</p>
               <div className="infoDetalle">
                 <div>
-                  {/* {Object.keys(sumario.detalle).map((key, index) => {
+                  {Object.keys(sumario.detalle).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
                         <span>{sumario.detalle[key]}</span>
                       </div>
                     );
-                  })} */}
+                  })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/DETALLES`)}>
                   MODIFICAR
