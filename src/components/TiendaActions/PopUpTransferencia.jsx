@@ -31,7 +31,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
 
   const submit = ()=>{
     setLoading(true)
-    if(data.monto<100 || data.monto>saldoCuenta.toFixed(2)){
+    if(data.monto<100 || data.monto>saldoCuenta){
       setLoading(false)
       setErrorMonto(true)
       document.getElementById("monto").focus()
@@ -176,7 +176,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
             </div>
             <div className="inputBox">
               <p className={`labelInput ${errorMonto?clase:""}`} id="labelMonto">
-                Monto Mín: $100 / Máx: ${saldoCuenta.toFixed(2)}
+                Monto Mín: $100 / Máx: ${saldoCuenta}
               </p>
               <TextField
                 className={`input ${errorMonto?clase2:""}`}
