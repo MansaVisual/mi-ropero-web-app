@@ -12,10 +12,6 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-  const [loading, setLoading] = useState(false);
-
-  const [fin, setFin] = useState(false);
-
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -118,9 +114,10 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       console.log("donee", { croppedImage });
+      form.imagenes[section] = croppedImage;
       setForm((prevState) => ({
         ...prevState,
-        [section]: croppedImage,
+        imagenes: form.imagenes,
       }));
       setOpenPopUp(false);
     } catch (e) {

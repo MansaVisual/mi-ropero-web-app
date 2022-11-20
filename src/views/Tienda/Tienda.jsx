@@ -40,6 +40,7 @@ const Tienda = () => {
     titulo: "",
     precio: "",
     descripcion: "",
+    imagenes: {},
     imgFrente: null,
     imgTrasera: null,
     video: null,
