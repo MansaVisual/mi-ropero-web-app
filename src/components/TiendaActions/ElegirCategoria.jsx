@@ -47,10 +47,11 @@ const ElegirCategoria = ({ setForm }) => {
                 onClick={() => {
                   setForm((prevState) => ({
                     ...prevState,
-                    categoria: section.idCategoriaPadre,
+                    categoriaId: section.idCategoriaPadre,
+                    categoriaNombre: section.nombre,
                     caracteristicas: [],
                     idCaracteristica: [],
-                    idCaracteristicaOld:[]
+                    idCaracteristicaOld: [],
                   }));
                   navigate(`/MiTienda/TIPO`);
                 }}
@@ -64,17 +65,22 @@ const ElegirCategoria = ({ setForm }) => {
             );
           })}
         </div>
-        <div className="returnLink" onClick={() =>{
-          setForm({
-          categoria: "",
-          tipo: "",
-          caracteristicas: [],
-          idCaracteristica: [],
-          idCaracteristicaOld:[],
-          titulo: "",
-          precio: "",
-          descripcion: "",}) 
-          navigate(`/MiTienda`)}}>
+        <div
+          className="returnLink"
+          onClick={() => {
+            setForm({
+              categoria: "",
+              tipo: "",
+              caracteristicas: [],
+              idCaracteristica: [],
+              idCaracteristicaOld: [],
+              titulo: "",
+              precio: "",
+              descripcion: "",
+            });
+            navigate(`/MiTienda`);
+          }}
+        >
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A MI TIENDA</p>
         </div>

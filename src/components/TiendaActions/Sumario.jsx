@@ -41,14 +41,14 @@ const Sumario = ({ form }) => {
             <div className="subSection">
               <p className="title">Categoría</p>
               <div className="infoCat">
-                <p>{sumario.categoria}</p>
+                <p>{`${form.categoriaNombre} / ${form.tipoNombre}`}</p>
                 <button onClick={() => navigate(`/MiTienda/CATEGORIA`)}>
                   MODIFICAR
                 </button>
               </div>
             </div>
             <div className="subSection">
-              <p className="title">Imágenes / Video</p>
+              <p className="title">Imágenes{/*  / Video */}</p>
               <div className="infoImagenes">
                 <div>
                   {sumario.imagenes.map((img, i) => {
@@ -73,7 +73,7 @@ const Sumario = ({ form }) => {
                     );
                   })}
                 </div>
-                <button onClick={() => navigate(`/MiTienda/CARACTERISTICAs`)}>
+                <button onClick={() => navigate(`/MiTienda/CARACTERISTICAS`)}>
                   MODIFICAR
                 </button>
               </div>
@@ -82,11 +82,11 @@ const Sumario = ({ form }) => {
               <p className="title">Detalle</p>
               <div className="infoDetalle">
                 <div>
-                  {Object.keys(sumario.detalle).map((key, index) => {
+                  {Object.keys(form.detalle).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
-                        <span>{sumario.detalle[key]}</span>
+                        <span>{form.detalle[key]}</span>
                       </div>
                     );
                   })}

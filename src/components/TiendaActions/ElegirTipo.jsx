@@ -10,7 +10,6 @@ const ElegirTipo = ({ form, setForm }) => {
 
   const { categorias } = useContext(UseProdsContext);
 
-
   return (
     <div className="elegirTipoContainer">
       <div className="container">
@@ -30,10 +29,11 @@ const ElegirTipo = ({ form, setForm }) => {
                       onClick={() =>
                         setForm((prevState) => ({
                           ...prevState,
-                          tipo: cat.idcategoria,
+                          tipoId: cat.idcategoria,
+                          tipoNombre: cat.nombre,
                           caracteristicas: [],
                           idCaracteristica: [],
-                          idCaracteristicaOld:[]
+                          idCaracteristicaOld: [],
                         }))
                       }
                     />
