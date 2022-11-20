@@ -7,7 +7,7 @@
 }
 
 @mixin screen_769 {
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     @content;
   }
 }
@@ -24,7 +24,7 @@
   }
 }
 @mixin screen_600 {
-  @media (max-width: 601px) {
+  @media (max-width: 600px) {
     @content;
   }
 }
