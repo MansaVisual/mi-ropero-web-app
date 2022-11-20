@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Button, TextField } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [data, setData] = useState({
+    cbu:"",
+    alias:"",
+    titular:"",
+    dni:"",
+    monto:""
+  });
 
   const [error, setError] = useState(false);
   const [fin, setFin] = useState(false);
+
+  const submit = ()=>{
+    setLoading(true)
+    
+  }
+  
   return (
     <div className="PopUpMensajePP">
       <div className="fondoPopUp" onClick={() => setTransfPopUp(false)}></div>
@@ -37,6 +49,11 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar CBU. Solo números"
                 id="CBU"
+                type={"number"}
+                onChangeCapture={(e)=>setData((prevState)=>({
+                  ...prevState,
+                  cbu:e.target.value
+                }))}
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
                 onChangeCapture={() => {
@@ -60,6 +77,10 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar alias completo "
                 id="alias"
+                onChangeCapture={(e)=>setData((prevState)=>({
+                  ...prevState,
+                  alias:e.target.value
+                }))}
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
                 onChangeCapture={() => {
                   setCampoObligatorio(false);
@@ -85,6 +106,10 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar nombres y apellido completo"
                 id="nombreCompleto"
+                onChangeCapture={(e)=>setData((prevState)=>({
+                  ...prevState,
+                  titular:e.target.value
+                }))}
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
                 onChangeCapture={() => {
@@ -110,6 +135,11 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar CUIT o CUIL. Solo números."
                 id="CUIT"
+                type={"number"}
+                onChangeCapture={(e)=>setData((prevState)=>({
+                  ...prevState,
+                  dni:Number(e.target.value)
+                }))}
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
                 onChangeCapture={() => {
@@ -131,8 +161,16 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               <TextField
                 className="input"
                 size="small"
-                placeholder="$   Ingresar solo números."
+                placeholder="  Ingresar solo números."
                 id="monto"
+                type={"number"}
+                onChangeCapture={(e)=>setData((prevState)=>({
+                  ...prevState,
+                  monto:Number(e.target.value)
+                }))}
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
                 onChangeCapture={() => {
                   setCampoObligatorio(false);
@@ -173,8 +211,9 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 {!fin ? (
                   <Button
                     /*     disabled={message === "" ? true : false} */
-                    className={message === "" ? "mensajeDisabled" : "recordar"}
-                    /*   onClick={() => submit()} */
+                    className={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? "mensajeDisabled" : "recordar"}
+                    disabled={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? true : false}
+                    onClick={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? null :() => submit()} 
                   >
                     SOLICITAR
                   </Button>
