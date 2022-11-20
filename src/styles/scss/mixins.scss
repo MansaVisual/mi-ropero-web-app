@@ -6,12 +6,6 @@
   }
 }
 
-@mixin screen_768px {
-  @media (min-width:768px) and (max-width: 769px) {
-    @content;
-  }
-}
-
 @mixin screen_768 {
   @media (max-width: 768px) {
     @content;
@@ -23,11 +17,7 @@
     @content;
   }
 }
-@mixin screen_600 {
-  @media (max-width: 600px) {
-    @content;
-  }
-}
+
 
 // ESPECIALES
 @mixin screen_1450 {
@@ -68,6 +58,12 @@
 
 @mixin screen_820 {
   @media (max-width: 820px) {
+    @content;
+  }
+}
+
+@mixin screen_768px {
+  @media (min-width:767px) and (max-width: 769px) {
     @content;
   }
 }
