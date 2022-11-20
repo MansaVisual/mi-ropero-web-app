@@ -22,7 +22,7 @@ const TiendaBanner = () => {
   return (
     <div className="bannerContainer">
       <div className="breadcrumbs">
-        <Breadcrumbs links={pathnames} />
+        <Breadcrumbs links={["MI TIENDA"]} />
       </div>
       <div className="banner">
         <img className="bannerImg" src={Banner} alt="banner" />
