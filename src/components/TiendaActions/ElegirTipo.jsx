@@ -23,7 +23,7 @@ const ElegirTipo = ({ form, setForm }) => {
                 {cat.idcategoriapadre === form.categoria.toString() && (
                   <div className="subType">
                     <Radio
-                      checked={form.tipo === cat.idcategoria}
+                      checked={form.tipoId === cat.idcategoria}
                       className="radio"
                       name="radioButton"
                       onClick={() =>
