@@ -1,15 +1,20 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
+
+  const { saldoCuenta } = useContext(UseMiTiendaContext);
+
+  const [loading, setLoading] = useState(false);
+  const [errorMonto,setErrorMonto]=useState(false)
 
   let clase = 'formObligatorio';
   let clase2 = 'formObligatorioTitle';
 
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     cbu:"",
     alias:"",
@@ -21,10 +26,17 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
   useEffect(() => {
     console.log(data)
   }, [data]);
+
   const [fin, setFin] = useState(false);
 
   const submit = ()=>{
     setLoading(true)
+    if(data.monto<100 || data.monto>saldoCuenta.toFixed(2)){
+      setLoading(false)
+      setErrorMonto(true)
+      document.getElementById("monto").focus()
+      return
+    }
   }
   
   return (
@@ -41,8 +53,11 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">SOLICITUD DE TRANSFERENCIA</p>
-          <p className="popUpDescription" style={{ marginTop: "8px" }}>
-            Ingresá estos datos para poder transferir tu dinero.
+          <p className={`popUpDescription ${errorMonto?clase:""}`} style={{ marginTop: "8px" }}>
+            {errorMonto ? `Monto Mín: $100 / Máx: $${saldoCuenta.toFixed(2)}`
+            :
+            "Ingresá estos datos para poder transferir tu dinero."
+            }
           </p>
           <div className="inputContainer">
             <div className="inputBox">
@@ -143,7 +158,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 type={"number"}
                 onChangeCapture={(e)=>setData((prevState)=>({
                   ...prevState,
-                  dni:Number(e.target.value)
+                  dni:e.target.value
                 }))}
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
@@ -160,18 +175,18 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               />
             </div>
             <div className="inputBox">
-              <p className="labelInput" id="labelMonto">
-                Monto Mín: $100 / Máx: $3071,02
+              <p className={`labelInput ${errorMonto?clase:""}`} id="labelMonto">
+                Monto Mín: $100 / Máx: ${saldoCuenta.toFixed(2)}
               </p>
               <TextField
-                className="input"
+                className={`input ${errorMonto?clase2:""}`}
                 size="small"
                 placeholder="Ingresar solo números."
                 id="monto"
                 type={"number"}
                 onChangeCapture={(e)=>setData((prevState)=>({
                   ...prevState,
-                  monto:Number(e.target.value)
+                  monto:e.target.value
                 }))}
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
                 onChangeCapture={() => {
