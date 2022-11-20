@@ -53,7 +53,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">SOLICITUD DE TRANSFERENCIA</p>
-          <p className={`popUpDescription ${errorMonto?clase:""}`} style={{ marginTop: "8px" }}>
+          <p className={`popUpDescription ${errorMonto?clase2:""}`} style={{ marginTop: "8px" }}>
             {errorMonto ? `Monto Mín: $100 / Máx: $${saldoCuenta}`
             :
             "Ingresá estos datos para poder transferir tu dinero."
@@ -175,11 +175,11 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               />
             </div>
             <div className="inputBox">
-              <p className={`labelInput ${errorMonto?clase:""}`} id="labelMonto">
+              <p className={`labelInput ${errorMonto?clase2:""}`} id="labelMonto">
                 Monto Mín: $100 / Máx: ${saldoCuenta}
               </p>
               <TextField
-                className={`input ${errorMonto?clase2:""}`}
+                className={`input ${errorMonto?clase:""}`}
                 size="small"
                 placeholder="Ingresar solo números."
                 id="monto"

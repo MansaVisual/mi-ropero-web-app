@@ -103,6 +103,16 @@
       input[type="file"] {
         display: none;
       }
+      .formObligatorio{
+        border: 2px solid #FF3F20 !important;
+        border-radius: 4px !important;
+      }
+      .formObligatorioTitle{
+          color: #FF3F20 !important;
+      }
+      .formObligatorioTitle ~ div{
+          border: none !important;
+      }
       .custom-file-upload {
         background: #443988;
         border-radius: 20px;
