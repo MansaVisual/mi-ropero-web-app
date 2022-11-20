@@ -9,6 +9,7 @@ export const MiTiendaContext = ({ children }) => {
 
   const [buscandoProds, setBuscandoProds] = useState(true);
   const [productos, setProductos] = useState([]);
+  const [tiendaData, setTiendaData] = useState([]);
   const [saldoCuenta, setSaldoCuenta] = useState(false);
 
   useEffect(() => {
@@ -21,17 +22,22 @@ export const MiTiendaContext = ({ children }) => {
         }
         setBuscandoProds(false);
       });
-      apiFetch(prods, "cuentascorrientes", "balance").then((res) => {
-        if (res.status === "success") {
-          setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
+      apiFetch(prods,"tiendas","list").then((res)=>{console.log(res)
+        if(res.status==="success"){
+          setTiendaData(res.result[0])
+          apiFetch(prods, "cuentascorrientes", "balance").then((res) => {
+            if (res.status === "success") {
+              setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
+            }
+          });
         }
-      });
+      })
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <UseMiTiendaContext.Provider
-      value={{ buscandoProds, productos, saldoCuenta, setSaldoCuenta }}
+      value={{ buscandoProds, productos, saldoCuenta, setSaldoCuenta, tiendaData }}
     >
       {children}
     </UseMiTiendaContext.Provider>

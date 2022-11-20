@@ -8,12 +8,6 @@ import { Grid, TextField } from "@mui/material";
 const TiendaDatos = () => {
   const navigate = useNavigate();
 
-  /*  const [form, setForm] = useState({
-    nombre: "",
-    telefono: "",
-    descripcion: "",
-    domicilio: "",
-  }); */
   return (
     <div className="miTiendaDatos">
       <TiendaBanner />

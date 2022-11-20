@@ -31,8 +31,6 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
     console.log(data)
   }, [data]);
 
-  const [fin, setFin] = useState(false);
-
   const submit = ()=>{
     setLoading(true)
     if(Number(data.monto)<100 || Number(data.monto)>saldoCuenta){
@@ -254,7 +252,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               </div>
             ) : (
               <>
-                {!loading && !fin && (
+                {!loading && (
                   <Button
                     onClick={() => setTransfPopUp(false)}
                     className="volver"
@@ -262,24 +260,13 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     CANCELAR
                   </Button>
                 )}
-                {!fin ? (
-                  <Button
-                    /*     disabled={message === "" ? true : false} */
-                    className={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? "mensajeDisabled" : "recordar"}
-                    disabled={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? true : false}
-                    onClick={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? null :() => submit()} 
-                  >
-                    SOLICITAR
-                  </Button>
-                ) : (
-                  <Button
-                    /*    disabled={message === "" ? true : false} */
-                    className={"recordar"}
-                    /*   onClick={() => setOpenMessagePop(false) } */
-                  >
-                    LISTO
-                  </Button>
-                )}
+                <Button
+                  className={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? "mensajeDisabled" : "recordar"}
+                  disabled={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? true : false}
+                  onClick={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? null :() => submit()} 
+                >
+                  SOLICITAR
+                </Button>
               </>
             )}
           </div>
