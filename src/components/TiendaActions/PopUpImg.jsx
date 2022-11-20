@@ -15,9 +15,12 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
   const [croppedImage, setCroppedImage] = useState(null);
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const [fin, setFin] = useState(false);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
 
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -74,7 +77,6 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
     const image = await createImage(imageSrc);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
-    console.log(ctx);
 
     if (!ctx) {
       return null;
@@ -180,7 +182,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
                   aspect={3 / 4}
                   onCropChange={setCrop}
                   onRotationChange={setRotation}
-                  /* onCropComplete={onCropComplete} */
+                  onCropComplete={onCropComplete}
                   onZoomChange={setZoom}
                 />
               </div>
@@ -250,13 +252,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
                     />
                   </>
                 ) : (
-                  <Button
-                    disabled={message === "" ? true : false}
-                    className={message === "" ? "mensajeDisabled" : "recordar"}
-                    onClick={() => setOpenPopUp(false)}
-                  >
-                    LISTO
-                  </Button>
+                  <Button onClick={() => setOpenPopUp(false)}>LISTO</Button>
                 )}
               </>
             )}
