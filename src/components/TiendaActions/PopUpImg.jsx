@@ -149,6 +149,10 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
       );
       console.log("donee", { croppedImage });
       setCroppedImage(croppedImage);
+      setForm((prevState) => ({
+        ...prevState,
+        [section]: croppedImage,
+      }));
     } catch (e) {
       console.error(e);
     }
@@ -181,7 +185,6 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
                   zoom={zoom}
                   aspect={3 / 4}
                   onCropChange={setCrop}
-                  onRotationChange={setRotation}
                   onCropComplete={onCropComplete}
                   onZoomChange={setZoom}
                 />
