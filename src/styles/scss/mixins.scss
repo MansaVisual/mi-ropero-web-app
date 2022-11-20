@@ -6,8 +6,8 @@
   }
 }
 
-@mixin screen_769 {
-  @media (max-width: 769px) {
+@mixin screen_768px {
+  @media (min-width:768px)and(max-width: 769px) {
     @content;
   }
 }
