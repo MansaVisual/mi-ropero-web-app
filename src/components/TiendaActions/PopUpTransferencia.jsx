@@ -31,7 +31,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
 
   const submit = ()=>{
     setLoading(true)
-    if(data.monto<100 || data.monto>saldoCuenta){
+    if(Number(data.monto)<100 || Number(data.monto)>saldoCuenta){
       setLoading(false)
       setErrorMonto(true)
       document.getElementById("monto").focus()
