@@ -82,11 +82,11 @@ const Sumario = ({ form }) => {
               <p className="title">Detalle</p>
               <div className="infoDetalle">
                 <div>
-                  {Object.keys(form.detalle).map((key, index) => {
+                  {Object.keys(form.detalles).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
-                        <span>{form.detalle[key]}</span>
+                        <span>{form.detalles[key]}</span>
                       </div>
                     );
                   })}
