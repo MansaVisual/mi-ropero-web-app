@@ -9,7 +9,7 @@ import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const SeccionProductos = () => {
   const navigate = useNavigate();
-  const { tiendaData } = useContext(UseMiTiendaContext);
+  const { tiendaData,setTiendaData } = useContext(UseMiTiendaContext);
 
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -44,7 +44,7 @@ const SeccionProductos = () => {
             <img src={tienda} alt="TIENDA" />
             <Button
               className="agregarProd"
-              onClick={() => navigate(`/MiTienda/CATEGORIA`)}
+              onClick={() => {setTiendaData([""]);navigate(`/MiTienda/CATEGORIA`)}}
             >
               AGREGAR PRODUCTO
             </Button>

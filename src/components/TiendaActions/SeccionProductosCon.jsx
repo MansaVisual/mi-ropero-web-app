@@ -12,13 +12,13 @@ const SeccionProductosCon = () => {
   const { infoUser } = useContext(UseLoginContext);
 
   const prods = [
-    {
-      id: 1,
-      img: foto,
-      nombre: "prueba",
-      precio: 2000,
-      fecha: "21/7/2022  11:08:20 Hs.",
-    },
+    // {
+    //   id: 1,
+    //   img: foto,
+    //   nombre: "prueba",
+    //   precio: 2000,
+    //   fecha: "21/7/2022  11:08:20 Hs.",
+    // },
   ];
 
   return (

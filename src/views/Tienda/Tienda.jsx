@@ -21,12 +21,13 @@ import Sumario from "../../components/TiendaActions/Sumario";
 import Chat from "../../components/TiendaActions/Chat";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import SeccionProductos from "../../components/TiendaActions/SeccionProductos";
+import Loader from "../../components/Loader/Loader";
 
 const Tienda = () => {
   const { seccion } = useParams();
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
-  const { tiendaData } = useContext(UseMiTiendaContext);
+  const { tiendaData,buscandoProds } = useContext(UseMiTiendaContext);
 
   const [num, setNum] = useState(1);
 
@@ -75,7 +76,11 @@ const Tienda = () => {
 
   return (
     <div>
-      {tiendaData.length===0 ? <SeccionProductos/> :<>
+      {buscandoProds ? 
+        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+          <Loader spin={"spinnerG"}/>
+        </div>:
+      tiendaData.length===0 ? <SeccionProductos/> :<>
       {seccion === undefined && <MiTienda />}
       {seccion === "PRODUCTOS" && <SeccionProductosCon />}
       {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}

@@ -37,7 +37,7 @@ export const MiTiendaContext = ({ children }) => {
 
   return (
     <UseMiTiendaContext.Provider
-      value={{ buscandoProds, productos, saldoCuenta, setSaldoCuenta, tiendaData }}
+      value={{ buscandoProds, productos, saldoCuenta, setSaldoCuenta, tiendaData,setTiendaData }}
     >
       {children}
     </UseMiTiendaContext.Provider>
