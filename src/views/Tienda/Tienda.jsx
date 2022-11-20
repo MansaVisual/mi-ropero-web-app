@@ -91,7 +91,7 @@ const Tienda = () => {
       {seccion === "TRANSFERENCIAS" && <Transferencias />}
       {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
       {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
-      {seccion === "SUMARIO" && <Sumario />}
+      {seccion === "SUMARIO" && <Sumario form={form} />}
       {seccion === "MI CHAT" && <Chat />}
     </div>
   );

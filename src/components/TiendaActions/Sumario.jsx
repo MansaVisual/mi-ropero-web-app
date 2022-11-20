@@ -5,7 +5,7 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
 import { useNavigate } from "react-router-dom";
 
-const Sumario = () => {
+const Sumario = ({ form }) => {
   const navigate = useNavigate();
 
   const sumario = {
