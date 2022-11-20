@@ -48,8 +48,8 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
     trans.append("titular",data.titular)
     trans.append("documento",Number(data.dni))
     trans.append("monto",data.monto)
-    apiFetch(trans,"transferencias","insert").then((res)=>{
-      if(res.result==="success"){
+    apiFetch(trans,"transferencias","insert").then((res)=>{console.log(res)
+      if(res.status==="success"){
         setLoading(false)
         setTransfPopUp(false)
         Swal.fire({
