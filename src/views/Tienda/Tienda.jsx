@@ -19,11 +19,13 @@ import ProductoPublicado from "../../components/TiendaActions/ProductoPublicado"
 import Contacto from "../../components/TiendaActions/Contacto";
 import Sumario from "../../components/TiendaActions/Sumario";
 import Chat from "../../components/TiendaActions/Chat";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const Tienda = () => {
   const { seccion } = useParams();
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
+  const { tiendaData } = useContext(UseMiTiendaContext);
 
   const [num, setNum] = useState(1);
 
@@ -71,8 +73,8 @@ const Tienda = () => {
 
   return (
     <div>
+      {tiendaData.length===0 ? <SeccionProductosCon/> :<>
       {seccion === undefined && <MiTienda />}
-      {/* {params.seccion === undefined && <SeccionProductosCon />} */}
       {seccion === "PRODUCTOS" && <SeccionProductosCon />}
       {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
       {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
@@ -92,7 +94,7 @@ const Tienda = () => {
       {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
       {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
       {seccion === "SUMARIO" && <Sumario form={form} />}
-      {seccion === "MI CHAT" && <Chat />}
+      {seccion === "MI CHAT" && <Chat />}</>}
     </div>
   );
 };
