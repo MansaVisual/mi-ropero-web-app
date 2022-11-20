@@ -51,8 +51,8 @@ const Sumario = ({ form }) => {
               <p className="title">Imágenes</p>
               <div className="infoImagenes">
                 <div>
-                  {sumario.imagenes.map((img, i) => {
-                    return <img src={img} alt="productImg" />;
+                  {form.imagenes.map((img, i) => {
+                    return <img key={i} src={img} alt="productImg" />;
                   })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
