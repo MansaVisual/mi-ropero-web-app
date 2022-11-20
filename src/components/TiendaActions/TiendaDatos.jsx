@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import editIcon from "../../assets/img/editIcon.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Grid, TextField } from "@mui/material";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import SeccionProductos from "./SeccionProductos";
 
 const TiendaDatos = () => {
   const navigate = useNavigate();
+  const { tiendaData } = useContext(UseMiTiendaContext);
 
-  return (
+  return (<>{tiendaData.length===0?<SeccionProductos/>:
     <div className="miTiendaDatos">
       <TiendaBanner />
       <Grid className="tiendaGrid">
@@ -79,7 +82,8 @@ const TiendaDatos = () => {
         </div>
       </Grid>
     </div>
-  );
+  }
+  </>);
 };
 
 export default TiendaDatos;
