@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useContext } from "react";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { useLocation, useNavigate } from "react-router-dom";
 import tienda from "../../assets/img/tienda.png";
 import { Button } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
 import SeccionProductosCon from "./SeccionProductosCon";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const SeccionProductos = () => {
   const navigate = useNavigate();
+  const { tiendaData } = useContext(UseMiTiendaContext);
 
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -27,7 +29,7 @@ const SeccionProductos = () => {
 
   return (
     <>
-      {prod.length > 0 ? (
+      {tiendaData.length > 0 ? (
         <SeccionProductosCon />
       ) : (
         <div className="seccionProductos">
