@@ -18,12 +18,13 @@ const ElegirTipo = ({ form, setForm }) => {
         <span className="subtitle">¿Cuál es la subcategoría del producto?</span>
         <div className="subTypeSection">
           {categorias.map((cat, i) => {
+            console.log(cat, form);
             return (
               <Fragment key={i}>
                 {cat.idcategoriapadre === form.categoria.toString() && (
                   <div className="subType">
                     <Radio
-                      checked={form.tipoId === cat.idcategoria}
+                      checked={form.tipo === cat.idcategoria}
                       className="radio"
                       name="radioButton"
                       onClick={() =>
