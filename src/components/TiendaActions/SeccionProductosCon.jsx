@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
-import { UseLoginContext } from "../../context/LoginContext";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Grid } from "@mui/material";
 
 const SeccionProductosCon = () => {
   const navigate = useNavigate();
-  const { infoUser } = useContext(UseLoginContext);
 
   const prods = [
     // {

@@ -21,12 +21,6 @@ const SeccionProductos = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const prod = [
-    {
-      prodName: "facu",
-    },
-  ];
-
   return (
     <>
       {tiendaData.length > 0 ? (
