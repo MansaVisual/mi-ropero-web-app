@@ -9,7 +9,6 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
     form[section] ? form[section] : null
   );
   const [crop, setCrop] = useState({ x: 0, y: 0 });
-  /*   const [rotation, setRotation] = useState(0); */
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
@@ -38,7 +37,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
     });
   }
 
-  const handleSave = () => {
+  /*   const handleSave = () => {
     showCroppedImage();
     setForm((prevState) => ({
       ...prevState,
@@ -46,7 +45,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
     }));
 
     setOpenPopUp(false);
-  };
+  }; */
 
   console.log(form);
 
@@ -70,7 +69,6 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
   const getCroppedImg = async (
     imageSrc,
     pixelCrop,
-    /* rotation = 0, */
     flip = { horizontal: false, vertical: false }
   ) => {
     console.log("entra- getCropped");
@@ -136,8 +134,10 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
         ...prevState,
         [section]: croppedImage,
       }));
+      setOpenPopUp(false);
     } catch (e) {
       console.error(e);
+      setOpenPopUp(false);
     }
   }, [imageSrc, croppedAreaPixels]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -171,29 +171,22 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
                   onZoomChange={setZoom}
                 />
               </div>
-              <div /* className={classes.controls} */>
-                <div /* className={classes.sliderContainer} */>
-                  <Typography
-                    variant="overline"
-                    /* classes={{ root: classes.sliderLabel }} */
-                  >
-                    Zoom
-                  </Typography>
+              <div>
+                <div>
+                  <Typography variant="overline">Zoom</Typography>
                   <Slider
                     value={zoom}
                     min={1}
                     max={3}
                     step={0.1}
                     aria-labelledby="Zoom"
-                    /* classes={{ root: classes.slider }} */
                     onChange={(e, zoom) => setZoom(zoom)}
                   />
                 </div>
                 <Button
-                  onClick={handleSave}
+                  onClick={showCroppedImage}
                   variant="contained"
                   color="primary"
-                  /*    classes={{ root: classes.cropButton }} */
                 >
                   Guardar imagen
                 </Button>
