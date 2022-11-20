@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
@@ -18,29 +18,13 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
     monto:""
   });
 
-  const [campoObligatorio, setCampoObligatorio] = useState(false);
+  useEffect(() => {
+    console.log(data)
+  }, [data]);
   const [fin, setFin] = useState(false);
 
   const submit = ()=>{
     setLoading(true)
-    if(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto===""){
-      if(data.cbu===""){
-        document.getElementById("CBU").classList.add(clase)
-      }
-      if(data.alias===""){
-        document.getElementById("alias").classList.add(clase)
-      }
-      if(data.titular===""){
-        document.getElementById("nombreCompleto").classList.add(clase)
-      }
-      if(data.dni===""){
-        document.getElementById("CUIT").classList.add(clase)
-      }
-      if(data.monto===""){
-        document.getElementById("monto").classList.add(clase)
-      }
-      setCampoObligatorio(true)
-    }
   }
   
   return (
@@ -57,11 +41,8 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">SOLICITUD DE TRANSFERENCIA</p>
-          <p className={`popUpDescription ${campoObligatorio?clase2:""}`} style={{ marginTop: "8px" }}>
-            {campoObligatorio? "Todos los campos son obligatorios"
-            :
-              "Ingresá estos datos para poder transferir tu dinero."
-            }
+          <p className="popUpDescription" style={{ marginTop: "8px" }}>
+            Ingresá estos datos para poder transferir tu dinero.
           </p>
           <div className="inputContainer">
             <div className="inputBox">
