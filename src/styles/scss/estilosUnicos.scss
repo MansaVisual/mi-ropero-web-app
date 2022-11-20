@@ -208,7 +208,10 @@ input[type="number"]::-webkit-outer-spin-button {
   .react-multi-carousel-item {
     width: 264px !important;
     margin: 24px 22px;
-    @include screen_769 {
+    @include screen_768px {
+      width: 250px !important;
+    }
+    @include screen_768 {
       width: 200px !important;
     }
   }
