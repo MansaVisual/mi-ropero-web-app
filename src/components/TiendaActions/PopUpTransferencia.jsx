@@ -4,10 +4,13 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
 
   const { saldoCuenta } = useContext(UseMiTiendaContext);
+  const { userLog } = useContext(UseLoginContext);
 
   const [loading, setLoading] = useState(false);
   const [errorMonto,setErrorMonto]=useState(false)
@@ -37,6 +40,14 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
       document.getElementById("monto").focus()
       return
     }
+    const trans = new FormData()
+    trans.append("idcliente",userLog)
+    trans.append("cbu",data.cbu)
+    trans.append("alias",data.alias)
+    trans.append("titular",data.titular)
+    trans.append("documento",Number(data.dni))
+    trans.append("monto",data.monto)
+    apiFetch(trans,"transferencias","insert").then((res)=>console.log(res))
   }
   
   return (
