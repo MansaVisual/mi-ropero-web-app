@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
 
+  console.log(form);
+
   const sumario = {
     categoria: "ROPA / Remeras",
     imagenes: [foto, foto, foto],
