@@ -21,10 +21,10 @@ const ElegirTipo = ({ form, setForm }) => {
             console.log(cat, form);
             return (
               <Fragment key={i}>
-                {cat.idcategoriapadre === form.categoria.toString() && (
+                {cat.idcategoriapadre === form.categoriaId.toString() && (
                   <div className="subType">
                     <Radio
-                      checked={form.tipo === cat.idcategoria}
+                      checked={form.tipoId === cat.idcategoria}
                       className="radio"
                       name="radioButton"
                       onClick={() =>
