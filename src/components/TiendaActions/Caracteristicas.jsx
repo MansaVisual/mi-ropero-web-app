@@ -19,11 +19,9 @@ const Caracteristicas = ({ form, setForm }) => {
   const [valueSeleccionado, setValueSeleccionado] = useState([]);
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
-  console.log(data);
-
   useEffect(() => {
     const dir = new FormData();
-    dir.append("idcategoria", form.categoria);
+    dir.append("idcategoria", form.categoriaId);
     let caract = {};
     if (form.caracteristicas.length === 0) {
       apiFetch(dir, "categorias", "get").then((res) => {
