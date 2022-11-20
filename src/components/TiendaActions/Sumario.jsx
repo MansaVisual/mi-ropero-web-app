@@ -12,7 +12,10 @@ const Sumario = ({ form }) => {
 
   const sumario = {
     categoria: "ROPA / Remeras",
-    imagenes: [foto, foto, foto],
+    imagenes: {
+      fotofrente: foto,
+      fotodetras: foto,
+    },
     caracteristicas: {
       genero: ["unisex"],
       talle: ["unisex"],
@@ -51,8 +54,11 @@ const Sumario = ({ form }) => {
               <p className="title">Imágenes</p>
               <div className="infoImagenes">
                 <div>
-                  {form.imagenes.map((img, i) => {
+                  {/*  {form.imagenes.map((img, i) => {
                     return <img key={i} src={img} alt="productImg" />;
+                  })} */}
+                  {Object.keys(sumario.imagenes).map((key, i) => {
+                    return <img key={i} src={key} alt="" />;
                   })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
@@ -64,13 +70,13 @@ const Sumario = ({ form }) => {
               <p className="title">Características</p>
               <div className="infoCaract">
                 <div>
-                  {Object.keys(form.caracteristicas).map((key, index) => {
+                  {/*  {Object.keys(form.caracteristicas).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
                         <span>{form.caracteristicas[key].join(", ")}</span>
                       </div>
-                    );
+                    ); */}
                   })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/CARACTERISTICAS`)}>
@@ -82,14 +88,14 @@ const Sumario = ({ form }) => {
               <p className="title">Detalle</p>
               <div className="infoDetalle">
                 <div>
-                  {Object.keys(form.detalles).map((key, index) => {
+                  {/*  {Object.keys(form.detalles).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
                         <span>{form.detalles[key]}</span>
                       </div>
                     );
-                  })}
+                  })} */}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/DETALLES`)}>
                   MODIFICAR
