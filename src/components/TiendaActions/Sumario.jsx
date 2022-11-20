@@ -42,7 +42,9 @@ const Sumario = ({ form }) => {
               <p className="title">Categoría</p>
               <div className="infoCat">
                 <p>{sumario.categoria}</p>
-                <button>MODIFICAR</button>
+                <button onClick={() => navigate(`/MiTienda/CATEGORIA`)}>
+                  MODIFICAR
+                </button>
               </div>
             </div>
             <div className="subSection">
@@ -53,7 +55,9 @@ const Sumario = ({ form }) => {
                     return <img src={img} alt="productImg" />;
                   })}
                 </div>
-                <button>MODIFICAR</button>
+                <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
+                  MODIFICAR
+                </button>
               </div>
             </div>
             <div className="subSection">
@@ -69,26 +73,30 @@ const Sumario = ({ form }) => {
                     );
                   })}
                 </div>
-                <button>MODIFICAR</button>
+                <button onClick={() => navigate(`/MiTienda/CARACTERISTICAs`)}>
+                  MODIFICAR
+                </button>
               </div>
             </div>
             <div className="subSection">
               <p className="title">Detalle</p>
               <div className="infoDetalle">
                 <div>
-                  {Object.keys(sumario.detalle).map((key, index) => {
+                  {/* {Object.keys(sumario.detalle).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
                         <span>{sumario.detalle[key]}</span>
                       </div>
                     );
-                  })}
+                  })} */}
                 </div>
-                <button>MODIFICAR</button>
+                <button onClick={() => navigate(`/MiTienda/DETALLES`)}>
+                  MODIFICAR
+                </button>
               </div>
             </div>
-            <div className="subSection">
+            {/* <div className="subSection">
               <p className="title">Descuento</p>
               <div className="discount">
                 <p className="title">ESTE PRODUCTO ESTÁ EN OFERTA</p>
@@ -98,7 +106,7 @@ const Sumario = ({ form }) => {
                   precio no será publicadas,
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="bottomContainer">
             <button>PUBLICAR</button>

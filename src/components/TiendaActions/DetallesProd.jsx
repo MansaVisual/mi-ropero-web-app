@@ -32,15 +32,15 @@ const DetallesProd = ({ form, setForm }) => {
   };
 
   useEffect(() => {
-    if(form.titulo!==""){
+    if (form.titulo !== "") {
       setDetalles({
         title: form.titulo,
         precio: form.precio,
         descripcion: form.descripcion,
       });
-      document.getElementById("titulo").value=form.titulo
-      document.getElementById("precio").value=form.precio
-      document.getElementById("descripcion").value=form.descripcion
+      document.getElementById("titulo").value = form.titulo;
+      document.getElementById("precio").value = form.precio;
+      document.getElementById("descripcion").value = form.descripcion;
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -57,9 +57,10 @@ const DetallesProd = ({ form, setForm }) => {
   const handleSubmit = () => {
     setForm((prevState) => ({
       ...prevState,
-      titulo: detalles.title,
+      /* titulo: detalles.title,
       precio: detalles.precio,
-      descripcion: detalles.descripcion,
+      descripcion: detalles.descripcion, */
+      detalles,
     }));
     navigate(`/MiTienda/CONTACTO`);
   };
