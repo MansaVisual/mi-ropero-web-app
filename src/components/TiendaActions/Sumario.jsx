@@ -60,7 +60,9 @@ const Sumario = ({ form }) => {
                   {Object.keys(form.imagenes).map((key, i) => {
                     console.log(key);
                     console.log(form.imagenes[key]);
-                    return <img key={i} src={key} alt="formImg" />;
+                    return (
+                      <img key={i} src={form.imagenes[key]} alt="formImg" />
+                    );
                   })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
