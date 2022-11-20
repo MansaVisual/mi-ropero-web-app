@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Button, InputAdornment, OutlinedInput, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
@@ -182,19 +182,16 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               <p className="labelInput" id="labelMonto">
                 Monto Mín: $100 / Máx: $3071,02
               </p>
-              <OutlinedInput
+              <TextField
                 className="input"
                 size="small"
-                placeholder="  Ingresar solo números."
+                placeholder="Ingresar solo números."
                 id="monto"
                 type={"number"}
                 onChangeCapture={(e)=>setData((prevState)=>({
                   ...prevState,
                   monto:Number(e.target.value)
                 }))}
-                startAdornment={
-                  <InputAdornment position="start">$</InputAdornment>
-                }
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
                 onChangeCapture={() => {
                   setCampoObligatorio(false);
