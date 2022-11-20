@@ -54,7 +54,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">SOLICITUD DE TRANSFERENCIA</p>
           <p className={`popUpDescription ${errorMonto?clase:""}`} style={{ marginTop: "8px" }}>
-            {errorMonto ? `Monto Mín: $100 / Máx: $${saldoCuenta.toFixed(2)}`
+            {errorMonto ? `Monto Mín: $100 / Máx: $${saldoCuenta}`
             :
             "Ingresá estos datos para poder transferir tu dinero."
             }
