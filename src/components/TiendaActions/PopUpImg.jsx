@@ -2,8 +2,8 @@ import React, { useState, useCallback } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, Slider, Typography } from "@mui/material";
-import Loader from "../Loader/Loader";
 import Cropper from "react-easy-crop";
+
 const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
   const [imageSrc, setImageSrc] = useState(
     form[section] ? form[section] : null
@@ -21,6 +21,8 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
   }, []);
 
   const onFileChange = async (e) => {
+    console.log("ejecuta f");
+    console.log(e);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       let imageDataUrl = await readFile(file);
@@ -35,18 +37,6 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
       reader.readAsDataURL(file);
     });
   }
-
-  /*   const handleSave = () => {
-    showCroppedImage();
-    setForm((prevState) => ({
-      ...prevState,
-      [section]: croppedImage,
-    }));
-
-    setOpenPopUp(false);
-  }; */
-
-  console.log(form);
 
   const getRadianAngle = (degreeValue) => {
     return (degreeValue * Math.PI) / 180;
@@ -193,45 +183,21 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
           )}
 
           <div className="buttonContainer">
-            {loading ? (
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100px",
-                }}
-              >
-                <Loader spin={"spinnerM"} />
-              </div>
-            ) : (
-              <>
-                {!loading && !fin && (
-                  <Button
-                    onClick={() => setOpenPopUp(false)}
-                    className="volver"
-                  >
-                    CANCELAR
-                  </Button>
-                )}
-                {!fin ? (
-                  <>
-                    <label for="file-upload" class="custom-file-upload">
-                      CARGAR IMAGEN
-                    </label>
-                    <input
-                      id="file-upload"
-                      type="file"
-                      onChange={onFileChange}
-                      accept="image/*"
-                    />
-                  </>
-                ) : (
-                  <Button onClick={() => setOpenPopUp(false)}>LISTO</Button>
-                )}
-              </>
-            )}
+            <Button onClick={() => setOpenPopUp(false)} className="volver">
+              CANCELAR
+            </Button>
+            <>
+              <label for="file-upload" class="custom-file-upload">
+                CARGAR IMAGEN
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                onChange={onFileChange}
+                accept="image/*"
+                onClick={() => console.log("click")}
+              />
+            </>
           </div>
         </div>
       </div>

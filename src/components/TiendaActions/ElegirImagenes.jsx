@@ -69,29 +69,28 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
             <p className="bottomText">(opcional)</p>
           </div>
-          <div className="section">
+          {/*  <div className="section">
             <div className="imgBox">
-              <p>Agregar video</p>
-              <img src={fotoTrasera} alt="fotoTrasera" />
-            </div>
-            <div className="bottomContainer">
+              <p>Agregar video</p> 
               <>
-                <span for="file-upload" class="custom-file-upload">
+                <p for="file-upload" class="custom-file-upload">
                   CARGAR IMAGEN
-                </span>
+                </p>
                 <input
                   id="file-upload"
                   type="file"
-                  /* onChange={onFileChange} */
+                onChange={onFileChange} 
                   accept="video/*"
                 />
               </>
-              {/* <span>Video</span> */}
-
+              <img src={fotoTrasera} alt="fotoTrasera" />
+            </div>
+            <div className="bottomContainer">
+              <span>Video</span>
               <img src={infoIcon} alt="info" />
             </div>
             <p className="bottomText">(opcional)</p>
-          </div>
+          </div> */}
           <div className="section">
             <div className="imgBox">
               <p>Agregar imagen</p>
