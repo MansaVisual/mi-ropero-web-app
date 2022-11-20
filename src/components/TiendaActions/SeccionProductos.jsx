@@ -51,7 +51,7 @@ const SeccionProductos = () => {
           </div>
           <div className="returnLink" onClick={() => navigate(`/perfil`)}>
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A INICIO</p>
+            <p>VOLVER A PERFIL</p>
           </div>
         </div>
       )}

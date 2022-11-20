@@ -80,7 +80,9 @@ const ElegirCategoria = ({ setForm }) => {
               precio: "",
               descripcion: "",
             });
-            setTiendaData(tiendaData)
+            if(tiendaData[0]===""){
+              setTiendaData([])
+            }
             navigate(`/MiTienda`);
           }}
         >

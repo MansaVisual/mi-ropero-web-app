@@ -77,7 +77,7 @@ const Tienda = () => {
   return (
     <div>
       {buscandoProds ? 
-        <div style={{ marginTop: "24px",width:"100%",height:"50vh",display:"flex",justifyContent:"center" }}>
+        <div style={{ marginTop: "72px",width:"100%",height:"50vh",display:"flex",justifyContent:"center" }}>
           <Loader spin={"spinnerG"}/>
         </div>:
       tiendaData.length===0 ? <SeccionProductos/> :<>
