@@ -57,8 +57,10 @@ const Sumario = ({ form }) => {
                   {/*  {form.imagenes.map((img, i) => {
                     return <img key={i} src={img} alt="productImg" />;
                   })} */}
-                  {Object.keys(sumario.imagenes).map((key, i) => {
-                    return <img key={i} src={key} alt="" />;
+                  {Object.keys(form.imagenes).map((key, i) => {
+                    console.log(key);
+                    console.log(form.imagenes[key]);
+                    return <img key={i} src={key} alt="formImg" />;
                   })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
@@ -70,13 +72,13 @@ const Sumario = ({ form }) => {
               <p className="title">Características</p>
               <div className="infoCaract">
                 <div>
-                  {/*  {Object.keys(form.caracteristicas).map((key, index) => {
+                  {Object.keys(form.caracteristicas).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
                         <span>{form.caracteristicas[key].join(", ")}</span>
                       </div>
-                    ); */}
+                    );
                   })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/CARACTERISTICAS`)}>
@@ -88,14 +90,14 @@ const Sumario = ({ form }) => {
               <p className="title">Detalle</p>
               <div className="infoDetalle">
                 <div>
-                  {/*  {Object.keys(form.detalles).map((key, index) => {
+                  {Object.keys(form.detalles).map((key, index) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
                         <span>{form.detalles[key]}</span>
                       </div>
                     );
-                  })} */}
+                  })}
                 </div>
                 <button onClick={() => navigate(`/MiTienda/DETALLES`)}>
                   MODIFICAR
