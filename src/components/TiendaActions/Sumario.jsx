@@ -14,12 +14,12 @@ const Sumario = ({ form }) => {
     categoria: "ROPA / Remeras",
     imagenes: [foto, foto, foto],
     caracteristicas: {
-      genero: "unisex",
-      talle: "L",
-      color: "rojo",
-      marca: "adidas",
-      condicion: "nuevo",
-      tipoTela: "silver",
+      genero: ["unisex"],
+      talle: ["unisex"],
+      color: ["unisex"],
+      marca: ["adidas", "puma", "reebok"],
+      condicion: ["unisex"],
+      tipoTela: ["unisex"],
     },
     detalle: {
       titulo: "Remera nevada manga corta Rolling Stones",
@@ -48,7 +48,7 @@ const Sumario = ({ form }) => {
               </div>
             </div>
             <div className="subSection">
-              <p className="title">Imágenes{/*  / Video */}</p>
+              <p className="title">Imágenes</p>
               <div className="infoImagenes">
                 <div>
                   {sumario.imagenes.map((img, i) => {
@@ -68,7 +68,7 @@ const Sumario = ({ form }) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
-                        <span>{form.caracteristicas[key]}</span>
+                        <span>{form.caracteristicas[key].join(", ")}</span>
                       </div>
                     );
                   })}
@@ -96,17 +96,6 @@ const Sumario = ({ form }) => {
                 </button>
               </div>
             </div>
-            {/* <div className="subSection">
-              <p className="title">Descuento</p>
-              <div className="discount">
-                <p className="title">ESTE PRODUCTO ESTÁ EN OFERTA</p>
-                <p className="data">
-                  Tiene un descuento del 10% y vence el 21/09/2022 a las 12:59
-                  hs. Hasta ese entonces, las modificaciones que realices en el
-                  precio no será publicadas,
-                </p>
-              </div>
-            </div> */}
           </div>
           <div className="bottomContainer">
             <button>PUBLICAR</button>
