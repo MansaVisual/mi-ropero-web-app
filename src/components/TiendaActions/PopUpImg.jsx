@@ -36,6 +36,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
   }
 
   const handleSave = () => {
+    showCroppedImage();
     setForm((prevState) => ({
       ...prevState,
       [section]: croppedImage,
@@ -69,6 +70,7 @@ const PopUpImg = ({ section, setOpenPopUp, setForm, form }) => {
     rotation = 0,
     flip = { horizontal: false, vertical: false }
   ) => {
+    console.log("entra- getCropped");
     const image = await createImage(imageSrc);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
