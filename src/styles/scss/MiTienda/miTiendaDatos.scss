@@ -267,4 +267,39 @@
       }
     }
   }
+  .tiendaActionsCard{
+    max-width: 747px;
+    margin-bottom: 16px;
+    @include screen_705{
+      margin-right: 32px;
+      margin-left: 32px;
+    }
+    @include screen_601{
+      margin-right: 24px;
+      margin-left: 24px;
+    }
+    @include screen_460{
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+    h5{
+      color: #423B3C;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 16px;
+      margin-bottom: 0px;
+      cursor: pointer;
+    }
+    p{
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      color: #878787;
+      margin-top: 8px;
+      margin-bottom: 0px;
+    }
+  }
+  .tiendaActionsCard1{
+    margin-top: 60px;
+  }
 }
