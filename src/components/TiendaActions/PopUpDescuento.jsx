@@ -5,7 +5,7 @@ import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
 
-const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
+const PopUpDescuento = ({ setOpenPopUp, descuentoInfo, metodo }) => {
   const [loading, setLoading] = useState(false);
   const [discount, setDiscount] = useState("");
 
@@ -16,10 +16,15 @@ const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
     setLoading(true);
 
     const desc = new FormData();
-    desc.append("idproducto", descuentoInfo.productId);
+    if (metodo === "productos") {
+      desc.append("idproducto", descuentoInfo.productId);
+    } else {
+      desc.append("idcliente", descuentoInfo.idCliente);
+    }
     desc.append("idtienda", descuentoInfo.idTienda);
     desc.append("descuento", discount);
-    apiFetch(desc, "productos", "set_discount").then(async (res) => {
+    console.log(Object.fromEntries(desc));
+    /* apiFetch(desc, metodo, "set_discount").then(async (res) => {
       if (res.status === "success") {
         console.log(res);
         setLoading(false);
@@ -27,21 +32,18 @@ const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
         console.log(res);
         setLoading(false);
       }
-    });
+    }); */
   };
 
   return (
     <div className="PopUpMensajePP">
-      <div
-        className="fondoPopUp"
-        onClick={() => setOpenMessagePop(false)}
-      ></div>
+      <div className="fondoPopUp" onClick={() => setOpenPopUp(false)}></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
           onClick={() => {
-            setOpenMessagePop(false);
+            setOpenPopUp(false);
           }}
         />
         <div className="popUpContainer">
@@ -49,11 +51,14 @@ const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
           <p className="popUpTitle">
             {fin
               ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE"
-              : "DESCUENTO POR PRODUCTO"}
+              : metodo === "productos"
+              ? "DESCUENTO POR PRODUCTO"
+              : "DESCUENTO POR TIENDA"}
           </p>
           {!fin && (
             <p className="popUpDescription" style={{ marginTop: "8px" }}>
-              Ingresá el porcentaje de descuento para este producto
+              Ingresá el porcentaje de descuento para{" "}
+              {metodo === "productos" ? "este producto" : "tu tienda"}
             </p>
           )}
           {!fin && (
@@ -98,7 +103,7 @@ const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
               <>
                 {!loading && !fin && (
                   <Button
-                    onClick={() => setOpenMessagePop(false)}
+                    onClick={() => setOpenPopUp(false)}
                     className="volver"
                   >
                     CANCELAR
@@ -116,7 +121,7 @@ const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
                   <Button
                     disabled={discount === "" ? true : false}
                     className={discount === "" ? "mensajeDisabled" : "recordar"}
-                    onClick={() => setOpenMessagePop(false)}
+                    onClick={() => setOpenPopUp(false)}
                   >
                     LISTO
                   </Button>
@@ -136,4 +141,4 @@ const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
   );
 };
 
-export default PopUpDescProd;
+export default PopUpDescuento;

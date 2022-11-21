@@ -11,6 +11,7 @@ export const MiTiendaContext = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [tiendaData, setTiendaData] = useState([]);
   const [saldoCuenta, setSaldoCuenta] = useState(false);
+  const [tiendaDetail, setTiendaDetail] = useState([]);
 
   useEffect(() => {
     if (userLog !== "") {
@@ -35,6 +36,7 @@ export const MiTiendaContext = ({ children }) => {
           apiFetch(tienda, "tiendas", "detail").then((res) => {
             console.log(res);
             if (res.status === "success") {
+              setTiendaDetail(res.result);
               setProductos(res.result.search_productos);
             }
           });
@@ -53,6 +55,7 @@ export const MiTiendaContext = ({ children }) => {
         setSaldoCuenta,
         tiendaData,
         setTiendaData,
+        tiendaDetail,
       }}
     >
       {children}

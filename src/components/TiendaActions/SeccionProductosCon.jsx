@@ -5,15 +5,29 @@ import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Grid } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
-import PopUpDescProd from "./PopUpDescProd";
+import PopUpDescuento from "./PopUpDescuento";
 
 const SeccionProductosCon = () => {
   const navigate = useNavigate();
 
-  const { productos } = useContext(UseMiTiendaContext);
-
-  const [openMessagePop, setOpenMessagePop] = useState(false);
+  const { productos, tiendaDetail } = useContext(UseMiTiendaContext);
   const [descuentoInfo, setDescuentoInfo] = useState({});
+  const [openPopUp, setOpenPopUp] = useState(false);
+
+  const handleOpenModal = (infoDesc, metodo) => {
+    setOpenPopUp(true);
+    if (metodo === "productos") {
+      setDescuentoInfo({
+        productId: infoDesc.idproducto,
+        idTienda: infoDesc.idtienda,
+      });
+    } else {
+      setDescuentoInfo({
+        idCliente: tiendaDetail.idcliente,
+        idTienda: tiendaDetail.idtienda,
+      });
+    }
+  };
 
   return (
     <div className="seccionProductosCon">
@@ -22,7 +36,12 @@ const SeccionProductosCon = () => {
         <div className="productContainer">
           <div className="firstLine">
             <p className="title">MIS PRODUCTOS</p>
-            <p className="discountLink">CREAR DESCUENTO PARA TU TIENDA</p>
+            <p
+              className="discountLink"
+              onClick={() => handleOpenModal("", "tiendas")}
+            >
+              CREAR DESCUENTO PARA TU TIENDA
+            </p>
           </div>
           <div className="productList">
             {productos.length > 0 &&
@@ -41,13 +60,9 @@ const SeccionProductosCon = () => {
                           <p className="state">{product.estado_text}</p>
                           <p
                             className="discountLink"
-                            onClick={() => {
-                              setOpenMessagePop(true);
-                              setDescuentoInfo({
-                                productId: product.idproducto,
-                                idTienda: product.idtienda,
-                              });
-                            }}
+                            onClick={() =>
+                              handleOpenModal(product, "productos")
+                            }
                           >
                             CREAR DESCUENTO PARA TU TIENDA
                           </p>
@@ -78,13 +93,7 @@ const SeccionProductosCon = () => {
                         <p className="monto">${product.precio}</p>
                         <p
                           className="discountLink"
-                          onClick={() => {
-                            setOpenMessagePop(true);
-                            setDescuentoInfo({
-                              productId: product.idproducto,
-                              idTienda: product.idtienda,
-                            });
-                          }}
+                          onClick={() => handleOpenModal(product, "productos")}
                         >
                           CREAR DESCUENTO PARA TU TIENDA
                         </p>
@@ -114,10 +123,10 @@ const SeccionProductosCon = () => {
           </div>
         </div>
       </Grid>
-      {openMessagePop && (
-        <PopUpDescProd
+      {openPopUp && (
+        <PopUpDescuento
           descuentoInfo={descuentoInfo}
-          setOpenMessagePop={setOpenMessagePop}
+          setOpenPopUp={setOpenPopUp}
         />
       )}
     </div>
