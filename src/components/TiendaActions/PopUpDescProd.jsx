@@ -3,26 +3,35 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
-const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
+const PopUpDescProd = ({ setOpenMessagePop, descuentoInfo }) => {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [discount, setDiscount] = useState("");
 
   const [error, setError] = useState(false);
-  const [fin,setFin]=useState(false)
+  const [fin, setFin] = useState(false);
 
   const submit = () => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      setFin(true)
-    }, 1500);
+    setLoading(true);
+
+    const desc = new FormData();
+    desc.append("idproducto", descuentoInfo.productId);
+    desc.append("idtienda", descuentoInfo.idTienda);
+    desc.append("descuento", discount);
+    apiFetch(desc, "productos", "set_discount").then(async (res) => {
+      if (res.status === "success") {
+        console.log(res);
+        setLoading(false);
+      } else {
+        console.log(res);
+        setLoading(false);
+      }
+    });
   };
 
   return (
-    <div
-      className="PopUpMensajePP"
-    >
+    <div className="PopUpMensajePP">
       <div
         className="fondoPopUp"
         onClick={() => setOpenMessagePop(false)}
@@ -38,25 +47,25 @@ const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">
-            {fin ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE" : 
-              "DESCUENTO POR PRODUCTO"
-            }
+            {fin
+              ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE"
+              : "DESCUENTO POR PRODUCTO"}
           </p>
-          {!fin && 
-            <p className="popUpDescription" style={{marginTop:"8px"}}>
+          {!fin && (
+            <p className="popUpDescription" style={{ marginTop: "8px" }}>
               Ingresá el porcentaje de descuento para este producto
             </p>
-          }
-          {!fin &&
+          )}
+          {!fin && (
             <TextField
               multiline
               rows={1}
               className="textArea"
               size="small"
               placeholder="% de descuento"
-              value={message}
+              value={discount}
               onChange={(e) => {
-                setMessage(e.target.value);
+                setDiscount(e.target.value);
                 setError(false);
               }}
               inputProps={{ maxLength: 2 }}
@@ -71,7 +80,7 @@ const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
                 },
               }}
             />
-          }
+          )}
           <div className="buttonContainer">
             {loading ? (
               <div
@@ -87,31 +96,31 @@ const PopUpDescProd = ({ setOpenMessagePop,descripcion }) => {
               </div>
             ) : (
               <>
-                {!loading && !fin && 
+                {!loading && !fin && (
                   <Button
-                  onClick={() => setOpenMessagePop(false)}
-                  className="volver"
+                    onClick={() => setOpenMessagePop(false)}
+                    className="volver"
                   >
                     CANCELAR
                   </Button>
-                }
-                {!fin ? 
+                )}
+                {!fin ? (
                   <Button
-                  disabled={message === "" ? true : false}
-                  className={message === "" ? "mensajeDisabled" : "recordar"}
-                  onClick={() => submit()}
+                    disabled={discount === "" ? true : false}
+                    className={discount === "" ? "mensajeDisabled" : "recordar"}
+                    onClick={() => submit()}
                   >
                     APLICAR
                   </Button>
-                :
+                ) : (
                   <Button
-                  disabled={message === "" ? true : false}
-                  className={message === "" ? "mensajeDisabled" : "recordar"}
-                  onClick={() => setOpenMessagePop(false) }
+                    disabled={discount === "" ? true : false}
+                    className={discount === "" ? "mensajeDisabled" : "recordar"}
+                    onClick={() => setOpenMessagePop(false)}
                   >
                     LISTO
                   </Button>
-                }
+                )}
               </>
             )}
           </div>

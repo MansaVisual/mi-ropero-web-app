@@ -12,7 +12,8 @@ const SeccionProductosCon = () => {
 
   const { productos } = useContext(UseMiTiendaContext);
 
-  const [openMessagePopUp, setOpenMessagePopUp] = useState(false);
+  const [openMessagePop, setOpenMessagePop] = useState(false);
+  const [descuentoInfo, setDescuentoInfo] = useState({});
 
   return (
     <div className="seccionProductosCon">
@@ -40,7 +41,13 @@ const SeccionProductosCon = () => {
                           <p className="state">{product.estado_text}</p>
                           <p
                             className="discountLink"
-                            onClick={() => setOpenMessagePopUp(true)}
+                            onClick={() => {
+                              setOpenMessagePop(true);
+                              setDescuentoInfo({
+                                productId: product.idproducto,
+                                idTienda: product.idtienda,
+                              });
+                            }}
                           >
                             CREAR DESCUENTO PARA TU TIENDA
                           </p>
@@ -71,7 +78,13 @@ const SeccionProductosCon = () => {
                         <p className="monto">${product.precio}</p>
                         <p
                           className="discountLink"
-                          onClick={() => setOpenMessagePopUp(true)}
+                          onClick={() => {
+                            setOpenMessagePop(true);
+                            setDescuentoInfo({
+                              productId: product.idproducto,
+                              idTienda: product.idtienda,
+                            });
+                          }}
                         >
                           CREAR DESCUENTO PARA TU TIENDA
                         </p>
@@ -101,8 +114,11 @@ const SeccionProductosCon = () => {
           </div>
         </div>
       </Grid>
-      {openMessagePopUp && (
-        <PopUpDescProd setOpenMessagePopUp={setOpenMessagePopUp} />
+      {openMessagePop && (
+        <PopUpDescProd
+          descuentoInfo={descuentoInfo}
+          setOpenMessagePop={setOpenMessagePop}
+        />
       )}
     </div>
   );
