@@ -25,9 +25,10 @@ export const MiTiendaContext = ({ children }) => {
               setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
             }
           });
-          tienda.append("idtienda", Number(res.result[0].idtienda));
-          console.log(Object.fromEntries(tienda));
-          apiFetch(tienda, "tiendas", "get").then((res) => {
+          const tiendaGet = new FormData();
+          tiendaGet.append("idtienda", Number(res.result[0].idtienda));
+          console.log(Object.fromEntries(tiendaGet));
+          apiFetch(tiendaGet, "tiendas", "get").then((res) => {
             console.log(res);
             if (res.status === "success") {
               setProductos(res.result);
