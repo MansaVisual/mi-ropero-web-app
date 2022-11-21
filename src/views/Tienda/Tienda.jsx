@@ -41,7 +41,11 @@ const Tienda = () => {
     idCaracteristicaOld: [],
     direccion: [],
     telefono: "",
-    detalles: {},
+    detalles: {
+      titulo: "",
+      precio: "",
+      descripcion: "",
+    },
     imagenes: {},
   });
 
