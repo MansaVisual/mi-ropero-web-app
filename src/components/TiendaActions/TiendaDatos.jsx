@@ -9,6 +9,7 @@ import SeccionProductos from "./SeccionProductos";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
+import logo from "../../assets/img/isologo.png";
 
 const TiendaDatos = () => {
   const navigate = useNavigate();
@@ -19,8 +20,16 @@ const TiendaDatos = () => {
     Swal.fire({
       title: "¿PAUSAR TIENDA?",
       text: "Pausarás tu tienda hasta que lo desees",
+      iconHtml: `<img src=${logo} alt="LOGO">`,
       showCloseButton: true,
+      showCancelButton: true,
       confirmButtonText: "CONTINUAR",
+      cancelButtonText: "CANCELAR",
+      customClass: {
+        icon: "no-border",
+        container: "popUpLoginAlert",
+        cancelButton: "popUpLoginCancel",
+      },
     }).then((res)=>{
       if(res.isConfirmed){
         const pause=new FormData()
@@ -30,6 +39,45 @@ const TiendaDatos = () => {
           if(res.status==="success"){
             Swal.fire({
               title:'TIENDA PAUSADA',
+              icon:'success',
+              confirmButtonText: 'ACEPTAR',
+          })
+          }else{
+            Swal.fire({
+              title:'OCURRIÓ UN ERROR',
+              text:"Vuelva a intentarlo",
+              icon:'error',
+              confirmButtonText: 'ACEPTAR',
+          })
+          }
+        })
+      }
+    })
+  }
+
+  const reporteSem=()=>{
+    Swal.fire({
+      title: "ACTIVAR/DES REPORTE SEMANAL",
+      text: "Recibirá un reporte semanal con las estadísticas de tu tienda",
+      iconHtml: `<img src=${logo} alt="LOGO">`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: "CONTINUAR",
+      cancelButtonText: "CANCELAR",
+      customClass: {
+        icon: "no-border",
+        container: "popUpLoginAlert",
+        cancelButton: "popUpLoginCancel",
+      },
+    }).then((res)=>{
+      if(res.isConfirmed){
+        const pause=new FormData()
+        pause.append("idcliente",userLog)
+        pause.append("idtienda",tiendaData.idtienda)
+        apiFetch(pause,"tiendas","set_report").then((res)=>{
+          if(res.status==="success"){
+            Swal.fire({
+              title:'fsdfadsf',
               icon:'success',
               confirmButtonText: 'ACEPTAR',
           })
@@ -116,7 +164,7 @@ const TiendaDatos = () => {
           </div>
           <div>
             <div className="tiendaActionsCard tiendaActionsCard1">
-              <h5>Desactivar reporte semanal de estadísticas</h5>
+              <h5 onClick={()=>reporteSem()}>Desactivar reporte semanal de estadísticas</h5>
               <p>Podés recibir en tu email un reporte semanal con la cantidad de seguidores de tu tienda, la cantidad de visitas de tus productos y toda la información estadística que te interesa.</p>
             </div>
             <div className="tiendaActionsCard">
