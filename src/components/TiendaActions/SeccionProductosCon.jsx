@@ -14,7 +14,10 @@ const SeccionProductosCon = () => {
   const [descuentoInfo, setDescuentoInfo] = useState({});
   const [openPopUp, setOpenPopUp] = useState(false);
 
+  console.log(tiendaDetail);
+
   const handleOpenModal = (infoDesc, metodo) => {
+    console.log(metodo, infoDesc);
     setOpenPopUp(true);
     if (metodo === "productos") {
       setDescuentoInfo({
