@@ -23,11 +23,12 @@ const DetallesProd = ({ form, setForm }) => {
   });
   const [openDescPopUp, setOpenDescPopUp] = useState(false);
 
-  const handleChange = () => {
-    setDetalles({
-      title: document.getElementById("titulo").value,
-      precio: document.getElementById("precio").value,
-      descripcion: document.getElementById("descripcion").value,
+  const handleChange = (e, detalle) => {
+    setDetalles((prevState) => {
+      return {
+        ...prevState,
+        [detalle]: e.target.value,
+      };
     });
   };
 
@@ -96,9 +97,16 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="titulo"
-                onChangeCapture={() => {
-                  handleChange();
-                }}
+                value={form.detalle.titulo}
+                onChangeCapture={
+                  (e) => handleChange(e, "titulo")
+                  /* setDetalles((prevState) => {
+                    return {
+                      ...prevState,
+                      titulo: e.target.value,
+                    };
+                  }) */
+                }
               ></OutlinedInput>
             </div>
             <div className="margenInput">
@@ -113,9 +121,8 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="precio"
-                onChangeCapture={() => {
-                  handleChange();
-                }}
+                value={form.detalle.precio}
+                onChangeCapture={(e) => handleChange(e, "precio")}
                 type="number"
               ></OutlinedInput>
             </div>
@@ -135,9 +142,8 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className="inputForm textarea"
                 id="descripcion"
-                onChangeCapture={() => {
-                  handleChange();
-                }}
+                value={form.detalle.descripcion}
+                onChangeCapture={(e) => handleChange(e, "descripcion")}
                 inputProps={{ maxLength: 100 }}
               ></TextField>
             </div>

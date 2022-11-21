@@ -16,30 +16,39 @@ export const MiTiendaContext = ({ children }) => {
     if (userLog !== "") {
       const tienda = new FormData();
       tienda.append("idcliente", Number(userLog));
-      apiFetch(tienda,"tiendas","list").then((res)=>{console.log(res)
-        if(res.status==="success"){
-          setTiendaData(res.result[0])
+      apiFetch(tienda, "tiendas", "list").then((res) => {
+        console.log(res);
+        console.log(res);
+        if (res.status === "success") {
+          setTiendaData(res.result[0]);
           apiFetch(tienda, "cuentascorrientes", "balance").then((res) => {
             if (res.status === "success") {
               setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
             }
           });
-          tienda.append("idtienda",Number(res.result[0].idtienda))
-          apiFetch(tienda,"tiendas","get").then((res)=>{
-            console.log(res)
-            if(res.status==="success"){
-              setProductos(res.result)
+          tienda.append("idtienda", Number(res.result[0].idtienda));
+          apiFetch(tienda, "tiendas", "get").then((res) => {
+            console.log(res);
+            if (res.status === "success") {
+              setProductos(res.result);
             }
-          })
+          });
         }
-        setBuscandoProds(false)
-      })
+        setBuscandoProds(false);
+      });
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <UseMiTiendaContext.Provider
-      value={{ buscandoProds, productos, saldoCuenta, setSaldoCuenta, tiendaData,setTiendaData }}
+      value={{
+        buscandoProds,
+        productos,
+        saldoCuenta,
+        setSaldoCuenta,
+        tiendaData,
+        setTiendaData,
+      }}
     >
       {children}
     </UseMiTiendaContext.Provider>
