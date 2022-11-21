@@ -13,7 +13,7 @@ const SeccionProductos = () => {
 
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-
+  
   useEffect(() => {
     window.scrollTo({
       top: 0,

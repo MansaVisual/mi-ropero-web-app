@@ -32,6 +32,7 @@ export const MiTiendaContext = ({ children }) => {
             }
           })
         }
+        setBuscandoProds(false)
       })
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
