@@ -17,7 +17,7 @@ const DetallesProd = ({ form, setForm }) => {
 
   const [habilitado, setHabilitado] = useState(false);
   const [detalles, setDetalles] = useState({
-    title: "",
+    titulo: "",
     precio: 0,
     descripcion: "",
   });
@@ -33,25 +33,25 @@ const DetallesProd = ({ form, setForm }) => {
   };
 
   useEffect(() => {
-    if (!form.categoriaId) {
+    /*     if (!form.categoriaId) {
       navigate(`/MiTienda/CATEGORIA`);
       return;
-    }
+    } */
     if (form.detalles.titulo !== "") {
       setDetalles({
-        title: form.detalles.titulo,
+        titulo: form.detalles.titulo,
         precio: form.detalles.precio,
         descripcion: form.detalles.descripcion,
       });
-      document.getElementById("titulo").value = form.titulo;
+      /*       document.getElementById("titulo").value = form.titulo;
       document.getElementById("precio").value = form.precio;
-      document.getElementById("descripcion").value = form.descripcion;
+      document.getElementById("descripcion").value = form.descripcion; */
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (
-      detalles.title !== "" &&
+      detalles.titulo !== "" &&
       detalles.precio !== 0 &&
       detalles.descripcion !== ""
     ) {
@@ -62,9 +62,6 @@ const DetallesProd = ({ form, setForm }) => {
   const handleSubmit = () => {
     setForm((prevState) => ({
       ...prevState,
-      /* titulo: detalles.title,
-      precio: detalles.precio,
-      descripcion: detalles.descripcion, */
       detalles,
     }));
     navigate(`/MiTienda/CONTACTO`);
@@ -97,7 +94,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="titulo"
-                value={form.detalles.titulo}
+                value={detalles.titulo}
                 onChangeCapture={
                   (e) => handleChange(e, "titulo")
                   /* setDetalles((prevState) => {
@@ -121,7 +118,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="precio"
-                value={form.detalles.precio}
+                value={detalles.precio}
                 onChangeCapture={(e) => handleChange(e, "precio")}
                 type="number"
               ></OutlinedInput>
@@ -142,7 +139,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className="inputForm textarea"
                 id="descripcion"
-                value={form.detalles.descripcion}
+                value={detalles.descripcion}
                 onChangeCapture={(e) => handleChange(e, "descripcion")}
                 inputProps={{ maxLength: 100 }}
               ></TextField>
