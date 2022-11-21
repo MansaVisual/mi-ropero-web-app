@@ -10,6 +10,10 @@ import Loader from "../Loader/Loader";
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
 
+  if (!form.categoriaId) {
+    navigate(`/MiTienda/CATEGORIA`);
+  }
+
   const [caracteristicas, setCaracteristicas] = useState({});
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");

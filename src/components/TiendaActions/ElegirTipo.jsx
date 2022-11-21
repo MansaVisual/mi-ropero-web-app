@@ -7,8 +7,11 @@ import { UseProdsContext } from "../../context/ProdsContext";
 
 const ElegirTipo = ({ form, setForm }) => {
   const navigate = useNavigate();
-
   const { categorias } = useContext(UseProdsContext);
+
+  if (!form.categoriaId) {
+    navigate(`/MiTienda/CATEGORIA`);
+  }
 
   return (
     <div className="elegirTipoContainer">

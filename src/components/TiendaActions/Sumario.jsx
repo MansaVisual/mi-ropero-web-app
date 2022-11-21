@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
 
+  if (!form.categoriaId) {
+    navigate(`/MiTienda/CATEGORIA`);
+  }
+
   console.log(form);
 
   const sumario = {

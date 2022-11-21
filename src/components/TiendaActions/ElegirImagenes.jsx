@@ -13,6 +13,10 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
 
+  if (!form.categoriaId) {
+    navigate(`/MiTienda/CATEGORIA`);
+  }
+
   const [section, setSection] = useState(null);
   return (
     <div className="elegirImgContainer">

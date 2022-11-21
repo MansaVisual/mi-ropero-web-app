@@ -22,8 +22,11 @@ const Contacto = ({ form, setForm }) => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
-  const [contactForm, setContactForm] = useState([]);
+  if (!form.categoriaId) {
+    navigate(`/MiTienda/CATEGORIA`);
+  }
 
+  const [contactForm, setContactForm] = useState([]);
 
   let clase = "formObligatorio";
   let clase2 = "formObligatorioTitle";
@@ -56,7 +59,7 @@ const Contacto = ({ form, setForm }) => {
   const [changeLoc, setChangeLoc] = useState(false);
 
   const [cambioProvincia, setCambioProvincia] = useState(false);
-console.log(infoLocFinal)
+  console.log(infoLocFinal);
   useEffect(() => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById("codigoPostal").value =
@@ -102,25 +105,30 @@ console.log(infoLocFinal)
   };
 
   useEffect(() => {
-    if(form.direccion.length!==0){
-      document.getElementById('telefono').value=form.telefono
-      document.getElementById('calle').value=form.direccion.calle
-      document.getElementById('alturaKM').value=form.direccion.numero
-      document.getElementById('piso').value=form.direccion.piso
-      document.getElementById('depto').value=form.direccion.departamento
-      setProvincia(form.direccion.idprovincia)
-      setInfoLoc(form.infoLocalidad)
-      if(form.direccion.idprovincia==="1"){
-        document.getElementById('barrioLocalidad').value="CAPITAL FEDERAL"
-      }else{
-        document.getElementById('barrioLocalidad').value=form.direccion.localidad
+    if (form.direccion.length !== 0) {
+      document.getElementById("telefono").value = form.telefono;
+      document.getElementById("calle").value = form.direccion.calle;
+      document.getElementById("alturaKM").value = form.direccion.numero;
+      document.getElementById("piso").value = form.direccion.piso;
+      document.getElementById("depto").value = form.direccion.departamento;
+      setProvincia(form.direccion.idprovincia);
+      setInfoLoc(form.infoLocalidad);
+      if (form.direccion.idprovincia === "1") {
+        document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
+      } else {
+        document.getElementById("barrioLocalidad").value =
+          form.direccion.localidad;
       }
-      document.getElementById('entrecalle1').value=form.direccion.entre_calle_1
-      document.getElementById('entrecalle2').value=form.direccion.entre_calle_2
-      document.getElementById('codigoPostal').value=form.direccion.codigo_postal
-      document.getElementById('infoAdicional').value=form.direccion.informacion_adicional
+      document.getElementById("entrecalle1").value =
+        form.direccion.entre_calle_1;
+      document.getElementById("entrecalle2").value =
+        form.direccion.entre_calle_2;
+      document.getElementById("codigoPostal").value =
+        form.direccion.codigo_postal;
+      document.getElementById("infoAdicional").value =
+        form.direccion.informacion_adicional;
     }
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkNuevaDireccion = async () => {
     setLoader(true);
@@ -214,11 +222,11 @@ console.log(infoLocFinal)
     if (guardarDireccion) {
       setForm((prevState) => ({
         ...prevState,
-        direccion:direccion,
-        telefono:document.getElementById("telefono").value,
-        infoLocalidad:infoLocFinal
+        direccion: direccion,
+        telefono: document.getElementById("telefono").value,
+        infoLocalidad: infoLocFinal,
       }));
-      navigate("/MiTienda/SUMARIO")
+      navigate("/MiTienda/SUMARIO");
     }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 

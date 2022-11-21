@@ -15,6 +15,10 @@ import PopUpDescProd from "./PopUpDescProd";
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
 
+  if (!form.categoriaId) {
+    navigate(`/MiTienda/CATEGORIA`);
+  }
+
   const [habilitado, setHabilitado] = useState(false);
   const [detalles, setDetalles] = useState({
     title: "",
