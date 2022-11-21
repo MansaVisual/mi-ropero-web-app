@@ -76,7 +76,7 @@ const Tienda = () => {
 
   return (
     <div>
-      {/*       {buscandoProds ? (
+      {buscandoProds ? (
         <div
           style={{
             marginTop: "72px",
@@ -90,34 +90,33 @@ const Tienda = () => {
         </div>
       ) : tiendaData.length === 0 ? (
         <SeccionProductos />
-      ) : ( */}
-      <>
-        {seccion === undefined && <MiTienda />}
-        {seccion === "PRODUCTOS" && <SeccionProductosCon />}
-        {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
-        {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
-        {seccion === "IMAGENES" && (
-          <ElegirImagenes form={form} setForm={setForm} />
-        )}
-        {seccion === "CARACTERISTICAS" && (
-          <Caracteristicas form={form} setForm={setForm} />
-        )}
-        {seccion === "DETALLES" && (
-          <DetallesProd form={form} setForm={setForm} />
-        )}
-        {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
-        {seccion === "VENTAS" && <Ventas />}
-        {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
-        {seccion === "MENSAJES" && <Mensajes />}
-        {seccion === "CALIFICACIONES" && <Calificaciones />}
-        {seccion === "TRANSFERENCIAS" && <Transferencias />}
-        {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
-        {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
-        {seccion === "SUMARIO" && <Sumario form={form} />}
-        {seccion === "MI CHAT" && <Chat />}
-      </>
-      {/*       )}
-       */}{" "}
+      ) : (
+        <>
+          {seccion === undefined && <MiTienda />}
+          {seccion === "PRODUCTOS" && <SeccionProductosCon />}
+          {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
+          {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
+          {seccion === "IMAGENES" && (
+            <ElegirImagenes form={form} setForm={setForm} />
+          )}
+          {seccion === "CARACTERISTICAS" && (
+            <Caracteristicas form={form} setForm={setForm} />
+          )}
+          {seccion === "DETALLES" && (
+            <DetallesProd form={form} setForm={setForm} />
+          )}
+          {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
+          {seccion === "VENTAS" && <Ventas />}
+          {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
+          {seccion === "MENSAJES" && <Mensajes />}
+          {seccion === "CALIFICACIONES" && <Calificaciones />}
+          {seccion === "TRANSFERENCIAS" && <Transferencias />}
+          {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
+          {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
+          {seccion === "SUMARIO" && <Sumario form={form} />}
+          {seccion === "MI CHAT" && <Chat />}
+        </>
+      )}
     </div>
   );
 };
