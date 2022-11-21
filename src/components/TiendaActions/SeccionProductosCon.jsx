@@ -38,7 +38,10 @@ const SeccionProductosCon = () => {
                         <div>
                           <p className="title">{product.nombre}</p>
                           <p className="state">{product.estado_text}</p>
-                          <p className="discountLink">
+                          <p
+                            className="discountLink"
+                            onClick={() => setOpenMessagePopUp(true)}
+                          >
                             CREAR DESCUENTO PARA TU TIENDA
                           </p>
                         </div>
@@ -66,6 +69,12 @@ const SeccionProductosCon = () => {
                         <p className="messageTitle">{product.nombre}</p>
                         <p className="messageState">{product.estado_text}</p>
                         <p className="monto">${product.precio}</p>
+                        <p
+                          className="discountLink"
+                          onClick={() => setOpenMessagePopUp(true)}
+                        >
+                          CREAR DESCUENTO PARA TU TIENDA
+                        </p>
                       </div>
                       <img
                         src={basura}
