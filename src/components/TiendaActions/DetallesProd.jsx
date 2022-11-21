@@ -38,9 +38,9 @@ const DetallesProd = ({ form, setForm }) => {
     }
     if (form.detalles.titulo !== "") {
       setDetalles({
-        title: form.titulo,
-        precio: form.precio,
-        descripcion: form.descripcion,
+        title: form.detalles.titulo,
+        precio: form.detalles.precio,
+        descripcion: form.detalles.descripcion,
       });
       document.getElementById("titulo").value = form.titulo;
       document.getElementById("precio").value = form.precio;
