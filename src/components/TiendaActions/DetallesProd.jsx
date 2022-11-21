@@ -10,7 +10,7 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-import PopUpDescProd from "./PopUpDescProd";
+import PopUpDescProd from "./PopUpDescuento";
 
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
