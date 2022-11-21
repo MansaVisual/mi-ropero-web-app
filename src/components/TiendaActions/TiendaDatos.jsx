@@ -6,10 +6,45 @@ import { useNavigate } from "react-router-dom";
 import { Grid, TextField } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import SeccionProductos from "./SeccionProductos";
+import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const TiendaDatos = () => {
   const navigate = useNavigate();
   const { tiendaData } = useContext(UseMiTiendaContext);
+  const { userLog } = useContext(UseLoginContext);
+
+  const pausarTienda=()=>{
+    Swal.fire({
+      title: "¿PAUSAR TIENDA?",
+      text: "Pausarás tu tienda hasta que lo desees",
+      showCloseButton: true,
+      confirmButtonText: "CONTINUAR",
+    }).then((res)=>{
+      if(res.isConfirmed){
+        const pause=new FormData()
+        pause.append("idcliente",userLog)
+        pause.append("idtienda",tiendaData.idtienda)
+        apiFetch(pause,"tiendas","pause").then((res)=>{
+          if(res.status==="success"){
+            Swal.fire({
+              title:'TIENDA PAUSADA',
+              icon:'success',
+              confirmButtonText: 'ACEPTAR',
+          })
+          }else{
+            Swal.fire({
+              title:'OCURRIÓ UN ERROR',
+              text:"Vuelva a intentarlo",
+              icon:'error',
+              confirmButtonText: 'ACEPTAR',
+          })
+          }
+        })
+      }
+    })
+  }
 
   return (<>{tiendaData.length===0?<SeccionProductos/>:
     <div className="miTiendaDatos">
@@ -78,6 +113,16 @@ const TiendaDatos = () => {
           <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A MI TIENDA</p>
+          </div>
+          <div>
+            <div className="tiendaActionsCard tiendaActionsCard1">
+              <h5>Desactivar reporte semanal de estadísticas</h5>
+              <p>Podés recibir en tu email un reporte semanal con la cantidad de seguidores de tu tienda, la cantidad de visitas de tus productos y toda la información estadística que te interesa.</p>
+            </div>
+            <div className="tiendaActionsCard">
+              <h5 onClick={()=>pausarTienda()}>Pausar tienda</h5>
+              <p>Al pausar tu tienda todos tus productos quedarán pausados y no podrán comprarse.</p>
+            </div>
           </div>
         </div>
       </Grid>

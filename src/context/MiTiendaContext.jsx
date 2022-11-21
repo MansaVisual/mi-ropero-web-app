@@ -9,7 +9,7 @@ export const MiTiendaContext = ({ children }) => {
 
   const [buscandoProds, setBuscandoProds] = useState(true);
   const [productos, setProductos] = useState([]);
-  const [tiendaData, setTiendaData] = useState([]);
+  const [tiendaData, setTiendaData] = useState([""]);
   const [saldoCuenta, setSaldoCuenta] = useState(false);
   const [tiendaDetail, setTiendaDetail] = useState([]);
 
