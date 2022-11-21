@@ -97,7 +97,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="titulo"
-                value={form.detalle.titulo}
+                value={form.detalles.titulo}
                 onChangeCapture={
                   (e) => handleChange(e, "titulo")
                   /* setDetalles((prevState) => {
@@ -121,7 +121,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="precio"
-                value={form.detalle.precio}
+                value={form.detalles.precio}
                 onChangeCapture={(e) => handleChange(e, "precio")}
                 type="number"
               ></OutlinedInput>
@@ -142,7 +142,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className="inputForm textarea"
                 id="descripcion"
-                value={form.detalle.descripcion}
+                value={form.detalles.descripcion}
                 onChangeCapture={(e) => handleChange(e, "descripcion")}
                 inputProps={{ maxLength: 100 }}
               ></TextField>
