@@ -10,10 +10,6 @@ import Loader from "../Loader/Loader";
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
 
-  if (!form.categoriaId) {
-    navigate(`/MiTienda/CATEGORIA`);
-  }
-
   const [caracteristicas, setCaracteristicas] = useState({});
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
@@ -24,6 +20,10 @@ const Caracteristicas = ({ form, setForm }) => {
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
   useEffect(() => {
+    if (!form.categoriaId) {
+      navigate(`/MiTienda/CATEGORIA`);
+      return;
+    }
     const dir = new FormData();
     dir.append("idcategoria", form.categoriaId);
     let caract = {};

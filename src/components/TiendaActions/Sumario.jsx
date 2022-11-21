@@ -10,9 +10,8 @@ const Sumario = ({ form }) => {
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
+    return;
   }
-
-  console.log(form);
 
   const sumario = {
     categoria: "ROPA / Remeras",

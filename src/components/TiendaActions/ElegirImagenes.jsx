@@ -12,12 +12,13 @@ import PopUpImg from "./PopUpImg";
 const ElegirImagenes = ({ form, setForm }) => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
+  const [section, setSection] = useState(null);
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
+    return;
   }
 
-  const [section, setSection] = useState(null);
   return (
     <div className="elegirImgContainer">
       <div className="container">

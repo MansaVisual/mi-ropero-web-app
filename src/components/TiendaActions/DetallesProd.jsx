@@ -15,10 +15,6 @@ import PopUpDescProd from "./PopUpDescProd";
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
 
-  if (!form.categoriaId) {
-    navigate(`/MiTienda/CATEGORIA`);
-  }
-
   const [habilitado, setHabilitado] = useState(false);
   const [detalles, setDetalles] = useState({
     title: "",
@@ -36,7 +32,11 @@ const DetallesProd = ({ form, setForm }) => {
   };
 
   useEffect(() => {
-    if (form.titulo !== "") {
+    if (!form.categoriaId) {
+      navigate(`/MiTienda/CATEGORIA`);
+      return;
+    }
+    if (form.detalles.titulo !== "") {
       setDetalles({
         title: form.titulo,
         precio: form.precio,

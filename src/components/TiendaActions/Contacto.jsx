@@ -22,10 +22,6 @@ const Contacto = ({ form, setForm }) => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const navigate = useNavigate();
 
-  if (!form.categoriaId) {
-    navigate(`/MiTienda/CATEGORIA`);
-  }
-
   const [contactForm, setContactForm] = useState([]);
 
   let clase = "formObligatorio";
@@ -105,6 +101,10 @@ const Contacto = ({ form, setForm }) => {
   };
 
   useEffect(() => {
+    if (!form.categoriaId) {
+      navigate(`/MiTienda/CATEGORIA`);
+      return;
+    }
     if (form.direccion.length !== 0) {
       document.getElementById("telefono").value = form.telefono;
       document.getElementById("calle").value = form.direccion.calle;
