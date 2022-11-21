@@ -13,6 +13,7 @@ const ElegirTipo = ({ form, setForm }) => {
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
+    return;
   }
 
   return (
