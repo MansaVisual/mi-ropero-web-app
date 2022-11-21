@@ -27,26 +27,22 @@ const Tienda = () => {
   const { seccion } = useParams();
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
-  const { tiendaData,buscandoProds } = useContext(UseMiTiendaContext);
+  const { tiendaData, buscandoProds } = useContext(UseMiTiendaContext);
 
   const [num, setNum] = useState(1);
 
   const [form, setForm] = useState({
-    categoria: "",
-    tipo: "",
+    categoriaId: null,
+    categoriaNombre: null,
+    tipoId: null,
+    tipoNombre: null,
     caracteristicas: [],
     idCaracteristica: [],
     idCaracteristicaOld: [],
     direccion: [],
     telefono: "",
-    titulo: "",
-    precio: "",
-    descripcion: "",
+    detalles: {},
     imagenes: {},
-    imgFrente: null,
-    imgTrasera: null,
-    video: null,
-    imgExtra: null,
   });
 
   useEffect(() => {
@@ -76,32 +72,47 @@ const Tienda = () => {
 
   return (
     <div>
-      {buscandoProds ? 
-        <div style={{ marginTop: "72px",width:"100%",height:"50vh",display:"flex",justifyContent:"center" }}>
-          <Loader spin={"spinnerG"}/>
-        </div>:
-      tiendaData.length===0 ? <SeccionProductos/> :<>
-      {seccion === undefined && <MiTienda />}
-      {seccion === "PRODUCTOS" && <SeccionProductosCon />}
-      {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
-      {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
-      {seccion === "IMAGENES" && (
-        <ElegirImagenes form={form} setForm={setForm} />
+      {buscandoProds ? (
+        <div
+          style={{
+            marginTop: "72px",
+            width: "100%",
+            height: "50vh",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Loader spin={"spinnerG"} />
+        </div>
+      ) : tiendaData.length === 0 ? (
+        <SeccionProductos />
+      ) : (
+        <>
+          {seccion === undefined && <MiTienda />}
+          {seccion === "PRODUCTOS" && <SeccionProductosCon />}
+          {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
+          {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
+          {seccion === "IMAGENES" && (
+            <ElegirImagenes form={form} setForm={setForm} />
+          )}
+          {seccion === "CARACTERISTICAS" && (
+            <Caracteristicas form={form} setForm={setForm} />
+          )}
+          {seccion === "DETALLES" && (
+            <DetallesProd form={form} setForm={setForm} />
+          )}
+          {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
+          {seccion === "VENTAS" && <Ventas />}
+          {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
+          {seccion === "MENSAJES" && <Mensajes />}
+          {seccion === "CALIFICACIONES" && <Calificaciones />}
+          {seccion === "TRANSFERENCIAS" && <Transferencias />}
+          {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
+          {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
+          {seccion === "SUMARIO" && <Sumario form={form} />}
+          {seccion === "MI CHAT" && <Chat />}
+        </>
       )}
-      {seccion === "CARACTERISTICAS" && (
-        <Caracteristicas form={form} setForm={setForm} />
-      )}
-      {seccion === "DETALLES" && <DetallesProd form={form} setForm={setForm} />}
-      {seccion === "DATOS DE LA TIENDA" && <TiendaDatos />}
-      {seccion === "VENTAS" && <Ventas />}
-      {seccion === "OFERTAS RECIBIDAS" && <OfertasRecibidas />}
-      {seccion === "MENSAJES" && <Mensajes />}
-      {seccion === "CALIFICACIONES" && <Calificaciones />}
-      {seccion === "TRANSFERENCIAS" && <Transferencias />}
-      {seccion === "PRODUCTO PUBLICADO" && <ProductoPublicado />}
-      {seccion === "CONTACTO" && <Contacto form={form} setForm={setForm} />}
-      {seccion === "SUMARIO" && <Sumario form={form} />}
-      {seccion === "MI CHAT" && <Chat />}</>}
     </div>
   );
 };

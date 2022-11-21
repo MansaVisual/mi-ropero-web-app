@@ -9,6 +9,8 @@ const ElegirTipo = ({ form, setForm }) => {
   const navigate = useNavigate();
   const { categorias } = useContext(UseProdsContext);
 
+  console.log(form.categoriaId);
+
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
   }
