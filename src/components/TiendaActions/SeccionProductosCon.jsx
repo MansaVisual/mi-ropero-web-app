@@ -31,7 +31,7 @@ const SeccionProductosCon = () => {
             <p className="discountLink">CREAR DESCUENTO PARA TU TIENDA</p>
           </div>
           <div className="productList">
-            {productos &&
+            {productos.length > 0 &&
               productos.map((product, id) => {
                 return (
                   <>
@@ -45,6 +45,9 @@ const SeccionProductosCon = () => {
                         <div>
                           <p className="title">{product.nombre}</p>
                           <p className="state">{product.estado_text}</p>
+                          <p className="discountLink">
+                            CREAR DESCUENTO PARA TU TIENDA
+                          </p>
                         </div>
                       </div>
                       <div className="ofertaData">
