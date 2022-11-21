@@ -15,7 +15,7 @@ export const MiTiendaContext = ({ children }) => {
   useEffect(() => {
     if (userLog !== "") {
       const tienda = new FormData();
-      tienda.append("idcliente", userLog);
+      tienda.append("idcliente", Number(userLog));
       apiFetch(tienda,"tiendas","list").then((res)=>{console.log(res)
         if(res.status==="success"){
           setTiendaData(res.result[0])
@@ -24,7 +24,7 @@ export const MiTiendaContext = ({ children }) => {
               setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
             }
           });
-          tienda.append("idtienda",res.result[0].idtienda)
+          tienda.append("idtienda",Number(res.result[0].idtienda))
           apiFetch(tienda,"tiendas","get").then((res)=>{
             console.log(res)
             if(res.status==="success"){
