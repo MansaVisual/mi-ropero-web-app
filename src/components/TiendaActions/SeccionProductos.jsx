@@ -9,7 +9,7 @@ import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const SeccionProductos = () => {
   const navigate = useNavigate();
-  const { tiendaData,setTiendaData } = useContext(UseMiTiendaContext);
+  const { tiendaData,setTiendaData,productos } = useContext(UseMiTiendaContext);
 
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);

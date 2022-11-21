@@ -14,22 +14,23 @@ export const MiTiendaContext = ({ children }) => {
 
   useEffect(() => {
     if (userLog !== "") {
-      const prods = new FormData();
-      prods.append("idcliente", userLog);
-      apiFetch(prods, "tiendas", "list").then((res) => {
-        if (res.status === "success") {
-          setProductos(res.result);
-        }
-        setBuscandoProds(false);
-      });
-      apiFetch(prods,"tiendas","list").then((res)=>{console.log(res)
+      const tienda = new FormData();
+      tienda.append("idcliente", userLog);
+      apiFetch(tienda,"tiendas","list").then((res)=>{console.log(res)
         if(res.status==="success"){
           setTiendaData(res.result[0])
-          apiFetch(prods, "cuentascorrientes", "balance").then((res) => {
+          apiFetch(tienda, "cuentascorrientes", "balance").then((res) => {
             if (res.status === "success") {
               setSaldoCuenta((res.result.debe - res.result.haber).toFixed(2));
             }
           });
+          tienda.append("idtienda",res.result[0].idtienda)
+          apiFetch(tienda,"tiendas","get").then((res)=>{
+            console.log(res)
+            if(res.status==="success"){
+              setProductos(res.result)
+            }
+          })
         }
       })
     }
