@@ -1,25 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import basura from "../../assets/img/basura.png";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Grid } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import PopUpDescProd from "./PopUpDescProd";
 
 const SeccionProductosCon = () => {
   const navigate = useNavigate();
 
   const { productos } = useContext(UseMiTiendaContext);
 
-  const prods = [
-    // {
-    //   id: 1,
-    //   img: foto,
-    //   nombre: "prueba",
-    //   precio: 2000,
-    //   fecha: "21/7/2022  11:08:20 Hs.",
-    // },
-  ];
+  const [openMessagePopUp, setOpenMessagePopUp] = useState(false);
 
   return (
     <div className="seccionProductosCon">
@@ -99,6 +92,9 @@ const SeccionProductosCon = () => {
           </div>
         </div>
       </Grid>
+      {openMessagePopUp && (
+        <PopUpDescProd setOpenMessagePopUp={setOpenMessagePopUp} />
+      )}
     </div>
   );
 };

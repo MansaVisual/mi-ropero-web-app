@@ -4,14 +4,6 @@
   flex-direction: column;
   font-family: "Open Sans";
   margin-bottom: 60px;
-  /*   .breadcrumbs {
-    margin-top: 72px;
-    margin-left: 72px;
-    @include screen_705 {
-      margin-top: 16px;
-      margin-left: 16px;
-    }
-  } */
   .tiendaGrid {
     margin: 0 72px;
     @include screen_1450 {
@@ -77,7 +69,6 @@
             10px 10px 30px rgba(223, 229, 239, 0.25);
           border-radius: 6px;
           padding: 32px;
-          cursor: pointer;
           @include screen_705 {
             display: none;
           }
@@ -117,6 +108,7 @@
                 color: #443988;
               }
               .discountLink {
+                margin-top: 4px;
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 16px;
