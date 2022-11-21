@@ -35,7 +35,7 @@ export const MiTiendaContext = ({ children }) => {
           apiFetch(tienda, "tiendas", "detail").then((res) => {
             console.log(res);
             if (res.status === "success") {
-              setProductos(res.result);
+              setProductos(res.result.search_productos);
             }
           });
         }
