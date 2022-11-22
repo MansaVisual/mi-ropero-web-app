@@ -40,6 +40,19 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleSubmit = () => {
+    for (let i = 0; i < imgNecesarias.length; i++) {
+      if (imgNecesarias[i].obligatoria === "1") {
+        for (let j = 0; j < imagenes.length; j++) {
+          console.log(imagenes[j]);
+          /* if (imgNecesarias[i].nombre === imagenes[j]) {
+          } */
+        }
+      }
+    }
+    /*  navigate(`/MiTienda/CARACTERISTICAS`); */
+  };
+
   return (
     <div className="elegirImgContainer">
       <div className="container">
@@ -97,13 +110,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           )}
         </div>
         <div className="buttonContainer">
-          <button
-            onClick={() => {
-              navigate(`/MiTienda/CARACTERISTICAS`);
-            }}
-          >
-            IR A CARACTERÍSTICAS
-          </button>
+          <button onClick={() => handleSubmit()}>IR A CARACTERÍSTICAS</button>
         </div>
         <div className="returnLink" onClick={() => navigate(`/MiTienda/TIPO`)}>
           <img src={leftArrow} alt="leftArrow" />
