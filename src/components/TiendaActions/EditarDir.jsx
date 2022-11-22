@@ -215,6 +215,7 @@ const EditarDir = ({setDir}) => {
         idprovincia: provincia,
         idlocalidad: infoLocFinal.length!==0?infoLocFinal.idlocalidad:dataUpdate.idlocalidad,
       }))
+      setDir(false)
     }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 

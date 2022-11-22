@@ -100,7 +100,7 @@ const TiendaDatos = () => {
       }
     })
   }
-
+console.log("DATA",dataUpdate)
   const reporteSem=(type)=>{
     Swal.fire({
       title: type==="1"?"DESACTIVAR REPORTE SEMANAL":"ACTIVAR REPORTE SEMANAL",
