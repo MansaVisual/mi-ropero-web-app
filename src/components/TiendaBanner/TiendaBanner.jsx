@@ -32,7 +32,7 @@ const TiendaBanner = () => {
             <span
               className="subTitle"
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/miTienda")}
+              onClick={() => navigate("/MiTienda")}
             >
               VER MI TIENDA
             </span>
