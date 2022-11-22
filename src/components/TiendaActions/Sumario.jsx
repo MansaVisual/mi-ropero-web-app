@@ -38,12 +38,10 @@ const Sumario = ({ form }) => {
               <p className="title">Imágenes</p>
               <div className="infoImagenes">
                 <div>
-                  {/* {form.imagenes.map((img, i) => {
-                    return <img key={i} src={img} alt="productImg" />;
-                  })} */}
                   {Object.keys(form.imagenes).map((key, i) => {
-                    console.log(key);
-                    console.log(form.imagenes[key]);
+                    if (!form.imagenes[key]) {
+                      return null;
+                    }
                     return (
                       <img key={i} src={form.imagenes[key]} alt="formImg" />
                     );
