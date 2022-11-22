@@ -332,7 +332,6 @@ const InfoContact = ({
 
   const handleFinForm = () => {
     if (direccion !== '') {
-      console.log(direccion)
       setTypeNav('envio');
     }
   };

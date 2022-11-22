@@ -163,7 +163,6 @@ console.log("DATA",dataUpdate)
         });
       }
     });
-    console.log(dataUpdate.googlemaps_normalize)
     const data=new FormData()
     data.append("idtienda",userLog)
     data.append("telefono",Number(document.getElementById("telefono").value))
