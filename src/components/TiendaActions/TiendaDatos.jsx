@@ -3,7 +3,7 @@ import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import editIcon from "../../assets/img/editIcon.png";
 import { useNavigate } from "react-router-dom";
-import { Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import SeccionProductos from "./SeccionProductos";
 import Swal from "sweetalert2";
@@ -249,7 +249,7 @@ const TiendaDatos = () => {
                 <Loader spin={"spinnerM"} />
               </div>
               :
-              <button>GUARDAR CAMBIOS</button>
+              <Button onClick={()=>handleSubmit()}>GUARDAR CAMBIOS</Button>
             }
           </div>
           <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
