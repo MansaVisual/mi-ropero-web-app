@@ -55,7 +55,7 @@ const EditarDir = (setDir) => {
   const [changeLoc, setChangeLoc] = useState(false);
 
   const [cambioProvincia, setCambioProvincia] = useState(false);
-  console.log(dataUpdate);
+
   useEffect(() => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById("codigoPostal").value =
@@ -427,11 +427,12 @@ const EditarDir = (setDir) => {
                 /* provincia === '' && */ "Primero debes ingresar una provincia"
               }
               disabled={provincia === "" || provincia === 1 ? true : false}
-              value={provincia === 1 ? "CAPITAL FEDERAL" : dataUpdate.localidad}
+              value={provincia === 1 ? "CAPITAL FEDERAL" : contactForm.localidad}
               className="input"
               size="small"
               id="barrioLocalidad"
               onChangeCapture={() => {
+                
                 handleInputChange(contactForm, setContactForm);
                 setCampoObligatorio(false);
                 setErrorDireccion(false);
