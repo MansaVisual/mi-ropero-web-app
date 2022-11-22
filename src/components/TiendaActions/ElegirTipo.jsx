@@ -28,21 +28,20 @@ const ElegirTipo = ({ form, setForm }) => {
             return (
               <Fragment key={i}>
                 {cat.idcategoriapadre === form.categoriaId.toString() && (
-                  <div className="subType">
+                  <div
+                    className="subType"
+                    onClick={() =>
+                      setForm((prevState) => ({
+                        ...prevState,
+                        tipoId: cat.idcategoria,
+                        tipoNombre: cat.nombre,
+                      }))
+                    }
+                  >
                     <Radio
                       checked={form.tipoId === cat.idcategoria}
                       className="radio"
                       name="radioButton"
-                      onClick={() =>
-                        setForm((prevState) => ({
-                          ...prevState,
-                          tipoId: cat.idcategoria,
-                          tipoNombre: cat.nombre,
-                          caracteristicas: [],
-                          idCaracteristica: [],
-                          idCaracteristicaOld: [],
-                        }))
-                      }
                     />
                     <span
                       className={
