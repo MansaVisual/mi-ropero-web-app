@@ -1,7 +1,7 @@
 export const handleInputChange = (form, setForm) => {
   setForm({
     ...form,
-    telefono: document.getElementById('telefono').value,
+    telefono: document.getElementById('telefono')!==null? document.getElementById('telefono').value:"",
     calle: document.getElementById('calle').value,
     alturaKM: document.getElementById('alturaKM').value,
     piso: document.getElementById('piso').value,
