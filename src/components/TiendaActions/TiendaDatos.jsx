@@ -120,7 +120,7 @@ const TiendaDatos = () => {
         apiFetch(pause,"tiendas","set_report").then((res)=>{
           if(res.status==="success"){
             Swal.fire({
-              title:'fsdfadsf',
+              title:type==="1"?"REPORTE SEMANAL DESACTIVADO":"REPORTE SEMANAL ACTIVADO",
               icon:'success',
               confirmButtonText: 'ACEPTAR',
           })
@@ -161,7 +161,48 @@ const TiendaDatos = () => {
         });
       }
     });
-    console.log(dataUpdate)
+    const data=new FormData()
+    data.append("idtienda",userLog)
+    data.append("telefono",document.getElementById("telefono").value)
+    data.append("nombre",document.getElementById("nombre").value)
+    data.append("descripcion",document.getElementById("infoAdicional").value)
+    data.append("provincia",tiendaDetail.provincia)
+    data.append("localidad",tiendaDetail.localidad)
+    data.append("color_principal",tiendaDetail.color_principal)
+    data.append("color_secundario",tiendaDetail.color_secundario)
+    data.append("idprovincia",tiendaDetail.idprovincia)
+    data.append("idlocalidad",tiendaDetail.idlocalidad)
+    data.append("codigo_postal",tiendaDetail.codigo_postal)
+    data.append("calle",tiendaDetail.calle)
+    data.append("numero",tiendaDetail.numero)
+    data.append("piso",tiendaDetail.piso)
+    data.append("departamento",tiendaDetail.departamento)
+    data.append("entre_calle_1",tiendaDetail.entre_calle_1)
+    data.append("entre_calle_2",tiendaDetail.entre_calle_2)
+    data.append("informacion_adicional",tiendaDetail.informacion_adicional)
+    data.append("googlemaps_normalize",tiendaDetail.googlemaps_normalize)
+    apiFetch(data,"tiendas","update").then((res)=>{
+      console.log(res)
+      if(res.status==="success"){
+        window.scrollTo({
+          top: 0,
+          behavior: "auto",
+        });
+        Swal.fire({
+          title:'DATOS ACTUALIZADOS',
+          icon:'success',
+          confirmButtonText: 'ACEPTAR',
+        })
+        window.location.reload()
+      }else{
+        Swal.fire({
+          title:'OCURRIÓ UN ERROR',
+          text:"Vuelva a intentarlo",
+          icon:'error',
+          confirmButtonText: 'ACEPTAR',
+        })
+      }
+    })
   }
 
   return (<>{tiendaData.length===0?<SeccionProductos/>:
