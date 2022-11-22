@@ -24,7 +24,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
-      if (categorias[i] === form.categoriaId) {
+      if (categorias[i] === form.tipoId) {
         setImgNecesarias(categorias[i].imagenes_necesarias);
       }
     }
