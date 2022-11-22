@@ -281,10 +281,23 @@ console.log("DATA",dataUpdate)
                   <img className="editIcon" src={editIcon} alt="editIcon" />
                 </div>
                 <div className="description">
-                  <p>
-                    Cuenca 3440. CABA Comuna 11 (C1417). entre Francisco Beiró y
-                    José P. Varela. Puerta violeta. Tocar fuerte el timbre.
-                  </p>
+                <p>
+                  {dataUpdate.calle} {dataUpdate.numero}.{" "}
+                  {dataUpdate.provincia === "Capital Federal"
+                    ? "CABA"
+                    : dataUpdate.provincia}{" "}
+                  {dataUpdate.localidad} ({`${dataUpdate.codigo_postal}`}){" "}
+                </p>
+                <p>
+                  {dataUpdate.entre_calle_1 !== "" && "Entre"}{" "}
+                  {dataUpdate.entre_calle_1 !== "" && dataUpdate.entre_calle_1}{" "}
+                  {dataUpdate.entre_calle_1 !== "" && "y"}{" "}
+                  {dataUpdate.entre_calle_2 !== "" && `${dataUpdate.entre_calle_2}.`}{" "}
+                </p>
+                <p>
+                  {dataUpdate.informacion_adicional !== "" &&
+                    `${dataUpdate.informacion_adicional}.`}
+                </p>
                   <Button onClick={()=>setDir(true)}>MODIFICAR</Button>
                 </div>
               </div>
