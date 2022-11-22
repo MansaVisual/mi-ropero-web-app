@@ -18,7 +18,7 @@ const TiendaDatos = () => {
 
   const [data,setData]=useState({
     nombre:tiendaData.nombre,
-    telefono:Number(tiendaData.telefono),
+    telefono:tiendaData.telefono,
     descripcion:tiendaData.descripcion
   })
 

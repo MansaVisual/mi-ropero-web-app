@@ -20,6 +20,7 @@ export const MiTiendaContext = ({ children }) => {
       apiFetch(tienda, "tiendas", "list").then((res) => {
         console.log(res);
         if (res.status === "success") {
+          console.log(res.result[0])
           setTiendaData(res.result[0]);
           apiFetch(tienda, "cuentascorrientes", "balance").then((res) => {
             if (res.status === "success") {
@@ -28,13 +29,11 @@ export const MiTiendaContext = ({ children }) => {
           });
           tienda.append("idtienda", Number(res.result[0].idtienda));
           apiFetch(tienda, "tiendas", "get").then((res) => {
-            console.log(res);
             if (res.status === "success") {
               setProductos(res.result);
             }
           });
           apiFetch(tienda, "tiendas", "detail").then((res) => {
-            console.log(res);
             if (res.status === "success") {
               setTiendaDetail(res.result);
               setProductos(res.result.search_productos);
