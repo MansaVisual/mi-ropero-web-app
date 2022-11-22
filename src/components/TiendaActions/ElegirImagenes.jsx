@@ -47,7 +47,7 @@ const ElegirImagenes = ({ form, setForm }) => {
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
-          console.log(key);
+          console.log(key, imagenes);
           if (imgNecesarias[i].nombre === key) {
             setErrorObligatorio(true);
             setCampoError(key);
