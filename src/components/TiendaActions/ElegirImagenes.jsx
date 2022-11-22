@@ -65,7 +65,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                   <div className="imgBox">
                     <img
                       src={
-                        imagenes[section] ? imagenes[section] : imgBox.imagen
+                        imagenes[imgBox.nombre]
+                          ? imagenes[imgBox.nombre]
+                          : imgBox.imagen
                       }
                       alt="foto"
                     />
