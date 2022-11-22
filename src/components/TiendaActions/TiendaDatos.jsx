@@ -182,7 +182,7 @@ console.log("DATA",dataUpdate)
     data.append("entre_calle_1",dataUpdate.entre_calle_1)
     data.append("entre_calle_2",dataUpdate.entre_calle_2)
     data.append("informacion_adicional",dataUpdate.informacion_adicional)
-    data.append("googlemaps_normalize",dataUpdate.googlemaps_normalize)
+    data.append("normalized",dataUpdate.googlemaps_normalize)
     apiFetch(data,"tiendas","update").then((res)=>{console.log(res)
       if(res.status==="success"){
         window.scrollTo({
@@ -275,29 +275,29 @@ console.log("DATA",dataUpdate)
                   />
                 </div>
               </div>
-              <div className="address">
+              <div className="checkedText">
                 <div>
                   <span>Domicilio de entrega</span>
                   <img className="editIcon" src={editIcon} alt="editIcon" />
                 </div>
                 <div className="description">
-                <p>
-                  {dataUpdate.calle} {dataUpdate.numero}.{" "}
-                  {dataUpdate.provincia === "Capital Federal"
-                    ? "CABA"
-                    : dataUpdate.provincia}{" "}
-                  {dataUpdate.localidad} ({`${dataUpdate.codigo_postal}`}){" "}
-                </p>
-                <p>
-                  {dataUpdate.entre_calle_1 !== "" && "Entre"}{" "}
-                  {dataUpdate.entre_calle_1 !== "" && dataUpdate.entre_calle_1}{" "}
-                  {dataUpdate.entre_calle_1 !== "" && "y"}{" "}
-                  {dataUpdate.entre_calle_2 !== "" && `${dataUpdate.entre_calle_2}.`}{" "}
-                </p>
-                <p>
-                  {dataUpdate.informacion_adicional !== "" &&
-                    `${dataUpdate.informacion_adicional}.`}
-                </p>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <h3>
+                      {dataUpdate.calle} {dataUpdate.numero}.{" "}
+                      {dataUpdate.provincia === "Capital Federal"
+                        ? "CABA"
+                        : dataUpdate.provincia}{" "}
+                      {dataUpdate.localidad} ({dataUpdate.codigo_postal}).
+                    </h3>
+                    <h3>
+                      {}
+                      {dataUpdate.entre_calle_1 && "Entre"}{" "}
+                      {dataUpdate.entre_calle_1 && dataUpdate.entre_calle_1}{" "}
+                      {dataUpdate.entre_calle_1 && "y"}{" "}
+                      {dataUpdate.entre_calle_2 && dataUpdate.entre_calle_2}
+                    </h3>
+                    <h3>{dataUpdate.informacion_adicional}</h3>
+                  </div>
                   <Button onClick={()=>setDir(true)}>MODIFICAR</Button>
                 </div>
               </div>
