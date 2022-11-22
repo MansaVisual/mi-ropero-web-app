@@ -13,27 +13,8 @@ const Sumario = ({ form }) => {
     return;
   }
 
-  const sumario = {
-    categoria: "ROPA / Remeras",
-    imagenes: {
-      fotofrente: foto,
-      fotodetras: foto,
-    },
-    caracteristicas: {
-      genero: ["unisex"],
-      talle: ["unisex"],
-      color: ["unisex"],
-      marca: ["adidas", "puma", "reebok"],
-      condicion: ["unisex"],
-      tipoTela: ["unisex"],
-    },
-    detalle: {
-      titulo: "Remera nevada manga corta Rolling Stones",
-      precio: "$4500",
-      descripcion:
-        "Remera casi nueva nevada, tela gruesa con estampa de Rolling Stones ideal media estación.",
-    },
-  };
+  console.log(form);
+
   return (
     <Grid className="gridContainer">
       <div className="sumarioContainer">
@@ -57,7 +38,7 @@ const Sumario = ({ form }) => {
               <p className="title">Imágenes</p>
               <div className="infoImagenes">
                 <div>
-                  {/*  {form.imagenes.map((img, i) => {
+                  {/* {form.imagenes.map((img, i) => {
                     return <img key={i} src={img} alt="productImg" />;
                   })} */}
                   {Object.keys(form.imagenes).map((key, i) => {
