@@ -41,19 +41,16 @@ const ElegirImagenes = ({ form, setForm }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async () => {
-    const fx = async() => {
-      for (let i = 0; i < imgNecesarias.length; i++) {
-        if (imgNecesarias[i].obligatoria === "1") {
-          for (const key in imagenes) {
-            if (imgNecesarias[i].nombre === key && !imagenes[key]) {
-              setErrorObligatorio(true);
-              setCampoError(key);
-            }
+    for (let i = 0; i < imgNecesarias.length; i++) {
+      if (imgNecesarias[i].obligatoria === "1") {
+        for (const key in imagenes) {
+          if (imgNecesarias[i].nombre === key && !imagenes[key]) {
+            await setErrorObligatorio(true);
+            await setCampoError(key);
           }
         }
       }
-    };
-    await fx();
+    }
     if (!errorObligatorio) {
       setForm((prevState) => ({
         ...prevState,
