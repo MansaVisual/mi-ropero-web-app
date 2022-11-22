@@ -35,9 +35,9 @@ const TiendaDatos = () => {
   useEffect(() => {
     if(tiendaDetail.length!==0){
       setData({
-        nombre:tiendaDetail.nombre,
-        telefono:Number(tiendaDetail.telefono),
-        descripcion:tiendaDetail.descripcion
+        nombre:dataUpdate.nombre,
+        telefono:Number(dataUpdate.telefono),
+        descripcion:dataUpdate.descripcion
       })
     }
   }, [tiendaDetail]);
@@ -226,7 +226,7 @@ console.log("DATA",dataUpdate)
                     className={`input ${errorCambpoObligatorio?clase:""}`}
                     placeholder="El Ropero de Sandra"
                     id="nombre"
-                    defaultValue={data.nombre}
+                    value={data.nombre}
                     onClick={()=>setErrorCampoObligatorio(false)}
                     onChange={(e)=>{
                       setErrorCampoObligatorio(false)
@@ -245,7 +245,7 @@ console.log("DATA",dataUpdate)
                     placeholder="+54  011 - 4417 - 8005"
                     type="number"
                     id="telefono"
-                    defaultValue={data.telefono}
+                    value={data.telefono}
                     onClick={()=>setErrorPhone(false)}
                     onChange={(e)=>{
                       setErrorPhone(false)
@@ -268,7 +268,7 @@ console.log("DATA",dataUpdate)
                     size="small"
                     placeholder="Reducir, reciclar, reutilizar como bandera!"
                     inputProps={{ maxLength: 50 }}
-                    defaultValue={data.descripcion}
+                    value={data.descripcion}
                     onChange={(e)=>setData((prevState)=>({
                       ...prevState,descripcion:e.target.value
                     }))}
@@ -281,7 +281,7 @@ console.log("DATA",dataUpdate)
                   <img className="editIcon" src={editIcon} alt="editIcon" />
                 </div>
                 <div className="description">
-                  <div>
+                  <div style={{display:"flex",flexDirection:"column"}}>
                     <p>
                       {dataUpdate.calle} {dataUpdate.numero}.{" "}
                       {dataUpdate.provincia === "Capital Federal"
