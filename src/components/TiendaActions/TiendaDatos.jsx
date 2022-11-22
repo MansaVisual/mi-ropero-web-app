@@ -336,7 +336,7 @@ const TiendaDatos = () => {
           </div>
         </Grid>
       :
-        <EditarDir/>
+        <EditarDir setDir={setDir}/>
       }
     </div>
   }

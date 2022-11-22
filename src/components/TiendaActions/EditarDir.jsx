@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useContext } from "react";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import leftArrow from "../../assets/img/leftArrow.png";
 import {
   Button,
@@ -18,10 +18,9 @@ import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
-const EditarDir = () => {
+const EditarDir = (setDir) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-  const navigate = useNavigate();
 
   const {dataUpdate,setDataUpdate}=useContext(UseMiTiendaContext)
   const [contactForm, setContactForm] = useState([]);
@@ -104,24 +103,30 @@ const EditarDir = () => {
   useEffect(() => {
       document.getElementById("calle").value = dataUpdate.calle;
       document.getElementById("alturaKM").value = dataUpdate.numero;
-      document.getElementById("piso").value = dataUpdate.piso;
-      document.getElementById("depto").value = dataUpdate.departamento;
+      if(dataUpdate.piso!==""){
+          document.getElementById("piso").value = dataUpdate.piso;
+      }
+      if(dataUpdate.departamento!==""){
+        document.getElementById("departamento").value = dataUpdate.departamento;
+    }
       setProvincia(dataUpdate.idprovincia);
-      setInfoLoc(dataUpdate.dad);
       if (dataUpdate.idprovincia === "1") {
         document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
       } else {
         document.getElementById("barrioLocalidad").value =
           dataUpdate.localidad;
       }
-      document.getElementById("entrecalle1").value =
-        dataUpdate.entre_calle_1;
-      document.getElementById("entrecalle2").value =
-        dataUpdate.entre_calle_2;
+      if(dataUpdate.entrecalle1!==""){
+        document.getElementById("entrecalle1").value = dataUpdate.entrecalle1;
+    }
+    if(dataUpdate.departamento!==""){
+        document.getElementById("departamento").value = dataUpdate.entrecalle2;
+    }
+    if(dataUpdate.departamento!==""){
+        document.getElementById("departamento").value = dataUpdate.infoAdicional;
+    }
       document.getElementById("codigoPostal").value =
         dataUpdate.codigo_postal;
-      document.getElementById("infoAdicional").value =
-        dataUpdate.informacion_adicional;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkNuevaDireccion = async () => {
@@ -548,10 +553,10 @@ const EditarDir = () => {
 
         <div
           className="returnLink"
-          onClick={() => navigate(`/MiTienda/DETALLES`)}
+          onClick={() => setDir(false)}
         >
           <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
+          <p>VOLVER A DATOS</p>
         </div>
         {viewDireccion && (
           <PopUpFinalDir
