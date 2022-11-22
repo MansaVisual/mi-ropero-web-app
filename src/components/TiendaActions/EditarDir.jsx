@@ -74,6 +74,7 @@ const EditarDir = ({setDir}) => {
       setContactForm({ ...contactForm, barrioLocalidad: "CAPITAL FEDERAL" });
     }
   };
+  console.log(provincia)
 
   const handleChangeLoc = () => {
     if (document.getElementById("barrioLocalidad") !== "CAPITAL FEDERAL") {
@@ -158,12 +159,7 @@ const EditarDir = ({setDir}) => {
         return;
       }
     }
-    const formCodPostal = new FormData();
 
-    formCodPostal.append(
-      "codigo_postal",
-      document.getElementById("codigoPostal").value
-    );
     console.log("FORMULARIO",contactForm)
     validarDireccion();
   };
@@ -380,6 +376,7 @@ const EditarDir = ({setDir}) => {
               id="provincia"
               value={provincia === "" ? "ejemplo" : provincia}
               onChange={(event) => {
+                document.getElementById("barrioLocalidad").value=""
                 setCambioProvincia(true);
                 handleProvinciaInput(event);
                 setErrorDireccion(false);
@@ -428,8 +425,8 @@ const EditarDir = ({setDir}) => {
               placeholder={
                 /* provincia === '' && */ "Primero debes ingresar una provincia"
               }
-              disabled={provincia === "" || provincia === 1 ? true : false}
-              value={provincia === 1 ? "CAPITAL FEDERAL" : contactForm.localidad}
+              disabled={provincia === "" || provincia === 1 || provincia === "1" ? true : false}
+              value={provincia === 1 || provincia === "1" ? "CAPITAL FEDERAL" : contactForm.localidad}
               className="input"
               size="small"
               id="barrioLocalidad"
