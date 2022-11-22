@@ -163,7 +163,6 @@ console.log("DATA",dataUpdate)
         });
       }
     });
-    console.log(dataUpdate)
     const data=new FormData()
     data.append("idtienda",userLog)
     data.append("telefono",document.getElementById("telefono").value)
