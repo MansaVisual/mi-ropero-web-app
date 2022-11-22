@@ -18,7 +18,7 @@ import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
-const EditarDir = (setDir) => {
+const EditarDir = ({setDir}) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -143,6 +143,7 @@ const EditarDir = (setDir) => {
       scrollTop();
       setCampoObligatorio(true);
     }
+    console.log(infoLocFinal)
     if(infoLocFinal.length===0 && dataUpdate.localidad!==""){
         handleChangeLoc()
     }
@@ -163,6 +164,7 @@ const EditarDir = (setDir) => {
       "codigo_postal",
       document.getElementById("codigoPostal").value
     );
+    console.log("FORMULARIO",contactForm)
     validarDireccion();
   };
 
