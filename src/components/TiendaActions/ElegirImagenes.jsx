@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UseProdsContext } from "../../context/ProdsContext";
 import { useNavigate } from "react-router-dom";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import editIcon from "../../assets/img/editIcon.svg";
@@ -14,7 +15,8 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
-  const [obligatorio, setObligatorio] = useState(false);
+  const [errorObligatorio, setErrorObligatorio] = useState(false);
+  const [campoError, setCampoError] = useState("");
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -47,7 +49,8 @@ const ElegirImagenes = ({ form, setForm }) => {
         for (const key in imagenes) {
           console.log(key);
           if (imgNecesarias[i].nombre === key) {
-            setObligatorio(true);
+            setErrorObligatorio(true);
+            setCampoError(key);
           }
         }
       }
@@ -60,6 +63,12 @@ const ElegirImagenes = ({ form, setForm }) => {
       <div className="container">
         <Breadcrumbs links={["MI TIENDA", "PRODUCTOS"]} />
         <span className="title">IMAGENES</span>
+        {errorObligatorio && (
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>Ingresar campo obligatorio "{campoError}"</p>
+          </div>
+        )}
         <div className="ImgSections">
           {imgNecesarias.length === 0 ? (
             <div
