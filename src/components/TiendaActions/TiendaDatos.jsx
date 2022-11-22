@@ -164,7 +164,7 @@ console.log("DATA",dataUpdate)
       }
     });
     const data=new FormData()
-    data.append("idtienda",userLog)
+    data.append("idtienda",tiendaData.idtienda)
     data.append("telefono",Number(document.getElementById("telefono").value))
     data.append("nombre",document.getElementById("nombre").value)
     data.append("descripcion",document.getElementById("infoAdicional").value)
@@ -226,7 +226,7 @@ console.log("DATA",dataUpdate)
                     className={`input ${errorCambpoObligatorio?clase:""}`}
                     placeholder="El Ropero de Sandra"
                     id="nombre"
-                    value={data.nombre}
+                    defaultValue={data.nombre}
                     onClick={()=>setErrorCampoObligatorio(false)}
                     onChange={(e)=>{
                       setErrorCampoObligatorio(false)
@@ -245,7 +245,7 @@ console.log("DATA",dataUpdate)
                     placeholder="+54  011 - 4417 - 8005"
                     type="number"
                     id="telefono"
-                    value={data.telefono}
+                    defaultValue={data.telefono}
                     onClick={()=>setErrorPhone(false)}
                     onChange={(e)=>{
                       setErrorPhone(false)
@@ -268,7 +268,7 @@ console.log("DATA",dataUpdate)
                     size="small"
                     placeholder="Reducir, reciclar, reutilizar como bandera!"
                     inputProps={{ maxLength: 50 }}
-                    value={data.descripcion}
+                    defaultValue={data.descripcion}
                     onChange={(e)=>setData((prevState)=>({
                       ...prevState,descripcion:e.target.value
                     }))}
