@@ -13,7 +13,6 @@ export const MiTiendaContext = ({ children }) => {
   const [saldoCuenta, setSaldoCuenta] = useState(false);
   const [tiendaDetail, setTiendaDetail] = useState([]);
   const [dataUpdate, setDataUpdate] = useState({});
-  const [calificaciones, setCalificaciones] = useState([]);
 
   useEffect(() => {
     console.log(dataUpdate);
@@ -71,17 +70,6 @@ export const MiTiendaContext = ({ children }) => {
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const calificacionesList = () => {
-    const data = new FormData();
-    data.append("idcliente", Number(userLog));
-    apiFetch(data, "calificaciones", "all").then((res) => {
-      console.log(res);
-      /* if (res.status === "success") {
-        
-      } */
-    });
-  };
-
   return (
     <UseMiTiendaContext.Provider
       value={{
@@ -94,8 +82,6 @@ export const MiTiendaContext = ({ children }) => {
         tiendaDetail,
         dataUpdate,
         setDataUpdate,
-        calificaciones,
-        calificacionesList,
       }}
     >
       {children}
