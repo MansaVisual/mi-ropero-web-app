@@ -55,7 +55,7 @@ const EditarDir = (setDir) => {
   const [changeLoc, setChangeLoc] = useState(false);
 
   const [cambioProvincia, setCambioProvincia] = useState(false);
-  console.log(infoLocFinal);
+  console.log(dataUpdate);
   useEffect(() => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById("codigoPostal").value =
