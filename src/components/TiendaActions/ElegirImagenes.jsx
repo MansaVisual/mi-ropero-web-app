@@ -29,14 +29,10 @@ const ElegirImagenes = ({ form, setForm }) => {
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
-        console.log(imgNecesarias);
         for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
-          console.log(categorias[i].imagenes_necesarias);
           let obj = categorias[i].imagenes_necesarias[j].nombre;
-          console.log(obj);
           imagenes[obj] = null;
         }
-        console.log(imagenes);
         setImagenes(imagenes);
         return;
       }
@@ -47,7 +43,8 @@ const ElegirImagenes = ({ form, setForm }) => {
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
-          console.log(key, imagenes, imagenes[key]);
+          console.log(key, imagenes);
+          console.log(imgNecesarias[i].nombre, key, imagenes[key]);
           if (imgNecesarias[i].nombre === key && !imagenes[key]) {
             setErrorObligatorio(true);
             setCampoError(key);
@@ -55,9 +52,9 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
-    if (!errorObligatorio) {
+    /* if (!errorObligatorio) {
       navigate(`/MiTienda/CARACTERISTICAS`);
-    }
+    } */
   };
 
   return (
