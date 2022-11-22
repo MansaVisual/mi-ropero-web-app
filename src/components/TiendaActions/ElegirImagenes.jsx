@@ -24,13 +24,15 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
+      console.log(categorias[i].idcategoria, form.tipoId);
       if (categorias[i].idcategoria === form.tipoId) {
+        console.log("entra", categorias[i].imagenes_necesarias);
         setImgNecesarias(categorias[i].imagenes_necesarias);
       }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(imgNecesarias, form, categorias);
+  /* console.log(imgNecesarias, form, categorias); */
 
   return (
     <div className="elegirImgContainer">
