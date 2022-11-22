@@ -426,8 +426,8 @@ const EditarDir = (setDir) => {
               placeholder={
                 /* provincia === '' && */ "Primero debes ingresar una provincia"
               }
-              disabled={provincia === "" || provincia === "1" ? true : false}
-              value={provincia === "1" ? "CAPITAL FEDERAL" : dataUpdate.localidad}
+              disabled={provincia === "" || provincia === 1 ? true : false}
+              value={provincia === 1 ? "CAPITAL FEDERAL" : dataUpdate.localidad}
               className="input"
               size="small"
               id="barrioLocalidad"
