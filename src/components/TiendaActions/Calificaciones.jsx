@@ -18,9 +18,11 @@ const Calificaciones = () => {
   const { userLog } = useContext(UseLoginContext);
 
   const [selected, setSelected] = useState("mejor valoración primero");
+  const stateList = ["mejor valoración primero", "menor valoración primero"];
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [calificaciones, setCalificaciones] = useState([]);
+  const [califFiltradas, setCalifFiltradas] = useState([]);
 
   useEffect(() => {
     if (userLog) {
@@ -46,7 +48,27 @@ const Calificaciones = () => {
     }
   }, [userLog]);
 
-  const stateList = ["mejor valoración primero", "en espera"];
+  useEffect(() => {
+    if (calificaciones.length > 0) {
+      let listaCalif = calificaciones;
+      if (selected === "mejor valoración primero") {
+        listaCalif.sort(function (a, b) {
+          return b - a;
+        });
+        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "2"));
+      }
+      if (selected === "menor valoración primero") {
+        listaCalif.sort(function (a, b) {
+          return a - b;
+        });
+        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
+      }
+      if (selected === "en espera") {
+        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
+      }
+    }
+  }, [calificaciones, selected]);
+
   return (
     <div className="calificacionesContainer">
       <TiendaBanner />
