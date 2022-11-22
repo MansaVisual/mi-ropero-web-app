@@ -71,8 +71,8 @@ const Calificaciones = () => {
                   <Loader spin={"spinnerM"} />
                 </div>
               ) : !error ? (
-                <>
-                  {calificaciones.map((data, id) => {
+                calificaciones.length > 0 ? (
+                  calificaciones.map((data, id) => {
                     return (
                       <div key={id} className="desktopCard">
                         <div className="data">
@@ -118,8 +118,16 @@ const Calificaciones = () => {
                         </div>
                       </div>
                     );
-                  })}
-                </>
+                  })
+                ) : (
+                  <div className="perfilVacio">
+                    <div>
+                      <img src={lupaFilters} alt="LOGO" />
+                      <p>No tienes calificaciones de momento</p>
+                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                    </div>
+                  </div>
+                )
               ) : (
                 <div className="perfilVacio">
                   <div>
