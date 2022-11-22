@@ -20,20 +20,22 @@ const Calificaciones = () => {
   const [selected, setSelected] = useState("mejor valoración primero");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [calificaciones, setCalificaciones] = useState(false);
+  const [calificaciones, setCalificaciones] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
-    const data = new FormData();
-    data.append("idcliente", Number(userLog));
-    apiFetch(data, "calificaciones", "all").then((res) => {
-      console.log(res);
-      if (res.status === "success") {
-        setCalificaciones(res.result);
-        setLoading(false);
-      }
-    });
-  }, []);
+    if (userLog) {
+      setLoading(true);
+      const data = new FormData();
+      data.append("idcliente", Number(userLog));
+      apiFetch(data, "calificaciones", "all").then((res) => {
+        console.log(res);
+        if (res.status === "success") {
+          setCalificaciones(res.result);
+          setLoading(false);
+        }
+      });
+    }
+  }, [userLog]);
 
   const array = [
     {
