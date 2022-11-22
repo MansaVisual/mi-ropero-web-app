@@ -70,6 +70,10 @@ const ElegirTipo = ({ form, setForm }) => {
             onClick={() => {
               navigate(`/MiTienda/IMAGENES`);
             }}
+            disabled={form.tipoId ? false : true}
+            style={{
+              backgroundColor: form.tipoId ? "#443988" : "#857db3",
+            }}
           >
             IR A IMÁGENES
           </button>
