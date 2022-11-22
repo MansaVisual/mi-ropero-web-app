@@ -206,7 +206,7 @@ const EditarDir = ({setDir}) => {
         ...prevState,
         calle:direccion.calle,
         numero:direccion.numero,
-        normalized:direccion.raw_data,
+        googlemaps_normalize:direccion.raw_data,
         codigo_postal:direccion.codigo_postal,
         provincia:direccion.provincia,
         localidad:direccion.localidad,
