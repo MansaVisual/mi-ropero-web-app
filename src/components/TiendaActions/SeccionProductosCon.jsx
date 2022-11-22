@@ -23,11 +23,13 @@ const SeccionProductosCon = () => {
       setDescuentoInfo({
         productId: infoDesc.idproducto,
         idTienda: infoDesc.idtienda,
+        metodo: "productos",
       });
     } else {
       setDescuentoInfo({
         idCliente: tiendaDetail.idcliente,
         idTienda: tiendaDetail.idtienda,
+        metodo: "tiendas",
       });
     }
   };

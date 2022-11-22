@@ -5,7 +5,7 @@ import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
 
-const PopUpDescuento = ({ setOpenPopUp, descuentoInfo, metodo }) => {
+const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
   const [loading, setLoading] = useState(false);
   const [discount, setDiscount] = useState("");
 
@@ -16,7 +16,7 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo, metodo }) => {
     setLoading(true);
 
     const desc = new FormData();
-    if (metodo === "productos") {
+    if (descuentoInfo.metodo === "productos") {
       desc.append("idproducto", descuentoInfo.productId);
     } else {
       desc.append("idcliente", descuentoInfo.idCliente);
@@ -51,14 +51,16 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo, metodo }) => {
           <p className="popUpTitle">
             {fin
               ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE"
-              : metodo === "productos"
+              : descuentoInfo.metodo === "productos"
               ? "DESCUENTO POR PRODUCTO"
               : "DESCUENTO POR TIENDA"}
           </p>
           {!fin && (
             <p className="popUpDescription" style={{ marginTop: "8px" }}>
               Ingresá el porcentaje de descuento para{" "}
-              {metodo === "productos" ? "este producto" : "tu tienda"}
+              {descuentoInfo.metodo === "productos"
+                ? "este producto"
+                : "tu tienda"}
             </p>
           )}
           {!fin && (
