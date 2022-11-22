@@ -100,33 +100,32 @@ const EditarDir = (setDir) => {
     }
   };
 
-  useEffect(() => {
-      document.getElementById("calle").value = dataUpdate.calle;
-      document.getElementById("alturaKM").value = dataUpdate.numero;
-      if(dataUpdate.piso!==""){
-          document.getElementById("piso").value = dataUpdate.piso;
-      }
-      if(dataUpdate.departamento!==""){
-        document.getElementById("depto").value = dataUpdate.departamento;
-    }
-      setProvincia(dataUpdate.idprovincia);
-      if (dataUpdate.idprovincia === "1") {
-        document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
-      } else {
-        document.getElementById("barrioLocalidad").value =
-          dataUpdate.localidad;
-      }
-      if(dataUpdate.entre_calle_1!==""){
-        document.getElementById("entrecalle1").value = dataUpdate.entre_calle_1;
-    }
-    if(dataUpdate.entre_calle_2!==""){
-        document.getElementById("entrecalle2").value = dataUpdate.entre_calle_2;
-    }
-    if(dataUpdate.informacion_adicional!==""){
-        document.getElementById("infoAdicional").value = dataUpdate.informacion_adicional;
-    }
-
-      document.getElementById("codigoPostal").value =
+    useEffect(() => {
+        document.getElementById("calle").value = dataUpdate.calle;
+        document.getElementById("alturaKM").value = dataUpdate.numero;
+        if(dataUpdate.piso!==""){
+            document.getElementById("piso").value = dataUpdate.piso;
+        }
+        if(dataUpdate.departamento!==""){
+            document.getElementById("depto").value = dataUpdate.departamento;
+        }
+        setProvincia(dataUpdate.idprovincia);
+        if (dataUpdate.idprovincia === "1") {
+            document.getElementById("barrioLocalidad").value = "CAPITAL FEDERAL";
+        } else {
+            document.getElementById("barrioLocalidad").value =
+            dataUpdate.localidad;
+        }
+        if(dataUpdate.entre_calle_1!==""){
+            document.getElementById("entrecalle1").value = dataUpdate.entre_calle_1;
+        }
+        if(dataUpdate.entre_calle_2!==""){
+            document.getElementById("entrecalle2").value = dataUpdate.entre_calle_2;
+        }
+        if(dataUpdate.informacion_adicional!==""){
+            document.getElementById("infoAdicional").value = dataUpdate.informacion_adicional;
+        }
+        document.getElementById("codigoPostal").value =
         dataUpdate.codigo_postal;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -143,6 +142,9 @@ const EditarDir = (setDir) => {
       setLoader(false);
       scrollTop();
       setCampoObligatorio(true);
+    }
+    if(infoLocFinal.length===0 && dataUpdate.localidad!==""){
+        handleChangeLoc()
     }
     if (infoLocFinal.length === 0 && cambioProvincia) {
       if (
@@ -425,6 +427,7 @@ const EditarDir = (setDir) => {
                 /* provincia === '' && */ "Primero debes ingresar una provincia"
               }
               disabled={provincia === "" || provincia === "1" ? true : false}
+              value={provincia === "1" ? "CAPITAL FEDERAL" : dataUpdate.localidad}
               className="input"
               size="small"
               id="barrioLocalidad"
