@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import foto from "../../assets/img/fotoProd.png";
 import error from "../../assets/img/error.png";
@@ -7,11 +7,18 @@ import StarIcon from "@mui/icons-material/Star";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Grid, MenuItem, Rating, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const Calificaciones = () => {
   const navigate = useNavigate();
 
   const [selected, setSelected] = useState("mejor valoración primero");
+
+  const { calificacionesList } = useContext(UseMiTiendaContext);
+
+  useEffect(() => {
+    calificacionesList();
+  }, []);
 
   const array = [
     {

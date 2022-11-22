@@ -12,10 +12,11 @@ export const MiTiendaContext = ({ children }) => {
   const [tiendaData, setTiendaData] = useState([""]);
   const [saldoCuenta, setSaldoCuenta] = useState(false);
   const [tiendaDetail, setTiendaDetail] = useState([]);
-  const [dataUpdate,setDataUpdate]=useState({})
+  const [dataUpdate, setDataUpdate] = useState({});
+  const [calificaciones, setCalificaciones] = useState([]);
 
   useEffect(() => {
-    console.log(dataUpdate)
+    console.log(dataUpdate);
   }, [dataUpdate]);
 
   useEffect(() => {
@@ -33,30 +34,30 @@ export const MiTiendaContext = ({ children }) => {
           });
           tienda.append("idtienda", Number(res.result[0].idtienda));
           apiFetch(tienda, "tiendas", "get").then((res) => {
-            console.log(res)
+            console.log(res);
             if (res.status === "success") {
               setTiendaDetail(res.result);
               setDataUpdate({
-                idtienda:userLog,
-                telefono:Number(res.result.telefono),
-                nombre:res.result.nombre,
-                descripcion:res.result.descripcion,
-                provincia:res.result.provincia,
-                localidad:res.result.localidad,
-                color_principal:res.result.color_principal,
-                color_secundario:res.result.color_secundario,
-                idprovincia:Number(res.result.idprovincia),
-                idlocalidad:Number(res.result.idlocalidad),
-                codigo_postal:res.result.codigo_postal,
-                calle:res.result.calle,
-                numero:res.result.numero,
-                piso:res.result.piso,
-                departamento:res.result.departamento,
-                entre_calle_1:res.result.entre_calle_1,
-                entre_calle_2:res.result.entre_calle_2,
-                informacion_adicional:res.result.informacion_adicional,
-                googlemaps_normalize:res.result.googlemaps_normalize
-              })
+                idtienda: userLog,
+                telefono: Number(res.result.telefono),
+                nombre: res.result.nombre,
+                descripcion: res.result.descripcion,
+                provincia: res.result.provincia,
+                localidad: res.result.localidad,
+                color_principal: res.result.color_principal,
+                color_secundario: res.result.color_secundario,
+                idprovincia: Number(res.result.idprovincia),
+                idlocalidad: Number(res.result.idlocalidad),
+                codigo_postal: res.result.codigo_postal,
+                calle: res.result.calle,
+                numero: res.result.numero,
+                piso: res.result.piso,
+                departamento: res.result.departamento,
+                entre_calle_1: res.result.entre_calle_1,
+                entre_calle_2: res.result.entre_calle_2,
+                informacion_adicional: res.result.informacion_adicional,
+                googlemaps_normalize: res.result.googlemaps_normalize,
+              });
             }
           });
           apiFetch(tienda, "tiendas", "detail").then((res) => {
@@ -70,6 +71,17 @@ export const MiTiendaContext = ({ children }) => {
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const calificacionesList = () => {
+    const data = new FormData();
+    data.append("idcliente", Number(userLog));
+    apiFetch(data, "calificaciones", "all").then((res) => {
+      console.log(res);
+      /* if (res.status === "success") {
+        
+      } */
+    });
+  };
+
   return (
     <UseMiTiendaContext.Provider
       value={{
@@ -81,7 +93,9 @@ export const MiTiendaContext = ({ children }) => {
         setTiendaData,
         tiendaDetail,
         dataUpdate,
-        setDataUpdate
+        setDataUpdate,
+        calificaciones,
+        calificacionesList,
       }}
     >
       {children}
