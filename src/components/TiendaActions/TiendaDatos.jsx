@@ -10,16 +10,25 @@ import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
 import logo from "../../assets/img/isologo.png";
+import Loader from "../Loader/Loader";
 
 const TiendaDatos = () => {
   const navigate = useNavigate();
-  const { tiendaData,tiendaDetail } = useContext(UseMiTiendaContext);
+  const { tiendaData,tiendaDetail,dataUpdate } = useContext(UseMiTiendaContext);
   const { userLog } = useContext(UseLoginContext);
   const [data,setData]=useState({
     nombre:"",
     telefono:0,
     descripcion:""
   })
+  const [load,setLoad]=useState(false)
+
+  const [errorPhone,setErrorPhone]=useState(false)
+  const [errorCambpoObligatorio,setErrorCampoObligatorio]=useState(false)
+
+  let clase = 'formObligatorio';
+  let clase2 = 'formObligatorioTitle';
+
 
   useEffect(() => {
     if(tiendaDetail.length!==0){
@@ -128,7 +137,29 @@ const TiendaDatos = () => {
       }
     })
   }
-  console.log(data)
+
+  const handleSubmit=()=>{
+    setLoad(true)
+    if(document.getElementById("nombre").value===""){
+      setErrorCampoObligatorio(true)
+      setLoad(false)
+      return
+    }
+    const formPhone = new FormData();
+    formPhone.append('telefono', document.getElementById('telefono').value);
+    apiFetch(formPhone, 'clientes', 'validate_phone').then((res) => {
+      if (res.status === 'error') {
+        setErrorPhone(true)
+        window.scrollTo({
+          top: 0,
+          behavior: "auto",
+        });
+        setLoad(false)
+      }
+    });
+    console.log(dataUpdate)
+  }
+
   return (<>{tiendaData.length===0?<SeccionProductos/>:
     <div className="miTiendaDatos">
       <TiendaBanner />
@@ -140,11 +171,11 @@ const TiendaDatos = () => {
           <div className="formulario">
             <div className="inputContainer">
               <div className="inputBox">
-                <p className="labelInput" id="labelNombre">
+                <p className={`labelInput ${errorCambpoObligatorio?clase2:""}`} id="labelNombre">
                   Nombre *
                 </p>
                 <TextField
-                  className="input"
+                  className={`input ${errorCambpoObligatorio?clase:""}`}
                   placeholder="El Ropero de Sandra"
                   id="nombre"
                   value={data.nombre}
@@ -154,18 +185,21 @@ const TiendaDatos = () => {
                 />
               </div>
               <div className="inputBox">
-                <p className="labelInput" id="labelApellido">
+                <p className={`labelInput ${errorPhone?clase2:""}`} id="labelApellido">
                   Teléfono *
                 </p>
                 <TextField
-                  className="input"
+                  className={`input ${errorPhone?clase:""}`}
                   placeholder="+54  011 - 4417 - 8005"
                   type="number"
                   id="telefono"
                   value={data.telefono}
-                  onChange={(e)=>setData((prevState)=>({
-                    ...prevState,telefono:e.target.value
-                  }))}
+                  onChange={(e)=>{
+                    setErrorPhone(false)
+                    setData((prevState)=>({
+                    ...prevState,telefono:Number(e.target.value)
+                    }))
+                }}
                 />
               </div>
             </div>
@@ -203,7 +237,20 @@ const TiendaDatos = () => {
             </div>
           </div>
           <div className="buttonContainer">
-            <button>GUARDAR CAMBIOS</button>
+            {load ? 
+              <div
+                style={{
+                  marginTop: "24px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Loader spin={"spinnerM"} />
+              </div>
+              :
+              <button>GUARDAR CAMBIOS</button>
+            }
           </div>
           <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
             <img src={leftArrow} alt="leftArrow" />
