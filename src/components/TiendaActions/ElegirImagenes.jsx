@@ -59,6 +59,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
           ) : (
             imgNecesarias.map((imgBox) => {
+              console.log(imagenes[section]);
               return (
                 <div className="section">
                   <div className="imgBox">
