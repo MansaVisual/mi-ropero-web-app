@@ -117,7 +117,7 @@
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 16px;
-                text-align: right;
+                text-align: start;
                 text-decoration-line: underline;
                 color: #443988;
                 cursor: pointer;
@@ -198,6 +198,20 @@
             }
             .messageState {
               color: #443988;
+            }
+            .discountLink {
+              margin-top: 4px;
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 16px;
+              text-align: start;
+              text-decoration-line: underline;
+              color: #443988;
+              cursor: pointer;
+              @include screen_389 {
+                width: 130px;
+                text-align: center;
+              }
             }
           }
         }
