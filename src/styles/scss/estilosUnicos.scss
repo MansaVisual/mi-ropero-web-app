@@ -257,6 +257,10 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
   margin-top: 24px;
   width: 150px;
+  @include screen_705 {
+    width: 100%;
+    max-width: 370px;
+  }
   p {
     font-weight: 600;
     font-size: 12px;
@@ -463,6 +467,6 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 }
-.css-ej09fx{
+.css-ej09fx {
   border-radius: 2px !important;
 }

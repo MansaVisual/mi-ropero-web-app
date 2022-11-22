@@ -25,6 +25,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/MiTienda/CATEGORIA`);
       return;
     }
+    console.log(form);
     for (let i = 0; i < categorias.length; i++) {
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
@@ -39,22 +40,27 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleSubmit = () => {
-    for (let i = 0; i < imgNecesarias.length; i++) {
-      if (imgNecesarias[i].obligatoria === "1") {
-        for (const key in imagenes) {
-          console.log(key, imagenes);
-          console.log(imgNecesarias[i].nombre, key, imagenes[key]);
-          if (imgNecesarias[i].nombre === key && !imagenes[key]) {
-            setErrorObligatorio(true);
-            setCampoError(key);
+  const handleSubmit = async () => {
+    const fx = () => {
+      for (let i = 0; i < imgNecesarias.length; i++) {
+        if (imgNecesarias[i].obligatoria === "1") {
+          for (const key in imagenes) {
+            if (imgNecesarias[i].nombre === key && !imagenes[key]) {
+              setErrorObligatorio(true);
+              setCampoError(key);
+            }
           }
         }
       }
-    }
-    /* if (!errorObligatorio) {
+    };
+    await fx();
+    if (!errorObligatorio) {
+      setForm((prevState) => ({
+        ...prevState,
+        imagenes: imagenes,
+      }));
       navigate(`/MiTienda/CARACTERISTICAS`);
-    } */
+    }
   };
 
   return (

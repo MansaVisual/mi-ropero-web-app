@@ -1,28 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Button } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import foto from "../../assets/img/fotoProd.png";
 import error from "../../assets/img/error.png";
 import basura from "../../assets/img/basura.png";
+import lupaFilters from "../../assets/img/lupaFilters.png";
 import StarIcon from "@mui/icons-material/Star";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Grid, MenuItem, Rating, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
+import Loader from "../Loader/Loader";
 
 const Calificaciones = () => {
   const navigate = useNavigate();
+  const { userLog } = useContext(UseLoginContext);
 
   const [selected, setSelected] = useState("mejor valoración primero");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [calificaciones, setCalificaciones] = useState([]);
 
-  const array = [
-    {
-      img: foto,
-      id: 1371,
-      nombre: "Marcelo Moda",
-      reseña:
-        "“El producto está igual a lo que decía la publicación, estoy más que satisfecho con la compra”",
-      rating: 3.5,
-    },
-  ];
+  useEffect(() => {
+    if (userLog) {
+      setLoading(true);
+      const data = new FormData();
+      data.append("idcliente", Number(userLog));
+      apiFetch(data, "calificaciones", "all").then((res) => {
+        console.log(res);
+        if (res.status === "success") {
+          setCalificaciones(res.result);
+          setLoading(false);
+        }
+        if (
+          res.status === "error" &&
+          res.result === "La tienda no tiene calificaciones"
+        ) {
+          setLoading(false);
+        } else {
+          setError(true);
+          setLoading(false);
+        }
+      });
+    }
+  }, [userLog]);
+
   const stateList = ["mejor valoración primero", "en espera"];
   return (
     <div className="calificacionesContainer">
@@ -34,53 +57,89 @@ const Calificaciones = () => {
               <p className="title">CALIFICACIONES</p>
             </div>
             <div className="calificacionesList">
-              {array.map((venta, id) => {
-                return (
-                  <div key={id} className="desktopCard">
-                    <div className="data">
-                      <img src={venta.img} alt="cardImage" />
-                      <div>
-                        <p className="id">
-                          Operacion: <span>{venta.id}</span>
-                        </p>
-                        <p className="name">{venta.nombre}</p>
-                        <p className="review">{venta.reseña}</p>
-                      </div>
-                    </div>
-                    <div className="rigthSide">
-                      <Rating
-                        name="text-feedback"
-                        value={venta.rating}
-                        readOnly
-                        precision={0.5}
-                        icon={
-                          <StarIcon
-                            style={{ width: "20px", height: "20px" }}
-                          ></StarIcon>
-                        }
-                        emptyIcon={
-                          <StarIcon
-                            style={{
-                              opacity: 0.55,
-                              width: "20px",
-                              height: "20px",
-                            }}
+              {loading ? (
+                <div
+                  style={{
+                    height: "50vh",
+                    marginTop: "42px",
+                    width: "100%",
+                    maxWidth: "895px",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+              ) : !error ? (
+                calificaciones.length > 0 ? (
+                  calificaciones.map((data, id) => {
+                    return (
+                      <div key={id} className="desktopCard">
+                        <div className="data">
+                          {/* <img src={venta.img} alt="cardImage" /> */}
+                          <div>
+                            <p className="id">
+                              Operacion: <span>{data.idoperacion}</span>
+                            </p>
+                            <p className="name">{data.fecha}</p>
+                            <p className="review">"{data.mensaje}"</p>
+                          </div>
+                        </div>
+                        <div className="rigthSide">
+                          <Rating
+                            name="text-feedback"
+                            value={Number(data.estrellas)}
+                            readOnly
+                            precision={0.5}
+                            icon={
+                              <StarIcon
+                                style={{ width: "20px", height: "20px" }}
+                              ></StarIcon>
+                            }
+                            emptyIcon={
+                              <StarIcon
+                                style={{
+                                  opacity: 0.55,
+                                  width: "20px",
+                                  height: "20px",
+                                }}
+                              />
+                            }
                           />
-                        }
-                      />
-                      <img
-                        onClick={() => {
-                          /* setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje); */
-                        }}
-                        className="basuraIcon"
-                        src={basura}
-                        alt="BasuraIcon"
-                      />
+                          <img
+                            onClick={() => {
+                              /* setBorrarMsj(true);
+                    setMensajeId(mensaje.idmensaje); */
+                            }}
+                            className="basuraIcon"
+                            src={basura}
+                            alt="BasuraIcon"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="perfilVacio">
+                    <div>
+                      <img src={lupaFilters} alt="LOGO" />
+                      <p>No tienes calificaciones de momento</p>
+                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
                   </div>
-                );
-              })}
+                )
+              ) : (
+                <div className="perfilVacio">
+                  <div>
+                    <img src={lupaFilters} alt="LOGO" />
+                    <p>
+                      Error al traer calificaciones. Vuelva a intentar en un
+                      momento
+                    </p>
+                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="bottomContainer">

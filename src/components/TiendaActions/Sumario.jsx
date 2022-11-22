@@ -13,27 +13,8 @@ const Sumario = ({ form }) => {
     return;
   }
 
-  const sumario = {
-    categoria: "ROPA / Remeras",
-    imagenes: {
-      fotofrente: foto,
-      fotodetras: foto,
-    },
-    caracteristicas: {
-      genero: ["unisex"],
-      talle: ["unisex"],
-      color: ["unisex"],
-      marca: ["adidas", "puma", "reebok"],
-      condicion: ["unisex"],
-      tipoTela: ["unisex"],
-    },
-    detalle: {
-      titulo: "Remera nevada manga corta Rolling Stones",
-      precio: "$4500",
-      descripcion:
-        "Remera casi nueva nevada, tela gruesa con estampa de Rolling Stones ideal media estación.",
-    },
-  };
+  console.log(form);
+
   return (
     <Grid className="gridContainer">
       <div className="sumarioContainer">
@@ -57,12 +38,10 @@ const Sumario = ({ form }) => {
               <p className="title">Imágenes</p>
               <div className="infoImagenes">
                 <div>
-                  {/*  {form.imagenes.map((img, i) => {
-                    return <img key={i} src={img} alt="productImg" />;
-                  })} */}
                   {Object.keys(form.imagenes).map((key, i) => {
-                    console.log(key);
-                    console.log(form.imagenes[key]);
+                    if (!form.imagenes[key]) {
+                      return null;
+                    }
                     return (
                       <img key={i} src={form.imagenes[key]} alt="formImg" />
                     );
@@ -81,7 +60,11 @@ const Sumario = ({ form }) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
-                        <span>{form.caracteristicas[key].join(", ")}</span>
+                        <span>
+                          {form.caracteristicas[key].length === 0
+                            ? "No especificado"
+                            : form.caracteristicas[key].join(", ")}
+                        </span>
                       </div>
                     );
                   })}
