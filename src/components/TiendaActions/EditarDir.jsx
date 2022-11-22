@@ -107,7 +107,7 @@ const EditarDir = (setDir) => {
           document.getElementById("piso").value = dataUpdate.piso;
       }
       if(dataUpdate.departamento!==""){
-        document.getElementById("departamento").value = dataUpdate.departamento;
+        document.getElementById("depto").value = dataUpdate.departamento;
     }
       setProvincia(dataUpdate.idprovincia);
       if (dataUpdate.idprovincia === "1") {
@@ -116,15 +116,16 @@ const EditarDir = (setDir) => {
         document.getElementById("barrioLocalidad").value =
           dataUpdate.localidad;
       }
-      if(dataUpdate.entrecalle1!==""){
-        document.getElementById("entrecalle1").value = dataUpdate.entrecalle1;
+      if(dataUpdate.entre_calle_1!==""){
+        document.getElementById("entrecalle1").value = dataUpdate.entre_calle_1;
     }
-    if(dataUpdate.departamento!==""){
-        document.getElementById("departamento").value = dataUpdate.entrecalle2;
+    if(dataUpdate.entre_calle_2!==""){
+        document.getElementById("entrecalle2").value = dataUpdate.entre_calle_2;
     }
-    if(dataUpdate.departamento!==""){
-        document.getElementById("departamento").value = dataUpdate.infoAdicional;
+    if(dataUpdate.informacion_adicional!==""){
+        document.getElementById("infoAdicional").value = dataUpdate.informacion_adicional;
     }
+
       document.getElementById("codigoPostal").value =
         dataUpdate.codigo_postal;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
