@@ -55,6 +55,10 @@ const ElegirImagenes = ({ form, setForm }) => {
     };
     await fx();
     if (!errorObligatorio) {
+      setForm((prevState) => ({
+        ...prevState,
+        imagenes: imagenes,
+      }));
       navigate(`/MiTienda/CARACTERISTICAS`);
     }
   };
