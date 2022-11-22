@@ -23,21 +23,20 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
-      console.log(categorias[i].idcategoria, form.tipoId);
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
         for (let i = 0; i < categorias[i].imagenes_necesarias.length; i++) {
           let obj = categorias[i].imagenes_necesarias.nombre;
+          console.log(obj);
           imagenes[obj] = null;
         }
+        console.log(imagenes);
         setImagenes(imagenes);
         return;
       }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  console.log(imagenes);
 
   return (
     <div className="elegirImgContainer">
@@ -71,7 +70,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       src={editIcon}
                       alt="edit"
                       onClick={() => {
-                        setSection("imgFrente");
+                        setSection(section.nombre);
                         setOpenPopUp(true);
                       }}
                     />
@@ -90,109 +89,6 @@ const ElegirImagenes = ({ form, setForm }) => {
               );
             })
           )}
-          {/* <div className="section">
-            <div className="imgBox">
-              <img
-                src={form.imgFrente ? form.imgFrente : fotoFrente}
-                alt="fotoFrente"
-              />
-              <img
-                className="editButton"
-                src={editIcon}
-                alt="edit"
-                onClick={() => {
-                  setSection("imgFrente");
-                  setOpenPopUp(true);
-                }}
-              />
-            </div>
-            <div className="bottomContainer">
-              <span>Foto frente</span>
-              <div class="tooltip">
-                <img src={infoIcon} alt="infoIcon" />
-                <span>
-                  Mostrá la prenda de frente, que se vean bien los colores,
-                  estampas y detalles.
-                </span>
-              </div>
-            </div>
-            <p className="bottomText">(obligatoria)</p>
-          </div> */}
-          {/* <div className="section">
-            <div className="imgBox">
-              <p
-                onClick={() => {
-                  setSection("imgTrasera");
-                  setOpenPopUp(true);
-                }}
-              >
-                Agregar imagen
-              </p>
-              <img
-                src={form.imgTrasera ? form.imgTrasera : fotoTrasera}
-                alt="fotoTrasera"
-              />
-            </div>
-            <div className="bottomContainer">
-              <span>Foto trasera</span>
-              <img src={infoIcon} alt="info" />
-            </div>
-            <p className="bottomText">(opcional)</p>
-          </div> */}
-          {/*  <div className="section">
-            <div className="imgBox">
-              <p>Agregar video</p> 
-              <>
-                <p for="file-upload" class="custom-file-upload">
-                  CARGAR IMAGEN
-                </p>
-                <input
-                  id="file-upload"
-                  type="file"
-                onChange={onFileChange} 
-                  accept="video/*"
-                />
-              </>
-              <img src={fotoTrasera} alt="fotoTrasera" />
-            </div>
-            <div className="bottomContainer">
-              <span>Video</span>
-              <img src={infoIcon} alt="info" />
-            </div>
-            <p className="bottomText">(opcional)</p>
-          </div> */}
-          {/* <div className="section">
-            <div className="imgBox">
-              <p>Agregar imagen</p>
-              <img src={fotoTrasera} alt="fotoTrasera" />
-            </div>
-            <div className="bottomContainer">
-              <span>Foto detalle</span>
-              <img src={infoIcon} alt="info" />
-            </div>
-            <p className="bottomText">(opcional)</p>
-          </div>
-          <div className="section">
-            <div className="imgBox">
-              <p>Agregar imagen</p>
-              <img src={fotoTrasera} alt="fotoTrasera" />
-            </div>
-            <div className="bottomContainer">
-              <span>Foto extra</span>
-              <img src={infoIcon} alt="info" />
-            </div>
-            <p className="bottomText">(opcional)</p>
-          </div>
-          <div className="section">
-            <div className="imgBox">
-              <img className="addButton" src={addButton} alt="fotoTrasera" />
-            </div>
-            <div className="bottomContainer">
-              <span>Agregar foto extra</span>
-              <img src={infoIcon} alt="info" />
-            </div>
-            <p className="bottomText">(opcional)</p>
-          </div> */}
         </div>
         <div className="buttonContainer">
           <button
@@ -212,8 +108,8 @@ const ElegirImagenes = ({ form, setForm }) => {
         <PopUpImg
           section={section}
           setOpenPopUp={setOpenPopUp}
-          setForm={setForm}
-          form={form}
+          imagenes={imagenes}
+          setImagenes={setImagenes}
         />
       )}
     </div>
