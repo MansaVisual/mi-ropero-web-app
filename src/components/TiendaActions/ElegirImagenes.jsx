@@ -9,12 +9,14 @@ import editIcon from "../../assets/img/editIcon.svg";
 import addButton from "../../assets/img/addButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
+import Loader from "../Loader/Loader";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
+  const [imagenes, setImagenes] = useState({});
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -26,13 +28,19 @@ const ElegirImagenes = ({ form, setForm }) => {
     for (let i = 0; i < categorias.length; i++) {
       console.log(categorias[i].idcategoria, form.tipoId);
       if (categorias[i].idcategoria === form.tipoId) {
-        console.log("entra", categorias[i].imagenes_necesarias);
+        let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
+        for (let i = 0; i < categorias[i].imagenes_necesarias.length; i++) {
+          let obj = categorias[i].imagenes_necesarias.nombre;
+          imagenes[obj] = null;
+        }
+        setImagenes(imagenes);
+        return;
       }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* console.log(imgNecesarias, form, categorias); */
+  console.log(imgNecesarias, form, categorias);
 
   return (
     <div className="elegirImgContainer">
@@ -40,7 +48,52 @@ const ElegirImagenes = ({ form, setForm }) => {
         <Breadcrumbs links={["MI TIENDA", "PRODUCTOS"]} />
         <span className="title">IMAGENES</span>
         <div className="ImgSections">
-          <div className="section">
+          {imgNecesarias.length === 0 ? (
+            <div
+              style={{
+                marginTop: "24px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Loader spin={"spinnerG"} />
+            </div>
+          ) : (
+            imgNecesarias.map((section) => {
+              return (
+                <div className="section">
+                  <div className="imgBox">
+                    <img
+                      /* src={form.imgFrente ? form.imgFrente : fotoFrente} */
+                      src={section.imagen}
+                      alt="foto"
+                    />
+                    <img
+                      className="editButton"
+                      src={editIcon}
+                      alt="edit"
+                      onClick={() => {
+                        setSection("imgFrente");
+                        setOpenPopUp(true);
+                      }}
+                    />
+                  </div>
+                  <div className="bottomContainer">
+                    <span>{section.nombre}</span>
+                    <div class="tooltip">
+                      <img src={infoIcon} alt="infoIcon" />
+                      <span>{section.descripcion}</span>
+                    </div>
+                  </div>
+                  <p className="bottomText">
+                    ({section.obligatoria === "1" ? "obligatoria" : "opcional"})
+                  </p>
+                </div>
+              );
+            })
+          )}
+          {/* <div className="section">
             <div className="imgBox">
               <img
                 src={form.imgFrente ? form.imgFrente : fotoFrente}
@@ -67,8 +120,8 @@ const ElegirImagenes = ({ form, setForm }) => {
               </div>
             </div>
             <p className="bottomText">(obligatoria)</p>
-          </div>
-          <div className="section">
+          </div> */}
+          {/* <div className="section">
             <div className="imgBox">
               <p
                 onClick={() => {
@@ -88,7 +141,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               <img src={infoIcon} alt="info" />
             </div>
             <p className="bottomText">(opcional)</p>
-          </div>
+          </div> */}
           {/*  <div className="section">
             <div className="imgBox">
               <p>Agregar video</p> 
@@ -111,7 +164,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
             <p className="bottomText">(opcional)</p>
           </div> */}
-          <div className="section">
+          {/* <div className="section">
             <div className="imgBox">
               <p>Agregar imagen</p>
               <img src={fotoTrasera} alt="fotoTrasera" />
@@ -142,7 +195,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               <img src={infoIcon} alt="info" />
             </div>
             <p className="bottomText">(opcional)</p>
-          </div>
+          </div> */}
         </div>
         <div className="buttonContainer">
           <button
