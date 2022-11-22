@@ -182,7 +182,7 @@ console.log("DATA",dataUpdate)
     data.append("entre_calle_1",dataUpdate.entre_calle_1)
     data.append("entre_calle_2",dataUpdate.entre_calle_2)
     data.append("informacion_adicional",dataUpdate.informacion_adicional)
-    data.append("normalized",dataUpdate.googlemaps_normalize)
+    data.append("googlemaps_normalize",dataUpdate.googlemaps_normalize)
     apiFetch(data,"tiendas","update").then((res)=>{
       if(res.status==="success"){
         window.scrollTo({
