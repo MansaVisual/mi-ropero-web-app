@@ -121,6 +121,7 @@ export const LoginContext = ({ children }) => {
     log.append("social_login_type", 3);
     log.append("social_login_id", decoded.sub);
     apiFetch(log, "clientes", "login_social").then((res) => {
+      console.log(res);
       if (res.status === "success") {
         setInfoUser(res.result);
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
@@ -139,6 +140,7 @@ export const LoginContext = ({ children }) => {
   };
 
   const AppleRegister = (data) => {
+    console.log(data);
     const decoded = jwt_decode(data.authorization.id_token);
 
     const log = new FormData();
