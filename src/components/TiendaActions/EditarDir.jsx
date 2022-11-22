@@ -376,6 +376,7 @@ const EditarDir = ({setDir}) => {
               id="provincia"
               value={provincia === "" ? "ejemplo" : provincia}
               onChange={(event) => {
+                document.getElementById("barrioLocalidad").value=""
                 setCambioProvincia(true);
                 handleProvinciaInput(event);
                 setErrorDireccion(false);
