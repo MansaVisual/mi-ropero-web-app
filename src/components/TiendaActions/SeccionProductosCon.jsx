@@ -69,7 +69,7 @@ const SeccionProductosCon = () => {
                               handleOpenModal(product, "productos")
                             }
                           >
-                            CREAR DESCUENTO PARA TU TIENDA
+                            CREAR DESCUENTO
                           </p>
                         </div>
                       </div>
@@ -100,7 +100,7 @@ const SeccionProductosCon = () => {
                           className="discountLink"
                           onClick={() => handleOpenModal(product, "productos")}
                         >
-                          CREAR DESCUENTO PARA TU TIENDA
+                          CREAR DESCUENTO
                         </p>
                       </div>
                       <img

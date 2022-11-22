@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { UseProdsContext } from "../../context/ProdsContext";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -13,11 +14,23 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
   const [section, setSection] = useState(null);
+  const [imgNecesarias, setImgNecesarias] = useState([]);
 
-  if (!form.categoriaId) {
-    navigate(`/MiTienda/CATEGORIA`);
-    return;
-  }
+  const { categorias } = useContext(UseProdsContext);
+
+  useEffect(() => {
+    if (!form.categoriaId) {
+      navigate(`/MiTienda/CATEGORIA`);
+      return;
+    }
+    for (let i = 0; i < categorias.length; i++) {
+      if (categorias[i] === form.categoriaId) {
+        setImgNecesarias(categorias[i].imagenes_necesarias);
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  console.log(imgNecesarias, form, categorias);
 
   return (
     <div className="elegirImgContainer">
