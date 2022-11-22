@@ -50,7 +50,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
-    navigate(`/MiTienda/CARACTERISTICAS`);
+    /*  navigate(`/MiTienda/CARACTERISTICAS`); */
   };
 
   return (
