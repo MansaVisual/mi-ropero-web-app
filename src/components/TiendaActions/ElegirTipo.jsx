@@ -46,16 +46,16 @@ const ElegirTipo = ({ form, setForm }) => {
                     />
                     <span
                       className={
-                        form.tipo === cat.idcategoria
+                        form.tipoId === cat.idcategoria
                           ? "selected"
                           : "notSelected"
                       }
-                      onClick={() =>
+                      /* onClick={() =>
                         setForm((prevState) => ({
                           ...prevState,
                           tipo: cat.idcategoria,
                         }))
-                      }
+                      } */
                     >
                       {cat.nombre}
                     </span>
