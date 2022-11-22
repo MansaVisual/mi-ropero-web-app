@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useState,useEffect } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import editIcon from "../../assets/img/editIcon.png";
@@ -15,12 +15,22 @@ const TiendaDatos = () => {
   const navigate = useNavigate();
   const { tiendaData,tiendaDetail } = useContext(UseMiTiendaContext);
   const { userLog } = useContext(UseLoginContext);
-
   const [data,setData]=useState({
-    nombre:tiendaDetail.nombre,
-    telefono:Number(tiendaDetail.telefono),
-    descripcion:tiendaDetail.descripcion
+    nombre:"",
+    telefono:0,
+    descripcion:""
   })
+
+  useEffect(() => {
+    if(tiendaDetail.length!==0){
+      setData({
+        nombre:tiendaDetail.nombre,
+        telefono:Number(tiendaDetail.telefono),
+        descripcion:tiendaDetail.descripcion
+      })
+    }
+  }, [tiendaDetail]);
+
 
   const pausarTienda=(type)=>{
     Swal.fire({
@@ -28,9 +38,7 @@ const TiendaDatos = () => {
       text: type!=="5"?"Pausarás tu tienda hasta que lo desees":"Despausarás tu tienda",
       iconHtml: `<img src=${logo} alt="LOGO">`,
       showCloseButton: true,
-      showCancelButton: true,
       confirmButtonText: "CONTINUAR",
-      cancelButtonText: "CANCELAR",
       customClass: {
         icon: "no-border",
         container: "popUpLoginAlert",
@@ -48,7 +56,8 @@ const TiendaDatos = () => {
                 title:'TIENDA DESPAUSADA',
                 icon:'success',
                 confirmButtonText: 'ACEPTAR',
-            })
+              })
+              window.location.reload()
             }else{
               Swal.fire({
                 title:'OCURRIÓ UN ERROR',
@@ -66,6 +75,7 @@ const TiendaDatos = () => {
                 icon:'success',
                 confirmButtonText: 'ACEPTAR',
             })
+            window.location.reload()
             }else{
               Swal.fire({
                 title:'OCURRIÓ UN ERROR',
@@ -86,9 +96,7 @@ const TiendaDatos = () => {
       text: type==="1"?"Dejará de recibir un reporte semanal con las estadísticas de tu tienda":"Recibirá un reporte semanal con las estadísticas de tu tienda",
       iconHtml: `<img src=${logo} alt="LOGO">`,
       showCloseButton: true,
-      showCancelButton: true,
       confirmButtonText: "CONTINUAR",
-      cancelButtonText: "CANCELAR",
       customClass: {
         icon: "no-border",
         container: "popUpLoginAlert",
@@ -107,6 +115,7 @@ const TiendaDatos = () => {
               icon:'success',
               confirmButtonText: 'ACEPTAR',
           })
+          window.location.reload()
           }else{
             Swal.fire({
               title:'OCURRIÓ UN ERROR',

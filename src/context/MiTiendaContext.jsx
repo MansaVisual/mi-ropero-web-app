@@ -28,6 +28,7 @@ export const MiTiendaContext = ({ children }) => {
           });
           tienda.append("idtienda", Number(res.result[0].idtienda));
           apiFetch(tienda, "tiendas", "get").then((res) => {
+            console.log(res)
             if (res.status === "success") {
               setTiendaDetail(res.result);
             }
