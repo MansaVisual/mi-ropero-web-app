@@ -143,6 +143,10 @@ const TiendaDatos = () => {
     if(document.getElementById("nombre").value===""){
       setErrorCampoObligatorio(true)
       setLoad(false)
+      window.scrollTo({
+        top: 0,
+        behavior: "auto",
+      });
       return
     }
     const formPhone = new FormData();
@@ -150,11 +154,11 @@ const TiendaDatos = () => {
     apiFetch(formPhone, 'clientes', 'validate_phone').then((res) => {
       if (res.status === 'error') {
         setErrorPhone(true)
+        setLoad(false)
         window.scrollTo({
           top: 0,
           behavior: "auto",
         });
-        setLoad(false)
       }
     });
     console.log(dataUpdate)
@@ -179,9 +183,13 @@ const TiendaDatos = () => {
                   placeholder="El Ropero de Sandra"
                   id="nombre"
                   value={data.nombre}
-                  onChange={(e)=>setData((prevState)=>({
-                    ...prevState,nombre:e.target.value
-                  }))}
+                  onClick={()=>setErrorCampoObligatorio(false)}
+                  onChange={(e)=>{
+                    setErrorCampoObligatorio(false)
+                    setData((prevState)=>({
+                      ...prevState,nombre:e.target.value
+                    }))}
+                  }
                 />
               </div>
               <div className="inputBox">
@@ -194,6 +202,7 @@ const TiendaDatos = () => {
                   type="number"
                   id="telefono"
                   value={data.telefono}
+                  onClick={()=>setErrorPhone(false)}
                   onChange={(e)=>{
                     setErrorPhone(false)
                     setData((prevState)=>({
