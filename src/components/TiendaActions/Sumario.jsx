@@ -60,7 +60,11 @@ const Sumario = ({ form }) => {
                     return (
                       <div key={index}>
                         <p>{key}:</p>
-                        <span>{form.caracteristicas[key].join(", ")}</span>
+                        <span>
+                          {form.caracteristicas[key].length === 0
+                            ? "No especificado"
+                            : form.caracteristicas[key].join(", ")}
+                        </span>
                       </div>
                     );
                   })}
