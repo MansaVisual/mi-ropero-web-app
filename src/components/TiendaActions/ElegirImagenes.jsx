@@ -14,6 +14,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
+  const [obligatorio, setObligatorio] = useState(false);
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -43,10 +44,11 @@ const ElegirImagenes = ({ form, setForm }) => {
   const handleSubmit = () => {
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
-        for (let j = 0; j < imagenes.length; j++) {
-          console.log(imagenes[j]);
-          /* if (imgNecesarias[i].nombre === imagenes[j]) {
-          } */
+        for (const key in imagenes) {
+          console.log(key);
+          if (imgNecesarias[i].nombre === key) {
+            setObligatorio(true);
+          }
         }
       }
     }
@@ -72,7 +74,6 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
           ) : (
             imgNecesarias.map((imgBox) => {
-              console.log(imagenes[section]);
               return (
                 <div className="section">
                   <div className="imgBox">
