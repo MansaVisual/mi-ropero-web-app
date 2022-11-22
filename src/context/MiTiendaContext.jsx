@@ -15,6 +15,10 @@ export const MiTiendaContext = ({ children }) => {
   const [dataUpdate,setDataUpdate]=useState({})
 
   useEffect(() => {
+    console.log(dataUpdate)
+  }, [dataUpdate]);
+
+  useEffect(() => {
     if (userLog !== "") {
       const tienda = new FormData();
       tienda.append("idcliente", Number(userLog));
