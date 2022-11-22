@@ -11,6 +11,7 @@ import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
 import logo from "../../assets/img/isologo.png";
 import Loader from "../Loader/Loader";
+import EditarDir from "./EditarDir";
 
 const TiendaDatos = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const TiendaDatos = () => {
     descripcion:""
   })
   const [load,setLoad]=useState(false)
+  const [dir,setDir]=useState(false)
 
   const [errorPhone,setErrorPhone]=useState(false)
   const [errorCambpoObligatorio,setErrorCampoObligatorio]=useState(false)
@@ -161,6 +163,7 @@ const TiendaDatos = () => {
         });
       }
     });
+    console.log(dataUpdate)
     const data=new FormData()
     data.append("idtienda",userLog)
     data.append("telefono",document.getElementById("telefono").value)
@@ -180,7 +183,7 @@ const TiendaDatos = () => {
     data.append("entre_calle_1",dataUpdate.entre_calle_1)
     data.append("entre_calle_2",dataUpdate.entre_calle_2)
     data.append("informacion_adicional",dataUpdate.informacion_adicional)
-    data.append("googlemaps_normalize",dataUpdate.googlemaps_normalize)
+    data.append("normalized",dataUpdate.googlemaps_normalize)
     apiFetch(data,"tiendas","update").then((res)=>{
       console.log(res)
       if(res.status==="success"){
@@ -201,6 +204,7 @@ const TiendaDatos = () => {
           icon:'error',
           confirmButtonText: 'ACEPTAR',
         })
+        setLoad(false)
       }
     })
   }
@@ -208,128 +212,132 @@ const TiendaDatos = () => {
   return (<>{tiendaData.length===0?<SeccionProductos/>:
     <div className="miTiendaDatos">
       <TiendaBanner />
-      <Grid className="tiendaGrid">
-        <div className="container">
-          <div className="titleContainer">
-            <p className="title">DATOS</p>
-          </div>
-          <div className="formulario">
-            <div className="inputContainer">
-              <div className="inputBox">
-                <p className={`labelInput ${errorCambpoObligatorio?clase2:""}`} id="labelNombre">
-                  Nombre *
-                </p>
-                <TextField
-                  className={`input ${errorCambpoObligatorio?clase:""}`}
-                  placeholder="El Ropero de Sandra"
-                  id="nombre"
-                  value={data.nombre}
-                  onClick={()=>setErrorCampoObligatorio(false)}
-                  onChange={(e)=>{
-                    setErrorCampoObligatorio(false)
-                    setData((prevState)=>({
-                      ...prevState,nombre:e.target.value
+      {!dir ? 
+        <Grid className="tiendaGrid">
+          <div className="container">
+            <div className="titleContainer">
+              <p className="title">DATOS</p>
+            </div>
+            <div className="formulario">
+              <div className="inputContainer">
+                <div className="inputBox">
+                  <p className={`labelInput ${errorCambpoObligatorio?clase2:""}`} id="labelNombre">
+                    Nombre *
+                  </p>
+                  <TextField
+                    className={`input ${errorCambpoObligatorio?clase:""}`}
+                    placeholder="El Ropero de Sandra"
+                    id="nombre"
+                    value={data.nombre}
+                    onClick={()=>setErrorCampoObligatorio(false)}
+                    onChange={(e)=>{
+                      setErrorCampoObligatorio(false)
+                      setData((prevState)=>({
+                        ...prevState,nombre:e.target.value
+                      }))}
+                    }
+                  />
+                </div>
+                <div className="inputBox">
+                  <p className={`labelInput ${errorPhone?clase2:""}`} id="labelApellido">
+                    Teléfono *
+                  </p>
+                  <TextField
+                    className={`input ${errorPhone?clase:""}`}
+                    placeholder="+54  011 - 4417 - 8005"
+                    type="number"
+                    id="telefono"
+                    value={data.telefono}
+                    onClick={()=>setErrorPhone(false)}
+                    onChange={(e)=>{
+                      setErrorPhone(false)
+                      setData((prevState)=>({
+                      ...prevState,telefono:Number(e.target.value)
+                      }))
+                  }}
+                  />
+                </div>
+              </div>
+              <div className="inputContainer">
+                <div className="textAreaBox">
+                  <span className="label1">Descripción *</span>
+                  <TextField
+                    multiline
+                    rows={4}
+                    id="infoAdicional"
+                    color="primary"
+                    className="textArea"
+                    size="small"
+                    placeholder="Reducir, reciclar, reutilizar como bandera!"
+                    inputProps={{ maxLength: 50 }}
+                    value={data.descripcion}
+                    onChange={(e)=>setData((prevState)=>({
+                      ...prevState,descripcion:e.target.value
                     }))}
+                  />
+                </div>
+              </div>
+              <div className="address">
+                <div>
+                  <span>Domicilio de entrega</span>
+                  <img className="editIcon" src={editIcon} alt="editIcon" />
+                </div>
+                <div className="description">
+                  <p>
+                    Cuenca 3440. CABA Comuna 11 (C1417). entre Francisco Beiró y
+                    José P. Varela. Puerta violeta. Tocar fuerte el timbre.
+                  </p>
+                  <Button onClick={()=>setDir(true)}>MODIFICAR</Button>
+                </div>
+              </div>
+            </div>
+            <div className="buttonContainer">
+              {load ? 
+                <div
+                  style={{
+                    marginTop: "24px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+                :
+                <Button onClick={()=>handleSubmit()}>GUARDAR CAMBIOS</Button>
+              }
+            </div>
+            <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+              <img src={leftArrow} alt="leftArrow" />
+              <p>VOLVER A MI TIENDA</p>
+            </div>
+            <div>
+              <div className="tiendaActionsCard tiendaActionsCard1">
+                <h5 onClick={()=>reporteSem(tiendaDetail.recibe_reporte)}>
+                  {tiendaDetail.recibe_reporte==="1"?
+                    "Desactivar reporte semanal de estadísticas"
+                  :
+                    "Activar reporte semanal de estadísticas"
                   }
-                />
+                </h5>
+                <p>Podés recibir en tu email un reporte semanal con la cantidad de seguidores de tu tienda, la cantidad de visitas de tus productos y toda la información estadística que te interesa.</p>
               </div>
-              <div className="inputBox">
-                <p className={`labelInput ${errorPhone?clase2:""}`} id="labelApellido">
-                  Teléfono *
-                </p>
-                <TextField
-                  className={`input ${errorPhone?clase:""}`}
-                  placeholder="+54  011 - 4417 - 8005"
-                  type="number"
-                  id="telefono"
-                  value={data.telefono}
-                  onClick={()=>setErrorPhone(false)}
-                  onChange={(e)=>{
-                    setErrorPhone(false)
-                    setData((prevState)=>({
-                    ...prevState,telefono:Number(e.target.value)
-                    }))
-                }}
-                />
-              </div>
-            </div>
-            <div className="inputContainer">
-              <div className="textAreaBox">
-                <span className="label1">Descripción *</span>
-                <TextField
-                  multiline
-                  rows={4}
-                  id="infoAdicional"
-                  color="primary"
-                  className="textArea"
-                  size="small"
-                  placeholder="Reducir, reciclar, reutilizar como bandera!"
-                  inputProps={{ maxLength: 50 }}
-                  value={data.descripcion}
-                  onChange={(e)=>setData((prevState)=>({
-                    ...prevState,descripcion:e.target.value
-                  }))}
-                />
-              </div>
-            </div>
-            <div className="address">
-              <div>
-                <span>Domicilio de entrega</span>
-                <img className="editIcon" src={editIcon} alt="editIcon" />
-              </div>
-              <div className="description">
-                <p>
-                  Cuenca 3440. CABA Comuna 11 (C1417). entre Francisco Beiró y
-                  José P. Varela. Puerta violeta. Tocar fuerte el timbre.
-                </p>
-                <button>MODIFICAR</button>
+              <div className="tiendaActionsCard">
+                <h5 onClick={()=>pausarTienda(tiendaDetail.estado)}>
+                  {tiendaDetail.estado!=="5" ?
+                    "Pausar tienda"
+                  :
+                    "Despausar tienda"
+                  }
+                </h5>
+                <p>Al pausar tu tienda todos tus productos quedarán pausados y no podrán comprarse.</p>
               </div>
             </div>
           </div>
-          <div className="buttonContainer">
-            {load ? 
-              <div
-                style={{
-                  marginTop: "24px",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Loader spin={"spinnerM"} />
-              </div>
-              :
-              <Button onClick={()=>handleSubmit()}>GUARDAR CAMBIOS</Button>
-            }
-          </div>
-          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A MI TIENDA</p>
-          </div>
-          <div>
-            <div className="tiendaActionsCard tiendaActionsCard1">
-              <h5 onClick={()=>reporteSem(tiendaDetail.recibe_reporte)}>
-                {tiendaDetail.recibe_reporte==="1"?
-                  "Desactivar reporte semanal de estadísticas"
-                :
-                  "Activar reporte semanal de estadísticas"
-                }
-              </h5>
-              <p>Podés recibir en tu email un reporte semanal con la cantidad de seguidores de tu tienda, la cantidad de visitas de tus productos y toda la información estadística que te interesa.</p>
-            </div>
-            <div className="tiendaActionsCard">
-              <h5 onClick={()=>pausarTienda(tiendaDetail.estado)}>
-                {tiendaDetail.estado!=="5" ?
-                  "Pausar tienda"
-                :
-                  "Despausar tienda"
-                }
-              </h5>
-              <p>Al pausar tu tienda todos tus productos quedarán pausados y no podrán comprarse.</p>
-            </div>
-          </div>
-        </div>
-      </Grid>
+        </Grid>
+      :
+        <EditarDir/>
+      }
     </div>
   }
   </>);
