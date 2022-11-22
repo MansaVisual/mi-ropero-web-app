@@ -42,8 +42,10 @@ const ElegirTipo = ({ form, setForm }) => {
                       checked={form.tipoId === cat.idcategoria}
                       className="radio"
                       name="radioButton"
+                      id="radioButton"
                     />
-                    <span
+                    <label
+                      for="radioButton"
                       className={
                         form.tipoId === cat.idcategoria
                           ? "selected"
@@ -51,7 +53,7 @@ const ElegirTipo = ({ form, setForm }) => {
                       }
                     >
                       {cat.nombre}
-                    </span>
+                    </label>
                   </div>
                 )}
               </Fragment>

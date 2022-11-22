@@ -36,7 +36,7 @@
         display: flex;
         margin-top: 24px;
         .radio {
-          span {
+          label {
             color: #babcbe;
           }
         }
@@ -86,6 +86,8 @@
         cursor: pointer;
       }
     }
-
+    .returnLink {
+      width: unset;
+    }
   }
 }
