@@ -55,7 +55,9 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
-    /*  navigate(`/MiTienda/CARACTERISTICAS`); */
+    if (!errorObligatorio) {
+      navigate(`/MiTienda/CARACTERISTICAS`);
+    }
   };
 
   return (
