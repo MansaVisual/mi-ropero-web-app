@@ -13,13 +13,13 @@ import logo from "../../assets/img/isologo.png";
 
 const TiendaDatos = () => {
   const navigate = useNavigate();
-  const { tiendaData } = useContext(UseMiTiendaContext);
+  const { tiendaData,tiendaDetail } = useContext(UseMiTiendaContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [data,setData]=useState({
-    nombre:tiendaData.nombre,
-    telefono:tiendaData.telefono,
-    descripcion:tiendaData.descripcion
+    nombre:tiendaDetail.nombre,
+    telefono:Number(tiendaDetail.telefono),
+    descripcion:tiendaDetail.descripcion
   })
 
   const pausarTienda=(type)=>{
@@ -40,7 +40,7 @@ const TiendaDatos = () => {
       if(res.isConfirmed){
         const pause=new FormData()
         pause.append("idcliente",userLog)
-        pause.append("idtienda",tiendaData.idtienda)
+        pause.append("idtienda",tiendaDetail.idtienda)
         if(type==="5"){
           apiFetch(pause,"tiendas","unpause").then((res)=>{
             if(res.status==="success"){
@@ -98,7 +98,7 @@ const TiendaDatos = () => {
       if(res.isConfirmed){
         const pause=new FormData()
         pause.append("idcliente",userLog)
-        pause.append("idtienda",tiendaData.idtienda)
+        pause.append("idtienda",tiendaDetail.idtienda)
         if(type==="1"){pause.append("recibe_reporte",0)}else{pause.append("recibe_reporte",1)}
         apiFetch(pause,"tiendas","set_report").then((res)=>{
           if(res.status==="success"){
@@ -202,8 +202,8 @@ const TiendaDatos = () => {
           </div>
           <div>
             <div className="tiendaActionsCard tiendaActionsCard1">
-              <h5 onClick={()=>reporteSem(tiendaData.recibe_reporte)}>
-                {tiendaData.recibe_reporte==="1"?
+              <h5 onClick={()=>reporteSem(tiendaDetail.recibe_reporte)}>
+                {tiendaDetail.recibe_reporte==="1"?
                   "Desactivar reporte semanal de estadísticas"
                 :
                   "Activar reporte semanal de estadísticas"
@@ -212,8 +212,8 @@ const TiendaDatos = () => {
               <p>Podés recibir en tu email un reporte semanal con la cantidad de seguidores de tu tienda, la cantidad de visitas de tus productos y toda la información estadística que te interesa.</p>
             </div>
             <div className="tiendaActionsCard">
-              <h5 onClick={()=>pausarTienda(tiendaData.estado)}>
-                {tiendaData.estado!=="5" ?
+              <h5 onClick={()=>pausarTienda(tiendaDetail.estado)}>
+                {tiendaDetail.estado!=="5" ?
                   "Pausar tienda"
                 :
                   "Despausar tienda"
