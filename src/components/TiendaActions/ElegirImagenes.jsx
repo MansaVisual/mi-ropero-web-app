@@ -25,6 +25,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/MiTienda/CATEGORIA`);
       return;
     }
+    console.log(form);
     for (let i = 0; i < categorias.length; i++) {
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
