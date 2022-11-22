@@ -74,6 +74,7 @@ const EditarDir = ({setDir}) => {
       setContactForm({ ...contactForm, barrioLocalidad: "CAPITAL FEDERAL" });
     }
   };
+  console.log(provincia)
 
   const handleChangeLoc = () => {
     if (document.getElementById("barrioLocalidad") !== "CAPITAL FEDERAL") {
@@ -158,12 +159,7 @@ const EditarDir = ({setDir}) => {
         return;
       }
     }
-    const formCodPostal = new FormData();
 
-    formCodPostal.append(
-      "codigo_postal",
-      document.getElementById("codigoPostal").value
-    );
     console.log("FORMULARIO",contactForm)
     validarDireccion();
   };
