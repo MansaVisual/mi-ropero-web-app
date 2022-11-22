@@ -58,13 +58,14 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((section) => {
+            imgNecesarias.map((imgBox) => {
               return (
                 <div className="section">
                   <div className="imgBox">
                     <img
-                      /* src={form.imgFrente ? form.imgFrente : fotoFrente} */
-                      src={section.imagen}
+                      src={
+                        imagenes[section] ? imagenes[section] : imgBox.imagen
+                      }
                       alt="foto"
                     />
                     <img
@@ -72,20 +73,20 @@ const ElegirImagenes = ({ form, setForm }) => {
                       src={editIcon}
                       alt="edit"
                       onClick={() => {
-                        setSection(section.nombre);
+                        setSection(imgBox.nombre);
                         setOpenPopUp(true);
                       }}
                     />
                   </div>
                   <div className="bottomContainer">
-                    <span>{section.nombre}</span>
+                    <span>{imgBox.nombre}</span>
                     <div class="tooltip">
                       <img src={infoIcon} alt="infoIcon" />
-                      <span>{section.descripcion}</span>
+                      <span>{imgBox.descripcion}</span>
                     </div>
                   </div>
                   <p className="bottomText">
-                    ({section.obligatoria === "1" ? "obligatoria" : "opcional"})
+                    ({imgBox.obligatoria === "1" ? "obligatoria" : "opcional"})
                   </p>
                 </div>
               );
