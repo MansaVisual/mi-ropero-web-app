@@ -4,7 +4,13 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, Slider, Typography } from "@mui/material";
 import Cropper from "react-easy-crop";
 
-const PopUpImg = ({ section, setOpenPopUp, imagenes, setImagenes }) => {
+const PopUpImg = ({
+  section,
+  setOpenPopUp,
+  imagenes,
+  setImagenes,
+  setErrorObligatorio,
+}) => {
   const [imageSrc, setImageSrc] = useState(
     imagenes[section] ? imagenes[section] : null
   );
@@ -115,8 +121,7 @@ const PopUpImg = ({ section, setOpenPopUp, imagenes, setImagenes }) => {
   const showCroppedImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-      console.log("donee", { croppedImage });
-      /* imagenes[section] = croppedImage; */
+      setErrorObligatorio(false);
       setImagenes((prevState) => ({
         ...prevState,
         [section]: croppedImage,

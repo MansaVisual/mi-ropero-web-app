@@ -71,6 +71,9 @@ export const LoginContext = ({ children }) => {
     const log = new FormData();
     log.append("social_login_type", 1);
     log.append("social_login_id", loginData.id);
+    console.log("logindata", loginData);
+
+    console.log("append", Object.fromEntries(log));
     apiFetch(log, "clientes", "login_social").then((res) => {
       if (res.status === "success") {
         setInfoUser(res.result);

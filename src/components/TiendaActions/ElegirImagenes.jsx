@@ -133,6 +133,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setOpenPopUp={setOpenPopUp}
           imagenes={imagenes}
           setImagenes={setImagenes}
+          setErrorObligatorio={setErrorObligatorio}
         />
       )}
     </div>
