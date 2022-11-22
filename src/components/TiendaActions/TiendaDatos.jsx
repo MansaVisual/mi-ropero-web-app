@@ -275,28 +275,30 @@ console.log("DATA",dataUpdate)
                   />
                 </div>
               </div>
-              <div className="checkedText">
+              <div className="address">
                 <div>
                   <span>Domicilio de entrega</span>
                   <img className="editIcon" src={editIcon} alt="editIcon" />
                 </div>
                 <div className="description">
-                  <div style={{display:"flex",flexDirection:"column"}}>
-                    <h3>
+                  <div>
+                    <p>
                       {dataUpdate.calle} {dataUpdate.numero}.{" "}
                       {dataUpdate.provincia === "Capital Federal"
                         ? "CABA"
                         : dataUpdate.provincia}{" "}
-                      {dataUpdate.localidad} ({dataUpdate.codigo_postal}).
-                    </h3>
-                    <h3>
-                      {}
-                      {dataUpdate.entre_calle_1 && "Entre"}{" "}
-                      {dataUpdate.entre_calle_1 && dataUpdate.entre_calle_1}{" "}
-                      {dataUpdate.entre_calle_1 && "y"}{" "}
-                      {dataUpdate.entre_calle_2 && dataUpdate.entre_calle_2}
-                    </h3>
-                    <h3>{dataUpdate.informacion_adicional}</h3>
+                      {dataUpdate.localidad} ({`${dataUpdate.codigo_postal}`}){" "}
+                    </p>
+                    <p>
+                      {dataUpdate.entre_calle_1 !== "" && "Entre"}{" "}
+                      {dataUpdate.entre_calle_1 !== "" && dataUpdate.entre_calle_1}{" "}
+                      {dataUpdate.entre_calle_1 !== "" && "y"}{" "}
+                      {dataUpdate.entre_calle_2 !== "" && `${dataUpdate.entre_calle_2}.`}{" "}
+                    </p>
+                    <p>
+                      {dataUpdate.informacion_adicional !== "" &&
+                        `${dataUpdate.informacion_adicional}.`}
+                    </p>
                   </div>
                   <Button onClick={()=>setDir(true)}>MODIFICAR</Button>
                 </div>
