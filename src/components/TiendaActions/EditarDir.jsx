@@ -144,10 +144,7 @@ const EditarDir = ({setDir}) => {
       scrollTop();
       setCampoObligatorio(true);
     }
-    console.log(infoLocFinal)
-    if(infoLocFinal.length===0 && dataUpdate.localidad!==""){
-        handleChangeLoc()
-    }
+
     if (infoLocFinal.length === 0 && cambioProvincia) {
       if (
         document.getElementById("barrioLocalidad").value !== "CAPITAL FEDERAL"
@@ -204,14 +201,21 @@ const EditarDir = ({setDir}) => {
   };
 
   useEffect(() => {
-    // if (guardarDireccion) {
-    //   setForm((prevState) => ({
-    //     ...prevState,
-    //     direccion: direccion,
-    //     infoLocalidad: infoLocFinal,
-    //   }));
-    //   navigate("/MiTienda/SUMARIO");
-    // }
+    if (guardarDireccion) {
+      setDataUpdate((prevState)=>({
+        ...prevState,
+        calle:direccion.calle,
+        numero:direccion.numero,
+        normalized:direccion.raw_data,
+        informacion_adicional: contactForm.infoAdicional,
+        entre_calle_1: contactForm.entrecalle1,
+        entre_calle_2: contactForm.entrecalle2,
+        piso: contactForm.piso,
+        departamento: contactForm.depto,
+        idprovincia: provincia,
+        idlocalidad: infoLocFinal.length!==0?infoLocFinal.idlocalidad:dataUpdate.idlocalidad,
+      }))
+    }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTop = (param) => {
