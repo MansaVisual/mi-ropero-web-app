@@ -33,20 +33,19 @@ const Calificaciones = () => {
           setCalificaciones(res.result);
           setLoading(false);
         }
+        if (
+          res.status === "error" &&
+          res.result === "La tienda no tiene calificaciones"
+        ) {
+          setLoading(false);
+        } else {
+          setError(true);
+          setLoading(false);
+        }
       });
     }
   }, [userLog]);
 
-  const array = [
-    {
-      img: foto,
-      id: 1371,
-      nombre: "Marcelo Moda",
-      reseña:
-        "“El producto está igual a lo que decía la publicación, estoy más que satisfecho con la compra”",
-      rating: 3.5,
-    },
-  ];
   const stateList = ["mejor valoración primero", "en espera"];
   return (
     <div className="calificacionesContainer">
@@ -83,7 +82,7 @@ const Calificaciones = () => {
                               Operacion: <span>{data.idoperacion}</span>
                             </p>
                             <p className="name">{data.fecha}</p>
-                            <p className="review">{data.mensaje}</p>
+                            <p className="review">"{data.mensaje}"</p>
                           </div>
                         </div>
                         <div className="rigthSide">
