@@ -6,7 +6,7 @@ import Cropper from "react-easy-crop";
 
 const PopUpImg = ({ section, setOpenPopUp, imagenes, setImagenes }) => {
   const [imageSrc, setImageSrc] = useState(
-    setImagenes[section] ? setImagenes[section] : null
+    imagenes[section] ? imagenes[section] : null
   );
 
   console.log(imagenes);
