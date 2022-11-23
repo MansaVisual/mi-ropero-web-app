@@ -19,15 +19,15 @@ const Ventas = () => {
   const [ventas, setVentas] = useState([]);
   const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
 
-  const estados = [
-    "Pendiente de pago",
-    "Pago realizado",
-    "Error en pago",
-    "Pago devuelto",
-    "Plazo de pago vencido",
-    "En calificacion",
-    "Finalizada",
-  ];
+  const estados = {
+    3: "Pendiente de pago",
+    4: "Pago realizado",
+    5: "Error en pago",
+    7: "Pago devuelto",
+    9: "Plazo de pago vencido",
+    10: "En calificacion",
+    11: "Finalizada",
+  };
 
   let itemEstadoSelecc = "";
 
@@ -62,8 +62,9 @@ const Ventas = () => {
             res.result === "No se encontraron operaciones"
           ) {
             setLoading(false);
+            console.log("error1");
           } else {
-            console.log("error");
+            console.log("error2");
             setError(true);
             setLoading(false);
           }
@@ -71,16 +72,6 @@ const Ventas = () => {
       });
     }
   }, [tiendaData, filtroSelecc]);
-
-  const array = [
-    {
-      img: foto,
-      idCompra: "MRO-0000001375",
-      fecha: "9/8/2022  15:09:22 hs",
-      estado: "Pago realizado",
-      monto: 2000,
-    },
-  ];
 
   return (
     <div className="ventasContainer">
