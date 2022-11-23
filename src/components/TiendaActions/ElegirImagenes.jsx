@@ -32,8 +32,8 @@ const ElegirImagenes = ({ form, setForm }) => {
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
-        /* console.log(Object.values(form.imagenes)[0]);
-        if (!Object.values(form.imagenes)[0]) { */
+        console.log(Object.values(form.imagenes)[0]);
+
         for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
           let obj = categorias[i].imagenes_necesarias[j].nombre;
           imagenes[obj] = null;
@@ -41,7 +41,6 @@ const ElegirImagenes = ({ form, setForm }) => {
         setImagenes(imagenes);
         return;
       }
-      /*  } */
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
