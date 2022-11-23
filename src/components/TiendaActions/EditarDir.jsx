@@ -219,7 +219,7 @@ const EditarDir = ({setDir}) => {
         piso: document.getElementById("piso").value,
         departamento: document.getElementById("depto").value,
         idprovincia: provincia,
-        idlocalidad: document.getElementById("barrioLocalidad").value==="CAPITAL FEDERAL"?undefined:infoLocFinal.length!==0?infoLocFinal.idlocalidad:dataUpdate.idlocalidad,
+        idlocalidad: document.getElementById("barrioLocalidad").value==="CAPITAL FEDERAL"?"-1":infoLocFinal.length!==0?infoLocFinal.idlocalidad:dataUpdate.idlocalidad,
       }))
       setDir(false)
     }

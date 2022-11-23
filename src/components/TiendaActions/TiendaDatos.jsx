@@ -183,7 +183,7 @@ const TiendaDatos = () => {
     data.append("informacion_adicional",dataUpdate.informacion_adicional)
     data.append("normalized",dataUpdate.googlemaps_normalize)
 
-    console.log(Object[data])
+    console.log(Object.fromEntries(data))
     apiFetch(data,"tiendas","update").then((res)=>{console.log(res)
       if(res.status==="success"){
         window.scrollTo({
