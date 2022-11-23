@@ -129,10 +129,39 @@ const MisOfertas = () => {
           ) : ofertasRealizadas.length > 0 ? (
             ofertasRealizadas?.map((producto) => {
               return (
-                <div className="desktopCard">
-                  <div className="productoData">
+                <>
+                  <div className="desktopCard">
+                    <div className="productoData">
+                      <img
+                        src={producto.producto.imagenes[0].imagen_cuadrada}
+                        alt="cardImage"
+                      />
+                      <div>
+                        <p className="productoTitle">
+                          {producto.producto.nombre}
+                        </p>
+                        <p className="productoDate">{producto.fecha}</p>
+                        <p className="productoState">{producto.estado_text}</p>
+                      </div>
+                    </div>
+                    <div className="ofertaData">
+                      <p className="oferta">OFERTA</p>
+                      <p className="monto">${producto.oferta}</p>
+                      <img
+                        onClick={() => {
+                          setBorrarOferta(true);
+                          setOfertaId(producto.idoferta);
+                        }}
+                        className="basuraIcon"
+                        src={Basura}
+                        alt="BasuraIcon"
+                      />
+                    </div>
+                  </div>
+                  <div className="mobileCard">
                     <img
                       src={producto.producto.imagenes[0].imagen_cuadrada}
+                      className="productImg"
                       alt="cardImage"
                     />
                     <div>
@@ -140,23 +169,15 @@ const MisOfertas = () => {
                         {producto.producto.nombre}
                       </p>
                       <p className="productoDate">{producto.fecha}</p>
+                      <div>
+                        <span className="firstSpan">OFERTA</span>
+                        <span className="secondSpan">${producto.oferta}</span>
+                      </div>
                       <p className="productoState">{producto.estado_text}</p>
                     </div>
+                    <img src={Basura} className="trashICon" alt="basuraIcon" />
                   </div>
-                  <div className="ofertaData">
-                    <p className="oferta">OFERTA</p>
-                    <p className="monto">${producto.oferta}</p>
-                    <img
-                      onClick={() => {
-                        setBorrarOferta(true);
-                        setOfertaId(producto.idoferta);
-                      }}
-                      className="basuraIcon"
-                      src={Basura}
-                      alt="BasuraIcon"
-                    />
-                  </div>
-                </div>
+                </>
               );
             })
           ) : (
@@ -168,27 +189,6 @@ const MisOfertas = () => {
               </div>
             </div>
           )}
-          {/* {ofertasRealizadas.map((producto) => {
-            return (
-              <div className="mobileCard">
-                <img
-                  src={producto.producto.imagenes[0].imagen_cuadrada}
-                  className="productImg"
-                  alt="cardImage"
-                />
-                <div>
-                  <p className="productoTitle">{producto.producto.nombre}</p>
-                  <p className="productoDate">{producto.fecha}</p>
-                  <div>
-                    <span className="firstSpan">OFERTA</span>
-                    <span className="secondSpan">${producto.oferta}</span>
-                  </div>
-                  <p className="productoState">{producto.estado_text}</p>
-                </div>
-                <img src={Basura} className="trashICon" alt="basuraIcon" />
-              </div>
-            );
-          })} */}
         </div>
         <p className="volver" onClick={() => navigate(`/perfil`)}>
           <ArrowBackIosNew sx={{ fontSize: "10px" }} />
