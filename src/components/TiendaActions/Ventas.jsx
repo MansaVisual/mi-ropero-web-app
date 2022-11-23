@@ -1,13 +1,75 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
 import { useNavigate } from "react-router-dom";
 import { Grid, MenuItem, Select } from "@mui/material";
+import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Ventas = () => {
   const navigate = useNavigate();
+  const { userLog } = useContext(UseLoginContext);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [ventas, setVentas] = useState([]);
+  const [ventasFiltradas, setVentasFiltradas] = useState([]);
+  const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
+
+  const estados = [
+    "Pendiente de pago",
+    "Pago realizado",
+    "Error en pago",
+    "Pago devuelto",
+    "Plazo de pago vencido",
+    "En calificacion",
+    "Finalizada",
+  ];
+
+  let itemEstadoSelecc = "";
+
+  for (const item in estados) {
+    if (estados[item] === filtroSelecc) {
+      itemEstadoSelecc = item;
+    }
+  }
+
+  useEffect(() => {
+    if (userLog) {
+      setLoading(true);
+
+      let array = [];
+
+      const data = new FormData();
+      data.append("vendedor_id", Number(userLog));
+      data.append("estado", itemEstadoSelecc);
+      data.append("page", 0);
+      data.append("bypage", 10);
+      apiFetch(data, "operaciones", "all_saler").then((res) => {
+        console.log(res.status);
+        if (res.status === "success") {
+          for (const ii in res.result.operaciones) {
+            array.push(res.result.operaciones[ii]);
+          }
+          setLoading(false);
+          setVentas(array);
+        } else {
+          if (
+            res.status === "error" &&
+            res.result === "La tienda no operaciones"
+          ) {
+            setLoading(false);
+          } else {
+            console.log("error");
+            setError(true);
+            setLoading(false);
+          }
+        }
+      });
+    }
+  }, [userLog]);
 
   const array = [
     {
@@ -88,8 +150,8 @@ const Ventas = () => {
               <Select
                 displayEmpty
                 className="selectInput"
-                /* onChange={(e) => setTypeMessage(e.target.value)}
-            value={typeMessage} */
+                onChange={(e) => setFiltroSelecc(e.target.value)}
+                value={filtroSelecc}
                 renderValue={(selected) => {
                   if (selected === "") {
                     return <em>Seleccioná una opción</em>;
@@ -115,7 +177,7 @@ const Ventas = () => {
                 >
                   <em>Seleccioná </em>
                 </MenuItem>
-                {stateList.map((option) => (
+                {estados.map((option) => (
                   <MenuItem
                     key={option}
                     value={option}

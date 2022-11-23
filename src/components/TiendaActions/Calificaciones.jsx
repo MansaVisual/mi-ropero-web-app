@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
-import foto from "../../assets/img/fotoProd.png";
-import error from "../../assets/img/error.png";
 import basura from "../../assets/img/basura.png";
 import lupaFilters from "../../assets/img/lupaFilters.png";
 import StarIcon from "@mui/icons-material/Star";
