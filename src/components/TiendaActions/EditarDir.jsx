@@ -204,6 +204,7 @@ const EditarDir = ({setDir}) => {
     if (guardarDireccion) {
       console.log(infoLocFinal)
       console.log(direccion)
+      console.log("PISO 2", document.getElementById("piso").value)
       setDataUpdate((prevState)=>({
         ...prevState,
         calle:direccion.calle,
