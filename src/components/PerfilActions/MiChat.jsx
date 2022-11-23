@@ -35,7 +35,7 @@ const MiChat = () => {
     } else {
       const dir = new FormData();
       dir.append("idcliente", userLog);
-      dir.append("idmensaje", 0);
+      dir.append("idmensaje", mensajeId);
       apiFetch(dir, "mensajes", "thread").then((res) => {
         if (res.status === "success") {
           setProductoImg(res.result[0].producto.imagenes[0].imagen_chica);
