@@ -39,16 +39,17 @@ const Calificaciones = () => {
           console.log("");
           setCalificaciones(res.result);
           setLoading(false);
-        }
-        if (
-          res.status === "error" &&
-          res.result === "La tienda no tiene calificaciones"
-        ) {
-          setLoading(false);
         } else {
-          console.log("error");
-          setError(true);
-          setLoading(false);
+          if (
+            res.status === "error" &&
+            res.result === "La tienda no tiene calificaciones"
+          ) {
+            setLoading(false);
+          } else {
+            console.log("error");
+            setError(true);
+            setLoading(false);
+          }
         }
       });
     }
