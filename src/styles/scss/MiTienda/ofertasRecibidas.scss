@@ -237,12 +237,24 @@
         margin-top: 24px;
         max-width: 895px;
         width: 100%;
-        .returnLink {
-          margin-top: 0;
+        @include screen_705 {
+          justify-content: center;
         }
-        .selectInput {
-          div {
-            color: #878787;
+        .bottonSection {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+
+          @include screen_705 {
+            max-width: 370px;
+          }
+          .returnLink {
+            margin-top: 0;
+          }
+          .selectInput {
+            div {
+              color: #878787;
+            }
           }
         }
       }

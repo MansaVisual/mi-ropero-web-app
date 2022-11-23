@@ -60,7 +60,6 @@ const MisOfertas = () => {
     'vencida'
   ] */
 
-
   return (
     <div className="misOfertasContainer">
       <Breadcrumbs links={pathnames} />
@@ -169,7 +168,7 @@ const MisOfertas = () => {
               </div>
             </div>
           )}
-          {ofertasRealizadas.map((producto) => {
+          {/* {ofertasRealizadas.map((producto) => {
             return (
               <div className="mobileCard">
                 <img
@@ -189,7 +188,7 @@ const MisOfertas = () => {
                 <img src={Basura} className="trashICon" alt="basuraIcon" />
               </div>
             );
-          })}
+          })} */}
         </div>
         <p className="volver" onClick={() => navigate(`/perfil`)}>
           <ArrowBackIosNew sx={{ fontSize: "10px" }} />

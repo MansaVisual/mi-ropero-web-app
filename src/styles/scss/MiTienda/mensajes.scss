@@ -20,6 +20,9 @@
         justify-content: space-between;
         max-width: 895px;
         width: 100%;
+        @include screen_705 {
+          max-width: 370px;
+        }
         .title {
           font-style: normal;
           font-weight: 700;
