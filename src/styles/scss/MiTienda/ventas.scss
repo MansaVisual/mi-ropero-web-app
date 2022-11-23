@@ -212,7 +212,6 @@
           display: flex;
           width: 100%;
           justify-content: space-between;
-
           @include screen_705 {
             max-width: 370px;
           }

@@ -25,12 +25,18 @@
         margin-top: 50px;
         @include screen_705 {
           margin-top: 95px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         .firstLine {
           display: flex;
           justify-content: space-between;
           max-width: 895px;
           width: 100%;
+          @include screen_705 {
+            max-width: 370px;
+          }
           .title {
             font-weight: 700;
             font-size: 23px;
@@ -189,12 +195,23 @@
         margin-top: 24px;
         max-width: 895px;
         width: 100%;
-        .returnLink {
-          margin-top: 0;
+        @include screen_705 {
+          justify-content: center;
         }
-        .selectInput {
-          div {
-            color: #878787;
+        .bottomSection {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          @include screen_705 {
+            max-width: 370px;
+          }
+          .returnLink {
+            margin-top: 0;
+          }
+          .selectInput {
+            div {
+              color: #878787;
+            }
           }
         }
       }
