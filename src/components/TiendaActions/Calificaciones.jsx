@@ -18,7 +18,11 @@ const Calificaciones = () => {
   const { userLog } = useContext(UseLoginContext);
 
   const [selected, setSelected] = useState("mejor valoración primero");
-  const stateList = ["mejor valoración primero", "menor valoración primero"];
+  const stateList = [
+    "mejor valoración primero",
+    "menor valoración primero",
+    "en espera",
+  ];
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [calificaciones, setCalificaciones] = useState([]);
@@ -30,8 +34,9 @@ const Calificaciones = () => {
       const data = new FormData();
       data.append("idcliente", Number(userLog));
       apiFetch(data, "calificaciones", "all").then((res) => {
-        console.log(res);
+        console.log(res.status);
         if (res.status === "success") {
+          console.log("");
           setCalificaciones(res.result);
           setLoading(false);
         }
@@ -41,6 +46,7 @@ const Calificaciones = () => {
         ) {
           setLoading(false);
         } else {
+          console.log("error");
           setError(true);
           setLoading(false);
         }
@@ -93,8 +99,8 @@ const Calificaciones = () => {
                   <Loader spin={"spinnerM"} />
                 </div>
               ) : !error ? (
-                calificaciones.length > 0 ? (
-                  calificaciones.map((data, id) => {
+                califFiltradas.length > 0 ? (
+                  califFiltradas.map((data, id) => {
                     return (
                       <div key={id} className="desktopCard">
                         <div className="data">
