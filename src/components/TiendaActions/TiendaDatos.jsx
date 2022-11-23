@@ -100,7 +100,6 @@ const TiendaDatos = () => {
       }
     })
   }
-console.log("DATA",dataUpdate)
   const reporteSem=(type)=>{
     Swal.fire({
       title: type==="1"?"DESACTIVAR REPORTE SEMANAL":"ACTIVAR REPORTE SEMANAL",
@@ -183,6 +182,8 @@ console.log("DATA",dataUpdate)
     data.append("entre_calle_2",dataUpdate.entre_calle_2)
     data.append("informacion_adicional",dataUpdate.informacion_adicional)
     data.append("normalized",dataUpdate.googlemaps_normalize)
+
+    console.log(Object[data])
     apiFetch(data,"tiendas","update").then((res)=>{console.log(res)
       if(res.status==="success"){
         window.scrollTo({
