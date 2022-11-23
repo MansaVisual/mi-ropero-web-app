@@ -4,18 +4,19 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
 import { useNavigate } from "react-router-dom";
-import { Grid, MenuItem, Select } from "@mui/material";
-import { UseLoginContext } from "../../context/LoginContext";
+import { Button, Grid, MenuItem, Select } from "@mui/material";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import vacio from "../../assets/img/comprasVacio.png";
+import Loader from "../Loader/Loader";
 
 const Ventas = () => {
   const navigate = useNavigate();
-  const { userLog } = useContext(UseLoginContext);
+  const { tiendaData } = useContext(UseMiTiendaContext);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [ventas, setVentas] = useState([]);
-  const [ventasFiltradas, setVentasFiltradas] = useState([]);
   const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
 
   const estados = [
@@ -37,13 +38,13 @@ const Ventas = () => {
   }
 
   useEffect(() => {
-    if (userLog) {
+    if (tiendaData) {
       setLoading(true);
 
       let array = [];
 
       const data = new FormData();
-      data.append("vendedor_id", Number(userLog));
+      data.append("vendedor_id", tiendaData.idtienda);
       data.append("estado", itemEstadoSelecc);
       data.append("page", 0);
       data.append("bypage", 10);
@@ -58,7 +59,7 @@ const Ventas = () => {
         } else {
           if (
             res.status === "error" &&
-            res.result === "La tienda no operaciones"
+            res.result === "No se encontraron operaciones"
           ) {
             setLoading(false);
           } else {
@@ -69,7 +70,7 @@ const Ventas = () => {
         }
       });
     }
-  }, [userLog]);
+  }, [tiendaData, filtroSelecc]);
 
   const array = [
     {
@@ -81,8 +82,6 @@ const Ventas = () => {
     },
   ];
 
-  const stateList = ["pago Realizado", "en espera"];
-
   return (
     <div className="ventasContainer">
       <TiendaBanner />
@@ -93,52 +92,90 @@ const Ventas = () => {
               <p className="title">VENTAS</p>
             </div>
             <div className="ventasList">
-              {array.map((venta, id) => {
-                return (
-                  <>
-                    <div key={id} className="desktopCard">
-                      <div className="data">
-                        <img src={venta.img} alt="cardImage" />
-                        <div>
-                          <p className="title">#ID: {venta.idCompra}</p>
-                          <p className="date">Fecha: {venta.fecha}</p>
-                          <p className="state">{venta.estado}</p>
-                        </div>
-                      </div>
-                      <div className="rigthSide">
-                        <p className="monto">${venta.monto}</p>
-                        <img
-                          onClick={() => {
-                            /* setBorrarMsj(true);
+              {loading ? (
+                <div
+                  style={{
+                    height: "50vh",
+                    marginTop: "42px",
+                    width: "100%",
+                    display: "flex",
+                    maxWidth: "1066px",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+              ) : !error ? (
+                ventas ? (
+                  ventas.map((venta, id) => {
+                    return (
+                      <>
+                        <div key={id} className="desktopCard">
+                          <div className="data">
+                            <img src={venta.img} alt="cardImage" />
+                            <div>
+                              <p className="title">#ID: {venta.idCompra}</p>
+                              <p className="date">Fecha: {venta.fecha}</p>
+                              <p className="state">{venta.estado}</p>
+                            </div>
+                          </div>
+                          <div className="rigthSide">
+                            <p className="monto">${venta.monto}</p>
+                            <img
+                              onClick={() => {
+                                /* setBorrarMsj(true);
                       setMensajeId(mensaje.idmensaje); */
-                          }}
-                          className="basuraIcon"
-                          src={basura}
-                          alt="BasuraIcon"
-                        />
-                      </div>
+                              }}
+                              className="basuraIcon"
+                              src={basura}
+                              alt="BasuraIcon"
+                            />
+                          </div>
+                        </div>
+                        <div key={`mobile${id}`} className="mobileCard">
+                          <img
+                            src={venta.img}
+                            className="productImg"
+                            alt="cardImage"
+                          />
+                          <div>
+                            <p className="messageTitle">
+                              #ID: {venta.idCompra}
+                            </p>
+                            <p className="messageState">Fecha: {venta.fecha}</p>
+                            <p className="state">{venta.estado}</p>
+                            <p className="monto">${venta.monto}</p>
+                          </div>
+                          <img
+                            src={basura}
+                            className="trashICon"
+                            alt="basuraIcon"
+                          />
+                        </div>
+                      </>
+                    );
+                  })
+                ) : (
+                  <div className="perfilVacio">
+                    <div>
+                      <img src={vacio} alt="LOGO" />
+                      <p>{`No tienes ventas en estado ${filtroSelecc}`}</p>
+                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
-                    <div key={`mobile${id}`} className="mobileCard">
-                      <img
-                        src={venta.img}
-                        className="productImg"
-                        alt="cardImage"
-                      />
-                      <div>
-                        <p className="messageTitle">#ID: {venta.idCompra}</p>
-                        <p className="messageState">Fecha: {venta.fecha}</p>
-                        <p className="state">{venta.estado}</p>
-                        <p className="monto">${venta.monto}</p>
-                      </div>
-                      <img
-                        src={basura}
-                        className="trashICon"
-                        alt="basuraIcon"
-                      />
-                    </div>
-                  </>
-                );
-              })}
+                  </div>
+                )
+              ) : (
+                <div className="perfilVacio">
+                  <div>
+                    <img src={vacio} alt="LOGO" />
+                    <p>
+                      Error al traer operaciones. Vuelva a intentar en un
+                      momento
+                    </p>
+                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="bottomContainer">
