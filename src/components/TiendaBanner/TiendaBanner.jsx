@@ -15,7 +15,7 @@ const TiendaBanner = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   const [showMoney, setShowMoney] = useState(false);
-  const { saldoCuenta } = useContext(UseMiTiendaContext);
+  const { saldoCuenta, tiendaData } = useContext(UseMiTiendaContext);
 
   const [transfPopUp, setTransfPopUp] = useState(false);
 
@@ -28,7 +28,7 @@ const TiendaBanner = () => {
         <img className="bannerImg" src={Banner} alt="banner" />
         <div className="content">
           <div className="titleBox">
-            <span className="title">El Ropero de Sandra</span>
+            <span className="title">{tiendaData.nombre}</span>
             <span
               className="subTitle"
               style={{ cursor: "pointer" }}

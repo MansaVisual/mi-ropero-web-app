@@ -28,6 +28,9 @@
           justify-content: space-between;
           max-width: 895px;
           width: 100%;
+          @include screen_705 {
+            max-width: 370px;
+          }
           .title {
             font-weight: 700;
             font-size: 23px;
@@ -197,6 +200,9 @@
         margin-top: 24px;
         max-width: 895px;
         width: 100%;
+        @include screen_705 {
+          max-width: 370px;
+        }
         .returnLink {
           margin-top: 0;
         }
