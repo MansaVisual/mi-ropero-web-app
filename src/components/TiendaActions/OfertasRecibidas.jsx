@@ -29,7 +29,6 @@ const OfertasRecibidas = () => {
           <div className="ofertasSections">
             <div className="firstLine">
               <p className="title">OFERTAS RECIBIDAS</p>
-              <button>AGREGAR PRODUCTO</button>
             </div>
             <div className="ofertasList">
               {array.map((venta, id) => {
