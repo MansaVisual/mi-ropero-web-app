@@ -1,62 +1,144 @@
-import React, { useEffect, useContext } from "react";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
-import { useLocation, useNavigate } from "react-router-dom";
-import tienda from "../../assets/img/tienda.png";
-import { Button } from "@mui/material";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import basura from "../../assets/img/basura.png";
+import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
-import SeccionProductosCon from "./SeccionProductosCon";
+import { Grid } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import PopUpDescuento from "./PopUpDescuento";
 
 const SeccionProductos = ({ setForm }) => {
   const navigate = useNavigate();
-  const { tiendaData, setTiendaData, productos } =
-    useContext(UseMiTiendaContext);
 
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
+  const { productos, tiendaDetail } = useContext(UseMiTiendaContext);
+  const [descuentoInfo, setDescuentoInfo] = useState({});
+  const [openPopUp, setOpenPopUp] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "auto",
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  console.log(tiendaDetail);
 
-  const handleClick = () => {
-    setForm((prevState) => ({
-      ...prevState,
-      crearTienda: true,
-    }));
-    setTiendaData([""]);
-    navigate(`/MiTienda/CATEGORIA`);
+  const handleOpenModal = (infoDesc, metodo) => {
+    console.log(metodo, infoDesc);
+    setOpenPopUp(true);
+    if (metodo === "productos") {
+      setDescuentoInfo({
+        productId: infoDesc.idproducto,
+        idTienda: infoDesc.idtienda,
+        metodo: "productos",
+      });
+    } else {
+      setDescuentoInfo({
+        idCliente: tiendaDetail.idcliente,
+        idTienda: tiendaDetail.idtienda,
+        metodo: "tiendas",
+      });
+    }
   };
 
   return (
-    <>
-      {tiendaData.length > 0 ? (
-        <SeccionProductosCon />
-      ) : (
-        <div className="seccionProductos">
-          <div className="breadcumbs">
-            <Breadcrumbs links={pathnames} />
-          </div>
-          <div className="contenedorInfo">
-            <p className="title">¡ABRÍ TU TIENDA!</p>
-            <p className="text">
-              Publica tu primer producto para habilitar tu tienda en Mi Ropero
+    <div className="seccionProductosCon">
+      <TiendaBanner />
+      <Grid className="tiendaGrid">
+        <div className="productContainer">
+          <div className="firstLine">
+            <p className="title">MIS PRODUCTOS</p>
+            <p
+              className="discountLink"
+              onClick={() => handleOpenModal("", "tiendas")}
+            >
+              CREAR DESCUENTO PARA TU TIENDA
             </p>
-            <img src={tienda} alt="TIENDA" />
-            <Button className="agregarProd" onClick={() => handleClick()}>
-              AGREGAR PRODUCTO
-            </Button>
           </div>
-          <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+          <div className="productList">
+            {productos.length > 0 &&
+              productos.map((product, id) => {
+                return (
+                  <>
+                    <div key={id} className="desktopCard">
+                      <div className="cardData">
+                        <img
+                          src={product.imagenes[0].imagen_cuadrada}
+                          alt="cardImage"
+                          /* onError={(e) => handleAvatarError(e)} */
+                        />
+                        <div>
+                          <p className="title">{product.nombre}</p>
+                          <p className="state">{product.estado_text}</p>
+                          <p
+                            className="discountLink"
+                            onClick={() =>
+                              handleOpenModal(product, "productos")
+                            }
+                          >
+                            CREAR DESCUENTO
+                          </p>
+                        </div>
+                      </div>
+                      <div className="ofertaData">
+                        <p className="monto">${product.precio}</p>
+                        <img
+                          onClick={() => {
+                            /* setBorrarMsj(true);
+                      setMensajeId(mensaje.idmensaje); */
+                          }}
+                          className="basuraIcon"
+                          src={basura}
+                          alt="BasuraIcon"
+                        />
+                      </div>
+                    </div>
+                    <div key={`mobile${id}`} className="mobileCard">
+                      <img
+                        src={product.imagenes[0].imagen_cuadrada}
+                        className="productImg"
+                        alt="cardImage"
+                      />
+                      <div>
+                        <p className="messageTitle">{product.nombre}</p>
+                        <p className="messageState">{product.estado_text}</p>
+                        <p className="monto">${product.precio}</p>
+                        <p
+                          className="discountLink"
+                          onClick={() => handleOpenModal(product, "productos")}
+                        >
+                          CREAR DESCUENTO
+                        </p>
+                      </div>
+                      <img
+                        src={basura}
+                        className="trashICon"
+                        alt="basuraIcon"
+                      />
+                    </div>
+                  </>
+                );
+              })}
+          </div>
+          <div className="buttonContainer">
+            <button
+              onClick={() => {
+                setForm((prevState) => ({
+                  ...prevState,
+                  crearTienda: false,
+                }));
+                navigate(`/MiTienda/CATEGORIA`);
+              }}
+            >
+              AGREGAR PRODUCTO
+            </button>
+          </div>
+          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A PERFIL</p>
+            <p>VOLVER A MI TIENDA</p>
           </div>
         </div>
+      </Grid>
+      {openPopUp && (
+        <PopUpDescuento
+          descuentoInfo={descuentoInfo}
+          setOpenPopUp={setOpenPopUp}
+        />
       )}
-    </>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ import ElegirCategoria from "../../components/TiendaActions/ElegirCategoria";
 import ElegirTipo from "../../components/TiendaActions/ElegirTipo";
 import ElegirImagenes from "../../components/TiendaActions/ElegirImagenes";
 import DetallesProd from "../../components/TiendaActions/DetallesProd";
-import SeccionProductosCon from "../../components/TiendaActions/SeccionProductosCon";
+import SeccionProductosCon from "../../components/TiendaActions/SeccionProductos";
 import MiTienda from "../../components/TiendaActions/MiTienda";
 import TiendaDatos from "../../components/TiendaActions/TiendaDatos";
 import Ventas from "../../components/TiendaActions/Ventas";
@@ -20,8 +20,9 @@ import Contacto from "../../components/TiendaActions/Contacto";
 import Sumario from "../../components/TiendaActions/Sumario";
 import Chat from "../../components/TiendaActions/Chat";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
-import SeccionProductos from "../../components/TiendaActions/SeccionProductos";
 import Loader from "../../components/Loader/Loader";
+import CrearTienda from "../../components/TiendaActions/CrearTienda";
+import SeccionProductos from "../../components/TiendaActions/SeccionProductos";
 
 const Tienda = () => {
   const { seccion } = useParams();
@@ -90,11 +91,11 @@ const Tienda = () => {
           <Loader spin={"spinnerG"} />
         </div>
       ) : tiendaData.length === 0 ? (
-        <SeccionProductos />
+        <CrearTienda setForm={setForm} />
       ) : (
         <>
           {seccion === undefined && <MiTienda />}
-          {seccion === "PRODUCTOS" && <SeccionProductosCon />}
+          {seccion === "PRODUCTOS" && <SeccionProductos />}
           {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
           {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
           {seccion === "IMAGENES" && (
