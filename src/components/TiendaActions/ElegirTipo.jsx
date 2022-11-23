@@ -37,6 +37,9 @@ const ElegirTipo = ({ form, setForm }) => {
                         ...prevState,
                         tipoId: cat.idcategoria,
                         tipoNombre: cat.nombre,
+                        caracteristicas: [],
+                        idCaracteristica: [],
+                        idCaracteristicaOld: [],
                       }))
                     }
                   >
