@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Grid } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-import foto from "../../assets/img/fotoProd.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Sumario = ({ form }) => {
@@ -15,7 +14,28 @@ const Sumario = ({ form }) => {
     return;
   }
 
-  const handleSubmit = () => {};
+  console.log(form);
+
+  const handleSubmit = () => {
+    if (form.crearTienda) {
+      const formData = new FormData();
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+      formData.append("");
+    }
+  };
 
   return (
     <Grid className="gridContainer">
