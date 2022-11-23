@@ -48,23 +48,13 @@ const MisMensajes = () => {
   useEffect(() => {
     if (mensajes.length > 0) {
       if (typeMessage === "ver todos") {
-        setMensajesFiltrados(
-          mensajes.filter((msg) => msg.cliente_id !== userLog)
-        );
+        setMensajesFiltrados(MisMensajes);
       }
       if (typeMessage === "ver no leídos") {
-        setMensajesFiltrados(
-          mensajes.filter(
-            (msg) => msg.estado === "1" && msg.cliente_id !== userLog
-          )
-        );
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "1"));
       }
       if (typeMessage === "ver leídos") {
-        setMensajesFiltrados(
-          mensajes.filter(
-            (msg) => msg.estado === "2" && msg.cliente_id !== userLog
-          )
-        );
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "2"));
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,7 +74,6 @@ const MisMensajes = () => {
     const formatoFinal = `Fecha: ${day} / ${month} / ${year} ${hora} Hs.`;
     return formatoFinal;
   };
-
 
   return (
     <div className="misMensajesContainer">
