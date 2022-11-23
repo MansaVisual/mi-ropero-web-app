@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Grid, MenuItem, Select } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import Loader from "../Loader/Loader";
 
 const Caracteristicas = ({ form, setForm }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
 
   const [caracteristicas, setCaracteristicas] = useState({});
   const [errorObligatorio, setErrorObligatorio] = useState(false);
@@ -165,7 +167,7 @@ const Caracteristicas = ({ form, setForm }) => {
     <Grid className="gridContainer">
       <div className="caractContainer">
         <div className="container">
-          <Breadcrumbs links={["MI TIENDA", "DETALLES"]} />
+          <Breadcrumbs links={pathnames} />
           <span className="title">CARACTERÍSTICAS</span>
           <span className="subtitle">
             Podés seleccionar varias opciones en cada caso.

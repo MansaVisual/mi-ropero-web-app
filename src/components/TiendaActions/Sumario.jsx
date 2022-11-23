@@ -3,10 +3,12 @@ import { Grid } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
@@ -19,7 +21,7 @@ const Sumario = ({ form }) => {
     <Grid className="gridContainer">
       <div className="sumarioContainer">
         <div className="container">
-          <Breadcrumbs links={["MI TIENDA", "SUMARIO"]} />
+          <Breadcrumbs links={pathnames} />
           <span className="title">SUMARIO</span>
           <span className="subtitle">
             Revisá los datos y publicá tu producto

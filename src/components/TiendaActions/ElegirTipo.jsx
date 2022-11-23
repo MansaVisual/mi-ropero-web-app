@@ -1,5 +1,5 @@
 import React, { useContext, Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Radio } from "@mui/material";
@@ -7,6 +7,8 @@ import { UseProdsContext } from "../../context/ProdsContext";
 
 const ElegirTipo = ({ form, setForm }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
   const { categorias } = useContext(UseProdsContext);
 
   console.log(form.categoriaId);
@@ -19,7 +21,7 @@ const ElegirTipo = ({ form, setForm }) => {
   return (
     <div className="elegirTipoContainer">
       <div className="container">
-        <Breadcrumbs links={["MI TIENDA", "PRODUCTOS"]} />
+        <Breadcrumbs links={pathnames} />
         <span className="title">ROPA</span>
         <span className="subtitle">¿Cuál es la subcategoría del producto?</span>
         <div className="subTypeSection">

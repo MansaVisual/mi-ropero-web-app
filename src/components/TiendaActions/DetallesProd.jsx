@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import {
@@ -14,6 +14,8 @@ import PopUpDescProd from "./PopUpDescuento";
 
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
 
   const [habilitado, setHabilitado] = useState(false);
   const [detalles, setDetalles] = useState({
@@ -71,7 +73,7 @@ const DetallesProd = ({ form, setForm }) => {
     <Grid className="gridContainer">
       <div className="detallesProdContainer">
         <div className="container">
-          <Breadcrumbs links={["MI TIENDA", "DETALLES"]} />
+          <Breadcrumbs links={pathnames} />
           <Box
             sx={{
               display: "flex",

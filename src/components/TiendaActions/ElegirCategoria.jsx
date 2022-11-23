@@ -1,5 +1,5 @@
-import React,{useContext} from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import RopaIcon from "../../assets/img/ropaIcon.png";
 import CalzadoIcon from "../../assets/img/calzadoIcon.png";
@@ -33,12 +33,14 @@ const categorias = [
 
 const ElegirCategoria = ({ setForm }) => {
   const navigate = useNavigate();
-  const { setTiendaData,tiendaData } = useContext(UseMiTiendaContext);
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
+  const { setTiendaData, tiendaData } = useContext(UseMiTiendaContext);
 
   return (
     <div className="elegirCatContainer">
       <div className="container">
-        <Breadcrumbs links={["MI TIENDA", "PRODUCTOS"]} />
+        <Breadcrumbs links={pathnames} />
         <span className="title">CATEGORÍA</span>
         <span className="subtitle">¿Cuál es la categoría del producto?</span>
         <div className="categorySections">
@@ -80,8 +82,8 @@ const ElegirCategoria = ({ setForm }) => {
               precio: "",
               descripcion: "",
             });
-            if(tiendaData[0]===""){
-              setTiendaData([])
+            if (tiendaData[0] === "") {
+              setTiendaData([]);
             }
             navigate(`/MiTienda`);
           }}

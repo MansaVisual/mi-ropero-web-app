@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UseProdsContext } from "../../context/ProdsContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -10,6 +10,8 @@ import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
 
 const ElegirImagenes = ({ form, setForm }) => {
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
   const [openPopUp, setOpenPopUp] = useState(false);
   const navigate = useNavigate();
   const [section, setSection] = useState(null);
@@ -68,7 +70,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   return (
     <div className="elegirImgContainer">
       <div className="container">
-        <Breadcrumbs links={["MI TIENDA", "PRODUCTOS"]} />
+        <Breadcrumbs links={pathnames} />
         <span className="title">IMAGENES</span>
         {errorObligatorio && (
           <div className="errorBox">
