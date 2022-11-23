@@ -4,6 +4,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
@@ -20,23 +21,67 @@ const Sumario = ({ form }) => {
   console.log(form, infoUser);
 
   const handleSubmit = () => {
+    const prod = new FormData();
+    prod.append("idcategoria", form.tipoId);
+    prod.append("caracteristicas", form.idCaracteristica);
+    prod.append("nombre", form.detalles.titulo);
+    prod.append("descripcion", form.detalles.descripcion);
+    prod.append("precio", form.detalles.precio);
+    prod.append("cantidad", 1);
     if (form.crearTienda) {
+      const { direccion } = form;
       const formData = new FormData();
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
-      formData.append("");
+      formData.append("idcliente", infoUser.idcliente);
+      formData.append("telefono", form.telefono);
+      formData.append("nombre", `El ropero de ${infoUser.nombre}`);
+      formData.append("descripcion", "");
+      formData.append("provincia", direccion.provincia);
+      formData.append("localidad", direccion.localidad);
+      formData.append("color_principal", "");
+      formData.append("color_secundario", "");
+      formData.append("idprovincia", direccion.idprovincia);
+      formData.append("idlocalidad", direccion.idlocalidad);
+      formData.append("codigo_postal", direccion.codigo_postal);
+      formData.append("calle", direccion.calle);
+      formData.append("numero", direccion.numero);
+      formData.append("piso", direccion.piso);
+      formData.append("departamento", direccion.departamento);
+      formData.append("entre_calle_1", direccion.entre_calle_1);
+      formData.append("entre_calle_2", direccion.entre_calle_2);
+      formData.append("informacion_adicional", direccion.informacion_adicional);
+      formData.append("normalized", direccion.raw_data);
+      console.log(Object.fromEntries(formData));
+      console.log(Object.fromEntries(prod));
+      apiFetch(formData, "tiendas", "insert").then((tiendaRes) => {
+        console.log(tiendaRes.result);
+        if (tiendaRes.status === "success") {
+          prod.append("idtienda", tiendaRes.result.idtienda);
+          apiFetch(prod, "productos", "insert").then((prodRes) => {
+            if (prodRes.status === "success") {
+              const img = new FormData();
+              img.append("idtienda", tiendaRes.result.idtienda);
+              img.append("idproducto", prodRes.result.idproducto);
+              img.append("image" /* imagenes */);
+              apiFetch(prod, "productos", "insert_image").then((res) => {
+                if (res.status === "success") {
+                }
+              });
+            }
+          });
+        } else {
+          console.log(tiendaRes);
+        }
+      });
+    } else {
+      prod.append("idtienda", infoUser.idtienda);
+      apiFetch(prod, "productos", "insert").then((res) => {
+        console.log(res.result);
+        if (res.status === "success") {
+          console.log(res);
+        } else {
+          console.log(res);
+        }
+      });
     }
   };
 
