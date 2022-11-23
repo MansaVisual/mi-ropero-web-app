@@ -35,19 +35,16 @@ const DetallesProd = ({ form, setForm }) => {
   };
 
   useEffect(() => {
-    /*     if (!form.categoriaId) {
+    if (!form.categoriaId) {
       navigate(`/MiTienda/CATEGORIA`);
       return;
-    } */
+    }
     if (form.detalles.titulo !== "") {
       setDetalles({
         titulo: form.detalles.titulo,
         precio: form.detalles.precio,
         descripcion: form.detalles.descripcion,
       });
-      /*       document.getElementById("titulo").value = form.titulo;
-      document.getElementById("precio").value = form.precio;
-      document.getElementById("descripcion").value = form.descripcion; */
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

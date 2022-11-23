@@ -27,7 +27,6 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/MiTienda/CATEGORIA`);
       return;
     }
-    console.log(form);
     for (let i = 0; i < categorias.length; i++) {
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
@@ -93,7 +92,6 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
           ) : (
             imgNecesarias.map((imgBox) => {
-              console.log(imagenes, imagenes[imgBox.nombre], imgBox.imagen);
               return (
                 <div className="section">
                   <div className="imgBox">

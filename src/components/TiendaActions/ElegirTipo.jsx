@@ -11,8 +11,6 @@ const ElegirTipo = ({ form, setForm }) => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const { categorias } = useContext(UseProdsContext);
 
-  console.log(form.categoriaId);
-
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
     return;
@@ -26,7 +24,6 @@ const ElegirTipo = ({ form, setForm }) => {
         <span className="subtitle">¿Cuál es la subcategoría del producto?</span>
         <div className="subTypeSection">
           {categorias.map((cat, i) => {
-            console.log(cat, form);
             return (
               <Fragment key={i}>
                 {cat.idcategoriapadre === form.categoriaId.toString() && (

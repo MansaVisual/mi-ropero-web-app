@@ -15,7 +15,6 @@ const PopUpImg = ({
     imagenes[section] ? imagenes[section] : null
   );
 
-  console.log(imagenes);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -25,8 +24,6 @@ const PopUpImg = ({
   }, []);
 
   const onFileChange = async (e) => {
-    console.log("ejecuta f");
-    console.log(e);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       let imageDataUrl = await readFile(file);
@@ -64,7 +61,6 @@ const PopUpImg = ({
     pixelCrop,
     flip = { horizontal: false, vertical: false }
   ) => {
-    console.log("entra- getCropped");
     const image = await createImage(imageSrc);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -199,7 +195,6 @@ const PopUpImg = ({
                 type="file"
                 onChange={onFileChange}
                 accept="image/*"
-                onClick={() => console.log("click")}
               />
             </>
           </div>

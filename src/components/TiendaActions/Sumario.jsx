@@ -17,7 +17,7 @@ const Sumario = ({ form }) => {
     return;
   }
 
-  console.log(form);
+  console.log(form, infoUser);
 
   const handleSubmit = () => {
     if (form.crearTienda) {

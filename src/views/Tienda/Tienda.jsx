@@ -94,7 +94,7 @@ const Tienda = () => {
       ) : (
         <>
           {seccion === undefined && <MiTienda />}
-          {seccion === "PRODUCTOS" && <SeccionProductosCon />}
+          {seccion === "PRODUCTOS" && <SeccionProductos />}
           {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
           {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
           {seccion === "IMAGENES" && (
