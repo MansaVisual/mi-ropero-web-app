@@ -1,4 +1,4 @@
-import React, { useEffect,useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { useLocation, useNavigate } from "react-router-dom";
 import tienda from "../../assets/img/tienda.png";
@@ -7,13 +7,14 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import SeccionProductosCon from "./SeccionProductosCon";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
-const SeccionProductos = () => {
+const SeccionProductos = ({ setForm }) => {
   const navigate = useNavigate();
-  const { tiendaData,setTiendaData,productos } = useContext(UseMiTiendaContext);
+  const { tiendaData, setTiendaData, productos } =
+    useContext(UseMiTiendaContext);
 
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-  
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -38,7 +39,14 @@ const SeccionProductos = () => {
             <img src={tienda} alt="TIENDA" />
             <Button
               className="agregarProd"
-              onClick={() => {setTiendaData([""]);navigate(`/MiTienda/CATEGORIA`)}}
+              onClick={() => {
+                setForm((prevState) => ({
+                  ...prevState,
+                  crearTienda: true,
+                }));
+                setTiendaData([""]);
+                navigate(`/MiTienda/CATEGORIA`);
+              }}
             >
               AGREGAR PRODUCTO
             </Button>

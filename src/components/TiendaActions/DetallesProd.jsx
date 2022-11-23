@@ -66,7 +66,11 @@ const DetallesProd = ({ form, setForm }) => {
       ...prevState,
       detalles,
     }));
-    navigate(`/MiTienda/CONTACTO`);
+    if (form.crearTienda) {
+      navigate(`/MiTienda/CONTACTO`);
+    } else {
+      navigate(`/MiTienda/SUMARIO`);
+    }
   };
 
   return (
@@ -161,7 +165,7 @@ const DetallesProd = ({ form, setForm }) => {
                 backgroundColor: habilitado ? "#443988" : "#857db3",
               }}
             >
-              IR A MODO DE CONTACTO
+              {form.crearTienda ? "IR A SUMARIO" : "IR A MODO DE CONTACTO"}
             </button>
           </div>
           <div

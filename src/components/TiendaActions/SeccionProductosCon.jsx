@@ -7,7 +7,7 @@ import { Grid } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import PopUpDescuento from "./PopUpDescuento";
 
-const SeccionProductosCon = () => {
+const SeccionProductosCon = ({ setForm }) => {
   const navigate = useNavigate();
 
   const { productos, tiendaDetail } = useContext(UseMiTiendaContext);
@@ -116,6 +116,10 @@ const SeccionProductosCon = () => {
           <div className="buttonContainer">
             <button
               onClick={() => {
+                setForm((prevState) => ({
+                  ...prevState,
+                  crearTienda: false,
+                }));
                 navigate(`/MiTienda/CATEGORIA`);
               }}
             >

@@ -32,6 +32,7 @@ const Tienda = () => {
   const [num, setNum] = useState(1);
 
   const [form, setForm] = useState({
+    crearTienda: null,
     categoriaId: null,
     categoriaNombre: null,
     tipoId: null,

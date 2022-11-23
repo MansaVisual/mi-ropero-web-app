@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
@@ -15,7 +15,7 @@ const Sumario = ({ form }) => {
     return;
   }
 
-  console.log(form);
+  const handleSubmit = () => {};
 
   return (
     <Grid className="gridContainer">
@@ -96,7 +96,7 @@ const Sumario = ({ form }) => {
             </div>
           </div>
           <div className="bottomContainer">
-            <button>PUBLICAR</button>
+            <Button onClick={() => handleSubmit()}>PUBLICAR</Button>
             <p>
               Al oprimir PUBLICAR se aceptan los{" "}
               <span>términos y condiciones</span> de Mi Ropero.
@@ -104,10 +104,16 @@ const Sumario = ({ form }) => {
           </div>
           <div
             className="returnLink"
-            onClick={() => navigate(`/MiTienda/CONTACTO`)}
+            onClick={() => {
+              form.crearTienda
+                ? navigate(`/MiTienda/DETALLES`)
+                : navigate(`/MiTienda/CONTACTO`);
+            }}
           >
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A CONTACTO</p>
+            <p>
+              {form.crearTienda ? "VOLVER A DETALLES" : "VOLVER A CONTACTO"}
+            </p>
           </div>
         </div>
       </div>
