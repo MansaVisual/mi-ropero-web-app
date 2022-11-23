@@ -22,8 +22,6 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const { categorias } = useContext(UseProdsContext);
 
-  console.log(form);
-
   useEffect(() => {
     if (!form.categoriaId) {
       navigate(`/MiTienda/CATEGORIA`);
@@ -32,14 +30,17 @@ const ElegirImagenes = ({ form, setForm }) => {
     console.log(form);
     for (let i = 0; i < categorias.length; i++) {
       if (categorias[i].idcategoria === form.tipoId) {
-        let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
-        for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
-          let obj = categorias[i].imagenes_necesarias[j].nombre;
-          imagenes[obj] = null;
+        console.log(Object.values(form.imagenes)[0]);
+        if (!Object.values(form.imagenes)[0]) {
+          let imagenes = {};
+          for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+            let obj = categorias[i].imagenes_necesarias[j].nombre;
+            imagenes[obj] = null;
+          }
+          setImagenes(imagenes);
+          return;
         }
-        setImagenes(imagenes);
-        return;
       }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -92,6 +93,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
           ) : (
             imgNecesarias.map((imgBox) => {
+              console.log(imagenes, imagenes[imgBox.nombre], imgBox.imagen);
               return (
                 <div className="section">
                   <div className="imgBox">
