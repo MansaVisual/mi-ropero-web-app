@@ -48,7 +48,7 @@ const MisMensajes = () => {
   useEffect(() => {
     if (mensajes.length > 0) {
       if (typeMessage === "ver todos") {
-        setMensajesFiltrados(MisMensajes);
+        setMensajesFiltrados(mensajes);
       }
       if (typeMessage === "ver no leídos") {
         setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "1"));
