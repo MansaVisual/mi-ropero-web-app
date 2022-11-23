@@ -18,8 +18,14 @@
       width: 100%;
       padding: 0 72px;
       box-sizing: border-box;
+      @include screen_705 {
+        padding: 0 16px;
+      }
       .sections {
         margin-top: 50px;
+        @include screen_705 {
+          margin-top: 95px;
+        }
         .firstLine {
           display: flex;
           justify-content: space-between;
@@ -60,7 +66,7 @@
           gap: 16px;
           width: 100%;
           margin-top: 24px;
-          @include screen_820 {
+          @include screen_950 {
             justify-content: center;
           }
           .customTable {
@@ -128,6 +134,50 @@
                   border: 0;
                   text-decoration: underline;
                 }
+              }
+            }
+          }
+          .responsiveData {
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 32px;
+            gap: 32px;
+            @include screen_950 {
+              display: flex;
+            }
+            .compra {
+              div:not(:last-child) {
+                margin-bottom: 12px;
+              }
+              div {
+                font-weight: 600;
+                font-size: 13px;
+                line-height: 12px;
+                span:nth-child(1) {
+                  color: #423b3c;
+                  margin-right: 8px;
+                }
+                span:nth-child(2) {
+                  color: #443988;
+                  margin-right: 8px;
+                }
+                span:last-child {
+                  color: #969696;
+                }
+              }
+              .comprasButton {
+                background: #ffffff;
+                border-radius: 20px;
+                color: #443988;
+                font-size: 13px;
+                line-height: 36px;
+                border: 1px solid #443988;
+                margin-right: 8px;
+                height: 32px;
+                width: 100%;
+                max-width: 328px;
               }
             }
           }

@@ -14,14 +14,14 @@ const Transferencias = () => {
 
   const array = [
     {
-      fecha_alta: "15 / 03 / 2017",
+      fecha_alta: "15/03/2017",
       idoperacion: "MRO-0000001375",
       total: "163.199",
       estado_text: "SOLICITADA ",
       fecha_notificacion: "15/03/2017",
     },
     {
-      fecha_alta: "15 / 03 / 2017",
+      fecha_alta: "15/03/2017",
       idoperacion: "MRO-0000001375",
       total: "163.199",
       estado_text: "SOLICITADA ",
@@ -88,6 +88,41 @@ const Transferencias = () => {
                   })}
                 </tbody>
               </table>
+              <div className="responsiveData">
+                {array.map((compra, i) => {
+                  return (
+                    <div key={i} className="compra">
+                      <div>
+                        <span>FECHA DE COMPRA</span>
+                        <span>
+                          {/* formatoFecha( */ compra.fecha_alta /* ) */}
+                        </span>
+                      </div>
+                      <div>
+                        <span>N° DE PEDIDO</span>
+                        <span>{compra.idoperacion}</span>
+                      </div>
+                      <div>
+                        <span>MONTO TOTAL</span>
+                        <span>{compra.total}</span>
+                      </div>
+                      <div>
+                        <span>ESTADO:</span>
+                        <span>{compra.estado_text}</span>
+                      </div>
+                      {/* <Button
+                      className="comprasButton"
+                      onClick={() => {
+                        setCompraId(compra.idoperacion); 
+                        navigate(`/perfil/MIS COMPRAS DETALLE`);
+                      }}
+                    >
+                      VER COMPRA
+                    </Button> */}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className="bottomContainer">
