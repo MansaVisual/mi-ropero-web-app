@@ -75,6 +75,8 @@ const MisMensajes = () => {
     return formatoFinal;
   };
 
+  console.log(mensajes, mensajesFiltrados);
+
   return (
     <div className="misMensajesContainer">
       <Breadcrumbs links={pathnames} />
