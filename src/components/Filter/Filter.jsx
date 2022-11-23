@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment, useEffect } from "react";
 import {
   Divider,
   // Box,
@@ -15,24 +15,24 @@ import {
   Typography,
   TextField,
   Box,
-} from '@mui/material';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+} from "@mui/material";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import {
   FormControlLabelStyled,
   // ListItemPriceRangeStyled,
   ListItemStyled,
   ListItemTextStyled,
-} from './styles';
-import theme from '../../styles/theme';
-import { useParams } from 'react-router-dom';
-import { apiFetch } from '../../apiFetch/apiFetch';
+} from "./styles";
+import theme from "../../styles/theme";
+import { useParams } from "react-router-dom";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
     sort: false,
     categoriasCol: true,
-    categoriasSearch:true
+    categoriasSearch: true,
   });
 
   const { keyword, search } = useParams();
@@ -47,12 +47,12 @@ const Filter = (props) => {
   const putCategory = props.putCategory;
   const setPutCategory = props.setPutCategory;
   const handleAplicarFiltros = props.handleAplicarFiltros;
-  const setProds=props.setProds
-  const categorias=props.categorias
-  const setTotalPages=props.setTotalPages
-  const rangoPrecio=props.rangoPrecio
-  const setRangoPrecio=props.setRangoPrecio
-  const categoriasSearch = props.categoriasSearch
+  const setProds = props.setProds;
+  const categorias = props.categorias;
+  const setTotalPages = props.setTotalPages;
+  const rangoPrecio = props.rangoPrecio;
+  const setRangoPrecio = props.setRangoPrecio;
+  const categoriasSearch = props.categoriasSearch;
 
   useEffect(() => {
     if (filtros !== undefined) {
@@ -77,29 +77,33 @@ const Filter = (props) => {
   };
 
   useEffect(() => {
-    Object.keys(openFilter).forEach(key => {
+    Object.keys(openFilter).forEach((key) => {
       openFilter[key] = false;
     });
   }, [putFilters]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <List
       sx={{
-        width: '100%',
+        width: "100%",
         maxWidth: 297,
-        bgcolor: 'transparent',
+        bgcolor: "transparent",
         fontFamily: theme.typography.fontFamily,
+        position: "sticky",
+        top: "100px",
+        overflowY: "scroll",
+        height: "500px",
       }}
-      component='nav'
-      aria-labelledby='nested-list-subheader'
+      component="nav"
+      aria-labelledby="nested-list-subheader"
       subheader={
         <ListSubheader
-          component='div'
-          id='nested-list-subheader'
+          component="div"
+          id="nested-list-subheader"
           sx={{
-            bgcolor: 'transparent',
+            bgcolor: "transparent",
             fontSize: theme.typography.fontSize[9],
             paddingLeft: 0,
-            paddingBottom: '22px',
+            paddingBottom: "22px",
             fontFamily: theme.typography.fontFamily,
           }}
         >
@@ -108,16 +112,22 @@ const Filter = (props) => {
       }
     >
       <Button
-        className='botonAplicarFiltros'
+        className="botonAplicarFiltros"
         disabled={
-          putSort === '' && putFilters.length === 0 && (rangoPrecio.min===0 && rangoPrecio.max===0)
+          putSort === "" &&
+          putFilters.length === 0 &&
+          rangoPrecio.min === 0 &&
+          rangoPrecio.max === 0
             ? true
             : false
         }
         sx={{
           background:
-            putSort === '' && putFilters.length === 0 && (rangoPrecio.min===0 && rangoPrecio.max===0)
-              ? '#998edb'
+            putSort === "" &&
+            putFilters.length === 0 &&
+            rangoPrecio.min === 0 &&
+            rangoPrecio.max === 0
+              ? "#998edb"
               : "#443988",
         }}
         onClick={() => handleAplicarFiltros()}
@@ -126,50 +136,50 @@ const Filter = (props) => {
       </Button>
 
       <Divider />
-      <ListItemStyled onClick={() => handleClick('sort')}>
-        <ListItemText primary='Ordenar por' sx={ListItemTextStyled} />
+      <ListItemStyled onClick={() => handleClick("sort")}>
+        <ListItemText primary="Ordenar por" sx={ListItemTextStyled} />
         {openFilter.sort ? <ExpandLess /> : <ExpandMore />}
       </ListItemStyled>
-      <Collapse in={openFilter.sort} timeout='auto' unmountOnExit>
-        <List component='div'>
+      <Collapse in={openFilter.sort} timeout="auto" unmountOnExit>
+        <List component="div">
           <RadioGroup
-            aria-labelledby='demo-radio-buttons-group-label'
-            defaultValue=''
-            name='radio-buttons-group'
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue=""
+            name="radio-buttons-group"
             onChangeCapture={(e) => handleChangeSort(e)}
           >
             <FormControlLabel
-              value='Mas relevante primero'
-              checked={putSort === 'Mas relevante primero' ? true : false}
-              control={<Radio sx={{ml:"10px"}}/>}
-              label='Mas relevante primero'
+              value="Mas relevante primero"
+              checked={putSort === "Mas relevante primero" ? true : false}
+              control={<Radio sx={{ ml: "10px" }} />}
+              label="Mas relevante primero"
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
-              value='Menos relevante primero'
-              checked={putSort === 'Menos relevante primero' ? true : false}
-              control={<Radio sx={{ml:"10px"}}/>}
-              label='Menos relevante primero'
+              value="Menos relevante primero"
+              checked={putSort === "Menos relevante primero" ? true : false}
+              control={<Radio sx={{ ml: "10px" }} />}
+              label="Menos relevante primero"
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
-              value='Mayor precio primero'
-              checked={putSort === 'Mayor precio primero' ? true : false}
-              control={<Radio sx={{ml:"10px"}}/>}
-              label='Mayor precio primero'
+              value="Mayor precio primero"
+              checked={putSort === "Mayor precio primero" ? true : false}
+              control={<Radio sx={{ ml: "10px" }} />}
+              label="Mayor precio primero"
               sx={FormControlLabelStyled}
             />
             <FormControlLabel
-              value='Menor precio primero'
-              checked={putSort === 'Menor precio primero' ? true : false}
-              control={<Radio sx={{ml:"10px"}}/>}
-              label='Menor precio primero'
+              value="Menor precio primero"
+              checked={putSort === "Menor precio primero" ? true : false}
+              control={<Radio sx={{ ml: "10px" }} />}
+              label="Menor precio primero"
               sx={FormControlLabelStyled}
             />
           </RadioGroup>
         </List>
       </Collapse>
-      {putSort !== '' && (
+      {putSort !== "" && (
         <Typography
           sx={{
             fontSize: theme.typography.fontSize[3],
@@ -184,39 +194,56 @@ const Filter = (props) => {
 
       {coleccion !== undefined && coleccion.length !== 0 && (
         <Fragment>
-          <ListItemStyled onClick={() => handleClick('categoriasCol')}>
-            <ListItemText primary='Categorias' sx={ListItemTextStyled} />
+          <ListItemStyled onClick={() => handleClick("categoriasCol")}>
+            <ListItemText primary="Categorias" sx={ListItemTextStyled} />
             {openFilter.categoriasCol ? <ExpandLess /> : <ExpandMore />}
           </ListItemStyled>
           <Collapse
             in={openFilter.categoriasCol}
-            timeout='auto'
+            timeout="auto"
             unmountOnExit
-            className='scrollFilter'
+            className="scrollFilter"
             sx={{
-              maxHeight: '60vh',
-              overflowY: 'scroll',
+              maxHeight: "60vh",
+              overflowY: "scroll",
             }}
           >
             {coleccion.productos_categorias.map((res2, i2) => {
               return (
                 <Fragment key={i2}>
-                  { res2!==null &&
-                    res2.nombre !== 'ROPA' &&
-                    res2.nombre !== 'CALZADO' &&
-                    res2.nombre !== 'ACCESORIOS' &&
-                    res2.nombre !== 'BELLEZA' && (
-                      <List component='div' sx={{ marginLeft: '6px' }}>
+                  {res2 !== null &&
+                    res2.nombre !== "ROPA" &&
+                    res2.nombre !== "CALZADO" &&
+                    res2.nombre !== "ACCESORIOS" &&
+                    res2.nombre !== "BELLEZA" && (
+                      <List component="div" sx={{ marginLeft: "6px" }}>
                         <FormControlLabel
-                          label={res2.nombre!==undefined?res2.nombre:res2.Nombre}
+                          label={
+                            res2.nombre !== undefined
+                              ? res2.nombre
+                              : res2.Nombre
+                          }
                           control={
                             <Radio
                               checked={
-                                putCategory === (res2.nombre!==undefined?res2.nombre:res2.Nombre) ? true : false
+                                putCategory ===
+                                (res2.nombre !== undefined
+                                  ? res2.nombre
+                                  : res2.Nombre)
+                                  ? true
+                                  : false
                               }
-                              name={res2.valor!==undefined?res2.valor:res2.idcategoria}
+                              name={
+                                res2.valor !== undefined
+                                  ? res2.valor
+                                  : res2.idcategoria
+                              }
                               onClick={(e) => {
-                                setPutCategory(res2.nombre!==undefined?res2.nombre:res2.Nombre);
+                                setPutCategory(
+                                  res2.nombre !== undefined
+                                    ? res2.nombre
+                                    : res2.Nombre
+                                );
                               }}
                             />
                           }
@@ -234,38 +261,55 @@ const Filter = (props) => {
 
       {categoriasSearch !== undefined && categoriasSearch.length !== 0 && (
         <Fragment>
-          <ListItemStyled onClick={() => handleClick('categoriasSearch')}>
-            <ListItemText primary='Categorias' sx={ListItemTextStyled} />
+          <ListItemStyled onClick={() => handleClick("categoriasSearch")}>
+            <ListItemText primary="Categorias" sx={ListItemTextStyled} />
             {openFilter.categoriasSearch ? <ExpandLess /> : <ExpandMore />}
           </ListItemStyled>
           <Collapse
             in={openFilter.categoriasSearch}
-            timeout='auto'
+            timeout="auto"
             unmountOnExit
-            className='scrollFilter'
+            className="scrollFilter"
             sx={{
-              maxHeight: '60vh',
-              overflowY: 'scroll',
+              maxHeight: "60vh",
+              overflowY: "scroll",
             }}
           >
             {categoriasSearch.map((res2, i2) => {
               return (
                 <Fragment key={i2}>
-                  {res2.nombre !== 'ROPA' &&
-                    res2.nombre !== 'CALZADO' &&
-                    res2.nombre !== 'ACCESORIOS' &&
-                    res2.nombre !== 'BELLEZA' && (
-                      <List component='div' sx={{ marginLeft: '6px' }}>
+                  {res2.nombre !== "ROPA" &&
+                    res2.nombre !== "CALZADO" &&
+                    res2.nombre !== "ACCESORIOS" &&
+                    res2.nombre !== "BELLEZA" && (
+                      <List component="div" sx={{ marginLeft: "6px" }}>
                         <FormControlLabel
-                          label={res2.nombre!==undefined?res2.nombre:res2.Nombre}
+                          label={
+                            res2.nombre !== undefined
+                              ? res2.nombre
+                              : res2.Nombre
+                          }
                           control={
                             <Radio
                               checked={
-                                putCategory === (res2.nombre!==undefined?res2.nombre:res2.Nombre) ? true : false
+                                putCategory ===
+                                (res2.nombre !== undefined
+                                  ? res2.nombre
+                                  : res2.Nombre)
+                                  ? true
+                                  : false
                               }
-                              name={res2.valor!==undefined?res2.valor:res2.idcategoria}
+                              name={
+                                res2.valor !== undefined
+                                  ? res2.valor
+                                  : res2.idcategoria
+                              }
                               onClick={(e) => {
-                                setPutCategory(res2.nombre!==undefined?res2.nombre:res2.Nombre);
+                                setPutCategory(
+                                  res2.nombre !== undefined
+                                    ? res2.nombre
+                                    : res2.Nombre
+                                );
                               }}
                             />
                           }
@@ -292,33 +336,33 @@ const Filter = (props) => {
               </ListItemStyled>
               <Collapse
                 in={openFilter[res.nombre]}
-                timeout='auto'
+                timeout="auto"
                 unmountOnExit
-                className='scrollFilter'
+                className="scrollFilter"
                 sx={{
-                  maxHeight: '60vh',
-                  overflowY: 'scroll',
+                  maxHeight: "60vh",
+                  overflowY: "scroll",
                 }}
               >
                 {res.valores.map((res2, i2) => {
                   return (
-                    <List component='div' key={i2}>
+                    <List component="div" key={i2}>
                       <FormControlLabel
                         label={res2.valor}
                         control={
                           <Checkbox
-                          sx={{marginLeft:"6px"}}
+                            sx={{ marginLeft: "6px" }}
                             checked={putFilters.find(
-                              (element) => element.nombre === res2.valor,
+                              (element) => element.nombre === res2.valor
                             )}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element.nombre === e.target.name,
+                                  (element) => element.nombre === e.target.name
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element.nombre !== e.target.name,
+                                  (element) => element.nombre !== e.target.name
                                 );
                                 if (oldArray.length === 0) {
                                   setPutFilters([
@@ -330,17 +374,26 @@ const Filter = (props) => {
                                     },
                                   ]);
                                 } else {
-                                  if(newArray.length===0){
+                                  if (newArray.length === 0) {
                                     const catProd = new FormData();
-                                    let idCat = '';
+                                    let idCat = "";
                                     idCat = categorias.find(
-                                      (e) => e.nombre.toString().trim() === keyword.replaceAll('&', '/'),
+                                      (e) =>
+                                        e.nombre.toString().trim() ===
+                                        keyword.replaceAll("&", "/")
                                     );
-                                    catProd.append('idcategoria', idCat.idcategoria);
-                                    catProd.append('bypage', 15);
-                                    catProd.append('page', 0);
-                                    apiFetch(catProd, 'productos', 'search').then((res) => {
-                                      if (res.status === 'success') {
+                                    catProd.append(
+                                      "idcategoria",
+                                      idCat.idcategoria
+                                    );
+                                    catProd.append("bypage", 15);
+                                    catProd.append("page", 0);
+                                    apiFetch(
+                                      catProd,
+                                      "productos",
+                                      "search"
+                                    ).then((res) => {
+                                      if (res.status === "success") {
                                         setProds(res.result.productos);
                                         setTotalPages(res.result.total_paginas);
                                       }
@@ -369,7 +422,7 @@ const Filter = (props) => {
               <Divider />
             </Fragment>
           );
-      })}
+        })}
       {filtros !== undefined &&
         coleccion !== undefined &&
         filtros.map((res, i) => {
@@ -381,33 +434,33 @@ const Filter = (props) => {
               </ListItemStyled>
               <Collapse
                 in={openFilter[res.nombre]}
-                timeout='auto'
+                timeout="auto"
                 unmountOnExit
-                className='scrollFilter'
+                className="scrollFilter"
                 sx={{
-                  maxHeight: '60vh',
-                  overflowY: 'scroll',
+                  maxHeight: "60vh",
+                  overflowY: "scroll",
                 }}
               >
                 {res.valores.map((res2, i2) => {
                   return (
-                    <List component='div' key={i2}>
+                    <List component="div" key={i2}>
                       <FormControlLabel
                         label={res2.valor}
                         control={
                           <Checkbox
                             checked={putFilters.find(
-                              (element) => element.nombre === res2.valor,
+                              (element) => element.nombre === res2.valor
                             )}
-                            sx={{marginLeft:"6px"}}
+                            sx={{ marginLeft: "6px" }}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element.nombre === e.target.name,
+                                  (element) => element.nombre === e.target.name
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element.nombre !== e.target.name,
+                                  (element) => element.nombre !== e.target.name
                                 );
                                 if (oldArray.length === 0) {
                                   setPutFilters([
@@ -443,7 +496,8 @@ const Filter = (props) => {
             </Fragment>
           );
         })}
-      {filtrosCol !== undefined && search===undefined &&
+      {filtrosCol !== undefined &&
+        search === undefined &&
         coleccion !== undefined &&
         filtrosCol.map((res, i) => {
           return (
@@ -454,33 +508,33 @@ const Filter = (props) => {
               </ListItemStyled>
               <Collapse
                 in={openFilter[res.nombre]}
-                timeout='auto'
+                timeout="auto"
                 unmountOnExit
-                className='scrollFilter'
+                className="scrollFilter"
                 sx={{
-                  maxHeight: '60vh',
-                  overflowY: 'scroll',
+                  maxHeight: "60vh",
+                  overflowY: "scroll",
                 }}
               >
                 {res.valores.map((res2, i2) => {
                   return (
-                    <List component='div' key={i2}>
+                    <List component="div" key={i2}>
                       <FormControlLabel
                         label={res2.valor}
                         control={
                           <Checkbox
                             checked={putFilters.find(
-                              (element) => element.nombre === res2.valor,
+                              (element) => element.nombre === res2.valor
                             )}
-                            sx={{marginLeft:"6px"}}
+                            sx={{ marginLeft: "6px" }}
                             name={res2.valor}
                             onClick={(e) => {
                               if (putFilters.length !== 0) {
                                 let oldArray = putFilters.filter(
-                                  (element) => element.nombre === e.target.name,
+                                  (element) => element.nombre === e.target.name
                                 );
                                 let newArray = putFilters.filter(
-                                  (element) => element.nombre !== e.target.name,
+                                  (element) => element.nombre !== e.target.name
                                 );
                                 if (oldArray.length === 0) {
                                   setPutFilters([
@@ -516,23 +570,31 @@ const Filter = (props) => {
             </Fragment>
           );
         })}
-      {putCategory!=="" &&
-        <List component="div" sx={{ paddingTop: "16px", paddingBottom: "24px" }}>
-          <ListItemText primary="Rango de precio"/>
+      {putCategory !== "" && (
+        <List
+          component="div"
+          sx={{ paddingTop: "16px", paddingBottom: "24px" }}
+        >
+          <ListItemText primary="Rango de precio" />
           <Box sx={{ display: "flex" }}>
             <TextField
               id="min-price"
               label="$ Minimo"
               variant="outlined"
-              sx={{ mr: "16px", fontSize: "13px", width: "120px",mt:"6px" }}
-              value={rangoPrecio!==undefined && rangoPrecio.min>0?rangoPrecio.min:""}
-              onChangeCapture={()=>{
-                setRangoPrecio(
-                  {
-                    min:document.getElementById("min-price").value,
-                    max:document.getElementById("max-price").value===""?99999:document.getElementById("max-price").value
-                  }
-                )
+              sx={{ mr: "16px", fontSize: "13px", width: "120px", mt: "6px" }}
+              value={
+                rangoPrecio !== undefined && rangoPrecio.min > 0
+                  ? rangoPrecio.min
+                  : ""
+              }
+              onChangeCapture={() => {
+                setRangoPrecio({
+                  min: document.getElementById("min-price").value,
+                  max:
+                    document.getElementById("max-price").value === ""
+                      ? 99999
+                      : document.getElementById("max-price").value,
+                });
               }}
               size="small"
               inputProps={{ maxLength: 6 }}
@@ -541,22 +603,27 @@ const Filter = (props) => {
               id="max-price"
               label="$ Maximo"
               variant="outlined"
-              sx={{ fontSize: "13px", width: "120px",mt:"6px" }}
-              value={rangoPrecio!==undefined && rangoPrecio.max<999999?rangoPrecio.max:""}
-              onChangeCapture={()=>{
-                setRangoPrecio(
-                  {
-                    min:document.getElementById("min-price").value===0?0:document.getElementById("min-price").value,
-                    max:document.getElementById("max-price").value
-                  }
-                )
+              sx={{ fontSize: "13px", width: "120px", mt: "6px" }}
+              value={
+                rangoPrecio !== undefined && rangoPrecio.max < 999999
+                  ? rangoPrecio.max
+                  : ""
+              }
+              onChangeCapture={() => {
+                setRangoPrecio({
+                  min:
+                    document.getElementById("min-price").value === 0
+                      ? 0
+                      : document.getElementById("min-price").value,
+                  max: document.getElementById("max-price").value,
+                });
               }}
               size="small"
               inputProps={{ maxLength: 6 }}
-              />
+            />
           </Box>
-        </List> 
-      }
+        </List>
+      )}
     </List>
   );
 };
