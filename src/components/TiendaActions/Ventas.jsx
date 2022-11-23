@@ -33,28 +33,48 @@ const Ventas = () => {
             <div className="ventasList">
               {array.map((venta, id) => {
                 return (
-                  <div key={id} className="desktopCard">
-                    <div className="data">
-                      <img src={venta.img} alt="cardImage" />
-                      <div>
-                        <p className="title">#ID: {venta.idCompra}</p>
-                        <p className="date">Fecha: {venta.fecha}</p>
-                        <p className="state">{venta.estado}</p>
+                  <>
+                    <div key={id} className="desktopCard">
+                      <div className="data">
+                        <img src={venta.img} alt="cardImage" />
+                        <div>
+                          <p className="title">#ID: {venta.idCompra}</p>
+                          <p className="date">Fecha: {venta.fecha}</p>
+                          <p className="state">{venta.estado}</p>
+                        </div>
+                      </div>
+                      <div className="rigthSide">
+                        <p className="monto">${venta.monto}</p>
+                        <img
+                          onClick={() => {
+                            /* setBorrarMsj(true);
+                      setMensajeId(mensaje.idmensaje); */
+                          }}
+                          className="basuraIcon"
+                          src={basura}
+                          alt="BasuraIcon"
+                        />
                       </div>
                     </div>
-                    <div className="rigthSide">
-                      <p className="monto">${venta.monto}</p>
+                    <div key={`mobile${id}`} className="mobileCard">
                       <img
-                        onClick={() => {
-                          /* setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje); */
-                        }}
-                        className="basuraIcon"
+                        src={venta.img}
+                        className="productImg"
+                        alt="cardImage"
+                      />
+                      <div>
+                        <p className="messageTitle">#ID: {venta.idCompra}</p>
+                        <p className="messageState">Fecha: {venta.fecha}</p>
+                        <p className="state">{venta.estado}</p>
+                        <p className="monto">${venta.monto}</p>
+                      </div>
+                      <img
                         src={basura}
-                        alt="BasuraIcon"
+                        className="trashICon"
+                        alt="basuraIcon"
                       />
                     </div>
-                  </div>
+                  </>
                 );
               })}
             </div>
