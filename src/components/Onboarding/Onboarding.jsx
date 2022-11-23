@@ -58,7 +58,7 @@ const Onboarding = () => {
             />
           </Box>
 
-          {/* <Stack
+          <Stack
             sx={{
               paddingTop: isMobile ? "18px" : "16px",
               paddingBottom: isMobile ? "18px" : "16px",
@@ -135,7 +135,7 @@ const Onboarding = () => {
                 </Box>
               </Box>
             ))}
-          </Stack> */}
+          </Stack>
         </Container>
       ) : (
         <Box

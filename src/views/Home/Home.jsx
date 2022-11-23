@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <Onboarding />
+      {/* <Onboarding /> */}
       <Box
         sx={{
           position: "relative",
