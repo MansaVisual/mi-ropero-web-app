@@ -235,10 +235,10 @@ const Mensajes = () => {
               </div>
             )}
           </div>
-        </div>
-        <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
-          <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A MI TIENDA</p>
+          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+            <img src={leftArrow} alt="leftArrow" />
+            <p>VOLVER A MI TIENDA</p>
+          </div>
         </div>
       </Grid>
     </div>

@@ -29,7 +29,6 @@ const Ventas = () => {
           <div className="ventasSections">
             <div className="firstLine">
               <p className="title">VENTAS</p>
-              <button>AGREGAR PRODUCTO</button>
             </div>
             <div className="ventasList">
               {array.map((venta, id) => {
