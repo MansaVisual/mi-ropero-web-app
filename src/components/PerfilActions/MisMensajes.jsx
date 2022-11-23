@@ -48,6 +48,7 @@ const MisMensajes = () => {
   useEffect(() => {
     if (mensajes.length > 0) {
       const lista = mensajes.filter((msg) => msg.idmensajepadre === "0");
+      console.log(lista);
       if (typeMessage === "ver todos") {
         setMensajesFiltrados(lista);
       }
@@ -58,6 +59,8 @@ const MisMensajes = () => {
         setMensajesFiltrados(lista.filter((msg) => msg.estado === "2"));
       }
     }
+    console.log(mensajes, mensajesFiltrados);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensajes, typeMessage]);
 
