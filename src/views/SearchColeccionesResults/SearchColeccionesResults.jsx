@@ -117,8 +117,11 @@ const SearchProductsResults = () => {
 
       apiFetch(col, "colecciones", "detail").then((res) => {
         if (res.status === "success") {
-          for(const i in res.result.productos_categorias){
-            if(res.result.productos_categorias[i]!==null && res.result.productos_categorias[i].idcategoria === idCat){
+          for (const i in res.result.productos_categorias) {
+            if (
+              res.result.productos_categorias[i] !== null &&
+              res.result.productos_categorias[i].idcategoria === idCat
+            ) {
               setFiltrosCategoria(
                 res.result.productos_categorias[i].caracteristica
               );
@@ -127,7 +130,7 @@ const SearchProductsResults = () => {
           setProds(res.result.productos);
           setTotalPages(Number(res.result.productos_total_paginas));
         } else if (res.status === "error") {
-          setFiltrosCategoria([])
+          setFiltrosCategoria([]);
           setProds([]);
           setTotalPages(0);
         }
@@ -143,7 +146,7 @@ const SearchProductsResults = () => {
       apiFetch(col, "colecciones", "detail").then((res) => {
         if (res.status === "success") {
           setProds(res.result.productos);
-          setFiltrosCategoria([])
+          setFiltrosCategoria([]);
           setTotalPages(Number(res.result.productos_total_paginas));
         }
         setBuscandoCol(false);
@@ -298,7 +301,7 @@ const SearchProductsResults = () => {
 
   return (
     <>
-      {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
+      {/*  {isMobile || isMobileBigScreen ? <></> : <Onboarding />} */}
 
       <Container maxWidth="xl">
         <Grid

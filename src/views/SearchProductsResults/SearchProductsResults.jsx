@@ -320,7 +320,7 @@ const SearchProductsResults = () => {
 
   return (
     <>
-      {isMobile || isMobileBigScreen ? <></> : <Onboarding />}
+      {/* {isMobile || isMobileBigScreen ? <></> : <Onboarding />} */}
 
       <Container maxWidth="xl">
         <Grid

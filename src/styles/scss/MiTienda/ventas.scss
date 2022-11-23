@@ -23,6 +23,11 @@
       }
       .ventasSections {
         margin-top: 95px;
+        @include screen_705 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         .firstLine {
           display: flex;
           justify-content: space-between;
@@ -201,14 +206,19 @@
         max-width: 895px;
         width: 100%;
         @include screen_705 {
-          max-width: 370px;
+          justify-content: center;
         }
-        .returnLink {
-          margin-top: 0;
-        }
-        .selectInput {
-          div {
-            color: #878787;
+        div {
+          @include screen_705 {
+            max-width: 370px;
+          }
+          .returnLink {
+            margin-top: 0;
+          }
+          .selectInput {
+            div {
+              color: #878787;
+            }
           }
         }
       }
