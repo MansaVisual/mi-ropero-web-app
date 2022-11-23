@@ -22,8 +22,6 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const { categorias } = useContext(UseProdsContext);
 
-  console.log(form);
-
   useEffect(() => {
     if (!form.categoriaId) {
       navigate(`/MiTienda/CATEGORIA`);
@@ -35,7 +33,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
         console.log(Object.values(form.imagenes)[0]);
-        if (Object.values(form.imagenes)[0]) {
+        if (!Object.values(form.imagenes)[0]) {
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
