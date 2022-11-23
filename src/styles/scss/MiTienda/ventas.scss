@@ -208,7 +208,11 @@
         @include screen_705 {
           justify-content: center;
         }
-        div {
+        .bottonSection {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+
           @include screen_705 {
             max-width: 370px;
           }

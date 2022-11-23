@@ -33,12 +33,48 @@ const OfertasRecibidas = () => {
             <div className="ofertasList">
               {array.map((venta, id) => {
                 return (
-                  <div key={id} className="desktopCard">
-                    <div className="data">
-                      <img src={venta.img} alt="cardImage" />
-                      <div>
-                        <p className="title">{venta.nombreProd}</p>
+                  <>
+                    <div key={id} className="desktopCard">
+                      <div className="data">
+                        <img src={venta.img} alt="cardImage" />
                         <div>
+                          <p className="title">{venta.nombreProd}</p>
+                          <div>
+                            <p className="offert">
+                              Precio: <span>${venta.monto}</span>
+                            </p>
+                            <p className="offert">
+                              Oferta: <span>${venta.oferta}</span>
+                            </p>
+                          </div>
+                          <p className="date">
+                            Fecha: <span>{venta.fecha}</span>
+                          </p>
+                          <p className="state">{venta.estado}</p>
+                        </div>
+                      </div>
+                      <div className="rigthSide">
+                        <p className="monto">${venta.monto}</p>
+                        <img
+                          onClick={() => {
+                            /* setBorrarMsj(true);
+                          setMensajeId(mensaje.idmensaje); */
+                          }}
+                          className="basuraIcon"
+                          src={basura}
+                          alt="BasuraIcon"
+                        />
+                      </div>
+                    </div>
+                    <div className="mobileCard">
+                      <img
+                        src={venta.img}
+                        className="productImg"
+                        alt="cardImage"
+                      />
+                      <div>
+                        <p className="productoTitle">{venta.nombreProd}</p>
+                        <div className="offerts">
                           <p className="offert">
                             Precio: <span>${venta.monto}</span>
                           </p>
@@ -46,25 +82,16 @@ const OfertasRecibidas = () => {
                             Oferta: <span>${venta.oferta}</span>
                           </p>
                         </div>
-                        <p className="date">
-                          Fecha: <span>{venta.fecha}</span>
-                        </p>
-                        <p className="state">{venta.estado}</p>
+                        <p className="productoDate">{venta.fecha}</p>
+                        <p className="productoState">Estado: {venta.estado}</p>
                       </div>
-                    </div>
-                    <div className="rigthSide">
-                      <p className="monto">${venta.monto}</p>
                       <img
-                        onClick={() => {
-                          /* setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje); */
-                        }}
-                        className="basuraIcon"
                         src={basura}
-                        alt="BasuraIcon"
+                        className="trashICon"
+                        alt="basuraIcon"
                       />
                     </div>
-                  </div>
+                  </>
                 );
               })}
             </div>
