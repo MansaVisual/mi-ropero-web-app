@@ -39,16 +39,17 @@ const Calificaciones = () => {
           console.log("");
           setCalificaciones(res.result);
           setLoading(false);
-        }
-        if (
-          res.status === "error" &&
-          res.result === "La tienda no tiene calificaciones"
-        ) {
-          setLoading(false);
         } else {
-          console.log("error");
-          setError(true);
-          setLoading(false);
+          if (
+            res.status === "error" &&
+            res.result === "La tienda no tiene calificaciones"
+          ) {
+            setLoading(false);
+          } else {
+            console.log("error");
+            setError(true);
+            setLoading(false);
+          }
         }
       });
     }
@@ -67,7 +68,7 @@ const Calificaciones = () => {
         listaCalif.sort(function (a, b) {
           return a - b;
         });
-        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
+        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "2"));
       }
       if (selected === "en espera") {
         setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
