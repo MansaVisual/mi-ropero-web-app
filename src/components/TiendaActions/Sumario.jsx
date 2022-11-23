@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Grid } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+
+  const { infoUser } = useContext(UseLoginContext);
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
