@@ -132,7 +132,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="chatContainer">
+    <div className="tiendaChatContainer">
       <TiendaBanner />
       <Grid className="tiendaGrid">
         <div className="chatSection">
