@@ -29,7 +29,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (!userLog && !mensajeId /* && !infoUser */) {
-      navigate("/perfil/MIS MENSAJES");
+      navigate("/MiTienda/MENSAJES");
     } else {
       const dir = new FormData();
       dir.append("idcliente", userLog);
@@ -132,7 +132,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="miChatContainer">
+    <div className="miTiendaContainer">
       <TiendaBanner />
       <Grid className="tiendaGrid">
         <div className="chatSection">
