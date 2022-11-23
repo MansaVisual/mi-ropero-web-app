@@ -22,6 +22,15 @@ const SeccionProductos = ({ setForm }) => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleClick = () => {
+    setForm((prevState) => ({
+      ...prevState,
+      crearTienda: true,
+    }));
+    setTiendaData([""]);
+    navigate(`/MiTienda/CATEGORIA`);
+  };
+
   return (
     <>
       {tiendaData.length > 0 ? (
@@ -37,17 +46,7 @@ const SeccionProductos = ({ setForm }) => {
               Publica tu primer producto para habilitar tu tienda en Mi Ropero
             </p>
             <img src={tienda} alt="TIENDA" />
-            <Button
-              className="agregarProd"
-              onClick={() => {
-                setForm((prevState) => ({
-                  ...prevState,
-                  crearTienda: true,
-                }));
-                setTiendaData([""]);
-                navigate(`/MiTienda/CATEGORIA`);
-              }}
-            >
+            <Button className="agregarProd" onClick={() => handleClick()}>
               AGREGAR PRODUCTO
             </Button>
           </div>
