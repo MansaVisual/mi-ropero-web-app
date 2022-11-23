@@ -68,7 +68,7 @@ const Calificaciones = () => {
         listaCalif.sort(function (a, b) {
           return a - b;
         });
-        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
+        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "2"));
       }
       if (selected === "en espera") {
         setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
