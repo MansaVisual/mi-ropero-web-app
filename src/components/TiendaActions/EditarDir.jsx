@@ -202,6 +202,8 @@ const EditarDir = ({setDir}) => {
 
   useEffect(() => {
     if (guardarDireccion) {
+      console.log(infoLocFinal)
+      console.log(direccion)
       setDataUpdate((prevState)=>({
         ...prevState,
         calle:direccion.calle,

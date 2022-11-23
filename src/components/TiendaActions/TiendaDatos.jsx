@@ -40,7 +40,7 @@ const TiendaDatos = () => {
         descripcion:dataUpdate.descripcion
       })
     }
-  }, [tiendaDetail]);
+  }, [tiendaDetail]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const pausarTienda=(type)=>{
