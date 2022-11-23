@@ -47,7 +47,7 @@ const MisMensajes = () => {
 
   useEffect(() => {
     if (mensajes.length > 0) {
-      const lista = mensajes.filter((msg) => msg.idmensajepadre === "0");
+      const lista = mensajes.filter((msg) => msg.idmensaje === "0");
       console.log(lista);
       if (typeMessage === "ver todos") {
         setMensajesFiltrados(lista);
