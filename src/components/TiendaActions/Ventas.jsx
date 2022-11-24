@@ -5,13 +5,13 @@ import basura from "../../assets/img/basura.png";
 import { useNavigate } from "react-router-dom";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import { apiFetch } from "../../apiFetch/apiFetch";
-import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import vacio from "../../assets/img/comprasVacio.png";
 import Loader from "../Loader/Loader";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Ventas = () => {
   const navigate = useNavigate();
-  const { tiendaData } = useContext(UseMiTiendaContext);
+  const { userLog } = useContext(UseLoginContext);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -37,7 +37,7 @@ const Ventas = () => {
   }
 
   useEffect(() => {
-    if (tiendaData) {
+    if (userLog) {
       setLoading(true);
       setError(false);
       setVentas([]);
@@ -45,7 +45,7 @@ const Ventas = () => {
       let array = [];
 
       const data = new FormData();
-      data.append("vendedor_id", tiendaData.idtienda);
+      data.append("vendedor_id", userLog);
       data.append("estado", itemEstadoSelecc);
       data.append("page", 0);
       data.append("bypage", 10);
@@ -73,7 +73,7 @@ const Ventas = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tiendaData, filtroSelecc]);
+  }, [userLog, filtroSelecc]);
 
   const estadosSelect = [
     "Pendiente de pago",
