@@ -33,7 +33,7 @@ const Sumario = ({ form }) => {
       const formData = new FormData();
       formData.append("idcliente", infoUser.idcliente);
       formData.append("telefono", form.telefono);
-      formData.append("nombre", `El ropero de ${infoUser.nombre}`);
+      formData.append("nombre", `El Ropero De ${infoUser.nombre}`);
       formData.append("descripcion", "");
       formData.append("provincia", direccion.provincia);
       formData.append("localidad", direccion.localidad);
@@ -56,14 +56,14 @@ const Sumario = ({ form }) => {
         console.log(tiendaRes.result);
         if (tiendaRes.status === "success") {
           prod.append("idtienda", tiendaRes.result.idtienda);
-          apiFetch(prod, "productos", "insert").then(async(prodRes) => {
+          apiFetch(prod, "productos", "insert").then(async (prodRes) => {
             if (prodRes.status === "success") {
               const img = new FormData();
-              for(const i in form.imagenes){
+              for (const i in form.imagenes) {
                 img.append("idtienda", tiendaRes.result.idtienda);
                 img.append("idproducto", prodRes.result.idproducto);
                 img.append("image", form.imagenes[i]);
-                await insertImg(img)
+                await insertImg(img);
               }
             }
           });
@@ -73,16 +73,16 @@ const Sumario = ({ form }) => {
       });
     } else {
       prod.append("idtienda", infoUser.idtienda);
-      apiFetch(prod, "productos", "insert").then(async(res) => {
+      apiFetch(prod, "productos", "insert").then(async (res) => {
         console.log(res.result);
         if (res.status === "success") {
-            const img = new FormData();
-            for(const i in form.imagenes){
-              img.append("idtienda", infoUser.idtienda);
-              img.append("idproducto", res.result.idproducto);
-              img.append("image", form.imagenes[i]);
-              await insertImg(img)
-            }
+          const img = new FormData();
+          for (const i in form.imagenes) {
+            img.append("idtienda", infoUser.idtienda);
+            img.append("idproducto", res.result.idproducto);
+            img.append("image", form.imagenes[i]);
+            await insertImg(img);
+          }
         } else {
           console.log(res);
         }
@@ -90,11 +90,12 @@ const Sumario = ({ form }) => {
     }
   };
 
-  const insertImg=async(prod)=>{
-    apiFetch(prod, "productos", "insert_image").then((res) => {console.log(res)
-      return res
+  const insertImg = async (prod) => {
+    apiFetch(prod, "productos", "insert_image").then((res) => {
+      console.log(res);
+      return res;
     });
-  }
+  };
 
   return (
     <Grid className="gridContainer">
@@ -178,7 +179,14 @@ const Sumario = ({ form }) => {
             <Button onClick={() => handleSubmit()}>PUBLICAR</Button>
             <p>
               Al oprimir PUBLICAR se aceptan los{" "}
-              <span onClick={()=>window.open("https://www.miropero.ar/terminos&y&condiciones")}>términos y condiciones</span> de Mi Ropero.
+              <span
+                onClick={() =>
+                  window.open("https://www.miropero.ar/terminos&y&condiciones")
+                }
+              >
+                términos y condiciones
+              </span>{" "}
+              de Mi Ropero.
             </p>
           </div>
           <div

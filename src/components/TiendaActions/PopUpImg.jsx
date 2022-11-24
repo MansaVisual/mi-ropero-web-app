@@ -10,6 +10,7 @@ const PopUpImg = ({
   imagenes,
   setImagenes,
   setErrorObligatorio,
+  setSeccionExtra,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenes[section] ? imagenes[section] : null
@@ -119,6 +120,10 @@ const PopUpImg = ({
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
       setImagenes((prevState) => ({
+        ...prevState,
+        [section]: croppedImage,
+      }));
+      setSeccionExtra((prevState) => ({
         ...prevState,
         [section]: croppedImage,
       }));

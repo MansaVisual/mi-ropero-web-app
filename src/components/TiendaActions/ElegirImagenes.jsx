@@ -23,6 +23,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [video, setVideo] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
+  const [seccionExtra, setSeccionExtra] = useState([]);
   const [numeroImgExtra, setNumeroImgExtra] = useState(0);
 
   const { categorias } = useContext(UseProdsContext);
@@ -133,6 +134,42 @@ const ElegirImagenes = ({ form, setForm }) => {
               );
             })
           )}
+          {seccionExtra.length === 0 &&
+            seccionExtra.map((imgBox) => {
+              return (
+                <div className="section">
+                  <div className="imgBox">
+                    <img
+                      src={
+                        imagenes[imgBox.nombre]
+                          ? imagenes[imgBox.nombre]
+                          : imgBox.imagen
+                      }
+                      alt="foto"
+                    />
+                    <img
+                      className="editButton"
+                      src={editIcon}
+                      alt="edit"
+                      onClick={() => {
+                        setSection(imgBox.nombre);
+                        setOpenImgPopUp(true);
+                      }}
+                    />
+                  </div>
+                  <div className="bottomContainer">
+                    <span>{imgBox.nombre}</span>
+                    <div class="tooltip">
+                      <img src={infoIcon} alt="infoIcon" />
+                      <span>{imgBox.descripcion}</span>
+                    </div>
+                  </div>
+                  <p className="bottomText">
+                    ({imgBox.obligatoria === "1" ? "obligatoria" : "opcional"})
+                  </p>
+                </div>
+              );
+            })}
           <div className="section">
             <div className="imgBox">
               <img src={plusButton} alt="foto" />
@@ -168,14 +205,14 @@ const ElegirImagenes = ({ form, setForm }) => {
                 src={editIcon}
                 alt="edit"
                 onClick={() => {
-                  setNumeroImgExtra(numeroImgExtra + 1);
+                  /* setNumeroImgExtra(numeroImgExtra + 1); */
                   setSection("video");
                   setOpenVidPopUp(true);
                 }}
               />
             </div>
             <div className="bottomContainer">
-              <span>Agregar video extra</span>
+              <span>Agregar video</span>
               <div class="tooltip">
                 <img src={infoIcon} alt="infoIcon" />
                 <span>¡Subí un video mostrando tu producto!</span>
@@ -199,6 +236,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           imagenes={imagenes}
           setImagenes={setImagenes}
           setErrorObligatorio={setErrorObligatorio}
+          setSeccionExtra={setSeccionExtra}
         />
       )}
       {openVidPopUp && (
