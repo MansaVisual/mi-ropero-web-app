@@ -47,16 +47,16 @@ const MisMensajes = () => {
 
   useEffect(() => {
     if (mensajes.length > 0) {
-      const lista = mensajes.filter((msg) => msg.idmensaje === "0");
-      console.log(lista);
+      /* const lista = mensajes.filter((msg) => msg.idmensaje === "0");
+      console.log(lista); */
       if (typeMessage === "ver todos") {
-        setMensajesFiltrados(lista);
+        setMensajesFiltrados(mensajes);
       }
       if (typeMessage === "ver no leídos") {
-        setMensajesFiltrados(lista.filter((msg) => msg.estado === "1"));
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "1"));
       }
       if (typeMessage === "ver leídos") {
-        setMensajesFiltrados(lista.filter((msg) => msg.estado === "2"));
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "2"));
       }
     }
     console.log(mensajes, mensajesFiltrados);

@@ -85,6 +85,14 @@ const Ventas = () => {
     "Finalizada",
   ];
 
+  const formatoFecha = (fecha) => {
+    const fechaSinHora = fecha.substring(0, 10);
+    const [year, month, day] = fechaSinHora.split("-");
+
+    const formatoFinal = `${day} / ${month} / ${year}`;
+    return formatoFinal;
+  };
+
   return (
     <div className="ventasContainer">
       <TiendaBanner />
