@@ -1,0 +1,199 @@
+.notifications {
+  padding: 0px 74px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1366px;
+  width: 100%;
+  @include screen_705 {
+    margin-top: 24px;
+    margin-bottom: 50px;
+    padding: 0;
+    width: 100%;
+  }
+  .firstLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 895px;
+    width: 100%;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      @include screen_705 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+    .inputBox {
+      @include screen_705 {
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+      }
+      .selectInput {
+        color: #babcbe;
+        box-sizing: border-box;
+        height: 40px;
+        width: 144px;
+        font-weight: 400;
+        @include screen_705 {
+          height: 32px;
+        }
+        .selectOption {
+          width: 141px;
+        }
+      }
+    }
+  }
+  .notifContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 16px;
+    @include screen_820 {
+      justify-content: center;
+    }
+    .desktopCard {
+      max-width: 895px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: #fdfeff;
+      box-shadow: -10px -10px 30px rgba(223, 229, 239, 0.25),
+        10px 10px 30px rgba(223, 229, 239, 0.25);
+      border-radius: 6px;
+      padding: 16px 40px 16px 32px;
+      cursor: pointer;
+      @include screen_705 {
+        display: none;
+      }
+      .basuraIcon {
+        cursor: pointer;
+      }
+      .notiData {
+        display: flex;
+        align-items: center;
+        p {
+          margin: 0;
+        }
+        img {
+          height: 70px;
+          width: 70px;
+          margin-right: 32px;
+        }
+        div {
+          max-width: 387px;
+          font-weight: 600;
+          font-size: 17px;
+          line-height: 24px;
+          .notiTitle {
+            color: #878787;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .notiDate {
+            color: #878787;
+            margin-top: 8px;
+          }
+          .notiMessage {
+            font-style: italic;
+            color: #423b3c;
+            margin-top: 8px;
+          }
+        }
+      }
+      .ofertaData {
+        display: flex;
+        p {
+          margin: 0;
+        }
+        .oferta {
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 19px;
+          color: #969696;
+          margin-right: 56px;
+        }
+        .monto {
+          font-weight: 600;
+          font-size: 17px;
+          line-height: 23px;
+          color: #423b3c;
+          margin-right: 32px;
+        }
+        img {
+          height: 22px;
+          width: 18px;
+          cursor: pointer;
+          z-index: 999;
+        }
+      }
+    }
+    .mobileCard {
+      display: none !important;
+      background: #fdfeff;
+      box-sizing: border-box;
+      padding: 16px;
+      max-width: 329px;
+      min-width: 320px;
+      display: flex;
+      @include screen_705 {
+        display: flex !important;
+      }
+      img {
+        height: 50px;
+        width: 50px;
+        margin-right: 16px;
+        @include screen_389 {
+          width: 100%;
+          max-width: 70px;
+          height: auto;
+          max-height: 70px;
+        }
+      }
+      .trashICon {
+        position: relative;
+        top: 6px;
+        right: 6px;
+        height: 16px;
+        width: 14px;
+      }
+      div {
+        max-width: 180px;
+        min-width: 170px;
+        p:not(:last-child) {
+          margin-bottom: 8px;
+        }
+        p,
+        span {
+          margin: 0;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 18px;
+        }
+        .notiTitle,
+        .notiDate {
+          color: #878787;
+        }
+        .notiMessage {
+          color: #423b3c;
+        }
+        .notiState {
+          color: #443988;
+        }
+      }
+    }
+  }
+
+}

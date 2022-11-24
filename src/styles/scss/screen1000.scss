@@ -1,0 +1,21 @@
+.screen1000-banner{
+    @include screen_1000{
+        margin: 12px !important;
+        margin-top: -8px !important;
+    }
+}
+.screen1000-codigo{
+    @include screen_1000{
+        margin: 8px 0px !important;
+    }
+}
+.screen1000-bannerCheck{
+    @include screen_1000{
+        display: block !important;
+    } 
+}
+.screen1000-bannerCheckMobile{
+    @include screen_1000{
+        display: none !important;
+    } 
+}

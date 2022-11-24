@@ -1,0 +1,312 @@
+.miTiendaDatos {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans";
+  margin-bottom: 60px;
+  .breadcrumbs {
+    margin-top: 72px;
+    margin-left: 72px;
+    @include screen_705 {
+      margin-top: 16px;
+      margin-left: 16px;
+    }
+  }
+  .tiendaGrid {
+    @include screen_1450 {
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      margin-top: 50px;
+      width: 100%;
+      max-width: 1366px;
+      padding-left: 72px;
+      box-sizing: border-box;
+      @include screen_950 {
+        padding: 0 48px;
+      }
+      @include screen_705 {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px;
+      }
+      .titleContainer {
+        @include screen_705 {
+          max-width: 370px;
+          width: 100%;
+        }
+        .title {
+          margin: 0;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 23px;
+          line-height: 31px;
+          color: #443988;
+          @include screen_705 {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #443988;
+          }
+        }
+      }
+      .inputContainer {
+        display: flex;
+        gap: 6px;
+        @include screen_705 {
+          flex-direction: column;
+          align-items: center;
+        }
+        .inputBox {
+          margin-top: 24px;
+          width: 100%;
+          max-width: 370px;
+          @include screen_705 {
+            margin-top: 0px;
+            margin-right: 0px;
+            display: flex;
+            flex-direction: column;
+          }
+          .input {
+            color: #423b3c;
+            width: 100%;
+            max-width: 370px;
+            input {
+              box-sizing: border-box;
+              height: 40px;
+              font-style: italic;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 19px;
+              /* color: #babcbe; */
+            }
+          }
+          .selectInput {
+            color: #babcbe;
+            box-sizing: border-box;
+            height: 40px;
+            width: 100%;
+            max-width: 370px;
+            font-style: italic;
+            font-weight: 400;
+          }
+          .labelInput {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 0;
+            @include screen_705 {
+              margin-top: 16px;
+              margin-bottom: 8px;
+            }
+          }
+          .bottomText {
+            position: relative;
+            margin-bottom: 0;
+            left: 16px;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 17px;
+            text-align: left;
+            color: #878787;
+            @include screen_950 {
+              max-width: 310px;
+              left: 0px;
+            }
+            @include screen_705 {
+              color: #babcbe;
+            }
+          }
+        }
+        .inputBox2 {
+          @include screen_705 {
+            margin-left: 0px;
+          }
+          .input {
+            input {
+              box-sizing: border-box;
+              height: 40px;
+              width: 370px;
+              max-width: 370px;
+              min-width: 300px;
+              font-style: italic;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 19px;
+              /* color: #babcbe; */
+            }
+          }
+          .labelInput {
+            font-size: 13px;
+            font-weight: 600;
+            @include screen_705 {
+              margin-top: 16px;
+              margin-bottom: 8px;
+            }
+          }
+        }
+        .textAreaBox {
+          margin-top: 24px;
+          width: 100%;
+          max-width: 758px;
+          @include screen_705 {
+            max-width: 370px;
+            margin-top: 16px;
+          }
+          .label1 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-left: 12px;
+            @include screen_705 {
+              margin-top: 16px;
+              margin-bottom: 8px;
+            }
+          }
+          .textArea {
+            color: #423b3c;
+            width: 100%;
+            height: 88px;
+            margin-top: 8px;
+            textarea {
+              box-sizing: border-box;
+
+              font-style: italic;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 19px;
+            }
+          }
+        }
+      }
+      .address {
+        margin-top: 16px;
+        max-width: 758px;
+        width: 100%;
+        div {
+          display: flex;
+          justify-content: space-between;
+          span {
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 18px;
+            text-indent: 16px;
+            color: #423b3c;
+          }
+          img {
+            display: none;
+            cursor: pointer;
+            margin-right: 16px;
+            @include screen_705 {
+              display: block;
+            }
+          }
+        }
+        .description {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 16px;
+          box-sizing: border-box;
+          padding: 24px;
+          max-width: 758px;
+          width: 100%;
+          background: #fdfeff;
+          border: 1px solid #babcbe;
+          border-radius: 6px;
+          @include screen_705 {
+            max-width: 370px;
+            padding: 16px;
+          }
+          p {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+            color: #878787;
+            max-width: 500px;
+            margin: 0;
+          }
+          button {
+            width: 100%;
+            max-width: 143px;
+            height: 36px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            color: #443988;
+            background-color: transparent;
+            border: 1px solid #443988;
+            filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+            border-radius: 20px;
+            cursor: pointer;
+            @include screen_705 {
+              display: none;
+            }
+          }
+        }
+      }
+      .buttonContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 758px;
+        margin-top: 24px;
+        button {
+          max-width: 207px;
+          width: 100%;
+          height: 36px;
+          border: 0;
+          background: #443988;
+          border-radius: 20px;
+          font-weight: 700;
+          font-size: 13px;
+          line-height: 36px;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .tiendaActionsCard{
+    max-width: 747px;
+    margin-bottom: 16px;
+    @include screen_705{
+      margin-right: 32px;
+      margin-left: 32px;
+    }
+    @include screen_601{
+      margin-right: 24px;
+      margin-left: 24px;
+    }
+    @include screen_460{
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+    h5{
+      color: #423B3C;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 16px;
+      margin-bottom: 0px;
+      cursor: pointer;
+    }
+    p{
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      color: #878787;
+      margin-top: 8px;
+      margin-bottom: 0px;
+    }
+  }
+  .tiendaActionsCard1{
+    margin-top: 60px;
+  }
+  .formObligatorio{
+    border: 2px solid #FF3F20 !important;
+    border-radius: 4px !important;
+  }
+  .formObligatorioTitle{
+      color: #FF3F20 !important;
+  }
+}

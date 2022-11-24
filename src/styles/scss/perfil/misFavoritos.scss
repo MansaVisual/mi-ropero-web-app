@@ -1,0 +1,43 @@
+.misFavsContainer {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include screen_1450 {
+    max-width: 1366px;
+    width: 100%;
+  }
+  @include screen_705 {
+    margin-top: 16px;
+    width: 100%;
+    margin-bottom: 65px;
+  }
+  .title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 31px;
+    color: #443988;
+    margin-bottom: 0;
+    @include screen_705 {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    gap: 44px;
+    @include screen_1190 {
+      width: 100%;
+      justify-content: center;
+      gap: 16px;
+    }
+    @include screen_705 {
+      gap: 16px 8px;
+    }
+  }
+
+}

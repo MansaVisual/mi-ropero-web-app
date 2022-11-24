@@ -1,0 +1,74 @@
+.seccionProductos {
+  min-height: 60vh;
+  padding: 0px 76px;
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-family: "Open Sans";
+  margin-bottom: 60px;
+  @include screen_1366 {
+    min-width: 1366px;
+  }
+  @include screen_900 {
+    padding: 0px 16px;
+  }
+  .breadcumbs {
+    margin-top: 72px;
+  }
+  .contenedorInfo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    .title {
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #ff3f20;
+    }
+    .text {
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 28px;
+      color: #878787;
+      margin-top: 1px;
+      @include screen_900 {
+        padding: 0px 72px;
+      }
+      @include screen_506 {
+        padding: 0px 16px;
+      }
+    }
+    img {
+      width: 133px;
+      height: 116px;
+    }
+    .agregarProd {
+      padding: 10px 36px;
+      width: 450px;
+      height: 36px;
+      background: #443988;
+      box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+      border-radius: 20px;
+      color: white;
+      margin-top: 24px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      @include screen_601 {
+        padding: 0px 48px;
+        width: 290px;
+        height: 36px;
+        background: #443988;
+        box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1);
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 36px;
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.registerContainer {
+  margin-left: 72px;
+  margin-right: 72px;
+  margin-top: 50px;
+  margin-bottom: 80px;
+  @include screen_1366 {
+    min-height: 45vh;
+  }
+  @include screen_705 {
+    margin: 32px 0px 0px 0px;
+  }
+  @include screen_601 {
+    margin: 0;
+  }
+  .registerBreadcrumbs {
+    @include screen_705 {
+      margin-left: 16px;
+    }
+  }
+}
+
+@import './boxRegister.scss';

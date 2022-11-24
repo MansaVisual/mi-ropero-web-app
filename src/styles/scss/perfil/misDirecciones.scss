@@ -1,0 +1,143 @@
+.misDireccContainer {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include screen_1450 {
+    width: 100%;
+    max-width: 1366px;
+  }
+  @include screen_705 {
+    margin-top: 24px;
+    width: 100%;
+    margin-bottom: 65px;
+  }
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      margin: 0;
+      @include screen_705 {
+        font-size: 16px;
+        line-height: 22px;
+        min-width: 140px;
+      }
+    }
+    .addDirection {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 17px;
+      margin: 0;
+      width: 165px;
+      color: #443988;
+      text-decoration: underline;
+      text-align: right;
+    }
+  }
+  .direcSubtitle {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #878787;
+    margin-bottom: 0;
+    margin-top: 24px;
+  }
+  .cardContainer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    @include screen_950 {
+      justify-content: center;
+    }
+    .domicilioEntrega {
+      width: 100%;
+      max-width: 373px;
+      padding: 24px, 32px, 24px, 32px;
+      cursor: pointer;
+      @include screen_950 {
+        max-width: 288px;
+        padding: 16px, 16px, 16px, 4px;
+        justify-content: center;
+      }
+      .domicilioTitle {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 24px;
+        color: #878787;
+      }
+      .checkedBorder {
+        border: 1px solid #443988 !important;
+      }
+      .direcCard {
+        background: #fdfeff;
+        border: 1px solid #babcbe;
+        border-radius: 6px;
+        padding: 24px 32px;
+        max-width: 100%;
+        min-height: 63px;
+        max-height: 63px;
+        overflow-y: hidden;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include screen_950 {
+          padding: 16px;
+          min-height: 96px;
+        }
+        p {
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 21px;
+          width: 100%;
+          max-width: 285px;
+          margin: 0px;
+          color: #878787;
+          @include screen_950 {
+            max-width: 232px;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            display: inline;
+          }
+        }
+        .checkedText {
+          p {
+            color: #423b3c;
+          }
+        }
+        .editICon {
+          width: 16.48px;
+          height: 14.58px;
+          position: relative;
+          bottom: 2.6rem;
+          left: 1.2rem;
+          cursor: pointer;
+          @include screen_950 {
+            left: 0.3rem;
+            bottom: 3rem;
+          }
+        }
+      }
+      .direccRadio {
+        height: 16px;
+        width: 16px;
+        margin-right: 24px;
+        color: #423b3c;
+        @include screen_705 {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+
+}

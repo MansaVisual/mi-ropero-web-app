@@ -1,0 +1,306 @@
+.boxLoginContainer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  @include screen_705 {
+    margin: 24px 16px 0px 16px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 34px;
+    color: #443988;
+    margin: 0;
+    @include screen_705 {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+  .buttonWrapper {
+    display: flex;
+    width: 100%;
+    max-width: 520px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    @include screen_705 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 16px;
+      margin-bottom: 0;
+    }
+    .botonGoogle {
+      border-radius: 20px;
+      height: 36px;
+      width: 100%;
+      max-width: 254px;
+      margin-right: 6px;
+      color: #443988;
+      box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+      border: solid 1px transparent;
+      background-image: linear-gradient(
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(101deg, #ff2300, #d3ff00, #001aff);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      box-shadow: 2px 1000px 1px #fff inset;
+      @include screen_705 {
+        margin-right: 0px;
+        margin-bottom: 16px;
+        max-width: 370px;
+        width: 100%;
+      }
+    }
+    .googleIcon {
+      background-image: url("../../../assets/img/google.png");
+      background-size: cover;
+      width: 13px;
+      height: 13px;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      left: 8px;
+    }
+    div {
+      width: 100%;
+      max-width: 254px;
+      @include screen_705 {
+        margin-left: 0px;
+        max-width: 370px;
+      }
+      div {
+        @include screen_705 {
+          margin-left: 0px;
+          max-width: 370px;
+          width: 100%;
+        }
+        .botonFB {
+          border: 1px solid #395185;
+          background-color: transparent;
+          font-family: "Open Sans", sans-serif;
+          font-weight: 700;
+          line-height: 16.34px;
+          color: #395185;
+          cursor: pointer;
+          width: 100%;
+          max-width: 254px;
+          height: 36px;
+          filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+          border-radius: 20px;
+          margin-left: 6px;
+          @include screen_705 {
+            margin-left: 0px;
+            max-width: 370px;
+            min-width: 288px;
+            margin-bottom: 24px;
+            width: 100%;
+          }
+        }
+        .fbIcon {
+          background-image: url("../../../assets/img/fb.png");
+          background-size: cover;
+          width: 15px;
+          height: 15px;
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+          left: 6px;
+          bottom: 2px;
+        }
+        .botonApple {
+          background-color: #000;
+          font-family: "Open Sans", sans-serif;
+          font-weight: 700;
+          line-height: 16.34px;
+          color: #fff;
+          cursor: pointer;
+          margin-right: 6px;
+          width: 100%;
+          max-width: 254px;
+          height: 36px;
+          filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+          border-radius: 20px;
+          @include screen_705 {
+            margin-right: 0px;
+            max-width: 370px;
+            min-width: 288px;
+            margin-bottom: 24px;
+            width: 100%;
+          }
+        }
+        .appleIcon {
+          background-image: url("../../../assets/img/appleIcon.png");
+          background-size: cover;
+          width: 15px;
+          height: 15px;
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+          left: 6px;
+          bottom: 2px;
+        }
+      }
+    }
+  }
+  .errorBoxContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .inputContainer {
+    display: flex;
+    width: 100%;
+    max-width: 752px;
+    @include screen_705 {
+      flex-direction: column;
+      align-items: center;
+    }
+    .inputBox {
+      width: 100%;
+      max-width: 370px;
+      margin-right: 6px;
+      @include screen_705 {
+        margin-top: 16px;
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+      }
+      .input {
+        width: 100%;
+        max-width: 370px;
+        input {
+          height: 25px;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+      .olvidoContraseña {
+        width: fit-content;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 18px;
+        text-indent: 16px;
+        text-decoration-line: underline;
+        color: #443988;
+        margin-top: 8px;
+        cursor: pointer;
+      }
+    }
+    .labelInput {
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18px;
+      text-indent: 16px;
+      color: #423b3c;
+      @include screen_705 {
+        margin-bottom: 8px;
+        margin-top: 0px;
+      }
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    @include screen_705 {
+      width: 100%;
+    }
+    .botonIngresar {
+      color: #ffffff;
+      background: #ff3f20;
+      box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 450px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      padding: 10px 36px;
+      margin-top: 24px;
+      &:hover {
+        background-color: #ff3f20;
+      }
+      @include screen_705 {
+        margin-right: 16px;
+        margin-left: 16px;
+        max-width: 370px;
+        width: 100%;
+      }
+    }
+    .botonRegistrate {
+      padding: 10px 36px;
+      width: 100%;
+      max-width: 450px;
+      height: 36px;
+      background: #423b3c;
+      border: 1px solid #443988;
+      box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      margin-top: 32px;
+      &:hover {
+        background-color: #423b3c;
+      }
+      @include screen_705 {
+        margin-right: 16px;
+        margin-left: 16px;
+        margin-top: 16px;
+        max-width: 370px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bannerLoginBottom {
+  width: 100%;
+  margin-top: 18px;
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  @include screen_705 {
+    display: flex;
+  }
+  .logo {
+    @include screen_705 {
+      width: 88px;
+      height: 24px;
+    }
+  }
+  .banner {
+    width: 100%;
+    z-index: 98;
+    min-height: 180px;
+  }
+  .container {
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 17.7px;
+      color: #ffffff;
+      margin-top: 40px;
+    }
+  }
+}

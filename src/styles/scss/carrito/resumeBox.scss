@@ -1,0 +1,230 @@
+.resumeBox{
+    display: "flex";
+    justify-content: "center";
+    flex-wrap: "wrap";
+    width: "100%";
+    @include screen_601{
+        max-width: 327px;
+        margin: auto;
+    }
+    .firstBox{
+        margin-top: 24px;
+    }
+    .box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 16px;
+        .p14{
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+    .boxInput{
+        padding: 16px 16px;
+        p{
+            padding-bottom: 16px;
+        }
+        .inputButton{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            // @media (min-width:1000px){
+            //     align-items: center !important;
+            // }
+            @include screen_1190{
+                flex-wrap: wrap;
+            }
+            .loader{
+                margin-left: 24px;
+                margin-top: -24px;
+            }
+            .inputCodigo{
+                input{
+                    background: #FFFFFF;
+                    mix-blend-mode: normal;
+                    border: 0.5px solid #969696;
+                    width: 165px;
+                    border-radius: 4px;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 18px;
+                    @include screen_1190{
+                        width: 13vw;
+                    }
+                    @include screen_1001{
+                        width: 18vw;
+                        font-size: 12px;
+                    }
+                    @include screen_768{
+                        width: 20vw;
+                    }
+                    @include screen_601{
+                        width: 140px;
+                    }
+                    @include screen_389{
+                        width: 160px;
+                    }
+                }
+            }
+            .inputCodigoError{
+                input{
+                    background: #FFFFFF;
+                    mix-blend-mode: normal;
+                    border: 0.5px solid #FF3F20;
+                    width: 165px;
+                    border-radius: 4px;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 18px;
+                    color: #FF3F20;
+                    @include screen_1190{
+                        width: 13vw;
+                    }
+                    @include screen_1001{
+                        width: 18vw;
+                        font-size: 12px;
+                    }
+                    @include screen_768{
+                        width: 20vw;
+                    }
+                    @include screen_601{
+                        width: 140px;
+                    }
+                    @include screen_389{
+                        width: 160px;
+                    }
+                }
+                p{
+                    font-size: 12px;
+                    margin-left: 4px;
+                    padding-bottom: 0px;
+                    color: #FF3F20;
+                }
+            }
+            .inputValido{
+                input{
+                    background: #FFFFFF;
+                    mix-blend-mode: normal;
+                    border: 0.5px solid #13b574;
+                    color: #13b574;
+                    width: 165px;
+                    border-radius: 4px;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 18px;
+                    @include screen_1190{
+                        width: 13vw;
+                    }
+                    @include screen_1001{
+                        width: 18vw;
+                        font-size: 12px;
+                    }
+                    @include screen_768{
+                        width: 20vw;
+                    }
+                    @include screen_601{
+                        width: 140px;
+                    }
+                    @include screen_389{
+                        width: 160px;
+                    }
+                }
+                p{
+                    font-size: 12px;
+                    margin-left: 4px;
+                    padding-bottom: 0px;
+                    color: #13b574;
+                }
+            }
+            button{
+                margin-left: 16px;
+                width: 80px;
+                font-size: 10px;
+                color: #FFFFFF;
+                font-weight: 700;
+                background: #969696;
+                box-shadow: 0.878378px 0.878378px 17.5676px #F6F8F9;
+                border-radius: 4.4px;
+                height: 36px;
+                @include screen_1190{
+                    margin-top: 8px;
+                    margin-left: 0px;
+                    font-size: 11px;
+                }
+                @include screen_1001{
+                    margin-left: 16px;
+                    margin-top: 0px;
+                }
+                @include screen_664{
+                    margin-left: 0px !important;
+                }
+                @include screen_389{
+                    margin-top: 8px;
+                }
+                @include screen_328{
+                    margin-top: 8px;
+                    margin-left: 0px !important;
+                }
+            }
+        }
+    }
+    .banner{
+        margin: 0px 16px;
+        height: 152px;
+        border: 1px solid pink;
+        border-radius: 8px;
+        max-width: 300px;
+        margin-bottom: 8px;
+        @include screen_1450{
+            margin: 0px 16px;
+        }
+        @include screen_1001{
+            margin: auto;
+            margin-bottom: 16px;
+        }
+        @include screen_820{
+            margin: 16px;
+        }
+    }
+    .botonFinalizar{
+        padding: 16px 16px;
+        button{
+            background: #FFFC31;
+            box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+            border-radius: 20px;
+            width: 100%;
+            color: $colorGrisaseo;
+            mix-blend-mode: normal;
+            font-size: 13px;
+        }
+    }
+    .subtitulo{
+        margin: 0px;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        color: $colorGrisaseo;
+        @include screen_601{
+            font-size: 14px;
+        }
+    }
+    .subtituloDesc{
+        white-space: unset;
+    }
+    .subtituloTotal{
+        font-size: 17px;
+    }
+    .total{
+        font-weight: 600;
+    }
+    .editorResumeBox{
+        @include screen_768{
+            width: 40vw;
+        }
+        @include screen_601{
+            width: 50vw;
+            min-width: 300px;
+        }
+    }
+}

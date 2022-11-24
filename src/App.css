@@ -1,0 +1,193 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+html {
+  font-family: "Opens Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.slick-slider {
+  max-width: 1220px;
+  overflow: hidden;
+}
+
+.slick-list {
+  margin: 0 20px;
+}
+
+.slick-track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+.slick-slide > div {
+  padding: 0 44px 0 0;
+}
+
+.slick-slide,
+.slick-slide.slick-active,
+.slick-slide.slick-active.slick-current {
+  width: unset !important;
+}
+
+.buttonSlidePrev {
+  width: 40px;
+  height: 40px;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  border-radius: 50px;
+  position: absolute;
+  z-index: 10;
+  left: 5px;
+  border: none;
+  top: calc(50% - 80px);
+  cursor: pointer;
+}
+
+.buttonSlideNext {
+  width: 40px;
+  height: 40px;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  border-radius: 50px;
+  position: absolute;
+  z-index: 10;
+  border: none;
+  right: 5px;
+  bottom: calc(50% - -40px);
+  cursor: pointer;
+}
+
+.css-tguw8w-MuiCardContent-root:last-child {
+  padding-top: 5px;
+  padding-bottom: 5px !important;
+}
+
+.css-1o3vxtg {
+  overflow: hidden;
+}
+
+.toolbar-download {
+  min-height: 40px !important;
+}
+
+.image-gallery-thumbnail-image {
+  width: 93px !important;
+  height: 112px !important;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.image-gallery-slide-wrapper {
+  display: grid;
+  place-items: center;
+}
+
+.image-gallery-slide-wrapper.left {
+  width: unset !important;
+}
+
+.image-gallery-left-nav {
+  left: 20px;
+}
+
+.image-gallery-svg {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.image-gallery-swipe {
+  max-width: 400px;
+}
+
+.image-gallery-slides {
+  margin-left: 20px;
+}
+
+.image-gallery-image {
+  width: 354px !important;
+  height: 538px !important;
+  object-fit: cover !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .image-gallery-image {
+    width: 290px !important;
+    height: 410px !important;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .image-gallery-image {
+    width: 250px !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .slick-slider {
+    max-width: 950px;
+  }
+  .image-gallery-image {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .image-gallery-slides {
+    margin-left: 0;
+  }
+  .image-gallery-thumbnail-image {
+    width: 74px !important;
+    height: 80px !important;
+  }
+  .slick-slide.slick-active {
+    width: unset !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slick-slide > div {
+    padding: 0 20px;
+  }
+  .slick-slider {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .slick-slide > div {
+    padding: 0 3px;
+  }
+
+  .slick-slider {
+    max-width: 335px;
+  }
+
+  .css-tguw8w-MuiCardContent-root:last-child {
+    padding-top: 1px;
+    padding-bottom: 1px !important;
+  }
+
+  .css-46bh2p-MuiCardContent-root {
+    padding-left: 10px !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .MuiImageListItem-root.MuiImageListItem-root .MuiImageListItem-img {
+    width: 90px !important;
+  }
+}
+
+#simple-tabpanel-0 > div,
+#simple-tabpanel-1 > div,
+#simple-tabpanel-2 > div,
+#simple-tabpanel-3 > div {
+  display: flex;
+  justify-content: center;
+}

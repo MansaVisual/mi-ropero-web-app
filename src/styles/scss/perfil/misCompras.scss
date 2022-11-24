@@ -1,0 +1,155 @@
+.misComprasContainer {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include screen_1450 {
+    width: 100%;
+    max-width: 1366px;
+  }
+  @include screen_705 {
+    margin-top: 0px;
+    width: 100%;
+  }
+  .firstLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1066px;
+    width: 100%;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      @include screen_705 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+    .inputBox {
+      @include screen_705 {
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+      }
+      .selectInput {
+        color: #babcbe;
+        box-sizing: border-box;
+        height: 40px;
+        width: 144px;
+        font-weight: 400;
+        @include screen_705 {
+          height: 32px;
+        }
+        .selectOption {
+          width: 141px;
+        }
+      }
+    }
+  }
+  .comprasContainer {
+    .customTable {
+      max-width: 1066px;
+      width: 100%;
+      border-collapse: collapse;
+      @include screen_950 {
+        display: none;
+      }
+      thead {
+        .titleRow {
+          th {
+            width: 20%;
+            font-size: 17px;
+            line-height: 23.15px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            color: #423b3c;
+          }
+        }
+      }
+      tbody .dataRow:not(:first-child) {
+        border-top: 1px solid #e5e6e7;
+      }
+      tbody {
+        .dataRow {
+          height: 72px;
+          th {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 20.43px;
+            text-align: left;
+            color: #878787;
+          }
+          span {
+            height: 35px;
+          }
+        }
+        .tableButton {
+          background: #ffffff;
+          border-radius: 20px;
+          color: #443988;
+          font-size: 13px;
+          line-height: 36px;
+          border: 1px solid #443988;
+          margin-right: 8px;
+          height: 32px;
+          width: 208px;
+          @include screen_705 {
+            margin-right: 0;
+            margin-top: 8px;
+            border: 0;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .responsiveData {
+      display: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+      gap: 32px;
+      @include screen_950 {
+        display: flex;
+      }
+      .compra {
+        div:not(:last-child) {
+          margin-bottom: 12px;
+        }
+        div {
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 12px;
+          span:nth-child(1) {
+            color: #423b3c;
+            margin-right: 8px;
+          }
+          span:nth-child(2) {
+            color: #443988;
+            margin-right: 8px;
+          }
+          span:last-child {
+            color: #969696;
+          }
+        }
+        .comprasButton {
+          background: #ffffff;
+          border-radius: 20px;
+          color: #443988;
+          font-size: 13px;
+          line-height: 36px;
+          border: 1px solid #443988;
+          margin-right: 8px;
+          height: 32px;
+          width: 100%;
+          max-width: 328px;
+        }
+      }
+    }
+  }
+}

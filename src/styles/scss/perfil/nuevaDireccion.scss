@@ -1,0 +1,303 @@
+.nuevaDirecContainer {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1366px;
+  width: 100%;
+  @include screen_705 {
+    margin-top: 24px;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+  .titleSection {
+    @include screen_705 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .title {
+      margin-top: 24px;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      margin-bottom: 0;
+      @include screen_705 {
+        font-size: 16px;
+        line-height: 22px;
+        width: 100%;
+        max-width: 370px;
+      }
+    }
+  }
+  .subLabelForm{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    align-items: center;
+    color: #878787;
+    margin-top: 8px;
+    text-indent: 9px;
+    @include screen_601{
+        font-size: 12px;
+        text-align: start;
+        text-indent: 0px;
+    }
+  }
+  .formObligatorio {
+    border: 0.5px solid #ff3f20 !important;
+    border-radius: 4px !important;
+  }
+  .formObligatorioTitle {
+    color: #ff3f20 !important;
+  }
+
+  .inputContainer {
+    display: flex;
+    max-width: 758px;
+    width: 100%;
+    @include screen_820 {
+      flex-direction: column;
+      align-items: center;
+    }
+    .inputBox:not(:last-child) {
+      margin-right: 12px;
+      @include screen_705 {
+        margin-right: 0px;
+      }
+    }
+    .inputBox {
+      margin-top: 24px;
+      width: 100%;
+      max-width: 370px;
+      @include screen_705 {
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 8px;
+      }
+      .input:not(:last-child) {
+        margin-right: 12px;
+        @include screen_705 {
+          margin-right: 0px;
+        }
+      }
+      .input {
+        color: #423b3c;
+        width: 100%;
+        max-width: 370px;
+        /*         @include screen_705 {
+          width: calc(100% - 32px);
+        } */
+        input {
+          box-sizing: border-box;
+          height: 40px;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+      .labelInput {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-left: 12px;
+        @include screen_705 {
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
+      }
+      .bottomText {
+        position: relative;
+        margin-bottom: 0;
+        margin-top: 8px;
+        left: 16px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 17px;
+        text-align: left;
+        color: #878787;
+        @include screen_705 {
+          left: 0px;
+          text-align: left;
+          width: 100%;
+          min-width: 288px;
+          margin-top: 8px;
+        }
+      }
+    }
+    .inputBoxLocation {
+      margin-top: 24px;
+      width: 100%;
+      max-width: 370px;
+      display: flex;
+      gap: 4px;
+      @include screen_705 {
+        margin-right: 0px;
+        display: flex;
+        gap: 4px;
+        margin-top: 16px;
+      }
+
+      .locationInput {
+        color: #423b3c;
+        width: 100%;
+        input {
+          box-sizing: border-box;
+          height: 40px;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+      .labelInput {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-left: 12px;
+
+        @include screen_705 {
+          margin-top: 0px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+    .selectInput {
+      color: #babcbe;
+      box-sizing: border-box;
+      height: 40px;
+      width: 100%;
+      max-width: 370px;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .postalCode {
+      display: flex;
+      align-items: center;
+      .input {
+        width: 100%;
+        max-width: 176px !important;
+        @include screen_705 {
+          max-width: 128px !important;
+        }
+      }
+      a {
+        font-weight: 600;
+        font-size: 13px;
+        list-style: 17;
+        color: #443988;
+        cursor: pointer;
+        @include screen_705 {
+          margin-left: 8px;
+        }
+      }
+    }
+    .textAreaBox {
+      margin-top: 24px;
+      width: 100%;
+      max-width: 758px;
+      @include screen_820 {
+        max-width: 370px;
+      }
+      .label1 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-left: 12px;
+
+        @include screen_705 {
+          margin-top: 16px;
+          margin-bottom: 8px;
+        }
+      }
+      .label2 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 0;
+        font-style: italic;
+        color: #babcbe;
+        @include screen_705 {
+          margin-top: 16px;
+          margin-bottom: 8px;
+        }
+      }
+
+      .textArea {
+        color: #423b3c;
+        width: 100%;
+        height: 88px;
+        margin-top: 8px;
+        textarea {
+          box-sizing: border-box;
+
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+      .bottomText {
+        position: relative;
+        margin-bottom: 0;
+        margin-top: 8px;
+        left: 16px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 17px;
+        text-align: left;
+        color: #878787;
+        @include screen_705 {
+          left: 0px;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 758px;
+    margin-top: 24px;
+
+    @include screen_705 {
+      flex-direction: column-reverse;
+    }
+    .leftButton {
+      background: #fff;
+      border: 1px solid #443988;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #443988;
+      margin-left: 8px;
+      height: 32px;
+      width: 100%;
+      max-width: 208px;
+      @include screen_705 {
+        margin-left: 0;
+        margin-top: 16px;
+      }
+    }
+    .rightButton {
+      background: #443988;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #ffffff;
+      margin-left: 8px;
+      width: 100%;
+      max-width: 208px;
+      @include screen_705 {
+        margin-left: 0;
+        margin-top: 16px;
+      }
+    }
+  }
+
+}

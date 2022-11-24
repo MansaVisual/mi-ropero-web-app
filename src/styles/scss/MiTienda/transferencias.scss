@@ -1,0 +1,220 @@
+.transferenciasContainer {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans";
+  margin-bottom: 60px;
+  .breadcrumbs {
+    margin-top: 72px;
+    margin-left: 72px;
+  }
+  .tiendaGrid {
+    @include screen_1450 {
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 1366px;
+      width: 100%;
+      padding: 0 72px;
+      box-sizing: border-box;
+      @include screen_705 {
+        padding: 0 16px;
+      }
+      .sections {
+        margin-top: 50px;
+        @include screen_705 {
+          margin-top: 95px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .firstLine {
+          display: flex;
+          justify-content: space-between;
+          max-width: 895px;
+          width: 100%;
+          @include screen_705 {
+            max-width: 370px;
+          }
+          .title {
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 31px;
+            color: #443988;
+            margin: 0;
+            @include screen_705 {
+              font-size: 16px;
+              line-height: 22px;
+              width: 100%;
+              max-width: 370px;
+            }
+          }
+          button {
+            max-width: 226px;
+            width: 100%;
+            height: 36px;
+            background: #443988;
+            box-shadow: 0px 0px 6px rgba(66, 65, 67, 0.1);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            color: #ffffff;
+            border: 0;
+            cursor: pointer;
+          }
+        }
+        .list {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          gap: 16px;
+          width: 100%;
+          margin-top: 24px;
+          @include screen_950 {
+            justify-content: center;
+          }
+          .customTable {
+            max-width: 1066px;
+            width: 100%;
+            border-collapse: collapse;
+            @include screen_950 {
+              display: none;
+            }
+            thead {
+              .titleRow {
+                th {
+                  width: 20%;
+                  font-size: 17px;
+                  line-height: 23.15px;
+                  padding-top: 12px;
+                  padding-bottom: 12px;
+                  text-align: left;
+                  color: #423b3c;
+                }
+              }
+            }
+            tbody .dataRow:not(:first-child) {
+              border-top: 1px solid #e5e6e7;
+            }
+            tbody {
+              .dataRow {
+                height: 72px;
+                th {
+                  font-weight: 600;
+                  font-size: 15px;
+                  line-height: 20.43px;
+                  text-align: left;
+                  color: #878787;
+                }
+                .estatusColumn {
+                  display: flex;
+                  justify-items: center;
+                  flex-direction: column;
+                  font-size: 14px;
+                }
+                .estatusColumn :first-child {
+                  color: #423b3c;
+                  font-weight: 700;
+                  display: flex;
+                  align-items: flex-end;
+                }
+                span {
+                  height: 35px;
+                }
+              }
+              .tableButton {
+                background: #ffffff;
+                border-radius: 20px;
+                color: #443988;
+                font-size: 13px;
+                line-height: 36px;
+                border: 1px solid #443988;
+                margin-right: 8px;
+                height: 32px;
+                width: 208px;
+                @include screen_705 {
+                  margin-right: 0;
+                  margin-top: 8px;
+                  border: 0;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+          .responsiveData {
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 32px;
+            gap: 32px;
+            @include screen_950 {
+              display: flex;
+            }
+            .compra {
+              div:not(:last-child) {
+                margin-bottom: 12px;
+              }
+              div {
+                font-weight: 600;
+                font-size: 13px;
+                line-height: 12px;
+                span:nth-child(1) {
+                  color: #423b3c;
+                  margin-right: 8px;
+                }
+                span:nth-child(2) {
+                  color: #443988;
+                  margin-right: 8px;
+                }
+                span:last-child {
+                  color: #969696;
+                }
+              }
+              .comprasButton {
+                background: #ffffff;
+                border-radius: 20px;
+                color: #443988;
+                font-size: 13px;
+                line-height: 36px;
+                border: 1px solid #443988;
+                margin-right: 8px;
+                height: 32px;
+                width: 100%;
+                max-width: 328px;
+              }
+            }
+          }
+        }
+      }
+      .bottomContainer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 24px;
+        max-width: 895px;
+        width: 100%;
+        @include screen_705 {
+          justify-content: center;
+        }
+        .bottomSection {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          @include screen_705 {
+            max-width: 370px;
+          }
+          .returnLink {
+            margin-top: 0;
+          }
+          .selectInput {
+            div {
+              color: #878787;
+            }
+          }
+        }
+      }
+    }
+  }
+}

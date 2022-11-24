@@ -1,0 +1,225 @@
+.misDatosContainer {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  /* max-width: 758px; */
+  max-width: 1366px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include screen_705 {
+    margin-top: 16px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .formObligatorio {
+    border: 0.5px solid #ff3f20 !important;
+    border-radius: 4px !important;
+  }
+  .formObligatorioTitle {
+    color: #ff3f20 !important;
+  }
+  .title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 31px;
+    color: #443988;
+    margin-bottom: 0;
+    @include screen_705 {
+      font-size: 16px;
+      line-height: 22px;
+      min-width: 140px;
+    }
+  }
+  .subTitle {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    color: #423b3c;
+    @include screen_705 {
+      color: #878787;
+      font-size: 12px;
+    }
+  }
+  .inputContainer {
+    display: flex;
+    gap: 6px;
+    @include screen_705 {
+      flex-direction: column;
+      align-items: center;
+    }
+    .inputBox {
+      margin-top: 24px;
+      width: 100%;
+      max-width: 370px;
+      @include screen_705 {
+        margin-top: 0px;
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+      }
+      .input {
+        color: #423b3c;
+        width: 100%;
+        max-width: 370px;
+        input {
+          box-sizing: border-box;
+          height: 40px;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+          /* color: #babcbe; */
+        }
+      }
+      .selectInput {
+        color: #babcbe;
+        box-sizing: border-box;
+        height: 40px;
+        width: 100%;
+        max-width: 370px;
+        font-style: italic;
+        font-weight: 400;
+      }
+      .labelInput {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 0;
+        @include screen_705 {
+          margin-top: 16px;
+          margin-bottom: 8px;
+        }
+      }
+      .bottomText {
+        position: relative;
+        margin-bottom: 0;
+        left: 16px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 17px;
+        text-align: left;
+        color: #878787;
+        @include screen_950 {
+          max-width: 310px;
+          left: 0px;
+        }
+        @include screen_705 {
+          color: #babcbe;
+        }
+      }
+    }
+    .inputBox2 {
+      @include screen_705 {
+        margin-left: 0px;
+      }
+      .input {
+        input {
+          box-sizing: border-box;
+          height: 40px;
+          width: 370px;
+          max-width: 370px;
+          min-width: 300px;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+          /* color: #babcbe; */
+        }
+      }
+      .labelInput {
+        font-size: 13px;
+        font-weight: 600;
+        @include screen_705 {
+          margin-top: 16px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    @include screen_820 {
+      align-items: center;
+    }
+    @include screen_506 {
+      align-items: unset;
+    }
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+      margin-bottom: 0;
+      @include screen_705 {
+        font-size: 16px;
+        line-height: 22px;
+        min-width: 140px;
+      }
+    }
+    .subTitle {
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 20px;
+      color: #423b3c;
+      @include screen_705 {
+        color: #878787;
+        font-size: 12px;
+        width: 70%;
+        text-align: center;
+      }
+      @include screen_506 {
+        width: unset;
+        text-align: left;
+      }
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 48px;
+    max-width: 746px;
+    @include screen_705 {
+      flex-direction: column-reverse;
+      margin-top: 24px;
+    }
+    .leftButton {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 0px 48px;
+      color: #443988;
+      font-size: 13px;
+      line-height: 36px;
+      border: 1px solid #443988;
+      margin-right: 8px;
+      height: 32px;
+      width: 208px;
+      @include screen_705 {
+        margin-right: 0;
+        margin-top: 8px;
+        border: 0;
+        text-decoration: underline;
+      }
+    }
+    .rightButton {
+      background: #443988;
+      border-radius: 20px;
+      font-weight: 700;
+      line-height: 36px;
+      font-size: 13px;
+      padding: 0px 45px;
+      color: #ffffff;
+      margin-left: 8px;
+      height: 32px;
+      width: 208px;
+      @include screen_705 {
+        margin-right: 0;
+        margin-top: 16px;
+      }
+    }
+  }
+}

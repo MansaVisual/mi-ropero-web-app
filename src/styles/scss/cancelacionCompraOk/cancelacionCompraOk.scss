@@ -1,0 +1,100 @@
+.cancelacionPageOk {
+  padding: 30px 72px 0px 72px;
+  display: flex;
+  justify-content: center;
+  @include screen_705 {
+    padding: 16px;
+  }
+  .cancelacionBody {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1366px;
+    width: 100%;
+    @include screen_705 {
+      margin-top: 24px;
+      margin-bottom: 50px;
+      width: 100%;
+    }
+    .successMessage {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 150px;
+      @include screen_705 {
+        margin-bottom: 114px;
+      }
+
+      .title {
+        margin-top: 24px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 31px;
+        color: #443988;
+        margin-bottom: 0;
+        @include screen_705 {
+          font-size: 16px;
+          line-height: 22px;
+          width: 100%;
+          max-width: 370px;
+          text-align: center;
+        }
+      }
+      img {
+        margin-top: 32px;
+        height: 40px;
+        width: 40px;
+      }
+      .message {
+        margin: 8px 0 0 0;
+        font-family: "Open Sans";
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 24px;
+        text-align: center;
+        color: #878787;
+        @include screen_705 {
+          font-size: 13px;
+        }
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 72px;
+        max-width: 758px;
+        width: 100%;
+        background: #fdfeff;
+        border: 1px solid #d9d9d9;
+        border-radius: 6px;
+        margin-top: 32px;
+        padding: 0px 20px;
+        @include screen_705 {
+          width: unset;
+        }
+        img {
+          margin: 0;
+          height: 24px;
+          width: 24px;
+        }
+        p {
+          margin: 0;
+          font-family: "Open Sans";
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 24px;
+          color: #878787;
+          margin-left: 24px;
+          @include screen_705 {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+  }
+}

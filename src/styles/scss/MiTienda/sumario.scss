@@ -1,0 +1,175 @@
+.sumarioContainer {
+  margin-top: 40px;
+  margin: 40px 72px 80px 72px;
+  display: flex;
+  justify-content: center;
+
+  @include screen_705 {
+    margin-top: 24px;
+  }
+  .container {
+    margin-top: 8px;
+    width: 100%;
+    max-width: 1366px;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 31px;
+      color: #443988;
+    }
+    .subtitle {
+      font-family: "Open Sans";
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 28px;
+      color: #878787;
+      margin-left: 24px;
+    }
+    .detailSection {
+      max-width: 758px;
+      width: 100%;
+      .subSection {
+        .title {
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 24px;
+          color: #423b3c;
+        }
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #fdfeff;
+          border: 1px solid #babcbe;
+          border-radius: 6px;
+        }
+        button {
+          background-color: transparent;
+          width: 100%;
+          max-width: 143px;
+          height: 36px;
+          border: 1px solid #443988;
+          filter: drop-shadow(0px 0px 6px rgba(66, 65, 67, 0.1));
+          border-radius: 20px;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 16px;
+          color: #443988;
+          cursor: pointer;
+        }
+        .infoCat {
+          padding: 24px 32px;
+          p {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 24px;
+            color: #878787;
+          }
+        }
+        .infoImagenes {
+          padding: 6px 24px;
+          div {
+            display: flex;
+            border: 0;
+            gap: 12px;
+            img {
+              width: 70px;
+              height: 70px;
+            }
+          }
+        }
+        .infoDetalle,
+        .infoCaract {
+          padding: 24px 32px;
+          div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 0;
+            width: 100%;
+
+            div {
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+            }
+            p {
+              margin: 0;
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 40px;
+              text-transform: uppercase;
+              color: #878787;
+              width: 130px;
+            }
+            span {
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 40px;
+              color: #878787;
+              max-width: 343px;
+              width: 100%;
+            }
+          }
+        }
+        .discount {
+          padding: 24px 32px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          .title {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 40px;
+            text-transform: uppercase;
+            color: #878787;
+            margin: 0;
+          }
+          .data {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 27px;
+            color: #878787;
+          }
+        }
+      }
+    }
+
+    .bottomContainer {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 32px;
+      max-width: 758px;
+      width: 100%;
+      button {
+        gap: 10px;
+        width: 100%;
+        max-width: 226px;
+        height: 36px;
+        background: #443988;
+        border: 0;
+        border-radius: 20px;
+        font-family: "Open Sans";
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      p {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 24px;
+        color: #878787;
+        span {
+          color: #443988;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
