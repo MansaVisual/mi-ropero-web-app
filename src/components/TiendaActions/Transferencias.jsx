@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
-import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
 import StarIcon from "@mui/icons-material/Star";
-import { Button, Grid, MenuItem, Rating, Select } from "@mui/material";
+import vacio from "../../assets/img/comprasVacio.png";
+import { Button, Grid, MenuItem, Select } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
+import Loader from "../Loader/Loader";
 
 const Transferencias = () => {
   const navigate = useNavigate();
@@ -120,32 +120,54 @@ const Transferencias = () => {
               <p className="title">TRANSFERENCIAS</p>
             </div>
             <div className="list">
-              <table className="customTable">
-                <thead>
-                  <tr className="titleRow">
-                    <th>FECHA DE COMPRA</th>
-                    <th># ID DE PEDIDO</th>
-                    <th>MONTO TOTAL</th>
-                    <th>ESTADO</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {array.map((compra, i) => {
+              {loading ? (
+                <div
+                  style={{
+                    height: "50vh",
+                    marginTop: "42px",
+                    width: "100%",
+                    display: "flex",
+                    maxWidth: "1066px",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+              ) : !error ? (
+                transferencias.length > 0 ? (
+                  transferencias.map((compra, i) => {
                     return (
-                      <tr index={i} className="dataRow">
-                        <th>{/* formatoFecha( */ compra.fecha_alta /* ) */}</th>
-                        <th>{compra.idoperacion}</th>
-                        <th>${compra.total}</th>
-                        <th className="estatusColumn">
-                          <span>{compra.estado_text}</span>
-                          <span>
-                            {
-                              /* formatoFecha( */ compra.fecha_notificacion /* ) */
-                            }
-                          </span>
-                        </th>
-                        {/* <th>
+                      <>
+                        <table className="customTable">
+                          <thead>
+                            <tr className="titleRow">
+                              <th>FECHA DE COMPRA</th>
+                              <th># ID DE PEDIDO</th>
+                              <th>MONTO TOTAL</th>
+                              <th>ESTADO</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {array.map((compra, i) => {
+                              return (
+                                <tr index={i} className="dataRow">
+                                  <th>
+                                    {
+                                      /* formatoFecha( */ compra.fecha_alta /* ) */
+                                    }
+                                  </th>
+                                  <th>{compra.idoperacion}</th>
+                                  <th>${compra.total}</th>
+                                  <th className="estatusColumn">
+                                    <span>{compra.estado_text}</span>
+                                    <span>
+                                      {
+                                        /* formatoFecha( */ compra.fecha_notificacion /* ) */
+                                      }
+                                    </span>
+                                  </th>
+                                  {/* <th>
                         <Button
                           className="tableButton"
                           onClick={() => {
@@ -156,34 +178,32 @@ const Transferencias = () => {
                           VER COMPRA
                         </Button>
                       </th> */}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div className="responsiveData">
-                {array.map((compra, i) => {
-                  return (
-                    <div key={i} className="compra">
-                      <div>
-                        <span>FECHA DE COMPRA</span>
-                        <span>
-                          {/* formatoFecha( */ compra.fecha_alta /* ) */}
-                        </span>
-                      </div>
-                      <div>
-                        <span>N° DE PEDIDO</span>
-                        <span>{compra.idoperacion}</span>
-                      </div>
-                      <div>
-                        <span>MONTO TOTAL</span>
-                        <span>{compra.total}</span>
-                      </div>
-                      <div>
-                        <span>ESTADO:</span>
-                        <span>{compra.estado_text}</span>
-                      </div>
-                      {/* <Button
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                        <div className="responsiveData">
+                          <div key={i} className="compra">
+                            <div>
+                              <span>FECHA DE COMPRA</span>
+                              <span>
+                                {/* formatoFecha( */ compra.fecha_alta /* ) */}
+                              </span>
+                            </div>
+                            <div>
+                              <span>N° DE PEDIDO</span>
+                              <span>{compra.idoperacion}</span>
+                            </div>
+                            <div>
+                              <span>MONTO TOTAL</span>
+                              <span>{compra.total}</span>
+                            </div>
+                            <div>
+                              <span>ESTADO:</span>
+                              <span>{compra.estado_text}</span>
+                            </div>
+                            {/* <Button
                       className="comprasButton"
                       onClick={() => {
                         setCompraId(compra.idoperacion); 
@@ -192,10 +212,32 @@ const Transferencias = () => {
                     >
                       VER COMPRA
                     </Button> */}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                ) : (
+                  <div className="perfilVacio">
+                    <div>
+                      <img src={vacio} alt="LOGO" />
+                      <p>{`No tienes ventas en estado "${filtroSelecc}"`}</p>
+                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                )
+              ) : (
+                <div className="perfilVacio">
+                  <div>
+                    <img src={vacio} alt="LOGO" />
+                    <p>
+                      Error al traer operaciones. Vuelva a intentar en un
+                      momento
+                    </p>
+                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="bottomContainer">
