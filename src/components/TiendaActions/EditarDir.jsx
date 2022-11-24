@@ -75,7 +75,7 @@ const EditarDir = ({setDir}) => {
     }
   };
   console.log(provincia)
-
+  console.log("DATA UPDATE", dataUpdate)
   const handleChangeLoc = () => {
     if (document.getElementById("barrioLocalidad") !== "CAPITAL FEDERAL") {
       if (document.getElementById("barrioLocalidad").value.length >= 3) {
