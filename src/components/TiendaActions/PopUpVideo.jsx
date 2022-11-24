@@ -45,8 +45,14 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
           </p>
           {videoSrc && (
             <>
-              <video src={videoSrc} />
-              <div className="cropContainer"></div>
+              <video
+                src={videoSrc}
+                controls
+                style={{
+                  width: "100%",
+                  maxWidth: "300px",
+                }}
+              />
               <div>
                 <Button
                   onClick={() => handleSubmit()}
