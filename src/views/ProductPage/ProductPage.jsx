@@ -49,12 +49,22 @@ const ProductPage = () => {
   console.log(prodFotos)
 
   const _renderVideo=(item)=>{
-    console.log(this)
+    console.log(item)
+    console.log(item.original)
     return(
       <video
-        src={item}
-      >
-      </video>
+      key={item.original}
+      controls
+      loop
+      id='myVideo'
+      className="image-gallery-image"
+    >
+      <source
+        src={item.original}
+        type='video/mp4'
+        id='myVideo1'
+      />
+    </video>
     )
   }
 
@@ -88,7 +98,7 @@ const ProductPage = () => {
                 {
                   original: res.result.imagenes[i].imagen_vertical,
                   thumbnail: res.result.imagenes[i].imagen_chica,
-                  renderItem: _renderVideo(res.result.imagenes[i].imagen_vertical)
+                  renderItem: _renderVideo.bind()
                 },
               ];
             }else{
