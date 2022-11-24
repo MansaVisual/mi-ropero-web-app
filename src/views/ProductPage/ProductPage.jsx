@@ -87,7 +87,7 @@ const ProductPage = () => {
                 {
                   original: res.result.imagenes[i].imagen_vertical,
                   thumbnail: res.result.imagenes[i].imagen_chica,
-                  renderItem: _renderVideo(res.result.imagenes[i].imagen_vertical)
+                  renderItem: _renderVideo.bind(res.result.imagenes[i].imagen_vertical)
                 },
               ];
             }else{
