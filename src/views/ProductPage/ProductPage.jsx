@@ -71,15 +71,33 @@ const ProductPage = () => {
       apiFetch(prod, "productos", "details").then((res) => {console.log("PRODUCTO", res)
         if (res.status === "success") {
           let arrayFotos = [];
+          const _renderVideo=(item)=>{
+            return(
+              <video
+                src={item}
+              >
+              </video>
+            )
+          }
           for (const i in res.result.imagenes) {
-            arrayFotos = [
-              ...arrayFotos,
-              {
-                original: res.result.imagenes[i].imagen_vertical,
-                thumbnail: res.result.imagenes[i].imagen_chica,
-                type: res.result.imagenes[i].tipo
-              },
-            ];
+            if(res.result.imagenes[i].tipo==="video"){
+              arrayFotos = [
+                ...arrayFotos,
+                {
+                  original: res.result.imagenes[i].imagen_vertical,
+                  thumbnail: res.result.imagenes[i].imagen_chica,
+                  renderItem: _renderVideo.bind(res.result.imagenes[i].imagen_vertical)
+                },
+              ];
+            }else{
+              arrayFotos = [
+                ...arrayFotos,
+                {
+                  original: res.result.imagenes[i].imagen_vertical,
+                  thumbnail: res.result.imagenes[i].imagen_chica,
+                },
+              ];
+            }
           }
           setProdFotos(arrayFotos);
           setProd(res.result);
