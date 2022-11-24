@@ -115,15 +115,18 @@ const Ventas = () => {
                       <>
                         <div key={id} className="desktopCard">
                           <div className="data">
-                            <img src={venta.img} alt="cardImage" />
+                            <img
+                              src={venta.productos[0].imagenes[0]}
+                              alt="cardImage"
+                            />
                             <div>
-                              <p className="title">#ID: {venta.idCompra}</p>
-                              <p className="date">Fecha: {venta.fecha}</p>
-                              <p className="state">{venta.estado}</p>
+                              <p className="title">#ID: {venta.idoperacion}</p>
+                              <p className="date">Fecha: {venta.fecha_alta}</p>
+                              <p className="state">{venta.estado_text}</p>
                             </div>
                           </div>
                           <div className="rigthSide">
-                            <p className="monto">${venta.monto}</p>
+                            <p className="monto">${venta.total}</p>
                             <img
                               onClick={() => {
                                 /* setBorrarMsj(true);
@@ -137,17 +140,19 @@ const Ventas = () => {
                         </div>
                         <div key={`mobile${id}`} className="mobileCard">
                           <img
-                            src={venta.img}
+                            src={venta.productos[0].imagenes[0]}
                             className="productImg"
                             alt="cardImage"
                           />
                           <div>
                             <p className="messageTitle">
-                              #ID: {venta.idCompra}
+                              #ID: {venta.idoperacion}
                             </p>
-                            <p className="messageState">Fecha: {venta.fecha}</p>
-                            <p className="state">{venta.estado}</p>
-                            <p className="monto">${venta.monto}</p>
+                            <p className="messageState">
+                              Fecha: {venta.fecha_alta}
+                            </p>
+                            <p className="state">{venta.estado_text}</p>
+                            <p className="monto">${venta.total}</p>
                           </div>
                           <img
                             src={basura}
