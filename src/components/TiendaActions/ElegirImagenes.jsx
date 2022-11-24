@@ -9,15 +9,18 @@ import plusButton from "../../assets/img/plusButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
+import PopUpVideo from "./PopUpVideo";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-  const [openPopUp, setOpenPopUp] = useState(false);
+  const [openImgPopUp, setOpenImgPopUp] = useState(false);
+  const [openVidPopUp, setOpenVidPopUp] = useState(false);
   const navigate = useNavigate();
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
+  const [video, setVideo] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
   const [numeroImgExtra, setNumeroImgExtra] = useState(0);
@@ -111,7 +114,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="edit"
                       onClick={() => {
                         setSection(imgBox.nombre);
-                        setOpenPopUp(true);
+                        setOpenImgPopUp(true);
                       }}
                     />
                   </div>
@@ -139,7 +142,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 onClick={() => {
                   setNumeroImgExtra(numeroImgExtra + 1);
                   setSection(`fotoExtra${numeroImgExtra}`);
-                  setOpenPopUp(true);
+                  setOpenImgPopUp(true);
                 }}
               />
             </div>
@@ -156,6 +159,29 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
             <p className="bottomText">opcional</p>
           </div>
+          <div className="section">
+            <div className="imgBox">
+              <img src={plusButton} alt="foto" />
+              <img
+                className="editButton"
+                src={editIcon}
+                alt="edit"
+                onClick={() => {
+                  setNumeroImgExtra(numeroImgExtra + 1);
+                  setSection("video");
+                  setOpenVidPopUp(true);
+                }}
+              />
+            </div>
+            <div className="bottomContainer">
+              <span>Agregar video extra</span>
+              <div class="tooltip">
+                <img src={infoIcon} alt="infoIcon" />
+                <span>¡Subí un video mostrando tu producto!</span>
+              </div>
+            </div>
+            <p className="bottomText">opcional</p>
+          </div>
         </div>
         <div className="buttonContainer">
           <button onClick={() => handleSubmit()}>IR A CARACTERÍSTICAS</button>
@@ -165,12 +191,21 @@ const ElegirImagenes = ({ form, setForm }) => {
           <p>VOLVER A SUBCATEGORÍA</p>
         </div>
       </div>
-      {openPopUp && (
+      {openImgPopUp && (
         <PopUpImg
           section={section}
-          setOpenPopUp={setOpenPopUp}
+          setOpenImgPopUp={setOpenImgPopUp}
           imagenes={imagenes}
           setImagenes={setImagenes}
+          setErrorObligatorio={setErrorObligatorio}
+        />
+      )}
+      {openVidPopUp && (
+        <PopUpVideo
+          section={section}
+          setOpenVidPopUp={setOpenVidPopUp}
+          video={video}
+          setVideo={setVideo}
           setErrorObligatorio={setErrorObligatorio}
         />
       )}

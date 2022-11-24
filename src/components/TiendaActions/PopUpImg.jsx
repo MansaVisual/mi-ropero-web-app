@@ -6,7 +6,7 @@ import Cropper from "react-easy-crop";
 
 const PopUpImg = ({
   section,
-  setOpenPopUp,
+  setOpenVidPopUp,
   imagenes,
   setImagenes,
   setErrorObligatorio,
@@ -122,22 +122,22 @@ const PopUpImg = ({
         ...prevState,
         [section]: croppedImage,
       }));
-      setOpenPopUp(false);
+      setOpenVidPopUp(false);
     } catch (e) {
       console.error(e);
-      setOpenPopUp(false);
+      setOpenVidPopUp(false);
     }
   }, [imageSrc, croppedAreaPixels]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="PopUpImg">
-      <div className="fondoPopUp" onClick={() => setOpenPopUp(false)}></div>
+      <div className="fondoPopUp" onClick={() => setOpenVidPopUp(false)}></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
           onClick={() => {
-            setOpenPopUp(false);
+            setOpenVidPopUp(false);
           }}
         />
         <div className="popUpContainer">
@@ -183,7 +183,7 @@ const PopUpImg = ({
           )}
 
           <div className="buttonContainer">
-            <Button onClick={() => setOpenPopUp(false)} className="volver">
+            <Button onClick={() => setOpenVidPopUp(false)} className="volver">
               CANCELAR
             </Button>
             <>

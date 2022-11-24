@@ -48,6 +48,7 @@ const Tienda = () => {
       descripcion: "",
     },
     imagenes: {},
+    video: null,
   });
 
   useEffect(() => {
@@ -94,7 +95,7 @@ const Tienda = () => {
       ) : (
         <>
           {seccion === undefined && <MiTienda />}
-          {seccion === "PRODUCTOS" && <SeccionProductos setForm={setForm}/>}
+          {seccion === "PRODUCTOS" && <SeccionProductos setForm={setForm} />}
           {seccion === "CATEGORIA" && <ElegirCategoria setForm={setForm} />}
           {seccion === "TIPO" && <ElegirTipo form={form} setForm={setForm} />}
           {seccion === "IMAGENES" && (
