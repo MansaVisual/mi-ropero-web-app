@@ -223,183 +223,177 @@ const TiendaDatos = () => {
   };
 
   return (
-    <>
-      {tiendaData.length === 0 ? (
-        <SeccionProductos />
-      ) : (
-        <div className="miTiendaDatos">
-          <TiendaBanner />
-          {!dir ? (
-            <Grid className="tiendaGrid">
-              <div className="container">
-                <div className="titleContainer">
-                  <p className="title">DATOS</p>
+    <div className="miTiendaDatos">
+      <TiendaBanner />
+      {!dir ? (
+        <Grid className="tiendaGrid">
+          <div className="container">
+            <div className="titleContainer">
+              <p className="title">DATOS</p>
+            </div>
+            <div className="formulario">
+              <div className="inputContainer">
+                <div className="inputBox">
+                  <p
+                    className={`labelInput ${
+                      errorCambpoObligatorio ? clase2 : ""
+                    }`}
+                    id="labelNombre"
+                  >
+                    Nombre *
+                  </p>
+                  <TextField
+                    className={`input ${
+                      errorCambpoObligatorio ? clase : ""
+                    }`}
+                    placeholder="El Ropero de Sandra"
+                    id="nombre"
+                    value={data.nombre}
+                    onClick={() => setErrorCampoObligatorio(false)}
+                    onChange={(e) => {
+                      setErrorCampoObligatorio(false);
+                      setData((prevState) => ({
+                        ...prevState,
+                        nombre: e.target.value,
+                      }));
+                    }}
+                  />
                 </div>
-                <div className="formulario">
-                  <div className="inputContainer">
-                    <div className="inputBox">
-                      <p
-                        className={`labelInput ${
-                          errorCambpoObligatorio ? clase2 : ""
-                        }`}
-                        id="labelNombre"
-                      >
-                        Nombre *
-                      </p>
-                      <TextField
-                        className={`input ${
-                          errorCambpoObligatorio ? clase : ""
-                        }`}
-                        placeholder="El Ropero de Sandra"
-                        id="nombre"
-                        value={data.nombre}
-                        onClick={() => setErrorCampoObligatorio(false)}
-                        onChange={(e) => {
-                          setErrorCampoObligatorio(false);
-                          setData((prevState) => ({
-                            ...prevState,
-                            nombre: e.target.value,
-                          }));
-                        }}
-                      />
-                    </div>
-                    <div className="inputBox">
-                      <p
-                        className={`labelInput ${errorPhone ? clase2 : ""}`}
-                        id="labelApellido"
-                      >
-                        Teléfono *
-                      </p>
-                      <TextField
-                        className={`input ${errorPhone ? clase : ""}`}
-                        placeholder="+54  011 - 4417 - 8005"
-                        type="number"
-                        id="telefono"
-                        value={data.telefono}
-                        onClick={() => setErrorPhone(false)}
-                        onChange={(e) => {
-                          setErrorPhone(false);
-                          setData((prevState) => ({
-                            ...prevState,
-                            telefono: Number(e.target.value),
-                          }));
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="inputContainer">
-                    <div className="textAreaBox">
-                      <span className="label1">Descripción *</span>
-                      <TextField
-                        multiline
-                        rows={4}
-                        id="infoAdicional"
-                        color="primary"
-                        className="textArea"
-                        size="small"
-                        placeholder="Reducir, reciclar, reutilizar como bandera!"
-                        inputProps={{ maxLength: 50 }}
-                        value={data.descripcion}
-                        onChange={(e) =>
-                          setData((prevState) => ({
-                            ...prevState,
-                            descripcion: e.target.value,
-                          }))
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="address">
-                    <div>
-                      <span>Domicilio de entrega</span>
-                      <img className="editIcon" src={editIcon} alt="editIcon" />
-                    </div>
-                    <div className="description">
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <p>
-                          {dataUpdate.calle} {dataUpdate.numero}.{" "}
-                          {dataUpdate.provincia === "Capital Federal"
-                            ? "CABA"
-                            : dataUpdate.provincia}{" "}
-                          {dataUpdate.localidad} (
-                          {`${dataUpdate.codigo_postal}`}){" "}
-                        </p>
-                        <p>
-                          {dataUpdate.entre_calle_1 !== "" && "Entre"}{" "}
-                          {dataUpdate.entre_calle_1 !== "" &&
-                            dataUpdate.entre_calle_1}{" "}
-                          {dataUpdate.entre_calle_1 !== "" && "y"}{" "}
-                          {dataUpdate.entre_calle_2 !== "" &&
-                            `${dataUpdate.entre_calle_2}.`}{" "}
-                        </p>
-                        <p>
-                          {dataUpdate.informacion_adicional !== "" &&
-                            `${dataUpdate.informacion_adicional}.`}
-                        </p>
-                      </div>
-                      <Button onClick={() => setDir(true)}>MODIFICAR</Button>
-                    </div>
-                  </div>
-                </div>
-                <div className="buttonContainer">
-                  {load ? (
-                    <div
-                      style={{
-                        marginTop: "24px",
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Loader spin={"spinnerM"} />
-                    </div>
-                  ) : (
-                    <Button onClick={() => handleSubmit()}>
-                      GUARDAR CAMBIOS
-                    </Button>
-                  )}
-                </div>
-                <div
-                  className="returnLink"
-                  onClick={() => navigate(`/MiTienda`)}
-                >
-                  <img src={leftArrow} alt="leftArrow" />
-                  <p>VOLVER A MI TIENDA</p>
-                </div>
-                <div>
-                  <div className="tiendaActionsCard tiendaActionsCard1">
-                    <h5 onClick={() => reporteSem(tiendaDetail.recibe_reporte)}>
-                      {tiendaDetail.recibe_reporte === "1"
-                        ? "Desactivar reporte semanal de estadísticas"
-                        : "Activar reporte semanal de estadísticas"}
-                    </h5>
-                    <p>
-                      Podés recibir en tu email un reporte semanal con la
-                      cantidad de seguidores de tu tienda, la cantidad de
-                      visitas de tus productos y toda la información estadística
-                      que te interesa.
-                    </p>
-                  </div>
-                  <div className="tiendaActionsCard">
-                    <h5 onClick={() => pausarTienda(tiendaDetail.estado)}>
-                      {tiendaDetail.estado !== "5"
-                        ? "Pausar tienda"
-                        : "Despausar tienda"}
-                    </h5>
-                    <p>
-                      Al pausar tu tienda todos tus productos quedarán pausados
-                      y no podrán comprarse.
-                    </p>
-                  </div>
+                <div className="inputBox">
+                  <p
+                    className={`labelInput ${errorPhone ? clase2 : ""}`}
+                    id="labelApellido"
+                  >
+                    Teléfono *
+                  </p>
+                  <TextField
+                    className={`input ${errorPhone ? clase : ""}`}
+                    placeholder="+54  011 - 4417 - 8005"
+                    type="number"
+                    id="telefono"
+                    value={data.telefono}
+                    onClick={() => setErrorPhone(false)}
+                    onChange={(e) => {
+                      setErrorPhone(false);
+                      setData((prevState) => ({
+                        ...prevState,
+                        telefono: Number(e.target.value),
+                      }));
+                    }}
+                  />
                 </div>
               </div>
-            </Grid>
-          ) : (
-            <EditarDir setDir={setDir} />
-          )}
-        </div>
+              <div className="inputContainer">
+                <div className="textAreaBox">
+                  <span className="label1">Descripción *</span>
+                  <TextField
+                    multiline
+                    rows={4}
+                    id="infoAdicional"
+                    color="primary"
+                    className="textArea"
+                    size="small"
+                    placeholder="Reducir, reciclar, reutilizar como bandera!"
+                    inputProps={{ maxLength: 50 }}
+                    value={data.descripcion}
+                    onChange={(e) =>
+                      setData((prevState) => ({
+                        ...prevState,
+                        descripcion: e.target.value,
+                      }))
+                    }
+                  />
+                </div>
+              </div>
+              <div className="address">
+                <div>
+                  <span>Domicilio de entrega</span>
+                  <img className="editIcon" src={editIcon} alt="editIcon" />
+                </div>
+                <div className="description">
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <p>
+                      {dataUpdate.calle} {dataUpdate.numero}.{" "}
+                      {dataUpdate.provincia === "Capital Federal"
+                        ? "CABA"
+                        : dataUpdate.provincia}{" "}
+                      {dataUpdate.localidad} (
+                      {`${dataUpdate.codigo_postal}`}){" "}
+                    </p>
+                    <p>
+                      {dataUpdate.entre_calle_1 !== "" && "Entre"}{" "}
+                      {dataUpdate.entre_calle_1 !== "" &&
+                        dataUpdate.entre_calle_1}{" "}
+                      {dataUpdate.entre_calle_1 !== "" && "y"}{" "}
+                      {dataUpdate.entre_calle_2 !== "" &&
+                        `${dataUpdate.entre_calle_2}.`}{" "}
+                    </p>
+                    <p>
+                      {dataUpdate.informacion_adicional !== "" &&
+                        `${dataUpdate.informacion_adicional}.`}
+                    </p>
+                  </div>
+                  <Button onClick={() => setDir(true)}>MODIFICAR</Button>
+                </div>
+              </div>
+            </div>
+            <div className="buttonContainer">
+              {load ? (
+                <div
+                  style={{
+                    marginTop: "24px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+              ) : (
+                <Button onClick={() => handleSubmit()}>
+                  GUARDAR CAMBIOS
+                </Button>
+              )}
+            </div>
+            <div
+              className="returnLink"
+              onClick={() => navigate(`/MiTienda`)}
+            >
+              <img src={leftArrow} alt="leftArrow" />
+              <p>VOLVER A MI TIENDA</p>
+            </div>
+            <div>
+              <div className="tiendaActionsCard tiendaActionsCard1">
+                <h5 onClick={() => reporteSem(tiendaDetail.recibe_reporte)}>
+                  {tiendaDetail.recibe_reporte === "1"
+                    ? "Desactivar reporte semanal de estadísticas"
+                    : "Activar reporte semanal de estadísticas"}
+                </h5>
+                <p>
+                  Podés recibir en tu email un reporte semanal con la
+                  cantidad de seguidores de tu tienda, la cantidad de
+                  visitas de tus productos y toda la información estadística
+                  que te interesa.
+                </p>
+              </div>
+              <div className="tiendaActionsCard">
+                <h5 onClick={() => pausarTienda(tiendaDetail.estado)}>
+                  {tiendaDetail.estado !== "5"
+                    ? "Pausar tienda"
+                    : "Despausar tienda"}
+                </h5>
+                <p>
+                  Al pausar tu tienda todos tus productos quedarán pausados
+                  y no podrán comprarse.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Grid>
+      ) : (
+        <EditarDir setDir={setDir} />
       )}
-    </>
+    </div>
   );
 };
 

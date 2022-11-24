@@ -32,31 +32,25 @@ const CrearTienda = ({ setForm }) => {
   };
 
   return (
-    <>
-      {tiendaData.length > 0 ? (
-        <SeccionProductosCon />
-      ) : (
-        <div className="seccionProductos">
-          <div className="breadcumbs">
-            <Breadcrumbs links={pathnames} />
-          </div>
-          <div className="contenedorInfo">
-            <p className="title">¡ABRÍ TU TIENDA!</p>
-            <p className="text">
-              Publica tu primer producto para habilitar tu tienda en Mi Ropero
-            </p>
-            <img src={tienda} alt="TIENDA" />
-            <Button className="agregarProd" onClick={() => handleClick()}>
-              AGREGAR PRODUCTO
-            </Button>
-          </div>
-          <div className="returnLink" onClick={() => navigate(`/perfil`)}>
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A PERFIL</p>
-          </div>
-        </div>
-      )}
-    </>
+    <div className="seccionProductos">
+      <div className="breadcumbs">
+        <Breadcrumbs links={pathnames} />
+      </div>
+      <div className="contenedorInfo">
+        <p className="title">¡ABRÍ TU TIENDA!</p>
+        <p className="text">
+          Publica tu primer producto para habilitar tu tienda en Mi Ropero
+        </p>
+        <img src={tienda} alt="TIENDA" />
+        <Button className="agregarProd" onClick={() => handleClick()}>
+          AGREGAR PRODUCTO
+        </Button>
+      </div>
+      <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+        <img src={leftArrow} alt="leftArrow" />
+        <p>VOLVER A PERFIL</p>
+      </div>
+    </div>
   );
 };
 
