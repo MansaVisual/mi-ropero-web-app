@@ -49,7 +49,8 @@ const Mensajes = () => {
 
   useEffect(() => {
     if (mensajes.length > 0) {
-      let lista = mensajes.filter((msg) => msg.producto);
+      let lista = mensajes.filter((msg) => msg.producto !== null);
+      console.log(lista);
       if (currentType === "ver todos") {
         setMensajesFiltrados(lista);
       }
