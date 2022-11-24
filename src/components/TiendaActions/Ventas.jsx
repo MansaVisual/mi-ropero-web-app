@@ -71,7 +71,18 @@ const Ventas = () => {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tiendaData, filtroSelecc]);
+
+  const estadosSelect = [
+    "Pendiente de pago",
+    "Pago realizado",
+    "Error en pago",
+    "Pago devuelto",
+    "Plazo de pago vencido",
+    "En calificacion",
+    "Finalizada",
+  ];
 
   return (
     <div className="ventasContainer">
@@ -205,7 +216,7 @@ const Ventas = () => {
                 >
                   <em>Seleccioná </em>
                 </MenuItem>
-                {estados.map((option) => (
+                {estadosSelect.map((option) => (
                   <MenuItem
                     key={option}
                     value={option}
