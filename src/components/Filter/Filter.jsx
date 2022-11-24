@@ -88,10 +88,10 @@ const Filter = (props) => {
         maxWidth: 297,
         bgcolor: "transparent",
         fontFamily: theme.typography.fontFamily,
-        position: "sticky",
+        /*         position: "sticky",
         top: "100px",
         overflowY: "scroll",
-        height: "500px",
+        height: "500px", */
       }}
       component="nav"
       aria-labelledby="nested-list-subheader"

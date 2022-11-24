@@ -5,6 +5,7 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import editIcon from "../../assets/img/editIcon.svg";
+import plusButton from "../../assets/img/plusButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
@@ -19,6 +20,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [imagenes, setImagenes] = useState({});
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
+  const [numeroImgExtra, setNumeroImgExtra] = useState(0);
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -127,6 +129,33 @@ const ElegirImagenes = ({ form, setForm }) => {
               );
             })
           )}
+          <div className="section">
+            <div className="imgBox">
+              <img src={plusButton} alt="foto" />
+              <img
+                className="editButton"
+                src={editIcon}
+                alt="edit"
+                onClick={() => {
+                  setNumeroImgExtra(numeroImgExtra + 1);
+                  setSection(`fotoExtra${numeroImgExtra}`);
+                  setOpenPopUp(true);
+                }}
+              />
+            </div>
+            <div className="bottomContainer">
+              <span>Agregar foto extra</span>
+              <div class="tooltip">
+                <img src={infoIcon} alt="infoIcon" />
+                <span>
+                  Sumá todas las fotos que quieras, mostrá los detalles de la
+                  prenda o los detalles por el uso. Podés mostrar la prenda con
+                  conjunto y así tener más chances de vender.
+                </span>
+              </div>
+            </div>
+            <p className="bottomText">opcional</p>
+          </div>
         </div>
         <div className="buttonContainer">
           <button onClick={() => handleSubmit()}>IR A CARACTERÍSTICAS</button>

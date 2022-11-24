@@ -21,7 +21,7 @@ const Mensajes = () => {
   const [currentType, setCurrentType] = useState("ver todos");
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
   const [borrarMsj, setBorrarMsj] = useState(false);
-  const mensajesEstado = ["No leído", "Leído"];
+  const mensajesEstado = ["", "No leído", "Leído"];
 
   const { userLog } = useContext(UseLoginContext);
   const {
