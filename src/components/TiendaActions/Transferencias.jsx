@@ -12,14 +12,16 @@ import { UseLoginContext } from "../../context/LoginContext";
 
 const Transferencias = () => {
   const navigate = useNavigate();
-  const { tiendaData } = useContext(UseMiTiendaContext);
 
-  const { infoUser, userLog } = useContext(UseLoginContext);
+  const { userLog } = useContext(UseLoginContext);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [transferencias, setTransferencias] = useState([]);
-  const [filtroSelecc, setFiltroSelecc] = useState("En proceso");
+  const [filtroSelecc, setFiltroSelecc] = useState({
+    id: 3,
+    nombre: "Realizada",
+  });
 
   const estados = {
     /* 0: "Sin definir", */
@@ -56,7 +58,7 @@ const Transferencias = () => {
   ];
 
   useEffect(() => {
-    if (tiendaData) {
+    if (userLog) {
       setLoading(true);
       setError(false);
       setTransferencias([]);
@@ -64,8 +66,8 @@ const Transferencias = () => {
       let array = [];
 
       const data = new FormData();
-      data.append("idcliente", tiendaData.idtienda);
-      data.append("estado", filtroSelecc);
+      data.append("idcliente", userLog);
+      data.append("estado", filtroSelecc.id);
       apiFetch(data, "transferencias", "all").then((res) => {
         console.log(res);
         if (res.status === "success") {
@@ -90,7 +92,7 @@ const Transferencias = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tiendaData, filtroSelecc]);
+  }, [userLog, filtroSelecc]);
 
   const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
@@ -205,8 +207,10 @@ const Transferencias = () => {
               <Select
                 displayEmpty
                 className="selectInput"
-                onChange={(e) => setFiltroSelecc(e.target.value)}
-                value={filtroSelecc}
+                onChange={(e) => {
+                  setFiltroSelecc(e.target.value);
+                }}
+                value={filtroSelecc.nombre}
                 renderValue={(selected) => {
                   if (selected === "") {
                     return <em>Seleccioná una opción</em>;
@@ -246,7 +250,10 @@ const Transferencias = () => {
                   return (
                     <MenuItem
                       key={key}
-                      value={key}
+                      value={{
+                        id: key,
+                        nombre: estados[key],
+                      }}
                       sx={{ fontSize: "14px", color: "#969696" }}
                       className="selectOption"
                     >
