@@ -5,13 +5,15 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
-  const { infoUser } = useContext(UseLoginContext);
+  const { infoUser, userLog } = useContext(UseLoginContext);
+  const { tiendaData } = useContext(UseMiTiendaContext);
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
@@ -31,7 +33,7 @@ const Sumario = ({ form }) => {
     if (form.crearTienda) {
       const { direccion } = form;
       const formData = new FormData();
-      formData.append("idcliente", infoUser.idcliente);
+      formData.append("idcliente", userLog);
       formData.append("telefono", form.telefono);
       formData.append("nombre", `El Ropero De ${infoUser.nombre}`);
       formData.append("descripcion", "");
@@ -54,31 +56,35 @@ const Sumario = ({ form }) => {
       console.log(Object.fromEntries(prod));
       apiFetch(formData, "tiendas", "insert").then((tiendaRes) => {
         console.log(tiendaRes.result);
-        if (tiendaRes.status === "success") {
-          prod.append("idtienda", tiendaRes.result.idtienda);
-          apiFetch(prod, "productos", "insert").then(async (prodRes) => {
-            if (prodRes.status === "success") {
-              const img = new FormData();
-              for (const i in form.imagenes) {
-                img.append("idtienda", tiendaRes.result.idtienda);
-                img.append("idproducto", prodRes.result.idproducto);
-                img.append("image", form.imagenes[i]);
-                await insertImg(img);
+        const tienda = new FormData();
+        tienda.append("idcliente", Number(userLog));
+        apiFetch(tienda, "tiendas", "list").then((resIdTienda) => {
+          if (resIdTienda.status === "success") {
+            prod.append("idtienda", resIdTienda.result[0].idtienda);
+            apiFetch(prod, "productos", "insert").then(async (prodRes) => {
+              if (prodRes.status === "success") {
+                const img = new FormData();
+                for (const i in form.imagenes) {
+                  img.append("idtienda", resIdTienda.result[0].idtienda);
+                  img.append("idproducto", prodRes.result.idproducto);
+                  img.append("image", form.imagenes[i]);
+                  await insertImg(img);
+                }
               }
-            }
-          });
-        } else {
-          console.log(tiendaRes);
-        }
+            });
+          } else {
+            console.log(tiendaRes);
+          }
+        });
       });
     } else {
-      prod.append("idtienda", infoUser.idtienda);
+      prod.append("idtienda", tiendaData.idtienda);
       apiFetch(prod, "productos", "insert").then(async (res) => {
         console.log(res.result);
         if (res.status === "success") {
           const img = new FormData();
           for (const i in form.imagenes) {
-            img.append("idtienda", infoUser.idtienda);
+            img.append("idtienda", tiendaData.idtienda);
             img.append("idproducto", res.result.idproducto);
             img.append("image", form.imagenes[i]);
             await insertImg(img);
