@@ -68,17 +68,27 @@ const ProductPage = () => {
       const prod = new FormData();
       prod.append("idproducto", itemID);
       prod.append("idcliente", userLog);
-      apiFetch(prod, "productos", "details").then((res) => {
+      apiFetch(prod, "productos", "details").then((res) => {console.log("PRODUCTO", res)
         if (res.status === "success") {
           let arrayFotos = [];
           for (const i in res.result.imagenes) {
-            arrayFotos = [
-              ...arrayFotos,
-              {
-                original: res.result.imagenes[i].imagen_vertical,
-                thumbnail: res.result.imagenes[i].imagen_chica,
-              },
-            ];
+            if(res.result.imagenes[i].tipo==="video"){
+              arrayFotos = [
+                ...arrayFotos,
+                {
+                  original: res.result.imagenes[i].imagen_original,
+                  thumbnail: res.result.imagenes[i].imagen_original,
+                },
+              ];
+            }else{
+              arrayFotos = [
+                ...arrayFotos,
+                {
+                  original: res.result.imagenes[i].imagen_vertical,
+                  thumbnail: res.result.imagenes[i].imagen_chica,
+                },
+              ];
+            }
           }
           setProdFotos(arrayFotos);
           setProd(res.result);
