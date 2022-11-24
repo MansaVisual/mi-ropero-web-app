@@ -40,6 +40,7 @@ const Ventas = () => {
   useEffect(() => {
     if (tiendaData) {
       setLoading(true);
+      setError(false);
 
       let array = [];
 
