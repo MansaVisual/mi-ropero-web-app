@@ -32,31 +32,6 @@ const Transferencias = () => {
     5: "Rechazada",
   };
 
-  /*  let itemEstadoSelecc = "";
-
-  for (const item in estados) {
-    if (estados[item] === filtroSelecc) {
-      itemEstadoSelecc = item;
-    }
-  } */
-
-  const array = [
-    {
-      fecha_alta: "15/03/2017",
-      idoperacion: "MRO-0000001375",
-      total: "163.199",
-      estado_text: "SOLICITADA ",
-      fecha_notificacion: "15/03/2017",
-    },
-    {
-      fecha_alta: "15/03/2017",
-      idoperacion: "MRO-0000001375",
-      total: "163.199",
-      estado_text: "SOLICITADA ",
-      fecha_notificacion: "15/03/2017",
-    },
-  ];
-
   useEffect(() => {
     if (userLog) {
       setLoading(true);
@@ -79,7 +54,7 @@ const Transferencias = () => {
         } else {
           if (
             res.status === "error" &&
-            res.result === "No se encontraron operaciones"
+            res.result === "El cliente no tiene transferencias"
           ) {
             setLoading(false);
             console.log("error1");
@@ -94,21 +69,13 @@ const Transferencias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, filtroSelecc]);
 
-  const formatoFecha = (fecha) => {
+  /*   const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
     const [year, month, day] = fechaSinHora.split("-");
 
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
-  };
-
-  /*   const estadosList = [
-    "Solicitada",
-    "En proceso",
-    "Realizada",
-    "Cancelada",
-    "Rechazada",
-  ]; */
+  }; */
 
   return (
     <div className="transferenciasContainer">
@@ -135,39 +102,35 @@ const Transferencias = () => {
                 </div>
               ) : !error ? (
                 transferencias.length > 0 ? (
-                  transferencias.map((compra, i) => {
-                    return (
-                      <>
-                        <table className="customTable">
-                          <thead>
-                            <tr className="titleRow">
-                              <th>FECHA DE COMPRA</th>
-                              <th># ID DE PEDIDO</th>
-                              <th>MONTO TOTAL</th>
-                              <th>ESTADO</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {array.map((compra, i) => {
-                              return (
-                                <tr index={i} className="dataRow">
-                                  <th>
-                                    {
-                                      /* formatoFecha( */ compra.fecha_alta /* ) */
-                                    }
-                                  </th>
-                                  <th>{compra.idoperacion}</th>
-                                  <th>${compra.total}</th>
-                                  <th className="estatusColumn">
-                                    <span>{compra.estado_text}</span>
-                                    <span>
-                                      {
-                                        /* formatoFecha( */ compra.fecha_notificacion /* ) */
-                                      }
-                                    </span>
-                                  </th>
-                                  {/* <th>
+                  <>
+                    <table className="customTable">
+                      <thead>
+                        <tr className="titleRow">
+                          <th>FECHA DE COMPRA</th>
+                          <th># ID DE PEDIDO</th>
+                          <th>MONTO TOTAL</th>
+                          <th>ESTADO</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {transferencias.map((compra, i) => {
+                          return (
+                            <tr index={i} className="dataRow">
+                              <th>
+                                {/* formatoFecha( */ compra.fecha_alta /* ) */}
+                              </th>
+                              <th>{compra.idoperacion}</th>
+                              <th>${compra.total}</th>
+                              <th className="estatusColumn">
+                                <span>{compra.estado_text}</span>
+                                <span>
+                                  {
+                                    /* formatoFecha( */ compra.fecha_notificacion /* ) */
+                                  }
+                                </span>
+                              </th>
+                              {/* <th>
                         <Button
                           className="tableButton"
                           onClick={() => {
@@ -178,12 +141,14 @@ const Transferencias = () => {
                           VER COMPRA
                         </Button>
                       </th> */}
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
-                        <div className="responsiveData">
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                    <div className="responsiveData">
+                      {transferencias.map((compra, i) => {
+                        return (
                           <div key={i} className="compra">
                             <div>
                               <span>FECHA DE COMPRA</span>
@@ -213,10 +178,10 @@ const Transferencias = () => {
                       VER COMPRA
                     </Button> */}
                           </div>
-                        </div>
-                      </>
-                    );
-                  })
+                        );
+                      })}
+                    </div>
+                  </>
                 ) : (
                   <div className="perfilVacio">
                     <div>
