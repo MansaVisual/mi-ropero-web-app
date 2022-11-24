@@ -24,6 +24,7 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
 
   const handleSubmit = () => {
     setVideo(videoSrc);
+    setOpenVidPopUp(false);
   };
   return (
     <div className="PopUpImg">
