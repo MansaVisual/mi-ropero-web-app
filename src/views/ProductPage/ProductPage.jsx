@@ -48,6 +48,16 @@ const ProductPage = () => {
   const [prodCaracteristicas, setProdCaracteristicas] = useState([]);
   console.log(prodFotos)
 
+  const _renderVideo=(item)=>{
+    console.log(this)
+    return(
+      <video
+        src={item}
+      >
+      </video>
+    )
+  }
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -71,15 +81,6 @@ const ProductPage = () => {
       apiFetch(prod, "productos", "details").then((res) => {console.log("PRODUCTO", res)
         if (res.status === "success") {
           let arrayFotos = [];
-          const _renderVideo=({item})=>{
-            console.log(item)
-            return(
-              <video
-                src={item}
-              >
-              </video>
-            )
-          }
           for (const i in res.result.imagenes) {
             if(res.result.imagenes[i].tipo==="video"){
               arrayFotos = [
@@ -87,7 +88,7 @@ const ProductPage = () => {
                 {
                   original: res.result.imagenes[i].imagen_vertical,
                   thumbnail: res.result.imagenes[i].imagen_chica,
-                  renderItem: _renderVideo.bind(res.result.imagenes[i].imagen_vertical)
+                  renderItem: _renderVideo(res.result.imagenes[i].imagen_vertical)
                 },
               ];
             }else{
