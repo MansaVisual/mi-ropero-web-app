@@ -57,7 +57,7 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
             <Button onClick={() => setOpenVidPopUp(false)} className="volver">
               CANCELAR
             </Button>
-            <>
+            {/* <>
               <label for="file-upload" class="custom-file-upload">
                 CARGAR VIDEO
               </label>
@@ -67,7 +67,7 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
                 onChange={onFileChange}
                 accept="video/mp4"
               />
-            </>
+            </> */}
           </div>
         </div>
       </div>
