@@ -365,7 +365,7 @@ const EditarDir = ({setDir}) => {
                 className="locationInput"
                 size="small"
                 id="depto"
-                placeholder="2"
+                placeholder="D"
                 onChangeCapture={(e) => {
                   handleInputChange(contactForm, setContactForm);
                   setCampoObligatorio(false);
