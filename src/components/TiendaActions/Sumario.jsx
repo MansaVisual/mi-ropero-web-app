@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Grid } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import Loader from "../Loader/Loader";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Sumario = ({ form }) => {
 
   const { infoUser, userLog } = useContext(UseLoginContext);
   const { tiendaData } = useContext(UseMiTiendaContext);
+  const [loading, setLoading] = useState(false);
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
@@ -23,6 +25,7 @@ const Sumario = ({ form }) => {
   console.log(form, infoUser);
 
   const handleSubmit = () => {
+    setLoading(true);
     const prod = new FormData();
     prod.append("idcategoria", form.tipoId);
     prod.append("caracteristicas", form.idCaracteristica);
@@ -64,16 +67,18 @@ const Sumario = ({ form }) => {
             apiFetch(prod, "productos", "insert").then(async (prodRes) => {
               console.log(prodRes);
               if (prodRes.status === "success") {
-                const img = new FormData();
-                for (const i in form.imagenes) {
-                  img.append(
-                    "idtienda",
-                    Number(resIdTienda.result[0].idtienda)
-                  );
-                  img.append("idproducto", Number(prodRes.result.idproducto));
-                  img.append("image", form.imagenes[i]);
-                  await insertImg(img);
-                }
+                setTimeout(async () => {
+                  for (const i in form.imagenes) {
+                    const img = new FormData();
+                    img.append(
+                      "idtienda",
+                      Number(resIdTienda.result[0].idtienda)
+                    );
+                    img.append("idproducto", Number(prodRes.result.idproducto));
+                    img.append("image", form.imagenes[i]);
+                    await insertImg(img);
+                  }
+                }, 3000);
               }
             });
           } else {
@@ -86,8 +91,8 @@ const Sumario = ({ form }) => {
       apiFetch(prod, "productos", "insert").then(async (res) => {
         console.log(res.result);
         if (res.status === "success") {
-          const img = new FormData();
           for (const i in form.imagenes) {
+            const img = new FormData();
             img.append("idtienda", tiendaData.idtienda);
             img.append("idproducto", res.result.idproducto);
             img.append("image", form.imagenes[i]);
@@ -186,7 +191,11 @@ const Sumario = ({ form }) => {
             </div>
           </div>
           <div className="bottomContainer">
-            <Button onClick={() => handleSubmit()}>PUBLICAR</Button>
+            {loading ? (
+              <Loader spin={"spinnerM"} />
+            ) : (
+              <Button onClick={() => handleSubmit()}>PUBLICAR</Button>
+            )}
             <p>
               Al oprimir PUBLICAR se aceptan los{" "}
               <span
