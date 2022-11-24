@@ -5,6 +5,7 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Sumario = ({ form }) => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   const { infoUser,userLog } = useContext(UseLoginContext);
+  const {tiendaData}=useContext(UseMiTiendaContext)
 
   if (!form.categoriaId) {
     navigate(`/MiTienda/CATEGORIA`);
@@ -63,7 +65,7 @@ const Sumario = ({ form }) => {
               if (prodRes.status === "success") {
                 const img = new FormData();
                 for(const i in form.imagenes){
-                  img.append("idtienda", tiendaRes.result.idtienda);
+                  img.append("idtienda", resIdTienda.result[0].idtienda);
                   img.append("idproducto", prodRes.result.idproducto);
                   img.append("image", form.imagenes[i]);
                   await insertImg(img)
@@ -76,13 +78,13 @@ const Sumario = ({ form }) => {
         })
       });
     } else {
-      prod.append("idtienda", infoUser.idtienda);
+      prod.append("idtienda", tiendaData.idtienda);
       apiFetch(prod, "productos", "insert").then(async(res) => {
         console.log(res.result);
         if (res.status === "success") {
             const img = new FormData();
             for(const i in form.imagenes){
-              img.append("idtienda", infoUser.idtienda);
+              img.append("idtienda", tiendaData.idtienda);
               img.append("idproducto", res.result.idproducto);
               img.append("image", form.imagenes[i]);
               await insertImg(img)
