@@ -71,7 +71,8 @@ const ProductPage = () => {
       apiFetch(prod, "productos", "details").then((res) => {console.log("PRODUCTO", res)
         if (res.status === "success") {
           let arrayFotos = [];
-          const _renderVideo=(item)=>{
+          const _renderVideo=({item})=>{
+            console.log(item)
             return(
               <video
                 src={item}
@@ -86,7 +87,7 @@ const ProductPage = () => {
                 {
                   original: res.result.imagenes[i].imagen_vertical,
                   thumbnail: res.result.imagenes[i].imagen_chica,
-                  renderItem: _renderVideo.bind(res.result.imagenes[i].imagen_vertical)
+                  renderItem: _renderVideo(res.result.imagenes[i].imagen_vertical)
                 },
               ];
             }else{
