@@ -72,23 +72,14 @@ const ProductPage = () => {
         if (res.status === "success") {
           let arrayFotos = [];
           for (const i in res.result.imagenes) {
-            if(res.result.imagenes[i].tipo==="video"){
-              arrayFotos = [
-                ...arrayFotos,
-                {
-                  original: res.result.imagenes[i].imagen_original,
-                  thumbnail: res.result.imagenes[i].imagen_original,
-                },
-              ];
-            }else{
-              arrayFotos = [
-                ...arrayFotos,
-                {
-                  original: res.result.imagenes[i].imagen_vertical,
-                  thumbnail: res.result.imagenes[i].imagen_chica,
-                },
-              ];
-            }
+            arrayFotos = [
+              ...arrayFotos,
+              {
+                original: res.result.imagenes[i].imagen_vertical,
+                thumbnail: res.result.imagenes[i].imagen_chica,
+                type: res.result.imagenes[i].tipo
+              },
+            ];
           }
           setProdFotos(arrayFotos);
           setProd(res.result);
