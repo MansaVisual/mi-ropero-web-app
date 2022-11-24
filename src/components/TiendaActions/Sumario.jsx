@@ -31,7 +31,7 @@ const Sumario = ({ form }) => {
     if (form.crearTienda) {
       const { direccion } = form;
       const formData = new FormData();
-      formData.append("idcliente", infoUser.idcliente);
+      formData.append("idcliente", userLog);
       formData.append("telefono", form.telefono);
       formData.append("nombre", `El ropero de ${infoUser.nombre}`);
       formData.append("descripcion", "");
