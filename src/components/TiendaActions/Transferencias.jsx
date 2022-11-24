@@ -8,19 +8,35 @@ import { Button, Grid, MenuItem, Rating, Select } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const Transferencias = () => {
   const navigate = useNavigate();
   const { tiendaData } = useContext(UseMiTiendaContext);
 
+  const { infoUser, userLog } = useContext(UseLoginContext);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [transferencias, setTransferencias] = useState([]);
-  const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
+  const [filtroSelecc, setFiltroSelecc] = useState("En proceso");
 
-  let itemEstadoSelecc = "";
+  const estados = {
+    /* 0: "Sin definir", */
+    1: "Solicitada",
+    2: "En proceso",
+    3: "Realizada",
+    4: "Cancelada",
+    5: "Rechazada",
+  };
 
-  const [selected, setSelected] = useState("mejor valoración primero");
+  /*  let itemEstadoSelecc = "";
+
+  for (const item in estados) {
+    if (estados[item] === filtroSelecc) {
+      itemEstadoSelecc = item;
+    }
+  } */
 
   const array = [
     {
@@ -38,7 +54,6 @@ const Transferencias = () => {
       fecha_notificacion: "15/03/2017",
     },
   ];
-  const stateList = ["mejor valoración primero", "en espera"];
 
   useEffect(() => {
     if (tiendaData) {
@@ -50,8 +65,8 @@ const Transferencias = () => {
 
       const data = new FormData();
       data.append("idcliente", tiendaData.idtienda);
-      data.append("estado", itemEstadoSelecc);
-      apiFetch(data, "transferencias", "get_estados").then((res) => {
+      data.append("estado", filtroSelecc);
+      apiFetch(data, "transferencias", "all").then((res) => {
         console.log(res);
         if (res.status === "success") {
           for (const ii in res.result.operaciones) {
@@ -84,6 +99,15 @@ const Transferencias = () => {
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
   };
+
+  /*   const estadosList = [
+    "Solicitada",
+    "En proceso",
+    "Realizada",
+    "Cancelada",
+    "Rechazada",
+  ]; */
+
   return (
     <div className="transferenciasContainer">
       <TiendaBanner />
@@ -181,8 +205,8 @@ const Transferencias = () => {
               <Select
                 displayEmpty
                 className="selectInput"
-                onChange={(e) => setSelected(e.target.value)}
-                value={selected}
+                onChange={(e) => setFiltroSelecc(e.target.value)}
+                value={filtroSelecc}
                 renderValue={(selected) => {
                   if (selected === "") {
                     return <em>Seleccioná una opción</em>;
@@ -208,7 +232,7 @@ const Transferencias = () => {
                 >
                   <em>Seleccioná </em>
                 </MenuItem>
-                {stateList.map((option) => (
+                {/* {estadosList.map((option) => (
                   <MenuItem
                     key={option}
                     value={option}
@@ -217,7 +241,19 @@ const Transferencias = () => {
                   >
                     {option}
                   </MenuItem>
-                ))}
+                ))} */}
+                {Object.keys(estados).map((key, i) => {
+                  return (
+                    <MenuItem
+                      key={key}
+                      value={key}
+                      sx={{ fontSize: "14px", color: "#969696" }}
+                      className="selectOption"
+                    >
+                      {estados[key]}
+                    </MenuItem>
+                  );
+                })}
               </Select>
             </div>
           </div>
