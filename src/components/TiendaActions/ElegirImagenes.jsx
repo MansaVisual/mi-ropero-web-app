@@ -67,6 +67,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       setForm((prevState) => ({
         ...prevState,
         imagenes: imagenes,
+        video: video,
       }));
       navigate(`/MiTienda/CARACTERISTICAS`);
     }

@@ -21,6 +21,10 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
       setVideoSrc(imageDataUrl);
     }
   };
+
+  const handleSubmit = () => {
+    setVideo(videoSrc);
+  };
   return (
     <div className="PopUpImg">
       <div className="fondoPopUp" onClick={() => setOpenVidPopUp(false)}></div>
@@ -40,10 +44,11 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
           </p>
           {videoSrc && (
             <>
+              <video src={videoSrc} />
               <div className="cropContainer"></div>
               <div>
                 <Button
-                  /* onClick={showCroppedImage} */
+                  onClick={() => handleSubmit()}
                   variant="contained"
                   color="primary"
                 >
