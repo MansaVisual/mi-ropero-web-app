@@ -186,7 +186,7 @@ const Transferencias = () => {
                   <div className="perfilVacio">
                     <div>
                       <img src={vacio} alt="LOGO" />
-                      <p>{`No tienes ventas en estado "${filtroSelecc.nombre}"`}</p>
+                      <p>{`No tienes transferencias en estado "${filtroSelecc.nombre}"`}</p>
                       <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
                   </div>
