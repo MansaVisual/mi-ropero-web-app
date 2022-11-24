@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import basura from "../../assets/img/basura.png";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
+import logo from "../../assets/img/isologo.png";
 import { Grid } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import PopUpDescuento from "./PopUpDescuento";
+import Swal from "sweetalert2";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const SeccionProductos = ({ setForm }) => {
   const navigate = useNavigate();
@@ -32,6 +35,48 @@ const SeccionProductos = ({ setForm }) => {
         metodo: "tiendas",
       });
     }
+  };
+
+  const handleDelete = ({ idproducto }) => {
+    Swal.fire({
+      title: "¡SUMATE A LA MODA CIRCULAR!",
+      text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+      iconHtml: `<img src=${logo} alt="LOGO">`,
+      customClass: {
+        icon: "no-border",
+        container: "popUpLoginAlert",
+        cancelButton: "popUpLoginCancel",
+      },
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: "CONTINUAR",
+      cancelButtonText: "CANCELAR",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        const prod = new FormData();
+        prod.append("idcliente", tiendaDetail.idtienda);
+        prod.append("idproducto", idproducto);
+        apiFetch(prod, "productos", "delete").then(async (res) => {
+          if (res.status === "error") {
+            Swal.fire({
+              title: "ERROR AL ELIMINAR PRODUCTO",
+              text: "Surgió un error al eliminar producto. Volvé a intentarlo",
+              icon: "error",
+              confirmButtonText: "ACEPTAR",
+            });
+          } else {
+            Swal.fire({
+              title: "PRODUCTO ELIMINADO CON EXITO",
+              text: "La operación se realizó correctamente!",
+              icon: "success",
+              confirmButtonText: "ACEPTAR",
+            }).then(() => {
+              window.location.reload();
+            });
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -76,10 +121,7 @@ const SeccionProductos = ({ setForm }) => {
                       <div className="ofertaData">
                         <p className="monto">${product.precio}</p>
                         <img
-                          onClick={() => {
-                            /* setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje); */
-                          }}
+                          onClick={() => handleDelete(product.idproducto)}
                           className="basuraIcon"
                           src={basura}
                           alt="BasuraIcon"

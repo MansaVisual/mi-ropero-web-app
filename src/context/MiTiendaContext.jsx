@@ -70,6 +70,8 @@ export const MiTiendaContext = ({ children }) => {
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(tiendaData, tiendaDetail);
+
   return (
     <UseMiTiendaContext.Provider
       value={{
