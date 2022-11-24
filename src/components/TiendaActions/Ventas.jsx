@@ -162,7 +162,7 @@ const Ventas = () => {
                   <div className="perfilVacio">
                     <div>
                       <img src={vacio} alt="LOGO" />
-                      <p>{`No tienes ventas en estado ${filtroSelecc}`}</p>
+                      <p>{`No tienes ventas en estado "${filtroSelecc}"`}</p>
                       <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
                   </div>
