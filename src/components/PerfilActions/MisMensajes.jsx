@@ -64,7 +64,7 @@ const MisMensajes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensajes, typeMessage]);
 
-  const mensajesEstado = ["No leído", "Leído"];
+  const mensajesEstado = ["", "No leído", "Leído"];
 
   const handleAvatarError = (event) => {
     event.currentTarget.src = Sweater;
