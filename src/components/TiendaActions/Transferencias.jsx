@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import foto from "../../assets/img/fotoProd.png";
@@ -6,9 +6,19 @@ import basura from "../../assets/img/basura.png";
 import StarIcon from "@mui/icons-material/Star";
 import { Button, Grid, MenuItem, Rating, Select } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const Transferencias = () => {
   const navigate = useNavigate();
+  const { tiendaData } = useContext(UseMiTiendaContext);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [transferencias, setTransferencias] = useState([]);
+  const [filtroSelecc, setFiltroSelecc] = useState("Pago realizado");
+
+  let itemEstadoSelecc = "";
 
   const [selected, setSelected] = useState("mejor valoración primero");
 
@@ -29,6 +39,43 @@ const Transferencias = () => {
     },
   ];
   const stateList = ["mejor valoración primero", "en espera"];
+
+  useEffect(() => {
+    if (tiendaData) {
+      setLoading(true);
+      setError(false);
+      setTransferencias([]);
+
+      let array = [];
+
+      const data = new FormData();
+      data.append("idcliente", tiendaData.idtienda);
+      data.append("estado", itemEstadoSelecc);
+      apiFetch(data, "transferencias", "get_estados").then((res) => {
+        console.log(res);
+        if (res.status === "success") {
+          for (const ii in res.result.operaciones) {
+            array.push(res.result.operaciones[ii]);
+          }
+          setLoading(false);
+          setTransferencias(array);
+        } else {
+          if (
+            res.status === "error" &&
+            res.result === "No se encontraron operaciones"
+          ) {
+            setLoading(false);
+            console.log("error1");
+          } else {
+            console.log("error2");
+            setError(true);
+            setLoading(false);
+          }
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tiendaData, filtroSelecc]);
 
   const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
