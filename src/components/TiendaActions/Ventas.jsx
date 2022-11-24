@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
-import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
 import { useNavigate } from "react-router-dom";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
@@ -41,6 +40,7 @@ const Ventas = () => {
     if (tiendaData) {
       setLoading(true);
       setError(false);
+      setVentas([]);
 
       let array = [];
 
@@ -109,7 +109,7 @@ const Ventas = () => {
                   <Loader spin={"spinnerM"} />
                 </div>
               ) : !error ? (
-                ventas ? (
+                ventas.length > 0 ? (
                   ventas.map((venta, id) => {
                     return (
                       <>
