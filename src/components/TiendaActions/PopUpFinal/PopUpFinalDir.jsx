@@ -18,11 +18,11 @@ const PopUpFinalDir = ({
   const handleAccept = async (dir) => {
     setDireccion({
       ...dir,
-      informacion_adicional: contactForm.infoAdicional,
-      entre_calle_1: contactForm.entrecalle1,
-      entre_calle_2: contactForm.entrecalle2,
-      piso: contactForm.piso,
-      departamento: contactForm.depto,
+      informacion_adicional: contactForm.infoAdicional===undefined?"":contactForm.infoAdicional,
+      entre_calle_1: contactForm.entrecalle1===undefined?"":contactForm.entrecalle1,
+      entre_calle_2: contactForm.entrecalle2===undefined?"":contactForm.entrecalle2,
+      piso: contactForm.piso===undefined?"":contactForm.piso,
+      departamento: contactForm.depto===undefined?"":contactForm.depto,
       idprovincia: provincia,
       idlocalidad: infoLocFinal.idlocalidad,
     });
