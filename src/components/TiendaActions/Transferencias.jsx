@@ -186,7 +186,7 @@ const Transferencias = () => {
                   <div className="perfilVacio">
                     <div>
                       <img src={vacio} alt="LOGO" />
-                      <p>{`No tienes ventas en estado "${filtroSelecc}"`}</p>
+                      <p>{`No tienes ventas en estado "${filtroSelecc.nombre}"`}</p>
                       <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
                   </div>
@@ -243,16 +243,6 @@ const Transferencias = () => {
                 >
                   <em>Seleccioná </em>
                 </MenuItem>
-                {/* {estadosList.map((option) => (
-                  <MenuItem
-                    key={option}
-                    value={option}
-                    sx={{ fontSize: "14px", color: "#969696" }}
-                    className="selectOption"
-                  >
-                    {option}
-                  </MenuItem>
-                ))} */}
                 {Object.keys(estados).map((key, i) => {
                   return (
                     <MenuItem
