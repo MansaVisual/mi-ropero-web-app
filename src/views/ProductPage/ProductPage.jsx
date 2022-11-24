@@ -46,6 +46,7 @@ const ProductPage = () => {
   const [prod, setProd] = useState([]);
   const [prodFotos, setProdFotos] = useState([]);
   const [prodCaracteristicas, setProdCaracteristicas] = useState([]);
+  console.log(prodFotos)
 
   useEffect(() => {
     window.scrollTo({
