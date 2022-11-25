@@ -24,7 +24,7 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
     desc.append("idtienda", descuentoInfo.idTienda);
     desc.append("descuento", discount);
     console.log(Object.fromEntries(desc));
-    apiFetch(desc, metodo, "set_discount").then(async (res) => {
+    apiFetch(desc, "productos", "set_discount").then(async (res) => {
       if (res.status === "success") {
         setLoading(false);
       } else {
