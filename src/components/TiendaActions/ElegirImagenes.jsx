@@ -20,8 +20,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
-  const [imgType, setImgType] = useState({});
-  const [imgName, setImgName] = useState({});
+  const [imagenesBlob, setImagenesBlob] = useState({});
   const [video, setVideo] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
@@ -36,7 +35,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
-      console.log(categorias[i].idcategoria, form.tipoId)
+      console.log(categorias[i].idcategoria, form.tipoId);
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
@@ -47,14 +46,12 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
           }
-          setImgType(imagenes)
-          setImgName(imagenes)
           setImagenes(imagenes);
+          setImagenesBlob(imagenes);
           return;
         } else {
-          setImgType(form.imgType)
-          setImgName(form.imagenes)
           setImagenes(form.imagenes);
+          setImagenesBlob(imagenes);
         }
       }
     }
@@ -66,8 +63,8 @@ const ElegirImagenes = ({ form, setForm }) => {
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
-          let blob = await fetch(imagenes[key]).then(r => r.blob())
-          console.log(typeof(blob))
+          let blob = await fetch(imagenes[key]).then((r) => r.blob());
+          console.log(typeof blob);
           if (imgNecesarias[i].nombre === key && !imagenes[key]) {
             variable = true;
             setErrorObligatorio(true);
@@ -81,14 +78,12 @@ const ElegirImagenes = ({ form, setForm }) => {
         ...prevState,
         imagenes: imagenes,
         video: video,
-        imgType: imgType,
-        imgName: imgName
       }));
       navigate(`/MiTienda/CARACTERISTICAS`);
     }
   };
 
-  console.log(imagenes);
+  console.log(imagenes, imagenesBlob);
 
   return (
     <div className="elegirImgContainer">
@@ -157,8 +152,8 @@ const ElegirImagenes = ({ form, setForm }) => {
                   <div className="imgBox">
                     <img
                       src={
-                        imagenes[imgBox.nombre]
-                          ? imagenes[imgBox.nombre]
+                        imagenesBlob[imgBox.nombre]
+                          ? imagenesBlob[imgBox.nombre]
                           : imgBox.imagen
                       }
                       alt="foto"
@@ -253,8 +248,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenes={setImagenes}
           setErrorObligatorio={setErrorObligatorio}
           setSeccionExtra={setSeccionExtra}
-          setImgType={setImgType}
-          setImgName={setImgName}
+          setImagenesBlob={setImagenesBlob}
         />
       )}
       {openVidPopUp && (
