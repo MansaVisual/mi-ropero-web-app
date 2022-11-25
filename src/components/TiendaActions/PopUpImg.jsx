@@ -107,6 +107,7 @@ const PopUpImg = ({
     ctx.putImageData(data, 0, 0);
 
     return new Promise((resolve, reject) => {
+      console.log(file)
       canvas.toBlob((file) => {
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
@@ -132,11 +133,11 @@ const PopUpImg = ({
       }));
       setImgType((prevState)=>({
         ...prevState,
-        [section]:name
+        [section]:type
       }))
       setImgName((prevState)=>({
         ...prevState,
-        [section]:type
+        [section]:name
       }))
       setSeccionExtra((prevState) => ({
         ...prevState,
