@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -10,9 +10,19 @@ import TiendaProductos from "../../assets/img/TiendaProductos.svg";
 import TiendaTransfer from "../../assets/img/TiendaTransfer.svg";
 import TiendaVentas from "../../assets/img/TiendaVentas.svg";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const MiTienda = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const img = new FormData();
+    img.append("idtienda", 2554);
+    img.append("idproducto", 12481);
+    apiFetch(img, "productos", "get").then(async (res) => {
+      console.log(res);
+    });
+  }, []);
 
   const sections = [
     {
