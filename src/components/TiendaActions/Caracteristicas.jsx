@@ -166,136 +166,134 @@ const Caracteristicas = ({ form, setForm }) => {
   console.log(form);
 
   return (
-    <Grid className="gridContainer">
-      <div className="caractContainer">
-        <div className="container">
-          <Breadcrumbs links={pathnames} />
-          <span className="title">CARACTERÍSTICAS</span>
-          <span className="subtitle">
-            Podés seleccionar varias opciones en cada caso.
-          </span>
-          {errorObligatorio && (
-            <div className="errorBox">
-              <CancelOutlinedIcon color="secondary" className="cruz" />
-              <p>Ingresar campo obligatorio "{campoError}"</p>
+    <div className="caractContainer">
+      <div className="container">
+        <Breadcrumbs links={pathnames} />
+        <span className="title">CARACTERÍSTICAS</span>
+        <span className="subtitle">
+          Podés seleccionar varias opciones en cada caso.
+        </span>
+        {errorObligatorio && (
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>Ingresar campo obligatorio "{campoError}"</p>
+          </div>
+        )}
+        <div className="inputContainer">
+          {data.length === 0 ? (
+            <div
+              style={{
+                marginTop: "24px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Loader spin={"spinnerG"} />
             </div>
-          )}
-          <div className="inputContainer">
-            {data.length === 0 ? (
-              <div
-                style={{
-                  marginTop: "24px",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Loader spin={"spinnerG"} />
-              </div>
-            ) : (
-              data.map((select) => {
-                return (
-                  <div className="inputBox">
-                    <p className="labelInput" id="label">
-                      {select.nombre} {select.es_obligatoria === "1" ? "*" : ""}
-                    </p>
-                    <Select
-                      displayEmpty
-                      multiple={select.valores_multiples === "0" ? false : true}
-                      className="selectInput"
-                      placeholder={`Selecciona ${select.nombre}`}
-                      size="small"
-                      id={select.nombre}
-                      value={caracteristicas[select.nombre]}
-                      renderValue={(selected) => {
-                        if (selected.length === 0) {
-                          return (
-                            <em>
-                              {select.valores_multiples === "0"
-                                ? `Selecciona ${select.nombre}`
-                                : "Seleccioná de 1 a 3 opciones"}
-                            </em>
-                          );
-                        }
-                        return selected.join(", ");
-                      }}
-                      onChange={(event) => {
-                        handleChange(event, select);
-                      }}
+          ) : (
+            data.map((select) => {
+              return (
+                <div className="inputBox">
+                  <p className="labelInput" id="label">
+                    {select.nombre} {select.es_obligatoria === "1" ? "*" : ""}
+                  </p>
+                  <Select
+                    displayEmpty
+                    multiple={select.valores_multiples === "0" ? false : true}
+                    className="selectInput"
+                    placeholder={`Selecciona ${select.nombre}`}
+                    size="small"
+                    id={select.nombre}
+                    value={caracteristicas[select.nombre]}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return (
+                          <em>
+                            {select.valores_multiples === "0"
+                              ? `Selecciona ${select.nombre}`
+                              : "Seleccioná de 1 a 3 opciones"}
+                          </em>
+                        );
+                      }
+                      return selected.join(", ");
+                    }}
+                    onChange={(event) => {
+                      handleChange(event, select);
+                    }}
+                    sx={{
+                      "& div": {
+                        fontSize: "14px",
+                        color:
+                          select.caractValue === "" ? "#BABCBE" : "#423B3C",
+                        fontWeight: "400",
+                      },
+                      height: 42,
+                    }}
+                    MenuProps={{
+                      style: {
+                        maxHeight: 150,
+                      },
+                    }}
+                  >
+                    <MenuItem
+                      disabled
+                      key={"ejemplo"}
+                      value={"ejemplo"}
                       sx={{
-                        "& div": {
-                          fontSize: "14px",
-                          color:
-                            select.caractValue === "" ? "#BABCBE" : "#423B3C",
-                          fontWeight: "400",
-                        },
-                        height: 42,
-                      }}
-                      MenuProps={{
-                        style: {
-                          maxHeight: 150,
-                        },
+                        fontSize: "14px",
+                        color: "#BABCBE",
+                        fontWeight: "400",
                       }}
                     >
-                      <MenuItem
-                        disabled
-                        key={"ejemplo"}
-                        value={"ejemplo"}
-                        sx={{
-                          fontSize: "14px",
-                          color: "#BABCBE",
-                          fontWeight: "400",
-                        }}
-                      >
-                        {`Selecciona ${select.nombre}`}
-                      </MenuItem>
-                      {select.valores.length > 0 &&
-                        select.valores.map((option, i) => {
-                          if (option === "") {
-                            return null;
-                          }
-                          return (
-                            <MenuItem
-                              key={i}
-                              value={option.valor}
-                              /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
-                              onClick={() => {
-                                if (
-                                  estadoSeleccionado ===
+                      {`Selecciona ${select.nombre}`}
+                    </MenuItem>
+                    {select.valores.length > 0 &&
+                      select.valores.map((option, i) => {
+                        if (option === "") {
+                          return null;
+                        }
+                        return (
+                          <MenuItem
+                            key={i}
+                            value={option.valor}
+                            /* `${option.idcaracteristica}:${option.idcaracteristicavalor}` */
+                            onClick={() => {
+                              if (
+                                estadoSeleccionado ===
+                                `${option.idcaracteristica}:${option.idcaracteristicavalor}`
+                              ) {
+                                arrayIdCaracteristicas();
+                              } else {
+                                setEstadoSeleccionado(
                                   `${option.idcaracteristica}:${option.idcaracteristicavalor}`
-                                ) {
-                                  arrayIdCaracteristicas();
-                                } else {
-                                  setEstadoSeleccionado(
-                                    `${option.idcaracteristica}:${option.idcaracteristicavalor}`
-                                  );
-                                }
-                              }}
-                              sx={{ fontSize: "14px", color: "#969696" }}
-                            >
-                              {option.valor}
-                            </MenuItem>
-                          );
-                        })}
-                    </Select>
-                  </div>
-                );
-              })
-            )}
-          </div>
-          <div className="buttonContainer">
-            <button onClick={() => handleSubmit()}>IR A DETALLES</button>
-          </div>
-          <div
-            className="returnLink"
-            onClick={() => navigate(`/MiTienda/IMAGENES`)}
-          >
-            <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A IMAGENES</p>
-          </div>
+                                );
+                              }
+                            }}
+                            sx={{ fontSize: "14px", color: "#969696" }}
+                          >
+                            {option.valor}
+                          </MenuItem>
+                        );
+                      })}
+                  </Select>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <div className="buttonContainer">
+          <button onClick={() => handleSubmit()}>IR A DETALLES</button>
+        </div>
+        <div
+          className="returnLink"
+          onClick={() => navigate(`/MiTienda/IMAGENES`)}
+        >
+          <img src={leftArrow} alt="leftArrow" />
+          <p>VOLVER A IMAGENES</p>
         </div>
       </div>
-    </Grid>
+    </div>
   );
 };
 
