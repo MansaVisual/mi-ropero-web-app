@@ -10,6 +10,7 @@ import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
 import PopUpVideo from "./PopUpVideo";
+import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
@@ -28,6 +29,10 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [numeroImgExtra, setNumeroImgExtra] = useState(0);
 
   const { categorias } = useContext(UseProdsContext);
+
+  const { tiendaData } = useContext(UseMiTiendaContext);
+
+  console.log(tiendaData);
 
   useEffect(() => {
     if (!form.categoriaId) {
