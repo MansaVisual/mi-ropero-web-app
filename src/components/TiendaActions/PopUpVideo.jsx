@@ -7,13 +7,13 @@ import Swal from "sweetalert2";
 const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
   const [videoSrc, setVideoSrc] = useState(null);
 
-  function readFile(file) {
+  /*   function readFile(file) {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.addEventListener("load", () => resolve(reader.result), false);
       reader.readAsDataURL(file);
     });
-  }
+  } */
 
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -25,8 +25,8 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
           confirmButtonText: "ACEPTAR",
         });
       } else {
-        let imageDataUrl = await readFile(file);
-        setVideoSrc(imageDataUrl);
+        /* let imageDataUrl = await readFile(file); */
+        setVideoSrc(file);
       }
     }
   };
