@@ -109,6 +109,7 @@ const PopUpImg = ({
     ctx.putImageData(data, 0, 0);
 
     const canvasData = canvas.toDataURL("image/jpeg");
+    console.log(canvasData);
     let newImage = new Image();
     newImage.src = canvasData;
 
@@ -124,7 +125,6 @@ const PopUpImg = ({
       }, "image/jpeg");
     }); */
   };
-  console.log("PRUEBA", newImg);
   const createImage = (url) =>
     new Promise((resolve, reject) => {
       const image = new Image();
@@ -137,6 +137,7 @@ const PopUpImg = ({
   const showCroppedImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
+      console.log(croppedImage);
       setErrorObligatorio(false);
       setImagenes((prevState) => ({
         ...prevState,
