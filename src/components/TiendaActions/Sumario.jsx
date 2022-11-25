@@ -70,9 +70,6 @@ const Sumario = ({ form }) => {
                 const img = new FormData();
                 img.append("idtienda", Number(resIdTienda.result[0].idtienda));
                 img.append("idproducto", Number(prodRes.result.idproducto));
-                apiFetch(img, "productos", "get").then(async (res) => {
-                  console.log(res);
-                });
                 for (const i in form.imagenes) {
                   console.log(form.imagenes[i])
                   if(form.imagenes[i]!==null){
@@ -82,7 +79,8 @@ const Sumario = ({ form }) => {
                       Number(resIdTienda.result[0].idtienda)
                     );
                     img.append("idproducto", Number(prodRes.result.idproducto));
-                    img.append("image", form.imagenes[i]);
+                    const file = await new File([form.imagenes[i]], "file")
+                    img.append("image", file);
                     await insertImg(img);
                   }
                 }
