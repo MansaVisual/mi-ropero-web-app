@@ -74,14 +74,17 @@ const Sumario = ({ form }) => {
                   console.log(res);
                 });
                 for (const i in form.imagenes) {
-                  const img = new FormData();
-                  img.append(
-                    "idtienda",
-                    Number(resIdTienda.result[0].idtienda)
-                  );
-                  img.append("idproducto", Number(prodRes.result.idproducto));
-                  img.append("image", form.imagenes[i]);
-                  await insertImg(img);
+                  console.log(form.imagenes[i])
+                  if(form.imagenes[i]!==null){
+                    const img = new FormData();
+                    img.append(
+                      "idtienda",
+                      Number(resIdTienda.result[0].idtienda)
+                    );
+                    img.append("idproducto", Number(prodRes.result.idproducto));
+                    img.append("image", form.imagenes[i]);
+                    await insertImg(img);
+                  }
                 }
               }
             });
@@ -96,11 +99,13 @@ const Sumario = ({ form }) => {
         console.log(res.result);
         if (res.status === "success") {
           for (const i in form.imagenes) {
-            const img = new FormData();
-            img.append("idtienda", tiendaData.idtienda);
-            img.append("idproducto", res.result.idproducto);
-            img.append("image", form.imagenes[i]);
-            await insertImg(img);
+            if(form.imagenes[i]!==null){
+              const img = new FormData();
+              img.append("idtienda", Number(tiendaData.idtienda));
+              img.append("idproducto", Number(res.result.idproducto));
+              img.append("image", form.imagenes[i]);
+              await insertImg(img);
+            }
           }
         } else {
           console.log(res);
