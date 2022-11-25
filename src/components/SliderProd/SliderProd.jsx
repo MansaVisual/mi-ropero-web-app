@@ -61,8 +61,7 @@ const SliderProd = ({ contenido }) => {
           customRightArrow={<NextArrow />}
         >
           {contenido.map((item, index) => {
-            console.log(contenido);
-            if (item.imagenes[0].imagen_vertical) {
+            if (item.imagenes[0].imagen_vertical === undefined) {
               return null;
             }
             return (
