@@ -73,7 +73,7 @@ const Sumario = ({ form }) => {
                 apiFetch(img, "productos", "get").then(async (res) => {
                   console.log(res);
                 });
-                /* setTimeout(async () => {
+                setTimeout(async () => {
                   for (const i in form.imagenes) {
                     const img = new FormData();
                     img.append(
@@ -84,7 +84,7 @@ const Sumario = ({ form }) => {
                     img.append("image", form.imagenes[i]);
                     await insertImg(img);
                   }
-                }, 3000); */
+                }, 3000);
               }
             });
           } else {
