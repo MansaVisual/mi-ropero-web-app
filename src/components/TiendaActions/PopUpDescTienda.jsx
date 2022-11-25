@@ -44,14 +44,14 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
     >
       <div
         className="fondoPopUp"
-        onClick={() => setOpenMessagePop(false)}
+        onClick={() => setOpenPopUp(false)}
       ></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
           onClick={() => {
-            setOpenMessagePop(false);
+            setOpenPopUp(false);
           }}
         />
         <div className="popUpContainer">
@@ -109,7 +109,7 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
               <>
                 {!loading && !fin && 
                   <Button
-                  onClick={() => setOpenMessagePop(false)}
+                  onClick={() => setOpenPopUp(false)}
                   className="volver"
                   >
                     CANCELAR
@@ -127,7 +127,7 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
                   <Button
                   disabled={message === "" ? true : false}
                   className={message === "" ? "mensajeDisabled" : "recordar"}
-                  onClick={() => setOpenMessagePop(false) }
+                  onClick={() => setOpenPopUp(false) }
                   >
                     LISTO
                   </Button>
