@@ -20,8 +20,6 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
-  const [imgType, setImgType] = useState({});
-  const [imgName, setImgName] = useState({});
   const [video, setVideo] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
@@ -47,13 +45,9 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
           }
-          setImgType(imagenes)
-          setImgName(imagenes)
           setImagenes(imagenes);
           return;
         } else {
-          setImgType(form.imgType)
-          setImgName(form.imagenes)
           setImagenes(form.imagenes);
         }
       }
@@ -253,8 +247,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenes={setImagenes}
           setErrorObligatorio={setErrorObligatorio}
           setSeccionExtra={setSeccionExtra}
-          setImgType={setImgType}
-          setImgName={setImgName}
+
         />
       )}
       {openVidPopUp && (
