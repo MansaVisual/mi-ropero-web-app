@@ -42,6 +42,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
           }
+          console.log(imagenes);
           setImagenes(imagenes);
           return;
         } else {
