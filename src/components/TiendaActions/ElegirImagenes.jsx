@@ -34,9 +34,12 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
+      console.log(categorias[i].idcategoria, form.tipoId)
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
+        console.log(form.imagenes);
+
         if (form.imagenes === {}) {
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
