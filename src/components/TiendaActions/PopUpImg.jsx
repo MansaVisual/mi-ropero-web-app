@@ -12,7 +12,7 @@ const PopUpImg = ({
   setErrorObligatorio,
   setSeccionExtra,
   setImgType,
-  setImgName
+  setImgName,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenes[section] ? imagenes[section] : null
@@ -21,19 +21,19 @@ const PopUpImg = ({
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [type,setType]=useState(null)
-  const [name,setName]=useState(null)
-  const [newImg,setNewImg]=useState({})
+  const [type, setType] = useState(null);
+  const [name, setName] = useState(null);
+  const [newImg, setNewImg] = useState({});
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
   const onFileChange = async (e) => {
-    setNewImg(e.target.files[0])
-    console.log(e.target.files[0])
-    setType(e.target.files[0].type)
-    setName(e.target.files[0].name)
+    setNewImg(e.target.files[0]);
+    console.log(e.target.files[0]);
+    setType(e.target.files[0].type);
+    setName(e.target.files[0].name);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       let imageDataUrl = await readFile(file);
@@ -108,17 +108,19 @@ const PopUpImg = ({
 
     ctx.putImageData(data, 0, 0);
 
+    console.log(canvas.toDataURL("image/jpeg"));
+
     return new Promise((resolve, reject) => {
-      console.log("ENTRADA",newImg)
-      console.log(newImg.size)
+      console.log("ENTRADA", newImg);
+      console.log(newImg.size);
       canvas.toBlob((file) => {
-        setNewImg((prevState)=>({...prevState,size:file.size}))
-        console.log(file.size)
+        setNewImg((prevState) => ({ ...prevState, size: file.size }));
+        console.log(file.size);
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
     });
   };
-console.log("PRUEBA",newImg)
+  console.log("PRUEBA", newImg);
   const createImage = (url) =>
     new Promise((resolve, reject) => {
       const image = new Image();
@@ -136,14 +138,14 @@ console.log("PRUEBA",newImg)
         ...prevState,
         [section]: croppedImage,
       }));
-      setImgType((prevState)=>({
+      setImgType((prevState) => ({
         ...prevState,
-        [section]:type
-      }))
-      setImgName((prevState)=>({
+        [section]: type,
+      }));
+      setImgName((prevState) => ({
         ...prevState,
-        [section]:name
-      }))
+        [section]: name,
+      }));
       setSeccionExtra((prevState) => ({
         ...prevState,
         [section]: croppedImage,

@@ -610,7 +610,7 @@ const Contacto = ({ form, setForm }) => {
           onClick={() => navigate(`/MiTienda/DETALLES`)}
         >
           <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A DETALLES DE PUBLICACIÓN</p>
+          <p>VOLVER A DETALLES</p>
         </div>
         {viewDireccion && (
           <PopUpFinalDir
