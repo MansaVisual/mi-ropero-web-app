@@ -4,13 +4,14 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import Swal from "sweetalert2";
 
 const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const [error, setError] = useState(false);
-  const [fin,setFin]=useState(false)
+  const [fin, setFin] = useState(false);
 
   const submit = () => {
     setLoading(true);
@@ -18,7 +19,7 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
     const desc = new FormData();
     desc.append("idcliente", descuentoInfo.idCliente);
     desc.append("idtienda", descuentoInfo.idTienda);
-    desc.append("descuento", discount);
+    desc.append("descuento", message);
     apiFetch(desc, "tiendas", "set_discount").then(async (res) => {
       if (res.status === "success") {
         setLoading(false);
@@ -26,26 +27,21 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
           title: "OFERTA DE TIENDA AÑADIDA",
           icon: "success",
           confirmButtonText: "ACEPTAR",
-        }).then((res)=>window.location.reload())
+        }).then((res) => window.location.reload());
       } else {
         setLoading(false);
         Swal.fire({
           title: "OCURRIÓ UN ERROR",
           icon: "error",
           confirmButtonText: "ACEPTAR",
-        })
+        });
       }
     });
   };
 
   return (
-    <div
-      className="PopUpMensajePP"
-    >
-      <div
-        className="fondoPopUp"
-        onClick={() => setOpenPopUp(false)}
-      ></div>
+    <div className="PopUpMensajePP">
+      <div className="fondoPopUp" onClick={() => setOpenPopUp(false)}></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
@@ -57,16 +53,16 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">
-            {fin ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE" : 
-              "DESCUENTO POR TIENDA"
-            }
+            {fin
+              ? "EL DESCUENTO SE APLICÓ CORRECTAMENTE"
+              : "DESCUENTO POR TIENDA"}
           </p>
-          {!fin && 
-            <p className="popUpDescription" style={{marginTop:"8px"}}>
+          {!fin && (
+            <p className="popUpDescription" style={{ marginTop: "8px" }}>
               Ingresá el porcentaje de descuento para tu tienda
             </p>
-          }
-          {!fin &&
+          )}
+          {!fin && (
             <TextField
               multiline
               rows={1}
@@ -91,7 +87,7 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
                 },
               }}
             />
-          }
+          )}
           <div className="buttonContainer">
             {loading ? (
               <div
@@ -107,31 +103,31 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
               </div>
             ) : (
               <>
-                {!loading && !fin && 
+                {!loading && !fin && (
                   <Button
-                  onClick={() => setOpenPopUp(false)}
-                  className="volver"
+                    onClick={() => setOpenPopUp(false)}
+                    className="volver"
                   >
                     CANCELAR
                   </Button>
-                }
-                {!fin ? 
+                )}
+                {!fin ? (
                   <Button
-                  disabled={message === "" ? true : false}
-                  className={message === "" ? "mensajeDisabled" : "recordar"}
-                  onClick={() => submit()}
+                    disabled={message === "" ? true : false}
+                    className={message === "" ? "mensajeDisabled" : "recordar"}
+                    onClick={() => submit()}
                   >
                     APLICAR
                   </Button>
-                :
+                ) : (
                   <Button
-                  disabled={message === "" ? true : false}
-                  className={message === "" ? "mensajeDisabled" : "recordar"}
-                  onClick={() => setOpenPopUp(false) }
+                    disabled={message === "" ? true : false}
+                    className={message === "" ? "mensajeDisabled" : "recordar"}
+                    onClick={() => setOpenPopUp(false)}
                   >
                     LISTO
                   </Button>
-                }
+                )}
               </>
             )}
           </div>
