@@ -131,9 +131,9 @@ const PopUpImg = ({
     var file = dataURLtoFile(newImage, "hello.png");
     console.log(file);
 
-    return newImage;
+    /*     return newImage; */
 
-    /* return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       console.log("ENTRADA", newImg);
       console.log(newImg.size);
       canvas.toBlob((file) => {
@@ -141,7 +141,7 @@ const PopUpImg = ({
         console.log(file.size);
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
-    }); */
+    });
   };
   const createImage = (url) =>
     new Promise((resolve, reject) => {
