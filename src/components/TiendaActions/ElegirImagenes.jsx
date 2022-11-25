@@ -53,6 +53,7 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const handleSubmit = async () => {
     let variable = false;
+    console.log(imgNecesarias);
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
