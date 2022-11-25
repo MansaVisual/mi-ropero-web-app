@@ -3,7 +3,7 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
-import { UseLoginContext } from "../../context/LoginContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
   const [loading, setLoading] = useState(false);
