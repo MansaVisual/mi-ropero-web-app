@@ -148,7 +148,7 @@ const SeccionProductos = ({ setForm }) => {
                         }
                         <p
                           className="discountLink"
-                          onClick={product.precio_oferta==="0.00"?Swal.fire({
+                          onClick={product.precio_oferta==="0.00"?()=>Swal.fire({
                             title: "EL PRODUCTO YA ESTA EN OFERTA",
                             icon: "info",
                             confirmButtonText: "ACEPTAR",
