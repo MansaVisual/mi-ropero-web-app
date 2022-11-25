@@ -11,8 +11,7 @@ const PopUpImg = ({
   setImagenes,
   setErrorObligatorio,
   setSeccionExtra,
-  setImgType,
-  setImgName,
+  setImagenesBlob,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenes[section] ? imagenes[section] : null
@@ -21,9 +20,6 @@ const PopUpImg = ({
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [type, setType] = useState(null);
-  const [name, setName] = useState(null);
-  const [newImg, setNewImg] = useState({});
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -34,8 +30,6 @@ const PopUpImg = ({
       ...prevState,
       [section]: e.target.files[0],
     }));
-    setType(e.target.files[0].type);
-    setName(e.target.files[0].name);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       let imageDataUrl = await readFile(file);
@@ -130,17 +124,19 @@ const PopUpImg = ({
     var file = dataURLtoFile(canvasData, "filename.png");
     console.log(file);
 
-    return file;
+    /* return file; */
 
-    /* return new Promise((resolve, reject) => {
-      console.log("ENTRADA", newImg);
-      console.log(newImg.size);
+    const blob = new Promise((resolve, reject) => {
       canvas.toBlob((file) => {
-        setNewImg((prevState) => ({ ...prevState, size: file.size }));
-        console.log(file.size);
+        /* setNewImg((prevState) => ({ ...prevState, size: file.size }));
+        console.log(file.size); */
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
-    }); */
+    });
+    return {
+      file: file,
+      blob: blob,
+    };
   };
   const createImage = (url) =>
     new Promise((resolve, reject) => {
@@ -157,19 +153,15 @@ const PopUpImg = ({
       setErrorObligatorio(false);
       setImagenes((prevState) => ({
         ...prevState,
-        [section]: croppedImage,
+        [section]: croppedImage.file,
       }));
-      setImgType((prevState) => ({
+      setImagenesBlob((prevState) => ({
         ...prevState,
-        [section]: type,
-      }));
-      setImgName((prevState) => ({
-        ...prevState,
-        [section]: name,
+        [section]: croppedImage.blob,
       }));
       setSeccionExtra((prevState) => ({
         ...prevState,
-        [section]: croppedImage,
+        [section]: croppedImage.file,
       }));
       setOpenImgPopUp(false);
     } catch (e) {
