@@ -120,9 +120,9 @@ const SeccionProductos = ({ setForm }) => {
                       </div>
                       <div className="ofertaData">
                         {product.precio_oferta==="0.00"?
-                        <p className="monto">${product.precio}</p>:<>
-                        <p className="oldMonto">${product.precio}</p>
-                        <p className="montoOferta">${product.precio}</p></>
+                          <p className="monto">${product.precio}</p>:<>
+                          <p className="oldMonto">${product.precio}</p>
+                          <p className="montoOferta">${product.precio_oferta}</p></>
                         }
                         <img
                           onClick={() => handleDelete(product.idproducto)}
@@ -141,8 +141,11 @@ const SeccionProductos = ({ setForm }) => {
                       <div>
                         <p className="messageTitle">{product.nombre}</p>
                         <p className="messageState">{product.estado_text}</p>
-                        <p className="monto">${product.precio}</p>
-                        <p
+                        {product.precio_oferta==="0.00"?
+                          <p className="monto">${product.precio}</p>:<>
+                          <p className="oldMonto">${product.precio}</p>
+                          <p className="montoOferta">${product.precio_oferta}</p></>
+                        }                        <p
                           className="discountLink"
                           onClick={() => handleOpenModal(product, "productos")}
                         >
