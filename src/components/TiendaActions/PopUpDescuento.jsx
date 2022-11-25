@@ -24,25 +24,23 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
     desc.append("idtienda", descuentoInfo.idTienda);
     desc.append("descuento", discount);
     console.log(Object.fromEntries(desc));
-    /* apiFetch(desc, metodo, "set_discount").then(async (res) => {
+    apiFetch(desc, metodo, "set_discount").then(async (res) => {
       if (res.status === "success") {
-        console.log(res);
         setLoading(false);
       } else {
-        console.log(res);
         setLoading(false);
       }
-    }); */
+    });
   };
 
   return (
     <div className="PopUpMensajePP">
-      <div className="fondoPopUp" onClick={() => setOpenPopUp(false)}></div>
+      <div className="fondoPopUp" onClick={loading?null:() => setOpenPopUp(false)}></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
-          onClick={() => {
+          onClick={loading?null:() => {
             setOpenPopUp(false);
           }}
         />
