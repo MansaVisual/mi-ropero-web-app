@@ -108,7 +108,11 @@ const PopUpImg = ({
 
     ctx.putImageData(data, 0, 0);
 
-    console.log(canvas.toDataURL("image/jpeg"));
+    const canvasData = canvas.toDataURL("image/jpeg");
+    let newImage = new Image();
+    newImage.src = canvasData;
+
+    console.log(newImage);
 
     return new Promise((resolve, reject) => {
       console.log("ENTRADA", newImg);
