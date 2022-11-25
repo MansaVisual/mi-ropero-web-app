@@ -7,6 +7,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import Loader from "../Loader/Loader";
+import Swal from "sweetalert2";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
@@ -85,6 +86,14 @@ const Sumario = ({ form }) => {
                     await insertImg(img);
                   }
                 }
+                setLoading(false)
+                Swal.fire({
+                  title: 'PRODUCTO CARGADO EXITOSAMENTE',
+                  icon: "success",
+                  confirmButtonText: "CONTINUAR",
+                }).then((res) => {
+                  navigate("/MiTienda")
+                });
               }
             });
           } else {
@@ -106,6 +115,14 @@ const Sumario = ({ form }) => {
               await insertImg(img);
             }
           }
+          setLoading(false)
+          Swal.fire({
+            title: 'PRODUCTO CARGADO EXITOSAMENTE',
+            icon: "success",
+            confirmButtonText: "CONTINUAR",
+          }).then((res) => {
+            navigate("/MiTienda")
+          });
         } else {
           console.log(res);
         }
