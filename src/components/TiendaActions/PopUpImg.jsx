@@ -24,14 +24,11 @@ const PopUpImg = ({
   const [type,setType]=useState(null)
   const [name,setName]=useState(null)
 
-  const [newFile,setNewFile]=useState({})
-
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
   const onFileChange = async (e) => {
-    setNewFile(e.target.files[0])
     console.log(e.target.files[0])
     setType(e.target.files[0].type)
     setName(e.target.files[0].name)
@@ -110,18 +107,12 @@ const PopUpImg = ({
     ctx.putImageData(data, 0, 0);
 
     return new Promise((resolve, reject) => {
+      console.log(canvas)
       canvas.toBlob((file) => {
-        console.log(file)
-        setNewFile((prevState)=>({
-          ...prevState,
-          size:file.size
-        }))
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
     });
   };
-
-  console.log(newFile)
 
   const createImage = (url) =>
     new Promise((resolve, reject) => {
@@ -135,11 +126,10 @@ const PopUpImg = ({
   const showCroppedImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-      console.log(croppedImage)
       setErrorObligatorio(false);
       setImagenes((prevState) => ({
         ...prevState,
-        [section]: newFile,
+        [section]: croppedImage,
       }));
       setImgType((prevState)=>({
         ...prevState,
