@@ -9,6 +9,7 @@ import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import PopUpDescuento from "./PopUpDescuento";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import PopUpDescTienda from "./PopUpDescTienda";
 
 const SeccionProductos = ({ setForm }) => {
   const navigate = useNavigate();
@@ -16,19 +17,21 @@ const SeccionProductos = ({ setForm }) => {
   const { productos, tiendaDetail } = useContext(UseMiTiendaContext);
   const [descuentoInfo, setDescuentoInfo] = useState({});
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [openPopUp2, setOpenPopUp2] = useState(false);
 
   console.log(tiendaDetail);
 
   const handleOpenModal = (infoDesc, metodo) => {
     console.log(metodo, infoDesc);
-    setOpenPopUp(true);
     if (metodo === "productos") {
+      setOpenPopUp(true);
       setDescuentoInfo({
         productId: infoDesc.idproducto,
         idTienda: infoDesc.idtienda,
         metodo: "productos",
       });
     } else {
+      setOpenPopUp2(true);
       setDescuentoInfo({
         idCliente: tiendaDetail.idcliente,
         idTienda: tiendaDetail.idtienda,
@@ -192,6 +195,12 @@ const SeccionProductos = ({ setForm }) => {
         <PopUpDescuento
           descuentoInfo={descuentoInfo}
           setOpenPopUp={setOpenPopUp}
+        />
+      )}
+      {openPopUp2 && (
+        <PopUpDescTienda
+          descuentoInfo={descuentoInfo}
+          setOpenPopUp={setOpenPopUp2}
         />
       )}
     </div>

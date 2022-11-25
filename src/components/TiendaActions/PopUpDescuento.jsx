@@ -16,14 +16,9 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
     setLoading(true);
 
     const desc = new FormData();
-    if (descuentoInfo.metodo === "productos") {
-      desc.append("idproducto", descuentoInfo.productId);
-    } else {
-      desc.append("idcliente", descuentoInfo.idCliente);
-    }
+    desc.append("idproducto", descuentoInfo.productId);
     desc.append("idtienda", descuentoInfo.idTienda);
     desc.append("descuento", discount);
-    console.log(Object.fromEntries(desc));
     apiFetch(desc, "productos", "set_discount").then(async (res) => {
       if (res.status === "success") {
         setLoading(false);
