@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
+import Swal from "sweetalert2";
 
 const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
   const [videoSrc, setVideoSrc] = useState(null);
@@ -17,8 +18,16 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      let imageDataUrl = await readFile(file);
-      setVideoSrc(imageDataUrl);
+      if (e.target.files[0].size > 20000000) {
+        Swal.fire({
+          title: "VIDEO SUPERIOR A 20MB",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
+      } else {
+        let imageDataUrl = await readFile(file);
+        setVideoSrc(imageDataUrl);
+      }
     }
   };
 
