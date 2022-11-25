@@ -92,7 +92,7 @@ const Sumario = ({ form }) => {
                   icon: "success",
                   confirmButtonText: "CONTINUAR",
                 }).then((res) => {
-                  navigate("/MiTienda")
+                  window.location.replace("https://www.miropero.ar/MiTienda/PRODUCTOS")
                 });
               }
             });
@@ -121,7 +121,7 @@ const Sumario = ({ form }) => {
             icon: "success",
             confirmButtonText: "CONTINUAR",
           }).then((res) => {
-            navigate("/MiTienda")
+            window.location.replace("https://www.miropero.ar/MiTienda/PRODUCTOS")
           });
         } else {
           console.log(res);

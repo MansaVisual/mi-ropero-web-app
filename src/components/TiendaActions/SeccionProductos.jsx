@@ -37,7 +37,7 @@ const SeccionProductos = ({ setForm }) => {
     }
   };
 
-  const handleDelete = ({ idproducto }) => {
+  const handleDelete = ( idproducto ) => {
     Swal.fire({
       title: "¿DESEA BORRAR ESTE PRODUCTO?",
       text: "Si borras este producto, perderás todos sus datos",
@@ -54,7 +54,7 @@ const SeccionProductos = ({ setForm }) => {
     }).then((res) => {
       if (res.isConfirmed) {
         const prod = new FormData();
-        prod.append("idcliente", tiendaDetail.idtienda);
+        prod.append("idtienda", tiendaDetail.idtienda);
         prod.append("idproducto", idproducto);
         apiFetch(prod, "productos", "delete").then(async (res) => {
           if (res.status === "error") {
@@ -95,7 +95,7 @@ const SeccionProductos = ({ setForm }) => {
           </div>
           <div className="productList">
             {productos.length > 0 &&
-              productos.map((product, id) => {
+              productos.map((product, id) => {console.log(product)
                 return (
                   <>
                     <div key={id} className="desktopCard">
