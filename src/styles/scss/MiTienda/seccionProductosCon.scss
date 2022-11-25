@@ -176,6 +176,31 @@
             display: flex !important;
             justify-content: center;
           }
+          .monto {
+            margin: 0;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 23px;
+            color: #423b3c;
+            margin-right: 32px;
+          }
+          .oldMonto{
+            margin: 0;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 23px;
+            color: #BABCBE;
+            margin-right: 32px;
+            text-decoration: line-through;
+          }
+          .montoOferta{
+            margin: 0;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 23px;
+            margin-right: 32px;
+            color: #FF3F20;
+          }
           .productImg {
             height: 70px;
             width: 70px;
