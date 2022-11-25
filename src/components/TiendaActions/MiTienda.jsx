@@ -7,7 +7,7 @@ import TiendaDatos from "../../assets/img/TiendaDatos.svg";
 import TiendaMensajes from "../../assets/img/TiendaMensajes.svg";
 import TiendaOfertas from "../../assets/img/TiendaOfertas.svg";
 import TiendaProductos from "../../assets/img/TiendaProductos.svg";
-import TiendaTransfer from "../../assets/img/TiendaTransfer.svg";
+import TiendaTransfer from "../../assets/img/TiendaTransfer.png";
 import TiendaVentas from "../../assets/img/TiendaVentas.svg";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 
