@@ -107,7 +107,7 @@ const PopUpImg = ({
     ctx.putImageData(data, 0, 0);
 
     return new Promise((resolve, reject) => {
-      console.log(file)
+      console.log(canvas)
       canvas.toBlob((file) => {
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
