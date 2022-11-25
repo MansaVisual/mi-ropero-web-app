@@ -54,7 +54,7 @@ const SeccionProductos = ({ setForm }) => {
     }).then((res) => {
       if (res.isConfirmed) {
         const prod = new FormData();
-        prod.append("idcliente", tiendaDetail.idtienda);
+        prod.append("idtienda", tiendaDetail.idtienda);
         prod.append("idproducto", idproducto);
         apiFetch(prod, "productos", "delete").then(async (res) => {
           if (res.status === "error") {
