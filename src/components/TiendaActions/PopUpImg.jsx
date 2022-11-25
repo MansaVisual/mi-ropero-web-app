@@ -30,8 +30,10 @@ const PopUpImg = ({
   }, []);
 
   const onFileChange = async (e) => {
-    setNewImg(e.target.files[0]);
-    console.log(e.target.files[0]);
+    setImagenes((prevState) => ({
+      ...prevState,
+      [section]: e.target.files[0],
+    }));
     setType(e.target.files[0].type);
     setName(e.target.files[0].name);
     if (e.target.files && e.target.files.length > 0) {
@@ -155,12 +157,11 @@ const PopUpImg = ({
   const showCroppedImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-      console.log(croppedImage);
       setErrorObligatorio(false);
-      setImagenes((prevState) => ({
-        ...prevState,
-        [section]: croppedImage,
-      }));
+      // setImagenes((prevState) => ({
+      //   ...prevState,
+      //   [section]: croppedImage,
+      // }));
       setImgType((prevState) => ({
         ...prevState,
         [section]: type,
