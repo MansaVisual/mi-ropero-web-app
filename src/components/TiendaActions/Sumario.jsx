@@ -73,18 +73,16 @@ const Sumario = ({ form }) => {
                 apiFetch(img, "productos", "get").then(async (res) => {
                   console.log(res);
                 });
-                setTimeout(async () => {
-                  for (const i in form.imagenes) {
-                    const img = new FormData();
-                    img.append(
-                      "idtienda",
-                      Number(resIdTienda.result[0].idtienda)
-                    );
-                    img.append("idproducto", Number(prodRes.result.idproducto));
-                    img.append("image", form.imagenes[i]);
-                    await insertImg(img);
-                  }
-                }, 3000);
+                for (const i in form.imagenes) {
+                  const img = new FormData();
+                  img.append(
+                    "idtienda",
+                    Number(resIdTienda.result[0].idtienda)
+                  );
+                  img.append("idproducto", Number(prodRes.result.idproducto));
+                  img.append("image", form.imagenes[i]);
+                  await insertImg(img);
+                }
               }
             });
           } else {
