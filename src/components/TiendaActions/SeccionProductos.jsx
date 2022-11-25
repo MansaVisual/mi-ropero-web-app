@@ -145,9 +145,14 @@ const SeccionProductos = ({ setForm }) => {
                           <p className="monto">${product.precio}</p>:<>
                           <p className="oldMonto">${product.precio}</p>
                           <p className="montoOferta">${product.precio_oferta}</p></>
-                        }                        <p
+                        }
+                        <p
                           className="discountLink"
-                          onClick={() => handleOpenModal(product, "productos")}
+                          onClick={product.precio_oferta==="0.00"?Swal.fire({
+                            title: "EL PRODUCTO YA ESTA EN OFERTA",
+                            icon: "info",
+                            confirmButtonText: "ACEPTAR",
+                          }):() => handleOpenModal(product, "productos")}
                         >
                           CREAR DESCUENTO
                         </p>
