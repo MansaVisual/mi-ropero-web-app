@@ -71,17 +71,17 @@ const Sumario = ({ form }) => {
                 img.append("idtienda", Number(resIdTienda.result[0].idtienda));
                 img.append("idproducto", Number(prodRes.result.idproducto));
                 for (const i in form.imagenes) {
-                  console.log(form.imagenes[i])
-                  if(form.imagenes[i]!==null){
+                  console.log(form.imagenes[i]);
+                  if (form.imagenes[i] !== null) {
                     const img = new FormData();
                     img.append(
                       "idtienda",
                       Number(resIdTienda.result[0].idtienda)
                     );
                     img.append("idproducto", Number(prodRes.result.idproducto));
-                    let file = await new File([form.imagenes[i]], form.imgName[i], {type: form.imgType[i], lastModified: Date.now()})
-                    console.log(file)
-                    img.append("image", file);
+                    /* let file = await new File([form.imagenes[i]], form.imgName[i], {type: form.imgType[i], lastModified: Date.now()})
+                    console.log(file) */
+                    img.append("image", form.imagenes[i]);
                     await insertImg(img);
                   }
                 }
@@ -98,7 +98,7 @@ const Sumario = ({ form }) => {
         console.log(res.result);
         if (res.status === "success") {
           for (const i in form.imagenes) {
-            if(form.imagenes[i]!==null){
+            if (form.imagenes[i] !== null) {
               const img = new FormData();
               img.append("idtienda", Number(tiendaData.idtienda));
               img.append("idproducto", Number(res.result.idproducto));

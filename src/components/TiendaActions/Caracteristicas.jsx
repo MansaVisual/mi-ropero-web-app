@@ -165,6 +165,10 @@ const Caracteristicas = ({ form, setForm }) => {
 
   console.log(form);
 
+  for (const i in form.imagenes) {
+    console.log(form.imagenes[i]);
+  }
+
   return (
     <div className="caractContainer">
       <div className="container">
