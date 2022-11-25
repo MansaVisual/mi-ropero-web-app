@@ -74,6 +74,8 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   };
 
+  console.log(imagenes);
+
   return (
     <div className="elegirImgContainer">
       <div className="container">

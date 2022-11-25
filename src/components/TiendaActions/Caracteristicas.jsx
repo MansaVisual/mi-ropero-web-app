@@ -163,6 +163,8 @@ const Caracteristicas = ({ form, setForm }) => {
     });
   };
 
+  console.log(form);
+
   return (
     <Grid className="gridContainer">
       <div className="caractContainer">

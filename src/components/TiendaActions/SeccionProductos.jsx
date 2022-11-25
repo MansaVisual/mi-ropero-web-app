@@ -39,8 +39,8 @@ const SeccionProductos = ({ setForm }) => {
 
   const handleDelete = ({ idproducto }) => {
     Swal.fire({
-      title: "¡SUMATE A LA MODA CIRCULAR!",
-      text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+      title: "¿DESEA BORRAR ESTE PRODUCTO?",
+      text: "Si borras este producto, perderás todos sus datos",
       iconHtml: `<img src=${logo} alt="LOGO">`,
       customClass: {
         icon: "no-border",
