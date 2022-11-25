@@ -126,7 +126,7 @@ const PopUpImg = ({
 
     /* return file; */
 
-    const blob = new Promise((resolve, reject) => {
+    const blob = await new Promise((resolve, reject) => {
       canvas.toBlob((file) => {
         /* setNewImg((prevState) => ({ ...prevState, size: file.size }));
         console.log(file.size); */
