@@ -53,6 +53,7 @@ const PopUpDescTienda = ({ setOpenMessagePop,descripcion }) => {
               rows={1}
               className="textArea"
               size="small"
+              type="number"
               placeholder="% de descuento"
               value={message}
               onChange={(e) => {

@@ -119,7 +119,11 @@ const SeccionProductos = ({ setForm }) => {
                         </div>
                       </div>
                       <div className="ofertaData">
-                        <p className="monto">${product.precio}</p>
+                        {product.precio_oferta==="0.00"?
+                        <p className="monto">${product.precio}</p>:<>
+                        <p className="oldMonto">${product.precio}</p>
+                        <p className="montoOferta">${product.precio}</p></>
+                        }
                         <img
                           onClick={() => handleDelete(product.idproducto)}
                           className="basuraIcon"

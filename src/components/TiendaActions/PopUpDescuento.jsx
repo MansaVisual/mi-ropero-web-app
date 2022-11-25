@@ -67,6 +67,7 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
               rows={1}
               className="textArea"
               size="small"
+              type="number"
               placeholder="% de descuento"
               value={discount}
               onChange={(e) => {
