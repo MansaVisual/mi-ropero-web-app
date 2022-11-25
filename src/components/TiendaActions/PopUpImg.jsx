@@ -11,6 +11,7 @@ const PopUpImg = ({
   setImagenes,
   setErrorObligatorio,
   setSeccionExtra,
+  setImgType
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenes[section] ? imagenes[section] : null
@@ -19,6 +20,7 @@ const PopUpImg = ({
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [type,setType]=useState(null)
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -26,6 +28,7 @@ const PopUpImg = ({
 
   const onFileChange = async (e) => {
     console.log(e.target.files[0])
+    setType(e.target.files[0].type)
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       let imageDataUrl = await readFile(file);
@@ -124,6 +127,10 @@ const PopUpImg = ({
         ...prevState,
         [section]: croppedImage,
       }));
+      setImgType((prevState)=>({
+        ...prevState,
+        [section]:type
+      }))
       setSeccionExtra((prevState) => ({
         ...prevState,
         [section]: croppedImage,

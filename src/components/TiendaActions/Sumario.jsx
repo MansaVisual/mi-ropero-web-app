@@ -79,7 +79,8 @@ const Sumario = ({ form }) => {
                       Number(resIdTienda.result[0].idtienda)
                     );
                     img.append("idproducto", Number(prodRes.result.idproducto));
-                    const file = await new File([form.imagenes[i]], "file")
+                    const file = new File([form.imagenes[i]], `${i}`, {type:form.imgType[i]})
+                    console.log(file)
                     img.append("image", file);
                     await insertImg(img);
                   }

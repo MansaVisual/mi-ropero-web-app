@@ -20,6 +20,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
+  const [imgType, setImgType] = useState({});
   const [video, setVideo] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
@@ -45,10 +46,11 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
           }
-          console.log(imagenes);
+          setImgType(imagenes)
           setImagenes(imagenes);
           return;
         } else {
+          setImgType(form.imgType)
           setImagenes(form.imagenes);
         }
       }
@@ -75,6 +77,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         ...prevState,
         imagenes: imagenes,
         video: video,
+        imgType: imgType
       }));
       navigate(`/MiTienda/CARACTERISTICAS`);
     }
@@ -245,6 +248,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenes={setImagenes}
           setErrorObligatorio={setErrorObligatorio}
           setSeccionExtra={setSeccionExtra}
+          setImgType={setImgType}
         />
       )}
       {openVidPopUp && (
