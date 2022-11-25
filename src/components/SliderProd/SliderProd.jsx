@@ -9,16 +9,16 @@ import "react-multi-carousel/lib/styles.css";
 const responsive = {
   desktop: {
     breakpoint: { max: 5000, min: 1201 },
-    items: 4
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1200, min: 601 },
-    items: 3
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 600, min: 280 },
-    items: 2
-  }
+    items: 2,
+  },
 };
 
 const PrevArrow = (props) => {
@@ -39,12 +39,18 @@ const NextArrow = (props) => {
   );
 };
 
-const SliderProd =({contenido})=>{
-
+const SliderProd = ({ contenido }) => {
   return (
     <div className="containerSliders">
       {contenido !== undefined && contenido.length === 0 ? (
-        <div style={{ marginTop: "24px",width:"100%",display:"flex",justifyContent:"center" }}>
+        <div
+          style={{
+            marginTop: "24px",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Loader spin={"spinnerG"} />
         </div>
       ) : (
@@ -55,24 +61,29 @@ const SliderProd =({contenido})=>{
           customRightArrow={<NextArrow />}
         >
           {contenido.map((item, index) => {
-              return(
-                <Box key={index}>
-                  <ProductCard
-                    imageCard={item.imagenes[0].imagen_vertical}
-                    productName={item.nombre}
-                    productPrice={item.precio}
-                    idProducto={item.idproducto}
-                    datosTienda={item.tienda}
-                    idTienda={item.idtienda}
-                    precioOferta={item.precio_oferta}
-                    tag="NUEVO"
-                  />
-                </Box>
-            )})}
-          </Carousel>
+            console.log(contenido);
+            if (item.imagenes[0].imagen_vertical) {
+              return null;
+            }
+            return (
+              <Box key={index}>
+                <ProductCard
+                  imageCard={item.imagenes[0].imagen_vertical}
+                  productName={item.nombre}
+                  productPrice={item.precio}
+                  idProducto={item.idproducto}
+                  datosTienda={item.tienda}
+                  idTienda={item.idtienda}
+                  precioOferta={item.precio_oferta}
+                  tag="NUEVO"
+                />
+              </Box>
+            );
+          })}
+        </Carousel>
       )}
     </div>
   );
-}
+};
 
-export default SliderProd
+export default SliderProd;
