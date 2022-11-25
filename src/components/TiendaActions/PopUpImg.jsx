@@ -27,6 +27,10 @@ const PopUpImg = ({
   }, []);
 
   const onFileChange = async (e) => {
+    setImagenes((prevState) => ({
+      ...prevState,
+      [section]: e.target.files[0],
+    }));
     console.log(e.target.files[0])
     setType(e.target.files[0].type)
     if (e.target.files && e.target.files.length > 0) {
@@ -123,10 +127,10 @@ const PopUpImg = ({
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
-      setImagenes((prevState) => ({
-        ...prevState,
-        [section]: croppedImage,
-      }));
+      // setImagenes((prevState) => ({
+      //   ...prevState,
+      //   [section]: croppedImage,
+      // }));
       setImgType((prevState)=>({
         ...prevState,
         [section]:type
