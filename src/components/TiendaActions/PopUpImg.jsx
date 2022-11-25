@@ -23,12 +23,14 @@ const PopUpImg = ({
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [type,setType]=useState(null)
   const [name,setName]=useState(null)
+  const [newImg,setNewImg]=useState({})
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
   const onFileChange = async (e) => {
+    setNewImg(e.target.files[0])
     console.log(e.target.files[0])
     setType(e.target.files[0].type)
     setName(e.target.files[0].name)
@@ -107,13 +109,16 @@ const PopUpImg = ({
     ctx.putImageData(data, 0, 0);
 
     return new Promise((resolve, reject) => {
-      console.log(canvas)
+      console.log("ENTRADA",newImg)
+      console.log(newImg.size)
       canvas.toBlob((file) => {
+        setNewImg((prevState)=>({...prevState,size:file.size}))
+        console.log(file.size)
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
     });
   };
-
+console.log("PRUEBA",newImg)
   const createImage = (url) =>
     new Promise((resolve, reject) => {
       const image = new Image();

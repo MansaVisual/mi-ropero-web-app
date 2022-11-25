@@ -66,7 +66,8 @@ const ElegirImagenes = ({ form, setForm }) => {
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
-          console.log(FileReader(imagenes[key]));
+          let blob = await fetch(imagenes[key]).then(r => r.blob())
+          console.log(typeof(blob))
           if (imgNecesarias[i].nombre === key && !imagenes[key]) {
             variable = true;
             setErrorObligatorio(true);
