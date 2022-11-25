@@ -3,8 +3,9 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
+import { UseLoginContext } from "../../context/LoginContext";
 
-const PopUpDescTienda = ({ setOpenMessagePop,descripcion }) => {
+const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -12,11 +13,29 @@ const PopUpDescTienda = ({ setOpenMessagePop,descripcion }) => {
   const [fin,setFin]=useState(false)
 
   const submit = () => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      setFin(true)
-    }, 1500);
+    setLoading(true);
+
+    const desc = new FormData();
+    desc.append("idcliente", descuentoInfo.idCliente);
+    desc.append("idtienda", descuentoInfo.idTienda);
+    desc.append("descuento", discount);
+    apiFetch(desc, "tiendas", "set_discount").then(async (res) => {
+      if (res.status === "success") {
+        setLoading(false);
+        Swal.fire({
+          title: "OFERTA DE TIENDA AÑADIDA",
+          icon: "success",
+          confirmButtonText: "ACEPTAR",
+        }).then((res)=>window.location.reload())
+      } else {
+        setLoading(false);
+        Swal.fire({
+          title: "OCURRIÓ UN ERROR",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        })
+      }
+    });
   };
 
   return (

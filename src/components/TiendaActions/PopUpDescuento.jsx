@@ -4,6 +4,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import Swal from "sweetalert2";
 
 const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
   const [loading, setLoading] = useState(false);
@@ -22,8 +23,18 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
     apiFetch(desc, "productos", "set_discount").then(async (res) => {
       if (res.status === "success") {
         setLoading(false);
+        Swal.fire({
+          title: "OFERTA AÑADIDA",
+          icon: "success",
+          confirmButtonText: "ACEPTAR",
+        }).then((res)=>window.location.reload())
       } else {
         setLoading(false);
+        Swal.fire({
+          title: "OCURRIÓ UN ERROR",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        })
       }
     });
   };
