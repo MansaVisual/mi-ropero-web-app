@@ -127,12 +127,12 @@ const PopUpImg = ({
       return new File([u8arr], filename, { type: mime });
     }
 
-    var file = dataURLtoFile(newImage.src, "filename.png");
+    var file = dataURLtoFile(canvasData, "filename.png");
     console.log(file);
 
-    /*     return newImage; */
+    return file;
 
-    return new Promise((resolve, reject) => {
+    /* return new Promise((resolve, reject) => {
       console.log("ENTRADA", newImg);
       console.log(newImg.size);
       canvas.toBlob((file) => {
@@ -140,7 +140,7 @@ const PopUpImg = ({
         console.log(file.size);
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
-    });
+    }); */
   };
   const createImage = (url) =>
     new Promise((resolve, reject) => {
@@ -155,10 +155,10 @@ const PopUpImg = ({
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
-      // setImagenes((prevState) => ({
-      //   ...prevState,
-      //   [section]: croppedImage,
-      // }));
+      setImagenes((prevState) => ({
+        ...prevState,
+        [section]: croppedImage,
+      }));
       setImgType((prevState) => ({
         ...prevState,
         [section]: type,
