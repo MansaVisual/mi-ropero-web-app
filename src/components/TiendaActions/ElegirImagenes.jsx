@@ -29,6 +29,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [campoError, setCampoError] = useState("");
   const [seccionExtra, setSeccionExtra] = useState([]);
   const [numeroImgExtra, setNumeroImgExtra] = useState(0);
+  const [esOpcional, setEsOpcional] = useState(false);
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -42,17 +43,17 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
-      console.log(categorias[i].idcategoria, form.tipoId);
       if (categorias[i].idcategoria === form.tipoId) {
         let imagenes = {};
         setImgNecesarias(categorias[i].imagenes_necesarias);
-        console.log(form.imagenes.length);
 
         if (Object.keys(form.imagenes).length === 0) {
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+            console.log(categorias[i].imagenes_necesarias);
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
           }
+          console.log(imagenes);
           setImagenes(imagenes);
           setImagenesPreview(imagenes);
           return;
@@ -136,6 +137,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="edit"
                       onClick={() => {
                         setSection(imgBox.nombre);
+                        setEsOpcional(false);
                         setOpenImgPopUp(true);
                       }}
                     />
@@ -173,6 +175,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="edit"
                       onClick={() => {
                         setSection(imgBox.nombre);
+                        setEsOpcional(true);
                         setOpenImgPopUp(true);
                       }}
                     />
@@ -270,6 +273,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setErrorObligatorio={setErrorObligatorio}
           setVideoPreview={setVideoPreview}
           videoPreview={videoPreview}
+          esOpcional={esOpcional}
         />
       )}
     </div>

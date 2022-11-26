@@ -13,6 +13,7 @@ const PopUpImg = ({
   setSeccionExtra,
   setImagenesPreview,
   imagenesPreview,
+  esOpcional,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -106,7 +107,6 @@ const PopUpImg = ({
     ctx.putImageData(data, 0, 0);
 
     const canvasData = canvas.toDataURL("image/jpeg");
-    console.log(canvasData);
     let newImage = new Image();
     newImage.src = canvasData;
 
@@ -123,14 +123,9 @@ const PopUpImg = ({
     }
 
     var file = dataURLtoFile(canvasData, "filename.png");
-    console.log(file);
-
-    /* return file; */
 
     const blob = await new Promise((resolve, reject) => {
       canvas.toBlob((file) => {
-        /* setNewImg((prevState) => ({ ...prevState, size: file.size }));
-        console.log(file.size); */
         resolve(URL.createObjectURL(file));
       }, "image/jpeg");
     });
@@ -160,10 +155,12 @@ const PopUpImg = ({
         ...prevState,
         [section]: croppedImage.blob,
       }));
-      setSeccionExtra((prevState) => ({
-        ...prevState,
-        [section]: croppedImage.file,
-      }));
+      if (esOpcional) {
+        setSeccionExtra((prevState) => ({
+          ...prevState,
+          [section]: croppedImage.file,
+        }));
+      }
       setOpenImgPopUp(false);
     } catch (e) {
       console.error(e);
