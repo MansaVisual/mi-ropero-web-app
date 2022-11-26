@@ -6,14 +6,15 @@ import Swal from "sweetalert2";
 
 const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
   const [videoSrc, setVideoSrc] = useState(null);
+  const [videoPreview, setVideoPreview] = useState(null);
 
-  /*   function readFile(file) {
+  function readFile(file) {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.addEventListener("load", () => resolve(reader.result), false);
       reader.readAsDataURL(file);
     });
-  } */
+  }
 
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -25,7 +26,8 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
           confirmButtonText: "ACEPTAR",
         });
       } else {
-        /* let imageDataUrl = await readFile(file); */
+        let imageDataUrl = await readFile(file);
+        setVideoPreview(imageDataUrl);
         setVideoSrc(file);
       }
     }
@@ -52,10 +54,10 @@ const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
           <p className="popUpDescription" style={{ marginTop: "8px" }}>
             Debes subir tu video en formato mp4, con un límite de 20mb
           </p>
-          {videoSrc && (
+          {videoPreview && (
             <>
               <video
-                src={videoSrc}
+                src={videoPreview}
                 controls
                 style={{
                   width: "100%",

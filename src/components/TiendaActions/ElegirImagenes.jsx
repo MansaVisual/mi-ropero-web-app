@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
+import check from "../../assets/img/check.png";
 import editIcon from "../../assets/img/editIcon.svg";
 import plusButton from "../../assets/img/plusButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
@@ -215,7 +216,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           </div>
           <div className="section">
             <div className="imgBox">
-              <img src={plusButton} alt="foto" />
+              <img src={video ? check : plusButton} alt="foto" />
               <img
                 className="editButton"
                 src={editIcon}
