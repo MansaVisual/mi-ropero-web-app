@@ -86,6 +86,7 @@ const Sumario = ({ form }) => {
                     await insertImg(img);
                   }
                 }
+                console.log(form.video);
                 if (form.video) {
                   const vid = new FormData();
                   vid.append(
@@ -128,6 +129,15 @@ const Sumario = ({ form }) => {
               img.append("image", form.imagenes[i]);
               await insertImg(img);
             }
+          }
+          if (form.video) {
+            const vid = new FormData();
+            vid.append("idtienda", Number(tiendaData.idtienda));
+            vid.append("idproducto", Number(res.result.idproducto));
+            vid.append("video", form.video);
+            apiFetch(vid, "productos", "insert_video").then((vidRes) => {
+              console.log(vidRes);
+            });
           }
           setLoading(false);
           Swal.fire({

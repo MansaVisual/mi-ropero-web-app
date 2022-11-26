@@ -48,6 +48,7 @@ const Tienda = () => {
       descripcion: "",
     },
     imagenes: {},
+    imagenesPreview: {},
     video: null,
   });
 
