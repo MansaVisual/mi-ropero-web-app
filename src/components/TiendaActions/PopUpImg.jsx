@@ -15,6 +15,7 @@ const PopUpImg = ({
   imagenesPreview,
   esOpcional,
   seccionExtra,
+  setNumeroImgExtra,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -175,16 +176,21 @@ const PopUpImg = ({
     }
   }, [imageSrc, croppedAreaPixels]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(esOpcional);
+  const closeModal = () => {
+    if (esOpcional) {
+      setNumeroImgExtra((prevState) => prevState - 1);
+    }
+    setOpenImgPopUp(false);
+  };
   return (
     <div className="PopUpImg">
-      <div className="fondoPopUp" onClick={() => setOpenImgPopUp(false)}></div>
+      <div className="fondoPopUp" onClick={() => closeModal()}></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
           onClick={() => {
-            setOpenImgPopUp(false);
+            closeModal();
           }}
         />
         <div className="popUpContainer">
@@ -230,7 +236,7 @@ const PopUpImg = ({
           )}
 
           <div className="buttonContainer">
-            <Button onClick={() => setOpenImgPopUp(false)} className="volver">
+            <Button onClick={() => closeModal()} className="volver">
               CANCELAR
             </Button>
             <>

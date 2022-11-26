@@ -11,8 +11,6 @@ import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
 import PopUpVideo from "./PopUpVideo";
-import { UseMiTiendaContext } from "../../context/MiTiendaContext";
-import { UseLoginContext } from "../../context/LoginContext";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
@@ -58,7 +56,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenes(form.imagenes);
           setImagenesPreview(form.imagenesPreview);
           setSeccionExtra(form.seccionExtra);
-          setNumeroImgExtra(form.seccionExtra.length + 2);
+          setNumeroImgExtra(form.seccionExtra.length + 1);
           setVideo(form.video);
         }
       }
@@ -280,6 +278,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenesPreview={setImagenesPreview}
           seccionExtra={seccionExtra}
           esOpcional={esOpcional}
+          setNumeroImgExtra={setNumeroImgExtra}
         />
       )}
       {openVidPopUp && (
