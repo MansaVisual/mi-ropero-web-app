@@ -34,10 +34,10 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const { categorias } = useContext(UseProdsContext);
 
-  const { tiendaData } = useContext(UseMiTiendaContext);
+  const { tiendaData, tiendaDetail } = useContext(UseMiTiendaContext);
   const { infoUser } = useContext(UseLoginContext);
 
-  console.log(tiendaData, infoUser);
+  console.log(tiendaData, infoUser, tiendaDetail);
 
   useEffect(() => {
     if (!form.categoriaId) {

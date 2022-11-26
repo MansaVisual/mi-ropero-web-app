@@ -3,6 +3,9 @@
   margin: 40px 72px 80px 72px;
   display: flex;
   justify-content: center;
+  @include screen_768 {
+    margin: 40px 16px 65px 16px;
+  }
   @include screen_705 {
     margin-top: 24px;
   }
@@ -34,23 +37,8 @@
       @include screen_1190 {
         width: 100%;
       }
-      /* @include screen_820 {
-        margin-top: 24px;
-        margin-bottom: 24px;
-        gap: 6px;
-      } */
-      .section:first-child {
-        .imgBox {
-          @include screen_460 {
-            width: 282px;
-            height: 71px;
-            border-radius: 6px;
-            border: 1px solid #d9d9d9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
+      @include screen_768 {
+        gap: 8px;
       }
       .section {
         cursor: pointer;
@@ -93,6 +81,5 @@
         }
       }
     }
-
   }
 }
