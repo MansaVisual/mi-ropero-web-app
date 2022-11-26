@@ -11,10 +11,11 @@ const PopUpImg = ({
   setImagenes,
   setErrorObligatorio,
   setSeccionExtra,
-  setImagenesBlob,
+  setImagenesPreview,
+  imagenesPreview,
 }) => {
   const [imageSrc, setImageSrc] = useState(
-    imagenes[section] ? imagenes[section] : null
+    imagenesPreview[section] ? imagenesPreview[section] : null
   );
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -155,7 +156,7 @@ const PopUpImg = ({
         ...prevState,
         [section]: croppedImage.file,
       }));
-      setImagenesBlob((prevState) => ({
+      setImagenesPreview((prevState) => ({
         ...prevState,
         [section]: croppedImage.blob,
       }));

@@ -22,7 +22,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [section, setSection] = useState(null);
   const [imgNecesarias, setImgNecesarias] = useState([]);
   const [imagenes, setImagenes] = useState({});
-  const [imagenesBlob, setImagenesBlob] = useState({});
+  const [imagenesPreview, setImagenesPreview] = useState({});
   const [video, setVideo] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
@@ -53,11 +53,11 @@ const ElegirImagenes = ({ form, setForm }) => {
             imagenes[obj] = null;
           }
           setImagenes(imagenes);
-          setImagenesBlob(imagenes);
+          setImagenesPreview(imagenes);
           return;
         } else {
           setImagenes(form.imagenes);
-          setImagenesBlob(imagenes);
+          setImagenesPreview(imagenes);
         }
       }
     }
@@ -89,7 +89,7 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   };
 
-  console.log(imagenes, imagenesBlob);
+  console.log(imagenes);
 
   return (
     <div className="elegirImgContainer">
@@ -121,8 +121,8 @@ const ElegirImagenes = ({ form, setForm }) => {
                   <div className="imgBox">
                     <img
                       src={
-                        imagenesBlob[imgBox.nombre]
-                          ? imagenesBlob[imgBox.nombre]
+                        imagenesPreview[imgBox.nombre]
+                          ? imagenesPreview[imgBox.nombre]
                           : imgBox.imagen
                       }
                       alt="foto"
@@ -158,8 +158,8 @@ const ElegirImagenes = ({ form, setForm }) => {
                   <div className="imgBox">
                     <img
                       src={
-                        imagenesBlob[imgBox.nombre]
-                          ? imagenesBlob[imgBox.nombre]
+                        imagenesPreview[imgBox.nombre]
+                          ? imagenesPreview[imgBox.nombre]
                           : imgBox.imagen
                       }
                       alt="foto"
@@ -251,10 +251,11 @@ const ElegirImagenes = ({ form, setForm }) => {
           section={section}
           setOpenImgPopUp={setOpenImgPopUp}
           imagenes={imagenes}
+          imagenesPreview={imagenesPreview}
           setImagenes={setImagenes}
           setErrorObligatorio={setErrorObligatorio}
           setSeccionExtra={setSeccionExtra}
-          setImagenesBlob={setImagenesBlob}
+          setImagenesPreview={setImagenesPreview}
         />
       )}
       {openVidPopUp && (
