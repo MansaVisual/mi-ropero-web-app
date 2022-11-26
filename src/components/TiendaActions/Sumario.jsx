@@ -100,7 +100,7 @@ const Sumario = ({ form }) => {
                   });
                 }
                 setLoading(false);
-                Swal.fire({
+                /*                 Swal.fire({
                   title: "PRODUCTO CARGADO EXITOSAMENTE",
                   icon: "success",
                   confirmButtonText: "CONTINUAR",
@@ -108,7 +108,7 @@ const Sumario = ({ form }) => {
                   window.location.replace(
                     "https://www.miropero.ar/MiTienda/PRODUCTOS"
                   );
-                });
+                }); */
               }
             });
           } else {
@@ -183,13 +183,19 @@ const Sumario = ({ form }) => {
           <div className="subSection">
             <p className="title">Imágenes</p>
             <div className="infoImagenes">
-              <div>
+              <div style={{ overflowX: "scroll" }}>
                 {Object.keys(form.imagenesPreview).map((key, i) => {
                   console.log(form.imagenesPreview[key]);
                   if (!form.imagenesPreview[key]) {
                     return null;
                   }
-                  return <img key={i} src={form.imagenes[key]} alt="formImg" />;
+                  return (
+                    <img
+                      key={i}
+                      src={form.imagenesPreview[key]}
+                      alt="formImg"
+                    />
+                  );
                 })}
               </div>
               <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
