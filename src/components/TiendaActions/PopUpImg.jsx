@@ -14,6 +14,7 @@ const PopUpImg = ({
   setImagenesPreview,
   imagenesPreview,
   esOpcional,
+  seccionExtra,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -156,21 +157,16 @@ const PopUpImg = ({
         [section]: croppedImage.blob,
       }));
       if (esOpcional) {
-        setSeccionExtra((prevState) => ({
-          myArray: [
-            ...prevState.myArray,
-            {
-              nombre: [section],
-              descripcion: "foto extra agregada!",
-              imagen: croppedImage.blob,
-              obligatoria: "0",
-            },
-          ],
-        }));
-        /* setSeccionExtra((prevState) => ({
-          ...prevState,
-          [section]: croppedImage.file,
-        })); */
+        const updatedArray = [
+          ...seccionExtra,
+          {
+            nombre: [section],
+            descripcion: "foto extra agregada!",
+            imagen: croppedImage.blob,
+            obligatoria: "0",
+          },
+        ];
+        setSeccionExtra(updatedArray);
       }
       setOpenImgPopUp(false);
     } catch (e) {

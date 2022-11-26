@@ -95,6 +95,8 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   console.log(imagenes);
 
+  console.log(seccionExtra);
+
   return (
     <div className="elegirImgContainer">
       <div className="container">
@@ -158,6 +160,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           )}
           {seccionExtra.length === 0 &&
             seccionExtra.map((imgBox) => {
+              console.log(imgBox);
               return (
                 <div className="section">
                   <div className="imgBox">
@@ -262,6 +265,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setErrorObligatorio={setErrorObligatorio}
           setSeccionExtra={setSeccionExtra}
           setImagenesPreview={setImagenesPreview}
+          seccionExtra={seccionExtra}
           esOpcional={esOpcional}
         />
       )}
