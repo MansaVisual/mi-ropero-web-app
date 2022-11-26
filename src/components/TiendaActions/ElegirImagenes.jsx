@@ -262,6 +262,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setErrorObligatorio={setErrorObligatorio}
           setSeccionExtra={setSeccionExtra}
           setImagenesPreview={setImagenesPreview}
+          esOpcional={esOpcional}
         />
       )}
       {openVidPopUp && (
@@ -273,7 +274,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           setErrorObligatorio={setErrorObligatorio}
           setVideoPreview={setVideoPreview}
           videoPreview={videoPreview}
-          esOpcional={esOpcional}
         />
       )}
     </div>
