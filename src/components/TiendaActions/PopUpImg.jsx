@@ -157,9 +157,20 @@ const PopUpImg = ({
       }));
       if (esOpcional) {
         setSeccionExtra((prevState) => ({
+          myArray: [
+            ...prevState.myArray,
+            {
+              nombre: [section],
+              descripcion: "foto extra agregada!",
+              imagen: croppedImage.blob,
+              obligatoria: "0",
+            },
+          ],
+        }));
+        /* setSeccionExtra((prevState) => ({
           ...prevState,
           [section]: croppedImage.file,
-        }));
+        })); */
       }
       setOpenImgPopUp(false);
     } catch (e) {
