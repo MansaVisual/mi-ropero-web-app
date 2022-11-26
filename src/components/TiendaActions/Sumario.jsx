@@ -100,7 +100,7 @@ const Sumario = ({ form }) => {
                   });
                 }
                 setLoading(false);
-                /*                 Swal.fire({
+                Swal.fire({
                   title: "PRODUCTO CARGADO EXITOSAMENTE",
                   icon: "success",
                   confirmButtonText: "CONTINUAR",
@@ -108,7 +108,7 @@ const Sumario = ({ form }) => {
                   window.location.replace(
                     "https://www.miropero.ar/MiTienda/PRODUCTOS"
                   );
-                }); */
+                });
               }
             });
           } else {
@@ -141,7 +141,7 @@ const Sumario = ({ form }) => {
             });
           }
           setLoading(false);
-          /* Swal.fire({
+          Swal.fire({
             title: "PRODUCTO CARGADO EXITOSAMENTE",
             icon: "success",
             confirmButtonText: "CONTINUAR",
@@ -149,7 +149,7 @@ const Sumario = ({ form }) => {
             window.location.replace(
               "https://www.miropero.ar/MiTienda/PRODUCTOS"
             );
-          }); */
+          });
         } else {
           console.log(res);
         }
