@@ -140,7 +140,7 @@ const Sumario = ({ form }) => {
             });
           }
           setLoading(false);
-          Swal.fire({
+          /* Swal.fire({
             title: "PRODUCTO CARGADO EXITOSAMENTE",
             icon: "success",
             confirmButtonText: "CONTINUAR",
@@ -148,7 +148,7 @@ const Sumario = ({ form }) => {
             window.location.replace(
               "https://www.miropero.ar/MiTienda/PRODUCTOS"
             );
-          });
+          }); */
         } else {
           console.log(res);
         }
@@ -183,8 +183,8 @@ const Sumario = ({ form }) => {
             <p className="title">Imágenes</p>
             <div className="infoImagenes">
               <div>
-                {Object.keys(form.imagenes).map((key, i) => {
-                  if (!form.imagenes[key]) {
+                {Object.keys(form.imagenesPreview).map((key, i) => {
+                  if (!form.imagenesPreview[key]) {
                     return null;
                   }
                   return <img key={i} src={form.imagenes[key]} alt="formImg" />;
