@@ -158,7 +158,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               );
             })
           )}
-          {seccionExtra.length === 0 &&
+          {seccionExtra.length > 0 &&
             seccionExtra.map((imgBox) => {
               console.log(imgBox);
               return (
