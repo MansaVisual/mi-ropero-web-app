@@ -37,6 +37,7 @@
       .section {
         max-width: 142px;
         width: 100%;
+        cursor: pointer;
         .imgBox {
           height: 142px;
           width: 100%;
@@ -59,7 +60,6 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            cursor: pointer;
           }
           .addButton {
             height: 30px;

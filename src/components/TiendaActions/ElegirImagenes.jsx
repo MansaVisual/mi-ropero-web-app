@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-import check from "../../assets/img/check.png";
+import check from "../../assets/img/successImg.png";
 import editIcon from "../../assets/img/editIcon.svg";
 import plusButton from "../../assets/img/plusButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
@@ -28,7 +28,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
   const [seccionExtra, setSeccionExtra] = useState([]);
-  const [numeroImgExtra, setNumeroImgExtra] = useState(0);
+  const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
 
   const { categorias } = useContext(UseProdsContext);
@@ -59,7 +59,8 @@ const ElegirImagenes = ({ form, setForm }) => {
           return;
         } else {
           setImagenes(form.imagenes);
-          setImagenesPreview(imagenes);
+          setImagenesPreview(form.imagenesPreview);
+          setSeccionExtra(form.seccionExtra);
         }
       }
     }
@@ -87,6 +88,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         ...prevState,
         imagenes: imagenes,
         imagenesPreview: imagenesPreview,
+        seccionExtra: seccionExtra,
         video: video,
       }));
       navigate(`/MiTienda/CARACTERISTICAS`);
@@ -94,6 +96,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   };
 
   console.log(imagenes);
+  console.log(imagenesPreview);
 
   console.log(seccionExtra);
 
@@ -123,7 +126,14 @@ const ElegirImagenes = ({ form, setForm }) => {
           ) : (
             imgNecesarias.map((imgBox) => {
               return (
-                <div className="section">
+                <div
+                  className="section"
+                  onClick={() => {
+                    setSection(imgBox.nombre);
+                    setEsOpcional(false);
+                    setOpenImgPopUp(true);
+                  }}
+                >
                   <div className="imgBox">
                     <img
                       src={
@@ -133,16 +143,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       }
                       alt="foto"
                     />
-                    <img
-                      className="editButton"
-                      src={editIcon}
-                      alt="edit"
-                      onClick={() => {
-                        setSection(imgBox.nombre);
-                        setEsOpcional(false);
-                        setOpenImgPopUp(true);
-                      }}
-                    />
+                    <img className="editButton" src={editIcon} alt="edit" />
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
@@ -162,7 +163,14 @@ const ElegirImagenes = ({ form, setForm }) => {
             seccionExtra.map((imgBox) => {
               console.log(imgBox);
               return (
-                <div className="section">
+                <div
+                  className="section"
+                  onClick={() => {
+                    setSection(imgBox.nombre);
+                    setEsOpcional(false);
+                    setOpenImgPopUp(true);
+                  }}
+                >
                   <div className="imgBox">
                     <img
                       src={
@@ -172,16 +180,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       }
                       alt="foto"
                     />
-                    <img
-                      className="editButton"
-                      src={editIcon}
-                      alt="edit"
-                      onClick={() => {
-                        setSection(imgBox.nombre);
-                        setEsOpcional(false);
-                        setOpenImgPopUp(true);
-                      }}
-                    />
+                    <img className="editButton" src={editIcon} alt="edit" />
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
@@ -196,20 +195,18 @@ const ElegirImagenes = ({ form, setForm }) => {
                 </div>
               );
             })}
-          <div className="section">
+          <div
+            className="section"
+            onClick={() => {
+              setNumeroImgExtra(numeroImgExtra + 1);
+              setSection(`fotoExtra ${numeroImgExtra}`);
+              setEsOpcional(true);
+              setOpenImgPopUp(true);
+            }}
+          >
             <div className="imgBox">
               <img src={plusButton} alt="foto" />
-              <img
-                className="editButton"
-                src={editIcon}
-                alt="edit"
-                onClick={() => {
-                  setNumeroImgExtra(numeroImgExtra + 1);
-                  setSection(`fotoExtra${numeroImgExtra}`);
-                  setEsOpcional(true);
-                  setOpenImgPopUp(true);
-                }}
-              />
+              <img className="editButton" src={editIcon} alt="edit" />
             </div>
             <div className="bottomContainer">
               <span>Agregar foto extra</span>
@@ -224,18 +221,16 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
             <p className="bottomText">opcional</p>
           </div>
-          <div className="section">
+          <div
+            className="section"
+            onClick={() => {
+              setSection("video");
+              setOpenVidPopUp(true);
+            }}
+          >
             <div className="imgBox">
               <img src={video ? check : plusButton} alt="foto" />
-              <img
-                className="editButton"
-                src={editIcon}
-                alt="edit"
-                onClick={() => {
-                  setSection("video");
-                  setOpenVidPopUp(true);
-                }}
-              />
+              <img className="editButton" src={editIcon} alt="edit" />
             </div>
             <div className="bottomContainer">
               <span>Agregar video</span>

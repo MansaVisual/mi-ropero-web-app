@@ -184,6 +184,7 @@ const Sumario = ({ form }) => {
             <div className="infoImagenes">
               <div>
                 {Object.keys(form.imagenesPreview).map((key, i) => {
+                  console.log(form.imagenesPreview[key]);
                   if (!form.imagenesPreview[key]) {
                     return null;
                   }
