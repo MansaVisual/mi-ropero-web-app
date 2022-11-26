@@ -27,6 +27,11 @@
       line-height: 28px;
       color: #878787;
       margin-left: 24px;
+      @include screen_768 {
+        display: block;
+        margin-top: 24px;
+        margin-left: 0;
+      }
     }
     .categorySections {
       display: flex;
@@ -39,6 +44,7 @@
       }
       @include screen_768 {
         gap: 8px;
+        justify-content: center;
       }
       .section {
         cursor: pointer;
