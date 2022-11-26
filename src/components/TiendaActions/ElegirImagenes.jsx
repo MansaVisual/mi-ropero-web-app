@@ -12,6 +12,7 @@ import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
 import PopUpVideo from "./PopUpVideo";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
@@ -34,8 +35,9 @@ const ElegirImagenes = ({ form, setForm }) => {
   const { categorias } = useContext(UseProdsContext);
 
   const { tiendaData } = useContext(UseMiTiendaContext);
+  const { infoUser } = useContext(UseLoginContext);
 
-  console.log(tiendaData);
+  console.log(tiendaData, infoUser);
 
   useEffect(() => {
     if (!form.categoriaId) {
@@ -61,10 +63,11 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenes(form.imagenes);
           setImagenesPreview(form.imagenesPreview);
           setSeccionExtra(form.seccionExtra);
+          setVideo(form.video);
         }
       }
     }
-    setVideoPreview(form.videoPreview);
+    /* setVideoPreview(form.videoPreview); */
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async () => {
