@@ -58,6 +58,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenes(form.imagenes);
           setImagenesPreview(form.imagenesPreview);
           setSeccionExtra(form.seccionExtra);
+          setNumeroImgExtra(form.seccionExtra.length + 2);
           setVideo(form.video);
         }
       }
