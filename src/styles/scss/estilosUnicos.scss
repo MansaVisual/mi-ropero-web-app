@@ -220,14 +220,14 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 }
-
-.image-gallery-thumbnails-container {
-  .image-gallery-thumbnails {
-    overflow: scroll !important;
-    &::-webkit-scrollbar {
-      width: 0px;
-    }
+.image-gallery-thumbnails{
+  overflow: scroll !important;
+  &::-webkit-scrollbar {
+    width: 0.5px;
   }
+}
+.image-gallery-thumbnails-container {
+
   button {
     border: none !important;
     img {
