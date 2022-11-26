@@ -4,9 +4,13 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Swal from "sweetalert2";
 
-const PopUpVideo = ({ setOpenVidPopUp, video, setVideo }) => {
+const PopUpVideo = ({
+  setOpenVidPopUp,
+  setVideo,
+  setVideoPreview,
+  videoPreview,
+}) => {
   const [videoSrc, setVideoSrc] = useState(null);
-  const [videoPreview, setVideoPreview] = useState(null);
 
   function readFile(file) {
     return new Promise((resolve) => {

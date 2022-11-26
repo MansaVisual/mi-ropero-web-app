@@ -24,6 +24,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [imagenes, setImagenes] = useState({});
   const [imagenesPreview, setImagenesPreview] = useState({});
   const [video, setVideo] = useState(null);
+  const [videoPreview, setVideoPreview] = useState(null);
   const [errorObligatorio, setErrorObligatorio] = useState(false);
   const [campoError, setCampoError] = useState("");
   const [seccionExtra, setSeccionExtra] = useState([]);
@@ -61,6 +62,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
+    setVideoPreview(form.videoPreview);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async () => {
@@ -266,6 +268,8 @@ const ElegirImagenes = ({ form, setForm }) => {
           video={video}
           setVideo={setVideo}
           setErrorObligatorio={setErrorObligatorio}
+          setVideoPreview={setVideoPreview}
+          videoPreview={videoPreview}
         />
       )}
     </div>
