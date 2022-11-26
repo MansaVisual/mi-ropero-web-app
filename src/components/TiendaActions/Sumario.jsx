@@ -134,8 +134,9 @@ const Sumario = ({ form }) => {
             const vid = new FormData();
             vid.append("idtienda", Number(tiendaData.idtienda));
             vid.append("idproducto", Number(res.result.idproducto));
-            vid.append("video", form.video);
-            console.log(Object.fromEntries(vid));
+            vid.append("video", "");
+            /*             vid.append("video", form.video);
+             */ console.log(Object.fromEntries(vid));
             apiFetch(vid, "productos", "insert_video").then((vidRes) => {
               console.log(vidRes);
             });
