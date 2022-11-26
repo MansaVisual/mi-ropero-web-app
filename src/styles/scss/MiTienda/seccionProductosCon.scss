@@ -102,10 +102,6 @@
                 font-size: 17px;
                 line-height: 24px;
                 color: #423b3c;
-
-                &:hover {
-                  text-decoration: underline;
-                }
               }
               .state {
                 font-weight: 600;
@@ -139,22 +135,22 @@
               color: #423b3c;
               margin-right: 32px;
             }
-            .oldMonto{
+            .oldMonto {
               margin: 0;
               font-weight: 600;
               font-size: 14px;
               line-height: 23px;
-              color: #BABCBE;
+              color: #babcbe;
               margin-right: 32px;
               text-decoration: line-through;
             }
-            .montoOferta{
+            .montoOferta {
               margin: 0;
               font-weight: 600;
               font-size: 17px;
               line-height: 23px;
               margin-right: 32px;
-              color: #FF3F20;
+              color: #ff3f20;
             }
             img {
               height: 22px;
@@ -184,22 +180,22 @@
             color: #423b3c;
             margin-right: 32px;
           }
-          .oldMonto{
+          .oldMonto {
             margin: 0;
             font-weight: 600;
             font-size: 14px;
             line-height: 23px;
-            color: #BABCBE;
+            color: #babcbe;
             margin-right: 32px;
             text-decoration: line-through;
           }
-          .montoOferta{
+          .montoOferta {
             margin: 0;
             font-weight: 600;
             font-size: 17px;
             line-height: 23px;
             margin-right: 32px;
-            color: #FF3F20;
+            color: #ff3f20;
           }
           .productImg {
             height: 70px;
