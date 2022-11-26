@@ -175,7 +175,6 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="edit"
                       onClick={() => {
                         setSection(imgBox.nombre);
-                        setEsOpcional(true);
                         setOpenImgPopUp(true);
                       }}
                     />
@@ -203,6 +202,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 onClick={() => {
                   setNumeroImgExtra(numeroImgExtra + 1);
                   setSection(`fotoExtra${numeroImgExtra}`);
+                  setEsOpcional(true);
                   setOpenImgPopUp(true);
                 }}
               />

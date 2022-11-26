@@ -179,6 +179,7 @@ const PopUpImg = ({
     }
   }, [imageSrc, croppedAreaPixels]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(esOpcional);
   return (
     <div className="PopUpImg">
       <div className="fondoPopUp" onClick={() => setOpenImgPopUp(false)}></div>
