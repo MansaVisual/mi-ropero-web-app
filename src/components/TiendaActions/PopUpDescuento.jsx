@@ -23,6 +23,7 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
     apiFetch(desc, "productos", "set_discount").then(async (res) => {
       if (res.status === "success") {
         setLoading(false);
+        setOpenPopUp(false)
         Swal.fire({
           title: "OFERTA AÑADIDA",
           icon: "success",
@@ -30,6 +31,7 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
         }).then((res)=>window.location.reload())
       } else {
         setLoading(false);
+        setOpenPopUp(false)
         Swal.fire({
           title: "OCURRIÓ UN ERROR",
           icon: "error",
