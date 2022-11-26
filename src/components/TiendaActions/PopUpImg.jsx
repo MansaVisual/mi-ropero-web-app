@@ -160,7 +160,7 @@ const PopUpImg = ({
         const updatedArray = [
           ...seccionExtra,
           {
-            nombre: [section],
+            nombre: section,
             descripcion: "foto extra agregada!",
             imagen: croppedImage.blob,
             obligatoria: "0",
