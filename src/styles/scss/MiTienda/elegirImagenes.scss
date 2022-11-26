@@ -3,6 +3,9 @@
   margin: 40px 72px 80px 72px;
   display: flex;
   justify-content: center;
+  @include screen_768 {
+    margin: 40px 16px 65px 16px;
+  }
   @include screen_705 {
     margin-top: 24px;
   }

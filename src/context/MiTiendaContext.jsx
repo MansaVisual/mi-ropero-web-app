@@ -59,6 +59,8 @@ export const MiTiendaContext = ({ children }) => {
               });
             }
           });
+          tienda.append("page", 0);
+          tienda.append("bypage", 9999);
           apiFetch(tienda, "tiendas", "detail").then((res) => {
             if (res.status === "success") {
               setProductos(res.result.search_productos);
