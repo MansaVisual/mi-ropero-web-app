@@ -183,7 +183,7 @@ const Sumario = ({ form }) => {
           <div className="subSection">
             <p className="title">Imágenes</p>
             <div className="infoImagenes">
-              <div style={{ overflowX: "scroll" }}>
+              <div>
                 {Object.keys(form.imagenesPreview).map((key, i) => {
                   console.log(form.imagenesPreview[key]);
                   if (!form.imagenesPreview[key]) {

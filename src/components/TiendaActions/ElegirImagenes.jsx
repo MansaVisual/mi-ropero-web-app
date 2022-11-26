@@ -34,11 +34,6 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const { categorias } = useContext(UseProdsContext);
 
-  const { tiendaData, tiendaDetail } = useContext(UseMiTiendaContext);
-  const { infoUser } = useContext(UseLoginContext);
-
-  console.log(tiendaData, infoUser, tiendaDetail);
-
   useEffect(() => {
     if (!form.categoriaId) {
       navigate(`/MiTienda/CATEGORIA`);
@@ -67,7 +62,6 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
-    /* setVideoPreview(form.videoPreview); */
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async () => {
@@ -81,7 +75,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           if (imgNecesarias[i].nombre === key && !imagenes[key]) {
             variable = true;
             setErrorObligatorio(true);
-            setCampoError(key);
+            setCampoError(`Ingresar campo obligatorio "${key}"`);
           }
         }
       }
@@ -98,10 +92,34 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   };
 
-  console.log(imagenes);
-  console.log(imagenesPreview);
-
-  console.log(seccionExtra);
+  const handleExtraSubmit = async (tipo) => {
+    let variable = false;
+    console.log(tipo);
+    for (let i = 0; i < imgNecesarias.length; i++) {
+      if (imgNecesarias[i].obligatoria === "1") {
+        for (const key in imagenes) {
+          let blob = await fetch(imagenes[key]).then((r) => r.blob());
+          console.log(typeof blob);
+          if (imgNecesarias[i].nombre === key && !imagenes[key]) {
+            variable = true;
+            setErrorObligatorio(true);
+            setCampoError("Ingresa campos obligatorios primero");
+          }
+        }
+      }
+    }
+    if (!variable) {
+      if (tipo === "imagen") {
+        setNumeroImgExtra(numeroImgExtra + 1);
+        setSection(`fotoExtra ${numeroImgExtra}`);
+        setEsOpcional(true);
+        setOpenImgPopUp(true);
+      } else {
+        setSection("video");
+        setOpenVidPopUp(true);
+      }
+    }
+  };
 
   return (
     <div className="elegirImgContainer">
@@ -111,7 +129,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         {errorObligatorio && (
           <div className="errorBox">
             <CancelOutlinedIcon color="secondary" className="cruz" />
-            <p>Ingresar campo obligatorio "{campoError}"</p>
+            <p>{campoError}</p>
           </div>
         )}
         <div className="ImgSections">
@@ -201,10 +219,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           <div
             className="section"
             onClick={() => {
-              setNumeroImgExtra(numeroImgExtra + 1);
-              setSection(`fotoExtra ${numeroImgExtra}`);
-              setEsOpcional(true);
-              setOpenImgPopUp(true);
+              handleExtraSubmit("imagen");
             }}
           >
             <div className="imgBox">
@@ -227,8 +242,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           <div
             className="section"
             onClick={() => {
-              setSection("video");
-              setOpenVidPopUp(true);
+              handleExtraSubmit("video");
             }}
           >
             <div className="imgBox">
