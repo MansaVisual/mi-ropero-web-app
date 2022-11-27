@@ -251,8 +251,13 @@ const OfertasRecibidas = () => {
             </div>
           </div>
         </div>
-        {openPopUp && <PopUpRespOferta />}
       </Grid>
+      {openPopUp && (
+        <PopUpRespOferta
+          ofertaSelecc={ofertaSelecc}
+          setOpenPopUp={setOpenPopUp}
+        />
+      )}
     </div>
   );
 };

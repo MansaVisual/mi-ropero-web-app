@@ -8,7 +8,7 @@ import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
 
-const PopUpRespOferta = ({ setOpenPopUp }) => {
+const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
   const [loading, setLoading] = useState(false);
   const [respuesta, setRespuesta] = useState("");
 
@@ -27,16 +27,15 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">RESPONDER OFERTAS</p>
           <p className={`popUpDescription`} style={{ marginTop: "8px" }}>
-            Te hicieron una oferta de $5000.- en el producto publicado a $5300.-
+            Te hicieron una oferta de ${ofertaSelecc.oferta} en el producto
+            publicado a ${ofertaSelecc.producto.precio}.
           </p>
-          <p className={`popUpDescription`}>
+          <p className={`ofertaText`}>
             Si la aceptás el precio del producto será el de la oferta por el
             término de 24 Hs.
           </p>
-          <p className={`popUpDescription`}>
-            Si la cancelás, todo seguirá igual.
-          </p>
-          <p className={`popUpDescription`}>
+          <p className={`ofertaText`}>Si la cancelás, todo seguirá igual.</p>
+          <p className={`ofertaText`}>
             En cualquier de los casos, se le notificará al posible comprador.
           </p>
           <div className="inputContainer">
@@ -77,11 +76,11 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
                     onClick={() => setOpenPopUp(false)}
                     className="volver"
                   >
-                    CANCELAR
+                    RECHAZAR OFERTA
                   </Button>
                 )}
                 <Button className={true ? "mensajeDisabled" : "recordar"}>
-                  SOLICITAR
+                  ACEPTAR OFERTA
                 </Button>
               </>
             )}
