@@ -2,19 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
-import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
 import vacio from "../../assets/img/ofertasVacio.svg";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import PopUpBorrarOferta from "../PerfilActions/PopUpBorrarOferta";
 
 const OfertasRecibidas = () => {
   const navigate = useNavigate();
 
   const { userLog } = useContext(UseLoginContext);
 
+  const [openPopUp, setOpenPopUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [ofertas, setOfertas] = useState([]);
@@ -91,7 +92,11 @@ const OfertasRecibidas = () => {
                   ofertas.map((venta, id) => {
                     return (
                       <>
-                        <div key={id} className="desktopCard">
+                        <div
+                          key={id}
+                          className="desktopCard"
+                          onClick={() => setOpenPopUp()}
+                        >
                           <div className="data">
                             <img
                               src={venta.producto.imagenes[0].imagen_cuadrada}
@@ -110,23 +115,28 @@ const OfertasRecibidas = () => {
                               <p className="date">
                                 Fecha: <span>{venta.fecha}</span>
                               </p>
-                              <p className="state">{venta.estado}</p>
+                              <p className="state">
+                                Estado: {estados[venta.estado]}
+                              </p>
                             </div>
                           </div>
-                          <div className="rigthSide">
+                          {/* <div className="rigthSide">
                             <p className="monto">${venta.monto}</p>
                             <img
                               onClick={() => {
-                                /* setBorrarMsj(true);
-                        setMensajeId(mensaje.idmensaje); */
+                                setBorrarMsj(true);
+                          setMensajeId(mensaje.idmensaje);
                               }}
                               className="basuraIcon"
                               src={basura}
                               alt="BasuraIcon"
                             />
-                          </div>
+                          </div> */}
                         </div>
-                        <div className="mobileCard">
+                        <div
+                          className="mobileCard"
+                          onClick={() => setOpenPopUp()}
+                        >
                           <img
                             src={venta.producto.imagenes[0].imagen_cuadrada}
                             className="productImg"
@@ -234,6 +244,7 @@ const OfertasRecibidas = () => {
             </div>
           </div>
         </div>
+        {openPopUp && <PopUpBorrarOferta />}
       </Grid>
     </div>
   );
