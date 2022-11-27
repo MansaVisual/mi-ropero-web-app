@@ -1,13 +1,58 @@
-import React from "react";
-import { Grid, MenuItem, Select } from "@mui/material";
+import React, { useState, useEffect, useContext } from "react";
+import { Button, Grid, MenuItem, Select } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import foto from "../../assets/img/fotoProd.png";
 import basura from "../../assets/img/basura.png";
+import vacio from "../../assets/img/ofertasVacio.svg";
 import { useNavigate } from "react-router-dom";
+import { UseLoginContext } from "../../context/LoginContext";
+import Loader from "../Loader/Loader";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const OfertasRecibidas = () => {
   const navigate = useNavigate();
+
+  const { userLog } = useContext(UseLoginContext);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [ofertas, setOfertas] = useState([]);
+  const [filtroSelecc, setFiltroSelecc] = useState("");
+
+  useEffect(() => {
+    if (userLog) {
+      setLoading(true);
+
+      const form = new FormData();
+      form.append("idcliente", userLog);
+      form.append("estado", 3);
+      apiFetch("", "ofertas", "get_estados").then((res) => {
+        console.log(res);
+      });
+      /*       apiFetch(form, "ofertas", "all").then((res) => {
+        if (res.status === "success") {
+          for (const ii in res.result) {
+            array.push(res.result[ii]);
+          }
+          setOfertas(array);
+          setLoading(false);
+        } else {
+          if (
+            res.status === "error" &&
+            res.result === "La tienda no tiene ofertas"
+          ) {
+            setLoading(false);
+          } else {
+            console.log("error");
+            setError(true);
+            setLoading(false);
+          }
+        }
+      }); */
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userLog, filtroSelecc]);
 
   const array = [
     {
@@ -21,6 +66,16 @@ const OfertasRecibidas = () => {
   ];
 
   const stateList = ["pago Realizado", "en espera"];
+
+  const estados = {
+    /* 0: "Sin definir", */
+    1: "Solicitada",
+    2: "En proceso",
+    3: "Realizada",
+    4: "Cancelada",
+    5: "Rechazada",
+  };
+
   return (
     <div className="ofertasContainer">
       <TiendaBanner />
@@ -31,69 +86,107 @@ const OfertasRecibidas = () => {
               <p className="title">OFERTAS RECIBIDAS</p>
             </div>
             <div className="ofertasList">
-              {array.map((venta, id) => {
-                return (
-                  <>
-                    <div key={id} className="desktopCard">
-                      <div className="data">
-                        <img src={venta.img} alt="cardImage" />
-                        <div>
-                          <p className="title">{venta.nombreProd}</p>
+              {loading ? (
+                <div
+                  style={{
+                    height: "50vh",
+                    marginTop: "42px",
+                    width: "100%",
+                    display: "flex",
+                    maxWidth: "1066px",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerM"} />
+                </div>
+              ) : !error ? (
+                ofertas.length > 0 ? (
+                  ofertas.map((venta, id) => {
+                    return (
+                      <>
+                        <div key={id} className="desktopCard">
+                          <div className="data">
+                            <img src={venta.img} alt="cardImage" />
+                            <div>
+                              <p className="title">{venta.nombreProd}</p>
+                              <div>
+                                <p className="offert">
+                                  Precio: <span>${venta.monto}</span>
+                                </p>
+                                <p className="offert">
+                                  Oferta: <span>${venta.oferta}</span>
+                                </p>
+                              </div>
+                              <p className="date">
+                                Fecha: <span>{venta.fecha}</span>
+                              </p>
+                              <p className="state">{venta.estado}</p>
+                            </div>
+                          </div>
+                          <div className="rigthSide">
+                            <p className="monto">${venta.monto}</p>
+                            <img
+                              onClick={() => {
+                                /* setBorrarMsj(true);
+                        setMensajeId(mensaje.idmensaje); */
+                              }}
+                              className="basuraIcon"
+                              src={basura}
+                              alt="BasuraIcon"
+                            />
+                          </div>
+                        </div>
+                        <div className="mobileCard">
+                          <img
+                            src={venta.img}
+                            className="productImg"
+                            alt="cardImage"
+                          />
                           <div>
-                            <p className="offert">
-                              Precio: <span>${venta.monto}</span>
-                            </p>
-                            <p className="offert">
-                              Oferta: <span>${venta.oferta}</span>
+                            <p className="productoTitle">{venta.nombreProd}</p>
+                            <div className="offerts">
+                              <p className="offert">
+                                Precio: <span>${venta.monto}</span>
+                              </p>
+                              <p className="offert">
+                                Oferta: <span>${venta.oferta}</span>
+                              </p>
+                            </div>
+                            <p className="productoDate">{venta.fecha}</p>
+                            <p className="productoState">
+                              Estado: {venta.estado}
                             </p>
                           </div>
-                          <p className="date">
-                            Fecha: <span>{venta.fecha}</span>
-                          </p>
-                          <p className="state">{venta.estado}</p>
+                          <img
+                            src={basura}
+                            className="trashICon"
+                            alt="basuraIcon"
+                          />
                         </div>
-                      </div>
-                      <div className="rigthSide">
-                        <p className="monto">${venta.monto}</p>
-                        <img
-                          onClick={() => {
-                            /* setBorrarMsj(true);
-                          setMensajeId(mensaje.idmensaje); */
-                          }}
-                          className="basuraIcon"
-                          src={basura}
-                          alt="BasuraIcon"
-                        />
-                      </div>
+                      </>
+                    );
+                  })
+                ) : (
+                  <div className="perfilVacio">
+                    <div>
+                      <img src={vacio} alt="LOGO" />
+                      <p>{`No tienes ofertas en estado "${filtroSelecc.nombre}"`}</p>
+                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
                     </div>
-                    <div className="mobileCard">
-                      <img
-                        src={venta.img}
-                        className="productImg"
-                        alt="cardImage"
-                      />
-                      <div>
-                        <p className="productoTitle">{venta.nombreProd}</p>
-                        <div className="offerts">
-                          <p className="offert">
-                            Precio: <span>${venta.monto}</span>
-                          </p>
-                          <p className="offert">
-                            Oferta: <span>${venta.oferta}</span>
-                          </p>
-                        </div>
-                        <p className="productoDate">{venta.fecha}</p>
-                        <p className="productoState">Estado: {venta.estado}</p>
-                      </div>
-                      <img
-                        src={basura}
-                        className="trashICon"
-                        alt="basuraIcon"
-                      />
-                    </div>
-                  </>
-                );
-              })}
+                  </div>
+                )
+              ) : (
+                <div className="perfilVacio">
+                  <div>
+                    <img src={vacio} alt="LOGO" />
+                    <p>
+                      Error al traer operaciones. Vuelva a intentar en un
+                      momento
+                    </p>
+                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="bottomContainer">
@@ -105,8 +198,8 @@ const OfertasRecibidas = () => {
               <Select
                 displayEmpty
                 className="selectInput"
-                /* onChange={(e) => setTypeMessage(e.target.value)}
-            value={typeMessage} */
+                onChange={(e) => setFiltroSelecc(e.target.value)}
+                value={filtroSelecc}
                 renderValue={(selected) => {
                   if (selected === "") {
                     return <em>Seleccioná una opción</em>;
