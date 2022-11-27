@@ -40,37 +40,9 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
               <TextField
                 className="input"
                 size="small"
-                placeholder="Ingresar CBU. Solo números"
-                id="CBU"
-                type={"number"}
-              />
-            </div>
-            <div className="inputBox">
-              <p className="labelInput" id="labelAlias">
-                ALIAS de la cuenta
-              </p>
-              <TextField
-                className="input"
-                size="small"
-                placeholder="Ingresar alias completo "
-                id="alias"
-                /*  onChangeCapture={(e) =>
-                  setData((prevState) => ({
-                    ...prevState,
-                    alias: e.target.value,
-                  }))
-                } */
-                /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
-              onChangeCapture={() => {
-                setCampoObligatorio(false);
-              }} */
-                /* sx={{
-                "& .MuiOutlinedInput-root:hover": {
-                  "& > fieldset": {
-                    borderColor: campoObligatorio && "#FF3F20",
-                  },
-                },
-              }} */
+                placeholder="Recordá que no podés enviar datos de contacto."
+                id="respuesta"
+                /*    type="text" */
               />
             </div>
           </div>

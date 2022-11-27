@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
 import { apiFetch } from "../../apiFetch/apiFetch";
-import PopUpBorrarOferta from "../PerfilActions/PopUpBorrarOferta";
+import PopUpRespOferta from "./PopUpRespOferta";
 
 const OfertasRecibidas = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const OfertasRecibidas = () => {
   const { userLog } = useContext(UseLoginContext);
 
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [ofertaSelecc, setOfertaSelecc] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [ofertas, setOfertas] = useState([]);
@@ -95,7 +96,10 @@ const OfertasRecibidas = () => {
                         <div
                           key={id}
                           className="desktopCard"
-                          onClick={() => setOpenPopUp()}
+                          onClick={() => {
+                            setOfertaSelecc(venta);
+                            setOpenPopUp(true);
+                          }}
                         >
                           <div className="data">
                             <img
@@ -135,7 +139,10 @@ const OfertasRecibidas = () => {
                         </div>
                         <div
                           className="mobileCard"
-                          onClick={() => setOpenPopUp()}
+                          onClick={() => {
+                            setOfertaSelecc(venta);
+                            setOpenPopUp(true);
+                          }}
                         >
                           <img
                             src={venta.producto.imagenes[0].imagen_cuadrada}
@@ -244,7 +251,7 @@ const OfertasRecibidas = () => {
             </div>
           </div>
         </div>
-        {openPopUp && <PopUpBorrarOferta />}
+        {openPopUp && <PopUpRespOferta />}
       </Grid>
     </div>
   );
