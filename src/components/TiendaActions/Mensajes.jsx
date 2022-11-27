@@ -49,17 +49,14 @@ const Mensajes = () => {
 
   useEffect(() => {
     if (mensajes.length > 0) {
-      const mensajesPadre = mensajes.filter(
-        (msg) => msg.idmensajepadre === "0"
-      );
       if (currentType === "ver todos") {
-        setMensajesFiltrados(mensajesPadre);
+        setMensajesFiltrados(mensajes);
       }
       if (currentType === "ver no leídos") {
-        setMensajesFiltrados(mensajesPadre.filter((msg) => msg.estado === "1"));
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "1"));
       }
       if (currentType === "ver leídos") {
-        setMensajesFiltrados(mensajesPadre.filter((msg) => msg.estado === "2"));
+        setMensajesFiltrados(mensajes.filter((msg) => msg.estado === "2"));
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
