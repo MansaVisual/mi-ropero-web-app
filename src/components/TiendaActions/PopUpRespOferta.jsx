@@ -74,7 +74,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
                 {!loading && (
                   <Button
                     onClick={() => setOpenPopUp(false)}
-                    className="volver"
+                    className="volver rechazoOFerta"
                   >
                     RECHAZAR OFERTA
                   </Button>
