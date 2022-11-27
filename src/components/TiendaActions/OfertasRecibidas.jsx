@@ -144,7 +144,7 @@ const OfertasRecibidas = () => {
                             </div>
                             <p className="productoDate">{venta.fecha}</p>
                             <p className="productoState">
-                              Estado: {venta.estado}
+                              Estado: {estados[venta.estado]}
                             </p>
                           </div>
                           <img
