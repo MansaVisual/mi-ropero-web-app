@@ -24,13 +24,16 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">RESPONDER OFERTAS</p>
-          <p
-            /* className={`popUpDescription ${errorMonto ? clase2 : ""}`} */
-            style={{ marginTop: "8px" }}
-          >
-            {/*  {errorMonto
-              ? `Monto Mín: $100 / Máx: $${saldoCuenta}`
-              : "Ingresá estos datos para poder transferir tu dinero."} */}
+          <p className={`popUpDescription`} style={{ marginTop: "8px" }}>
+            Te hicieron una oferta de $5000.- en el producto publicado a $5300.-
+          </p>
+          <p>
+            Si la aceptás el precio del producto será el de la oferta por el
+            término de 24 Hs.
+          </p>
+          <p>Si la cancelás, todo seguirá igual.</p>
+          <p>
+            En cualquier de los casos, se le notificará al posible comprador.
           </p>
           <div className="inputContainer">
             <div className="inputBox">
