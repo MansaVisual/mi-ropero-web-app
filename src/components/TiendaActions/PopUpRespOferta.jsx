@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 
 const PopUpRespOferta = ({ setOpenPopUp }) => {
   const [loading, setLoading] = useState(false);
+  const [respuesta, setRespuesta] = useState("");
+
   return (
     <div className="PopUpMensajePP">
       <div className="fondoPopUp" onClick={() => setOpenPopUp(false)}></div>
@@ -27,12 +29,14 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
           <p className={`popUpDescription`} style={{ marginTop: "8px" }}>
             Te hicieron una oferta de $5000.- en el producto publicado a $5300.-
           </p>
-          <p>
+          <p className={`popUpDescription`}>
             Si la aceptás el precio del producto será el de la oferta por el
             término de 24 Hs.
           </p>
-          <p>Si la cancelás, todo seguirá igual.</p>
-          <p>
+          <p className={`popUpDescription`}>
+            Si la cancelás, todo seguirá igual.
+          </p>
+          <p className={`popUpDescription`}>
             En cualquier de los casos, se le notificará al posible comprador.
           </p>
           <div className="inputContainer">
@@ -45,6 +49,8 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
                 size="small"
                 placeholder="Recordá que no podés enviar datos de contacto."
                 id="respuesta"
+                onChangeCapture={setRespuesta((e) => e.target.value)}
+                value={respuesta}
                 /*    type="text" */
               />
             </div>
