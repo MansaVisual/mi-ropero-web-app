@@ -18,19 +18,19 @@ const OfertasRecibidas = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [ofertas, setOfertas] = useState([]);
-  const [filtroSelecc, setFiltroSelecc] = useState("");
+  const [filtroSelecc, setFiltroSelecc] = useState({
+    id: 3,
+    nombre: "Realizada",
+  });
 
   useEffect(() => {
     if (userLog) {
       setLoading(true);
-
+      let array = [];
       const form = new FormData();
       form.append("idcliente", userLog);
       form.append("estado", 3);
-      apiFetch("", "ofertas", "get_estados").then((res) => {
-        console.log(res);
-      });
-      /*       apiFetch(form, "ofertas", "all").then((res) => {
+      apiFetch(form, "ofertas", "all").then((res) => {
         if (res.status === "success") {
           for (const ii in res.result) {
             array.push(res.result[ii]);
@@ -49,23 +49,10 @@ const OfertasRecibidas = () => {
             setLoading(false);
           }
         }
-      }); */
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, filtroSelecc]);
-
-  const array = [
-    {
-      img: foto,
-      nombreProd: "Conjunto Grisino (1 a 3 meses)",
-      fecha: "9/8/2022  15:09:22 hs",
-      estado: "Pago realizado",
-      monto: 2000,
-      oferta: 2500,
-    },
-  ];
-
-  const stateList = ["pago Realizado", "en espera"];
 
   const estados = {
     /* 0: "Sin definir", */
@@ -199,7 +186,7 @@ const OfertasRecibidas = () => {
                 displayEmpty
                 className="selectInput"
                 onChange={(e) => setFiltroSelecc(e.target.value)}
-                value={filtroSelecc}
+                value={filtroSelecc.nombre}
                 renderValue={(selected) => {
                   if (selected === "") {
                     return <em>Seleccioná una opción</em>;
@@ -225,16 +212,21 @@ const OfertasRecibidas = () => {
                 >
                   <em>Seleccioná </em>
                 </MenuItem>
-                {stateList.map((option) => (
-                  <MenuItem
-                    key={option}
-                    value={option}
-                    sx={{ fontSize: "14px", color: "#969696" }}
-                    className="selectOption"
-                  >
-                    {option}
-                  </MenuItem>
-                ))}
+                {Object.keys(estados).map((key, i) => {
+                  return (
+                    <MenuItem
+                      key={key}
+                      value={{
+                        id: key,
+                        nombre: estados[key],
+                      }}
+                      sx={{ fontSize: "14px", color: "#969696" }}
+                      className="selectOption"
+                    >
+                      {estados[key]}
+                    </MenuItem>
+                  );
+                })}
               </Select>
             </div>
           </div>
