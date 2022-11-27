@@ -49,7 +49,9 @@ const PopUpRespOferta = ({ setOpenPopUp }) => {
                 size="small"
                 placeholder="Recordá que no podés enviar datos de contacto."
                 id="respuesta"
-                onChangeCapture={setRespuesta((e) => e.target.value)}
+                onChange={(e) => {
+                  setRespuesta(e.target.value);
+                }}
                 value={respuesta}
                 /*    type="text" */
               />
