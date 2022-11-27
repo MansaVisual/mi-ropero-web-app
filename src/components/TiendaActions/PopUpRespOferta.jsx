@@ -3,14 +3,49 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
 import Loader from "../Loader/Loader";
-import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
 
 const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
+  const { userLog } = useContext(UseLoginContext);
+
   const [loading, setLoading] = useState(false);
   const [respuesta, setRespuesta] = useState("");
+
+  const handleSubmit = (action) => {
+    console.log(action);
+    setLoading(true);
+    const offer = new FormData();
+    offer.append("idcliente", Number(userLog));
+    offer.append("idoferta", Number(ofertaSelecc.idoferta));
+    if (action === "accept") {
+      offer.append("respuesta", respuesta);
+    }
+    console.log(Object.fromEntries(offer));
+    apiFetch(offer, "oferta", action).then((res) => {
+      console.log(res);
+      if (res.status === "success") {
+        setLoading(false);
+        setOpenPopUp(false);
+        Swal.fire({
+          title: action === "accept" ? "OFERTA ACEPTADA" : "OFERTA CANCELADA",
+          icon: "success",
+          confirmButtonText: "ACEPTAR",
+        });
+      } else {
+        setLoading(false);
+        setOpenPopUp(false);
+        Swal.fire({
+          title: "OCURRIÓ UN ERROR",
+          text: "Reintente en unos momentos",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
+      }
+    });
+    setOpenPopUp(false);
+  };
 
   return (
     <div className="PopUpMensajePP">
@@ -73,13 +108,19 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
               <>
                 {!loading && (
                   <Button
-                    onClick={() => setOpenPopUp(false)}
+                    onClick={() => handleSubmit("cancel")}
                     className="volver rechazoOFerta"
                   >
                     RECHAZAR OFERTA
                   </Button>
                 )}
-                <Button className={true ? "mensajeDisabled" : "recordar"}>
+                <Button
+                  className={
+                    respuesta.length === 0 ? "mensajeDisabled" : "recordar"
+                  }
+                  disabled={respuesta.length === 0 ? true : false}
+                  onClick={() => handleSubmit("accept")}
+                >
                   ACEPTAR OFERTA
                 </Button>
               </>
