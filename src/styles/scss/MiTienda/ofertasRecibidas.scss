@@ -270,5 +270,63 @@
       line-height: 20px;
       color: #878787;
     }
+    .buttonContainer {
+      width: 100%;
+      button {
+        width: 100%;
+        max-width: 208px;
+      }
+    }
+    .inputContainer {
+      display: flex;
+      gap: 6px;
+      @include screen_705 {
+        flex-direction: column;
+        align-items: center;
+      }
+      .inputBox {
+        margin-top: 24px;
+        width: 100%;
+        max-width: 370px;
+        @include screen_705 {
+          margin-top: 0px;
+          margin-right: 0px;
+          display: flex;
+          flex-direction: column;
+        }
+        .input {
+          color: #423b3c;
+          width: 100%;
+          max-width: 370px;
+          input {
+            box-sizing: border-box;
+            height: 40px;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+            /* color: #babcbe; */
+          }
+        }
+        .selectInput {
+          color: #babcbe;
+          box-sizing: border-box;
+          height: 40px;
+          width: 100%;
+          max-width: 370px;
+          font-style: italic;
+          font-weight: 400;
+        }
+        .labelInput {
+          font-size: 13px;
+          font-weight: 600;
+          margin-top: 0;
+          @include screen_705 {
+            margin-top: 16px;
+            margin-bottom: 8px;
+          }
+        }
+      }
+    }
   }
 }
