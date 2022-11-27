@@ -29,8 +29,8 @@ const OfertasRecibidas = () => {
       let array = [];
       const form = new FormData();
       form.append("idcliente", userLog);
-      form.append("estado", 3);
-      apiFetch(form, "ofertas", "all").then((res) => {
+      form.append("estado", filtroSelecc.id);
+      apiFetch(form, "ofertas", "all_saler").then((res) => {
         if (res.status === "success") {
           for (const ii in res.result) {
             array.push(res.result[ii]);
@@ -93,13 +93,16 @@ const OfertasRecibidas = () => {
                       <>
                         <div key={id} className="desktopCard">
                           <div className="data">
-                            <img src={venta.img} alt="cardImage" />
+                            <img
+                              src={venta.producto.imagenes[0].imagen_cuadrada}
+                              alt="cardImage"
+                            />
                             <div>
                               <p className="title">{venta.nombreProd}</p>
                               <div>
-                                <p className="offert">
+                                {/* <p className="offert">
                                   Precio: <span>${venta.monto}</span>
-                                </p>
+                                </p> */}
                                 <p className="offert">
                                   Oferta: <span>${venta.oferta}</span>
                                 </p>
@@ -125,16 +128,16 @@ const OfertasRecibidas = () => {
                         </div>
                         <div className="mobileCard">
                           <img
-                            src={venta.img}
+                            src={venta.producto.imagenes[0].imagen_cuadrada}
                             className="productImg"
                             alt="cardImage"
                           />
                           <div>
                             <p className="productoTitle">{venta.nombreProd}</p>
                             <div className="offerts">
-                              <p className="offert">
+                              {/* <p className="offert">
                                 Precio: <span>${venta.monto}</span>
-                              </p>
+                              </p> */}
                               <p className="offert">
                                 Oferta: <span>${venta.oferta}</span>
                               </p>
