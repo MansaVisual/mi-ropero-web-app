@@ -151,7 +151,7 @@ const Calificaciones = () => {
                     <div>
                       <img src={lupaFilters} alt="LOGO" />
                       <p>No tienes calificaciones de momento</p>
-                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                      <Button onClick={() => navigate(`/MiTienda`)}>IR A MI TIENDA</Button>
                     </div>
                   </div>
                 )
@@ -163,7 +163,7 @@ const Calificaciones = () => {
                       Error al traer calificaciones. Vuelva a intentar en un
                       momento
                     </p>
-                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                    <Button onClick={() => navigate(`/MiTienda`)}>IR A MI TIENDA</Button>
                   </div>
                 </div>
               )}
