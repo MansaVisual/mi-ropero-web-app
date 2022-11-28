@@ -10,7 +10,7 @@ const Breadcrumbs = ({ links }) => {
     <MuiBreadcrumbs
       aria-label="breadcrumb"
       separator={<img src={Separator} alt="" />}
-      sx={{mb:"16px"}}
+      sx={{ mb: "16px" }}
     >
       <Link
         href="/"
@@ -29,7 +29,7 @@ const Breadcrumbs = ({ links }) => {
       {links.map((link, index) => {
         const last = index === links.length - 1;
         const to = `/${links.slice(0, index + 1).join("/")}`;
-
+        console.log(links);
         return last ? (
           <Typography
             key={to}
