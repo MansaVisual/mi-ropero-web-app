@@ -383,7 +383,7 @@ const TiendaDatos = () => {
                 <h5 onClick={() => pausarTienda(tiendaDetail.estado)}>
                   {tiendaDetail.estado !== "5"
                     ? "Pausar tienda"
-                    : "Despausar tienda"}
+                    : "Activar tienda"}
                 </h5>
                 <p>
                   Al pausar tu tienda todos tus productos quedarán pausados
