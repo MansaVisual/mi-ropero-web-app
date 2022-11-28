@@ -164,7 +164,7 @@ const MisMensajes = () => {
                     <img
                       src={
                         mensaje.producto
-                          ? mensaje.producto[0].imagenes[0].imagen_cuadrada
+                          ? mensaje.producto.imagenes[0].imagen_cuadrada
                           : isologo
                       }
                       alt="cardImage"
@@ -206,7 +206,7 @@ const MisMensajes = () => {
                   <img
                     src={
                       mensaje.producto
-                        ? mensaje.producto[0].imagenes[0].imagen_cuadrada
+                        ? mensaje.producto.imagenes[0].imagen_cuadrada
                         : isologo
                     }
                     className="productImg"
