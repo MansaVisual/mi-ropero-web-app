@@ -285,7 +285,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           <button
             disabled={disabledButton}
             style={{
-              backgroundColor: disabledButton ? "#443988" : "#857db3",
+              backgroundColor: disabledButton ? "#857db3" : "#443988",
             }}
             onClick={() => handleSubmit()}
           >
