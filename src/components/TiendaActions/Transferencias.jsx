@@ -113,10 +113,10 @@ const Transferencias = () => {
                           return (
                             <tr index={i} className="dataRow">
                               <th>
-                                {/* formatoFecha( */ compra.fecha_alta /* ) */}
+                                {/* formatoFecha( */ compra.fecha /* ) */}
                               </th>
-                              <th>{compra.idoperacion}</th>
-                              <th>${compra.total}</th>
+                              <th>{compra.idtransferencia}</th>
+                              <th>${compra.monto}</th>
                               <th className="estatusColumn">
                                 <span>{compra.estado_text}</span>
                                 <span>
@@ -148,16 +148,16 @@ const Transferencias = () => {
                             <div>
                               <span>FECHA DE COMPRA</span>
                               <span>
-                                {/* formatoFecha( */ compra.fecha_alta /* ) */}
+                                {/* formatoFecha( */ compra.fecha /* ) */}
                               </span>
                             </div>
                             <div>
                               <span>N° DE PEDIDO</span>
-                              <span>{compra.idoperacion}</span>
+                              <span>{compra.idtransferencia}</span>
                             </div>
                             <div>
                               <span>MONTO TOTAL</span>
-                              <span>{compra.total}</span>
+                              <span>{compra.monto}</span>
                             </div>
                             <div>
                               <span>ESTADO:</span>
