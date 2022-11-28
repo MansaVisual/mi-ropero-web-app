@@ -62,13 +62,13 @@ const Transferencias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, filtroSelecc]);
 
-  /*   const formatoFecha = (fecha) => {
+  const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
     const [year, month, day] = fechaSinHora.split("-");
 
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
-  }; */
+  };
 
   console.log(transferencias);
 
@@ -112,30 +112,10 @@ const Transferencias = () => {
                         {transferencias.map((compra, i) => {
                           return (
                             <tr index={i} className="dataRow">
-                              <th>
-                                {/* formatoFecha( */ compra.fecha /* ) */}
-                              </th>
+                              <th>{formatoFecha(compra.fecha)}</th>
                               <th>{compra.idtransferencia}</th>
                               <th>${compra.monto}</th>
-                              <th className="estatusColumn">
-                                <span>{compra.estado_text}</span>
-                                <span>
-                                  {
-                                    /* formatoFecha( */ compra.fecha_notificacion /* ) */
-                                  }
-                                </span>
-                              </th>
-                              {/* <th>
-                        <Button
-                          className="tableButton"
-                          onClick={() => {
-                              setCompraId(compra.idoperacion); 
-                            navigate(`/perfil/MIS COMPRAS DETALLE`);
-                          }}
-                        >
-                          VER COMPRA
-                        </Button>
-                      </th> */}
+                              <th>{compra.estado_text}</th>
                             </tr>
                           );
                         })}
@@ -147,9 +127,7 @@ const Transferencias = () => {
                           <div key={i} className="compra">
                             <div>
                               <span>FECHA DE COMPRA</span>
-                              <span>
-                                {/* formatoFecha( */ compra.fecha /* ) */}
-                              </span>
+                              <span>{formatoFecha(compra.fecha)}</span>
                             </div>
                             <div>
                               <span>N° DE PEDIDO</span>
@@ -163,15 +141,6 @@ const Transferencias = () => {
                               <span>ESTADO:</span>
                               <span>{compra.estado_text}</span>
                             </div>
-                            {/* <Button
-                      className="comprasButton"
-                      onClick={() => {
-                        setCompraId(compra.idoperacion); 
-                        navigate(`/perfil/MIS COMPRAS DETALLE`);
-                      }}
-                    >
-                      VER COMPRA
-                    </Button> */}
                           </div>
                         );
                       })}
