@@ -79,86 +79,6 @@ const Home = () => {
               <Loader spin={"spinnerG"} />
             </div>
           )}
-          {colecciones.length !== 0 &&
-            colecciones.map((res, i) => {
-              return (
-                <Fragment key={i}>
-                  {res.tipo_text === "Coleccion 1er Scroll" ? (
-                    <>
-                      <Box sx={{ pt: "40px", textAlign: "center" }}>
-                        <Chip primary>{res.nombre.trim()}</Chip>
-                      </Box>
-                      <Box sx={{ pt: "24px" }}>
-                        <SliderProd contenido={res.productos} />
-                      </Box>
-                      <Box sx={{ textAlign: "center" }}>
-                        <Link
-                          sx={{
-                            color: "hsla(0, 0%, 53%, 1)",
-                            fontSize: theme.typography.fontSize[4],
-                            cursor: "pointer",
-                            "&:hover": {
-                              fontWeight: "700",
-                            },
-                          }}
-                          onClick={() =>
-                            navigate(
-                              `/colecciones/${
-                                res.idcoleccion
-                              }/${res.nombre.trim()}`
-                            )
-                          }
-                        >
-                          VER {res.nombre.trim().toUpperCase()}
-                        </Link>
-                      </Box>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </Fragment>
-              );
-            })}
-          {colecciones.length !== 0 &&
-            colecciones.map((res, i) => {
-              return (
-                <Fragment key={i}>
-                  {res.tipo_text === "Coleccion 2do Scroll" ? (
-                    <>
-                      <Box sx={{ pt: "40px", textAlign: "center" }}>
-                        <Chip primary>{res.nombre.trim()}</Chip>
-                      </Box>
-                      <Box sx={{ pt: "24px" }}>
-                        <SliderProd contenido={res.productos} />
-                      </Box>
-                      <Box sx={{ textAlign: "center" }}>
-                        <Link
-                          sx={{
-                            color: "hsla(0, 0%, 53%, 1)",
-                            fontSize: theme.typography.fontSize[4],
-                            cursor: "pointer",
-                            "&:hover": {
-                              fontWeight: "700",
-                            },
-                          }}
-                          onClick={() =>
-                            navigate(
-                              `/colecciones/${
-                                res.idcoleccion
-                              }/${res.nombre.trim()}`
-                            )
-                          }
-                        >
-                          VER "{res.nombre.trim().toUpperCase()}"
-                        </Link>
-                      </Box>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </Fragment>
-              );
-            })}
           <Box sx={{ pt: "43px", textAlign: "center" }}>
             <Chip>Zapatillas</Chip>
           </Box>
@@ -285,6 +205,86 @@ const Home = () => {
             </Button> */}
           </Box>
         </Box>
+        {colecciones.length !== 0 &&
+            colecciones.map((res, i) => {
+              return (
+                <Fragment key={i}>
+                  {res.tipo_text === "Coleccion 1er Scroll" ? (
+                    <>
+                      <Box sx={{ pt: "40px", textAlign: "center" }}>
+                        <Chip primary>{res.nombre.trim()}</Chip>
+                      </Box>
+                      <Box sx={{ pt: "24px" }}>
+                        <SliderProd contenido={res.productos} />
+                      </Box>
+                      <Box sx={{ textAlign: "center" }}>
+                        <Link
+                          sx={{
+                            color: "hsla(0, 0%, 53%, 1)",
+                            fontSize: theme.typography.fontSize[4],
+                            cursor: "pointer",
+                            "&:hover": {
+                              fontWeight: "700",
+                            },
+                          }}
+                          onClick={() =>
+                            navigate(
+                              `/colecciones/${
+                                res.idcoleccion
+                              }/${res.nombre.trim()}`
+                            )
+                          }
+                        >
+                          VER {res.nombre.trim().toUpperCase()}
+                        </Link>
+                      </Box>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Fragment>
+              );
+            })}
+          {colecciones.length !== 0 &&
+            colecciones.map((res, i) => {
+              return (
+                <Fragment key={i}>
+                  {res.tipo_text === "Coleccion 2do Scroll" ? (
+                    <>
+                      <Box sx={{ pt: "40px", textAlign: "center" }}>
+                        <Chip primary>{res.nombre.trim()}</Chip>
+                      </Box>
+                      <Box sx={{ pt: "24px" }}>
+                        <SliderProd contenido={res.productos} />
+                      </Box>
+                      <Box sx={{ textAlign: "center" }}>
+                        <Link
+                          sx={{
+                            color: "hsla(0, 0%, 53%, 1)",
+                            fontSize: theme.typography.fontSize[4],
+                            cursor: "pointer",
+                            "&:hover": {
+                              fontWeight: "700",
+                            },
+                          }}
+                          onClick={() =>
+                            navigate(
+                              `/colecciones/${
+                                res.idcoleccion
+                              }/${res.nombre.trim()}`
+                            )
+                          }
+                        >
+                          VER "{res.nombre.trim().toUpperCase()}"
+                        </Link>
+                      </Box>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Fragment>
+              );
+            })}
         <Box sx={{ position: "fixed", right: 10, bottom: 10 }}>
           <Box sx={{ marginBottom: "16px" }} onClick={() => scrollTop()}>
             <UpButton />
