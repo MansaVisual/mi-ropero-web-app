@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import vacio from "../../assets/img/comprasVacio.png";
+import isologo from "../../assets/img/isologo.png";
 import Loader from "../Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
 
@@ -124,7 +125,11 @@ const Ventas = () => {
                         <div key={id} className="desktopCard">
                           <div className="data">
                             <img
-                              src={venta.productos[0].imagenes[0]}
+                              src={
+                                venta.productos.length > 0
+                                  ? venta.productos[0].imagenes[0]
+                                  : isologo
+                              }
                               alt="cardImage"
                             />
                             <div>
@@ -148,7 +153,11 @@ const Ventas = () => {
                         </div>
                         <div key={`mobile${id}`} className="mobileCard">
                           <img
-                            src={venta.productos[0].imagenes[0]}
+                            src={
+                              venta.productos.length > 0
+                                ? venta.productos[0].imagenes[0]
+                                : isologo
+                            }
                             className="productImg"
                             alt="cardImage"
                           />

@@ -58,10 +58,10 @@ const OfertasRecibidas = () => {
 
   const estados = {
     /* 0: "Sin definir", */
-    1: "Solicitada",
-    2: "En proceso",
-    3: "Realizada",
-    4: "Cancelada",
+    1: "En proceso de evaluación",
+    2: "Rechazada por el vendedor",
+    3: "Cancelada por el comprador",
+    4: "Aceptada",
     5: "Rechazada",
   };
 

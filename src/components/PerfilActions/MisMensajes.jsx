@@ -9,6 +9,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 import mensaje from "../../assets/img/mensajesVacio.png";
+import isologo from "../../assets/img/isologo.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
 
 const MisMensajes = () => {
@@ -161,7 +162,11 @@ const MisMensajes = () => {
                 >
                   <div className="mensajeData">
                     <img
-                      src={mensaje.producto.imagenes[0].imagen_cuadrada}
+                      src={
+                        mensaje.producto.length > 0
+                          ? mensaje.producto[0].imagenes[0].imagen_cuadrada
+                          : isologo
+                      }
                       alt="cardImage"
                       onError={(e) => handleAvatarError(e)}
                     />
@@ -195,7 +200,11 @@ const MisMensajes = () => {
                   }}
                 >
                   <img
-                    src={mensaje.producto.imagenes[0].imagen_cuadrada}
+                    src={
+                      mensaje.producto.length > 0
+                        ? mensaje.producto[0].imagenes[0].imagen_cuadrada
+                        : isologo
+                    }
                     className="productImg"
                     alt="cardImage"
                     onError={(e) => handleAvatarError(e)}
