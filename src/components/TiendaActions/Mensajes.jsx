@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
-import foto from "../../assets/img/fotoProd.png";
 import error from "../../assets/img/error.png";
 import basura from "../../assets/img/basura.png";
 import mensaje from "../../assets/img/mensajesVacio.png";
@@ -16,7 +15,6 @@ const Mensajes = () => {
 
   let { id } = useParams();
 
-  const [typeMessage, setTypeMessage] = useState("ver todos");
   const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [currentType, setCurrentType] = useState("ver todos");
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);

@@ -56,7 +56,7 @@ export const PerfilContext = ({ children }) => {
     dir.append("comprador_id", userLog);
     dir.append("estado", itemEstadoSelecc);
     dir.append("page", 0);
-    dir.append("bypage", 9999);
+    dir.append("bypage", 999);
     apiFetch(dir, "operaciones", "all_buyer").then((res) => {
       if (res.status === "success") {
         for (const ii in res.result.operaciones) {
@@ -129,7 +129,7 @@ export const PerfilContext = ({ children }) => {
     const dir = new FormData();
     dir.append("idcliente", userLog);
     dir.append("page", 0);
-    dir.append("bypage", 9999);
+    dir.append("bypage", 999);
     apiFetch(dir, "mensajes", metodo).then((res) => {
       setMensajesFinBusqueda(true);
       if (res.status === "success") {
