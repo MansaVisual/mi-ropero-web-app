@@ -19,7 +19,7 @@ const Sumario = ({ form }) => {
   const [loading, setLoading] = useState(false);
 
   if (!form.categoriaId) {
-    navigate(`/MiTienda/CATEGORIA`);
+    navigate(`/Mi Tienda/CATEGORIA`);
     return;
   }
 
@@ -108,7 +108,7 @@ const Sumario = ({ form }) => {
                   confirmButtonText: "CONTINUAR",
                 }).then((res) => {
                   window.location.replace(
-                    "https://www.miropero.ar/MiTienda/PRODUCTOS"
+                    "https://www.miropero.ar/Mi Tienda/PRODUCTOS"
                   );
                 });
               }
@@ -149,7 +149,7 @@ const Sumario = ({ form }) => {
             confirmButtonText: "CONTINUAR",
           }).then((res) => {
             window.location.replace(
-              "https://www.miropero.ar/MiTienda/PRODUCTOS"
+              "https://www.miropero.ar/Mi Tienda/PRODUCTOS"
             );
           });
         } else {
@@ -177,7 +177,7 @@ const Sumario = ({ form }) => {
             <p className="title">Categoría</p>
             <div className="infoCat">
               <p>{`${form.categoriaNombre} / ${form.tipoNombre}`}</p>
-              <button onClick={() => navigate(`/MiTienda/CATEGORIA`)}>
+              <button onClick={() => navigate(`/Mi Tienda/CATEGORIA`)}>
                 MODIFICAR
               </button>
             </div>
@@ -200,7 +200,7 @@ const Sumario = ({ form }) => {
                   );
                 })}
               </div>
-              <button onClick={() => navigate(`/MiTienda/IMAGENES`)}>
+              <button onClick={() => navigate(`/Mi Tienda/IMAGENES`)}>
                 MODIFICAR
               </button>
             </div>
@@ -222,7 +222,7 @@ const Sumario = ({ form }) => {
                   );
                 })}
               </div>
-              <button onClick={() => navigate(`/MiTienda/CARACTERISTICAS`)}>
+              <button onClick={() => navigate(`/Mi Tienda/CARACTERISTICAS`)}>
                 MODIFICAR
               </button>
             </div>
@@ -240,7 +240,7 @@ const Sumario = ({ form }) => {
                   );
                 })}
               </div>
-              <button onClick={() => navigate(`/MiTienda/DETALLES`)}>
+              <button onClick={() => navigate(`/Mi Tienda/DETALLES`)}>
                 MODIFICAR
               </button>
             </div>
@@ -268,8 +268,8 @@ const Sumario = ({ form }) => {
           className="returnLink"
           onClick={() => {
             form.crearTienda
-              ? navigate(`/MiTienda/DETALLES`)
-              : navigate(`/MiTienda/CONTACTO`);
+              ? navigate(`/Mi Tienda/DETALLES`)
+              : navigate(`/Mi Tienda/CONTACTO`);
           }}
         >
           <img src={leftArrow} alt="leftArrow" />

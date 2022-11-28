@@ -35,7 +35,7 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   useEffect(() => {
     if (!form.categoriaId) {
-      navigate(`/MiTienda/CATEGORIA`);
+      navigate(`/Mi Tienda/CATEGORIA`);
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
@@ -87,7 +87,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         seccionExtra: seccionExtra,
         video: video,
       }));
-      navigate(`/MiTienda/CARACTERISTICAS`);
+      navigate(`/Mi Tienda/CARACTERISTICAS`);
     }
   };
 
@@ -108,6 +108,8 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagenes]);
+
+  console.log(disabledButton);
 
   const handleExtraSubmit = async (tipo) => {
     let variable = false;
@@ -278,13 +280,16 @@ const ElegirImagenes = ({ form, setForm }) => {
         </div>
         <div className="buttonContainer">
           <button
-            disabled={disabledButton ? true : false}
+            disabled={disabledButton}
             onClick={() => handleSubmit()}
+            style={{
+              backgroundColor: disabledButton ? "#443988" : "#857db3",
+            }}
           >
             IR A CARACTERÍSTICAS
           </button>
         </div>
-        <div className="returnLink" onClick={() => navigate(`/MiTienda/TIPO`)}>
+        <div className="returnLink" onClick={() => navigate(`/Mi Tienda/TIPO`)}>
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A SUBCATEGORÍA</p>
         </div>

@@ -115,10 +115,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
                   </Button>
                 )}
                 <Button
-                  className={
-                    respuesta.length === 0 ? "mensajeDisabled" : "recordar"
-                  }
-                  disabled={respuesta.length === 0 ? true : false}
+                  className={"recordar"}
                   onClick={() => handleSubmit("accept")}
                 >
                   ACEPTAR OFERTA

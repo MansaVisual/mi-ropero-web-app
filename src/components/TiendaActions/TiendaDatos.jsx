@@ -69,9 +69,9 @@ const TiendaDatos = () => {
                 title: "TIENDA DESPAUSADA",
                 icon: "success",
                 confirmButtonText: "ACEPTAR",
-              }).then(()=>{
-                window.location.reload()
-            });
+              }).then(() => {
+                window.location.reload();
+              });
             } else {
               Swal.fire({
                 title: "OCURRIÓ UN ERROR",
@@ -88,7 +88,7 @@ const TiendaDatos = () => {
                 title: "TIENDA PAUSADA",
                 icon: "success",
                 confirmButtonText: "ACEPTAR",
-              }).then(()=>{
+              }).then(() => {
                 window.location.reload();
               });
             } else {
@@ -139,7 +139,7 @@ const TiendaDatos = () => {
                   : "REPORTE SEMANAL ACTIVADO",
               icon: "success",
               confirmButtonText: "ACEPTAR",
-            }).then(()=>{
+            }).then(() => {
               window.location.reload();
             });
           } else {
@@ -246,9 +246,7 @@ const TiendaDatos = () => {
                     Nombre *
                   </p>
                   <TextField
-                    className={`input ${
-                      errorCambpoObligatorio ? clase : ""
-                    }`}
+                    className={`input ${errorCambpoObligatorio ? clase : ""}`}
                     placeholder="El Ropero de Sandra"
                     id="nombre"
                     value={data.nombre}
@@ -320,8 +318,7 @@ const TiendaDatos = () => {
                       {dataUpdate.provincia === "Capital Federal"
                         ? "CABA"
                         : dataUpdate.provincia}{" "}
-                      {dataUpdate.localidad} (
-                      {`${dataUpdate.codigo_postal}`}){" "}
+                      {dataUpdate.localidad} ({`${dataUpdate.codigo_postal}`}){" "}
                     </p>
                     <p>
                       {dataUpdate.entre_calle_1 !== "" && "Entre"}{" "}
@@ -353,15 +350,10 @@ const TiendaDatos = () => {
                   <Loader spin={"spinnerM"} />
                 </div>
               ) : (
-                <Button onClick={() => handleSubmit()}>
-                  GUARDAR CAMBIOS
-                </Button>
+                <Button onClick={() => handleSubmit()}>GUARDAR CAMBIOS</Button>
               )}
             </div>
-            <div
-              className="returnLink"
-              onClick={() => navigate(`/MiTienda`)}
-            >
+            <div className="returnLink" onClick={() => navigate(`/Mi Tienda`)}>
               <img src={leftArrow} alt="leftArrow" />
               <p>VOLVER A MI TIENDA</p>
             </div>
@@ -373,10 +365,9 @@ const TiendaDatos = () => {
                     : "Activar reporte semanal de estadísticas"}
                 </h5>
                 <p>
-                  Podés recibir en tu email un reporte semanal con la
-                  cantidad de seguidores de tu tienda, la cantidad de
-                  visitas de tus productos y toda la información estadística
-                  que te interesa.
+                  Podés recibir en tu email un reporte semanal con la cantidad
+                  de seguidores de tu tienda, la cantidad de visitas de tus
+                  productos y toda la información estadística que te interesa.
                 </p>
               </div>
               <div className="tiendaActionsCard">
@@ -386,8 +377,8 @@ const TiendaDatos = () => {
                     : "Activar tienda"}
                 </h5>
                 <p>
-                  Al pausar tu tienda todos tus productos quedarán pausados
-                  y no podrán comprarse.
+                  Al pausar tu tienda todos tus productos quedarán pausados y no
+                  podrán comprarse.
                 </p>
               </div>
             </div>
