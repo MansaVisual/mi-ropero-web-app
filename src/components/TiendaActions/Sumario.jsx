@@ -95,9 +95,11 @@ const Sumario = ({ form }) => {
                   );
                   vid.append("idproducto", Number(prodRes.result.idproducto));
                   vid.append("video", form.video);
-                  apiFetch(vid, "productos", "insert_video").then((vidRes) => {
-                    console.log(vidRes);
-                  });
+                  await apiFetch(vid, "productos", "insert_video").then(
+                    (vidRes) => {
+                      console.log(vidRes);
+                    }
+                  );
                 }
                 setLoading(false);
                 Swal.fire({
@@ -136,12 +138,12 @@ const Sumario = ({ form }) => {
             vid.append("idproducto", Number(res.result.idproducto));
             vid.append("video", form.video);
             console.log(Object.fromEntries(vid));
-            apiFetch(vid, "productos", "insert_video").then((vidRes) => {
+            await apiFetch(vid, "productos", "insert_video").then((vidRes) => {
               console.log(vidRes);
             });
           }
           setLoading(false);
-          /* Swal.fire({
+          Swal.fire({
             title: "PRODUCTO CARGADO EXITOSAMENTE",
             icon: "success",
             confirmButtonText: "CONTINUAR",
@@ -149,7 +151,7 @@ const Sumario = ({ form }) => {
             window.location.replace(
               "https://www.miropero.ar/MiTienda/PRODUCTOS"
             );
-          }); */
+          });
         } else {
           console.log(res);
         }
