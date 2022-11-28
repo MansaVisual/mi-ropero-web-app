@@ -38,9 +38,9 @@ const BoxLogin = () => {
     await apiFetch(loginUser, "clientes", "login").then((res) => {
       setLoad(false);
       if (res.status === "success") {
-        if(redireccionCompra!==undefined){
+        if (redireccionCompra !== undefined) {
           window.location.replace(
-            `https://www.miropero.ar/${redireccionCompra}`
+            `https://www.miropero.ar${redireccionCompra}`
           );
         }
         localStorage.setItem("idClienteMiRopero", res.result.idcliente);
@@ -50,9 +50,7 @@ const BoxLogin = () => {
         });
         if (redirectUrl) {
           localStorage.setItem("redirectUrl", "");
-          window.location.replace(
-            `https://www.miropero.ar/${redirectUrl}`
-          );
+          window.location.replace(`https://www.miropero.ar${redirectUrl}`);
         } else {
           window.location.replace("https://www.miropero.ar/");
         }

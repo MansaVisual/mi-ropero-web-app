@@ -223,7 +223,9 @@ const Mensajes = () => {
                   <div>
                     <img src={mensaje} alt="LOGO" />
                     <p>Aún no tienes mensajes "{currentType}"</p>
-                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                    <Button onClick={() => navigate(`/MI TIENDA`)}>
+                      IR A MI TIENDA
+                    </Button>
                   </div>
                 </div>
               )}
