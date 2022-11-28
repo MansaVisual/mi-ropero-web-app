@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
-import basura from "../../assets/img/basura.png";
-import StarIcon from "@mui/icons-material/Star";
 import vacio from "../../assets/img/comprasVacio.png";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -38,19 +36,14 @@ const Transferencias = () => {
       setError(false);
       setTransferencias([]);
 
-      let array = [];
-
       const data = new FormData();
       data.append("idcliente", userLog);
       data.append("estado", filtroSelecc.id);
       apiFetch(data, "transferencias", "all").then((res) => {
         console.log(res);
         if (res.status === "success") {
-          for (const ii in res.result.operaciones) {
-            array.push(res.result.operaciones[ii]);
-          }
           setLoading(false);
-          setTransferencias(array);
+          setTransferencias(res.result);
         } else {
           if (
             res.status === "error" &&
@@ -69,13 +62,15 @@ const Transferencias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLog, filtroSelecc]);
 
-  /*   const formatoFecha = (fecha) => {
+  const formatoFecha = (fecha) => {
     const fechaSinHora = fecha.substring(0, 10);
     const [year, month, day] = fechaSinHora.split("-");
 
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
-  }; */
+  };
+
+  console.log(transferencias);
 
   return (
     <div className="transferenciasContainer">
@@ -117,30 +112,10 @@ const Transferencias = () => {
                         {transferencias.map((compra, i) => {
                           return (
                             <tr index={i} className="dataRow">
-                              <th>
-                                {/* formatoFecha( */ compra.fecha_alta /* ) */}
-                              </th>
-                              <th>{compra.idoperacion}</th>
-                              <th>${compra.total}</th>
-                              <th className="estatusColumn">
-                                <span>{compra.estado_text}</span>
-                                <span>
-                                  {
-                                    /* formatoFecha( */ compra.fecha_notificacion /* ) */
-                                  }
-                                </span>
-                              </th>
-                              {/* <th>
-                        <Button
-                          className="tableButton"
-                          onClick={() => {
-                              setCompraId(compra.idoperacion); 
-                            navigate(`/perfil/MIS COMPRAS DETALLE`);
-                          }}
-                        >
-                          VER COMPRA
-                        </Button>
-                      </th> */}
+                              <th>{formatoFecha(compra.fecha)}</th>
+                              <th>{compra.idtransferencia}</th>
+                              <th>${compra.monto}</th>
+                              <th>{compra.estado_text}</th>
                             </tr>
                           );
                         })}
@@ -152,31 +127,20 @@ const Transferencias = () => {
                           <div key={i} className="compra">
                             <div>
                               <span>FECHA DE COMPRA</span>
-                              <span>
-                                {/* formatoFecha( */ compra.fecha_alta /* ) */}
-                              </span>
+                              <span>{formatoFecha(compra.fecha)}</span>
                             </div>
                             <div>
                               <span>N° DE PEDIDO</span>
-                              <span>{compra.idoperacion}</span>
+                              <span>{compra.idtransferencia}</span>
                             </div>
                             <div>
                               <span>MONTO TOTAL</span>
-                              <span>{compra.total}</span>
+                              <span>{compra.monto}</span>
                             </div>
                             <div>
                               <span>ESTADO:</span>
                               <span>{compra.estado_text}</span>
                             </div>
-                            {/* <Button
-                      className="comprasButton"
-                      onClick={() => {
-                        setCompraId(compra.idoperacion); 
-                        navigate(`/perfil/MIS COMPRAS DETALLE`);
-                      }}
-                    >
-                      VER COMPRA
-                    </Button> */}
                           </div>
                         );
                       })}
@@ -187,7 +151,9 @@ const Transferencias = () => {
                     <div>
                       <img src={vacio} alt="LOGO" />
                       <p>{`No tienes transferencias en estado "${filtroSelecc.nombre}"`}</p>
-                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                      <Button onClick={() => navigate(`/MiTienda`)}>
+                        IR A MI TIENDA
+                      </Button>
                     </div>
                   </div>
                 )
@@ -199,7 +165,9 @@ const Transferencias = () => {
                       Error al traer operaciones. Vuelva a intentar en un
                       momento
                     </p>
-                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                    <Button onClick={() => navigate(`/MiTienda`)}>
+                      IR A MI TIENDA
+                    </Button>
                   </div>
                 </div>
               )}
