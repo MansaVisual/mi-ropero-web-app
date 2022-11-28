@@ -59,11 +59,9 @@ export const MiTiendaContext = ({ children }) => {
               });
             }
           });
-          tienda.append("page", 0);
-          tienda.append("bypage", 9999);
-          apiFetch(tienda, "tiendas", "detail").then((res) => {
+          apiFetch(tienda, "productos", "all").then((res) => {
             if (res.status === "success") {
-              setProductos(res.result.search_productos);
+              setProductos(res.result);
             }
           });
         }
