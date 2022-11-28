@@ -36,19 +36,14 @@ const Transferencias = () => {
       setError(false);
       setTransferencias([]);
 
-      let array = [];
-
       const data = new FormData();
       data.append("idcliente", userLog);
       data.append("estado", filtroSelecc.id);
       apiFetch(data, "transferencias", "all").then((res) => {
         console.log(res);
         if (res.status === "success") {
-          for (const ii in res.result.operaciones) {
-            array.push(res.result.operaciones[ii]);
-          }
           setLoading(false);
-          setTransferencias(array);
+          setTransferencias(res.result);
         } else {
           if (
             res.status === "error" &&
