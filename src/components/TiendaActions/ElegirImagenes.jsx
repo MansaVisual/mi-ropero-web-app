@@ -103,11 +103,16 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
+    console.log("entra");
     if (!variable) {
       setDisabledButton(false);
+    } else {
+      setDisabledButton(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagenes]);
+
+  console.log(disabledButton);
 
   const handleExtraSubmit = async (tipo) => {
     let variable = false;
@@ -277,10 +282,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           </div>
         </div>
         <div className="buttonContainer">
-          <button
-            disabled={disabledButton ? true : false}
-            onClick={() => handleSubmit()}
-          >
+          <button disabled={disabledButton} onClick={() => handleSubmit()}>
             IR A CARACTERÍSTICAS
           </button>
         </div>
