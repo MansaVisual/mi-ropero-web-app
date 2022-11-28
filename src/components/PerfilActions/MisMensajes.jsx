@@ -11,6 +11,7 @@ import Loader from "../Loader/Loader";
 import mensaje from "../../assets/img/mensajesVacio.png";
 import isologo from "../../assets/img/isologo.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
+import Swal from "sweetalert2";
 
 const MisMensajes = () => {
   let { id } = useParams();
@@ -81,7 +82,19 @@ const MisMensajes = () => {
     return formatoFinal;
   };
 
-  console.log(mensajes, mensajesFiltrados);
+  const handleChat = (mensaje) => {
+    if (mensaje.producto) {
+      setMensajeId(mensaje.idmensaje);
+      navigate(`/perfil/MI CHAT`);
+    } else {
+      Swal.fire({
+        title: "CHAT NO DISPONIBLE",
+        text: "El producto fue vendido o sacado de publicación",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
+    }
+  };
 
   return (
     <div className="misMensajesContainer">
@@ -155,10 +168,7 @@ const MisMensajes = () => {
                 <div
                   key={id}
                   className="desktopCard"
-                  onClick={() => {
-                    setMensajeId(mensaje.idmensaje);
-                    navigate(`/perfil/MI CHAT`);
-                  }}
+                  onClick={() => handleChat(mensaje)}
                 >
                   <div className="mensajeData">
                     <img
@@ -198,10 +208,7 @@ const MisMensajes = () => {
                 <div
                   key={`mobile${id}`}
                   className="mobileCard"
-                  onClick={() => {
-                    setMensajeId(mensaje.idmensaje);
-                    navigate(`/perfil/MI CHAT`);
-                  }}
+                  onClick={() => handleChat(mensaje)}
                 >
                   <img
                     src={
@@ -235,22 +242,6 @@ const MisMensajes = () => {
             </div>
           </div>
         )}
-        {/* {mensajesFiltrados.length !== 0 && totalPages > 1  && (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Pagination
-                  cantidad={totalPages}
-                  buscarPage={buscarPage}
-                  pags={pags}
-                  setPags={setPags}
-                />
-              </Box>
-            )} */}
       </div>
       <div className="returnLink" onClick={() => navigate(`/perfil`)}>
         <img src={leftArrow} alt="leftArrow" />

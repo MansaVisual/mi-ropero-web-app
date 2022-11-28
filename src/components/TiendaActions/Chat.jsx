@@ -212,9 +212,12 @@ const Chat = () => {
               </div>
             </div>
           )}
-          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+          <div
+            className="returnLink"
+            onClick={() => navigate(`/MiTienda/MENSAJES`)}
+          >
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A MI TIENDA</p>
+            <p>VOLVER A MENSAJES</p>
           </div>
         </div>
       </Grid>

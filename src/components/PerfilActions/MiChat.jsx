@@ -213,9 +213,12 @@ const MiChat = () => {
         </div>
       )}
 
-      <div className="returnLink" onClick={() => navigate(`/perfil`)}>
+      <div
+        className="returnLink"
+        onClick={() => navigate(`/perfil/MIS MENSAJES`)}
+      >
         <img src={leftArrow} alt="leftArrow" />
-        <p>VOLVER A MI PERFIL</p>
+        <p>VOLVER A MENSAJES</p>
       </div>
     </div>
   );
