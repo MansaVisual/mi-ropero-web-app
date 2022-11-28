@@ -69,8 +69,9 @@ const TiendaDatos = () => {
                 title: "TIENDA DESPAUSADA",
                 icon: "success",
                 confirmButtonText: "ACEPTAR",
-              });
-              window.location.reload();
+              }).then(()=>{
+                window.location.reload()
+            });
             } else {
               Swal.fire({
                 title: "OCURRIÓ UN ERROR",
@@ -87,8 +88,9 @@ const TiendaDatos = () => {
                 title: "TIENDA PAUSADA",
                 icon: "success",
                 confirmButtonText: "ACEPTAR",
+              }).then(()=>{
+                window.location.reload();
               });
-              window.location.reload();
             } else {
               Swal.fire({
                 title: "OCURRIÓ UN ERROR",
@@ -137,8 +139,9 @@ const TiendaDatos = () => {
                   : "REPORTE SEMANAL ACTIVADO",
               icon: "success",
               confirmButtonText: "ACEPTAR",
+            }).then(()=>{
+              window.location.reload();
             });
-            window.location.reload();
           } else {
             Swal.fire({
               title: "OCURRIÓ UN ERROR",
