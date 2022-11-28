@@ -23,7 +23,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
       offer.append("respuesta", respuesta);
     }
     console.log(Object.fromEntries(offer));
-    apiFetch(offer, "oferta", action).then((res) => {
+    apiFetch(offer, "ofertas", action).then((res) => {
       console.log(res);
       if (res.status === "success") {
         setLoading(false);
@@ -108,7 +108,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
               <>
                 {!loading && (
                   <Button
-                    onClick={() => handleSubmit("cancel")}
+                    onClick={() => handleSubmit("decline")}
                     className="volver rechazoOFerta"
                   >
                     RECHAZAR OFERTA
