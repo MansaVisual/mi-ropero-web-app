@@ -29,6 +29,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [seccionExtra, setSeccionExtra] = useState([]);
   const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(true);
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -48,7 +49,6 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             imagenes[obj] = null;
           }
-          console.log(imagenes);
           setImagenes(imagenes);
           setImagenesPreview(imagenes);
           return;
@@ -90,6 +90,24 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/MiTienda/CARACTERISTICAS`);
     }
   };
+
+  useEffect(() => {
+    let variable = false;
+    console.log(imgNecesarias);
+    for (let i = 0; i < imgNecesarias.length; i++) {
+      if (imgNecesarias[i].obligatoria === "1") {
+        for (const key in imagenes) {
+          if (imgNecesarias[i].nombre === key && !imagenes[key]) {
+            variable = true;
+          }
+        }
+      }
+    }
+    if (!variable) {
+      setDisabledButton(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imagenes]);
 
   const handleExtraSubmit = async (tipo) => {
     let variable = false;
@@ -259,7 +277,12 @@ const ElegirImagenes = ({ form, setForm }) => {
           </div>
         </div>
         <div className="buttonContainer">
-          <button onClick={() => handleSubmit()}>IR A CARACTERÍSTICAS</button>
+          <button
+            disabled={disabledButton ? true : false}
+            onClick={() => handleSubmit()}
+          >
+            IR A CARACTERÍSTICAS
+          </button>
         </div>
         <div className="returnLink" onClick={() => navigate(`/MiTienda/TIPO`)}>
           <img src={leftArrow} alt="leftArrow" />
