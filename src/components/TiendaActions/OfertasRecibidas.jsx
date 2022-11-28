@@ -21,8 +21,8 @@ const OfertasRecibidas = () => {
   const [error, setError] = useState(false);
   const [ofertas, setOfertas] = useState([]);
   const [filtroSelecc, setFiltroSelecc] = useState({
-    id: 3,
-    nombre: "Realizada",
+    id: 1,
+    nombre: "En proceso de evaluación",
   });
 
   useEffect(() => {
