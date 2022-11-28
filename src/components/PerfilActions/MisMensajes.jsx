@@ -163,7 +163,7 @@ const MisMensajes = () => {
                   <div className="mensajeData">
                     <img
                       src={
-                        mensaje.producto.length > 0
+                        mensaje.producto
                           ? mensaje.producto[0].imagenes[0].imagen_cuadrada
                           : isologo
                       }
@@ -201,7 +201,7 @@ const MisMensajes = () => {
                 >
                   <img
                     src={
-                      mensaje.producto.length > 0
+                      mensaje.producto
                         ? mensaje.producto[0].imagenes[0].imagen_cuadrada
                         : isologo
                     }
