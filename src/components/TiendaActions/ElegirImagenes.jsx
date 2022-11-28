@@ -282,7 +282,13 @@ const ElegirImagenes = ({ form, setForm }) => {
           </div>
         </div>
         <div className="buttonContainer">
-          <button disabled={disabledButton} onClick={() => handleSubmit()}>
+          <button
+            disabled={disabledButton}
+            style={{
+              backgroundColor: disabledButton ? "#443988" : "#857db3",
+            }}
+            onClick={() => handleSubmit()}
+          >
             IR A CARACTERÍSTICAS
           </button>
         </div>
