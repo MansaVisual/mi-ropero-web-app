@@ -171,7 +171,11 @@ const MisMensajes = () => {
                       onError={(e) => handleAvatarError(e)}
                     />
                     <div>
-                      <p className="messageTitle">{mensaje.producto.nombre}</p>
+                      <p className="messageTitle">
+                        {mensaje.producto
+                          ? mensaje.producto.nombre
+                          : "producto no encontrado"}
+                      </p>
                       <p className="messageDate">
                         {formatoFecha(mensaje.fecha)}
                       </p>
