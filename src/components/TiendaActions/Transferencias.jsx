@@ -151,7 +151,7 @@ const Transferencias = () => {
                     <div>
                       <img src={vacio} alt="LOGO" />
                       <p>{`No tienes transferencias en estado "${filtroSelecc.nombre}"`}</p>
-                      <Button onClick={() => navigate(`/Mi Tienda`)}>
+                      <Button onClick={() => navigate(`/MiTienda`)}>
                         IR A MI TIENDA
                       </Button>
                     </div>
@@ -165,7 +165,7 @@ const Transferencias = () => {
                       Error al traer operaciones. Vuelva a intentar en un
                       momento
                     </p>
-                    <Button onClick={() => navigate(`/Mi Tienda`)}>
+                    <Button onClick={() => navigate(`/MiTienda`)}>
                       IR A MI TIENDA
                     </Button>
                   </div>
@@ -175,10 +175,7 @@ const Transferencias = () => {
           </div>
           <div className="bottomContainer">
             <div className="bottomSection">
-              <div
-                className="returnLink"
-                onClick={() => navigate(`/Mi Tienda`)}
-              >
+              <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
                 <img src={leftArrow} alt="leftArrow" />
                 <p>VOLVER A MI TIENDA</p>
               </div>

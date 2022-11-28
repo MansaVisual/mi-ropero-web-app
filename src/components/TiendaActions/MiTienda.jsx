@@ -55,7 +55,7 @@ const MiTienda = () => {
               return (
                 <div
                   className="section"
-                  onClick={() => navigate(`/Mi Tienda/${section.name}`)}
+                  onClick={() => navigate(`/MiTienda/${section.name}`)}
                 >
                   <div className="imgBox">
                     <img src={section.icon} alt="icon" />

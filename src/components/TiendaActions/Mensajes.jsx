@@ -153,7 +153,7 @@ const Mensajes = () => {
                         className="desktopCard"
                         onClick={() => {
                           setMensajeId(mensaje.idmensaje);
-                          navigate(`/Mi Tienda/MI CHAT`);
+                          navigate(`/MiTienda/MI CHAT`);
                         }}
                       >
                         <div className="mensajeData">
@@ -190,7 +190,7 @@ const Mensajes = () => {
                         className="mobileCard"
                         onClick={() => {
                           setMensajeId(mensaje.idmensaje);
-                          navigate(`/Mi Tienda/MI CHAT`);
+                          navigate(`/MiTienda/MI CHAT`);
                         }}
                       >
                         <img
@@ -230,7 +230,7 @@ const Mensajes = () => {
                 </div>
               )}
             </div>
-            <div className="returnLink" onClick={() => navigate(`/Mi Tienda`)}>
+            <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
               <img src={leftArrow} alt="leftArrow" />
               <p>VOLVER A MI TIENDA</p>
             </div>

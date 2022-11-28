@@ -40,7 +40,7 @@ const SeccionProductos = ({ setForm }) => {
     }
   };
 
-  const handleDelete = (idproducto) => {
+  const handleDelete = ( idproducto ) => {
     Swal.fire({
       title: "¿DESEA BORRAR ESTE PRODUCTO?",
       text: "Si borras este producto, perderás todos sus datos",
@@ -98,8 +98,7 @@ const SeccionProductos = ({ setForm }) => {
           </div>
           <div className="productList">
             {productos.length > 0 &&
-              productos.map((product, id) => {
-                console.log(product);
+              productos.map((product, id) => {console.log(product)
                 return (
                   <>
                     <div key={id} className="desktopCard">
@@ -114,32 +113,22 @@ const SeccionProductos = ({ setForm }) => {
                           <p className="state">{product.estado_text}</p>
                           <p
                             className="discountLink"
-                            onClick={
-                              product.precio_oferta !== "0.00"
-                                ? () =>
-                                    Swal.fire({
-                                      title: "EL PRODUCTO YA ESTA EN OFERTA",
-                                      icon: "info",
-                                      confirmButtonText: "ACEPTAR",
-                                    })
-                                : () => handleOpenModal(product, "productos")
-                            }
+                            onClick={product.precio_oferta!=="0.00"?()=>Swal.fire({
+                              title: "EL PRODUCTO YA ESTA EN OFERTA",
+                              icon: "info",
+                              confirmButtonText: "ACEPTAR",
+                            }):() => handleOpenModal(product, "productos")}
                           >
                             CREAR DESCUENTO
                           </p>
                         </div>
                       </div>
                       <div className="ofertaData">
-                        {product.precio_oferta === "0.00" ? (
-                          <p className="monto">${product.precio}</p>
-                        ) : (
-                          <>
-                            <p className="oldMonto">${product.precio}</p>
-                            <p className="montoOferta">
-                              ${product.precio_oferta}
-                            </p>
-                          </>
-                        )}
+                        {product.precio_oferta==="0.00"?
+                          <p className="monto">${product.precio}</p>:<>
+                          <p className="oldMonto">${product.precio}</p>
+                          <p className="montoOferta">${product.precio_oferta}</p></>
+                        }
                         <img
                           onClick={() => handleDelete(product.idproducto)}
                           className="basuraIcon"
@@ -157,28 +146,18 @@ const SeccionProductos = ({ setForm }) => {
                       <div>
                         <p className="messageTitle">{product.nombre}</p>
                         <p className="messageState">{product.estado_text}</p>
-                        {product.precio_oferta === "0.00" ? (
-                          <p className="monto">${product.precio}</p>
-                        ) : (
-                          <>
-                            <p className="oldMonto">${product.precio}</p>
-                            <p className="montoOferta">
-                              ${product.precio_oferta}
-                            </p>
-                          </>
-                        )}
+                        {product.precio_oferta==="0.00"?
+                          <p className="monto">${product.precio}</p>:<>
+                          <p className="oldMonto">${product.precio}</p>
+                          <p className="montoOferta">${product.precio_oferta}</p></>
+                        }
                         <p
                           className="discountLink"
-                          onClick={
-                            product.precio_oferta !== "0.00"
-                              ? () =>
-                                  Swal.fire({
-                                    title: "EL PRODUCTO YA ESTA EN OFERTA",
-                                    icon: "info",
-                                    confirmButtonText: "ACEPTAR",
-                                  })
-                              : () => handleOpenModal(product, "productos")
-                          }
+                          onClick={product.precio_oferta!=="0.00"?()=>Swal.fire({
+                            title: "EL PRODUCTO YA ESTA EN OFERTA",
+                            icon: "info",
+                            confirmButtonText: "ACEPTAR",
+                          }):() => handleOpenModal(product, "productos")}
                         >
                           CREAR DESCUENTO
                         </p>
@@ -200,13 +179,13 @@ const SeccionProductos = ({ setForm }) => {
                   ...prevState,
                   crearTienda: false,
                 }));
-                navigate(`/Mi Tienda/CATEGORIA`);
+                navigate(`/MiTienda/CATEGORIA`);
               }}
             >
               AGREGAR PRODUCTO
             </button>
           </div>
-          <div className="returnLink" onClick={() => navigate(`/Mi Tienda`)}>
+          <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A MI TIENDA</p>
           </div>

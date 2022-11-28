@@ -178,9 +178,7 @@ const OfertasRecibidas = () => {
                     <div>
                       <img src={vacio} alt="LOGO" />
                       <p>{`No tienes ofertas en estado "${filtroSelecc.nombre}"`}</p>
-                      <Button onClick={() => navigate(`/Mi Tienda`)}>
-                        IR A MI TIENDA
-                      </Button>
+                      <Button onClick={() => navigate(`/MiTienda`)}>IR A MI TIENDA</Button>
                     </div>
                   </div>
                 )
@@ -192,9 +190,7 @@ const OfertasRecibidas = () => {
                       Error al traer operaciones. Vuelva a intentar en un
                       momento
                     </p>
-                    <Button onClick={() => navigate(`/Mi Tienda`)}>
-                      IR A MI TIENDA
-                    </Button>
+                    <Button onClick={() => navigate(`/MiTienda`)}>IR A MI TIENDA</Button>
                   </div>
                 </div>
               )}
@@ -202,10 +198,7 @@ const OfertasRecibidas = () => {
           </div>
           <div className="bottomContainer">
             <div className="bottonSection">
-              <div
-                className="returnLink"
-                onClick={() => navigate(`/Mi Tienda`)}
-              >
+              <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
                 <img src={leftArrow} alt="leftArrow" />
                 <p>VOLVER A MI TIENDA</p>
               </div>
