@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
-import basura from "../../assets/img/basura.png";
-import StarIcon from "@mui/icons-material/Star";
 import vacio from "../../assets/img/comprasVacio.png";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -76,6 +74,8 @@ const Transferencias = () => {
     const formatoFinal = `${day} / ${month} / ${year}`;
     return formatoFinal;
   }; */
+
+  console.log(transferencias);
 
   return (
     <div className="transferenciasContainer">
@@ -187,7 +187,9 @@ const Transferencias = () => {
                     <div>
                       <img src={vacio} alt="LOGO" />
                       <p>{`No tienes transferencias en estado "${filtroSelecc.nombre}"`}</p>
-                      <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                      <Button onClick={() => navigate(`/MiTienda`)}>
+                        IR A MI TIENDA
+                      </Button>
                     </div>
                   </div>
                 )
@@ -199,7 +201,9 @@ const Transferencias = () => {
                       Error al traer operaciones. Vuelva a intentar en un
                       momento
                     </p>
-                    <Button onClick={() => navigate(`/`)}>IR A INICIO</Button>
+                    <Button onClick={() => navigate(`/MiTienda`)}>
+                      IR A MI TIENDA
+                    </Button>
                   </div>
                 </div>
               )}
