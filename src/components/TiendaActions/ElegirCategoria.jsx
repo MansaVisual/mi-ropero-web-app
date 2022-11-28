@@ -57,7 +57,7 @@ const ElegirCategoria = ({ setForm }) => {
                     idCaracteristica: [],
                     idCaracteristicaOld: [],
                   }));
-                  navigate(`/MiTienda/TIPO`);
+                  navigate(`/Mi&Tienda/TIPO`);
                 }}
               >
                 <div className="imgBox">
@@ -85,7 +85,7 @@ const ElegirCategoria = ({ setForm }) => {
             if (tiendaData[0] === "") {
               setTiendaData([]);
             }
-            navigate(`/MiTienda`);
+            navigate(`/Mi&Tienda`);
           }}
         >
           <img src={leftArrow} alt="leftArrow" />

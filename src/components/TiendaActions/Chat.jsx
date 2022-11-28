@@ -29,7 +29,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (!userLog && !mensajeId /* && !infoUser */) {
-      navigate("/MiTienda/MENSAJES");
+      navigate("/Mi&Tienda/MENSAJES");
     } else {
       const dir = new FormData();
       dir.append("idcliente", userLog);
@@ -214,7 +214,7 @@ const Chat = () => {
           )}
           <div
             className="returnLink"
-            onClick={() => navigate(`/MiTienda/MENSAJES`)}
+            onClick={() => navigate(`/Mi&Tienda/MENSAJES`)}
           >
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A MENSAJES</p>

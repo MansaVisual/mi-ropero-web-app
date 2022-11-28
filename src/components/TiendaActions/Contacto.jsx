@@ -102,7 +102,7 @@ const Contacto = ({ form, setForm }) => {
 
   useEffect(() => {
     if (!form.categoriaId) {
-      navigate(`/MiTienda/CATEGORIA`);
+      navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
     if (form.direccion.length !== 0) {
@@ -226,7 +226,7 @@ const Contacto = ({ form, setForm }) => {
         telefono: document.getElementById("telefono").value,
         infoLocalidad: infoLocFinal,
       }));
-      navigate("/MiTienda/SUMARIO");
+      navigate("/Mi&Tienda/SUMARIO");
     }
   }, [guardarDireccion]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -607,7 +607,7 @@ const Contacto = ({ form, setForm }) => {
 
         <div
           className="returnLink"
-          onClick={() => navigate(`/MiTienda/DETALLES`)}
+          onClick={() => navigate(`/Mi&Tienda/DETALLES`)}
         >
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A DETALLES</p>

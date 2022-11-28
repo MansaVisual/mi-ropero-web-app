@@ -152,8 +152,8 @@ function App() {
                         />
                         <Route path="FAQ" element={<FAQ />} />
                         <Route path="/PRODUCTO" element={<Home />} />
-                        <Route path="MiTienda" element={<Tienda />} />
-                        <Route path="MiTienda/:seccion" element={<Tienda />} />
+                        <Route path="Mi&Tienda" element={<Tienda />} />
+                        <Route path="Mi&Tienda/:seccion" element={<Tienda />} />
                       </Routes>
                       <Footer />
                     </ThemeProvider>

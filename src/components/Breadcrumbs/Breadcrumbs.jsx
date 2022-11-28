@@ -57,7 +57,7 @@ const Breadcrumbs = ({ links }) => {
               color: theme.palette.quaternary.contrastText,
             }}
           >
-            {link === "MiTienda" ? "Mi Tienda" : link.replace(/%20/g, " ")}
+            {link.replace(/%20/g, " ")}
           </Link>
         );
       })}

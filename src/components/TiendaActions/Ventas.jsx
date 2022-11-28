@@ -185,7 +185,9 @@ const Ventas = () => {
                     <div>
                       <img src={vacio} alt="LOGO" />
                       <p>{`No tienes ventas en estado "${filtroSelecc}"`}</p>
-                      <Button onClick={() => navigate(`/MiTienda`)}>IR A MI TIENDA</Button>
+                      <Button onClick={() => navigate(`/Mi&Tienda`)}>
+                        IR A MI TIENDA
+                      </Button>
                     </div>
                   </div>
                 )
@@ -197,7 +199,9 @@ const Ventas = () => {
                       Error al traer operaciones. Vuelva a intentar en un
                       momento
                     </p>
-                    <Button onClick={() => navigate(`/MiTienda`)}>IR A MI TIENDA</Button>
+                    <Button onClick={() => navigate(`/Mi&Tienda`)}>
+                      IR A MI TIENDA
+                    </Button>
                   </div>
                 </div>
               )}
@@ -205,7 +209,10 @@ const Ventas = () => {
           </div>
           <div className="bottomContainer">
             <div className="bottonSection">
-              <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+              <div
+                className="returnLink"
+                onClick={() => navigate(`/Mi&Tienda`)}
+              >
                 <img src={leftArrow} alt="leftArrow" />
                 <p>VOLVER A MI TIENDA</p>
               </div>

@@ -23,7 +23,7 @@ const Caracteristicas = ({ form, setForm }) => {
 
   useEffect(() => {
     if (!form.categoriaId) {
-      navigate(`/MiTienda/CATEGORIA`);
+      navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
     const dir = new FormData();
@@ -144,7 +144,7 @@ const Caracteristicas = ({ form, setForm }) => {
         idCaracteristica: array,
         idCaracteristicaOld: idCaracteristica,
       }));
-      navigate(`/MiTienda/DETALLES`);
+      navigate(`/Mi&Tienda/DETALLES`);
     }
   };
 
@@ -291,7 +291,7 @@ const Caracteristicas = ({ form, setForm }) => {
         </div>
         <div
           className="returnLink"
-          onClick={() => navigate(`/MiTienda/IMAGENES`)}
+          onClick={() => navigate(`/Mi&Tienda/IMAGENES`)}
         >
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A IMAGENES</p>

@@ -36,7 +36,7 @@ const DetallesProd = ({ form, setForm }) => {
 
   useEffect(() => {
     if (!form.categoriaId) {
-      navigate(`/MiTienda/CATEGORIA`);
+      navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
     if (form.detalles.titulo !== "") {
@@ -64,9 +64,9 @@ const DetallesProd = ({ form, setForm }) => {
       detalles,
     }));
     if (form.crearTienda) {
-      navigate(`/MiTienda/CONTACTO`);
+      navigate(`/Mi&Tienda/CONTACTO`);
     } else {
-      navigate(`/MiTienda/SUMARIO`);
+      navigate(`/Mi&Tienda/SUMARIO`);
     }
   };
 
@@ -167,7 +167,7 @@ const DetallesProd = ({ form, setForm }) => {
           </div>
           <div
             className="returnLink"
-            onClick={() => navigate(`/MiTienda/CARACTERISTICAS`)}
+            onClick={() => navigate(`/Mi&Tienda/CARACTERISTICAS`)}
           >
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A CARACTERÍSTICAS</p>

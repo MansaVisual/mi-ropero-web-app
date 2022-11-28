@@ -12,7 +12,7 @@ const ElegirTipo = ({ form, setForm }) => {
   const { categorias } = useContext(UseProdsContext);
 
   if (!form.categoriaId) {
-    navigate(`/MiTienda/CATEGORIA`);
+    navigate(`/Mi&Tienda/CATEGORIA`);
     return;
   }
 
@@ -65,7 +65,7 @@ const ElegirTipo = ({ form, setForm }) => {
         <div className="buttonContainer">
           <button
             onClick={() => {
-              navigate(`/MiTienda/IMAGENES`);
+              navigate(`/Mi&Tienda/IMAGENES`);
             }}
             disabled={form.tipoId ? false : true}
             style={{
@@ -77,7 +77,7 @@ const ElegirTipo = ({ form, setForm }) => {
         </div>
         <div
           className="returnLink"
-          onClick={() => navigate(`/MiTienda/CATEGORIA`)}
+          onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}
         >
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A MI CATEGORIA</p>

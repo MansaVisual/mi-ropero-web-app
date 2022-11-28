@@ -28,7 +28,7 @@ const CrearTienda = ({ setForm }) => {
       crearTienda: true,
     }));
     setTiendaData([""]);
-    navigate(`/MiTienda/CATEGORIA`);
+    navigate(`/Mi&Tienda/CATEGORIA`);
   };
 
   return (

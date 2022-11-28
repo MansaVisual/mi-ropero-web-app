@@ -35,7 +35,7 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   useEffect(() => {
     if (!form.categoriaId) {
-      navigate(`/MiTienda/CATEGORIA`);
+      navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
     for (let i = 0; i < categorias.length; i++) {
@@ -87,7 +87,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         seccionExtra: seccionExtra,
         video: video,
       }));
-      navigate(`/MiTienda/CARACTERISTICAS`);
+      navigate(`/Mi&Tienda/CARACTERISTICAS`);
     }
   };
 
@@ -284,7 +284,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             IR A CARACTERÍSTICAS
           </button>
         </div>
-        <div className="returnLink" onClick={() => navigate(`/MiTienda/TIPO`)}>
+        <div className="returnLink" onClick={() => navigate(`/Mi&Tienda/TIPO`)}>
           <img src={leftArrow} alt="leftArrow" />
           <p>VOLVER A SUBCATEGORÍA</p>
         </div>

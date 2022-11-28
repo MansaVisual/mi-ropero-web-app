@@ -40,7 +40,7 @@ const Mensajes = () => {
   useEffect(() => {
     if (id) {
       setMensajeId(id);
-      navigate(`/MI TIENDA/MI CHAT`);
+      navigate(`/MI&TIENDA/MI CHAT`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -153,7 +153,7 @@ const Mensajes = () => {
                         className="desktopCard"
                         onClick={() => {
                           setMensajeId(mensaje.idmensaje);
-                          navigate(`/MiTienda/MI CHAT`);
+                          navigate(`/Mi&Tienda/MI CHAT`);
                         }}
                       >
                         <div className="mensajeData">
@@ -190,7 +190,7 @@ const Mensajes = () => {
                         className="mobileCard"
                         onClick={() => {
                           setMensajeId(mensaje.idmensaje);
-                          navigate(`/MiTienda/MI CHAT`);
+                          navigate(`/Mi&Tienda/MI CHAT`);
                         }}
                       >
                         <img
@@ -223,14 +223,14 @@ const Mensajes = () => {
                   <div>
                     <img src={mensaje} alt="LOGO" />
                     <p>Aún no tienes mensajes "{currentType}"</p>
-                    <Button onClick={() => navigate(`/MI TIENDA`)}>
+                    <Button onClick={() => navigate(`/MI&TIENDA`)}>
                       IR A MI TIENDA
                     </Button>
                   </div>
                 </div>
               )}
             </div>
-            <div className="returnLink" onClick={() => navigate(`/MiTienda`)}>
+            <div className="returnLink" onClick={() => navigate(`/Mi&Tienda`)}>
               <img src={leftArrow} alt="leftArrow" />
               <p>VOLVER A MI TIENDA</p>
             </div>
