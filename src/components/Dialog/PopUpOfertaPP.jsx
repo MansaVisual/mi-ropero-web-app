@@ -27,7 +27,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     setErrorValor(false);
     if (
       Number(data.amount) >
-      (prod.precio_oferta !== "0.00" ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta) : new Intl.NumberFormat("de-DE").format(prod.precio))
+      (prod.precio_oferta !== "0.00" ? prod.precio_oferta : prod.precio)
     ) {
       setErrorValor(true);
       document.getElementById("oferta").focus();
