@@ -52,6 +52,15 @@
           border: 1px solid #babcbe;
           border-radius: 6px;
         }
+        .firstLine {
+          border: unset;
+          .editICon {
+            display: none;
+            @include screen_506 {
+              display: block;
+            }
+          }
+        }
         button {
           background-color: transparent;
           width: 100%;

@@ -177,7 +177,12 @@ const Sumario = ({ form }) => {
           <div className="subSection">
             <div className="firstLine">
               <p className="title">Categoría</p>
-              <img className="editICon" src={editIcon} alt="editICon" />
+              <img
+                className="editICon"
+                src={editIcon}
+                alt="editICon"
+                onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}
+              />
             </div>
             <div className="infoCat">
               <p>{`${form.categoriaNombre} / ${form.tipoNombre}`}</p>
@@ -189,7 +194,12 @@ const Sumario = ({ form }) => {
           <div className="subSection">
             <div className="firstLine">
               <p className="title">Imágenes</p>
-              <img className="editICon" src={editIcon} alt="editICon" />
+              <img
+                className="editICon"
+                src={editIcon}
+                alt="editICon"
+                onClick={() => navigate(`/Mi&Tienda/IMAGENES`)}
+              />
             </div>
             <div className="infoImagenes">
               <div>
@@ -215,7 +225,12 @@ const Sumario = ({ form }) => {
           <div className="subSection">
             <div className="firstLine">
               <p className="title">Características</p>
-              <img className="editICon" src={editIcon} alt="editICon" />
+              <img
+                className="editICon"
+                src={editIcon}
+                alt="editICon"
+                onClick={() => navigate(`/Mi&Tienda/CARACTERISTICAS`)}
+              />
             </div>
             <div className="infoCaract">
               <div>
@@ -240,7 +255,12 @@ const Sumario = ({ form }) => {
           <div className="subSection">
             <div className="firstLine">
               <p className="title">Detalle</p>
-              <img className="editICon" src={editIcon} alt="editICon" />
+              <img
+                className="editICon"
+                src={editIcon}
+                alt="editICon"
+                onClick={() => navigate(`/Mi&Tienda/DETALLES`)}
+              />
             </div>
             <div className="infoDetalle">
               <div>
