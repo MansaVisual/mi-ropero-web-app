@@ -149,6 +149,7 @@ const DetallesProd = ({ form, setForm }) => {
               <NumericFormat
                 customInput={TextField}
                 className={`inputForm`}
+                placeholder="Ingresar precio de venta del producto"
                 onValueChange={(values) => {
                   console.log(values);
                   /* onChange({
@@ -162,6 +163,7 @@ const DetallesProd = ({ form, setForm }) => {
                 thousandSeparator={"."}
                 decimalSeparator={","}
                 prefix={"$"}
+                type="number"
               />
             </div>
           </div>
