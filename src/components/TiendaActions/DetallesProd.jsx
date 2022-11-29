@@ -30,7 +30,7 @@ const DetallesProd = ({ form, setForm }) => {
       if(e.target.value[e.target.value.length()]==="."){
         return 
       }
-      if(e.target.value.search(",")){
+      if(e.target.value.search(",")!==-1){
         return
       }
     }
