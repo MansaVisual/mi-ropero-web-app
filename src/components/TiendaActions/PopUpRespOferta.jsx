@@ -32,7 +32,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
           title: action === "accept" ? "OFERTA ACEPTADA" : "OFERTA CANCELADA",
           icon: "success",
           confirmButtonText: "ACEPTAR",
-        });
+        }).then(()=>window.location.reload());
       } else {
         setLoading(false);
         setOpenPopUp(false);

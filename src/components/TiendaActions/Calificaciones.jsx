@@ -100,7 +100,7 @@ const Calificaciones = () => {
                             <p className="id">
                               Operacion: <span>{data.idoperacion}</span>
                             </p>
-                            <p className="name">{data.fecha}</p>
+                            <p className="name">Fecha: {data.fecha}</p>
                             <p className="review">"{data.mensaje}"</p>
                           </div>
                         </div>
