@@ -664,7 +664,7 @@ const NavIcons = () => {
                         fontWeight: theme.typography.fontWeightMedium,
                       }}
                     >
-                      ${costoCarrito}
+                      ${new Intl.NumberFormat("de-DE").format(costoCarrito)}
                     </Typography>
                   </Box>
                   <Box
