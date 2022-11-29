@@ -13,7 +13,7 @@ const TyC = () => {
     <Grid className="gridContainer">
       <Box sx={{ mt: "32px" }}></Box>
 
-      <Box className="TyC">
+      <Box className="TyC" style={{marginTop:"32px"}}>
         <Breadcrumbs links={pathnames} />
         <p className="titulo1">Términos y condiciones</p>
 
