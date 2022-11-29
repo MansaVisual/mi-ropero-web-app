@@ -26,12 +26,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
   let clase = "formObligatorio";
   let clase2 = "formObligatorioTitle";
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setFormateoMonto();
-    /* new Intl.NumberFormat("de-DE").format(data.monto) */
+     new Intl.NumberFormat("de-DE").format(data.monto) 
     data.monto.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data.monto]);
+  }, [data.monto]); */
 
   useEffect(() => {
     console.log(data);
@@ -240,7 +240,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 placeholder="Ingresar solo números."
                 id="monto"
                 type={"number"}
-                value={formateoMonto}
+                /*          value={formateoMonto} */
                 onChangeCapture={(e) =>
                   setData((prevState) => ({
                     ...prevState,
