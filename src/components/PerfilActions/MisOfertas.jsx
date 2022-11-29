@@ -51,15 +51,6 @@ const MisOfertas = () => {
     "vencida",
   ];
 
-  /*   const estados=[
-    'Sin definir',
-    'en proceso de evaluacion',
-    'Rechazada por el vendedor',
-    'Cancelada por el comprador',
-    'Aceptado',
-    'vencida'
-  ] */
-
   return (
     <div className="misOfertasContainer">
       <Breadcrumbs links={pathnames} />
@@ -147,15 +138,17 @@ const MisOfertas = () => {
                     <div className="ofertaData">
                       <p className="oferta">OFERTA</p>
                       <p className="monto">${producto.oferta}</p>
-                      <img
-                        onClick={() => {
-                          setBorrarOferta(true);
-                          setOfertaId(producto.idoferta);
-                        }}
-                        className="basuraIcon"
-                        src={Basura}
-                        alt="BasuraIcon"
-                      />
+                      {producto.estado === "1" && (
+                        <img
+                          onClick={() => {
+                            setBorrarOferta(true);
+                            setOfertaId(producto.idoferta);
+                          }}
+                          className="basuraIcon"
+                          src={Basura}
+                          alt="BasuraIcon"
+                        />
+                      )}
                     </div>
                   </div>
                   <div className="mobileCard">
