@@ -239,14 +239,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar solo números."
                 id="monto"
-                /* type={"number"} */
-                value={formateoMonto}
+                type={"number"}
+                /* value={formateoMonto} */
                 onChangeCapture={(e) =>
                   setData((prevState) => ({
                     ...prevState,
-                    monto: new Intl.NumberFormat("de-DE").format(
-                      e.target.value
-                    ),
+                    monto: e.target.value,
                   }))
                 }
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
