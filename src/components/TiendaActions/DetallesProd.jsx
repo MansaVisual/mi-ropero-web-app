@@ -26,6 +26,14 @@ const DetallesProd = ({ form, setForm }) => {
   const [openDescPopUp, setOpenDescPopUp] = useState(false);
 
   const handleChange = (e, detalle) => {
+    if(detalle==="precio"){
+      if(e.target.value[e.target.value.length()]==="."){
+        return 
+      }
+      if(e.target.value.search(",")!==-1){
+        return
+      }
+    }
     setDetalles((prevState) => {
       return {
         ...prevState,
