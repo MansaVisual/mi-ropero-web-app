@@ -29,7 +29,6 @@ const Breadcrumbs = ({ links }) => {
       {links.map((link, index) => {
         const last = index === links.length - 1;
         const to = `/${links.slice(0, index + 1).join("/")}`;
-        console.log(links);
         return last ? (
           <Typography
             key={to}
