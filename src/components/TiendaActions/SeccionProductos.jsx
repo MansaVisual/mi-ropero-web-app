@@ -96,6 +96,19 @@ const SeccionProductos = ({ setForm }) => {
               CREAR DESCUENTO PARA TU TIENDA
             </p>
           </div>
+          <div className="buttonContainer">
+            <button
+              onClick={() => {
+                setForm((prevState) => ({
+                  ...prevState,
+                  crearTienda: false,
+                }));
+                navigate(`/Mi&Tienda/CATEGORIA`);
+              }}
+            >
+              AGREGAR PRODUCTO
+            </button>
+          </div>
           <div className="productList">
             {productos.length > 0 &&
               productos.map((product, id) => {
@@ -192,19 +205,6 @@ const SeccionProductos = ({ setForm }) => {
                   </>
                 );
               })}
-          </div>
-          <div className="buttonContainer">
-            <button
-              onClick={() => {
-                setForm((prevState) => ({
-                  ...prevState,
-                  crearTienda: false,
-                }));
-                navigate(`/Mi&Tienda/CATEGORIA`);
-              }}
-            >
-              AGREGAR PRODUCTO
-            </button>
           </div>
           <div className="returnLink" onClick={() => navigate(`/Mi&Tienda`)}>
             <img src={leftArrow} alt="leftArrow" />
