@@ -19,6 +19,7 @@ const TiendaBanner = () => {
 
   const [transfPopUp, setTransfPopUp] = useState(false);
 
+  console.log(location)
   return (
     <div className="bannerContainer">
       <div className="breadcrumbs">
@@ -29,13 +30,15 @@ const TiendaBanner = () => {
         <div className="content">
           <div className="titleBox">
             <span className="title">{tiendaData.nombre}</span>
-            <span
+            {location.pathname.toUpperCase()!=="/MI&TIENDA" &&
+              <span
               className="subTitle"
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/Mi&Tienda")}
-            >
-              VER MI TIENDA
-            </span>
+              >
+                VER MI TIENDA
+              </span>
+            }
           </div>
           <div className="moneyCount">
             <div>
