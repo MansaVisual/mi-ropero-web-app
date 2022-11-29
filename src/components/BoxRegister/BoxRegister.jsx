@@ -478,7 +478,13 @@ const BoxRegister = () => {
         <span
           className="spanLink"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/terminos&y&condiciones")}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: "auto",
+            });
+            navigate("/terminos&y&condiciones")
+          }}
         >
           términos y condiciones
         </span>{" "}
