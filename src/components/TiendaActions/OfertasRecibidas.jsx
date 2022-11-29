@@ -66,6 +66,13 @@ const OfertasRecibidas = () => {
     5: "Rechazada",
   };
 
+  const handleOpen = (venta) => {
+    if (venta.estado === "1") {
+      setOfertaSelecc(venta);
+      setOpenPopUp(true);
+    }
+  };
+
   return (
     <div className="ofertasContainer">
       <TiendaBanner />
@@ -97,10 +104,10 @@ const OfertasRecibidas = () => {
                         <div
                           key={id}
                           className="desktopCard"
-                          onClick={() => {
-                            setOfertaSelecc(venta);
-                            setOpenPopUp(true);
+                          style={{
+                            cursor: venta.estado === "1" ? "pointer" : "unset",
                           }}
+                          onClick={() => handleOpen(venta)}
                         >
                           <div className="data">
                             <img
@@ -140,10 +147,7 @@ const OfertasRecibidas = () => {
                         </div>
                         <div
                           className="mobileCard"
-                          onClick={() => {
-                            setOfertaSelecc(venta);
-                            setOpenPopUp(true);
-                          }}
+                          onClick={() => handleOpen(venta)}
                         >
                           <img
                             src={venta.producto.imagenes[0].imagen_cuadrada}

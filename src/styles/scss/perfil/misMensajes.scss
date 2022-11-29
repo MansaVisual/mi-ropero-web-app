@@ -95,9 +95,6 @@
           .messageTitle {
             color: #878787;
             cursor: pointer;
-            &:hover {
-              text-decoration: underline;
-            }
           }
           .messageDate {
             color: #878787;
@@ -196,5 +193,4 @@
       }
     }
   }
-
 }
