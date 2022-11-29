@@ -28,7 +28,8 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
 
   useEffect(() => {
     setFormateoMonto(
-      data.monto.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+      new Intl.NumberFormat("de-DE").format(data.monto)
+      /* .toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") */
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.monto]);
