@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import PopUpDescProd from "./PopUpDescuento";
-import NumberFormat from "react-number-format";
+import { NumericFormat } from "react-number-format";
 
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
@@ -137,7 +137,7 @@ const DetallesProd = ({ form, setForm }) => {
                 onChangeCapture={(e) => handleChange(e, "precio")}
                 type="number"
               ></OutlinedInput> */}
-              <NumberFormat
+              <NumericFormat
                 onValueChange={(values) => {
                   console.log(values);
                   /* onChange({
