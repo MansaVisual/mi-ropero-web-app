@@ -109,7 +109,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="titulo"
-                value={detalles.titulo}
+                value={new Intl.NumberFormat("de-DE").format(detalles.titulo)}
                 onChangeCapture={
                   (e) => handleChange(e, "titulo")
                   /* setDetalles((prevState) => {
