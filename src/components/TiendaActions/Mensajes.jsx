@@ -167,11 +167,19 @@ const Mensajes = () => {
                               {mensaje.producto.nombre}
                             </p>
                             <p className="messageDate">
-                              {formatoFecha(mensaje.fecha)}
+                              {mensaje.fecha_ultimo
+                                ? formatoFecha(mensaje.fecha_ultimo)
+                                : formatoFecha(mensaje.fecha)}
                             </p>
-                            <p className="messageMessage">{mensaje.mensaje}</p>
+                            <p className="messageMessage">
+                              {mensaje.mensaje_ultimo
+                                ? mensaje.mensaje_ultimo
+                                : mensaje.mensaje}
+                            </p>
                             <p className="messageState">
-                              {mensajesEstado[Number(mensaje.estado)]}
+                              {mensaje.estado_ultimo
+                                ? mensajesEstado[Number(mensaje.estado_ultimo)]
+                                : mensajesEstado[Number(mensaje.estado)]}
                             </p>
                           </div>
                         </div>
@@ -202,11 +210,19 @@ const Mensajes = () => {
                         <div>
                           <p className="messageTitle">{mensaje.titulo}</p>
                           <p className="messageDate">
-                            {formatoFecha(mensaje.fecha)}
+                            {mensaje.fecha_ultimo
+                              ? formatoFecha(mensaje.fecha_ultimo)
+                              : formatoFecha(mensaje.fecha)}
                           </p>
-                          <p className="messageMessage">{mensaje.mensaje}</p>
+                          <p className="messageMessage">
+                            {mensaje.mensaje_ultimo
+                              ? mensaje.mensaje_ultimo
+                              : mensaje.mensaje}
+                          </p>
                           <p className="messageState">
-                            {mensajesEstado[Number(mensaje.estado)]}
+                            {mensaje.estado_ultimo
+                              ? mensajesEstado[Number(mensaje.estado_ultimo)]
+                              : mensajesEstado[Number(mensaje.estado)]}
                           </p>
                         </div>
                         <img
