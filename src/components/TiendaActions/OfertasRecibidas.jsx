@@ -45,6 +45,7 @@ const OfertasRecibidas = () => {
             res.result === "La tienda no tiene ofertas"
           ) {
             setLoading(false);
+            setOfertas([]);
           } else {
             console.log("error");
             setError(true);

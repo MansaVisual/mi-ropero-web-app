@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import vacio from "../../assets/img/comprasVacio.png";
-import isologo from "../../assets/img/isologo.png";
+import isologo from "../../assets/img/MRlogoGrande.png";
 import Loader from "../Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
 
