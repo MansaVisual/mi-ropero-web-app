@@ -3,6 +3,9 @@
   margin: 40px 72px 80px 72px;
   display: flex;
   justify-content: center;
+  @include screen_768 {
+    margin: 40px 16px 65px 16px;
+  }
 
   @include screen_705 {
     margin-top: 24px;
@@ -25,6 +28,11 @@
       line-height: 28px;
       color: #878787;
       margin-left: 24px;
+      @include screen_768 {
+        display: block;
+        margin-top: 24px;
+        margin-left: 0;
+      }
     }
     .detailSection {
       max-width: 758px;
@@ -71,6 +79,7 @@
           padding: 6px 24px;
           div {
             display: flex;
+            flex-wrap: wrap;
             border: 0;
             gap: 12px;
             overflow-x: scroll;
