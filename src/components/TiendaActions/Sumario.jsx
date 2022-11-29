@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
+import editIcon from "../../assets/img/editIcon.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
@@ -174,7 +175,10 @@ const Sumario = ({ form }) => {
         <span className="subtitle">Revisá los datos y publicá tu producto</span>
         <div className="detailSection">
           <div className="subSection">
-            <p className="title">Categoría</p>
+            <div className="firstLine">
+              <p className="title">Categoría</p>
+              <img className="editICon" src={editIcon} alt="editICon" />
+            </div>
             <div className="infoCat">
               <p>{`${form.categoriaNombre} / ${form.tipoNombre}`}</p>
               <button onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}>
@@ -183,7 +187,10 @@ const Sumario = ({ form }) => {
             </div>
           </div>
           <div className="subSection">
-            <p className="title">Imágenes</p>
+            <div className="firstLine">
+              <p className="title">Imágenes</p>
+              <img className="editICon" src={editIcon} alt="editICon" />
+            </div>
             <div className="infoImagenes">
               <div>
                 {Object.keys(form.imagenesPreview).map((key, i) => {
@@ -206,7 +213,10 @@ const Sumario = ({ form }) => {
             </div>
           </div>
           <div className="subSection">
-            <p className="title">Características</p>
+            <div className="firstLine">
+              <p className="title">Características</p>
+              <img className="editICon" src={editIcon} alt="editICon" />
+            </div>
             <div className="infoCaract">
               <div>
                 {Object.keys(form.caracteristicas).map((key, index) => {
@@ -228,7 +238,10 @@ const Sumario = ({ form }) => {
             </div>
           </div>
           <div className="subSection">
-            <p className="title">Detalle</p>
+            <div className="firstLine">
+              <p className="title">Detalle</p>
+              <img className="editICon" src={editIcon} alt="editICon" />
+            </div>
             <div className="infoDetalle">
               <div>
                 {Object.keys(form.detalles).map((key, index) => {
@@ -268,12 +281,12 @@ const Sumario = ({ form }) => {
           className="returnLink"
           onClick={() => {
             form.crearTienda
-              ? navigate(`/Mi&Tienda/DETALLES`)
-              : navigate(`/Mi&Tienda/CONTACTO`);
+              ? navigate(`/Mi&Tienda/CONTACTO`)
+              : navigate(`/Mi&Tienda/DETALLES`);
           }}
         >
           <img src={leftArrow} alt="leftArrow" />
-          <p>{form.crearTienda ? "VOLVER A DETALLES" : "VOLVER A CONTACTO"}</p>
+          <p>{form.crearTienda ? "VOLVER A CONTACTO" : "VOLVER A DETALLES"}</p>
         </div>
       </div>
     </div>

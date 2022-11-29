@@ -19,7 +19,7 @@ const Mensajes = () => {
   const typeMessages = ["ver todos", "ver no leídos", "ver leídos"];
   const [currentType, setCurrentType] = useState("ver todos");
   const [mensajesFiltrados, setMensajesFiltrados] = useState([]);
-  const [borrarMsj, setBorrarMsj] = useState(false);
+  /*   const [borrarMsj, setBorrarMsj] = useState(false); */
   const mensajesEstado = ["", "No leído", "Leído"];
 
   const { userLog } = useContext(UseLoginContext);
@@ -28,7 +28,7 @@ const Mensajes = () => {
     mensajes,
     mensajesFinBusqueda,
     setMensajeId,
-    mensajeId,
+    /*  mensajeId, */
   } = useContext(UsePerfilContext);
 
   useEffect(() => {
@@ -190,7 +190,7 @@ const Mensajes = () => {
                             </p>
                           </div>
                         </div>
-                        <img
+                        {/* <img
                           onClick={() => {
                             setBorrarMsj(true);
                             setMensajeId(mensaje.idmensaje);
@@ -198,7 +198,7 @@ const Mensajes = () => {
                           className="basuraIcon"
                           src={basura}
                           alt="BasuraIcon"
-                        />
+                        /> */}
                       </div>
                       <div
                         key={`mobile${id}`}
@@ -232,11 +232,11 @@ const Mensajes = () => {
                               : mensajesEstado[Number(mensaje.estado)]}
                           </p>
                         </div>
-                        <img
+                        {/*  <img
                           src={basura}
                           className="trashICon"
                           alt="basuraIcon"
-                        />
+                        /> */}
                       </div>
                     </>
                   );
