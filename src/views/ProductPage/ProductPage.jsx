@@ -144,6 +144,8 @@ const ProductPage = () => {
     }
   };
 
+  console.log(prod)
+
   return (
     <Container maxWidth="xl">
       <Grid
