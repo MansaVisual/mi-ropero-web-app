@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
@@ -21,22 +21,9 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
     dni: "",
     monto: "",
   });
-  const [formateoMonto, setFormateoMonto] = useState(data.monto);
 
   let clase = "formObligatorio";
   let clase2 = "formObligatorioTitle";
-
-  /*   useEffect(() => {
-    setFormateoMonto();
-     new Intl.NumberFormat("de-DE").format(data.monto) 
-    data.monto.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data.monto]); */
-
-  useEffect(() => {
-    console.log(data);
-    console.log(formateoMonto);
-  }, [data]);
 
   const submit = () => {
     setLoading(true);
@@ -121,18 +108,6 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     cbu: e.target.value,
                   }))
                 }
-                /* defaultValue={infoUser.nombre}
-                onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
-                onChangeCapture={() => {
-                  setCampoObligatorio(false);
-                }}
-                sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: campoObligatorio && "#FF3F20",
-                    },
-                  },
-                }} */
               />
             </div>
             <div className="inputBox">
@@ -150,17 +125,6 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     alias: e.target.value,
                   }))
                 }
-                /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
-                onChangeCapture={() => {
-                  setCampoObligatorio(false);
-                }} */
-                /* sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: campoObligatorio && "#FF3F20",
-                    },
-                  },
-                }} */
               />
             </div>
           </div>
@@ -181,18 +145,6 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     titular: e.target.value,
                   }))
                 }
-                /* defaultValue={infoUser.nombre}
-                onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
-                onChangeCapture={() => {
-                  setCampoObligatorio(false);
-                }}
-                sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: campoObligatorio && "#FF3F20",
-                    },
-                  },
-                }} */
               />
             </div>
           </div>
@@ -213,18 +165,6 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     dni: e.target.value,
                   }))
                 }
-                /* defaultValue={infoUser.nombre}
-                onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
-                onChangeCapture={() => {
-                  setCampoObligatorio(false);
-                }}
-                sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: campoObligatorio && "#FF3F20",
-                    },
-                  },
-                }} */
               />
             </div>
             <div className="inputBox">
@@ -240,24 +180,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 placeholder="Ingresar solo números."
                 id="monto"
                 type={"number"}
-                /*          value={formateoMonto} */
                 onChangeCapture={(e) =>
                   setData((prevState) => ({
                     ...prevState,
                     monto: e.target.value,
                   }))
                 }
-                /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
-                onChangeCapture={() => {
-                  setCampoObligatorio(false);
-                }} */
-                /* sx={{
-                  "& .MuiOutlinedInput-root:hover": {
-                    "& > fieldset": {
-                      borderColor: campoObligatorio && "#FF3F20",
-                    },
-                  },
-                }} */
               />
             </div>
           </div>

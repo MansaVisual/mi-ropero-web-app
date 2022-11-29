@@ -102,7 +102,9 @@ const OfertasRecibidas = () => {
                       <>
                         <div
                           key={id}
-                          className="desktopCard"
+                          className={`desktopCard ${
+                            venta.estado === "1" ? "desktopCardHover" : ""
+                          }`}
                           style={{
                             cursor: venta.estado === "1" ? "pointer" : "unset",
                           }}

@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Banner from "../../assets/img/bannerPng.png";
-import bannerXS from "../../assets/img/bannerXS.png";
 import iconHide from "../../assets/img/iconHide.svg";
 import iconShow from "../../assets/img/iconShow.svg";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
@@ -19,6 +18,12 @@ const TiendaBanner = () => {
   const { saldoCuenta, tiendaData } = useContext(UseMiTiendaContext);
 
   const [transfPopUp, setTransfPopUp] = useState(false);
+
+  const [formatoSaldo, setFormatoSaldo] = useState(null);
+
+  useEffect(() => {
+    setFormatoSaldo(new Intl.NumberFormat("de-DE").format(saldoCuenta));
+  }, [saldoCuenta]);
 
   return (
     <div className="bannerContainer">
@@ -54,7 +59,7 @@ const TiendaBanner = () => {
                   <Loader spin={"spinnerS"} />
                 </div>
               ) : (
-                <span>{showMoney ? `$ ${saldoCuenta}` : "$ **.***.**"}</span>
+                <span>{showMoney ? `$ ${formatoSaldo}` : "$ **.***.**"}</span>
               )}
               {showMoney ? (
                 <img
@@ -70,17 +75,19 @@ const TiendaBanner = () => {
                 />
               )}
             </div>
-            <button onClick={() => {
-              if(saldoCuenta<100){
-                Swal.fire({
-                  title: 'SALDO MÍNIMO: $100',
-                  icon: "info",
-                  confirmButtonText: "CONTINUAR",
-                })
-              }else{
-                setTransfPopUp(true)
-              }
-              }}>
+            <button
+              onClick={() => {
+                if (saldoCuenta < 100) {
+                  Swal.fire({
+                    title: "SALDO MÍNIMO: $100",
+                    icon: "info",
+                    confirmButtonText: "CONTINUAR",
+                  });
+                } else {
+                  setTransfPopUp(true);
+                }
+              }}
+            >
               SOLICITAR TRANSFERENCIA
             </button>
           </div>
