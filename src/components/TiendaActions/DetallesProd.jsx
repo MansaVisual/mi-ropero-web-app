@@ -27,7 +27,7 @@ const DetallesProd = ({ form, setForm }) => {
 
   const handleChange = (e, detalle) => {
     if(detalle==="precio"){
-      if(e.target.value[e.target.value.length()]==="."){
+      if(e.target.value[e.target.value.length]==="."){
         return 
       }
       if(e.target.value.search(",")!==-1){
