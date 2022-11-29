@@ -478,7 +478,7 @@ const BoxRegister = () => {
         <span
           className="spanLink"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("terminos&y&condiciones")}
+          onClick={() => navigate("/terminos&y&condiciones")}
         >
           términos y condiciones
         </span>{" "}

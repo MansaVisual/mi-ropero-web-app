@@ -224,35 +224,37 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                       </Typography>
                     </Box>
 
-                    <Button
-                      endIcon={
-                        <Avatar
-                          src={ofertIcon}
-                          sx={{ width: 16, height: 16 }}
-                        />
-                      }
-                      disabled={prod.precio_oferta !== "0.00" ? true : false}
-                      onClick={
-                        prod.precio_oferta !== "0.00"
-                          ? null
-                          : userLog !== ""
-                          ? () => handleClickOpen()
-                          : () => handleCompraSinLogin()
-                      }
-                      sx={{
-                        backgroundColor: "#E7F1FC",
-                        boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
-                        borderRadius: "20px",
-                        width: "219px",
-                        height: "36px",
-                        marginTop: "10px",
-                        "&:hover": {
-                          backgroundColor: "#e7f1fc",
-                        },
-                      }}
-                    >
-                      Ofertar
-                    </Button>
+                    {prod.tienda.idcliente!==userLog &&
+                      <Button
+                        endIcon={
+                          <Avatar
+                            src={ofertIcon}
+                            sx={{ width: 16, height: 16 }}
+                          />
+                        }
+                        disabled={prod.precio_oferta !== "0.00" ? true : false}
+                        onClick={
+                          prod.precio_oferta !== "0.00"
+                            ? null
+                            : userLog !== ""
+                            ? () => handleClickOpen()
+                            : () => handleCompraSinLogin()
+                        }
+                        sx={{
+                          backgroundColor: "#E7F1FC",
+                          boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
+                          borderRadius: "20px",
+                          width: "219px",
+                          height: "36px",
+                          marginTop: "10px",
+                          "&:hover": {
+                            backgroundColor: "#e7f1fc",
+                          },
+                        }}
+                      >
+                        Ofertar
+                      </Button>
+                    }
                     {open && (
                       <PopUpOfertaPP
                         open={open}
@@ -274,35 +276,37 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                     >
                       $ {prod.precio}
                     </Typography>
-                    <Button
-                      endIcon={
-                        <Avatar
-                          src={ofertIcon}
-                          sx={{ width: 16, height: 16 }}
-                        />
-                      }
-                      disabled={prod.precio_oferta !== "0.00" ? true : false}
-                      onClick={
-                        prod.precio_oferta !== "0.00"
-                          ? null
-                          : userLog !== ""
-                          ? () => handleClickOpen()
-                          : () => handleCompraSinLogin()
-                      }
-                      sx={{
-                        backgroundColor: "#E7F1FC",
-                        boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
-                        borderRadius: "20px",
-                        width: "219px",
-                        height: "36px",
-                        marginTop: "10px",
-                        "&:hover": {
-                          backgroundColor: "#e7f1fc",
-                        },
-                      }}
-                    >
-                      Ofertar
-                    </Button>
+                    {prod.tienda.idcliente!==userLog &&
+                      <Button
+                        endIcon={
+                          <Avatar
+                            src={ofertIcon}
+                            sx={{ width: 16, height: 16 }}
+                          />
+                        }
+                        disabled={prod.precio_oferta !== "0.00" ? true : false}
+                        onClick={
+                          prod.precio_oferta !== "0.00"
+                            ? null
+                            : userLog !== ""
+                            ? () => handleClickOpen()
+                            : () => handleCompraSinLogin()
+                        }
+                        sx={{
+                          backgroundColor: "#E7F1FC",
+                          boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
+                          borderRadius: "20px",
+                          width: "219px",
+                          height: "36px",
+                          marginTop: "10px",
+                          "&:hover": {
+                            backgroundColor: "#e7f1fc",
+                          },
+                        }}
+                      >
+                        Ofertar
+                      </Button>
+                    }
                     {open && (
                       <PopUpOfertaPP
                         open={open}
@@ -328,20 +332,22 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                   <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                 )}
               </Box> */}
-              <CommentButton
-                onClick={
-                  tienda.estado_text!=="Activa"?()=>
-                    Swal.fire({
-                      title: "TIENDA PAUSADA",
-                      text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
-                      icon: "info",
-                      confirmButtonText: "ACEPTAR",
-                    }) :
-                  userLog === ""
-                    ? () => handleCompraSinLogin()
-                    : () => setOpenMessagePop(true)
-                }
-              />
+              {prod.tienda.idcliente!==userLog &&
+                <CommentButton
+                  onClick={
+                    tienda.estado_text!=="Activa"?()=>
+                      Swal.fire({
+                        title: "TIENDA PAUSADA",
+                        text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
+                        icon: "info",
+                        confirmButtonText: "ACEPTAR",
+                      }) :
+                    userLog === ""
+                      ? () => handleCompraSinLogin()
+                      : () => setOpenMessagePop(true)
+                  }
+                />
+              }
               {openMessagePop && (
                 <PopUpMensajePP
                   setOpenMessagePop={setOpenMessagePop}
@@ -495,31 +501,33 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                   </Typography>
                 )}
                 <Box sx={{ mt: "16px" }}>
-                  <Button
-                    endIcon={
-                      <Avatar src={ofertIcon} sx={{ width: 16, height: 16 }} />
-                    }
-                    disabled={prod.precio_oferta !== "0.00" ? true : false}
-                    onClick={
-                      prod.precio_oferta !== "0.00"
-                        ? null
-                        : userLog !== ""
-                        ? () => handleClickOpen()
-                        : () => handleCompraSinLogin()
-                    }
-                    sx={{
-                      backgroundColor: "#E7F1FC",
-                      boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
-                      borderRadius: "20px",
-                      width: "219px",
-                      height: "36px",
-                      "&:hover": {
-                        backgroundColor: "#e7f1fc",
-                      },
-                    }}
-                  >
-                    Ofertar
-                  </Button>
+                  {prod.tienda.idcliente!==userLog &&
+                    <Button
+                      endIcon={
+                        <Avatar src={ofertIcon} sx={{ width: 16, height: 16 }} />
+                      }
+                      disabled={prod.precio_oferta !== "0.00" ? true : false}
+                      onClick={
+                        prod.precio_oferta !== "0.00"
+                          ? null
+                          : userLog !== ""
+                          ? () => handleClickOpen()
+                          : () => handleCompraSinLogin()
+                      }
+                      sx={{
+                        backgroundColor: "#E7F1FC",
+                        boxShadow: "0px 2px 6px rgba(66, 65, 67, 0.1)",
+                        borderRadius: "20px",
+                        width: "219px",
+                        height: "36px",
+                        "&:hover": {
+                          backgroundColor: "#e7f1fc",
+                        },
+                      }}
+                    >
+                      Ofertar
+                    </Button>
+                  }
                   {open && (
                     <PopUpOfertaPP open={open} setOpen={setOpen} prod={prod} />
                   )}

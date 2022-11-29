@@ -325,20 +325,22 @@ const ProductPage = () => {
                         idProd={itemID}
                         location={location.pathname}
                       />
-                      <CommentButton
-                        onClick={
-                          tienda.estado_text!=="Activa"?()=>
-                            Swal.fire({
-                              title: "TIENDA PAUSADA",
-                              text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
-                              icon: "info",
-                              confirmButtonText: "ACEPTAR",
-                            }) :
-                          userLog === ""
-                            ? () => handleCompraSinLogin()
-                            : () => setOpenMessagePop(true)
-                        }
-                      />
+                      {prod.tienda.idcliente!==userLog &&
+                        <CommentButton
+                          onClick={
+                            tienda.estado_text!=="Activa"?()=>
+                              Swal.fire({
+                                title: "TIENDA PAUSADA",
+                                text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
+                                icon: "info",
+                                confirmButtonText: "ACEPTAR",
+                              }) :
+                              userLog === ""
+                              ? () => handleCompraSinLogin()
+                              : () => setOpenMessagePop(true)
+                          }
+                        />
+                      }
                     </Box>
                   </Box>
                   <ProductBuyBox prod={prod} itemID={itemID} tienda={tienda} />
