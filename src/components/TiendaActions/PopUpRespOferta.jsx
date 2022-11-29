@@ -32,7 +32,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
           title: action === "accept" ? "OFERTA ACEPTADA" : "OFERTA CANCELADA",
           icon: "success",
           confirmButtonText: "ACEPTAR",
-        }).then(()=>window.location.reload());
+        }).then(() => window.location.reload());
       } else {
         setLoading(false);
         setOpenPopUp(false);
@@ -115,10 +115,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
                   </Button>
                 )}
                 <Button
-                  className={
-                    respuesta.length === 0 ? "mensajeDisabled" : "recordar"
-                  }
-                  disabled={respuesta.length === 0 ? true : false}
+                  className={"recordar"}
                   onClick={() => handleSubmit("accept")}
                 >
                   ACEPTAR OFERTA

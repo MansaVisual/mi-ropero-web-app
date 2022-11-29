@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
-import basura from "../../assets/img/basura.png";
 import vacio from "../../assets/img/ofertasVacio.svg";
 import { useNavigate } from "react-router-dom";
 import { UseLoginContext } from "../../context/LoginContext";
@@ -20,7 +19,6 @@ const OfertasRecibidas = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [ofertas, setOfertas] = useState([]);
-  const [isHover, setIsHover] = useState(false);
   const [filtroSelecc, setFiltroSelecc] = useState({
     id: 1,
     nombre: "En proceso de evaluación",
@@ -74,14 +72,6 @@ const OfertasRecibidas = () => {
     }
   };
 
-  const handleMouseEnter = () => {
-    setIsHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHover(false);
-  };
-
   return (
     <div className="ofertasContainer">
       <TiendaBanner />
@@ -113,13 +103,8 @@ const OfertasRecibidas = () => {
                         <div
                           key={id}
                           className="desktopCard"
-                          onMouseEnter={handleMouseEnter}
-                          onMouseLeave={handleMouseLeave}
                           style={{
                             cursor: venta.estado === "1" ? "pointer" : "unset",
-                            border: isHover
-                              ? "1px solid #e7b1fe"
-                              : "1px solid transparent",
                           }}
                           onClick={() => handleOpen(venta)}
                         >
