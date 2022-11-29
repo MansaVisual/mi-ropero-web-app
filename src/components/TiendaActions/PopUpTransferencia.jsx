@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, TextField } from "@mui/material";
@@ -9,47 +9,54 @@ import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
-
   const { saldoCuenta, setSaldoCuenta } = useContext(UseMiTiendaContext);
   const { userLog } = useContext(UseLoginContext);
 
   const [loading, setLoading] = useState(false);
-  const [errorMonto,setErrorMonto]=useState(false)
-
-  let clase = 'formObligatorio';
-  let clase2 = 'formObligatorioTitle';
-
+  const [errorMonto, setErrorMonto] = useState(false);
   const [data, setData] = useState({
-    cbu:"",
-    alias:"",
-    titular:"",
-    dni:"",
-    monto:""
+    cbu: "",
+    alias: "",
+    titular: "",
+    dni: "",
+    monto: "",
   });
+  const [formateoMonto, setFormateoMonto] = useState(data.monto);
+
+  let clase = "formObligatorio";
+  let clase2 = "formObligatorioTitle";
 
   useEffect(() => {
-    console.log(data)
+    setFormateoMonto(
+      data.monto.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.monto]);
+
+  useEffect(() => {
+    console.log(data);
   }, [data]);
 
-  const submit = ()=>{
-    setLoading(true)
-    if(Number(data.monto)<100 || Number(data.monto)>saldoCuenta){
-      setLoading(false)
-      setErrorMonto(true)
-      document.getElementById("monto").focus()
-      return
+  const submit = () => {
+    setLoading(true);
+    if (Number(data.monto) < 100 || Number(data.monto) > saldoCuenta) {
+      setLoading(false);
+      setErrorMonto(true);
+      document.getElementById("monto").focus();
+      return;
     }
-    const trans = new FormData()
-    trans.append("idcliente",userLog)
-    trans.append("cbu",data.cbu)
-    trans.append("alias",data.alias)
-    trans.append("titular",data.titular)
-    trans.append("documento",Number(data.dni))
-    trans.append("monto",data.monto)
-    apiFetch(trans,"transferencias","insert").then((res)=>{console.log(res)
-      if(res.status==="success"){
-        setLoading(false)
-        setTransfPopUp(false)
+    const trans = new FormData();
+    trans.append("idcliente", userLog);
+    trans.append("cbu", data.cbu);
+    trans.append("alias", data.alias);
+    trans.append("titular", data.titular);
+    trans.append("documento", Number(data.dni));
+    trans.append("monto", data.monto);
+    apiFetch(trans, "transferencias", "insert").then((res) => {
+      console.log(res);
+      if (res.status === "success") {
+        setLoading(false);
+        setTransfPopUp(false);
         const ctacte = new FormData();
         ctacte.append("idcliente", userLog);
         apiFetch(ctacte, "cuentascorrientes", "balance").then((res) => {
@@ -60,20 +67,20 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
             title: "TRANSFERENCIA SOLICITADA",
             icon: "success",
             confirmButtonText: "ACEPTAR",
-          })
+          });
         });
-      }else{
-        setLoading(false)
-        setTransfPopUp(false)
+      } else {
+        setLoading(false);
+        setTransfPopUp(false);
         Swal.fire({
           title: "OCURRIÓ UN ERROR",
           icon: "error",
           confirmButtonText: "ACEPTAR",
-        })
+        });
       }
-    })
-  }
-  
+    });
+  };
+
   return (
     <div className="PopUpMensajePP">
       <div className="fondoPopUp" onClick={() => setTransfPopUp(false)}></div>
@@ -88,11 +95,13 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
         <div className="popUpContainer">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">SOLICITUD DE TRANSFERENCIA</p>
-          <p className={`popUpDescription ${errorMonto?clase2:""}`} style={{ marginTop: "8px" }}>
-            {errorMonto ? `Monto Mín: $100 / Máx: $${saldoCuenta}`
-            :
-            "Ingresá estos datos para poder transferir tu dinero."
-            }
+          <p
+            className={`popUpDescription ${errorMonto ? clase2 : ""}`}
+            style={{ marginTop: "8px" }}
+          >
+            {errorMonto
+              ? `Monto Mín: $100 / Máx: $${saldoCuenta}`
+              : "Ingresá estos datos para poder transferir tu dinero."}
           </p>
           <div className="inputContainer">
             <div className="inputBox">
@@ -105,10 +114,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 placeholder="Ingresar CBU. Solo números"
                 id="CBU"
                 type={"number"}
-                onChangeCapture={(e)=>setData((prevState)=>({
-                  ...prevState,
-                  cbu:e.target.value
-                }))}
+                onChangeCapture={(e) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    cbu: e.target.value,
+                  }))
+                }
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
                 onChangeCapture={() => {
@@ -132,10 +143,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar alias completo "
                 id="alias"
-                onChangeCapture={(e)=>setData((prevState)=>({
-                  ...prevState,
-                  alias:e.target.value
-                }))}
+                onChangeCapture={(e) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    alias: e.target.value,
+                  }))
+                }
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
                 onChangeCapture={() => {
                   setCampoObligatorio(false);
@@ -161,10 +174,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar nombres y apellido completo"
                 id="nombreCompleto"
-                onChangeCapture={(e)=>setData((prevState)=>({
-                  ...prevState,
-                  titular:e.target.value
-                }))}
+                onChangeCapture={(e) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    titular: e.target.value,
+                  }))
+                }
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
                 onChangeCapture={() => {
@@ -191,10 +206,12 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 placeholder="Ingresar CUIT o CUIL. Solo números."
                 id="CUIT"
                 type={"number"}
-                onChangeCapture={(e)=>setData((prevState)=>({
-                  ...prevState,
-                  dni:e.target.value
-                }))}
+                onChangeCapture={(e) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    dni: e.target.value,
+                  }))
+                }
                 /* defaultValue={infoUser.nombre}
                 onFocus={(e) => onFocus(e, clase, clase2, "labelNombre")}
                 onChangeCapture={() => {
@@ -210,19 +227,25 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               />
             </div>
             <div className="inputBox">
-              <p className={`labelInput ${errorMonto?clase2:""}`} id="labelMonto">
+              <p
+                className={`labelInput ${errorMonto ? clase2 : ""}`}
+                id="labelMonto"
+              >
                 Monto Mín: $100 / Máx: ${saldoCuenta}
               </p>
               <TextField
-                className={`input ${errorMonto?clase:""}`}
+                className={`input ${errorMonto ? clase : ""}`}
                 size="small"
                 placeholder="Ingresar solo números."
                 id="monto"
                 type={"number"}
-                onChangeCapture={(e)=>setData((prevState)=>({
-                  ...prevState,
-                  monto:e.target.value
-                }))}
+                value={formateoMonto}
+                onChangeCapture={(e) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    monto: e.target.value,
+                  }))
+                }
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
                 onChangeCapture={() => {
                   setCampoObligatorio(false);
@@ -261,9 +284,33 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                   </Button>
                 )}
                 <Button
-                  className={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? "mensajeDisabled" : "recordar"}
-                  disabled={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? true : false}
-                  onClick={(data.cbu==="" || data.alias==="" || data.titular==="" || data.dni==="" || data.monto==="") ? null :() => submit()} 
+                  className={
+                    data.cbu === "" ||
+                    data.alias === "" ||
+                    data.titular === "" ||
+                    data.dni === "" ||
+                    data.monto === ""
+                      ? "mensajeDisabled"
+                      : "recordar"
+                  }
+                  disabled={
+                    data.cbu === "" ||
+                    data.alias === "" ||
+                    data.titular === "" ||
+                    data.dni === "" ||
+                    data.monto === ""
+                      ? true
+                      : false
+                  }
+                  onClick={
+                    data.cbu === "" ||
+                    data.alias === "" ||
+                    data.titular === "" ||
+                    data.dni === "" ||
+                    data.monto === ""
+                      ? null
+                      : () => submit()
+                  }
                 >
                   SOLICITAR
                 </Button>

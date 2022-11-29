@@ -84,6 +84,10 @@
             border-radius: 6px;
             padding: 16px 40px 16px 32px;
             cursor: pointer;
+            border: 1px solid transparent;
+            &:hover {
+              border: 1px solid #e7b1fe;
+            }
             @include screen_705 {
               display: none;
             }
