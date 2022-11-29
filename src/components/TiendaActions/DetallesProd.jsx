@@ -11,6 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import PopUpDescProd from "./PopUpDescuento";
+import NumberFormat from "react-number-format";
 
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
@@ -124,7 +125,7 @@ const DetallesProd = ({ form, setForm }) => {
               <InputLabel className="labelForm" id="labelTelefono">
                 Precio de venta *
               </InputLabel>
-              <OutlinedInput
+              {/*  <OutlinedInput
                 startAdornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
@@ -135,7 +136,22 @@ const DetallesProd = ({ form, setForm }) => {
                 value={detalles.precio}
                 onChangeCapture={(e) => handleChange(e, "precio")}
                 type="number"
-              ></OutlinedInput>
+              ></OutlinedInput> */}
+              <NumberFormat
+                onValueChange={(values) => {
+                  console.log(values);
+                  /* onChange({
+                    target: {
+                      name: props.name,
+                      value: values.value,
+                    },
+                  }); */
+                  handleChange(values, "precio");
+                }}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                prefix={"$"}
+              />
             </div>
           </div>
           <div
