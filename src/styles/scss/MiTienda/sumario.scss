@@ -65,6 +65,9 @@
           line-height: 16px;
           color: #443988;
           cursor: pointer;
+          @include screen_506 {
+            display: none;
+          }
         }
         .infoCat {
           padding: 24px 32px;
@@ -110,7 +113,8 @@
               line-height: 40px;
               text-transform: uppercase;
               color: #878787;
-              width: 130px;
+              width: 100%;
+              max-width: 130px;
             }
             span {
               font-weight: 600;
