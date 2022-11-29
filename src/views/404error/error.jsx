@@ -40,10 +40,10 @@ const Error = () => {
           <p className="p1">
             La página que estás buscando no está disponible en este momento.
           </p>
-          <p className="p2">
+          {/* <p className="p2">
             Si necesitas ayuda, podés <span className="span">contactarte</span>{" "}
             con nosotros.
-          </p>
+          </p> */}
 
           <Button className="button" sx={{mb:"72px"}} onClick={() => navigate(-1)}>
             VOLVER ATRAS
