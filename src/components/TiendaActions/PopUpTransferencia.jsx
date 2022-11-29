@@ -27,15 +27,15 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
   let clase2 = "formObligatorioTitle";
 
   useEffect(() => {
-    setFormateoMonto(
-      new Intl.NumberFormat("de-DE").format(data.monto)
-      /* .toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") */
-    );
+    setFormateoMonto();
+    /* new Intl.NumberFormat("de-DE").format(data.monto) */
+    data.monto.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.monto]);
 
   useEffect(() => {
     console.log(data);
+    console.log(formateoMonto);
   }, [data]);
 
   const submit = () => {
