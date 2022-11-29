@@ -39,6 +39,18 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+      @include screen_950 {
+        max-height: 350px;
+      }
+      @include screen_768 {
+        max-height: 470px;
+      }
+      @include screen_506 {
+        max-height: 700px;
+      }
+      @include screen_360 {
+        max-height: unset;
+      }
       .subType {
         display: flex;
         margin-top: 24px;
