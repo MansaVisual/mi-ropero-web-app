@@ -9,7 +9,7 @@ import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
 import Loader from "../Loader/Loader";
 import mensaje from "../../assets/img/mensajesVacio.png";
-import isologo from "../../assets/img/isologo.png";
+import isologo from "../../assets/img/MRlogoGrande.png";
 import PopUpBorrarMsj from "./PopUpBorrarMsj";
 import Swal from "sweetalert2";
 
@@ -187,11 +187,19 @@ const MisMensajes = () => {
                           : "producto no encontrado"}
                       </p>
                       <p className="messageDate">
-                        {formatoFecha(mensaje.fecha)}
+                        {mensaje.fecha_ultimo
+                          ? formatoFecha(mensaje.fecha_ultimo)
+                          : formatoFecha(mensaje.fecha)}
                       </p>
-                      <p className="messageMessage">{mensaje.mensaje}</p>
+                      <p className="messageMessage">
+                        {mensaje.mensaje_ultimo
+                          ? mensaje.mensaje_ultimo
+                          : mensaje.mensaje}
+                      </p>
                       <p className="messageState">
-                        {mensajesEstado[Number(mensaje.estado)]}
+                        {mensaje.estado_ultimo
+                          ? mensajesEstado[Number(mensaje.estado_ultimo)]
+                          : mensajesEstado[Number(mensaje.estado)]}
                       </p>
                     </div>
                   </div>
@@ -221,11 +229,25 @@ const MisMensajes = () => {
                     onError={(e) => handleAvatarError(e)}
                   />
                   <div>
-                    <p className="messageTitle">{mensaje.titulo}</p>
-                    <p className="messageDate">{formatoFecha(mensaje.fecha)}</p>
-                    <p className="messageMessage">{mensaje.mensaje}</p>
+                    <p className="messageTitle">
+                      {mensaje.producto
+                        ? mensaje.producto.nombre
+                        : "producto no encontrado"}
+                    </p>
+                    <p className="messageDate">
+                      {mensaje.fecha_ultimo
+                        ? formatoFecha(mensaje.fecha_ultimo)
+                        : formatoFecha(mensaje.fecha)}
+                    </p>
+                    <p className="messageMessage">
+                      {mensaje.mensaje_ultimo
+                        ? mensaje.mensaje_ultimo
+                        : mensaje.mensaje}
+                    </p>
                     <p className="messageState">
-                      {mensajesEstado[Number(mensaje.estado)]}
+                      {mensaje.estado_ultimo
+                        ? mensajesEstado[Number(mensaje.estado_ultimo)]
+                        : mensajesEstado[Number(mensaje.estado)]}
                     </p>
                   </div>
                   {/* <img src={Basura} className="trashICon" alt="basuraIcon" /> */}

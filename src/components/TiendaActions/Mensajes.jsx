@@ -9,6 +9,7 @@ import { Button, Grid, MenuItem, Select } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UsePerfilContext } from "../../context/PerfilContext";
+import isologo from "../../assets/img/MRlogoGrande.png";
 
 const Mensajes = () => {
   const navigate = useNavigate();
@@ -158,13 +159,19 @@ const Mensajes = () => {
                       >
                         <div className="mensajeData">
                           <img
-                            src={mensaje.producto.imagenes[0].imagen_cuadrada}
+                            src={
+                              mensaje.producto
+                                ? mensaje.producto.imagenes[0].imagen_cuadrada
+                                : isologo
+                            }
                             alt="cardImage"
                             onError={(e) => handleAvatarError(e)}
                           />
                           <div>
                             <p className="messageTitle">
-                              {mensaje.producto.nombre}
+                              {mensaje.producto
+                                ? mensaje.producto.nombre
+                                : "producto no encontrado"}
                             </p>
                             <p className="messageDate">
                               {mensaje.fecha_ultimo
