@@ -138,6 +138,8 @@ const DetallesProd = ({ form, setForm }) => {
                 type="number"
               ></OutlinedInput> */}
               <NumericFormat
+                customInput={TextField}
+                className={`inputForm`}
                 onValueChange={(values) => {
                   console.log(values);
                   /* onChange({
@@ -146,7 +148,7 @@ const DetallesProd = ({ form, setForm }) => {
                       value: values.value,
                     },
                   }); */
-                  handleChange(values, "precio");
+                  handleChange(values.value, "precio");
                 }}
                 thousandSeparator={"."}
                 decimalSeparator={","}
