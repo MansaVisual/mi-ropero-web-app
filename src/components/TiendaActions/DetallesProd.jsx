@@ -28,23 +28,32 @@ const DetallesProd = ({ form, setForm }) => {
 
   const handleChange = (e, detalle) => {
     if (detalle === "precio") {
-      console.log(e.target.value);
+      /* console.log(e.target.value);
       console.log(e.target.value.length);
-      console.log(e.target.value.search(","));
+      console.log(e.target.value.search(",")); */
       /*       if(e.target.value[e.target.value.length]==="."){
         return 
       }
       if(e.target.value.search(",")!==-1){
         return
       } */
+      setDetalles((prevState) => {
+        return {
+          ...prevState,
+          [detalle]: e,
+        };
+      });
+    } else {
+      setDetalles((prevState) => {
+        return {
+          ...prevState,
+          [detalle]: e.target.value,
+        };
+      });
     }
-    setDetalles((prevState) => {
-      return {
-        ...prevState,
-        [detalle]: e.target.value,
-      };
-    });
   };
+
+  console.log(detalles);
 
   useEffect(() => {
     if (!form.categoriaId) {
