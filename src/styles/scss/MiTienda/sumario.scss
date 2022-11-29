@@ -81,6 +81,9 @@
         }
         .infoCat {
           padding: 24px 32px;
+          @include screen_705 {
+            padding: 16px;
+          }
           p {
             font-weight: 600;
             font-size: 15px;
@@ -90,6 +93,9 @@
         }
         .infoImagenes {
           padding: 6px 24px;
+          @include screen_705 {
+            padding: 6px 16px;
+          }
           div {
             display: flex;
             flex-wrap: wrap;
@@ -104,6 +110,9 @@
         .infoDetalle,
         .infoCaract {
           padding: 24px 32px;
+          @include screen_705 {
+            padding: 16px;
+          }
           div {
             display: flex;
             flex-direction: column;
