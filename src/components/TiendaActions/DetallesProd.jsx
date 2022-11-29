@@ -11,7 +11,6 @@ import {
   TextField,
 } from "@mui/material";
 import PopUpDescProd from "./PopUpDescuento";
-import { CleaningServices } from "@mui/icons-material";
 
 const DetallesProd = ({ form, setForm }) => {
   const navigate = useNavigate();
@@ -27,16 +26,16 @@ const DetallesProd = ({ form, setForm }) => {
   const [openDescPopUp, setOpenDescPopUp] = useState(false);
 
   const handleChange = (e, detalle) => {
-    if(detalle==="precio"){
-      console.log(e.target.value)
-      console.log(e.target.value.length)
-      console.log(e.target.value.search(","))
-      if(e.target.value[e.target.value.length]==="."){
+    if (detalle === "precio") {
+      console.log(e.target.value);
+      console.log(e.target.value.length);
+      console.log(e.target.value.search(","));
+      /*       if(e.target.value[e.target.value.length]==="."){
         return 
       }
       if(e.target.value.search(",")!==-1){
         return
-      }
+      } */
     }
     setDetalles((prevState) => {
       return {
