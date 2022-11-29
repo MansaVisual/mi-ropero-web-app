@@ -28,6 +28,10 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const [haber,setHaber]=useState(0)
     const [balance,setBalance]=useState(0)
 
+    const formateo = (dat)=>{
+        return new Intl.NumberFormat("de-DE").format(dat)
+    }
+
     useEffect(()=>{
         const cuentaCorriente=new FormData()
         cuentaCorriente.append("idcliente",userLog)
@@ -103,7 +107,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     </div>
                 :
                     <p className="subtitulo p14">
-                        {costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${costoCarrito.toFixed(2)}`}
+                        {costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${formateo(costoCarrito.toFixed(2))}`}
                     </p>
                 }
             </div>
@@ -113,9 +117,9 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     <p className="subtitulo p14">
                         - $ {
                             codigo.result.tipo_descuento==="1"?
-                                costoCarrito-costoDesc>0?costoDesc:costoCarrito.toFixed(2)
+                                costoCarrito-costoDesc>0?formateo(costoDesc):formateo(costoCarrito.toFixed(2))
                             :codigo.result.tipo_descuento==="2"&&
-                            costoDesc==="100.00"?costoCarrito.toFixed(2):(costoCarrito*costoDesc/100).toFixed(2)
+                            costoDesc==="100.00"?formateo(costoCarrito.toFixed(2)):formateo((costoCarrito*costoDesc/100).toFixed(2))
                         }
                     </p>
                 </div>
@@ -125,7 +129,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             {metodoEnvio!=="" && 
                 <div className="box">
                     <p className="subtitulo">Envío</p>
-                    <p className="subtitulo p14">$ {costoEnvio}</p>
+                    <p className="subtitulo p14">$ {formateo(costoEnvio)}</p>
                 </div>
             }
             {codigoValido && codigo.result.tipo_text==="Aplica a envio" && 
@@ -134,9 +138,9 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                     <p className="subtitulo p14">
                         - $ {
                             codigo.result.tipo_descuento==="1"?
-                                costoEnvio-costoDesc>0?costoDesc:costoEnvio
+                                costoEnvio-costoDesc>0?formateo(costoDesc):formateo(costoEnvio)
                             :codigo.result.tipo_descuento==="2"&&
-                            costoDesc==="100.00"?costoEnvio:(costoEnvio*costoDesc/100).toFixed(2)
+                            costoDesc==="100.00"?formateo(costoEnvio):formateo((costoEnvio*costoDesc/100).toFixed(2))
                         }
                     </p>
                 </div>
@@ -146,7 +150,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             {balance!==0 && !stateForm && 
                 <div className="box">
                     <p className="subtitulo">Saldo disponible</p>
-                    <p className="subtitulo p14">$ {balance.toFixed(2)}</p>
+                    <p className="subtitulo p14">$ {formateo(balance.toFixed(2))}</p>
                 </div>
             }
             {!stateForm ?
@@ -201,9 +205,9 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                         color:(codigoValido || (balance!==0 && !stateForm)) && "#969696"
                     }}>
                         {metodoEnvio===""?
-                            costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${costoCarrito.toFixed(2)}`
+                            costoCarrito===0?<Loader spin={"spinnerS"}/>:`$ ${formateo(costoCarrito.toFixed(2))}`
                         :
-                            `$ ${costoFinal.toFixed(2)}`
+                            `$ ${formateo(costoFinal.toFixed(2))}`
                         }
                     </p>
                 }
@@ -217,23 +221,23 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                             codigo.result.tipo_text==="Aplica a productos"?
                                 `- $ ${
                                     codigo.result.tipo_descuento==="1"?
-                                        costoCarrito-costoDesc>0?costoDesc:costoCarrito.toFixed(2)
+                                        costoCarrito-costoDesc>0?formateo(costoDesc):formateo(costoCarrito.toFixed(2))
                                     :codigo.result.tipo_descuento==="2"&&
-                                    costoDesc==="100.00"?costoCarrito.toFixed(2):(costoCarrito*costoDesc/100).toFixed(2)
+                                    costoDesc==="100.00"?formateo(costoCarrito.toFixed(2)):formateo((costoCarrito*costoDesc/100).toFixed(2))
                                 }`
                             :codigo.result.tipo_text==="Aplica a envio"?
                                 `- $ ${
                                     codigo.result.tipo_descuento==="1"?
-                                        costoEnvio-costoDesc>0?costoDesc:costoEnvio
+                                        costoEnvio-costoDesc>0?formateo(costoDesc):formateo(costoEnvio)
                                     :codigo.result.tipo_descuento==="2"&&
-                                        costoDesc==="100.00"?costoEnvio:(costoEnvio*costoDesc/100).toFixed(2)
+                                        costoDesc==="100.00"?formateo(costoEnvio):formateo((costoEnvio*costoDesc/100).toFixed(2))
                                 }`
                             :codigo.result.tipo_text==="Aplica a productos + envio"&&
                             `- $ ${
                                 codigo.result.tipo_descuento==="1"?
-                                    costoFinal-costoDesc>0?costoDesc:costoFinal.toFixed(2)
+                                    costoFinal-costoDesc>0?formateo(costoDesc):formateo(costoFinal.toFixed(2))
                                 :codigo.result.tipo_descuento==="2"&&
-                                    costoDesc==="100.00"?costoFinal.toFixed(2):(costoFinal*costoDesc/100).toFixed(2)
+                                    costoDesc==="100.00"?formateo(costoFinal.toFixed(2)):formateo((costoFinal*costoDesc/100).toFixed(2))
                             }`
                         }
                     </p>
@@ -249,31 +253,31 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                                 codigo.result.tipo_text==="Aplica a productos"?
                                     `- $ ${
                                         codigo.result.tipo_descuento==="1"?
-                                            costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)-balance>0?balance.toFixed(2):costoDesc>costoCarrito?(costoFinal-costoCarrito).toFixed(2):(costoFinal-costoDesc).toFixed(2)
+                                            costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)-balance>0?formateo(balance.toFixed(2)):costoDesc>costoCarrito?formateo((costoFinal-costoCarrito).toFixed(2)):formateo((costoFinal-costoDesc).toFixed(2))
                                         :codigo.result.tipo_descuento==="2"&&
                                             costoDesc==="100.00"?
-                                                costoEnvio-balance>0?balance.toFixed(2):costoEnvio
-                                            :costoFinal-(costoCarrito*costoDesc/100)-balance>0?balance.toFixed(2):(costoFinal-(costoCarrito*costoDesc/100)).toFixed(2)
+                                                costoEnvio-balance>0?formateo(balance.toFixed(2)):formateo(costoEnvio)
+                                            :costoFinal-(costoCarrito*costoDesc/100)-balance>0?formateo(balance.toFixed(2)):formateo((costoFinal-(costoCarrito*costoDesc/100)).toFixed(2))
                                     }`
                                 :codigo.result.tipo_text==="Aplica a envio"?
                                     `- $ ${
                                         codigo.result.tipo_descuento==="1"?
-                                            costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)-balance>0?balance.toFixed(2):costoDesc>costoEnvio?(costoFinal-costoEnvio).toFixed(2):(costoFinal-costoDesc).toFixed(2)
+                                            costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)-balance>0?formateo(balance.toFixed(2)):costoDesc>costoEnvio?formateo((costoFinal-costoEnvio).toFixed(2)):formateo((costoFinal-costoDesc).toFixed(2))
                                         :codigo.result.tipo_descuento==="2"&&
                                             costoDesc==="100.00"?
-                                                costoCarrito-balance>0?balance.toFixed(2):costoCarrito
-                                            :costoFinal-(costoEnvio*costoDesc/100)-balance>0?balance.toFixed(2):(costoFinal-(costoEnvio*costoDesc/100)).toFixed(2)
+                                                costoCarrito-balance>0?formateo(balance.toFixed(2)):formateo(costoCarrito)
+                                            :costoFinal-(costoEnvio*costoDesc/100)-balance>0?formateo(balance.toFixed(2)):formateo((costoFinal-(costoEnvio*costoDesc/100)).toFixed(2))
                                     }`
                                 :codigo.result.tipo_text==="Aplica a productos + envio"&&
                                 `- $ ${
                                     codigo.result.tipo_descuento==="1"?
-                                        costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)-balance>0?balance.toFixed(2):costoDesc>costoFinal?0:(costoFinal-costoDesc).toFixed(2)
+                                        costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)-balance>0?formateo(balance.toFixed(2)):costoDesc>costoFinal?0:formateo((costoFinal-costoDesc).toFixed(2))
                                     :codigo.result.tipo_descuento==="2"&&
                                         costoDesc==="100.00"?
                                             0
-                                        :costoFinal-(costoFinal*costoDesc/100)-balance>0?balance.toFixed(2):(costoFinal-(costoFinal*costoDesc/100)).toFixed(2)
+                                        :costoFinal-(costoFinal*costoDesc/100)-balance>0?formateo(balance.toFixed(2)):formateo((costoFinal-(costoFinal*costoDesc/100)).toFixed(2))
                                 }`
-                            : `$ ${(costoFinal-balance).toFixed(2)<0?costoFinal:(balance).toFixed(2)}`
+                            : `$ ${(costoFinal-balance).toFixed(2)<0?formateo(costoFinal):formateo((balance).toFixed(2))}`
                         }
                     </p>
                 </div>
@@ -283,7 +287,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                 <div className="box">
                     <p></p>
                     <p className="subtitulo subtituloTotal" style={{marginTop:"-24px"}}>
-                        $ {(costoFinal-balance).toFixed(2)<0?0:(costoFinal-balance).toFixed(2)}
+                        $ {(costoFinal-balance).toFixed(2)<0?0:formateo((costoFinal-balance).toFixed(2))}
                     </p>
                 </div>
             }
@@ -295,29 +299,29 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                             codigo.result.tipo_text==="Aplica a productos"?
                             `$ ${
                                 codigo.result.tipo_descuento==="1"?
-                                    costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)-balance>0?costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)-balance:0
+                                    costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)-balance>0?formateo(costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)-balance):0
                                 :codigo.result.tipo_descuento==="2"&&
                                     costoDesc==="100.00"?
-                                        costoEnvio-balance>0?costoEnvio-balance:0
-                                    :costoFinal-(costoCarrito*costoDesc/100)-balance>0?costoFinal-(costoCarrito*costoDesc/100)-balance:0
+                                        costoEnvio-balance>0?formateo(costoEnvio-balance):0
+                                    :costoFinal-(costoCarrito*costoDesc/100)-balance>0?formateo(costoFinal-(costoCarrito*costoDesc/100)-balance):0
                             }`
                             :codigo.result.tipo_text==="Aplica a envio"?
                                 `$ ${
                                     codigo.result.tipo_descuento==="1"?
-                                        costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)-balance>0?costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)-balance:0
+                                        costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)-balance>0?formateo(costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)-balance):0
                                     :codigo.result.tipo_descuento==="2"&&
                                         costoDesc==="100.00"?
-                                            costoCarrito-balance>0?costoCarrito-balance:0
-                                        :costoFinal-(costoEnvio*costoDesc/100)-balance>0?costoFinal-(costoEnvio*costoDesc/100)-balance:0
+                                            costoCarrito-balance>0?formateo(costoCarrito-balance):0
+                                        :costoFinal-(costoEnvio*costoDesc/100)-balance>0?formateo(costoFinal-(costoEnvio*costoDesc/100)-balance):0
                                 }`
                             :codigo.result.tipo_text==="Aplica a productos + envio"&&
                             `$ ${
                                 codigo.result.tipo_descuento==="1"?
-                                    costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)-balance>0?costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)-balance:0
+                                    costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)-balance>0?formateo(costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)-balance):0
                                 :codigo.result.tipo_descuento==="2"&&
                                     costoDesc==="100.00"?
                                         0
-                                    :costoFinal-(costoFinal*costoDesc/100)-balance>0?costoFinal-(costoFinal*costoDesc/100)-balance:0
+                                    :costoFinal-(costoFinal*costoDesc/100)-balance>0?formateo(costoFinal-(costoFinal*costoDesc/100)-balance):0
                             }`
                         }
                     </p>
@@ -332,29 +336,29 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
                             codigo.result.tipo_text==="Aplica a productos"?
                             `$ ${
                                 codigo.result.tipo_descuento==="1"?
-                                    costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)>0?(costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)).toFixed(2):0
+                                    costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)>0?formateo((costoFinal-(costoDesc>costoCarrito?costoCarrito:costoDesc)).toFixed(2)):0
                                 :codigo.result.tipo_descuento==="2"&&
                                     costoDesc==="100.00"?
-                                        costoEnvio>0?costoEnvio:0
-                                    :costoFinal-(costoCarrito*costoDesc/100)>0?(costoFinal-(costoCarrito*costoDesc/100)).toFixed(2):0
+                                        costoEnvio>0?formateo(costoEnvio):0
+                                    :costoFinal-(costoCarrito*costoDesc/100)>0?formateo((costoFinal-(costoCarrito*costoDesc/100)).toFixed(2)):0
                             }`
                             :codigo.result.tipo_text==="Aplica a envio"?
                                 `$ ${
                                     codigo.result.tipo_descuento==="1"?
-                                        costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)>0?(costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)).toFixed(2):0
+                                        costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)>0?formateo((costoFinal-(costoDesc>costoEnvio?costoEnvio:costoDesc)).toFixed(2)):0
                                     :codigo.result.tipo_descuento==="2"&&
                                         costoDesc==="100.00"?
-                                            costoCarrito>0?costoCarrito:0
-                                        :costoFinal-(costoEnvio*costoDesc/100)>0?(costoFinal-(costoEnvio*costoDesc/100)).toFixed(2):0
+                                            costoCarrito>0?formateo(costoCarrito):0
+                                        :costoFinal-(costoEnvio*costoDesc/100)>0?formateo((costoFinal-(costoEnvio*costoDesc/100)).toFixed(2)):0
                                 }`
                             :codigo.result.tipo_text==="Aplica a productos + envio"&&
                             `$ ${
                                 codigo.result.tipo_descuento==="1"?
-                                    costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)>0?(costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)).toFixed(2):0
+                                    costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)>0?formateo((costoFinal-(costoDesc>costoFinal?costoFinal:costoDesc)).toFixed(2)):0
                                 :codigo.result.tipo_descuento==="2"&&
                                     costoDesc==="100.00"?
                                         0
-                                    :costoFinal-(costoFinal*costoDesc/100)>0?(costoFinal-(costoFinal*costoDesc/100)).toFixed(2):0
+                                    :costoFinal-(costoFinal*costoDesc/100)>0?formateo((costoFinal-(costoFinal*costoDesc/100)).toFixed(2)):0
                             }`
                         }
                     </p>
