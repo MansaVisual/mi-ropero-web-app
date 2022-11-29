@@ -20,6 +20,7 @@ const OfertasRecibidas = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [ofertas, setOfertas] = useState([]);
+  const [isHover, setIsHover] = useState(false);
   const [filtroSelecc, setFiltroSelecc] = useState({
     id: 1,
     nombre: "En proceso de evaluación",
@@ -73,6 +74,14 @@ const OfertasRecibidas = () => {
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
   return (
     <div className="ofertasContainer">
       <TiendaBanner />
@@ -104,8 +113,13 @@ const OfertasRecibidas = () => {
                         <div
                           key={id}
                           className="desktopCard"
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
                           style={{
                             cursor: venta.estado === "1" ? "pointer" : "unset",
+                            border: isHover
+                              ? "1px solid #e7b1fe"
+                              : "1px solid transparent",
                           }}
                           onClick={() => handleOpen(venta)}
                         >
