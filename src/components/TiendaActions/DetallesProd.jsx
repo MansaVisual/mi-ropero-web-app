@@ -163,7 +163,6 @@ const DetallesProd = ({ form, setForm }) => {
                 thousandSeparator={"."}
                 decimalSeparator={","}
                 prefix={"$"}
-                type="number"
               />
             </div>
           </div>
