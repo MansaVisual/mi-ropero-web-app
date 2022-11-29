@@ -240,7 +240,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 placeholder="Ingresar solo números."
                 id="monto"
                 type={"number"}
-                /* value={formateoMonto} */
+                value={formateoMonto}
                 onChangeCapture={(e) =>
                   setData((prevState) => ({
                     ...prevState,
