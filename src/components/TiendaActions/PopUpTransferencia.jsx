@@ -28,7 +28,8 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
 
   useEffect(() => {
     setFormateoMonto(
-      data.monto.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+      new Intl.NumberFormat("de-DE").format(data.monto)
+      /* .toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") */
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.monto]);
@@ -238,12 +239,14 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 size="small"
                 placeholder="Ingresar solo números."
                 id="monto"
-                type={"number"}
+                /* type={"number"} */
                 value={formateoMonto}
                 onChangeCapture={(e) =>
                   setData((prevState) => ({
                     ...prevState,
-                    monto: e.target.value,
+                    monto: new Intl.NumberFormat("de-DE").format(
+                      e.target.value
+                    ),
                   }))
                 }
                 /* onFocus={(e) => onFocus(e, clase, clase2, "labelApellido")}
