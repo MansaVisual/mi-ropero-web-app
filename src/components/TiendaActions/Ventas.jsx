@@ -140,15 +140,15 @@ const Ventas = () => {
                           </div>
                           <div className="rigthSide">
                             <p className="monto">${venta.total}</p>
-                            <img
+                            {/* <img
                               onClick={() => {
-                                /* setBorrarMsj(true);
-                      setMensajeId(mensaje.idmensaje); */
+                                setBorrarMsj(true);
+                      setMensajeId(mensaje.idmensaje);
                               }}
                               className="basuraIcon"
                               src={basura}
                               alt="BasuraIcon"
-                            />
+                            /> */}
                           </div>
                         </div>
                         <div key={`mobile${id}`} className="mobileCard">
@@ -171,11 +171,11 @@ const Ventas = () => {
                             <p className="state">{venta.estado_text}</p>
                             <p className="monto">${venta.total}</p>
                           </div>
-                          <img
+                          {/* <img
                             src={basura}
                             className="trashICon"
                             alt="basuraIcon"
-                          />
+                          /> */}
                         </div>
                       </>
                     );

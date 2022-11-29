@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
-import basura from "../../assets/img/basura.png";
 import lupaFilters from "../../assets/img/lupaFilters.png";
 import StarIcon from "@mui/icons-material/Star";
 import leftArrow from "../../assets/img/leftArrow.png";
@@ -15,12 +14,8 @@ const Calificaciones = () => {
   const navigate = useNavigate();
   const { userLog } = useContext(UseLoginContext);
 
-  const [selected, setSelected] = useState("mejor valoración primero");
-  const stateList = [
-    "mejor valoración primero",
-    "menor valoración primero",
-    "en espera",
-  ];
+  const [selected, setSelected] = useState("mejor valoración");
+  const stateList = ["mejor valoración", "menor valoración"];
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [calificaciones, setCalificaciones] = useState([]);
@@ -56,20 +51,17 @@ const Calificaciones = () => {
   useEffect(() => {
     if (calificaciones.length > 0) {
       let listaCalif = calificaciones;
-      if (selected === "mejor valoración primero") {
+      if (selected === "mejor valoración") {
         listaCalif.sort(function (a, b) {
           return b - a;
         });
         setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "2"));
       }
-      if (selected === "menor valoración primero") {
+      if (selected === "menor valoración") {
         listaCalif.sort(function (a, b) {
           return a - b;
         });
         setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "2"));
-      }
-      if (selected === "en espera") {
-        setCalifFiltradas(listaCalif.filter((msg) => msg.estado === "1"));
       }
     }
   }, [calificaciones, selected]);
@@ -133,15 +125,15 @@ const Calificaciones = () => {
                               />
                             }
                           />
-                          <img
+                          {/*  <img
                             onClick={() => {
-                              /* setBorrarMsj(true);
-                    setMensajeId(mensaje.idmensaje); */
+                              setBorrarMsj(true);
+                    setMensajeId(mensaje.idmensaje); 
                             }}
                             className="basuraIcon"
                             src={basura}
                             alt="BasuraIcon"
-                          />
+                          /> */}
                         </div>
                       </div>
                     );

@@ -164,11 +164,11 @@ const OfertasRecibidas = () => {
                               Estado: {estados[venta.estado]}
                             </p>
                           </div>
-                          <img
+                          {/* <img
                             src={basura}
                             className="trashICon"
                             alt="basuraIcon"
-                          />
+                          /> */}
                         </div>
                       </>
                     );
