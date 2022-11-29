@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button } from "@mui/material";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import lupaFilters from "../../assets/img/lupaFilters.png";
+import lupaGrande from "../../assets/img/lupaGrande.png";
 import StarIcon from "@mui/icons-material/Star";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Grid, MenuItem, Rating, Select } from "@mui/material";
@@ -141,7 +142,7 @@ const Calificaciones = () => {
                 ) : (
                   <div className="perfilVacio">
                     <div>
-                      <img src={lupaFilters} alt="LOGO" />
+                      <img src={lupaGrande} alt="LOGO" />
                       <p>No tienes calificaciones de momento</p>
                       <Button onClick={() => navigate(`/Mi&Tienda`)}>
                         IR A MI TIENDA
@@ -152,7 +153,7 @@ const Calificaciones = () => {
               ) : (
                 <div className="perfilVacio">
                   <div>
-                    <img src={lupaFilters} alt="LOGO" />
+                    <img src={lupaGrande} alt="LOGO" />
                     <p>
                       Error al traer calificaciones. Vuelva a intentar en un
                       momento
