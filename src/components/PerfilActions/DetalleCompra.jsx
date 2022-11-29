@@ -121,7 +121,7 @@ const DetalleCompra = () => {
                       <>
                         <div>
                           <span>{producto.nombre}</span>
-                          <span>${producto.precio}</span>
+                          <span>${new Intl.NumberFormat("de-DE").format(producto.precio)}</span>
                         </div>
                       </>
                     );

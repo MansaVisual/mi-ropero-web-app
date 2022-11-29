@@ -768,7 +768,7 @@ const NavIcons = () => {
                                     pt: "6px",
                                   }}
                                 >
-                                  ${prod.producto.precio}
+                                  ${new Intl.NumberFormat("de-DE").format(prod.producto.precio)}
                                 </Typography>
                               ) : (
                                 <Box sx={{ display: "flex" }}>
@@ -780,7 +780,7 @@ const NavIcons = () => {
                                       mr: "6px",
                                     }}
                                   >
-                                    ${prod.producto.precio}
+                                    ${new Intl.NumberFormat("de-DE").format(prod.producto.precio)}
                                   </Typography>
                                   <Typography
                                     sx={{
@@ -789,7 +789,7 @@ const NavIcons = () => {
                                       color: "#FF3F20",
                                     }}
                                   >
-                                    ${prod.producto.precio_oferta}
+                                    ${new Intl.NumberFormat("de-DE").format(prod.producto.precio_oferta)}
                                   </Typography>
                                 </Box>
                               )}

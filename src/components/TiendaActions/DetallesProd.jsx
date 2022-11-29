@@ -121,7 +121,7 @@ const DetallesProd = ({ form, setForm }) => {
                 size="small"
                 className={`inputForm`}
                 id="precio"
-                value={detalles.precio}
+                value={new Intl.NumberFormat("de-DE").format(detalles.precio)}
                 onChangeCapture={(e) => handleChange(e, "precio")}
                 type="number"
               ></OutlinedInput>

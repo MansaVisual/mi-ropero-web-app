@@ -63,7 +63,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
           <p className="popUpTitle">RESPONDER OFERTAS</p>
           <p className={`popUpDescription`} style={{ marginTop: "8px" }}>
             Te hicieron una oferta de ${ofertaSelecc.oferta} en el producto
-            publicado a ${ofertaSelecc.producto.precio}.
+            publicado a ${new Intl.NumberFormat("de-DE").format(ofertaSelecc.producto.precio)}.
           </p>
           <p className={`ofertaText`}>
             Si la aceptás el precio del producto será el de la oferta por el

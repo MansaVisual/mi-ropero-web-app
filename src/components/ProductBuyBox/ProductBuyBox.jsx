@@ -208,7 +208,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                           opacity: "0.5",
                         }}
                       >
-                        ${prod.precio}
+                        ${new Intl.NumberFormat("de-DE").format(prod.precio)}
                       </Typography>
                       <Typography
                         component="span"
@@ -220,7 +220,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                           color: theme.palette.secondary.main,
                         }}
                       >
-                        ${prod.precio_oferta}
+                        ${new Intl.NumberFormat("de-DE").format(prod.precio_oferta)}
                       </Typography>
                     </Box>
 
@@ -274,7 +274,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                         color: "#443988",
                       }}
                     >
-                      $ {prod.precio}
+                      $ {new Intl.NumberFormat("de-DE").format(prod.precio)}
                     </Typography>
                     {prod.tienda.idcliente!==userLog &&
                       <Button
@@ -472,7 +472,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                         opacity: "0.5",
                       }}
                     >
-                      ${prod.precio}
+                      ${new Intl.NumberFormat("de-DE").format(prod.precio)}
                     </Typography>
                     <Typography
                       component="span"
@@ -484,7 +484,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                         color: theme.palette.secondary.main,
                       }}
                     >
-                      ${prod.precio_oferta}
+                      ${new Intl.NumberFormat("de-DE").format(prod.precio_oferta)}
                     </Typography>
                   </Box>
                 ) : (
@@ -497,7 +497,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                       color: "#443988",
                     }}
                   >
-                    $ {prod.precio}
+                    $ {new Intl.NumberFormat("de-DE").format(prod.precio)}
                   </Typography>
                 )}
                 <Box sx={{ mt: "16px" }}>
@@ -676,9 +676,9 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                     }}
                   >
                     ${" "}
-                    {Number(costoEnvio.moova.price.Table.Precio).toFixed(
+                    {new Intl.NumberFormat("de-DE").format(Number(costoEnvio.moova.price.Table.Precio).toFixed(
                       2
-                    )}{" "} moto a domicilio
+                    ))}{" "} moto a domicilio
                   </Typography>
                 </>
               )}
@@ -693,9 +693,9 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                 }}
               >
                 ${" "}
-                {Number(costoEnvio.oca_suc_dom.NewDataSet.Table.Precio).toFixed(
+                {new Intl.NumberFormat("de-DE").format(Number(costoEnvio.oca_suc_dom.NewDataSet.Table.Precio).toFixed(
                   2
-                )}{" "}
+                ))}{" "}
                 a domicilio
               </Typography>
               <Typography
@@ -706,9 +706,9 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                 }}
               >
                 ${" "}
-                {Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio).toFixed(
+                {new Intl.NumberFormat("de-DE").format(Number(costoEnvio.oca_suc_suc.NewDataSet.Table.Precio).toFixed(
                   2
-                )}{" "}
+                ))}{" "}
                 a sucursal
               </Typography>
             </Box>

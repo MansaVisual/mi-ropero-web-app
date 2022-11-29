@@ -144,12 +144,12 @@ const SeccionProductos = ({ setForm }) => {
                       </div>
                       <div className="ofertaData">
                         {product.precio_oferta === "0.00" ? (
-                          <p className="monto">${product.precio}</p>
+                          <p className="monto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
                         ) : (
                           <>
-                            <p className="oldMonto">${product.precio}</p>
+                            <p className="oldMonto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
                             <p className="montoOferta">
-                              ${product.precio_oferta}
+                              ${new Intl.NumberFormat("de-DE").format(product.precio_oferta)}
                             </p>
                           </>
                         )}
@@ -171,12 +171,12 @@ const SeccionProductos = ({ setForm }) => {
                         <p className="messageTitle">{product.nombre}</p>
                         <p className="messageState">{product.estado_text}</p>
                         {product.precio_oferta === "0.00" ? (
-                          <p className="monto">${product.precio}</p>
+                          <p className="monto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
                         ) : (
                           <>
-                            <p className="oldMonto">${product.precio}</p>
+                            <p className="oldMonto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
                             <p className="montoOferta">
-                              ${product.precio_oferta}
+                              ${new Intl.NumberFormat("de-DE").format(product.precio_oferta)}
                             </p>
                           </>
                         )}

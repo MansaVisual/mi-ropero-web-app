@@ -27,7 +27,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     setErrorValor(false);
     if (
       Number(data.amount) >
-      (prod.precio_oferta !== "0.00" ? prod.precio_oferta : prod.precio)
+      (prod.precio_oferta !== "0.00" ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta) : new Intl.NumberFormat("de-DE").format(prod.precio))
     ) {
       setErrorValor(true);
       document.getElementById("oferta").focus();
@@ -115,14 +115,14 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
                 ? `El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor. `
                 : `Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${
                     prod.precio_oferta !== "0.00"
-                      ? prod.precio_oferta
-                      : prod.precio
+                      ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta)
+                      : new Intl.NumberFormat("de-DE").format(prod.precio)
                   }`}
             </p>
             <p className="parrafo"> {errorValor && `Recordá que debe ser mayor a $0 y menor a ${
                     prod.precio_oferta !== "0.00"
-                      ? prod.precio_oferta
-                      : prod.precio
+                      ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta)
+                      : new Intl.NumberFormat("de-DE").format(prod.precio)
                   }`} </p>
 
             <p className="titleOfertaInput">Monto de la oferta*</p>
