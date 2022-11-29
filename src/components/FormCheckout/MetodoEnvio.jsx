@@ -102,6 +102,11 @@ const MetodoEnvio = ({
       setTypeNav("tarjeta");
     }
   };
+
+  const formateo = (dat)=>{
+    return new Intl.NumberFormat("de-DE").format(dat)
+}
+
   return (
     <div className="metodoEnvio">
       <h2 className="TituloCartCheck" style={{ width: "100%" }} id="datos">
@@ -203,7 +208,7 @@ const MetodoEnvio = ({
                   style={{ whiteSpace: "nowrap", width: "57px" }}
                   className="precio"
                 >
-                  $ {costoMoto.precio}
+                  $ {new Intl.NumberFormat("de-DE").format(costoMoto.precio)}
                 </p>
               ) : (
                 <p
@@ -256,7 +261,7 @@ const MetodoEnvio = ({
             </div>
           ) : (
             <p style={{ whiteSpace: "nowrap" }} className="precio">
-              $ {costoSucDom}
+              $ {new Intl.NumberFormat("de-DE").format(costoSucDom)}
             </p>
           )}
         </div>
@@ -310,7 +315,7 @@ const MetodoEnvio = ({
             </div>
           ) : (
             <p style={{ whiteSpace: "nowrap" }} className="precio">
-              $ {costoSucSuc}
+              $ {new Intl.NumberFormat("de-DE").format(costoSucSuc)}
             </p>
           )}
         </div>
