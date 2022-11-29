@@ -166,7 +166,7 @@ const ProductCard = ({
                 opacity: "0.5",
               }}
             >
-              ${productPrice}
+              ${new Intl.NumberFormat("de-DE").format(productPrice)}
             </Typography>
             <Typography
               component="span"
@@ -178,7 +178,7 @@ const ProductCard = ({
                 color: "#FF3F20",
               }}
             >
-              ${precioOferta}
+              ${new Intl.NumberFormat("de-DE").format(precioOferta)}
             </Typography>
           </>
         ) : (
@@ -193,8 +193,8 @@ const ProductCard = ({
           >
             $
             {productPrice !== undefined
-              ? productPrice
-              : itemFav.producto_precio}
+              ? new Intl.NumberFormat("de-DE").format(productPrice)
+              : new Intl.NumberFormat("de-DE").format(itemFav.producto_precio)}
           </Typography>
         )}
       </CardContent>

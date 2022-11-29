@@ -19,12 +19,6 @@ const TiendaBanner = () => {
 
   const [transfPopUp, setTransfPopUp] = useState(false);
 
-  const [formatoSaldo, setFormatoSaldo] = useState(null);
-
-  useEffect(() => {
-    setFormatoSaldo(new Intl.NumberFormat("de-DE").format(saldoCuenta));
-  }, [saldoCuenta]);
-
   return (
     <div className="bannerContainer">
       <div className="breadcrumbs">
@@ -59,7 +53,7 @@ const TiendaBanner = () => {
                   <Loader spin={"spinnerS"} />
                 </div>
               ) : (
-                <span>{showMoney ? `$ ${formatoSaldo}` : "$ **.***.**"}</span>
+                <span>{showMoney ? `$ ${new Intl.NumberFormat("de-DE").format(saldoCuenta)}` : "$ **.***.**"}</span>
               )}
               {showMoney ? (
                 <img
