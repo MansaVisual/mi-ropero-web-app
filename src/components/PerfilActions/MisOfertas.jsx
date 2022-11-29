@@ -168,7 +168,17 @@ const MisOfertas = () => {
                       </div>
                       <p className="productoState">{producto.estado_text}</p>
                     </div>
-                    <img src={Basura} className="trashICon" alt="basuraIcon" />
+                    {producto.estado === "1" && (
+                      <img
+                        src={Basura}
+                        className="trashICon"
+                        alt="basuraIcon"
+                        onClick={() => {
+                          setBorrarOferta(true);
+                          setOfertaId(producto.idoferta);
+                        }}
+                      />
+                    )}
                   </div>
                 </>
               );
