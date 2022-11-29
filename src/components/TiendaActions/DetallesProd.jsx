@@ -40,7 +40,7 @@ const DetallesProd = ({ form, setForm }) => {
       setDetalles((prevState) => {
         return {
           ...prevState,
-          [detalle]: e,
+          [detalle]: Number(e),
         };
       });
     } else {
