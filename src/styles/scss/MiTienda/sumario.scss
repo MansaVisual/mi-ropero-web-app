@@ -58,6 +58,7 @@
             display: none;
             @include screen_506 {
               display: block;
+              margin-right: 20px;
             }
           }
         }

@@ -44,7 +44,7 @@
       width: 100%;
       flex-wrap: wrap;
       gap: 12px;
-      @include screen_820 {
+      @include screen_950 {
         flex-direction: column;
         align-items: center;
       }
