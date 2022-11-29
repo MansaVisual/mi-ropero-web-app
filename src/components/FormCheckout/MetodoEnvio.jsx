@@ -103,9 +103,6 @@ const MetodoEnvio = ({
     }
   };
 
-  const formateo = (dat)=>{
-    return new Intl.NumberFormat("de-DE").format(dat)
-}
 
   return (
     <div className="metodoEnvio">
