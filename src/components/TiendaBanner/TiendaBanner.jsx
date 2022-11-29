@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import Loader from "../Loader/Loader";
 import PopUpTransferencia from "../TiendaActions/PopUpTransferencia";
+import Swal from "sweetalert2";
 
 const TiendaBanner = () => {
   const location = useLocation();
@@ -69,7 +70,17 @@ const TiendaBanner = () => {
                 />
               )}
             </div>
-            <button onClick={() => setTransfPopUp(true)}>
+            <button onClick={() => {
+              if(saldoCuenta<100){
+                Swal.fire({
+                  title: 'SALDO MÍNIMO: $100',
+                  icon: "info",
+                  confirmButtonText: "CONTINUAR",
+                })
+              }else{
+                setTransfPopUp(true)
+              }
+              }}>
               SOLICITAR TRANSFERENCIA
             </button>
           </div>
