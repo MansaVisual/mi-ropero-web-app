@@ -78,11 +78,11 @@ const ElegirImagenes = ({ form, setForm }) => {
             }
           } */
           if (imagenes.length > 3) {
-            for (let k = 3; k < imagenes.length; k++) {
+            for (let k = 2; k < imagenes.length; k++) {
               /* let obj = `Foto extra ${k + 1}`;
               img[obj] = imagenes[k].imagen_original; */
               setNumeroImgExtra(numeroImgExtra + 1);
-              setSection(`fotoExtra ${numeroImgExtra}`);
+              setSection(`fotoExtra ${k - 2}`);
               const updatedArray = [
                 ...seccionExtra,
                 {
