@@ -150,7 +150,9 @@ const SeccionProductos = ({ setForm }) => {
                         />
                         <div>
                           <p className="title">{product.nombre}</p>
-                          <p className="state">{product.estado_text}</p>
+                          <p className="state">
+                            {product.estado_text}
+                          </p>
                           <p
                             className="discountLink"
                             onClick={
@@ -212,7 +214,9 @@ const SeccionProductos = ({ setForm }) => {
                       />
                       <div>
                         <p className="messageTitle">{product.nombre}</p>
-                        <p className="messageState">{product.estado_text}</p>
+                        <p className="messageState">
+                          {product.estado_text}
+                        </p>
                         {product.precio_oferta === "0.00" ? (
                           <p className="monto">
                             $
