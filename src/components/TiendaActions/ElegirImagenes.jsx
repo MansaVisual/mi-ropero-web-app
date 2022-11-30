@@ -97,6 +97,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             descripcion: form.prodEditar.descripcion,
             imagenes: img,
           }));
+          setImagenesPreview(img);
         }
       }
 
