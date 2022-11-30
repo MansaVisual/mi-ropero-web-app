@@ -25,7 +25,9 @@ const ElegirTipo = ({ form, setForm }) => {
             ...prevState,
             categoriaId:categorias[i].idcategoriapadre,
             tipoId:categorias[i].idcategoria,
-            tipoNombre: categorias[i].nombre
+            tipoNombre: categorias[i].nombre,
+            caracteristicas: form.prodEditar.caracteristicas,
+            
           }))
         }
       }
