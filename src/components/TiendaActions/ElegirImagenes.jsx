@@ -66,23 +66,17 @@ const ElegirImagenes = ({ form, setForm }) => {
           let img = {};
           setImgNecesarias(categorias[i].imagenes_necesarias);
           const { imagenes } = form.prodEditar;
-          console.log(imagenes);
 
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
-            /*             img[obj] = null;
-             */ img[obj] = imagenes[j].imagen_original;
+            img[obj] = imagenes[j].imagen_original;
           }
-          for (let i = 0; i < imagenes.length; i++) {
+          /*           for (let i = 0; i < imagenes.length; i++) {
             if (i === 0) {
               console.log(Object.keys(img)[0], imagenes[i]);
               img[Object.keys(img)[0]] = imagenes[i].imagen_original;
             }
-          }
-          /* Object.keys(img).forEach(function (key, index) {
-            console.log(img, index, Object.keys(img)[index]);
-          }); */
-          console.log(img);
+          } */
           setForm((prevState) => ({
             ...prevState,
             editarProd: false,
