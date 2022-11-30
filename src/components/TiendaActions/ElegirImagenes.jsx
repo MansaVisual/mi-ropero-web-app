@@ -69,7 +69,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             img[obj] = null;
           }
           Object.keys(img).forEach(function (key, index) {
-            console.log(img, index, img[index]);
+            console.log(img, index, Object.keys(img)[index]);
 
             // key: the name of the object key
             // index: the ordinal position of the key within the object
