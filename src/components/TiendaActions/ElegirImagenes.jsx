@@ -35,11 +35,12 @@ const ElegirImagenes = ({ form, setForm }) => {
   const { categorias } = useContext(UseProdsContext);
 
   useEffect(() => {
-    if (!form.categoriaId) {
+    if (!form.categoriaId && !form.prodEditar) {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
     if (form.editarProd) {
+      console.log(form)
       console.log("entra");
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractObj = {};
