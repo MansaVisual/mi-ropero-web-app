@@ -184,7 +184,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
               inputProps={{ maxLength: 10 }}
             /> */}
             <NumericFormat
-              customInput={TextField}
+              customInput={StyledTextField}
               className={`ofertaInput ${errorValor && "ofertaInputError"}`}
               placeholder="$ Ingresar valor"
               onValueChange={(values) => {
