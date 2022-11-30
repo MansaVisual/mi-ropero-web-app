@@ -4,6 +4,7 @@ import basura from "../../assets/img/basura.png";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import logo from "../../assets/img/isologo.png";
+import MRlogoGrande from "../../assets/img/MRlogoGrande.png";
 import { Grid } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import PopUpDescuento from "./PopUpDescuento";
@@ -137,7 +138,11 @@ const SeccionProductos = ({ setForm }) => {
                     <div key={id} className="desktopCard">
                       <div className="cardData">
                         <img
-                          src={product.imagenes[0].imagen_cuadrada}
+                          src={
+                            product.imagenes !== []
+                              ? product.imagenes[0].imagen_cuadrada
+                              : MRlogoGrande
+                          }
                           alt="cardImage"
                           onClick={() => {
                             editarProd(product.idproducto);
@@ -197,7 +202,11 @@ const SeccionProductos = ({ setForm }) => {
                     </div>
                     <div key={`mobile${id}`} className="mobileCard">
                       <img
-                        src={product.imagenes[0].imagen_cuadrada}
+                        src={
+                          product.imagenes !== []
+                            ? product.imagenes[0].imagen_cuadrada
+                            : MRlogoGrande
+                        }
                         className="productImg"
                         alt="cardImage"
                       />
