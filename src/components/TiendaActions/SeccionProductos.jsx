@@ -21,7 +21,6 @@ const SeccionProductos = ({ setForm }) => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const [openPopUp2, setOpenPopUp2] = useState(false);
 
-
   const handleOpenModal = (infoDesc, metodo) => {
     console.log(metodo, infoDesc);
     if (metodo === "productos") {
@@ -83,24 +82,24 @@ const SeccionProductos = ({ setForm }) => {
     });
   };
 
-  const editarProd=async(id)=>{
-    const prod = new FormData()
-    prod.append("idproducto",Number(id))
-    prod.append("idtienda",Number(tiendaDetail.idtienda))
-    apiFetch(prod,"productos","get").then((res)=>{
-      if(res.status==="success"){
-        if(userLog===78 || userLog==="78"){
+  const editarProd = async (id) => {
+    const prod = new FormData();
+    prod.append("idproducto", Number(id));
+    prod.append("idtienda", Number(tiendaDetail.idtienda));
+    apiFetch(prod, "productos", "get").then((res) => {
+      if (res.status === "success") {
+        if (userLog === 78 || userLog === "78") {
           setForm((prevState) => ({
             ...prevState,
-            crearTienda:false,
-            editarProd:true,
-            prodEditar: res.result
+            crearTienda: false,
+            editarProd: true,
+            prodEditar: res.result,
           }));
           navigate(`/Mi&Tienda/IMAGENES`);
         }
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="seccionProductosCon">
@@ -140,13 +139,16 @@ const SeccionProductos = ({ setForm }) => {
                         <img
                           src={product.imagenes[0].imagen_cuadrada}
                           alt="cardImage"
-                          onClick={()=>{editarProd(product.idproducto)
-                            }
-                          }
+                          onClick={() => {
+                            editarProd(product.idproducto);
+                          }}
                         />
                         <div>
                           <p className="title">{product.nombre}</p>
-                          <p className="state">{product.estado_text}</p>
+                          <p className="state">
+                            {product.estado_text}
+                            {product.validado === "0" && " (en validación)"}
+                          </p>
                           <p
                             className="discountLink"
                             onClick={
@@ -166,12 +168,25 @@ const SeccionProductos = ({ setForm }) => {
                       </div>
                       <div className="ofertaData">
                         {product.precio_oferta === "0.00" ? (
-                          <p className="monto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
+                          <p className="monto">
+                            $
+                            {new Intl.NumberFormat("de-DE").format(
+                              product.precio
+                            )}
+                          </p>
                         ) : (
                           <>
-                            <p className="oldMonto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
+                            <p className="oldMonto">
+                              $
+                              {new Intl.NumberFormat("de-DE").format(
+                                product.precio
+                              )}
+                            </p>
                             <p className="montoOferta">
-                              ${new Intl.NumberFormat("de-DE").format(product.precio_oferta)}
+                              $
+                              {new Intl.NumberFormat("de-DE").format(
+                                product.precio_oferta
+                              )}
                             </p>
                           </>
                         )}
@@ -191,14 +206,30 @@ const SeccionProductos = ({ setForm }) => {
                       />
                       <div>
                         <p className="messageTitle">{product.nombre}</p>
-                        <p className="messageState">{product.estado_text}</p>
+                        <p className="messageState">
+                          {product.estado_text}
+                          {product.validado === "0" && " (en validación)"}
+                        </p>
                         {product.precio_oferta === "0.00" ? (
-                          <p className="monto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
+                          <p className="monto">
+                            $
+                            {new Intl.NumberFormat("de-DE").format(
+                              product.precio
+                            )}
+                          </p>
                         ) : (
                           <>
-                            <p className="oldMonto">${new Intl.NumberFormat("de-DE").format(product.precio)}</p>
+                            <p className="oldMonto">
+                              $
+                              {new Intl.NumberFormat("de-DE").format(
+                                product.precio
+                              )}
+                            </p>
                             <p className="montoOferta">
-                              ${new Intl.NumberFormat("de-DE").format(product.precio_oferta)}
+                              $
+                              {new Intl.NumberFormat("de-DE").format(
+                                product.precio_oferta
+                              )}
                             </p>
                           </>
                         )}
