@@ -185,8 +185,8 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
             /> */}
             <NumericFormat
               customInput={TextField}
-              className={`inputForm`}
-              placeholder="Ingresar precio de venta del producto"
+              className={`ofertaInput ${errorValor && "ofertaInputError"}`}
+              placeholder="$ Ingresar valor"
               onValueChange={(values) => {
                 /* handleChange(values.value, "precio"); */
               }}
