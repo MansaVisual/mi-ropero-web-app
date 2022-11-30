@@ -71,6 +71,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           const { imagenes } = form.prodEditar;
           for (let i = 0; i < imagenes.length; i++) {
             if (i === 0) {
+              console.log(Object.keys(img)[0], imagenes[i]);
               Object.keys(img)[0] = imagenes[i];
             }
           }
