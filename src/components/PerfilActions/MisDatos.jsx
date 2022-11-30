@@ -933,7 +933,7 @@ const MisDatos = () => {
                 }}
                 MenuProps={{
                   style: {
-                    maxHeight: 150,
+                    maxHeight: 200,
                   },
                 }}
               >

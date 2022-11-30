@@ -236,7 +236,7 @@ const Caracteristicas = ({ form, setForm }) => {
                     }}
                     MenuProps={{
                       style: {
-                        maxHeight: 150,
+                        maxHeight: 200,
                       },
                     }}
                   >

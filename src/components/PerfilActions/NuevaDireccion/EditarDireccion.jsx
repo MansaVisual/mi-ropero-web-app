@@ -498,7 +498,7 @@ const EditarDireccion = () => {
             }}
             MenuProps={{
               style: {
-                maxHeight: 150,
+                maxHeight: 200,
               },
             }}
           >

@@ -599,7 +599,7 @@ const InfoContact = ({
                 }}
                 MenuProps={{
                   style: {
-                    maxHeight: 150,
+                    maxHeight: 200,
                   },
                 }}
               >
