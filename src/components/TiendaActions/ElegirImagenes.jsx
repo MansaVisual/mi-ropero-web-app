@@ -71,7 +71,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             /*             img[obj] = null;
-             */ img[obj] = imagenes[i].imagen_original;
+             */ img[obj] = imagenes[j].imagen_original;
           }
           for (let i = 0; i < imagenes.length; i++) {
             if (i === 0) {
