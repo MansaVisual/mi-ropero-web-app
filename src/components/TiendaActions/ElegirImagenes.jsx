@@ -72,12 +72,13 @@ const ElegirImagenes = ({ form, setForm }) => {
           for (let i = 0; i < imagenes.length; i++) {
             if (i === 0) {
               console.log(Object.keys(img)[0], imagenes[i]);
-              Object.keys(img)[0] = imagenes[i];
+              Object.keys(img)[0] = imagenes[i].imagen_original;
             }
           }
           /* Object.keys(img).forEach(function (key, index) {
             console.log(img, index, Object.keys(img)[index]);
           }); */
+          console.log(img);
           setForm((prevState) => ({
             ...prevState,
             editarProd: false,
