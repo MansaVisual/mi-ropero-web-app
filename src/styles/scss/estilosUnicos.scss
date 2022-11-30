@@ -220,14 +220,13 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 }
-.image-gallery-thumbnails{
+.image-gallery-thumbnails {
   overflow: scroll !important;
   &::-webkit-scrollbar {
     width: 0.5px;
   }
 }
 .image-gallery-thumbnails-container {
-
   button {
     border: none !important;
     img {
@@ -469,4 +468,26 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .css-ej09fx {
   border-radius: 2px !important;
+}
+
+.popUpStyledInput {
+  width: 300;
+  input {
+    padding: 4px 8px;
+    height: 40px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 8px;
+    min-width: 136px;
+  }
+}
+
+.popUpStyledInputError {
+  border: 1px solid #ff3f20 !important;
+  border-radius: 4px;
+  .MuiOutlinedInput-root:hover > fieldset {
+    border-color: #ff3f20;
+  }
 }

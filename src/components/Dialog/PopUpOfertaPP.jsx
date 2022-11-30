@@ -84,7 +84,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     }
   };
 
-  const StyledTextField = styled(TextField)(() => ({
+  /*   const StyledTextField = styled(TextField)(() => ({
     width: 300,
     "& input": {
       padding: "4px 8px",
@@ -103,7 +103,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
         borderColor: errorValor && "#FF3F20",
       },
     },
-  }));
+  })); */
 
   return (
     <>
@@ -185,9 +185,11 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
               inputProps={{ maxLength: 10 }}
             /> */}
             <NumericFormat
-              customInput={StyledTextField}
+              customInput={TextField}
               id="numericFormat"
-              className={`ofertaInput ${errorValor && "ofertaInputError"}`}
+              className={`ofertaInput popUpStyledInput ${
+                errorValor && "ofertaInputError popUpStyledInputError"
+              }`}
               placeholder="$ Ingresar valor"
               onValueChange={(values) => {
                 handleOnChange(values.value, "oferta");
