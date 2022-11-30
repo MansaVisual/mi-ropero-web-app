@@ -83,7 +83,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     }
   };
 
-  const StyledTextField = styled(TextField)(({ theme }) => ({
+  const StyledTextField = styled(TextField)(() => ({
     width: 300,
     "& input": {
       padding: "4px 8px",
