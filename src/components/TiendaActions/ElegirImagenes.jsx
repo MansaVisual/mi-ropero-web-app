@@ -68,12 +68,15 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = null;
           }
-          Object.keys(img).forEach(function (key, index) {
+          const { imagenes } = form.prodEditar;
+          for (let i = 0; i < imagenes.length; i++) {
+            if (i === 0) {
+              Object.keys(img)[0] = imagenes[i];
+            }
+          }
+          /* Object.keys(img).forEach(function (key, index) {
             console.log(img, index, Object.keys(img)[index]);
-
-            // key: the name of the object key
-            // index: the ordinal position of the key within the object
-          });
+          }); */
           setForm((prevState) => ({
             ...prevState,
             editarProd: false,
