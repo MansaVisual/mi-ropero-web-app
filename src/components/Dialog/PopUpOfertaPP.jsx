@@ -185,10 +185,12 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
             /> */}
             <NumericFormat
               customInput={StyledTextField}
+              id="numericFormat"
               className={`ofertaInput ${errorValor && "ofertaInputError"}`}
               placeholder="$ Ingresar valor"
               onValueChange={(values) => {
                 handleOnChange(values.value, "oferta");
+                document.getElementById("numericFormat").focus();
               }}
               thousandSeparator={"."}
               decimalSeparator={","}
