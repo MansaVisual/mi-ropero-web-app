@@ -4,12 +4,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import tienda from "../../assets/img/tienda.png";
 import { Button } from "@mui/material";
 import leftArrow from "../../assets/img/leftArrow.png";
-import SeccionProductosCon from "./SeccionProductos";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 
 const CrearTienda = ({ setForm }) => {
   const navigate = useNavigate();
-  const { tiendaData, setTiendaData, productos } =
+  const { setTiendaData } =
     useContext(UseMiTiendaContext);
 
   const location = useLocation();

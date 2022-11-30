@@ -10,16 +10,17 @@ import PopUpDescuento from "./PopUpDescuento";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import PopUpDescTienda from "./PopUpDescTienda";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const SeccionProductos = ({ setForm }) => {
   const navigate = useNavigate();
+  const { userLog } = useContext(UseLoginContext);
 
   const { productos, tiendaDetail } = useContext(UseMiTiendaContext);
   const [descuentoInfo, setDescuentoInfo] = useState({});
   const [openPopUp, setOpenPopUp] = useState(false);
   const [openPopUp2, setOpenPopUp2] = useState(false);
 
-  console.log(tiendaDetail);
 
   const handleOpenModal = (infoDesc, metodo) => {
     console.log(metodo, infoDesc);
@@ -120,7 +121,16 @@ const SeccionProductos = ({ setForm }) => {
                         <img
                           src={product.imagenes[0].imagen_cuadrada}
                           alt="cardImage"
-                          /* onError={(e) => handleAvatarError(e)} */
+                          onClick={()=>{
+                            if(userLog===78 || userLog==="78"){
+                              setForm((prevState) => ({
+                                ...prevState,
+                                crearTienda:false,
+                                prodEditar: product
+                              }));
+                              navigate(`/Mi&Tienda/TIPO`);
+                            }
+                          }}
                         />
                         <div>
                           <p className="title">{product.nombre}</p>
