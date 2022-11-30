@@ -38,26 +38,73 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    for (let i = 0; i < categorias.length; i++) {
-      if (categorias[i].idcategoria === form.tipoId) {
-        let imagenes = {};
-        setImgNecesarias(categorias[i].imagenes_necesarias);
-
-        if (Object.keys(form.imagenes).length === 0) {
-          for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
-            console.log(categorias[i].imagenes_necesarias);
-            let obj = categorias[i].imagenes_necesarias[j].nombre;
-            imagenes[obj] = null;
+    if (form.editarProd) {
+      console.log("entra");
+      const idCaracteristica = form.prodEditar.caracteristicas.split(",");
+      const caractObj = {};
+      const dir = new FormData();
+      dir.append("idcategoria", form.prodEditar.idcategoria);
+      const f = async () => {
+        await apiFetch(dir, "categorias", "get").then((res) => {
+          console.log(res);
+          for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+            console.log(res.result[0].caracteristicas[i]);
+            for (let j = 0; j < idCaracteristica.length; j++) {
+              console.log(idCaracteristica[i]);
+              let fields = idCaracteristica[j].split(":");
+              let id = fields[0];
+              if (res.result[0].caracteristicas[i].idcaracteristica === id) {
+                console.log("coincide");
+                let obj = res.result[0].caracteristicas[i].nombre;
+                caractObj[obj] = [idCaracteristica[j]];
+              }
+            }
           }
-          setImagenes(imagenes);
-          setImagenesPreview(imagenes);
-          return;
-        } else {
-          setImagenes(form.imagenes);
-          setImagenesPreview(form.imagenesPreview);
-          setSeccionExtra(form.seccionExtra);
-          setNumeroImgExtra(form.seccionExtra.length + 1);
-          setVideo(form.video);
+        });
+      };
+      f();
+      console.log(caractObj);
+      console.log(form);
+      for (const i in categorias) {
+        console.log(categorias[i]);
+        if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
+          setForm((prevState) => ({
+            ...prevState,
+            editarProd: false,
+            categoriaId: categorias[i].idcategoriapadre,
+            tipoId: categorias[i].idcategoria,
+            tipoNombre: categorias[i].nombre,
+            caracteristicas: form.prodEditar.caracteristicas,
+            idCaracteristica: idCaracteristica,
+            idCaracteristicaOld: caractObj,
+            titulo: form.prodEditar.nombre,
+            precio: form.prodEditar.precio,
+            descripcion: form.prodEditar.descripcion,
+          }));
+        }
+      }
+    }else{
+      for (let i = 0; i < categorias.length; i++) {
+        if (categorias[i].idcategoria === form.tipoId) {
+          let imagenes = {};
+          setImgNecesarias(categorias[i].imagenes_necesarias);
+  
+          if (Object.keys(form.imagenes).length === 0) {
+            for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+              console.log(categorias[i].imagenes_necesarias);
+              let obj = categorias[i].imagenes_necesarias[j].nombre;
+              imagenes[obj] = null;
+            }
+            setImagenes(imagenes);
+            setImagenesPreview(imagenes);
+            return;
+          } else {
+            setImagenes(form.imagenes);
+            setImagenesPreview(form.imagenesPreview);
+            setSeccionExtra(form.seccionExtra);
+            setNumeroImgExtra(form.seccionExtra.length + 1);
+            setVideo(form.video);
+          }
         }
       }
     }

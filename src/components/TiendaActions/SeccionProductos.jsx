@@ -83,6 +83,25 @@ const SeccionProductos = ({ setForm }) => {
     });
   };
 
+  const editarProd=async(id)=>{
+    const prod = new FormData()
+    prod.append("idproducto",Number(id))
+    prod.append("idtienda",Number(tiendaDetail.idtienda))
+    apiFetch(prod,"productos","get").then((res)=>{
+      if(res.status==="success"){
+        if(userLog===78 || userLog==="78"){
+          setForm((prevState) => ({
+            ...prevState,
+            crearTienda:false,
+            editarProd:true,
+            prodEditar: res.result
+          }));
+          navigate(`/Mi&Tienda/IMAGENES`);
+        }
+      }
+    })
+  }
+
   return (
     <div className="seccionProductosCon">
       <TiendaBanner />
@@ -121,17 +140,9 @@ const SeccionProductos = ({ setForm }) => {
                         <img
                           src={product.imagenes[0].imagen_cuadrada}
                           alt="cardImage"
-                          onClick={()=>{
-                            if(userLog===78 || userLog==="78"){
-                              setForm((prevState) => ({
-                                ...prevState,
-                                crearTienda:false,
-                                editarProd:true,
-                                prodEditar: product
-                              }));
-                              navigate(`/Mi&Tienda/TIPO`);
+                          onClick={()=>{editarProd(product.idproducto)
                             }
-                          }}
+                          }
                         />
                         <div>
                           <p className="title">{product.nombre}</p>

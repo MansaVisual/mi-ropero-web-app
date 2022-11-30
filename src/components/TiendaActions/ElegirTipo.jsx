@@ -4,7 +4,6 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Radio } from "@mui/material";
 import { UseProdsContext } from "../../context/ProdsContext";
-import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ElegirTipo = ({ form, setForm }) => {
   const navigate = useNavigate();
@@ -13,58 +12,11 @@ const ElegirTipo = ({ form, setForm }) => {
   const { categorias } = useContext(UseProdsContext);
 
   useEffect(() => {
-    if (!form.categoriaId && !form.prodEditar) {
+    if (!form.categoriaId) {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    if (form.editarProd) {
-      console.log("entra");
-      const idCaracteristica = form.prodEditar.caracteristicas.split(",");
-      const caractObj = {};
-      const dir = new FormData();
-      dir.append("idcategoria", form.prodEditar.idcategoria);
-      const f = async () => {
-        await apiFetch(dir, "categorias", "get").then((res) => {
-          console.log(res);
-          for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
-            console.log(res.result[0].caracteristicas[i]);
-            for (let j = 0; j < idCaracteristica.length; j++) {
-              console.log(idCaracteristica[i]);
-              let fields = idCaracteristica[j].split(":");
-              let id = fields[0];
-              if (res.result[0].caracteristicas[i].idcaracteristica === id) {
-                console.log("coincide");
-                let obj = res.result[0].caracteristicas[i].nombre;
-                caractObj[obj] = [idCaracteristica[j]];
-              }
-            }
-          }
-        });
-      };
-      f();
-      console.log(caractObj);
-      console.log(form);
-      for (const i in categorias) {
-        console.log(categorias[i]);
-        if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
-          setForm((prevState) => ({
-            ...prevState,
-            editarProd: false,
-            categoriaId: categorias[i].idcategoriapadre,
-            tipoId: categorias[i].idcategoria,
-            tipoNombre: categorias[i].nombre,
-            caracteristicas: form.prodEditar.caracteristicas,
-            idCaracteristica: idCaracteristica,
-            idCaracteristicaOld: caractObj,
-            titulo: form.prodEditar.nombre,
-            precio: form.prodEditar.precio,
-            descripcion: form.prodEditar.descripcion,
-          }));
-        }
-      }
-    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log(form);
 
   return (
     <div className="elegirTipoContainer">
