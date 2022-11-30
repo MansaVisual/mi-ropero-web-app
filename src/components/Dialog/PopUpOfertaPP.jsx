@@ -83,7 +83,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     }
   };
 
-  const StyledTextField = styled(TextField)(({ theme }) => ({
+  const StyledTextField = styled(TextField)(() => ({
     width: 300,
     "& input": {
       padding: "4px 8px",
@@ -184,7 +184,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
               inputProps={{ maxLength: 10 }}
             /> */}
             <NumericFormat
-              customInput={StyledTextField}
+              customInput={TextField}
               className={`ofertaInput ${errorValor && "ofertaInputError"}`}
               placeholder="$ Ingresar valor"
               onValueChange={(values) => {
