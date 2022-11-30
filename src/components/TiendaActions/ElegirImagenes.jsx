@@ -68,6 +68,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           const { imagenes } = form.prodEditar;
 
           for (let j = 0; 2 === categorias[i].imagenes_necesarias.length; j++) {
+            console.log(categorias[i].imagenes_necesarias[j].nombre);
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
