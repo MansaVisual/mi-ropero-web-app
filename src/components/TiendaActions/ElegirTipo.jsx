@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { Radio } from "@mui/material";
 import { UseProdsContext } from "../../context/ProdsContext";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ElegirTipo = ({ form, setForm }) => {
   const navigate = useNavigate();
@@ -17,6 +18,22 @@ const ElegirTipo = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd !== undefined && form.editarProd) {
+      const idCaracteristica = form.prodEditar.caracteristicas.split(",");
+      const caractObj = {};
+      const dir = new FormData();
+      dir.append("idcategoria", form.categoriaId);
+      apiFetch(dir, "categorias", "get").then((res) => {
+        for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+          for (let i = 0; i < idCaracteristica.length; i++) {
+            var fields = idCaracteristica[i].split(":");
+            var id = fields[0];
+            if (res.result[0].caracteristicas[i].idcaracteristica === id) {
+              let obj = res.result[0].caracteristicas[i].nombre;
+              caractObj[obj] = [idCaracteristica[i]];
+            }
+          }
+        }
+      });
       for (const i in categorias) {
         console.log(categorias[i]);
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
@@ -27,7 +44,8 @@ const ElegirTipo = ({ form, setForm }) => {
             tipoId: categorias[i].idcategoria,
             tipoNombre: categorias[i].nombre,
             caracteristicas: form.prodEditar.caracteristicas,
-            idCaracteristica: form.prodEditar.caracteristicas.split(","),
+            idCaracteristica: idCaracteristica,
+            idCaracteristicaOld: "",
             titulo: form.prodEditar.nombre,
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
