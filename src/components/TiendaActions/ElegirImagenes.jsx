@@ -283,7 +283,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         </div>
         <div className="buttonContainer">
           <button
-            disabled={!disabledButton}
+            disabled={disabledButton}
             style={{
               backgroundColor: disabledButton ? "#857db3" : "#443988",
             }}

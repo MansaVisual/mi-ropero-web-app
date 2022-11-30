@@ -17,25 +17,33 @@ const ElegirTipo = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    if (form.editarProd !== undefined && form.editarProd) {
+    if (form.editarProd) {
+      console.log("entra");
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractObj = {};
       const dir = new FormData();
-      dir.append("idcategoria", form.categoriaId);
-      apiFetch(dir, "categorias", "get").then((res) => {
-        console.log(res);
-        for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
-          for (let i = 0; i < idCaracteristica.length; i++) {
-            var fields = idCaracteristica[i].split(":");
-            var id = fields[0];
-            if (res.result[0].caracteristicas[i].idcaracteristica === id) {
-              let obj = res.result[0].caracteristicas[i].nombre;
-              caractObj[obj] = [idCaracteristica[i]];
+      dir.append("idcategoria", form.prodEditar.idcategoria);
+      const f = async () => {
+        await apiFetch(dir, "categorias", "get").then((res) => {
+          console.log(res);
+          for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+            console.log(res.result[0].caracteristicas[i]);
+            for (let j = 0; j < idCaracteristica.length; j++) {
+              console.log(idCaracteristica[i]);
+              let fields = idCaracteristica[j].split(":");
+              let id = fields[0];
+              if (res.result[0].caracteristicas[i].idcaracteristica === id) {
+                console.log("coincide");
+                let obj = res.result[0].caracteristicas[i].nombre;
+                caractObj[obj] = [idCaracteristica[j]];
+              }
             }
           }
-        }
-      });
+        });
+      };
+      f();
       console.log(caractObj);
+      console.log(form);
       for (const i in categorias) {
         console.log(categorias[i]);
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
@@ -47,7 +55,7 @@ const ElegirTipo = ({ form, setForm }) => {
             tipoNombre: categorias[i].nombre,
             caracteristicas: form.prodEditar.caracteristicas,
             idCaracteristica: idCaracteristica,
-            idCaracteristicaOld: "",
+            idCaracteristicaOld: caractObj,
             titulo: form.prodEditar.nombre,
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
