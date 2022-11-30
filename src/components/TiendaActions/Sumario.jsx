@@ -149,12 +149,10 @@ const Sumario = ({ form }) => {
             icon: "success",
             confirmButtonText: "CONTINUAR",
           }).then((res) => {
-            // window.location.replace(
-            //   "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
-            // );
+            window.location.replace(
+              "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
+            );
           });
-        } else {
-          console.log(res);
         }
       });
     }
