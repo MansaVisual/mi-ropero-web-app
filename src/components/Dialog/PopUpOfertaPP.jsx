@@ -71,6 +71,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
 
   const handleOnChange = (e, type) => {
     if (type === "oferta") {
+      document.getElementById("numericFormat").focus();
       setData({
         amount: e === "" ? 0 : e,
         comment: data.comment,
@@ -190,7 +191,6 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
               placeholder="$ Ingresar valor"
               onValueChange={(values) => {
                 handleOnChange(values.value, "oferta");
-                document.getElementById("numericFormat").focus();
               }}
               thousandSeparator={"."}
               decimalSeparator={","}
