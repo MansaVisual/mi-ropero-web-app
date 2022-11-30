@@ -10,7 +10,7 @@ import {
 import theme from "../../styles/theme";
 // import { StyledInput } from "../SearchBar/styles";
 import { Container } from "@mui/system";
-import fiscal from "../../assets/img/fiscal.svg";
+import fiscal from "../../assets/img/fiscal.png";
 import MP from "../../assets/img/MP.png";
 import { SocialButton, StyledLink } from "./styles";
 import {
@@ -263,7 +263,16 @@ const Footer = () => {
                 pt={isMobile ? "70px" : null}
                 justifyContent="center"
               >
-                <img style={{cursor:"pointer"}}src={fiscal} alt="legal-footer" onClick={()=>window.open("https://serviciosweb.afip.gob.ar/clavefiscal/qr/publicInfoD.aspx")} />
+                <img
+                  style={{ cursor: "pointer" }}
+                  src={fiscal}
+                  alt="legal-footer"
+                  onClick={() =>
+                    window.open(
+                      "https://serviciosweb.afip.gob.ar/clavefiscal/qr/publicInfoD.aspx"
+                    )
+                  }
+                />
               </Stack>
               <Stack alignItems="center" sx={{ mt: "40px" }}>
                 <img src={MP} alt="legal-footer" width="114px" />
