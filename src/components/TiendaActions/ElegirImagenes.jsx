@@ -60,13 +60,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         });
       };
       f();
-      /*  const found = categorias.find((element) => element > 10); */
 
-      /* for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
-        let obj = categorias[i].imagenes_necesarias[j].nombre;
-        imagenes[obj] = null;
-      } */
-      setImagenes(form.imagenes);
       for (const i in categorias) {
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
           setForm((prevState) => ({
@@ -84,6 +78,18 @@ const ElegirImagenes = ({ form, setForm }) => {
           }));
         }
       }
+      const found = categorias.find(
+        (element) => element.idcategoria === form.tipoId
+      );
+      console.log(found);
+
+      console.log(form);
+
+      /* for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+        let obj = categorias[i].imagenes_necesarias[j].nombre;
+        imagenes[obj] = null;
+      } */
+      setImagenes(form.imagenes);
     } else {
       for (let i = 0; i < categorias.length; i++) {
         if (categorias[i].idcategoria === form.tipoId) {
@@ -109,6 +115,8 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  console.log(form);
 
   const handleSubmit = async () => {
     let variable = false;
