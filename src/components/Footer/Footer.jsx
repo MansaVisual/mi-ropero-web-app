@@ -263,7 +263,7 @@ const Footer = () => {
                 pt={isMobile ? "70px" : null}
                 justifyContent="center"
               >
-                <img src={fiscal} alt="legal-footer" onClick={()=>window.location.open("https://serviciosweb.afip.gob.ar/clavefiscal/qr/publicInfoD.aspx")} />
+                <img src={fiscal} alt="legal-footer" onClick={()=>window.open("https://serviciosweb.afip.gob.ar/clavefiscal/qr/publicInfoD.aspx")} />
               </Stack>
               <Stack alignItems="center" sx={{ mt: "40px" }}>
                 <img src={MP} alt="legal-footer" width="114px" />
