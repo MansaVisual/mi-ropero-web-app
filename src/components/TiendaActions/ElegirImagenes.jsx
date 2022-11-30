@@ -40,7 +40,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
-      console.log(form)
+      console.log(form, categorias);
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractObj = {};
       const dir = new FormData();
@@ -60,6 +60,13 @@ const ElegirImagenes = ({ form, setForm }) => {
         });
       };
       f();
+      /*  const found = categorias.find((element) => element > 10); */
+
+      /* for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+        let obj = categorias[i].imagenes_necesarias[j].nombre;
+        imagenes[obj] = null;
+      } */
+      setImagenes(form.imagenes);
       for (const i in categorias) {
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
           setForm((prevState) => ({
@@ -77,12 +84,12 @@ const ElegirImagenes = ({ form, setForm }) => {
           }));
         }
       }
-    }else{
+    } else {
       for (let i = 0; i < categorias.length; i++) {
         if (categorias[i].idcategoria === form.tipoId) {
           let imagenes = {};
           setImgNecesarias(categorias[i].imagenes_necesarias);
-  
+
           if (Object.keys(form.imagenes).length === 0) {
             for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
               let obj = categorias[i].imagenes_necesarias[j].nombre;
@@ -325,12 +332,15 @@ const ElegirImagenes = ({ form, setForm }) => {
             IR A CARACTERÍSTICAS
           </button>
         </div>
-        {form.prodEditar===undefined &&
-          <div className="returnLink" onClick={() => navigate(`/Mi&Tienda/TIPO`)}>
+        {form.prodEditar === undefined && (
+          <div
+            className="returnLink"
+            onClick={() => navigate(`/Mi&Tienda/TIPO`)}
+          >
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A SUBCATEGORÍA</p>
           </div>
-        }
+        )}
       </div>
       {openImgPopUp && (
         <PopUpImg
