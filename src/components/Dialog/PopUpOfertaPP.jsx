@@ -8,6 +8,8 @@ import Loader from "../Loader/Loader";
 import Swal from "sweetalert2";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { styled } from "@mui/material/styles";
+import { NumericFormat } from "react-number-format";
 
 const PopUpOfertaPP = ({ open, setOpen, prod }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -81,6 +83,26 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     }
   };
 
+  const StyledTextField = styled(TextField)(({ theme }) => ({
+    width: 300,
+    "& input": {
+      padding: "4px 8px",
+      height: "40px",
+      boxSizing: "border-box",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      borderRadius: "8px",
+      minWidth: "136px",
+    },
+    border: errorValor && "1px solid #ff3f20 !important",
+    borderRadius: errorValor && "4px",
+    "& .MuiOutlinedInput-root:hover": {
+      "& > fieldset": {
+        borderColor: errorValor && "#FF3F20",
+      },
+    },
+  }));
 
   return (
     <>
@@ -115,18 +137,24 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
                 ? `El valor ingresado no es válido. No podemos aceptar que ofertes un monto mayor al precio publicado por el vendedor. `
                 : `Ingresá el monto que querés pagar por este producto. Recordá que debe ser mayor a $0 y menor a ${
                     prod.precio_oferta !== "0.00"
-                      ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta)
+                      ? new Intl.NumberFormat("de-DE").format(
+                          prod.precio_oferta
+                        )
                       : new Intl.NumberFormat("de-DE").format(prod.precio)
                   }`}
             </p>
-            <p className="parrafo"> {errorValor && `Recordá que debe ser mayor a $0 y menor a ${
-                    prod.precio_oferta !== "0.00"
-                      ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta)
-                      : new Intl.NumberFormat("de-DE").format(prod.precio)
-                  }`} </p>
+            <p className="parrafo">
+              {" "}
+              {errorValor &&
+                `Recordá que debe ser mayor a $0 y menor a ${
+                  prod.precio_oferta !== "0.00"
+                    ? new Intl.NumberFormat("de-DE").format(prod.precio_oferta)
+                    : new Intl.NumberFormat("de-DE").format(prod.precio)
+                }`}{" "}
+            </p>
 
             <p className="titleOfertaInput">Monto de la oferta*</p>
-            <TextField
+            {/* <TextField
               id="oferta"
               className={`ofertaInput ${errorValor && "ofertaInputError"}`}
               margin="dense"
@@ -153,7 +181,18 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
                   },
                 },
               }}
-            inputProps={{ maxLength: 10 }}
+              inputProps={{ maxLength: 10 }}
+            /> */}
+            <NumericFormat
+              customInput={TextField}
+              className={`inputForm`}
+              placeholder="Ingresar precio de venta del producto"
+              onValueChange={(values) => {
+                /* handleChange(values.value, "precio"); */
+              }}
+              thousandSeparator={"."}
+              decimalSeparator={","}
+              prefix={"$"}
             />
 
             <p className="titleCommentInput">Comentarios</p>
@@ -209,14 +248,8 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
                   <Button
                     onClick={() => handleSubmit()}
                     noHover={true}
-                    className={
-                      data.amount === 0
-                        ? "ofertaDisabled"
-                        : "oferta"
-                    }
-                    disabled={
-                      data.amount === 0  ? true : false
-                    }
+                    className={data.amount === 0 ? "ofertaDisabled" : "oferta"}
+                    disabled={data.amount === 0 ? true : false}
                   >
                     HACER OFERTA
                   </Button>

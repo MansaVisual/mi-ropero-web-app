@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
-import {
-  Box,
-  Grid,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-} from "@mui/material";
+import { Box, Grid, InputLabel, OutlinedInput, TextField } from "@mui/material";
 import PopUpDescProd from "./PopUpDescuento";
 import { NumericFormat } from "react-number-format";
 
@@ -27,15 +21,6 @@ const DetallesProd = ({ form, setForm }) => {
 
   const handleChange = (e, detalle) => {
     if (detalle === "precio") {
-      /* console.log(e.target.value);
-      console.log(e.target.value.length);
-      console.log(e.target.value.search(",")); */
-      /*       if(e.target.value[e.target.value.length]==="."){
-        return 
-      }
-      if(e.target.value.search(",")!==-1){
-        return
-      } */
       setDetalles((prevState) => {
         return {
           ...prevState,
@@ -103,9 +88,6 @@ const DetallesProd = ({ form, setForm }) => {
             }}
           >
             <span className="title">DETALLES</span>
-            {/* <span className="titleRight" onClick={() => setOpenDescPopUp(true)}>
-              CREAR DESCUENTO PARA PRODUCTO
-            </span> */}
           </Box>
           <div className="firstLine" style={{ marginTop: "24px" }}>
             <div className="margenInput margenInputEspecial">
@@ -118,45 +100,18 @@ const DetallesProd = ({ form, setForm }) => {
                 className={`inputForm`}
                 id="titulo"
                 value={detalles.titulo}
-                onChangeCapture={
-                  (e) => handleChange(e, "titulo")
-                  /* setDetalles((prevState) => {
-                    return {
-                      ...prevState,
-                      titulo: e.target.value,
-                    };
-                  }) */
-                }
+                onChangeCapture={(e) => handleChange(e, "titulo")}
               ></OutlinedInput>
             </div>
             <div className="margenInput">
               <InputLabel className="labelForm" id="labelTelefono">
                 Precio de venta *
               </InputLabel>
-              {/*  <OutlinedInput
-                startAdornment={
-                  <InputAdornment position="start">$</InputAdornment>
-                }
-                placeholder="Ingresar precio de venta del producto"
-                size="small"
-                className={`inputForm`}
-                id="precio"
-                value={detalles.precio}
-                onChangeCapture={(e) => handleChange(e, "precio")}
-                type="number"
-              ></OutlinedInput> */}
               <NumericFormat
                 customInput={TextField}
                 className={`inputForm`}
                 placeholder="Ingresar precio de venta del producto"
                 onValueChange={(values) => {
-                  console.log(values);
-                  /* onChange({
-                    target: {
-                      name: props.name,
-                      value: values.value,
-                    },
-                  }); */
                   handleChange(values.value, "precio");
                 }}
                 thousandSeparator={"."}
