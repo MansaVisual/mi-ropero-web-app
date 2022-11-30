@@ -63,6 +63,11 @@ const ElegirImagenes = ({ form, setForm }) => {
 
       for (const i in categorias) {
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
+          let img = {};
+          for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+            let obj = categorias[i].imagenes_necesarias[j].nombre;
+            imagenes[obj] = null;
+          }
           setForm((prevState) => ({
             ...prevState,
             editarProd: false,
@@ -75,13 +80,10 @@ const ElegirImagenes = ({ form, setForm }) => {
             titulo: form.prodEditar.nombre,
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
+            imagenes: img,
           }));
         }
       }
-      const found = categorias.find(
-        (element) => element.idcategoria === form.tipoId
-      );
-      console.log(found);
 
       console.log(form);
 
