@@ -72,7 +72,7 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
   const handleOnChange = (e, type) => {
     if (type === "oferta") {
       setData({
-        amount: e.target.value === "" ? 0 : e.target.value,
+        amount: e === "" ? 0 : e,
         comment: data.comment,
       });
     } else {
@@ -184,11 +184,11 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
               inputProps={{ maxLength: 10 }}
             /> */}
             <NumericFormat
-              customInput={TextField}
+              customInput={StyledTextField}
               className={`ofertaInput ${errorValor && "ofertaInputError"}`}
               placeholder="$ Ingresar valor"
               onValueChange={(values) => {
-                /* handleChange(values.value, "precio"); */
+                handleOnChange(values.value, "oferta");
               }}
               thousandSeparator={"."}
               decimalSeparator={","}
