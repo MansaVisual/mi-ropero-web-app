@@ -71,12 +71,30 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
-          /*           for (let i = 0; i < imagenes.length; i++) {
+          /* for (let i = 0; i < imagenes.length; i++) {
             if (i === 0) {
               console.log(Object.keys(img)[0], imagenes[i]);
               img[Object.keys(img)[0]] = imagenes[i].imagen_original;
             }
           } */
+          if (imagenes.length > 3) {
+            for (let k = 3; k < imagenes.length; k++) {
+              /* let obj = `Foto extra ${k + 1}`;
+              img[obj] = imagenes[k].imagen_original; */
+              setNumeroImgExtra(numeroImgExtra + 1);
+              setSection(`fotoExtra ${numeroImgExtra}`);
+              const updatedArray = [
+                ...seccionExtra,
+                {
+                  nombre: `Foto extra ${k - 2}`,
+                  descripcion: "foto extra agregada!",
+                  imagen: imagenes[k].imagen_original,
+                  obligatoria: "0",
+                },
+              ];
+              setSeccionExtra(updatedArray);
+            }
+          }
           setForm((prevState) => ({
             ...prevState,
             editarProd: false,
