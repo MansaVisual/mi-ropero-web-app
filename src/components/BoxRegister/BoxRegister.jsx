@@ -474,7 +474,7 @@ const BoxRegister = () => {
         )}
       </div>
       <p className="bottomText">
-        Al oprimir REGISTRÁTE se aceptan los{" "}
+        Al hacer clic en el botón “registráte” aceptas los{" "}
         <span
           className="spanLink"
           style={{ cursor: "pointer" }}
@@ -488,7 +488,21 @@ const BoxRegister = () => {
         >
           términos y condiciones
         </span>{" "}
-        de Mi Ropero.
+        de uso de la plataforma Mi Ropero y nuestras {" "}
+        <span
+          className="spanLink"
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: "auto",
+            });
+            navigate("/politica&de&privacidad")
+          }}
+        >
+          políticas de privacidad
+        </span>{" "}
+        .
       </p>
     </div>
   );
