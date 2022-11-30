@@ -79,10 +79,8 @@ const ElegirImagenes = ({ form, setForm }) => {
           } */
           if (imagenes.length > 3) {
             for (let k = 2; k < imagenes.length; k++) {
-              /* let obj = `Foto extra ${k + 1}`;
-              img[obj] = imagenes[k].imagen_original; */
+              console.log(k, seccionExtra);
               setNumeroImgExtra(numeroImgExtra + 1);
-              setSection(`fotoExtra ${k - 2}`);
               const updatedArray = [
                 ...seccionExtra,
                 {
@@ -93,6 +91,14 @@ const ElegirImagenes = ({ form, setForm }) => {
                 },
               ];
               setSeccionExtra(updatedArray);
+              setImagenes((prevState) => ({
+                ...prevState,
+                [`Foto extra ${k - 2}`]: imagenes[k].imagen_original,
+              }));
+              setImagenesPreview((prevState) => ({
+                ...prevState,
+                [`Foto extra ${k - 2}`]: imagenes[k].imagen_original,
+              }));
             }
           }
           setForm((prevState) => ({
@@ -146,7 +152,7 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(form);
+  console.log(form, seccionExtra);
 
   const handleSubmit = async () => {
     let variable = false;
