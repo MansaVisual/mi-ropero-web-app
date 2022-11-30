@@ -5,7 +5,6 @@ import leftArrow from "../../assets/img/leftArrow.png";
 import {
   Box,
   Grid,
-  InputAdornment,
   InputLabel,
   OutlinedInput,
   TextField,

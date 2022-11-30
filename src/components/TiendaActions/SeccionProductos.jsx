@@ -126,6 +126,7 @@ const SeccionProductos = ({ setForm }) => {
                               setForm((prevState) => ({
                                 ...prevState,
                                 crearTienda:false,
+                                editarProd:true,
                                 prodEditar: product
                               }));
                               navigate(`/Mi&Tienda/TIPO`);

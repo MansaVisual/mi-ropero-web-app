@@ -17,17 +17,20 @@ const ElegirTipo = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    if(form.prodEditar!==undefined){
+    if(form.editarProd!==undefined && form.editarProd){
       for(const i in categorias){
         console.log(categorias[i])
         if(categorias[i].idcategoria===form.prodEditar.idcategoria){
           setForm((prevState)=>({
             ...prevState,
+            editarProd:false,
             categoriaId:categorias[i].idcategoriapadre,
             tipoId:categorias[i].idcategoria,
             tipoNombre: categorias[i].nombre,
             caracteristicas: form.prodEditar.caracteristicas,
-            
+            titulo: form.prodEditar.nombre,
+            precio: form.prodEditar.precio,
+            descripcion: form.prodEditar.descripcion,
           }))
         }
       }
