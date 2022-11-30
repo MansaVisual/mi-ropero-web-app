@@ -23,6 +23,7 @@ const ElegirTipo = ({ form, setForm }) => {
       const dir = new FormData();
       dir.append("idcategoria", form.categoriaId);
       apiFetch(dir, "categorias", "get").then((res) => {
+        console.log(res);
         for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
           for (let i = 0; i < idCaracteristica.length; i++) {
             var fields = idCaracteristica[i].split(":");
@@ -34,6 +35,7 @@ const ElegirTipo = ({ form, setForm }) => {
           }
         }
       });
+      console.log(caractObj);
       for (const i in categorias) {
         console.log(categorias[i]);
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
