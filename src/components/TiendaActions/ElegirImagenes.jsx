@@ -11,6 +11,7 @@ import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
 import PopUpVideo from "./PopUpVideo";
+import { apiFetch } from "../../apiFetch/apiFetch";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
