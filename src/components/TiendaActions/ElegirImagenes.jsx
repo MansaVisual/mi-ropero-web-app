@@ -66,8 +66,14 @@ const ElegirImagenes = ({ form, setForm }) => {
           let img = {};
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
-            imagenes[obj] = null;
+            img[obj] = null;
           }
+          Object.keys(img).forEach(function (key, index) {
+            console.log(img, index, img[index]);
+
+            // key: the name of the object key
+            // index: the ordinal position of the key within the object
+          });
           setForm((prevState) => ({
             ...prevState,
             editarProd: false,
