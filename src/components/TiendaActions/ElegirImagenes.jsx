@@ -41,22 +41,17 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
     if (form.editarProd) {
       console.log(form)
-      console.log("entra");
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractObj = {};
       const dir = new FormData();
       dir.append("idcategoria", form.prodEditar.idcategoria);
       const f = async () => {
         await apiFetch(dir, "categorias", "get").then((res) => {
-          console.log(res);
           for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
-            console.log(res.result[0].caracteristicas[i]);
             for (let j = 0; j < idCaracteristica.length; j++) {
-              console.log(idCaracteristica[i]);
               let fields = idCaracteristica[j].split(":");
               let id = fields[0];
               if (res.result[0].caracteristicas[i].idcaracteristica === id) {
-                console.log("coincide");
                 let obj = res.result[0].caracteristicas[i].nombre;
                 caractObj[obj] = [idCaracteristica[j]];
               }
@@ -65,10 +60,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         });
       };
       f();
-      console.log(caractObj);
-      console.log(form);
       for (const i in categorias) {
-        console.log(categorias[i]);
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
           setForm((prevState) => ({
             ...prevState,
@@ -93,7 +85,6 @@ const ElegirImagenes = ({ form, setForm }) => {
   
           if (Object.keys(form.imagenes).length === 0) {
             for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
-              console.log(categorias[i].imagenes_necesarias);
               let obj = categorias[i].imagenes_necesarias[j].nombre;
               imagenes[obj] = null;
             }
@@ -114,7 +105,6 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const handleSubmit = async () => {
     let variable = false;
-    console.log(imgNecesarias);
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
@@ -142,7 +132,6 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   useEffect(() => {
     let variable = false;
-    console.log(imgNecesarias);
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
@@ -152,7 +141,6 @@ const ElegirImagenes = ({ form, setForm }) => {
         }
       }
     }
-    console.log("entra");
     if (!variable) {
       setDisabledButton(false);
     } else {
@@ -161,11 +149,8 @@ const ElegirImagenes = ({ form, setForm }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagenes]);
 
-  console.log(disabledButton);
-
   const handleExtraSubmit = async (tipo) => {
     let variable = false;
-    console.log(tipo);
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
@@ -253,7 +238,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           )}
           {seccionExtra.length > 0 &&
             seccionExtra.map((imgBox) => {
-              console.log(imgBox);
               return (
                 <div
                   className="section"
@@ -341,10 +325,12 @@ const ElegirImagenes = ({ form, setForm }) => {
             IR A CARACTERÍSTICAS
           </button>
         </div>
-        <div className="returnLink" onClick={() => navigate(`/Mi&Tienda/TIPO`)}>
-          <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A SUBCATEGORÍA</p>
-        </div>
+        {form.prodEditar===undefined &&
+          <div className="returnLink" onClick={() => navigate(`/Mi&Tienda/TIPO`)}>
+            <img src={leftArrow} alt="leftArrow" />
+            <p>VOLVER A SUBCATEGORÍA</p>
+          </div>
+        }
       </div>
       {openImgPopUp && (
         <PopUpImg
