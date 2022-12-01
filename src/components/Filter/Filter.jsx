@@ -585,6 +585,7 @@ const Filter = (props) => {
               }`} */
               id="min-price"
               /* placeholder="$ Ingresar valor" */
+              size="small"
               label="$ Minimo"
               onValueChange={(values) => {
                 setRangoPrecio({
@@ -634,7 +635,7 @@ const Filter = (props) => {
               onChangeCapture={() => {
                 setRangoPrecio({
                   min:
-                    document.getElementById("min-price").value === 0
+                    rangoPrecio.min === 0
                       ? 0
                       : document.getElementById("min-price").value,
                   max: document.getElementById("max-price").value,
