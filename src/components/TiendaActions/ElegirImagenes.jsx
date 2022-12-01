@@ -96,6 +96,12 @@ const ElegirImagenes = ({ form, setForm }) => {
           console.log(imagenes);
 
           for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+            console.log(
+              categorias[i].imagenes_necesarias[j].nombre,
+              imagenes[j].imagen_original,
+              i,
+              j
+            );
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
@@ -217,8 +223,6 @@ const ElegirImagenes = ({ form, setForm }) => {
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
-          let blob = await fetch(imagenes[key]).then((r) => r.blob());
-          console.log(typeof blob);
           if (imgNecesarias[i].nombre === key && !imagenes[key]) {
             variable = true;
             setErrorObligatorio(true);
