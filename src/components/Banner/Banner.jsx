@@ -58,8 +58,7 @@ const Banner = () => {
         }}
         sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
-        {isMobile ? <>
-          {slides2.map((item, index) => (
+        {(isMobile?slides2:slides).map((item, index) => (
           <Box sx={{
             display: "flex",
             justifyContent: "center",
@@ -72,24 +71,6 @@ const Banner = () => {
 
           </Box>
         ))}
-        </>
-        :
-        <>
-        {slides.map((item, index) => (
-          <Box sx={{
-            display: "flex",
-            justifyContent: "center",
-            backgroundImage:`url(${item.img})`,
-            backgroundRepeat:"no-repeat",
-            backgroundSize:"contain",
-            width:"100%",
-            height:"344px"
-          }} key={index}>
-
-          </Box>
-        ))}
-        </>
-        }
       </Carousel>
     </Box>
   );
