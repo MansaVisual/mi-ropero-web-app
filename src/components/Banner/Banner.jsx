@@ -6,10 +6,10 @@ import { Box } from "@mui/material";
 
 const slides = [
   {
-    img: "../../assets/img/HomeBanner1.jpg",
+    img:HomeBanner1,
   },
   {
-    img: "../../assets/img/HomeBanner2.jpg",
+    img: HomeBanner2,
   },
 ];
 
@@ -46,7 +46,15 @@ const Banner = () => {
         sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
         {slides.map((item, index) => (
-          <Box sx={{ display: "flex", justifyContent: "center", backgroundImage:`url("${item.img}")` }} key={index}>
+          <Box sx={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundImage:`url(${item.img})`,
+            backgroundRepeat:"no-repeat",
+            backgroundSize:"contain",
+            width:"100%",
+            height:"344px"
+          }} key={index}>
             {/* <img
               src={item.img}
               alt=""
