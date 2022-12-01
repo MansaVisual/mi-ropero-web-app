@@ -68,7 +68,7 @@ const Banner = () => {
             backgroundRepeat:"no-repeat",
             backgroundSize:"cover",
             width:"100%",
-            height:"344px"
+            height:"320px"
           }} key={index}>
           </Box>
         ))}
