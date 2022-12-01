@@ -269,7 +269,7 @@ const Footer = () => {
                   alt="legal-footer"
                   onClick={() =>
                     window.open(
-                      "https://serviciosweb.afip.gob.ar/clavefiscal/qr/publicInfoD.aspx"
+                      "http://qr.afip.gob.ar/?qr=nYOKJGS8W621Tlw64oL2Yg,,"
                     )
                   }
                 />
