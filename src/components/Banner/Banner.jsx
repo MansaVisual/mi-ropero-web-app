@@ -1,8 +1,8 @@
 import React from "react";
 import HomeBanner1 from "../../assets/img/HomeBanner1.jpg";
 import HomeBanner2 from "../../assets/img/HomeBanner2.jpg";
-import HomeBanner1M from "../../assets/img/BANNER MOBILE SLIDER 1.jpg";
-import HomeBanner2M from "../../assets/img/BANNER MOBILE SLIDER 2.jpg";
+import HomeBanner1M from "../../assets/img/bannerMobile.jpg";
+import HomeBanner2M from "../../assets/img/bannerMobile2.jpg";
 import Carousel from "react-material-ui-carousel";
 import { Box, useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
