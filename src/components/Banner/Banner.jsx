@@ -1,11 +1,8 @@
 import React from "react";
 import HomeBanner1 from "../../assets/img/HomeBanner1.jpg";
 import HomeBanner2 from "../../assets/img/HomeBanner2.jpg";
-import HomeBanner1M from "../../assets/img/bannerMobile.jpg";
-import HomeBanner2M from "../../assets/img/bannerMobile2.jpg";
 import Carousel from "react-material-ui-carousel";
-import { Box, useMediaQuery } from "@mui/material";
-import theme from "../../styles/theme";
+import { Box } from "@mui/material";
 
 const slides = [
   {
@@ -16,20 +13,9 @@ const slides = [
   },
 ];
 
-const slidesMobile = [
-  {
-    img: HomeBanner1M,
-  },
-  {
-    img: HomeBanner2M,
-  },
-];
-
 const Banner = () => {
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Box sx={{maxWidth:"1450px",margin:"auto"}}>
+    <Box>
       <Carousel
         animation="slide"
         autoPlay={false}
@@ -57,38 +43,28 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ height: { xs: "157px", md: "344px"} }}
+        sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
-        {isMobile?<>
-          {slidesMobile.map((item, index) => {console.log(item);return(
-            <Box sx={{
-              display: "flex",
-              justifyContent: "center",
-              backgroundImage:`url(${item.img})`,
-              backgroundRepeat:"no-repeat",
-              backgroundSize:"cover",
-              width:"100%",
-              height:"320px"
-            }} key={index}>
-            </Box>
-          )})}
-          </>
-          :<>
-          {slides.map((item, index) => (
-            <Box sx={{
-              display: "flex",
-              justifyContent: "center",
-              backgroundImage:`url(${item.img})`,
-              backgroundPosition:"center",
-              backgroundRepeat:"no-repeat",
-              backgroundSize:"cover",
-              width:"100%",
-              height:"344px"
-            }} key={index}>
-            </Box>
-          ))}
-        </>
-        }
+        {slides.map((item, index) => (
+          <Box sx={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundImage:`url(${item.img})`,
+            backgroundRepeat:"no-repeat",
+            backgroundSize:"contain",
+            width:"100%",
+            height:"344px"
+          }} key={index}>
+            {/* <img
+              src={item.img}
+              alt=""
+              className="imgBanner"
+              key={index}
+              width="100%"
+              height="100%"
+            /> */}
+          </Box>
+        ))}
       </Carousel>
     </Box>
   );
