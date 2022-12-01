@@ -15,7 +15,7 @@ const slides = [
 
 const Banner = () => {
   return (
-    <Box style={{maxWidth:"1450px",margin:"auto"}}>
+    <Box style={{maxWidth:"1366px",margin:"auto"}}>
       <Carousel
         animation="slide"
         autoPlay={false}
