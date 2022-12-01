@@ -98,6 +98,10 @@ const ElegirImagenes = ({ form, setForm }) => {
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
+            setImagenesPreview((prevState) => ({
+              ...prevState,
+              [img[obj]]: imagenes[j].imagen_original,
+            }));
           }
           if (imagenes.length > 2) {
             let updatedArray = [];
