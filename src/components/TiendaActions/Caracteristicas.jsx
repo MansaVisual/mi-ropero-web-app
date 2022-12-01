@@ -26,6 +26,7 @@ const Caracteristicas = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
+    console.log(form);
     const dir = new FormData();
     dir.append("idcategoria", form.categoriaId);
     let caract = {};

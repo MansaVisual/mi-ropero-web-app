@@ -78,38 +78,37 @@ const ElegirImagenes = ({ form, setForm }) => {
             }
           } */
           if (imagenes.length > 3) {
-            for (let k = 2; k < imagenes.length; k++) {
+            let updatedArray = [];
+            for (let k = 3; k < imagenes.length; k++) {
               console.log(k, seccionExtra);
               setNumeroImgExtra(numeroImgExtra + 1);
-              const updatedArray = [
-                ...seccionExtra,
-                {
-                  nombre: `Foto extra ${k - 2}`,
-                  descripcion: "foto extra agregada!",
-                  imagen: imagenes[k].imagen_original,
-                  obligatoria: "0",
-                },
-              ];
+              updatedArray.push({
+                nombre: `Foto extra ${k - 2}`,
+                descripcion: "foto extra agregada!",
+                imagen: imagenes[k].imagen_original,
+                obligatoria: "0",
+              });
               /* setSeccionExtra(updatedArray); */
-              setSeccionExtra([
+              /* setSeccionExtra([
                 ...seccionExtra,
                 {
-                  nombre: `Foto extra ${k - 2}`,
+                  nombre: `Foto extra ${k}`,
                   descripcion: "foto extra agregada!",
                   imagen: imagenes[k].imagen_original,
                   obligatoria: "0",
                 },
-              ]);
+              ]); */
 
-              setImagenes((prevState) => ({
+              /* setImagenes((prevState) => ({
                 ...prevState,
-                [`Foto extra ${k - 2}`]: imagenes[k].imagen_original,
+                [`Foto extra ${k}`]: imagenes[k].imagen_original,
               }));
               setImagenesPreview((prevState) => ({
                 ...prevState,
-                [`Foto extra ${k - 2}`]: imagenes[k].imagen_original,
-              }));
+                [`Foto extra ${k}`]: imagenes[k].imagen_original,
+              })); */
             }
+            setSeccionExtra(updatedArray);
           }
           setForm((prevState) => ({
             ...prevState,

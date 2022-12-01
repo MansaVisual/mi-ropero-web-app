@@ -583,7 +583,6 @@ const Filter = (props) => {
             <NumericFormat
               customInput={TextField}
               id="min-price"
-              size="small"
               label="$ Minimo"
               style={{
                 marginRight: "16px",
@@ -603,12 +602,11 @@ const Filter = (props) => {
               thousandSeparator={"."}
               decimalSeparator={","}
               prefix={"$"}
+              /*     inputProps={{ maxLength: 6 }} */
             />
             <NumericFormat
               customInput={TextField}
               id="max-price"
-              /* placeholder="$ Ingresar valor" */
-              size="small"
               label="$ Maximo"
               style={{
                 marginRight: "16px",
@@ -625,6 +623,7 @@ const Filter = (props) => {
               thousandSeparator={"."}
               decimalSeparator={","}
               prefix={"$"}
+              /*  inputProps={{ maxLength: 6 }} */
             />
             {/*             <TextField
               id="min-price"
