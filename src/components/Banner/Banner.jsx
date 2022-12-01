@@ -56,7 +56,7 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
+        sx={{ height: { xs: "320px", md: "344px"} }}
       >
         {(isMobile?slides2:slides).map((item, index) => (
           <Box sx={{
@@ -64,7 +64,8 @@ const Banner = () => {
             justifyContent: "center",
             backgroundImage:`url(${item.img})`,
             backgroundRepeat:"no-repeat",
-            backgroundSize:"contain",
+            backgroundPosition:"center",
+            backgroundSize:"cover",
             width:"100%",
             height:"344px"
           }} key={index}>
