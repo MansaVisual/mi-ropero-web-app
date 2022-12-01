@@ -56,7 +56,7 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ height: { xs: "320px", md: "344px"} }}
+        sx={{ height: { xs: "280px", sm:"320px", md: "344px"} }}
       >
         {(isMobile?slides2:slides).map((item, index) => (
           <Box sx={{
@@ -67,7 +67,7 @@ const Banner = () => {
             backgroundPosition:"center",
             backgroundSize:"cover",
             width:"100%",
-            height:isMobile?"300px":"344px"
+            height: { xs: "280px", sm:"320px", md: "344px"}
           }} key={index}>
 
           </Box>
