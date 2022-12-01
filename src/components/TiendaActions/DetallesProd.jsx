@@ -44,7 +44,7 @@ const DetallesProd = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    if (form.editarProd) {
+    if (form.prodEditar) {
       console.log("entra");
 
       setDetalles({
