@@ -95,17 +95,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           const { imagenes } = form.prodEditar;
           console.log(imagenes);
 
-          for (
-            let j = 0;
-            j < 2 /* categorias[i].imagenes_necesarias.length */;
-            j++
-          ) {
-            console.log(
-              categorias[i].imagenes_necesarias[j].nombre,
-              imagenes[j].imagen_original,
-              i,
-              j
-            );
+          for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
@@ -119,6 +109,10 @@ const ElegirImagenes = ({ form, setForm }) => {
                 imagen: imagenes[k].imagen_original,
                 obligatoria: "0",
               });
+              setImagenesPreview((prevState) => ({
+                ...prevState,
+                [`Foto extra ${k - 1}`]: imagenes[k].imagen_original,
+              }));
             }
             setSeccionExtra(updatedArray);
           }
