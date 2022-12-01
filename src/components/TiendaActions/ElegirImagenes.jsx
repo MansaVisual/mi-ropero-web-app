@@ -109,12 +109,12 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
-          if (imagenes.length > 3) {
+          if (imagenes.length > 2) {
             let updatedArray = [];
-            for (let k = 3; k < imagenes.length; k++) {
+            for (let k = 2; k < imagenes.length; k++) {
               setNumeroImgExtra(numeroImgExtra + 1);
               updatedArray.push({
-                nombre: `Foto extra ${k - 2}`,
+                nombre: `Foto extra ${k - 1}`,
                 descripcion: "foto extra agregada!",
                 imagen: imagenes[k].imagen_original,
                 obligatoria: "0",
