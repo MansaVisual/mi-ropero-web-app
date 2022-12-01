@@ -577,16 +577,20 @@ const Filter = (props) => {
           sx={{ paddingTop: "16px", paddingBottom: "24px" }}
         >
           <ListItemText primary="Rango de precio" />
-          <Box sx={{ display: "flex" }}>
+          <Box
+            sx={{ display: "flex", justifyContent: "flex-start", gap: "12px" }}
+          >
             <NumericFormat
               customInput={TextField}
-              /* className={`ofertaInput popUpStyledInput ${
-                errorValor && "ofertaInputError popUpStyledInputError"
-              }`} */
               id="min-price"
-              /* placeholder="$ Ingresar valor" */
               size="small"
               label="$ Minimo"
+              style={{
+                marginRight: "16px",
+                fontSize: "13px",
+                width: "120px",
+                marginTop: "6px",
+              }}
               onValueChange={(values) => {
                 setRangoPrecio({
                   min: values.value,
@@ -594,6 +598,28 @@ const Filter = (props) => {
                     document.getElementById("max-price").value === ""
                       ? 99999
                       : document.getElementById("max-price").value,
+                });
+              }}
+              thousandSeparator={"."}
+              decimalSeparator={","}
+              prefix={"$"}
+            />
+            <NumericFormat
+              customInput={TextField}
+              id="max-price"
+              /* placeholder="$ Ingresar valor" */
+              size="small"
+              label="$ Maximo"
+              style={{
+                marginRight: "16px",
+                fontSize: "13px",
+                width: "120px",
+                marginTop: "6px",
+              }}
+              onValueChange={(values) => {
+                setRangoPrecio({
+                  min: rangoPrecio.min === 0 ? 0 : rangoPrecio.min,
+                  max: values.value,
                 });
               }}
               thousandSeparator={"."}
@@ -622,7 +648,7 @@ const Filter = (props) => {
               size="small"
               inputProps={{ maxLength: 6 }}
             /> */}
-            <TextField
+            {/*             <TextField
               id="max-price"
               label="$ Maximo"
               variant="outlined"
@@ -643,7 +669,7 @@ const Filter = (props) => {
               }}
               size="small"
               inputProps={{ maxLength: 6 }}
-            />
+            /> */}
           </Box>
         </List>
       )}
