@@ -57,7 +57,7 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
+        sx={{ height: { xs: "157px", md: "344px"} }}
       >
         {isMobile?<>
           {slidesMobile.map((item, index) => (
@@ -79,6 +79,7 @@ const Banner = () => {
             display: "flex",
             justifyContent: "center",
             backgroundImage:`url(${item.img})`,
+            backgroundPosition:"center",
             backgroundRepeat:"no-repeat",
             backgroundSize:"cover",
             width:"100%",
