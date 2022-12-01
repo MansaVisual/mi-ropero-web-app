@@ -37,11 +37,19 @@ const DetallesProd = ({ form, setForm }) => {
     }
   };
 
-  console.log(detalles);
+  console.log(form);
 
   useEffect(() => {
     if (!form.categoriaId) {
       navigate(`/Mi&Tienda/CATEGORIA`);
+      return;
+    }
+    if (form.editarProd) {
+      setDetalles({
+        titulo: form.prodEditar.nombre,
+        precio: form.prodEditar.precio,
+        descripcion: form.prodEditar.descripcion,
+      });
       return;
     }
     if (form.detalles.titulo !== "") {
