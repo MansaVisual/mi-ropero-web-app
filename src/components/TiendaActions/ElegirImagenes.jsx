@@ -39,6 +39,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
+    console.log(categorias);
     if (form.editarProd) {
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractOld = {};

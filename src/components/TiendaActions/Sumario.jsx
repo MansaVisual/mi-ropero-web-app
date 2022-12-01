@@ -191,9 +191,11 @@ const Sumario = ({ form }) => {
             </div>
             <div className="infoCat">
               <p>{`${form.categoriaNombre} / ${form.tipoNombre}`}</p>
-              <button onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}>
-                MODIFICAR
-              </button>
+              {!form.prodEditar && (
+                <button onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}>
+                  MODIFICAR
+                </button>
+              )}
             </div>
           </div>
           <div className="subSection">
