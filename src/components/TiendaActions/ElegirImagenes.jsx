@@ -138,7 +138,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
             imagenes: img,
-            imagenesPreview: img,
+            imagenesPreview: imagenesPreview,
           }));
           setImagenesPreview(img);
         }
