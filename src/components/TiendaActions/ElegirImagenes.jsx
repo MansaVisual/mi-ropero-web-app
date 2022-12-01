@@ -95,7 +95,11 @@ const ElegirImagenes = ({ form, setForm }) => {
           const { imagenes } = form.prodEditar;
           console.log(imagenes);
 
-          for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
+          for (
+            let j = 0;
+            j < 2 /* categorias[i].imagenes_necesarias.length */;
+            j++
+          ) {
             console.log(
               categorias[i].imagenes_necesarias[j].nombre,
               imagenes[j].imagen_original,
@@ -105,12 +109,12 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
-          if (imagenes.length > 3) {
+          if (imagenes.length > 2) {
             let updatedArray = [];
-            for (let k = 3; k < imagenes.length; k++) {
+            for (let k = 2; k < imagenes.length; k++) {
               setNumeroImgExtra(numeroImgExtra + 1);
               updatedArray.push({
-                nombre: `Foto extra ${k - 2}`,
+                nombre: `Foto extra ${k - 1}`,
                 descripcion: "foto extra agregada!",
                 imagen: imagenes[k].imagen_original,
                 obligatoria: "0",
