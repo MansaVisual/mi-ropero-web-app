@@ -67,7 +67,7 @@ const Banner = () => {
             backgroundPosition:"center",
             backgroundSize:"cover",
             width:"100%",
-            height:"344px"
+            height:isMobile?"300px":"344px"
           }} key={index}>
 
           </Box>
