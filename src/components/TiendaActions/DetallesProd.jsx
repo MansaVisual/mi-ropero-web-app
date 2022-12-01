@@ -37,7 +37,7 @@ const DetallesProd = ({ form, setForm }) => {
     }
   };
 
-  console.log(form);
+  console.log(form, detalles);
 
   useEffect(() => {
     if (!form.categoriaId) {
@@ -46,7 +46,6 @@ const DetallesProd = ({ form, setForm }) => {
     }
     if (form.prodEditar) {
       console.log("entra");
-
       setDetalles({
         titulo: form.prodEditar.nombre,
         precio: form.prodEditar.precio,
@@ -122,6 +121,7 @@ const DetallesProd = ({ form, setForm }) => {
                 customInput={TextField}
                 className={`inputForm`}
                 placeholder="Ingresar precio de venta del producto"
+                value={detalles.precio}
                 onValueChange={(values) => {
                   handleChange(values.value, "precio");
                 }}
