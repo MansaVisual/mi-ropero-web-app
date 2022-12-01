@@ -98,12 +98,12 @@ const ElegirImagenes = ({ form, setForm }) => {
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
-            previewImg[img[obj]] = imagenes[j].imagen_original;
+            /*    previewImg[img[obj]] = imagenes[j].imagen_original; */
           }
-          setImagenesPreview((prevState) => ({
+          /*  setImagenesPreview((prevState) => ({
             ...prevState,
             previewImg,
-          }));
+          })); */
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
@@ -116,12 +116,14 @@ const ElegirImagenes = ({ form, setForm }) => {
                 imagen: imagenes[k].imagen_original,
                 obligatoria: "0",
               });
-              previewImg[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
+              img[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
+
+              /*      previewImg[`Foto extra ${k - 1}`] = imagenes[k].imagen_original; */
             }
-            setImagenesPreview((prevState) => ({
+            /* setImagenesPreview((prevState) => ({
               ...prevState,
               previewImg,
-            }));
+            })); */
             setNumeroImgExtra(extraNumber);
             setSeccionExtra(updatedArray);
           }
@@ -138,8 +140,9 @@ const ElegirImagenes = ({ form, setForm }) => {
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
             imagenes: img,
-            imagenesPreview: imagenesPreview,
+            /*  imagenesPreview: imagenesPreview, */
           }));
+          setImagenesPreview(img);
         }
       }
       setImagenes(form.imagenes);
