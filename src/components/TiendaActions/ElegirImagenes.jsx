@@ -39,8 +39,8 @@ const ElegirImagenes = ({ form, setForm }) => {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    console.log(categorias);
     if (form.editarProd) {
+      console.log(form);
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractOld = {};
       const caractList = {};
@@ -68,27 +68,21 @@ const ElegirImagenes = ({ form, setForm }) => {
               }
             }
           }
-          console.log(caractOld);
           for (const key in caractOld) {
-            console.log(key, caractOld[key]);
-
             let objCaract = res.result[0].caracteristicas.find(
               (e) => e.nombre === key
             );
-            console.log(objCaract);
             for (const key2 in caractOld[key]) {
               let fields = caractOld[key][key2].split(":");
               const caractValor = objCaract.valores.find(
                 (e) => e.idcaracteristicavalor === fields[1]
               );
               if (caractList[objCaract.nombre]) {
-                console.log("entra");
                 caractList[key].push(caractValor.valor);
               } else {
                 caractList[key] = [caractValor.valor];
               }
             }
-            console.log(caractList);
           }
         });
       };

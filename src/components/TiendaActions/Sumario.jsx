@@ -190,7 +190,9 @@ const Sumario = ({ form }) => {
               />
             </div>
             <div className="infoCat">
-              <p>{`${form.categoriaNombre} / ${form.tipoNombre}`}</p>
+              <p>{`${!form.prodEditar && `${form.categoriaNombre} /`} ${
+                form.tipoNombre
+              }`}</p>
               {!form.prodEditar && (
                 <button onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}>
                   MODIFICAR
