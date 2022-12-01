@@ -121,6 +121,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               ...prevState,
               previewImg,
             }));
+            console.log(previewImg);
             setNumeroImgExtra(extraNumber);
             setSeccionExtra(updatedArray);
           }
