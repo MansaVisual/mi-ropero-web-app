@@ -1,8 +1,11 @@
 import React from "react";
 import HomeBanner1 from "../../assets/img/HomeBanner1.jpg";
 import HomeBanner2 from "../../assets/img/HomeBanner2.jpg";
+import homeBannerMobile from "../../assets/img/bannerMobile.jpg"
+import homeBannerMobile2 from "../../assets/img/bannerMobile2.jpg"
 import Carousel from "react-material-ui-carousel";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
+import theme from "../../styles/theme";
 
 const slides = [
   {
@@ -12,8 +15,18 @@ const slides = [
     img: HomeBanner2,
   },
 ];
+const slides2 = [
+  {
+    img:homeBannerMobile,
+  },
+  {
+    img: homeBannerMobile2,
+  },
+];
 
 const Banner = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box style={{maxWidth:"1366px",margin:"auto"}}>
       <Carousel
@@ -45,6 +58,23 @@ const Banner = () => {
         }}
         sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
+        {isMobile ? <>
+          {slides2.map((item, index) => (
+          <Box sx={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundImage:`url(${item.img})`,
+            backgroundRepeat:"no-repeat",
+            backgroundSize:"contain",
+            width:"100%",
+            height:"344px"
+          }} key={index}>
+
+          </Box>
+        ))}
+        </>
+        :
+        <>
         {slides.map((item, index) => (
           <Box sx={{
             display: "flex",
@@ -55,16 +85,11 @@ const Banner = () => {
             width:"100%",
             height:"344px"
           }} key={index}>
-            {/* <img
-              src={item.img}
-              alt=""
-              className="imgBanner"
-              key={index}
-              width="100%"
-              height="100%"
-            /> */}
+
           </Box>
         ))}
+        </>
+        }
       </Carousel>
     </Box>
   );
