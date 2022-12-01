@@ -37,19 +37,29 @@ const DetallesProd = ({ form, setForm }) => {
     }
   };
 
-  console.log(detalles);
+  console.log(form, detalles);
 
   useEffect(() => {
     if (!form.categoriaId) {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    if (form.detalles.titulo !== "") {
+    if (form.prodEditar) {
+      console.log("entra");
       setDetalles({
-        titulo: form.detalles.titulo,
-        precio: form.detalles.precio,
-        descripcion: form.detalles.descripcion,
+        titulo: form.prodEditar.nombre,
+        precio: form.prodEditar.precio,
+        descripcion: form.prodEditar.descripcion,
       });
+      return;
+    } else {
+      if (form.detalles.titulo !== "") {
+        setDetalles({
+          titulo: form.detalles.titulo,
+          precio: form.detalles.precio,
+          descripcion: form.detalles.descripcion,
+        });
+      }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -111,6 +121,7 @@ const DetallesProd = ({ form, setForm }) => {
                 customInput={TextField}
                 className={`inputForm`}
                 placeholder="Ingresar precio de venta del producto"
+                value={detalles.precio}
                 onValueChange={(values) => {
                   handleChange(values.value, "precio");
                 }}
