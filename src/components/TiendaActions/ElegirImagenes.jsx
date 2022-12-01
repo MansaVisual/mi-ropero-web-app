@@ -94,22 +94,15 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImgNecesarias(categorias[i].imagenes_necesarias);
           const { imagenes } = form.prodEditar;
           console.log(imagenes);
-          let previewImg = {};
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
-            /*    previewImg[img[obj]] = imagenes[j].imagen_original; */
           }
-          /*  setImagenesPreview((prevState) => ({
-            ...prevState,
-            previewImg,
-          })); */
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
-            let previewImg2 = {};
             for (let k = 2; k < imagenes.length; k++) {
-              setNumeroImgExtra(numeroImgExtra + 1);
+              extraNumber++;
               updatedArray.push({
                 nombre: `Foto extra ${k - 1}`,
                 descripcion: "foto extra agregada!",
@@ -117,13 +110,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 obligatoria: "0",
               });
               img[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
-
-              /*      previewImg[`Foto extra ${k - 1}`] = imagenes[k].imagen_original; */
             }
-            /* setImagenesPreview((prevState) => ({
-              ...prevState,
-              previewImg,
-            })); */
             setNumeroImgExtra(extraNumber);
             setSeccionExtra(updatedArray);
           }
@@ -140,7 +127,6 @@ const ElegirImagenes = ({ form, setForm }) => {
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
             imagenes: img,
-            /*  imagenesPreview: imagenesPreview, */
           }));
           setImagenesPreview(img);
         }
