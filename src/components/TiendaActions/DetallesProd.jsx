@@ -45,19 +45,22 @@ const DetallesProd = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
+      console.log("entra");
+
       setDetalles({
         titulo: form.prodEditar.nombre,
         precio: form.prodEditar.precio,
         descripcion: form.prodEditar.descripcion,
       });
       return;
-    }
-    if (form.detalles.titulo !== "") {
-      setDetalles({
-        titulo: form.detalles.titulo,
-        precio: form.detalles.precio,
-        descripcion: form.detalles.descripcion,
-      });
+    } else {
+      if (form.detalles.titulo !== "") {
+        setDetalles({
+          titulo: form.detalles.titulo,
+          precio: form.detalles.precio,
+          descripcion: form.detalles.descripcion,
+        });
+      }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
