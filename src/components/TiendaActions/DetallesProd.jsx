@@ -48,7 +48,7 @@ const DetallesProd = ({ form, setForm }) => {
       console.log("entra");
       setDetalles({
         titulo: form.prodEditar.nombre,
-        precio: form.prodEditar.precio,
+        precio: Math.floor(form.prodEditar.precio),
         descripcion: form.prodEditar.descripcion,
       });
       return;

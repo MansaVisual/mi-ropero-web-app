@@ -120,41 +120,48 @@ const Sumario = ({ form }) => {
         });
       });
     } else {
+      if (form.prodEditar) {
+        prod.append("idproducto", form.prodEditar.idproducto);
+      }
       prod.append("idtienda", tiendaData.idtienda);
-      apiFetch(prod, "productos", "insert").then(async (res) => {
-        console.log(res.result);
-        if (res.status === "success") {
-          for (const i in form.imagenes) {
-            if (form.imagenes[i] !== null) {
-              const img = new FormData();
-              img.append("idtienda", Number(tiendaData.idtienda));
-              img.append("idproducto", Number(res.result.idproducto));
-              img.append("image", form.imagenes[i]);
-              await insertImg(img);
+      apiFetch(prod, "productos", form.prodEditar ? "update" : "insert").then(
+        async (res) => {
+          console.log(res.result);
+          if (res.status === "success") {
+            for (const i in form.imagenes) {
+              if (form.imagenes[i] !== null) {
+                const img = new FormData();
+                img.append("idtienda", Number(tiendaData.idtienda));
+                img.append("idproducto", Number(res.result.idproducto));
+                img.append("image", form.imagenes[i]);
+                await insertImg(img);
+              }
             }
-          }
-          if (form.video) {
-            const vid = new FormData();
-            vid.append("idtienda", Number(tiendaData.idtienda));
-            vid.append("idproducto", Number(res.result.idproducto));
-            vid.append("video", form.video);
-            console.log(Object.fromEntries(vid));
-            await apiFetch(vid, "productos", "insert_video").then((vidRes) => {
-              console.log(vidRes);
+            if (form.video) {
+              const vid = new FormData();
+              vid.append("idtienda", Number(tiendaData.idtienda));
+              vid.append("idproducto", Number(res.result.idproducto));
+              vid.append("video", form.video);
+              console.log(Object.fromEntries(vid));
+              await apiFetch(vid, "productos", "insert_video").then(
+                (vidRes) => {
+                  console.log(vidRes);
+                }
+              );
+            }
+            setLoading(false);
+            Swal.fire({
+              title: "PRODUCTO CARGADO EXITOSAMENTE",
+              icon: "success",
+              confirmButtonText: "CONTINUAR",
+            }).then((res) => {
+              window.location.replace(
+                "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
+              );
             });
           }
-          setLoading(false);
-          Swal.fire({
-            title: "PRODUCTO CARGADO EXITOSAMENTE",
-            icon: "success",
-            confirmButtonText: "CONTINUAR",
-          }).then((res) => {
-            window.location.replace(
-              "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
-            );
-          });
         }
-      });
+      );
     }
   };
 
