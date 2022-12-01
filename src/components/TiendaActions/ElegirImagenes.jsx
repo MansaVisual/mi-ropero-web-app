@@ -40,9 +40,9 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
-      console.log(form, categorias);
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
-      const caractObj = {};
+      const caractOld = {};
+      const caractList = {};
       const dir = new FormData();
       dir.append("idcategoria", form.prodEditar.idcategoria);
       const f = async () => {
@@ -53,9 +53,31 @@ const ElegirImagenes = ({ form, setForm }) => {
               let id = fields[0];
               if (res.result[0].caracteristicas[i].idcaracteristica === id) {
                 let obj = res.result[0].caracteristicas[i].nombre;
-                caractObj[obj] = [idCaracteristica[j]];
+                caractOld[obj] = [idCaracteristica[j]];
               }
             }
+          }
+          console.log(res.result[0].caracteristicas);
+          for (const key in caractOld) {
+            console.log(key, caractOld[key]);
+
+            let objCaract = res.result[0].caracteristicas.find(
+              (e) => e.nombre === key
+            );
+            console.log(objCaract);
+            for (const key2 in caractOld[key]) {
+              let fields = caractOld[key][key2].split(":");
+              const nombre = objCaract.valores.find(
+                (e) => e.idcaracteristicavalor === fields[1]
+              );
+              console.log("caractList[key]", caractList[key]);
+              if (caractList[key]) {
+                caractList[key].push(nombre.valor);
+              } else {
+                caractList[key] = [nombre.valor];
+              }
+            }
+            console.log(caractList);
           }
         });
       };
@@ -71,16 +93,9 @@ const ElegirImagenes = ({ form, setForm }) => {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
           }
-          /* for (let i = 0; i < imagenes.length; i++) {
-            if (i === 0) {
-              console.log(Object.keys(img)[0], imagenes[i]);
-              img[Object.keys(img)[0]] = imagenes[i].imagen_original;
-            }
-          } */
           if (imagenes.length > 3) {
             let updatedArray = [];
             for (let k = 3; k < imagenes.length; k++) {
-              console.log(k, seccionExtra);
               setNumeroImgExtra(numeroImgExtra + 1);
               updatedArray.push({
                 nombre: `Foto extra ${k - 2}`,
@@ -88,25 +103,6 @@ const ElegirImagenes = ({ form, setForm }) => {
                 imagen: imagenes[k].imagen_original,
                 obligatoria: "0",
               });
-              /* setSeccionExtra(updatedArray); */
-              /* setSeccionExtra([
-                ...seccionExtra,
-                {
-                  nombre: `Foto extra ${k}`,
-                  descripcion: "foto extra agregada!",
-                  imagen: imagenes[k].imagen_original,
-                  obligatoria: "0",
-                },
-              ]); */
-
-              /* setImagenes((prevState) => ({
-                ...prevState,
-                [`Foto extra ${k}`]: imagenes[k].imagen_original,
-              }));
-              setImagenesPreview((prevState) => ({
-                ...prevState,
-                [`Foto extra ${k}`]: imagenes[k].imagen_original,
-              })); */
             }
             setSeccionExtra(updatedArray);
           }
@@ -116,9 +112,9 @@ const ElegirImagenes = ({ form, setForm }) => {
             categoriaId: categorias[i].idcategoriapadre,
             tipoId: categorias[i].idcategoria,
             tipoNombre: categorias[i].nombre,
-            caracteristicas: form.prodEditar.caracteristicas,
+            caracteristicas: caractList,
             idCaracteristica: idCaracteristica,
-            idCaracteristicaOld: caractObj,
+            idCaracteristicaOld: caractOld,
             titulo: form.prodEditar.nombre,
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
@@ -127,13 +123,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImagenesPreview(img);
         }
       }
-
-      console.log(form);
-
-      /* for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
-        let obj = categorias[i].imagenes_necesarias[j].nombre;
-        imagenes[obj] = null;
-      } */
       setImagenes(form.imagenes);
     } else {
       for (let i = 0; i < categorias.length; i++) {
@@ -161,15 +150,11 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(form, seccionExtra);
-
   const handleSubmit = async () => {
     let variable = false;
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
         for (const key in imagenes) {
-          let blob = await fetch(imagenes[key]).then((r) => r.blob());
-          console.log(typeof blob);
           if (imgNecesarias[i].nombre === key && !imagenes[key]) {
             variable = true;
             setErrorObligatorio(true);

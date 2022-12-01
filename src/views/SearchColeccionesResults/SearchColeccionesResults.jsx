@@ -596,21 +596,22 @@ const SearchProductsResults = () => {
                   >
                     {prods.length !== 0 && coleccionName ? (
                       prods.map((product, index) => {
+                        if (product.imagenes.length === 0) {
+                          return null;
+                        }
                         return (
                           <>
-                            {product.imagenes.length !== 0 && (
-                              <ProductCard
-                                key={index}
-                                imageCard={product.imagenes[0].imagen_vertical}
-                                productName={product.nombre}
-                                productPrice={product.precio}
-                                idProducto={product.idproducto}
-                                idTienda={product.idtienda}
-                                tag={product.tag}
-                                datosTienda={product.tienda}
-                                precioOferta={product.precio_oferta}
-                              />
-                            )}
+                            <ProductCard
+                              key={index}
+                              imageCard={product.imagenes[0].imagen_vertical}
+                              productName={product.nombre}
+                              productPrice={product.precio}
+                              idProducto={product.idproducto}
+                              idTienda={product.idtienda}
+                              tag={product.tag}
+                              datosTienda={product.tienda}
+                              precioOferta={product.precio_oferta}
+                            />
                           </>
                         );
                       })
@@ -630,22 +631,25 @@ const SearchProductsResults = () => {
                 )}
               </>
             )}
-            {prods.length !== 0 && totalPages > 1 && coleccionName && !load2 && (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Pagination
-                  cantidad={totalPages}
-                  buscarPage={buscarPage}
-                  pags={pags}
-                  setPags={setPags}
-                />
-              </Box>
-            )}
+            {prods.length !== 0 &&
+              totalPages > 1 &&
+              coleccionName &&
+              !load2 && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Pagination
+                    cantidad={totalPages}
+                    buscarPage={buscarPage}
+                    pags={pags}
+                    setPags={setPags}
+                  />
+                </Box>
+              )}
           </Grid>
         </Grid>
       </Container>
