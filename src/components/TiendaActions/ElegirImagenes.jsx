@@ -70,11 +70,11 @@ const ElegirImagenes = ({ form, setForm }) => {
               const nombre = objCaract.valores.find(
                 (e) => e.idcaracteristicavalor === fields[1]
               );
-              console.log("caractList[key]", caractList[key]);
-              if (caractList[key]) {
-                caractList[key].push(nombre.valor);
+              console.log("caractList[key]", caractList[key2], caractList);
+              if (caractList[objCaract.nombre]) {
+                caractList[key2].push(nombre.valor);
               } else {
-                caractList[key] = [nombre.valor];
+                caractList[key2] = [nombre.valor];
               }
             }
             console.log(caractList);
