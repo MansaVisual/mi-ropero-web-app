@@ -27,6 +27,7 @@ import {
 import theme from "../../styles/theme";
 import { useParams } from "react-router-dom";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { NumericFormat } from "react-number-format";
 
 const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState({
@@ -577,7 +578,28 @@ const Filter = (props) => {
         >
           <ListItemText primary="Rango de precio" />
           <Box sx={{ display: "flex" }}>
-            <TextField
+            <NumericFormat
+              customInput={TextField}
+              /* className={`ofertaInput popUpStyledInput ${
+                errorValor && "ofertaInputError popUpStyledInputError"
+              }`} */
+              id="min-price"
+              /* placeholder="$ Ingresar valor" */
+              label="$ Minimo"
+              onValueChange={(values) => {
+                setRangoPrecio({
+                  min: values.value,
+                  max:
+                    document.getElementById("max-price").value === ""
+                      ? 99999
+                      : document.getElementById("max-price").value,
+                });
+              }}
+              thousandSeparator={"."}
+              decimalSeparator={","}
+              prefix={"$"}
+            />
+            {/*             <TextField
               id="min-price"
               label="$ Minimo"
               variant="outlined"
@@ -598,7 +620,7 @@ const Filter = (props) => {
               }}
               size="small"
               inputProps={{ maxLength: 6 }}
-            />
+            /> */}
             <TextField
               id="max-price"
               label="$ Maximo"

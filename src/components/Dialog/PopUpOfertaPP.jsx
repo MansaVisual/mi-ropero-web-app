@@ -8,7 +8,6 @@ import Loader from "../Loader/Loader";
 import Swal from "sweetalert2";
 import { UseLoginContext } from "../../context/LoginContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
-import { styled } from "@mui/material/styles";
 import { NumericFormat } from "react-number-format";
 
 const PopUpOfertaPP = ({ open, setOpen, prod }) => {
@@ -84,27 +83,6 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
     }
   };
 
-  /*   const StyledTextField = styled(TextField)(() => ({
-    width: 300,
-    "& input": {
-      padding: "4px 8px",
-      height: "40px",
-      boxSizing: "border-box",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      borderRadius: "8px",
-      minWidth: "136px",
-    },
-    border: errorValor && "1px solid #ff3f20 !important",
-    borderRadius: errorValor && "4px",
-    "& .MuiOutlinedInput-root:hover": {
-      "& > fieldset": {
-        borderColor: errorValor && "#FF3F20",
-      },
-    },
-  })); */
-
   return (
     <>
       {open !== undefined && (
@@ -155,35 +133,6 @@ const PopUpOfertaPP = ({ open, setOpen, prod }) => {
             </p>
 
             <p className="titleOfertaInput">Monto de la oferta*</p>
-            {/* <TextField
-              id="oferta"
-              className={`ofertaInput ${errorValor && "ofertaInputError"}`}
-              margin="dense"
-              type="number"
-              placeholder="$ Ingresar valor"
-              onChange={(e) => handleOnChange(e, "oferta")}
-              value={data.amount === 0 ? "" : data.amount}
-              sx={{
-                "& input": {
-                  padding: "4px 8px",
-                  height: "40px",
-                  boxSizing: "border-box",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  borderRadius: "8px",
-                  minWidth: "136px",
-                },
-                border: errorValor && "1px solid #ff3f20 !important",
-                borderRadius: errorValor && "4px",
-                "& .MuiOutlinedInput-root:hover": {
-                  "& > fieldset": {
-                    borderColor: errorValor && "#FF3F20",
-                  },
-                },
-              }}
-              inputProps={{ maxLength: 10 }}
-            /> */}
             <NumericFormat
               customInput={TextField}
               id="numericFormat"

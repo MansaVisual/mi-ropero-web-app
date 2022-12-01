@@ -90,7 +90,17 @@ const ElegirImagenes = ({ form, setForm }) => {
                   obligatoria: "0",
                 },
               ];
-              setSeccionExtra(updatedArray);
+              /* setSeccionExtra(updatedArray); */
+              setSeccionExtra([
+                ...seccionExtra,
+                {
+                  nombre: `Foto extra ${k - 2}`,
+                  descripcion: "foto extra agregada!",
+                  imagen: imagenes[k].imagen_original,
+                  obligatoria: "0",
+                },
+              ]);
+
               setImagenes((prevState) => ({
                 ...prevState,
                 [`Foto extra ${k - 2}`]: imagenes[k].imagen_original,
