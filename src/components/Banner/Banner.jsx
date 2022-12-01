@@ -18,7 +18,7 @@ const slides = [
 
 const slidesMobile = [
   {
-    img:HomeBanner1M,
+    img: HomeBanner1M,
   },
   {
     img: HomeBanner2M,
@@ -60,33 +60,33 @@ const Banner = () => {
         sx={{ height: { xs: "157px", md: "344px"} }}
       >
         {isMobile?<>
-          {slidesMobile.map((item, index) => (
-          <Box sx={{
-            display: "flex",
-            justifyContent: "center",
-            backgroundImage:`url(${item.img})`,
-            backgroundRepeat:"no-repeat",
-            backgroundSize:"cover",
-            width:"100%",
-            height:"320px"
-          }} key={index}>
-          </Box>
-        ))}
-        </>
-        :<>
-        {slides.map((item, index) => (
-          <Box sx={{
-            display: "flex",
-            justifyContent: "center",
-            backgroundImage:`url(${item.img})`,
-            backgroundPosition:"center",
-            backgroundRepeat:"no-repeat",
-            backgroundSize:"cover",
-            width:"100%",
-            height:"344px"
-          }} key={index}>
-          </Box>
-        ))}
+          {slidesMobile.map((item, index) => {console.log(item);return(
+            <Box sx={{
+              display: "flex",
+              justifyContent: "center",
+              backgroundImage:`url(${item.img})`,
+              backgroundRepeat:"no-repeat",
+              backgroundSize:"cover",
+              width:"100%",
+              height:"320px"
+            }} key={index}>
+            </Box>
+          )})}
+          </>
+          :<>
+          {slides.map((item, index) => (
+            <Box sx={{
+              display: "flex",
+              justifyContent: "center",
+              backgroundImage:`url(${item.img})`,
+              backgroundPosition:"center",
+              backgroundRepeat:"no-repeat",
+              backgroundSize:"cover",
+              width:"100%",
+              height:"344px"
+            }} key={index}>
+            </Box>
+          ))}
         </>
         }
       </Carousel>
