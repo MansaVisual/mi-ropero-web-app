@@ -6,10 +6,10 @@ import { Box } from "@mui/material";
 
 const slides = [
   {
-    img: HomeBanner1,
+    img: "../../assets/img/HomeBanner1.jpg",
   },
   {
-    img: HomeBanner2,
+    img: "../../assets/img/HomeBanner2.jpg",
   },
 ];
 
@@ -46,15 +46,15 @@ const Banner = () => {
         sx={{ height: { xs: "157px", md: "200px", lg: "260px", xl: "344px" } }}
       >
         {slides.map((item, index) => (
-          <Box sx={{ display: "flex", justifyContent: "center" }} key={index}>
-            <img
+          <Box sx={{ display: "flex", justifyContent: "center", backgroundImage:`url("${item.img}")` }} key={index}>
+            {/* <img
               src={item.img}
               alt=""
               className="imgBanner"
               key={index}
               width="100%"
               height="100%"
-            />
+            /> */}
           </Box>
         ))}
       </Carousel>
