@@ -94,19 +94,20 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImgNecesarias(categorias[i].imagenes_necesarias);
           const { imagenes } = form.prodEditar;
           console.log(imagenes);
-
+          let previewImg1 = {};
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
-            setImagenesPreview((prevState) => ({
-              ...prevState,
-              [img[obj]]: imagenes[j].imagen_original,
-            }));
+            previewImg1[img[obj]] = imagenes[j].imagen_original;
           }
+          setImagenesPreview((prevState) => ({
+            ...prevState,
+            previewImg1,
+          }));
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
-            let previewImg = {};
+            let previewImg2 = {};
             for (let k = 2; k < imagenes.length; k++) {
               setNumeroImgExtra(numeroImgExtra + 1);
               updatedArray.push({
@@ -115,13 +116,12 @@ const ElegirImagenes = ({ form, setForm }) => {
                 imagen: imagenes[k].imagen_original,
                 obligatoria: "0",
               });
-              previewImg[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
+              previewImg2[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
             }
             setImagenesPreview((prevState) => ({
               ...prevState,
-              previewImg,
+              previewImg2,
             }));
-            console.log(previewImg);
             setNumeroImgExtra(extraNumber);
             setSeccionExtra(updatedArray);
           }
@@ -140,7 +140,6 @@ const ElegirImagenes = ({ form, setForm }) => {
             imagenes: img,
             imagenesPreview: imagenesPreview,
           }));
-          setImagenesPreview(img);
         }
       }
       setImagenes(form.imagenes);
