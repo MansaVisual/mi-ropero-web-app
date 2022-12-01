@@ -48,16 +48,26 @@ const ElegirImagenes = ({ form, setForm }) => {
       const f = async () => {
         await apiFetch(dir, "categorias", "get").then((res) => {
           for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+            setForm((prevState) => ({
+              ...prevState,
+              caracteristicasList: res.result[0].caracteristicas,
+            }));
+            let obj = res.result[0].caracteristicas[i].nombre;
+            caractList[obj] = [];
+            caractOld[obj] = [];
             for (let j = 0; j < idCaracteristica.length; j++) {
               let fields = idCaracteristica[j].split(":");
               let id = fields[0];
               if (res.result[0].caracteristicas[i].idcaracteristica === id) {
-                let obj = res.result[0].caracteristicas[i].nombre;
-                caractOld[obj] = [idCaracteristica[j]];
+                if (caractOld[obj]) {
+                  caractOld[obj].push(idCaracteristica[j]);
+                } else {
+                  caractOld[obj] = [idCaracteristica[j]];
+                }
               }
             }
           }
-          console.log(res.result[0].caracteristicas);
+          console.log(caractOld);
           for (const key in caractOld) {
             console.log(key, caractOld[key]);
 
@@ -67,14 +77,14 @@ const ElegirImagenes = ({ form, setForm }) => {
             console.log(objCaract);
             for (const key2 in caractOld[key]) {
               let fields = caractOld[key][key2].split(":");
-              const nombre = objCaract.valores.find(
+              const caractValor = objCaract.valores.find(
                 (e) => e.idcaracteristicavalor === fields[1]
               );
-              console.log("caractList[key]", caractList[key2], caractList);
               if (caractList[objCaract.nombre]) {
-                caractList[key2].push(nombre.valor);
+                console.log("entra");
+                caractList[key].push(caractValor.valor);
               } else {
-                caractList[key2] = [nombre.valor];
+                caractList[key] = [caractValor.valor];
               }
             }
             console.log(caractList);
@@ -119,11 +129,23 @@ const ElegirImagenes = ({ form, setForm }) => {
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
             imagenes: img,
+            imagenesPreview: img,
           }));
           setImagenesPreview(img);
         }
       }
       setImagenes(form.imagenes);
+    } else if (form.editarProd === false) {
+      setImagenes(form.imagenes);
+      setImagenesPreview(form.imagenesPreview);
+      setSeccionExtra(form.seccionExtra);
+      setNumeroImgExtra(form.seccionExtra.length + 1);
+      setVideo(form.video);
+      for (let i = 0; i < categorias.length; i++) {
+        if (categorias[i].idcategoria === form.tipoId) {
+          setImgNecesarias(categorias[i].imagenes_necesarias);
+        }
+      }
     } else {
       for (let i = 0; i < categorias.length; i++) {
         if (categorias[i].idcategoria === form.tipoId) {
@@ -221,6 +243,8 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
     }
   };
+
+  console.log(form);
 
   return (
     <div className="elegirImgContainer">

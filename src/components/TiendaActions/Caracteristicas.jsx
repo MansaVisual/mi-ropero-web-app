@@ -22,30 +22,37 @@ const Caracteristicas = ({ form, setForm }) => {
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
   useEffect(() => {
-    if (!form.categoriaId) {
+    if (!form.categoriaId && !form.prodEditar) {
       navigate(`/Mi&Tienda/CATEGORIA`);
       return;
     }
-    console.log(form);
-    const dir = new FormData();
-    dir.append("idcategoria", form.categoriaId);
-    let caract = {};
-    if (form.caracteristicas.length === 0) {
-      apiFetch(dir, "categorias", "get").then((res) => {
-        setData(res.result[0].caracteristicas);
-        for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
-          let obj = res.result[0].caracteristicas[i].nombre;
-          caract[obj] = [];
-        }
-        setCaracteristicas(caract);
-        setIdCaracteristica(caract);
-      });
+    if (form.editarProd) {
+      console.log(form);
+      setData(form.caracteristicasList);
+      setCaracteristicas(form.caracteristicas);
+      setIdCaracteristica(form.idCaracteristicaOld);
     } else {
-      apiFetch(dir, "categorias", "get").then((res) => {
-        setData(res.result[0].caracteristicas);
-        setCaracteristicas(form.caracteristicas);
-        setIdCaracteristica(form.idCaracteristicaOld);
-      });
+      console.log(form);
+      const dir = new FormData();
+      dir.append("idcategoria", form.categoriaId);
+      let caract = {};
+      if (form.caracteristicas.length === 0) {
+        apiFetch(dir, "categorias", "get").then((res) => {
+          setData(res.result[0].caracteristicas);
+          for (let i = 0; i < res.result[0].caracteristicas.length; i++) {
+            let obj = res.result[0].caracteristicas[i].nombre;
+            caract[obj] = [];
+          }
+          setCaracteristicas(caract);
+          setIdCaracteristica(caract);
+        });
+      } else {
+        apiFetch(dir, "categorias", "get").then((res) => {
+          setData(res.result[0].caracteristicas);
+          setCaracteristicas(form.caracteristicas);
+          setIdCaracteristica(form.idCaracteristicaOld);
+        });
+      }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -95,6 +102,7 @@ const Caracteristicas = ({ form, setForm }) => {
       } else {
         let i = idCaracteristica[valueSeleccionado2.nombre];
         let ii = [];
+        console.log(idCaracteristica, i);
         const busqueda = i.find((e) => e === estadoSeleccionado);
 
         if (busqueda !== undefined) {
@@ -193,6 +201,7 @@ const Caracteristicas = ({ form, setForm }) => {
             </div>
           ) : (
             data.map((select) => {
+              console.log(data, select);
               return (
                 <div className="inputBox">
                   <p className="labelInput" id="label">
@@ -207,6 +216,7 @@ const Caracteristicas = ({ form, setForm }) => {
                     id={select.nombre}
                     value={caracteristicas[select.nombre]}
                     renderValue={(selected) => {
+                      console.log(selected);
                       if (selected.length === 0) {
                         return (
                           <em>

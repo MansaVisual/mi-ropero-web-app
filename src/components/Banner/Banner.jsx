@@ -1,17 +1,15 @@
 import React from "react";
-import IMGbanner from "../../assets/img/IMGbanner.png";
+import HomeBanner1 from "../../assets/img/HomeBanner1.jpg";
+import HomeBanner2 from "../../assets/img/HomeBanner2.jpg";
 import Carousel from "react-material-ui-carousel";
 import { Box } from "@mui/material";
 
 const slides = [
   {
-    img: IMGbanner,
+    img: HomeBanner1,
   },
   {
-    img: IMGbanner,
-  },
-  {
-    img: IMGbanner,
+    img: HomeBanner2,
   },
 ];
 
