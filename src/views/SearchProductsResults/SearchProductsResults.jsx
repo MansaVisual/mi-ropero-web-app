@@ -585,6 +585,9 @@ const SearchProductsResults = () => {
               >
                 {prods.length !== 0 && keyword ? (
                   prods.map((product, index) => {
+                    if (product.imagenes.length === 0) {
+                      return null;
+                    }
                     return (
                       <ProductCard
                         key={index}
