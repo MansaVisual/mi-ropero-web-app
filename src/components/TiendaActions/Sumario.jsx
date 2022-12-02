@@ -103,7 +103,7 @@ const Sumario = ({ form }) => {
                   );
                 }
                 setLoading(false);
-                Swal.fire({
+                /* Swal.fire({
                   title: "PRODUCTO CARGADO EXITOSAMENTE",
                   icon: "success",
                   confirmButtonText: "CONTINUAR",
@@ -111,7 +111,7 @@ const Sumario = ({ form }) => {
                   window.location.replace(
                     "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
                   );
-                });
+                }); */
               }
             });
           } else {
@@ -150,7 +150,7 @@ const Sumario = ({ form }) => {
               );
             }
             setLoading(false);
-            Swal.fire({
+            /* Swal.fire({
               title: "PRODUCTO CARGADO EXITOSAMENTE",
               icon: "success",
               confirmButtonText: "CONTINUAR",
@@ -158,7 +158,7 @@ const Sumario = ({ form }) => {
               window.location.replace(
                 "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
               );
-            });
+            }); */
           }
         }
       );
@@ -195,7 +195,7 @@ const Sumario = ({ form }) => {
                   ? form.tipoNombre
                   : `${form.categoriaNombre} / ${form.tipoNombre}`}
               </p>
-              {form.prodEditar && (
+              {!form.prodEditar && (
                 <button onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}>
                   MODIFICAR
                 </button>
@@ -294,10 +294,13 @@ const Sumario = ({ form }) => {
           {loading ? (
             <Loader spin={"spinnerM"} />
           ) : (
-            <Button onClick={() => handleSubmit()}>PUBLICAR</Button>
+            <Button onClick={() => handleSubmit()}>
+              {form.prodEditar ? "EDITAR" : "PUBLICAR"}
+            </Button>
           )}
           <p>
-            Al oprimir PUBLICAR se aceptan los{" "}
+            Al oprimir {form.prodEditar ? "EDITAR " : "PUBLICAR "}
+            se aceptan los{" "}
             <span
               onClick={() =>
                 window.open("https://www.miropero.ar/terminos&y&condiciones")
