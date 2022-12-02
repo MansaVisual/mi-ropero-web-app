@@ -150,7 +150,7 @@ const PopUpImg = ({
   const showCroppedImage = useCallback(async () => {
     console.log(imagenesPreview[section], imagenesApi);
     for (let i = 0; i < imagenesApi.length; i++) {
-      if (imagenesPreview[section] === imagenesApi[i]) {
+      if (imagenesPreview[section] === imagenesApi[i].imagen_original) {
         Swal.fire({
           title: "NO PUEDES RECORTAR IMAGEN YA RECORTADA",
           text: "Selecciona una nueva para editar",
