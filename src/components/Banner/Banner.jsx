@@ -57,6 +57,9 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
+        sx={{ height: { xs: "157px", lg: "22.3vw" } ,
+          width: { xs: "157px", lg: "88.9vw" }
+        }}
       >
         {(isMobile?slides2:slides).map((item, index) => (
 
@@ -65,8 +68,8 @@ const Banner = () => {
               alt=""
               className="imgBanner"
               key={index}
-              width="88.9vw"
-              height="22.3vw"
+              width="100%"
+              height="100%"
             />
         ))}
       </Carousel>
