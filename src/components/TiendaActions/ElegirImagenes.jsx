@@ -426,6 +426,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           seccionExtra={seccionExtra}
           esOpcional={esOpcional}
           setNumeroImgExtra={setNumeroImgExtra}
+          imagenesApi={form.imagenesApi}
         />
       )}
       {openVidPopUp && (

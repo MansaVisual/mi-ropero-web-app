@@ -16,6 +16,7 @@ const PopUpImg = ({
   esOpcional,
   seccionExtra,
   setNumeroImgExtra,
+  imagenesApi,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -146,6 +147,7 @@ const PopUpImg = ({
     });
 
   const showCroppedImage = useCallback(async () => {
+    console.log(imagenesPreview[section], imagenesApi);
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
