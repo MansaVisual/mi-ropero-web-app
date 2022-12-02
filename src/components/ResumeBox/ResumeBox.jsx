@@ -6,6 +6,7 @@ import { UseCartContext } from "../../context/CartContext";
 import { UseFormContext } from "../../context/FormContext";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../Loader/Loader";
+import banner from "../../assets/img/bannerMP.jpg"
 
 const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
     const navigate = useNavigate();
@@ -366,7 +367,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             }
 
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
-                BANNER
+                <img src={banner} alt="BANNER" />
             </div>
             {botonPago && 
                 <div className="botonFinalizar">
