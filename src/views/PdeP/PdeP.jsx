@@ -54,7 +54,7 @@ const PdeP = () => {
         Recogemos y tratamos Datos Personales únicamente para el cumplimiento de todas o algunas de las siguientes finalidades: a) alta y registración en el Sitio Web; b) publicar contenidos, videos, anuncios, banners, productos y/o servicios en el Sitio Web; c) prestación de nuestros servicios a través del Sitio Web; d) gestionar y completar los procesos de contratación a través del Sitio Web; e) gestión de medios de pago, reembolsos y devoluciones f) contabilidad, cobranzas y facturación; g) prestar el servicio de atención al cliente, resolver incidencias y reclamos; h) entablar u oponerse a acciones judiciales o prejudiciales; i) envío de publicidad y comunicaciones comerciales propias o de terceros, como newsletters, invitación a eventos y webinars, promociones, campañas de marketing, etc.;
         </p>
         <p className="tituloSecundario "></p>
-        <p className="textoRegular ">5. Derechos de los titulares</p>
+        <p className="tituloSecundario ">5. Derechos de los titulares</p>
         <p className="textoRegular ">
         Los Titulares de los Datos Personales pueden ejercitar sus derechos de acceso, rectificación, actualización o supresión de Datos, de conformidad con lo previsto en los artículos 14 y 16 de la Ley nº 25.326 y su Decreto reglamentario, así como oponerse a tratamientos automatizados o a transferencias internacionales de Datos de la forma informada en las Cláusulas Novena y Undécima, según corresponda. 
         </p>
@@ -64,7 +64,7 @@ const PdeP = () => {
         <p className="textoRegular ">
         Asimismo, el Titular de los Datos Personales podrá presentar una denuncia ante la Agencia de Acceso a la Información Pública (“AAIP”) www.argentina.gob.ar/aaip, sin perjuicio de tener disponible en todo momento la acción judicial de hábeas data.
         </p>
-        <p className="textoRegular ">6. Normativa aplicable</p>
+        <p className="tituloSecundario ">6. Normativa aplicable</p>
         <p className="textoRegular ">
         La presente Política de Privacidad está regida por la Ley argentina nº 25.326, de Protección de Datos Personales, su Decreto reglamentario y demás normativa de desarrollo, incluyendo las disposiciones de la Dirección Nacional de Protección de Datos que resulten aplicables. 
         </p>
@@ -123,13 +123,13 @@ const PdeP = () => {
         <p className="textoRegular ">
         En particular, al comunicarnos tus Datos Personales, prestás expresamente tu consentimiento:
         </p>
-        <p className="textoRegular ">
+        <p className="textoRegular " style={{paddingLeft:"15px"}}>
          -- Para el tratamiento de tus Datos Personales con respecto a todas o algunas de las finalidades descritas en la Cláusula Cuarta de esta Política de Privacidad, incluyendo el envío de publicidad y comunicaciones comerciales propias y de terceros;
         </p>
-        <p className="textoRegular ">
+        <p className="textoRegular " style={{paddingLeft:"15px"}}>
          -- Para el tratamiento de tus Datos Personales de forma que genere decisiones automatizadas, incluyendo la elaboración de perfiles, de conformidad con lo previsto en la Cláusula Novena de esta Política de Privacidad;
         </p>
-        <p className="textoRegular ">
+        <p className="textoRegular " style={{paddingLeft:"15px"}}>
          -- Para una eventual transferencia internacional de tus Datos Personales bajo las modalidades descritas en la Cláusula Undécima de esta Política de Privacidad.
         </p>
 
