@@ -65,8 +65,8 @@ const Banner = () => {
               alt=""
               className="imgBanner"
               key={index}
-              width="100%"
-              height="100%"
+              width="88.9vw"
+              height="22.3vw"
             />
         ))}
       </Carousel>
