@@ -203,8 +203,9 @@ const PopUpImg = ({
             Te sugerimos ajustar el tamaño para que se vea lo mejor posible{" "}
           </p>
           {imageSrc &&
-            (form.prodEditar === undefined || form.prodEditar === null) &&
-            !imagenCargada && (
+            (form.editarProd === undefined ||
+              form.editarProd === null ||
+              imagenCargada) && (
               <>
                 <div className="cropContainer">
                   <Cropper

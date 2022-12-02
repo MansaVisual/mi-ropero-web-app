@@ -7,6 +7,7 @@ import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";
 import Swal from "sweetalert2";
+import { NumericFormat } from "react-number-format";
 
 const PopUpTransferencia = ({ setTransfPopUp }) => {
   const { saldoCuenta, setSaldoCuenta } = useContext(UseMiTiendaContext);
@@ -186,6 +187,21 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     monto: e.target.value,
                   }))
                 }
+              />
+              <NumericFormat
+                customInput={TextField}
+                className={`input ${errorMonto ? clase : ""}`}
+                placeholder="Ingresar solo números."
+                id="monto"
+                onValueChange={(values) => {
+                  setData((prevState) => ({
+                    ...prevState,
+                    monto: values.value,
+                  }));
+                }}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                prefix={"$"}
               />
             </div>
           </div>
