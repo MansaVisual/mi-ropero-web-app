@@ -91,6 +91,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       for (const i in categorias) {
         if (categorias[i].idcategoria === form.prodEditar.idcategoria) {
           let img = {};
+          let video = null;
           setImgNecesarias(categorias[i].imagenes_necesarias);
           const { imagenes } = form.prodEditar;
           console.log(imagenes);
@@ -101,15 +102,22 @@ const ElegirImagenes = ({ form, setForm }) => {
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
+            const isVideo = (url) => {
+              return /\.(mp4)$/.test(url);
+            };
             for (let k = 2; k < imagenes.length; k++) {
-              extraNumber++;
-              updatedArray.push({
-                nombre: `Foto extra ${k - 1}`,
-                descripcion: "foto extra agregada!",
-                imagen: imagenes[k].imagen_original,
-                obligatoria: "0",
-              });
-              img[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
+              if (isVideo(imagenes[k].imagen_original)) {
+                video = imagenes[k].imagen_original;
+              } else {
+                extraNumber++;
+                updatedArray.push({
+                  nombre: `Foto extra ${k - 1}`,
+                  descripcion: "foto extra agregada!",
+                  imagen: imagenes[k].imagen_original,
+                  obligatoria: "0",
+                });
+                img[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
+              }
             }
             setNumeroImgExtra(extraNumber);
             setSeccionExtra(updatedArray);
@@ -127,8 +135,10 @@ const ElegirImagenes = ({ form, setForm }) => {
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
             imagenes: img,
+            video: video,
           }));
           setImagenesPreview(img);
+          setVideo(video);
         }
       }
       setImagenes(form.imagenes);
