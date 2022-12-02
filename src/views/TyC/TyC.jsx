@@ -18,57 +18,27 @@ const TyC = () => {
         <p className="titulo1">Términos y condiciones</p>
 
         <p className="textoRegular">
-          En esta página establecemos los Términos y Condiciones bajo los cuales
-          deberás utilizar nuestro sitio web y nuestras aplicaciones
-          (miropero.com.ar, miropero.app, miropero.shop y las que habilitemos en
-          el futuro; nos referiremos a todas, indistintamente, como “el”, “este”
-          o “nuestro Sitio Web”), así como las condiciones generales de
-          contratación que se aplicarán a todas las operaciones que se concreten
-          dentro nuestro Sitio Web.
+        En esta página establecemos los Términos y Condiciones bajo los cuales deberás utilizar nuestro sitio web y nuestras aplicaciones (miropero.com.ar, miropero.app, miropero.shop y las que habilitemos en el futuro; nos referiremos a todas, indistintamente, como “el”, “este” o “nuestro Sitio Web”), así como las condiciones generales de contratación que se aplicarán a todas las operaciones que se concreten dentro nuestro Sitio Web. 
         </p>
         <p className="textoRegular">
-          Cada vez que ingreses a nuestro Sitio Web, incluyendo cualquiera de
-          sus páginas, secciones o funcionalidades, tendrás la condición de
-          “Usuario”. También, dependiendo de las acciones que realices dentro
-          del mismo, tendrás el carácter de “Vendedor” y/o de “Comprador”. Estos
-          Términos y Condiciones se dividen en “Secciones” y cada Sección, en
-          “Cláusulas”.
+        Cada vez que ingreses a nuestro Sitio Web, incluyendo cualquiera de sus páginas, secciones o funcionalidades, tendrás la condición de “Usuario”. También, dependiendo de las acciones que realices dentro del mismo, tendrás el carácter de “Vendedor” y/o de “Comprador”. Estos Términos y Condiciones se dividen en “Secciones” y cada Sección, en “Cláusulas”.
         </p>
         <p className="textoRegular">
-          Le hemos pedido a nuestro equipo legal que redacte estos Términos y
-          Condiciones con la menor terminología jurídica posible, de una forma
-          que resulten clara, sencilla y de fácil lectura para cualquier
-          Usuario. Por lo tanto, te pedimos que te tomes unos minutos para
-          leerlos atentamente antes de empezar a utilizar nuestro Sitio Web, ya
-          que cualquier acción que realices dentro del mismo estará regida por
-          estos Términos y Condiciones.
+        Le hemos pedido a nuestro equipo legal que redacte estos Términos y Condiciones con la menor terminología jurídica posible, de una forma que resulten clara, sencilla y de fácil lectura para cualquier Usuario.<span style={{color:"black",fontWeight:"600"}}> Por lo tanto, te pedimos que te tomes unos minutos para leerlos atentamente antes de empezar a utilizar nuestro Sitio Web, ya que cualquier acción que realices dentro del mismo estará regida por estos Términos y Condiciones.</span>
         </p>
 
         <p className="tituloPrimario">
-          1. ALGUNA INFORMACIÓN BÁSICA QUE DEBES LEER ANTES DE EMPEZAR A USAR
-          NUESTRO SITIO WEB
+          1. ALGUNA INFORMACIÓN BÁSICA QUE DEBES LEER ANTES DE EMPEZAR A USAR NUESTRO SITIO WEB
         </p>
         <p className="textoRegular">
-          A continuación, resumimos alguna información importante que debes
-          tener especialmente en cuenta antes de empezar a utilizar nuestro
-          Sitio Web:
+        A continuación, resumimos alguna información importante que debes tener especialmente en cuenta antes de empezar a utilizar nuestro Sitio Web:
         </p>
         <p className="tituloSecundario">1.1 Propietario del Sitio Web</p>
         <p className="textoRegular">
-          El propietario de este Sitio Web es SWAPVA S.A.S., con domicilio en
-          Migueletes 1.231, Piso 7 Of. B - Ciudad Autónoma de Buenos Aires
-          (C1426BUQ), Argentina; CUIT nº 30-71611596-4 (en adelante,
-          apareceremos referidos como “MI ROPERO”, o también como “nosotros” o
-          “nuestro/a/s”).
+        El propietario de este Sitio Web es SWAPVA S.A.S., con domicilio Costa Rica 5546, piso 3º, of. 301 - Ciudad Autónoma de Buenos Aires (C1414BTD), Argentina; CUIT nº 30-71611596-4 (en adelante, apareceremos referidos como “MI ROPERO”, o también como “nosotros” o “nuestro/a/s”).
         </p>
         <p className="textoRegular">
-          Nuestra propiedad se extiende a todos los contenidos de este Sitio Web
-          (salvo aquellos que, de tanto en tanto, publiquen sus Usuarios),
-          incluyendo sin carácter limitativo, el diseño, la gráfica, las
-          combinaciones de colores, los programas, los textos, los eslóganes y
-          mensajes publicitarios, los logos, las marcas, los nombres de dominio,
-          etc. No deberás usar ninguno de ellos sin autorización expresa de MI
-          ROPERO.
+        Nuestra propiedad se extiende a todos los contenidos de este Sitio Web (salvo aquellos que, de tanto en tanto, publiquen sus Usuarios y sobre los cuales podemos tener derechos conforme a lo previsto en estos Términos y Condiciones), incluyendo sin carácter limitativo, el diseño, la gráfica, las combinaciones de colores, los programas, los textos, los eslóganes y mensajes publicitarios, los logos, las marcas, los nombres de dominio, etc. No deberás usar ninguno de ellos sin autorización expresa de MI ROPERO.
         </p>
         <p className="tituloSecundario">1.2 Nuestra responsabilidad</p>
         <p className="textoRegular">

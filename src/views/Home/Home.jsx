@@ -1,4 +1,4 @@
-import { Box, Container, Link, Typography, useMediaQuery } from "@mui/material";
+import { Box, Container, Link, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { UpButton } from "../../components/ActionButton/ActionButton";

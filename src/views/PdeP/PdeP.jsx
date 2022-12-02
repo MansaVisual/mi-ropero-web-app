@@ -152,7 +152,7 @@ const PdeP = () => {
         
         <div className="returnLink" onClick={() => navigate(-1)}>
           <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER INICIO</p>
+          <p style={{fontSize:"12px",color:"black"}}>VOLVER INICIO</p>
         </div>
       </Box>
     </Grid>
