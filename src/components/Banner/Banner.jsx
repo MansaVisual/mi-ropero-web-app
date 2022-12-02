@@ -57,15 +57,13 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ height: { xs: "157px", lg: "22.3vw" } ,
-          width: { xs: "157px", lg: "88.9vw" }
-        }}
+        sx={{ height: { xs: "157px", md: "320px" } }}
       >
         {(isMobile?slides2:slides).map((item, index) => (
 
             <img
               src={item.img}
-              alt=""
+              alt="banner"
               className="imgBanner"
               key={index}
               width="100%"
