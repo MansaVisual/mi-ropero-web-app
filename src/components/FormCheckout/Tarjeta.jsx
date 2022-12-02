@@ -232,7 +232,7 @@ const Tarjeta = ({
             {load ? (
               <div
                 style={{
-                  marginTop: "24px",
+                  marginTop: "8px",
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",

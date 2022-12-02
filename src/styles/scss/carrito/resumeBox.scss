@@ -180,7 +180,7 @@
         }
         @include screen_1001{
             margin: auto;
-            margin-bottom: 150px;
+            margin-bottom: 150px !important;
         }
         @include screen_820{
             margin: 16px;
