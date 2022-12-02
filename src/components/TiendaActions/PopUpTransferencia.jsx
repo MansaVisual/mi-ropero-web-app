@@ -175,7 +175,7 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
               >
                 Monto Mín: $100 / Máx: ${saldoCuenta}
               </p>
-              <TextField
+              {/*  <TextField
                 className={`input ${errorMonto ? clase : ""}`}
                 size="small"
                 placeholder="Ingresar solo números."
@@ -187,10 +187,10 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                     monto: e.target.value,
                   }))
                 }
-              />
+              /> */}
               <NumericFormat
                 customInput={TextField}
-                className={`input ${errorMonto ? clase : ""}`}
+                className={`input formatNumber ${errorMonto ? clase : ""}`}
                 placeholder="Ingresar solo números."
                 id="monto"
                 onValueChange={(values) => {
