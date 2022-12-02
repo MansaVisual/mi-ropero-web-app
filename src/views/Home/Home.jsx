@@ -118,7 +118,7 @@ const Home = () => {
             <Chip>Remeras</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px", maxWidth:{xl:"1366px"},margin:{xl:"auto"} }}>
+          <Box sx={{ pt: "24px" }}>
             <SliderProd contenido={slider2} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
@@ -221,7 +221,7 @@ const Home = () => {
                     <Box sx={{ pt: "40px", textAlign: "center" }}>
                       <Chip primary>{res.nombre.trim()}</Chip>
                     </Box>
-                    <Box sx={{ pt: "24px" }}>
+                    <Box sx={{ pt: "24px", maxWidth:"1334px",margin:"auto" }}>
                       <SliderProd contenido={res.productos} />
                     </Box>
                     <Box sx={{ textAlign: "center" }}>
