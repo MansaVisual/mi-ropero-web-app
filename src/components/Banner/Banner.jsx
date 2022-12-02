@@ -58,7 +58,7 @@ const Banner = () => {
         indicatorContainerProps={{
           style: { position: "absolute", bottom: "8px", zIndex: 10 },
         }}
-        sx={{ minHeight: { xs: "157px", md: "200px" }, maxHeight: { xs: "157px", md: "320px" }}}
+        sx={{ minHeight: { xs: "320px", md: "200px" }, maxHeight: { xs: "157px", md: "320px" }}}
       >
         {(isMobile?slides2:slides).map((item, index) => (
 
