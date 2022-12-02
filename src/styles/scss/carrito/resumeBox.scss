@@ -188,6 +188,10 @@
                 width: 296px !important;
                 height: 296px !important;
             }
+            @include screen_389{
+                width: 270px !important;
+                height: 270px !important;
+            }
         }
     }
     .botonFinalizar{
