@@ -3,6 +3,7 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, Slider, Typography } from "@mui/material";
 import Cropper from "react-easy-crop";
+import Swal from "sweetalert2";
 
 const PopUpImg = ({
   section,
@@ -148,6 +149,17 @@ const PopUpImg = ({
 
   const showCroppedImage = useCallback(async () => {
     console.log(imagenesPreview[section], imagenesApi);
+    for (let i = 0; i < imagenesApi.length; i++) {
+      if (imagenesPreview[section] === imagenesApi[i]) {
+        Swal.fire({
+          title: "NO PUEDES RECORTAR IMAGEN YA RECORTADA",
+          text: "Selecciona una nueva para editar",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
+        return;
+      }
+    }
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
