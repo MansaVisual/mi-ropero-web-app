@@ -31,6 +31,7 @@ const PopUpVideo = ({
           icon: "error",
           confirmButtonText: "ACEPTAR",
         });
+        setOpenVidPopUp(false);
       } else {
         let imageDataUrl = await readFile(file);
         setVideoPreview(imageDataUrl);

@@ -311,7 +311,7 @@ const Sumario = ({ form }) => {
           )}
           <p>
             Al oprimir {form.prodEditar ? "EDITAR " : "PUBLICAR "}
-            se aceptan los{" "}
+            aceptas los{" "}
             <span
               onClick={() =>
                 window.open("https://www.miropero.ar/terminos&y&condiciones")
@@ -319,7 +319,8 @@ const Sumario = ({ form }) => {
             >
               términos y condiciones
             </span>{" "}
-            de Mi Ropero.
+            de uso de la plataforma Mi Ropero y nuestras politicas de
+            privacidad.
           </p>
         </div>
         <div

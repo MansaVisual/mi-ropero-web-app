@@ -50,6 +50,7 @@ const Tienda = () => {
     imagenes: {},
     imagenesPreview: {},
     video: null,
+    seccionExtra: [],
   });
 
   useEffect(() => {

@@ -136,6 +136,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             titulo: form.prodEditar.nombre,
             precio: form.prodEditar.precio,
             descripcion: form.prodEditar.descripcion,
+            imagenesApi: form.prodEditar.imagenes,
             imagenes: img,
             video: video,
           }));
