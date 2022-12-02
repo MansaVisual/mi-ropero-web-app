@@ -676,7 +676,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
                     }}
                   >
                     ${" "}
-                    {new Intl.NumberFormat("de-DE").format(Number(costoEnvio.moova.price.Table.Precio).toFixed(
+                    {new Intl.NumberFormat("de-DE").format(Number(costoEnvio.moova.price).toFixed(
                       2
                     ))}{" "} moto a domicilio
                   </Typography>
