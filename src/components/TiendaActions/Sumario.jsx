@@ -81,8 +81,6 @@ const Sumario = ({ form }) => {
                       Number(resIdTienda.result[0].idtienda)
                     );
                     img.append("idproducto", Number(prodRes.result.idproducto));
-                    /* let file = await new File([form.imagenes[i]], form.imgName[i], {type: form.imgType[i], lastModified: Date.now()})
-                    console.log(file)  */
                     img.append("image", form.imagenes[i]);
                     await insertImg(img);
                   }
@@ -132,7 +130,14 @@ const Sumario = ({ form }) => {
               if (form.imagenes[i] !== null) {
                 const img = new FormData();
                 img.append("idtienda", Number(tiendaData.idtienda));
-                img.append("idproducto", Number(res.result.idproducto));
+                img.append(
+                  "idproducto",
+                  Number(
+                    form.prodEditar
+                      ? form.prodEditar.idproducto
+                      : res.result.idproducto
+                  )
+                );
                 img.append("image", form.imagenes[i]);
                 await insertImg(img);
               }
@@ -140,7 +145,14 @@ const Sumario = ({ form }) => {
             if (form.video) {
               const vid = new FormData();
               vid.append("idtienda", Number(tiendaData.idtienda));
-              vid.append("idproducto", Number(res.result.idproducto));
+              vid.append(
+                "idproducto",
+                Number(
+                  form.prodEditar
+                    ? form.prodEditar.idproducto
+                    : res.result.idproducto
+                )
+              );
               vid.append("video", form.video);
               console.log(Object.fromEntries(vid));
               await apiFetch(vid, "productos", "insert_video").then(
