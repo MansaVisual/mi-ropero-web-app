@@ -32,6 +32,7 @@ const Banner = () => {
     <Box style={{maxWidth:"1366px",margin:"auto"}}>
       <Carousel
         animation="slide"
+        className="bannerCarousel"
         autoPlay={false}
         navButtonsAlwaysVisible
         navButtonsProps={{
