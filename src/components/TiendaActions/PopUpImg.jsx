@@ -3,7 +3,6 @@ import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, Slider, Typography } from "@mui/material";
 import Cropper from "react-easy-crop";
-import Swal from "sweetalert2";
 
 const PopUpImg = ({
   section,
@@ -17,11 +16,12 @@ const PopUpImg = ({
   esOpcional,
   seccionExtra,
   setNumeroImgExtra,
-  imagenesApi,
+  form,
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
   );
+  const [imagenCargada, setImagenCargada] = useState(false);
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -32,6 +32,7 @@ const PopUpImg = ({
   }, []);
 
   const onFileChange = async (e) => {
+    setImagenCargada(true);
     setImagenes((prevState) => ({
       ...prevState,
       [section]: e.target.files[0],
@@ -148,18 +149,6 @@ const PopUpImg = ({
     });
 
   const showCroppedImage = useCallback(async () => {
-    console.log(imagenesPreview[section], imagenesApi);
-    for (let i = 0; i < imagenesApi.length; i++) {
-      if (imagenesPreview[section] === imagenesApi[i].imagen_original) {
-        Swal.fire({
-          title: "NO PUEDES RECORTAR IMAGEN YA RECORTADA",
-          text: "Selecciona una nueva para editar",
-          icon: "error",
-          confirmButtonText: "ACEPTAR",
-        });
-        return;
-      }
-    }
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
@@ -213,41 +202,43 @@ const PopUpImg = ({
           <p className="popUpDescription" style={{ marginTop: "8px" }}>
             Te sugerimos ajustar el tamaño para que se vea lo mejor posible{" "}
           </p>
-          {imageSrc && (
-            <>
-              <div className="cropContainer">
-                <Cropper
-                  image={imageSrc}
-                  crop={crop}
-                  zoom={zoom}
-                  aspect={3 / 4}
-                  onCropChange={setCrop}
-                  onCropComplete={onCropComplete}
-                  onZoomChange={setZoom}
-                />
-              </div>
-              <div>
-                <div>
-                  <Typography variant="overline">Zoom</Typography>
-                  <Slider
-                    value={zoom}
-                    min={1}
-                    max={3}
-                    step={0.1}
-                    aria-labelledby="Zoom"
-                    onChange={(e, zoom) => setZoom(zoom)}
+          {imageSrc &&
+            (form.prodEditar === undefined || form.prodEditar === null) &&
+            !imagenCargada && (
+              <>
+                <div className="cropContainer">
+                  <Cropper
+                    image={imageSrc}
+                    crop={crop}
+                    zoom={zoom}
+                    aspect={3 / 4}
+                    onCropChange={setCrop}
+                    onCropComplete={onCropComplete}
+                    onZoomChange={setZoom}
                   />
                 </div>
-                <Button
-                  onClick={showCroppedImage}
-                  variant="contained"
-                  color="primary"
-                >
-                  Guardar imagen
-                </Button>
-              </div>
-            </>
-          )}
+                <div>
+                  <div>
+                    <Typography variant="overline">Zoom</Typography>
+                    <Slider
+                      value={zoom}
+                      min={1}
+                      max={3}
+                      step={0.1}
+                      aria-labelledby="Zoom"
+                      onChange={(e, zoom) => setZoom(zoom)}
+                    />
+                  </div>
+                  <Button
+                    onClick={showCroppedImage}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Guardar imagen
+                  </Button>
+                </div>
+              </>
+            )}
 
           <div className="buttonContainer">
             <Button onClick={() => closeModal()} className="volver">
