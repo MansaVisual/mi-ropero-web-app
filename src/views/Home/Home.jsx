@@ -65,6 +65,8 @@ const Home = () => {
           alignContent: "center",
           justifyContent: "center",
           pb: "84px",
+          maxWidth:"1366px",
+          margin:"auto"
         }}
       >
         <Container maxWidth="xl">
@@ -221,7 +223,7 @@ const Home = () => {
                     <Box sx={{ pt: "40px", textAlign: "center" }}>
                       <Chip primary>{res.nombre.trim()}</Chip>
                     </Box>
-                    <Box sx={{ pt: "24px", maxWidth:"1334px",margin:"auto" }}>
+                    <Box sx={{ pt: "24px" }}>
                       <SliderProd contenido={res.productos} />
                     </Box>
                     <Box sx={{ textAlign: "center" }}>
