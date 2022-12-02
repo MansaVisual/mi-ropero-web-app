@@ -367,7 +367,7 @@ const ResumeBox = ({stateForm,botonPago,codDesc,setCodDesc,metodoEnvio})=>{
             }
 
             <div className="banner screen1000-banner" style={{marginBottom:stateForm && "24px",marginTop:stateForm && "16px"}}>
-                <img src={banner} alt="BANNER" />
+                <img src={banner} alt="BANNER" width="100%" className="imgBannerMP"/>
             </div>
             {botonPago && 
                 <div className="botonFinalizar">

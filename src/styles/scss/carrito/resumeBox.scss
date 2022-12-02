@@ -185,6 +185,12 @@
         @include screen_820{
             margin: 16px;
         }
+        .imgBannerMP{
+            @include screen_1001{
+                width: 296px !important;
+                height: 296px !important;
+            }
+        }
     }
     .botonFinalizar{
         padding: 16px 16px;
