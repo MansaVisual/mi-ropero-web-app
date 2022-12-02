@@ -39,6 +39,8 @@ const Onboarding = () => {
         display: close,
         position: "relative",
         marginTop: "16px",
+        maxWidth: "1366px",
+        margin: "auto"
       }}
     >
       {!isMobile ? (
