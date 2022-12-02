@@ -107,6 +107,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             };
             for (let k = 2; k < imagenes.length; k++) {
               if (isVideo(imagenes[k].imagen_original)) {
+                console.log("video");
                 video = imagenes[k].imagen_original;
               } else {
                 extraNumber++;
@@ -121,6 +122,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             }
             setNumeroImgExtra(extraNumber);
             setSeccionExtra(updatedArray);
+            setVideoPreview(video);
           }
           setForm((prevState) => ({
             ...prevState,
