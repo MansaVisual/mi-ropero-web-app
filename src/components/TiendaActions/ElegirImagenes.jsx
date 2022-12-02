@@ -145,6 +145,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
       setImagenes(form.imagenes);
     } else if (form.editarProd === false) {
+      console.log(form.seccionExtra);
       setImagenes(form.imagenes);
       setImagenesPreview(form.imagenesPreview);
       setSeccionExtra(form.seccionExtra);
