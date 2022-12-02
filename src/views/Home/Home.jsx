@@ -118,7 +118,7 @@ const Home = () => {
             <Chip>Remeras</Chip>
           </Box>
 
-          <Box sx={{ pt: "24px" }}>
+          <Box sx={{ pt: "24px", maxWidth:{xl:"1366px"},margin:{xl:"auto"} }}>
             <SliderProd contenido={slider2} />
           </Box>
           <Box sx={{ pt: "27px", textAlign: "center" }}>
