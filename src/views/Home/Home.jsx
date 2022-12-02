@@ -14,6 +14,7 @@ import "react-multi-carousel/lib/styles.css";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../../components/Loader/Loader";
 import HomeBannerBottom from "../../assets/img/HomeBannerBottom.jpg";
+import homeBannerMobile from "../../assets/img/bannerHomeMobile.jpg"
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -163,7 +164,7 @@ const Home = () => {
         </Container>
         <Box
           component="img"
-          src={HomeBannerBottom}
+          src={isMobile? homeBannerMobile: HomeBannerBottom}
           sx={{ width: "100%", mt: "44px", mb: "40px" }}
         />
 
