@@ -34,9 +34,11 @@ import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 import FAQ from "./views/FAQ/FAQ";
 import { MiTiendaContext } from "./context/MiTiendaContext";
 import Tienda from "./views/Tienda/Tienda";
+import { install } from 'ga-gtag';
 
 function App() {
   useEffect(() => {
+    install('GTM-5WPBFQX', { 'send_page_view': false });
     const handleFooterClick = (e) => {
       if (e.target.id === "Ropa") {
         document.getElementById("ROPA").click();

@@ -15,6 +15,7 @@ import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import { UseLoginContext } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
+import { gtag } from 'ga-gtag';
 
 const ProductCard = ({
   imageCard,
@@ -39,6 +40,20 @@ const ProductCard = ({
   const handleMouseLeave = () => {
     buttonRef.current.style.opacity = "0";
   };
+
+  const handleClickItem=()=>{
+    gtag('event', 'view_item', {
+      'items': [{
+        item_name:productName,
+        item_id:idProducto,
+        price:Number(productPrice),
+        currency:"ARS"
+      }],
+      'currency':"ARS",
+      value: Number(productPrice)
+    });
+    navigate(`/productoCard/${idProducto}`)
+  }
 
   return (
     <Card
@@ -65,7 +80,7 @@ const ProductCard = ({
                 filter: "blur(2px)",
               },
             }}
-            onClick={() => navigate(`/productoCard/${idProducto}`)}
+            onClick={() => {handleClickItem()}}
           />
         </CardActionArea>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
