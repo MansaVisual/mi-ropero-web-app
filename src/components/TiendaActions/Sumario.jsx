@@ -81,7 +81,7 @@ const Sumario = ({ form }) => {
                       Number(resIdTienda.result[0].idtienda)
                     );
                     img.append("idproducto", Number(prodRes.result.idproducto));
-                    img.append("image", form.imagenes[i]);
+                    img.append("image", form.imagenes[i].image);
                     await insertImg(img);
                   }
                 }
@@ -127,7 +127,7 @@ const Sumario = ({ form }) => {
           console.log(res.result);
           if (res.status === "success") {
             for (const i in form.imagenes) {
-              if (form.imagenes[i] !== null) {
+              if (form.imagenes[i].image !== null) {
                 const img = new FormData();
                 img.append("idtienda", Number(tiendaData.idtienda));
                 img.append(
@@ -138,13 +138,13 @@ const Sumario = ({ form }) => {
                       : res.result.idproducto
                   )
                 );
-                if (form.prodEditar) {
+                if (form.imagenes[i].id) {
                   img.append("image", form.imagenes[i].image);
-                  img.append("idproductoimagen", form.imagenes[i].image);
+                  img.append("idproductoimagen", form.imagenes[i].id);
                 } else {
-                  img.append("image", form.imagenes[i]);
+                  img.append("image", form.imagenes[i].image);
+                  await insertImg(img);
                 }
-                await insertImg(img);
               }
             }
             if (form.video) {
@@ -183,11 +183,7 @@ const Sumario = ({ form }) => {
   };
 
   const insertImg = async (prod) => {
-    apiFetch(
-      prod,
-      "productos",
-      form.prodEditar ? "update_image" : "insert_image"
-    ).then((res) => {
+    apiFetch(prod, "productos", "insert_image").then((res) => {
       console.log(res);
       return res;
     });

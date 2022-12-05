@@ -31,7 +31,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
-
+  const [imgEditArray, setImgEditArray] = useState([]);
   const { categorias } = useContext(UseProdsContext);
 
   useEffect(() => {
@@ -40,7 +40,6 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
-      console.log(form);
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractOld = {};
       const caractList = {};
@@ -299,9 +298,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                     <img
                       src={
                         imagenesPreview[imgBox.nombre]
-                          ? form.editarProd
-                            ? imagenesPreview[imgBox.nombre].image
-                            : imagenesPreview[imgBox.nombre]
+                          ? imagenesPreview[imgBox.nombre]
                           : imgBox.imagen
                       }
                       alt="foto"
