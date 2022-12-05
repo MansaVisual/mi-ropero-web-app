@@ -288,6 +288,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
+                    console.log(imgBox)
                     console.log(form.imagenesApi)
                     let id = form.imagenesApi.filter(e=>e.imagen_original===imgBox.imagen)
                     console.log(id)
