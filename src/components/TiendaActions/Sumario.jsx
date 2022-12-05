@@ -138,7 +138,12 @@ const Sumario = ({ form }) => {
                       : res.result.idproducto
                   )
                 );
-                img.append("image", form.imagenes[i]);
+                if (form.prodEditar) {
+                  img.append("image", form.imagenes[i].image);
+                  img.append("idproductoimagen", form.prodEditar.idproducto);
+                } else {
+                  img.append("image", form.imagenes[i]);
+                }
                 await insertImg(img);
               }
             }
@@ -178,7 +183,11 @@ const Sumario = ({ form }) => {
   };
 
   const insertImg = async (prod) => {
-    apiFetch(prod, "productos", "insert_image").then((res) => {
+    apiFetch(
+      prod,
+      "productos",
+      form.prodEditar ? "update_image" : "insert_image"
+    ).then((res) => {
       console.log(res);
       return res;
     });
