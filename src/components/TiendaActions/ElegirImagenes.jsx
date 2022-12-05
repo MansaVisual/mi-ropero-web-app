@@ -321,11 +321,12 @@ const ElegirImagenes = ({ form, setForm }) => {
             })
           )}
           {seccionExtra.length > 0 &&
-            seccionExtra.map((imgBox) => {
+            seccionExtra.map((imgBox,i) => {
               return (
                 <div
                   className="section"
                   onClick={() => {
+                    setIdImgEditar(form.imagenesApi[i].idproductoimagen)
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
                     setOpenImgPopUp(true);
