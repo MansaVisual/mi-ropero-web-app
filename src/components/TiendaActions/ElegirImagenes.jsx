@@ -31,6 +31,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
+  const [imgsEditar,setImgsEditar]=useState([])
 
   const { categorias } = useContext(UseProdsContext);
 
