@@ -73,6 +73,8 @@ const CheckForm = ({estadoCompra})=>{
                         </p>
                     </div>
 
+                    {/* <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/> */}
+
                     <Button className="misCompras" onClick={()=>navigate("/perfil/MIS COMPRAS")}>
                         IR A MIS COMPRAS
                     </Button>
@@ -97,7 +99,7 @@ const CheckForm = ({estadoCompra})=>{
                             <p className="felicidades">¡Te esperamos!</p>
                             <p>La compra se encuentra "pendiente" hasta que se realice el pago.</p>
                             
-                            <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
+                            {/* <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/> */}
                             
                             <Button className="misComprasFail" onClick={()=>navigate("/perfil/MIS COMPRAS")}>
                                 IR A MIS COMPRAS
