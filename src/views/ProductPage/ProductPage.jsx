@@ -24,7 +24,7 @@ import Loader from "../../components/Loader/Loader";
 import { useNavigate, useLocation } from "react-router-dom";
 import PopUpOfertaPP from "../../components/Dialog/PopUpOfertaPP";
 import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
-import logo from "../../assets/img/isologo.png"
+import logo from "../../assets/img/isologo.png";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 
@@ -38,7 +38,7 @@ const ProductPage = () => {
   const location = useLocation();
 
   const { infoUser, userLog } = useContext(UseLoginContext);
-  const [tienda,setTienda]=useState([])
+  const [tienda, setTienda] = useState([]);
 
   const [open, setOpen] = useState(false);
   const [openMessagePop, setOpenMessagePop] = useState(false);
@@ -46,27 +46,24 @@ const ProductPage = () => {
   const [prod, setProd] = useState([]);
   const [prodFotos, setProdFotos] = useState([]);
   const [prodCaracteristicas, setProdCaracteristicas] = useState([]);
-  console.log(prodFotos)
+  console.log(prodFotos);
 
-  const _renderVideo=(item)=>{
-    console.log(item)
-    console.log(item.original)
-    return(
+  const _renderVideo = (item) => {
+    console.log(item);
+    console.log(item.original);
+    return (
       <video
-      key={item.original}
-      controls
-      loop
-      id='myVideo'
-      className="image-gallery-image"
-    >
-      <source
-        src={item.original}
-        type='video/mp4'
-        id='myVideo1'
-      />
-    </video>
-    )
-  }
+        key={item.original}
+        controls
+        loop
+        playsInline
+        id="myVideo"
+        className="image-gallery-image"
+      >
+        <source src={item.original} type="video/mp4" id="myVideo1" />
+      </video>
+    );
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -76,10 +73,14 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-    if(prod.length!==0){
-      const ropero=new FormData()
-      ropero.append("idtienda",prod.tienda.idtienda)
-      apiFetch(ropero,"tiendas","detail").then((res)=>{if(res.status==="success"){setTienda(res.result)}})
+    if (prod.length !== 0) {
+      const ropero = new FormData();
+      ropero.append("idtienda", prod.tienda.idtienda);
+      apiFetch(ropero, "tiendas", "detail").then((res) => {
+        if (res.status === "success") {
+          setTienda(res.result);
+        }
+      });
     }
   }, [prod]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -88,20 +89,21 @@ const ProductPage = () => {
       const prod = new FormData();
       prod.append("idproducto", itemID);
       prod.append("idcliente", userLog);
-      apiFetch(prod, "productos", "details").then((res) => {console.log("PRODUCTO", res)
+      apiFetch(prod, "productos", "details").then((res) => {
+        console.log("PRODUCTO", res);
         if (res.status === "success") {
           let arrayFotos = [];
           for (const i in res.result.imagenes) {
-            if(res.result.imagenes[i].tipo==="video"){
+            if (res.result.imagenes[i].tipo === "video") {
               arrayFotos = [
                 ...arrayFotos,
                 {
                   original: res.result.imagenes[i].imagen_vertical,
                   thumbnail: res.result.imagenes[i].imagen_chica,
-                  renderItem: _renderVideo.bind()
+                  renderItem: _renderVideo.bind(),
                 },
               ];
-            }else{
+            } else {
               arrayFotos = [
                 ...arrayFotos,
                 {
@@ -126,25 +128,25 @@ const ProductPage = () => {
         text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
-          icon: 'no-border',
-          container:"popUpLoginAlert",
-          cancelButton:"popUpLoginCancel"
+          icon: "no-border",
+          container: "popUpLoginAlert",
+          cancelButton: "popUpLoginCancel",
         },
         showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "CONTINUAR",
-        cancelButtonText:"CANCELAR"
-      }).then((res)=>{
-        if(res.isConfirmed){
+        cancelButtonText: "CANCELAR",
+      }).then((res) => {
+        if (res.isConfirmed) {
           localStorage.setItem("redirectUrl", location.pathname);
           navigate("/login");
         }
-      })
+      });
       return;
     }
   };
 
-  console.log(prod)
+  console.log(prod);
 
   return (
     <Container maxWidth="xl">
@@ -226,14 +228,14 @@ const ProductPage = () => {
                         right: "20px",
                       }}
                     >
-                      {isMobileBigScreen &&
+                      {isMobileBigScreen && (
                         <LikeButton
-                        idCliente={userLog}
-                        infoUser={infoUser}
-                        idProd={itemID}
-                        location={location.pathname}
+                          idCliente={userLog}
+                          infoUser={infoUser}
+                          idProd={itemID}
+                          location={location.pathname}
                         />
-                      }
+                      )}
                     </Box>
                   </Box>
                 </>
@@ -280,7 +282,7 @@ const ProductPage = () => {
             >
               {isMobile || isMobileBigScreen ? (
                 <>
-                  <ProductBuyBox prod={prod} itemID={itemID} tienda={tienda}/>
+                  <ProductBuyBox prod={prod} itemID={itemID} tienda={tienda} />
                 </>
               ) : (
                 <>
@@ -325,22 +327,23 @@ const ProductPage = () => {
                         idProd={itemID}
                         location={location.pathname}
                       />
-                      {prod.tienda.idcliente!==userLog &&
+                      {prod.tienda.idcliente !== userLog && (
                         <CommentButton
                           onClick={
-                            tienda.estado_text!=="Activa"?()=>
-                              Swal.fire({
-                                title: "TIENDA PAUSADA",
-                                text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
-                                icon: "info",
-                                confirmButtonText: "ACEPTAR",
-                              }) :
-                              userLog === ""
+                            tienda.estado_text !== "Activa"
+                              ? () =>
+                                  Swal.fire({
+                                    title: "TIENDA PAUSADA",
+                                    text: "Si lo agregas a favoritos, te avisamos cuando se active nuevamente.",
+                                    icon: "info",
+                                    confirmButtonText: "ACEPTAR",
+                                  })
+                              : userLog === ""
                               ? () => handleCompraSinLogin()
                               : () => setOpenMessagePop(true)
                           }
                         />
-                      }
+                      )}
                     </Box>
                   </Box>
                   <ProductBuyBox prod={prod} itemID={itemID} tienda={tienda} />
