@@ -299,7 +299,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                     <img
                       src={
                         imagenesPreview[imgBox.nombre]
-                          ? imagenesPreview[imgBox.nombre]
+                          ? form.editarProd
+                            ? imagenesPreview[imgBox.nombre].image
+                            : imagenesPreview[imgBox.nombre]
                           : imgBox.imagen
                       }
                       alt="foto"
