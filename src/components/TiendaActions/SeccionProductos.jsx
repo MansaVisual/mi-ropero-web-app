@@ -89,7 +89,7 @@ const SeccionProductos = ({ setForm }) => {
     prod.append("idtienda", Number(tiendaDetail.idtienda));
     apiFetch(prod, "productos", "get").then((res) => {
       if (res.status === "success") {
-        if (userLog === "25276" || userLog === "25276") {
+        if (userLog === "25276" || userLog === "25276" || userLog === "78") {
           setForm((prevState) => ({
             ...prevState,
             crearTienda: false,
