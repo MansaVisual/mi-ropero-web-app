@@ -41,7 +41,7 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-  const handleClickItem=({idProducto})=>{
+  const handleClickItem=()=>{
     gtag('event', 'view_item', {
       'items': [{
         item_name:productName,
