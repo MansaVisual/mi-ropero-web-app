@@ -31,6 +31,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
+
   const [imgsEditar,setImgsEditar]=useState([])
   const [idImgEditar,setIdImgEditar]=useState("")
 
@@ -287,7 +288,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
+                    console.log(form.imagenesApi)
                     let id = form.imagenesApi.filter(e=>e.imagen_original===imgBox.imagen)
+                    console.log(id)
                     if(id){
                       setIdImgEditar(id.idproductoimagen)
                     }
