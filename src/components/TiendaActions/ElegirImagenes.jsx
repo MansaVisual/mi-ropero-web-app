@@ -283,18 +283,13 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox) => {
+            imgNecesarias.map((imgBox,i) => {
               return (
                 <div
                   className="section"
                   onClick={() => {
-                    console.log(imgBox)
-                    console.log(form.imagenesApi)
-                    let id = form.imagenesApi.filter(e=>e.imagen_original===imgBox.imagen)
-                    console.log(id)
-                    if(id){
-                      setIdImgEditar(id.idproductoimagen)
-                    }
+                    console.log(i)
+                    setIdImgEditar(form.imagenesApi[i].idproductoimagen)
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
                     setOpenImgPopUp(true);

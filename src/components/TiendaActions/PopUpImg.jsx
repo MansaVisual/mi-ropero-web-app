@@ -23,6 +23,7 @@ const PopUpImg = ({
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
   );
+  console.log(idImgEditar)
   const [imagenCargada, setImagenCargada] = useState(false);
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
