@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Typography, Stack, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
-import { IoCloseCircle } from "react-icons/io5";
 import theme from "../../styles/theme";
 
 const Onboarding = () => {
-  const [close, setClose] = useState("flex");
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -27,16 +25,13 @@ const Onboarding = () => {
     },
   ];
 
-  const closeOnBoarding = () => {
-    setClose("none");
-  };
 
   return (
     <Box
       sx={{
         boxShadow: "0 1px 5px hsla(270, 1.5%, 25.9%, 0.1)",
         width: "100%",
-        display: close,
+        display: "flex",
         position: "relative",
         marginTop: "16px",
         maxWidth: "1366px",
@@ -53,11 +48,6 @@ const Onboarding = () => {
               cursor: "pointer",
             }}
           >
-            <IoCloseCircle
-              size="24px"
-              color="hsl(210, 3%, 73.7%)"
-              onClick={closeOnBoarding}
-            />
           </Box>
 
           <Stack
