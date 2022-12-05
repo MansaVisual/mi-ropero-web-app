@@ -140,7 +140,7 @@ const Sumario = ({ form }) => {
                 );
                 if (form.prodEditar) {
                   img.append("image", form.imagenes[i].image);
-                  img.append("idproductoimagen", form.prodEditar.idproducto);
+                  img.append("idproductoimagen", form.imagenes[i].image);
                 } else {
                   img.append("image", form.imagenes[i]);
                 }

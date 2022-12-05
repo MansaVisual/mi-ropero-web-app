@@ -56,7 +56,6 @@ const ProductPage = () => {
         key={item.original}
         controls
         loop
-        playsInline
         id="myVideo"
         className="image-gallery-image"
       >
