@@ -20,10 +20,12 @@ import NavMenu from "../NavMenu/NavMenu";
 import { IoCloseCircle } from "react-icons/io5";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import theme from "../../styles/theme";
+import NavBarPopUp from "./NavBarPopUp";
 
 const NavBar = () => {
   const isMobileBigScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
+  const [openVenderPop, setOpenVenderPop] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -204,7 +206,7 @@ const NavBar = () => {
                   <SearchBar placeholder="Buscá por ropero, producto, marca o talle" />
                 </Box>
 
-                {/* <Box>
+                <Box>
                   <Button
                     sx={{
                       border: "1px solid black",
@@ -215,10 +217,11 @@ const NavBar = () => {
                       color: "hsla(351, 6%, 25%, 1)",
                       height: "31px",
                     }}
+                    onClick={() => setOpenVenderPop(true)}
                   >
                     Vender
                   </Button>
-                </Box> */}
+                </Box>
               </>
             ) : null}
 
@@ -251,6 +254,7 @@ const NavBar = () => {
         )}
       </AppBar>
       <Offset />
+      {openVenderPop && <NavBarPopUp setOpenVenderPop={setOpenVenderPop} />}
     </Box>
   );
 };
