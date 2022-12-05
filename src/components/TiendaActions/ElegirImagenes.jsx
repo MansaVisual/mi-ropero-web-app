@@ -97,7 +97,10 @@ const ElegirImagenes = ({ form, setForm }) => {
           console.log(imagenes);
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
-            img[obj] = imagenes[j].imagen_original;
+            img[obj] = {
+              image: imagenes[j].imagen_original,
+              id: imagenes[j].idproductoimagen,
+            };
           }
           if (imagenes.length > 2) {
             let updatedArray = [];
@@ -117,7 +120,10 @@ const ElegirImagenes = ({ form, setForm }) => {
                   imagen: imagenes[k].imagen_original,
                   obligatoria: "0",
                 });
-                img[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
+                img[`Foto extra ${k - 1}`] = {
+                  image: imagenes[k].imagen_original,
+                  id: imagenes[k].idproductoimagen,
+                };
               }
             }
             setNumeroImgExtra(extraNumber);
