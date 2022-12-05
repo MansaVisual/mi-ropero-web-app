@@ -18,7 +18,8 @@ const PopUpImg = ({
   setNumeroImgExtra,
   form,
   idImgEditar,
-  setImgsEditar
+  setImgsEditar,
+  imgsEditar
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null

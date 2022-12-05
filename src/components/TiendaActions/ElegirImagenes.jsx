@@ -435,6 +435,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           form={form}
           idImgEditar={idImgEditar}
           setImgsEditar={setImgsEditar}
+          imgsEditar={imgsEditar}
         />
       )}
       {openVidPopUp && (
