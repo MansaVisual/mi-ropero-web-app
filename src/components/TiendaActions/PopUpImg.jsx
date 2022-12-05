@@ -154,10 +154,7 @@ const PopUpImg = ({
       setErrorObligatorio(false);
       setImagenes((prevState) => ({
         ...prevState,
-        [section]: {
-          image: croppedImage.file,
-          id: imagenesPreview[section].id ? imagenesPreview[section].id : null,
-        },
+        [section]: croppedImage.file,
       }));
       setImagenesPreview((prevState) => ({
         ...prevState,

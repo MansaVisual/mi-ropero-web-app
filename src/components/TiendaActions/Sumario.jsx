@@ -81,7 +81,7 @@ const Sumario = ({ form }) => {
                       Number(resIdTienda.result[0].idtienda)
                     );
                     img.append("idproducto", Number(prodRes.result.idproducto));
-                    img.append("image", form.imagenes[i].image);
+                    img.append("image", form.imagenes[i]);
                     await insertImg(img);
                   }
                 }
@@ -127,7 +127,7 @@ const Sumario = ({ form }) => {
           console.log(res.result);
           if (res.status === "success") {
             for (const i in form.imagenes) {
-              if (form.imagenes[i].image !== null) {
+              if (form.imagenes[i] !== null) {
                 const img = new FormData();
                 img.append("idtienda", Number(tiendaData.idtienda));
                 img.append(
@@ -138,13 +138,8 @@ const Sumario = ({ form }) => {
                       : res.result.idproducto
                   )
                 );
-                if (form.imagenes[i].id) {
-                  img.append("image", form.imagenes[i].image);
-                  img.append("idproductoimagen", form.imagenes[i].id);
-                } else {
-                  img.append("image", form.imagenes[i].image);
-                  await insertImg(img);
-                }
+                img.append("image", form.imagenes[i]);
+                await insertImg(img);
               }
             }
             if (form.video) {

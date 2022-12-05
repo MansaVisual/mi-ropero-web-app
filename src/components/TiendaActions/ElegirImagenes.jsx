@@ -31,7 +31,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
-  const [imgEditArray, setImgEditArray] = useState([]);
+
   const { categorias } = useContext(UseProdsContext);
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
+      console.log(form);
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractOld = {};
       const caractList = {};
@@ -96,10 +97,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           console.log(imagenes);
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
-            img[obj] = {
-              image: imagenes[j].imagen_original,
-              id: imagenes[j].idproductoimagen,
-            };
+            img[obj] = imagenes[j].imagen_original;
           }
           if (imagenes.length > 2) {
             let updatedArray = [];
@@ -119,10 +117,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                   imagen: imagenes[k].imagen_original,
                   obligatoria: "0",
                 });
-                img[`Foto extra ${k - 1}`] = {
-                  image: imagenes[k].imagen_original,
-                  id: imagenes[k].idproductoimagen,
-                };
+                img[`Foto extra ${k - 1}`] = imagenes[k].imagen_original;
               }
             }
             setNumeroImgExtra(extraNumber);
