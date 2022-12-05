@@ -32,6 +32,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [imgsEditar,setImgsEditar]=useState([])
+  const [idImgEditar,setIdImgEditar]=useState("")
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -204,6 +205,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         imagenesPreview: imagenesPreview,
         seccionExtra: seccionExtra,
         video: video,
+        imagenesEditar:imgsEditar
       }));
       navigate(`/Mi&Tienda/CARACTERISTICAS`);
     }
@@ -285,6 +287,10 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
+                    let id = form.imagenesApi.filter(e=>e.imagen_original===imgBox.imagen)
+                    if(id){
+                      setIdImgEditar(id.idproductoimagen)
+                    }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
                     setOpenImgPopUp(true);
@@ -428,6 +434,8 @@ const ElegirImagenes = ({ form, setForm }) => {
           esOpcional={esOpcional}
           setNumeroImgExtra={setNumeroImgExtra}
           form={form}
+          idImgEditar={idImgEditar}
+          setImgsEditar={setImgsEditar}
         />
       )}
       {openVidPopUp && (

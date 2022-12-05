@@ -17,6 +17,8 @@ const PopUpImg = ({
   seccionExtra,
   setNumeroImgExtra,
   form,
+  idImgEditar,
+  setImgsEditar
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -36,6 +38,10 @@ const PopUpImg = ({
     setImagenes((prevState) => ({
       ...prevState,
       [section]: e.target.files[0],
+    }));
+    setImgsEditar((prevState) => ({
+      ...prevState,
+      [section]: {img:e.target.files[0],id:idImgEditar},
     }));
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
