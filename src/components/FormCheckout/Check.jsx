@@ -73,8 +73,6 @@ const CheckForm = ({estadoCompra})=>{
                         </p>
                     </div>
 
-                    <div className="fotoBannerCheckMobile screen1000-bannerCheckMobile"/>
-
                     <Button className="misCompras" onClick={()=>navigate("/perfil/MIS COMPRAS")}>
                         IR A MIS COMPRAS
                     </Button>
