@@ -41,7 +41,7 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-  const handleClickItem = async () => {
+  const handleClickItem = () => {
     /* await gtag('event', 'view_item', {
       items: [{
         item_name:productName,
@@ -52,9 +52,16 @@ const ProductCard = ({
       currency:"ARS",
       value: Number(productPrice)
     }); */
-    await ReactGA.event({
-      category: "User",
-      action: "Created an Account",
+    ReactGA.event({
+      items: [{
+        item_name:productName,
+        item_id:idProducto,
+        price:Number(productPrice),
+        currency:"ARS"
+      }],
+      currency:"ARS",
+      value: Number(productPrice),
+      action: "view_item",
     });
     navigate(`/productoCard/${idProducto}`);
   };
