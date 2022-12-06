@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import PopUpDescTienda from "./PopUpDescTienda";
 import { UseLoginContext } from "../../context/LoginContext";
+import editIcon from "../../assets/img/editIcon.png";
 
 const SeccionProductos = ({ setForm }) => {
   const navigate = useNavigate();
@@ -118,13 +119,6 @@ const SeccionProductos = ({ setForm }) => {
           </div>
           <div className="buttonContainer">
             <button
-              onClick={() => {
-                setForm((prevState) => ({
-                  ...prevState,
-                  crearTienda: false,
-                }));
-                navigate(`/Mi&Tienda/CATEGORIA`);
-              }}
             >
               AGREGAR PRODUCTO
             </button>
@@ -197,6 +191,18 @@ const SeccionProductos = ({ setForm }) => {
                           className="basuraIcon"
                           src={basura}
                           alt="BasuraIcon"
+                        />
+                        <img
+                          className="editICon"
+                          src={editIcon}
+                          alt="editICon"
+                          onClick={() => {
+                            setForm((prevState) => ({
+                              ...prevState,
+                              crearTienda: false,
+                            }));
+                            navigate(`/Mi&Tienda/CATEGORIA`);
+                          }}
                         />
                       </div>
                     </div>
