@@ -129,9 +129,11 @@ const Calificaciones = () => {
                         </div>
                         <div key={`mobile${id}`} className="mobileCard">
                           <div>
-                            <p className="messageTitle">{data.nombre}</p>
-                            <p className="messageState">{data.estado_text}</p>
-                            <p className="discountLink">CREAR DESCUENTO</p>
+                            <p className="messageTitle">
+                              Operacion: <span>{data.idoperacion}</span>
+                            </p>
+                            <p className="messageState">Fecha: {data.fecha}</p>
+                            <p className="discountLink">"{data.mensaje}"</p>
                             <Rating
                               name="text-feedback"
                               value={Number(data.estrellas)}
