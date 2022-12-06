@@ -7,7 +7,6 @@ import Cropper from "react-easy-crop";
 const PopUpImg = ({
   section,
   setOpenImgPopUp,
-  imagenes,
   setImagenes,
   setErrorObligatorio,
   setSeccionExtra,
@@ -19,7 +18,7 @@ const PopUpImg = ({
   form,
   idImgEditar,
   setImgsEditar,
-  imgsEditar
+  setIdImgEditar
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -37,14 +36,12 @@ const PopUpImg = ({
 
   const onFileChange = async (e) => {
     setImagenCargada(true);
-    setImagenes((prevState) => ({
-      ...prevState,
-      [section]: e.target.files[0],
-    }));
-    setImgsEditar((prevState) => ({
-      ...prevState,
-      [section]: {img:e.target.files[0],id:idImgEditar},
-    }));
+    if(idImgEditar===""){
+      setImgsEditar((prevState) => ({
+        ...prevState,
+        [section]: {img:e.target.files[0],id:idImgEditar},
+      }));
+    }
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       let imageDataUrl = await readFile(file);
@@ -160,10 +157,12 @@ const PopUpImg = ({
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setErrorObligatorio(false);
-      setImagenes((prevState) => ({
-        ...prevState,
-        [section]: croppedImage.file,
-      }));
+      if(idImgEditar===""){
+        setImagenes((prevState) => ({
+          ...prevState,
+          [section]: croppedImage.file,
+        }));
+      }
       setImagenesPreview((prevState) => ({
         ...prevState,
         [section]: croppedImage.blob,
@@ -185,6 +184,7 @@ const PopUpImg = ({
       console.error(e);
       setOpenImgPopUp(false);
     }
+    setIdImgEditar("")
   }, [imageSrc, croppedAreaPixels]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const closeModal = () => {
