@@ -195,13 +195,13 @@ const Sumario = ({ form }) => {
   };
 
   const insertImg = async (prod) => {
-    apiFetch(prod, "productos", "insert_image").then((res) => {
+    await apiFetch(prod, "productos", "insert_image").then((res) => {
       console.log(res);
       return res;
     });
   };
   const editarImg = async (prod) => {
-    apiFetch(prod, "productos", "update_image").then((res) => {
+    await apiFetch(prod, "productos", "update_image").then((res) => {
       console.log(res);
       return res;
     });
