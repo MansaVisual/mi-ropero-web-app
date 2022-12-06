@@ -15,7 +15,7 @@ import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import { UseLoginContext } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 const ProductCard = ({
   imageCard,
@@ -52,10 +52,16 @@ const ProductCard = ({
       currency:"ARS",
       value: Number(productPrice)
     }); */
-    ReactGA.event({
+    await ReactGA.event({
       category: "User",
       action: "Created an Account",
     });
+    console.log(
+      ReactGA.event({
+        category: "User",
+        action: "Created an Account",
+      })
+    );
     navigate(`/productoCard/${idProducto}`);
   };
 

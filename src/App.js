@@ -34,7 +34,7 @@ import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 import FAQ from "./views/FAQ/FAQ";
 import { MiTiendaContext } from "./context/MiTiendaContext";
 import Tienda from "./views/Tienda/Tienda";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 const TRACK_ID = "GTM-5WPBFQX";
 ReactGA.initialize(TRACK_ID);
