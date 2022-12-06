@@ -257,19 +257,20 @@ const SeccionProductos = ({ setForm }) => {
                         >
                           CREAR DESCUENTO
                         </p>
-                        <img
-                          className="editICon"
-                          src={editIcon}
-                          alt="editICon"
-                          onClick={() => {
-                            editarProd(product.idproducto);
-                          }}
-                        />
+
                       </div>
                       <img
                         src={basura}
                         className="trashICon"
                         alt="basuraIcon"
+                      />
+                      <img
+                        className="editIConMobile"
+                        src={editIcon}
+                        alt="editICon"
+                        onClick={() => {
+                          editarProd(product.idproducto);
+                        }}
                       />
                     </div>
                   </>
