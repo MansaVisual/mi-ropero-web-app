@@ -288,8 +288,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
-                    console.log(i)
-                    setIdImgEditar(form.imagenesApi[i].idproductoimagen)
+                    if(form.imagenesApi[i].idproductoimagen){
+                      setIdImgEditar(form.imagenesApi[i].idproductoimagen)
+                    }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
                     setOpenImgPopUp(true);
@@ -326,7 +327,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
-                    setIdImgEditar(form.imagenesApi[i].idproductoimagen)
+                    if(form.imagenesApi[i].idproductoimagen){
+                      setIdImgEditar(form.imagenesApi[i].idproductoimagen)
+                    }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
                     setOpenImgPopUp(true);
