@@ -260,17 +260,17 @@ const SeccionProductos = ({ setForm }) => {
 
                       </div>
                       <img
-                        src={basura}
-                        className="trashICon"
-                        alt="basuraIcon"
-                      />
-                      <img
                         className="editIConMobile"
                         src={editIcon}
                         alt="editICon"
                         onClick={() => {
                           editarProd(product.idproducto);
                         }}
+                      />
+                      <img
+                        src={basura}
+                        className="trashICon"
+                        alt="basuraIcon"
                       />
                     </div>
                   </>
