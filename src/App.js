@@ -38,7 +38,7 @@ import { install } from 'ga-gtag';
 
 function App() {
   useEffect(() => {
-    install('GTM-5WPBFQX', { 'send_page_view': false });
+    install('GTM-5WPBFQX');
     const handleFooterClick = (e) => {
       if (e.target.id === "Ropa") {
         document.getElementById("ROPA").click();
