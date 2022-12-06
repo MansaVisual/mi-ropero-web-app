@@ -327,8 +327,8 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
-                    if (form.imagenesApi[i]) {
-                      setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                    if (form.imagenesApi.length>0) {
+                      setIdImgEditar(form.imagenesApi[i+imgNecesarias.length-1].idproductoimagen);
                     }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
