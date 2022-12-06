@@ -34,6 +34,10 @@ import CancelacionCompraOk from "./views/CancelacionCompra/CancelacionCompraOk";
 import FAQ from "./views/FAQ/FAQ";
 import { MiTiendaContext } from "./context/MiTiendaContext";
 import Tienda from "./views/Tienda/Tienda";
+import ReactGA from "react-ga";
+
+const TRACK_ID = "GTM-5WPBFQX";
+ReactGA.initialize(TRACK_ID);
 
 function App() {
   useEffect(() => {

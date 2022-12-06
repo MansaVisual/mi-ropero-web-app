@@ -15,7 +15,7 @@ import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import { UseLoginContext } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
-import {gtag} from "ga-gtag"
+import ReactGA from "react-ga";
 
 const ProductCard = ({
   imageCard,
@@ -26,7 +26,7 @@ const ProductCard = ({
   itemFav,
   precioOferta,
   idTienda,
-  paginaProductos
+  paginaProductos,
 }) => {
   const { userLog, infoUser } = useContext(UseLoginContext);
   const navigate = useNavigate();
@@ -41,8 +41,8 @@ const ProductCard = ({
     buttonRef.current.style.opacity = "0";
   };
 
-  const handleClickItem=async()=>{
-    await gtag('event', 'view_item', {
+  const handleClickItem = async () => {
+    /* await gtag('event', 'view_item', {
       items: [{
         item_name:productName,
         item_id:idProducto,
@@ -51,14 +51,23 @@ const ProductCard = ({
       }],
       currency:"ARS",
       value: Number(productPrice)
+    }); */
+    ReactGA.event({
+      category: "User",
+      action: "Created an Account",
     });
-    navigate(`/productoCard/${idProducto}`)
-  }
+    navigate(`/productoCard/${idProducto}`);
+  };
 
   return (
     <Card
       sx={{
-        width: { xs: "160px", sm: paginaProductos?"200px":"220px", md: paginaProductos?"220px":"264px", xl: "264px" },
+        width: {
+          xs: "160px",
+          sm: paginaProductos ? "200px" : "220px",
+          md: paginaProductos ? "220px" : "264px",
+          xl: "264px",
+        },
         position: "relative",
         overflow: "hidden",
         borderRadius: "10px",
@@ -80,7 +89,9 @@ const ProductCard = ({
                 filter: "blur(2px)",
               },
             }}
-            onClick={() => {handleClickItem()}}
+            onClick={() => {
+              handleClickItem();
+            }}
           />
         </CardActionArea>
         <Box sx={{ position: "absolute", top: "8px", right: "8px" }}>
