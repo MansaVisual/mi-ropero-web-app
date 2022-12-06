@@ -15,7 +15,6 @@ import { LikeButton } from "../ActionButton/ActionButton";
 import theme from "../../styles/theme";
 import { UseLoginContext } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
-import { gtag } from 'ga-gtag';
 
 const ProductCard = ({
   imageCard,
@@ -42,16 +41,16 @@ const ProductCard = ({
   };
 
   const handleClickItem=()=>{
-    gtag('event', 'view_item', {
-      items: [{
-        item_name:productName,
-        item_id:idProducto,
-        price:Number(productPrice),
-        currency:"ARS"
-      }],
-      currency:"ARS",
-      value: Number(productPrice)
-    });
+    // gtag('event', 'view_item', {
+    //   items: [{
+    //     item_name:productName,
+    //     item_id:idProducto,
+    //     price:Number(productPrice),
+    //     currency:"ARS"
+    //   }],
+    //   currency:"ARS",
+    //   value: Number(productPrice)
+    // });
     navigate(`/productoCard/${idProducto}`)
   }
 
