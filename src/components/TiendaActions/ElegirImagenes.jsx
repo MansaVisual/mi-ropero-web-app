@@ -108,9 +108,14 @@ const ElegirImagenes = ({ form, setForm }) => {
             const isVideo = (url) => {
               return /\.(mp4)$/.test(url);
             };
+            const isVideo2 = (url) => {
+              return /\.(video)$/.test(url);
+            };
+            console.log(imagenes);
+            console.log("isVideo", isVideo);
+            console.log("isVideo2", isVideo2);
             for (let k = 2; k < imagenes.length; k++) {
               if (isVideo(imagenes[k].imagen_original)) {
-                console.log("video");
                 video = imagenes[k].imagen_original;
               } else {
                 extraNumber++;
@@ -327,8 +332,11 @@ const ElegirImagenes = ({ form, setForm }) => {
                 <div
                   className="section"
                   onClick={() => {
-                    if (form.imagenesApi.length>0) {
-                      setIdImgEditar(form.imagenesApi[i+imgNecesarias.length-1].idproductoimagen);
+                    if (form.imagenesApi.length > 0) {
+                      setIdImgEditar(
+                        form.imagenesApi[i + imgNecesarias.length - 1]
+                          .idproductoimagen
+                      );
                     }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
