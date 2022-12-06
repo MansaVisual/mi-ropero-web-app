@@ -36,7 +36,7 @@ import { MiTiendaContext } from "./context/MiTiendaContext";
 import Tienda from "./views/Tienda/Tienda";
 import ReactGA from "react-ga4";
 
-const TRACK_ID = "GTM-5WPBFQX";
+const TRACK_ID = "G-8061TWL20G";
 ReactGA.initialize(TRACK_ID);
 
 function App() {
