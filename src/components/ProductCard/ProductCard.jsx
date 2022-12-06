@@ -52,18 +52,24 @@ const ProductCard = ({
       currency:"ARS",
       value: Number(productPrice)
     }); */
-    await ReactGA.event({
-      items: [{
-        item_name:productName,
-        item_id:idProducto,
-        price:Number(productPrice),
-        currency:"ARS"
-      }],
-      currency:"ARS",
+    await ReactGA.event("view_item", {
+      /* items: [
+        {
+          item_name: productName,
+          item_id: idProducto,
+          price: Number(productPrice),
+          currency: "ARS",
+        },
+      ], */
+      currency: "ARS",
       value: Number(productPrice),
-      action: "view_item",
-      category: "item"
+      item_name: productName,
+      item_id: idProducto,
+      price: Number(productPrice),
+      /* currency: "ARS", */
     });
+    /* ReactGA.plugin.execute("ecommerce") */
+
     navigate(`/productoCard/${idProducto}`);
   };
 
