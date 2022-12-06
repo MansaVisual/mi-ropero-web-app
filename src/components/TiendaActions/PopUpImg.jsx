@@ -36,7 +36,7 @@ const PopUpImg = ({
 
   const onFileChange = async (e) => {
     setImagenCargada(true);
-    if(idImgEditar===""){
+    if(idImgEditar!==""){
       setImgsEditar((prevState) => ({
         ...prevState,
         [section]: {img:e.target.files[0],id:idImgEditar},

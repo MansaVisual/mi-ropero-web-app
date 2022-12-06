@@ -142,6 +142,23 @@ const Sumario = ({ form }) => {
                 await insertImg(img);
               }
             }
+            for (const i in form.imagenesEditar) {
+              if (form.imagenesEditar[i] !== null) {
+                const img = new FormData();
+                img.append("idtienda", Number(tiendaData.idtienda));
+                img.append(
+                  "idproducto",
+                  Number(
+                    form.prodEditar
+                      ? form.prodEditar.idproducto
+                      : res.result.idproducto
+                  )
+                );
+                img.append("image", form.imagenesEditar[i].img);
+                img.append("idproductoimagen", form.imagenesEditar[i].id);
+                await editarImg(img);
+              }
+            }
             if (form.video) {
               const vid = new FormData();
               vid.append("idtienda", Number(tiendaData.idtienda));
@@ -179,6 +196,12 @@ const Sumario = ({ form }) => {
 
   const insertImg = async (prod) => {
     apiFetch(prod, "productos", "insert_image").then((res) => {
+      console.log(res);
+      return res;
+    });
+  };
+  const editarImg = async (prod) => {
+    apiFetch(prod, "productos", "update_image").then((res) => {
       console.log(res);
       return res;
     });
