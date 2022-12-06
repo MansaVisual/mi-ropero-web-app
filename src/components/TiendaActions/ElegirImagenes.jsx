@@ -112,9 +112,9 @@ const ElegirImagenes = ({ form, setForm }) => {
               return /\.(video)$/.test(url);
             };
             console.log(imagenes);
-            console.log("isVideo", isVideo);
-            console.log("isVideo2", isVideo2);
             for (let k = 2; k < imagenes.length; k++) {
+              console.log("isVideo", isVideo(imagenes[k].imagen_original));
+              console.log("isVideo2", isVideo2(imagenes[k].imagen_original));
               if (isVideo(imagenes[k].imagen_original)) {
                 video = imagenes[k].imagen_original;
               } else {
