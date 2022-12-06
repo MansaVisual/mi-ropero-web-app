@@ -93,49 +93,68 @@ const Calificaciones = () => {
                 califFiltradas.length > 0 ? (
                   califFiltradas.map((data, id) => {
                     return (
-                      <div key={id} className="desktopCard">
-                        <div className="data">
-                          {/* <img src={venta.img} alt="cardImage" /> */}
-                          <div>
-                            <p className="id">
-                              Operacion: <span>{data.idoperacion}</span>
-                            </p>
-                            <p className="name">Fecha: {data.fecha}</p>
-                            <p className="review">"{data.mensaje}"</p>
+                      <>
+                        <div key={id} className="desktopCard">
+                          <div className="data">
+                            <div>
+                              <p className="id">
+                                Operacion: <span>{data.idoperacion}</span>
+                              </p>
+                              <p className="name">Fecha: {data.fecha}</p>
+                              <p className="review">"{data.mensaje}"</p>
+                            </div>
+                          </div>
+                          <div className="rigthSide">
+                            <Rating
+                              name="text-feedback"
+                              value={Number(data.estrellas)}
+                              readOnly
+                              precision={0.5}
+                              icon={
+                                <StarIcon
+                                  style={{ width: "20px", height: "20px" }}
+                                ></StarIcon>
+                              }
+                              emptyIcon={
+                                <StarIcon
+                                  style={{
+                                    opacity: 0.55,
+                                    width: "20px",
+                                    height: "20px",
+                                  }}
+                                />
+                              }
+                            />
                           </div>
                         </div>
-                        <div className="rigthSide">
-                          <Rating
-                            name="text-feedback"
-                            value={Number(data.estrellas)}
-                            readOnly
-                            precision={0.5}
-                            icon={
-                              <StarIcon
-                                style={{ width: "20px", height: "20px" }}
-                              ></StarIcon>
-                            }
-                            emptyIcon={
-                              <StarIcon
-                                style={{
-                                  opacity: 0.55,
-                                  width: "20px",
-                                  height: "20px",
-                                }}
-                              />
-                            }
-                          />
-                          {/*  <img
-                            onClick={() => {
-                              setBorrarMsj(true);
-                    setMensajeId(mensaje.idmensaje); 
-                            }}
-                            className="basuraIcon"
-                            src={basura}
-                            alt="BasuraIcon"
-                          /> */}
+                        <div key={`mobile${id}`} className="mobileCard">
+                          <div>
+                            <p className="messageTitle">{data.nombre}</p>
+                            <p className="messageState">{data.estado_text}</p>
+                            <p className="discountLink">CREAR DESCUENTO</p>
+                            <Rating
+                              name="text-feedback"
+                              value={Number(data.estrellas)}
+                              readOnly
+                              precision={0.5}
+                              icon={
+                                <StarIcon
+                                  style={{ width: "15px", height: "15px" }}
+                                ></StarIcon>
+                              }
+                              emptyIcon={
+                                <StarIcon
+                                  style={{
+                                    opacity: 0.55,
+                                    width: "15px",
+                                    height: "15px",
+                                  }}
+                                />
+                              }
+                            />
+                          </div>
                         </div>
-                      </div>
+                      </>
                     );
                   })
                 ) : (
