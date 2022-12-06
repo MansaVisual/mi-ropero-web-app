@@ -113,6 +113,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             };
             console.log(imagenes);
             for (let k = 2; k < imagenes.length; k++) {
+              console.log(imagenes[k].imagen_original);
               console.log("isVideo", isVideo(imagenes[k].imagen_original));
               console.log("isVideo2", isVideo2(imagenes[k].imagen_original));
               if (isVideo(imagenes[k].imagen_original)) {
