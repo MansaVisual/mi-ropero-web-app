@@ -21,9 +21,11 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FiMenu } from "react-icons/fi";
 import { UseProdsContext } from "../../context/ProdsContext";
 import { useNavigate } from "react-router-dom";
+import NavBarPopUp from "../NavBar/NavBarPopUp";
 
 const NavMenu = () => {
   const navigate = useNavigate();
+  const [openVenderPop, setOpenVenderPop] = useState(false);
 
   const [state, setState] = useState({
     right: false,
@@ -80,7 +82,7 @@ const NavMenu = () => {
     }
   };
 
-  const list = (anchor) => (
+  const list = (anchor) => (<>
     <Box
       sx={{
         width: 300,
@@ -186,8 +188,24 @@ const NavMenu = () => {
             justifyContent: "center",
             boxShadow: "0 -4px 10px hsla(0, 0%, 0%, 0.2)",
             py: "10px",
+            flexDirection:"column"
           }}
         >
+          <Button
+            sx={{
+              border: "0.5px solid #BABCBE",
+              borderRadius: "20px",
+              color: "hsla(0, 0%, 53%, 1)",
+              fontWeight: theme.typography.fontWeightRegular,
+              letterSpacing: "0.8px",
+              fontSize: theme.typography.fontSize[2],
+              minWidth: "190px",
+              marginBottom:"16px"
+            }}
+            onClick={() => setOpenVenderPop(true)}
+          >
+            Vender
+          </Button>
           <Button
             sx={{
               border: "0.5px solid #BABCBE",
@@ -204,6 +222,8 @@ const NavMenu = () => {
         </Toolbar>
       </Box>
     </Box>
+    {openVenderPop && <NavBarPopUp setOpenVenderPop={setOpenVenderPop} />}
+    </>
   );
 
   return (
