@@ -100,7 +100,7 @@ const Sumario = ({ form }) => {
                     }
                   );
                 }
-                /*           setLoading(false);
+                setLoading(false);
                 Swal.fire({
                   title: "PRODUCTO CARGADO EXITOSAMENTE",
                   icon: "success",
@@ -109,7 +109,7 @@ const Sumario = ({ form }) => {
                   window.location.replace(
                     "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
                   );
-                }); */
+                });
               }
             });
           } else {
@@ -194,7 +194,7 @@ const Sumario = ({ form }) => {
             }
             setLoading(false);
             Swal.fire({
-              title: "PRODUCTO CARGADO EXITOSAMENTE",
+              title: form.prodEditar?"PRODUCTO EDITADO EXITOSAMENTE":"PRODUCTO CARGADO EXITOSAMENTE",
               icon: "success",
               confirmButtonText: "CONTINUAR",
             }).then((res) => {
