@@ -5,6 +5,10 @@
   justify-content: flex-start;
   max-width: 1366px;
   width: 100%;
+  @include screen_1366{
+    max-width: 1222px;
+    margin: 40px auto 80px;
+  }
   @include screen_705 {
     margin-top: 24px;
     margin-right: 0px;
