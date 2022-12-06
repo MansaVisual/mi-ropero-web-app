@@ -142,7 +142,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             descripcion: form.prodEditar.descripcion,
             imagenesApi: form.prodEditar.imagenes,
             imagenes: img,
-            video: video,
+            videoApi: video,
           }));
           setImagenesPreview(img);
           setVideo(video);

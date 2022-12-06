@@ -160,6 +160,17 @@ const Sumario = ({ form }) => {
               }
             }
             if (form.video) {
+              if (form.videoApi) {
+                const vidApi = new FormData();
+                vidApi.append("idtienda", Number(tiendaData.idtienda));
+                vidApi.append("idproducto", Number(form.prodEditar.idproducto));
+                vidApi.append("idproductoimagen", form.video.idproductoimagen);
+                await apiFetch(vidApi, "productos", "delete_image").then(
+                  (vidRes) => {
+                    console.log(vidRes);
+                  }
+                );
+              }
               const vid = new FormData();
               vid.append("idtienda", Number(tiendaData.idtienda));
               vid.append(
