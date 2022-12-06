@@ -32,8 +32,8 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
 
-  const [imgsEditar,setImgsEditar]=useState([])
-  const [idImgEditar,setIdImgEditar]=useState("")
+  const [imgsEditar, setImgsEditar] = useState([]);
+  const [idImgEditar, setIdImgEditar] = useState("");
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -206,7 +206,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         imagenesPreview: imagenesPreview,
         seccionExtra: seccionExtra,
         video: video,
-        imagenesEditar:imgsEditar
+        imagenesEditar: imgsEditar,
       }));
       navigate(`/Mi&Tienda/CARACTERISTICAS`);
     }
@@ -283,13 +283,13 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox,i) => {
+            imgNecesarias.map((imgBox, i) => {
               return (
                 <div
                   className="section"
                   onClick={() => {
-                    if(form.imagenesApi[i]){
-                      setIdImgEditar(form.imagenesApi[i].idproductoimagen)
+                    if (form.imagenesApi.length > 0) {
+                      setIdImgEditar(form.imagenesApi[i].idproductoimagen);
                     }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
@@ -322,13 +322,13 @@ const ElegirImagenes = ({ form, setForm }) => {
             })
           )}
           {seccionExtra.length > 0 &&
-            seccionExtra.map((imgBox,i) => {
+            seccionExtra.map((imgBox, i) => {
               return (
                 <div
                   className="section"
                   onClick={() => {
-                    if(form.imagenesApi[i]){
-                      setIdImgEditar(form.imagenesApi[i].idproductoimagen)
+                    if (form.imagenesApi[i]) {
+                      setIdImgEditar(form.imagenesApi[i].idproductoimagen);
                     }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
