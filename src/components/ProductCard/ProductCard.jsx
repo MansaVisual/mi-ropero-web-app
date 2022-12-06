@@ -56,12 +56,6 @@ const ProductCard = ({
       category: "User",
       action: "Created an Account",
     });
-    console.log(
-      ReactGA.event({
-        category: "User",
-        action: "Created an Account",
-      })
-    );
     navigate(`/productoCard/${idProducto}`);
   };
 
