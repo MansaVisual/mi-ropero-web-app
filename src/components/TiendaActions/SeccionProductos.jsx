@@ -119,6 +119,13 @@ const SeccionProductos = ({ setForm }) => {
           </div>
           <div className="buttonContainer">
             <button
+              onClick={() => {
+                setForm((prevState) => ({
+                  ...prevState,
+                  crearTienda: false,
+                }));
+                navigate(`/Mi&Tienda/CATEGORIA`);
+              }}
             >
               AGREGAR PRODUCTO
             </button>
@@ -138,9 +145,6 @@ const SeccionProductos = ({ setForm }) => {
                               : MRlogoGrande
                           }
                           alt="cardImage"
-                          onClick={() => {
-                            editarProd(product.idproducto);
-                          }}
                         />
                         <div>
                           <p className="title">{product.nombre}</p>
@@ -161,6 +165,14 @@ const SeccionProductos = ({ setForm }) => {
                             CREAR DESCUENTO
                           </p>
                         </div>
+                        <img
+                          className="editICon"
+                          src={editIcon}
+                          alt="editICon"
+                          onClick={() => {
+                            editarProd(product.idproducto);
+                          }}
+                        />
                       </div>
                       <div className="ofertaData">
                         {product.precio_oferta === "0.00" ? (
@@ -191,18 +203,6 @@ const SeccionProductos = ({ setForm }) => {
                           className="basuraIcon"
                           src={basura}
                           alt="BasuraIcon"
-                        />
-                        <img
-                          className="editICon"
-                          src={editIcon}
-                          alt="editICon"
-                          onClick={() => {
-                            setForm((prevState) => ({
-                              ...prevState,
-                              crearTienda: false,
-                            }));
-                            navigate(`/Mi&Tienda/CATEGORIA`);
-                          }}
                         />
                       </div>
                     </div>
@@ -259,7 +259,6 @@ const SeccionProductos = ({ setForm }) => {
                         </p>
                       </div>
                       <img
-                        onClick={() => handleDelete(product.idproducto)}
                         src={basura}
                         className="trashICon"
                         alt="basuraIcon"
