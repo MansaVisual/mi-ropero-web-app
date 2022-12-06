@@ -160,7 +160,6 @@
             box-sizing: border-box;
             padding: 16px;
             max-width: 329px;
-            min-width: 320px;
             display: flex;
             @include screen_705 {
               display: flex !important;
