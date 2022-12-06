@@ -259,6 +259,7 @@ const SeccionProductos = ({ setForm }) => {
                         </p>
                       </div>
                       <img
+                        onClick={() => handleDelete(product.idproducto)}
                         src={basura}
                         className="trashICon"
                         alt="basuraIcon"
