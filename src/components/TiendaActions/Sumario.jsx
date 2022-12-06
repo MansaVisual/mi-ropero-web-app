@@ -347,7 +347,7 @@ const Sumario = ({ form }) => {
             </Button>
           )}
           <p>
-            Al oprimir {form.prodEditar ? "EDITAR " : "PUBLICAR "}
+            Al oprimir {form.prodEditar ? "GUARDAR CAMBIOS " : "PUBLICAR "}
             aceptas los{" "}
             <span
               onClick={() =>
