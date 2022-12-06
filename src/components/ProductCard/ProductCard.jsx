@@ -43,13 +43,13 @@ const ProductCard = ({
 
   const handleClickItem=()=>{
     gtag('event', 'view_item', {
-      'items': [{
+      items: [{
         item_name:productName,
         item_id:idProducto,
         price:Number(productPrice),
         currency:"ARS"
       }],
-      'currency':"ARS",
+      currency:"ARS",
       value: Number(productPrice)
     });
     navigate(`/productoCard/${idProducto}`)
