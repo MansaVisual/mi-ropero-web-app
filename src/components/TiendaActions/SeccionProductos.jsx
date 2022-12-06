@@ -217,7 +217,16 @@ const SeccionProductos = ({ setForm }) => {
                         alt="cardImage"
                       />
                       <div>
-                        <p className="messageTitle">{product.nombre}</p>
+                        <p className="messageTitle">{product.nombre}
+                        <img
+                          className="editIConMobile"
+                          src={editIcon}
+                          alt="editICon"
+                          onClick={() => {
+                            editarProd(product.idproducto);
+                          }}
+                        />
+                        </p>
                         <p className="messageState">{product.estado_text}</p>
                         {product.precio_oferta === "0.00" ? (
                           <p className="monto">
@@ -259,14 +268,6 @@ const SeccionProductos = ({ setForm }) => {
                         </p>
 
                       </div>
-                      <img
-                        className="editIConMobile"
-                        src={editIcon}
-                        alt="editICon"
-                        onClick={() => {
-                          editarProd(product.idproducto);
-                        }}
-                      />
                       <img
                         src={basura}
                         className="trashICon"
