@@ -160,11 +160,14 @@ const Sumario = ({ form }) => {
               }
             }
             if (form.video) {
-              if (form.videoApi) {
+              if (form.videoApi && form.cambioVideo) {
                 const vidApi = new FormData();
                 vidApi.append("idtienda", Number(tiendaData.idtienda));
                 vidApi.append("idproducto", Number(form.prodEditar.idproducto));
-                vidApi.append("idproductoimagen", form.video.idproductoimagen);
+                vidApi.append(
+                  "idproductoimagen",
+                  form.videoApi.idproductoimagen
+                );
                 await apiFetch(vidApi, "productos", "delete_image").then(
                   (vidRes) => {
                     console.log(vidRes);

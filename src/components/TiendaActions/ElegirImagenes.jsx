@@ -31,6 +31,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [numeroImgExtra, setNumeroImgExtra] = useState(1);
   const [esOpcional, setEsOpcional] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
+  const [cambioVideo, setCambioVideo] = useState(false);
 
   const [imgsEditar, setImgsEditar] = useState([]);
   const [idImgEditar, setIdImgEditar] = useState("");
@@ -105,13 +106,12 @@ const ElegirImagenes = ({ form, setForm }) => {
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
-            /* const isVideo = (url) => {
-              return /\.(mp4)$/.test(url);
-            }; */
             console.log(imagenes);
             for (let k = 2; k < imagenes.length; k++) {
-              console.log(imagenes[k].imagen_original.includes("video"));
-              if (imagenes[k].imagen_original.includes("video")) {
+              if (
+                imagenes[k].imagen_original.includes("video") &&
+                imagenes[k].imagen_original.includes(".mp4")
+              ) {
                 video = imagenes[k].imagen_original;
               } else {
                 extraNumber++;
@@ -207,6 +207,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         imagenesPreview: imagenesPreview,
         seccionExtra: seccionExtra,
         video: video,
+        cambioVideo: cambioVideo,
         imagenesEditar: imgsEditar,
       }));
       navigate(`/Mi&Tienda/CARACTERISTICAS`);
@@ -455,6 +456,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setErrorObligatorio={setErrorObligatorio}
           setVideoPreview={setVideoPreview}
           videoPreview={videoPreview}
+          setCambioVideo={setCambioVideo}
         />
       )}
     </div>

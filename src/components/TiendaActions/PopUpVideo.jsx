@@ -9,6 +9,7 @@ const PopUpVideo = ({
   setVideo,
   setVideoPreview,
   videoPreview,
+  setCambioVideo,
 }) => {
   const [videoSrc, setVideoSrc] = useState(null);
 
@@ -19,8 +20,6 @@ const PopUpVideo = ({
       reader.readAsDataURL(file);
     });
   }
-
-  console.log(videoPreview);
 
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -42,6 +41,7 @@ const PopUpVideo = ({
 
   const handleSubmit = () => {
     setVideo(videoSrc);
+    setCambioVideo(true);
     setOpenVidPopUp(false);
   };
   return (
