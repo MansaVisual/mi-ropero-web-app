@@ -105,19 +105,13 @@ const ElegirImagenes = ({ form, setForm }) => {
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
-            const isVideo = (url) => {
+            /* const isVideo = (url) => {
               return /\.(mp4)$/.test(url);
-            };
-            const isVideo2 = (url) => {
-              return /\.(video)$/.test(url);
-            };
+            }; */
             console.log(imagenes);
             for (let k = 2; k < imagenes.length; k++) {
-              console.log(imagenes[k].imagen_original);
               console.log(imagenes[k].imagen_original.includes("video"));
-              console.log("isVideo", isVideo(imagenes[k].imagen_original));
-              console.log("isVideo2", isVideo2(imagenes[k].imagen_original));
-              if (isVideo(imagenes[k].imagen_original)) {
+              if (imagenes[k].imagen_original.includes("video")) {
                 video = imagenes[k].imagen_original;
               } else {
                 extraNumber++;
