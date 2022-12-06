@@ -194,7 +194,7 @@ const Sumario = ({ form }) => {
             }
             setLoading(false);
             Swal.fire({
-              title: "PRODUCTO CARGADO EXITOSAMENTE",
+              title: form.prodEditar?"PRODUCTO EDITADO EXITOSAMENTE":"PRODUCTO CARGADO EXITOSAMENTE",
               icon: "success",
               confirmButtonText: "CONTINUAR",
             }).then((res) => {
