@@ -57,7 +57,7 @@
 }
 
 @mixin screen_900 {
-  @media (max-width: 950px) {
+  @media (max-width: 900px) {
     @content;
   }
 }

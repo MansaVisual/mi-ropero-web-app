@@ -614,3 +614,8 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 }
+.navBar-margin{
+  @include screen_900{
+    padding: 0px 0px !important;
+  }
+}

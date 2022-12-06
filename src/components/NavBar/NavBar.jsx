@@ -189,6 +189,7 @@ const NavBar = () => {
               height: "48px",
               px: { sm: "90px" },
             }}
+            className="navBar-margin"
             maxWidth="xl"
           >
             <Box
