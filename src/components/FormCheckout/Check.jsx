@@ -53,6 +53,7 @@ const CheckForm = ({estadoCompra})=>{
                 localStorage.clear("newDireccionMiRopero")
                 localStorage.clear("metodoEnvioMiRopero")
                 localStorage.clear("saveDireccionMiRopero")
+                localStorage.clear("idCompraAnalytics")
             }
         }
     }, [userLog]);// eslint-disable-line react-hooks/exhaustive-deps

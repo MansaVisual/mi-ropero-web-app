@@ -72,15 +72,20 @@ const Checkout = ()=>{
                 navigate("/login")
             }else{
                 let query = new URLSearchParams(window.location.search)
+                const idCompra = JSON.parse(localStorage.getItem("idCompraAnalytics"))
                 if(query.get("status")==="success"){
                     setEstadoCompra("success")
-                    // ReactGA.event("remove_from_cart", {
-                    //     user:userLog,
-                    //     transaction_id:
-                    // });
+                    ReactGA.event("purchase", {
+                        user:userLog,
+                        transaction_id:idCompra
+                    });
                     setTypeNav("check")
                 }else if(query.get("status")==="pending"){
                     setEstadoCompra("pending")
+                    ReactGA.event("purchase", {
+                        user:userLog,
+                        transaction_id:idCompra
+                    });
                     setTypeNav("check")
                 }else if(query.get("status")==="failure"){
                     setEstadoCompra("error")
