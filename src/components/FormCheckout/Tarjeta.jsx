@@ -52,7 +52,7 @@ const Tarjeta = ({
     finalizarCompra.append("promocion_codigo", codDesc);
     finalizarCompra.append("medio_envio", metodoEnvio);
 
-    apiFetch(finalizarCompra, "operaciones", "insert").then(async(res) => {
+    apiFetch(finalizarCompra, "operaciones", "insert").then(async(res) => {console.log("RESPUESTA DE MERCADOPAGO",res)
       if (res.status === "success") {
         setLoad(false);
         if (res.result.init_point !== undefined) {
@@ -76,7 +76,7 @@ const Tarjeta = ({
           );
           await localStorage.setItem("compraFinalizadaMP","activo")
           setTimeout(() => {
-            setTypeNav("check");
+            // setTypeNav("check");
           }, 2000);
         }
       } else if (res.result === false) {
