@@ -127,7 +127,8 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
               currency: "ARS",
               item_name: prod.nombre,
               item_id: itemID,
-              price: Number(prod.price),
+              price: Number(prod.precio),
+              ofert_price:Number(prod.precio_oferta)
             });
             Swal.fire({
               title: "PRODUCTO AÑADIDO",

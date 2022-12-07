@@ -48,6 +48,7 @@ const ProductCard = ({
       item_name: productName,
       item_id: idProducto,
       price: Number(productPrice),
+      ofert_price:Number(precioOferta)
     });
     navigate(`/productoCard/${idProducto}`);
   };

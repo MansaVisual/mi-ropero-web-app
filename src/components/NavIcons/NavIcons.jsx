@@ -93,9 +93,10 @@ const NavIcons = () => {
         await chargeCarrito();
         await ReactGA.event("remove_from_cart", {
           currency: "ARS",
-          item_name: prod.nombre,
+          item_name: prod.producto.nombre,
           item_id: prodEliminar,
-          price: Number(prod.price),
+          price: Number(prod.producto.precio),
+          ofert_price:Number(prod.producto.precio_oferta)
         });
         setEliminar(false);
         setLoad(false);
