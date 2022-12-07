@@ -28,6 +28,7 @@ import Swal from "sweetalert2";
 import MopedIcon from "@mui/icons-material/Moped";
 import logo from "../../assets/img/isologo.png";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import ReactGA from "react-ga4";
 
 const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const location = useLocation();
@@ -119,9 +120,15 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       if (res.result === "El producto se agrego correctamente al carrito") {
         const CartID = new FormData();
         CartID.append("idcliente", userLog);
-        apiFetch(CartID, "carritos", "all").then((res) => {
+        apiFetch(CartID, "carritos", "all").then(async(res) => {
           if (res.status === "success") {
             setCarrito(res.result);
+            await ReactGA.event("add_to_cart", {
+              currency: "ARS",
+              item_name: prod.nombre,
+              item_id: itemID,
+              price: Number(prod.price),
+            });
             Swal.fire({
               title: "PRODUCTO AÑADIDO",
               text: "El producto se añadió exitosamente",

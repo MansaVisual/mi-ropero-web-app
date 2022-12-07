@@ -11,6 +11,8 @@ import PopUpSetSucursal from "./PopUpME2";
 import { UseFormContext } from "../../context/FormContext";
 import Loader from "../Loader/Loader";
 import Swal from "sweetalert2";
+import ReactGA from "react-ga4";
+import { UseLoginContext } from "../../context/LoginContext";
 
 const MetodoEnvio = ({
   setTypeNav,
@@ -32,6 +34,7 @@ const MetodoEnvio = ({
   const [viewSucursales, setViewSucursales] = useState(false);
   const [setSucursal, setSetSucursal] = useState(false);
   const [envioMoto, setEnvioMoto] = useState(false);
+  const {userLog}=useContext(UseLoginContext)
 
   useEffect(() => {
     if (costoMoto.precio !== undefined) {
@@ -86,6 +89,16 @@ const MetodoEnvio = ({
       });
     } else {
       setViewSucursales(false);
+      await ReactGA.event("add_to_cart", {
+        user: userLog,
+        shipping_tier: metodoEnvio === "345837"
+                      ? "Envío a domicilio"
+                      : metodoEnvio === "345838"
+                      ? "Envío a sucursal"
+                      : metodoEnvio === "1"
+                      ? "Envío en moto"
+                      : ""
+      });
       setTypeNav("tarjeta");
     }
   };
@@ -99,6 +112,16 @@ const MetodoEnvio = ({
       });
     } else {
       setViewSucursales(false);
+      await ReactGA.event("add_to_cart", {
+        user: userLog,
+        shipping_tier: metodoEnvio === "345837"
+                      ? "Envío a domicilio"
+                      : metodoEnvio === "345838"
+                      ? "Envío a sucursal"
+                      : metodoEnvio === "1"
+                      ? "Envío en moto"
+                      : ""
+      });
       setTypeNav("tarjeta");
     }
   };

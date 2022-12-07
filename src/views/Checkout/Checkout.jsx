@@ -14,6 +14,7 @@ import Tarjeta from "../../components/FormCheckout/Tarjeta";
 import CheckForm from "../../components/FormCheckout/Check";
 import { UseLoginContext } from "../../context/LoginContext";
 import { UseCartContext } from "../../context/CartContext";
+import ReactGA from "react-ga4";
 
 const Checkout = ()=>{
     const navigate = useNavigate();
@@ -73,6 +74,10 @@ const Checkout = ()=>{
                 let query = new URLSearchParams(window.location.search)
                 if(query.get("status")==="success"){
                     setEstadoCompra("success")
+                    // ReactGA.event("remove_from_cart", {
+                    //     user:userLog,
+                    //     transaction_id:
+                    // });
                     setTypeNav("check")
                 }else if(query.get("status")==="pending"){
                     setEstadoCompra("pending")
@@ -81,12 +86,19 @@ const Checkout = ()=>{
                     setEstadoCompra("error")
                     setTypeNav("check")
                 }
+                reactAnalytics()
             }
         }
       },[num])// eslint-disable-line react-hooks/exhaustive-deps
 
     
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
+    const reactAnalytics=async()=>{
+        await ReactGA.event("begin_checkout", {
+            user:userLog
+        });
+    }
 
     const onNextForm=(type)=>{
         setTypeNav(type)

@@ -39,7 +39,7 @@ import MiRoperoNavbar from "../../assets/img/isologo.png";
 import iconoMensaje from "../../assets/img/iconMensaje.png";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
-// import MisMensajesNavbar from "../../assets/img/msj2.jpg";
+import ReactGA from "react-ga4";
 
 const NavIcons = () => {
   const navigate = useNavigate();
@@ -58,6 +58,7 @@ const NavIcons = () => {
   const [eliminar, setEliminar] = useState(false);
   const [prodEliminar, setProdEliminar] = useState(null);
   const [aparece, setAparece] = useState(true);
+  const [prod,setProd]=useState(null)
 
   useEffect(() => {
     if (localStorage.getItem("idClienteMiRopero") !== null) {
@@ -90,6 +91,12 @@ const NavIcons = () => {
     await apiFetch(eliminar, "carritos", "delete").then(async (res) => {
       if (res.status === "success") {
         await chargeCarrito();
+        await ReactGA.event("remove_from_cart", {
+          currency: "ARS",
+          item_name: prod.nombre,
+          item_id: prodEliminar,
+          price: Number(prod.price),
+        });
         setEliminar(false);
         setLoad(false);
       } else {
@@ -799,6 +806,7 @@ const NavIcons = () => {
                                 onClick={() => {
                                   handleCloseCart();
                                   handleEliminar(prod.idcarrito);
+                                  setProd(prod)
                                 }}
                               >
                                 <IoTrashOutline
