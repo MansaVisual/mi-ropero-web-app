@@ -198,7 +198,7 @@ const NavBar = () => {
               }}
             >
               <Link href="/">
-                <img src={isologoMR2} alt="logo-mi-ropero" />
+                <img src={isologoMR2} alt="logo-mi-ropero" className="logo-mi-ropero"/>
               </Link>
             </Box>
             {!isMobileBigScreen ? (

@@ -123,7 +123,7 @@ const ProductPage = () => {
   const handleCompraSinLogin = () => {
     if (userLog === "") {
       Swal.fire({
-        title: "¡HOLA! Para comprar, ingresá a tu cuenta",
+        title: "¡HOLA! Para comprar, ingresá a tu cuenta.",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
           icon: "no-border",

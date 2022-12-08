@@ -62,7 +62,9 @@
     }
     .swal2-actions{
         display: flex;
-        flex-direction: column;
+        @include screen_601{
+            flex-direction: column;
+        }
     }
     .popUpLoginCancel{
         font-size: 13px;

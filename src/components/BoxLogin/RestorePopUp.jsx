@@ -4,6 +4,7 @@ import cruz from "../../assets/img/cruz.png";
 import MRlogoModal from '../../assets/img/MRlogoModal.png'
 import Loader from '../Loader/Loader';
 import { apiFetch } from '../../apiFetch/apiFetch';
+import Swal from 'sweetalert2';
 
 const RestorePopUp = ({setRestorePassword}) => {
 
@@ -26,8 +27,14 @@ const RestorePopUp = ({setRestorePassword}) => {
             "remember"
         ).then((res)=>{
             if(res.status==="success"){
-                setLoad(false)
-                setRestorePassword(false)
+                Swal.fire({
+                    title: 'REVISÁ TU CORREO ELECTRÓNICO',
+                    icon: "success",
+                    confirmButtonText: "CONTINUAR",
+                  }).then((res) => {
+                      setLoad(false)
+                      setRestorePassword(false)
+                  });
             }else{
                 setErrorMail(true)
                 setLoad(false)

@@ -4,7 +4,7 @@ import HomeBanner2 from "../../assets/img/HomeBanner2.jpg";
 import HomeBanner3 from "../../assets/img/HomeBanner3.jpg";
 import homeBannerMobile1 from "../../assets/img/bannerMobile.jpg"
 import homeBannerMobile2 from "../../assets/img/bannerMobile2.jpg"
-import homeBannerMobile3 from "../../assets/img/bannerMPM.jpg"
+import homeBannerMobile3 from "../../assets/img/bannerMobile3.jpg"
 import Carousel from "react-material-ui-carousel";
 import { Box, useMediaQuery } from "@mui/material";
 import theme from "../../styles/theme";
