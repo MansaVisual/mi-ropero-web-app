@@ -66,8 +66,7 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
   const handleCompraSinLogin = () => {
     if (userLog === "") {
       Swal.fire({
-        title: "¡SUMATE A LA MODA CIRCULAR!",
-        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+        title: "¡HOLA! Para comprar, ingresá a tu cuenta",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
           icon: "no-border",
@@ -76,8 +75,8 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
         },
         showCloseButton: true,
         showCancelButton: true,
-        confirmButtonText: "CONTINUAR",
-        cancelButtonText: "CANCELAR",
+        confirmButtonText: "INGRESAR",
+        cancelButtonText: "VOLVER",
       }).then((res) => {
         if (res.isConfirmed) {
           localStorage.setItem("redirectUrl", location.pathname);

@@ -47,8 +47,7 @@ export const LikeButton = ({
   const onLike = async () => {
     if (idCliente === "") {
       Swal.fire({
-        title: "¡SUMATE A LA MODA CIRCULAR!",
-        text: "Para comprar y vender fácilmente necesitás ingresar a Mi Ropero",
+        title: "¡HOLA! Para comprar, ingresá a tu cuenta",
         iconHtml: `<img src=${logo} alt="LOGO">`,
         customClass: {
           icon: 'no-border',
@@ -57,8 +56,8 @@ export const LikeButton = ({
         },
         showCloseButton: true,
         showCancelButton: true,
-        confirmButtonText: "CONTINUAR",
-        cancelButtonText:"CANCELAR"
+        confirmButtonText: "INGRESAR",
+        cancelButtonText:"VOLVER"
       }).then((res)=>{
         if(res.isConfirmed){
           localStorage.setItem("redirectUrl", location);

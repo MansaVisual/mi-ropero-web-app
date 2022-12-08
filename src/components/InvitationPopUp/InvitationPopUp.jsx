@@ -12,13 +12,10 @@ const InvitationPopUp = ({setconfirmInvitation}) => {
         <div className="popUp">
             <div className="popUpContainer">
                 <img src={MRlogoModal} alt="logo" className="logoModal"/>
-                <p className="popUpTitle">¡SUMATE A LA MODA CIRCULAR!</p>
-                <p className="popUpDescription">
-                    Para comprar y vender fácilmente necesitás ingresar a Mi Ropero
-                </p>
+                <p className="popUpTitle">¡HOLA! Para comprar, ingresá a tu cuenta</p>
                 <div className='buttonContainer'>
-                    <Button className="cancelar">CANCELAR</Button>
-                    <Button className="continuar">CONTINUAR</Button>
+                    <Button className="cancelar">VOLVER</Button>
+                    <Button className="continuar">INGRESAR</Button>
                 </div>
                 <img
                     onClick={() => setconfirmInvitation(false)}

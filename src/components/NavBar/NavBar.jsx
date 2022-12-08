@@ -210,13 +210,17 @@ const NavBar = () => {
                 <Box>
                   <Button
                     sx={{
-                      border: "1px solid black",
+                      border: "1px solid white",
                       borderRadius: "20px",
                       padding: "6px 25px 6px 25px",
                       fontSize: theme.typography.fontSize[2],
                       fontWeight: theme.typography.fontWeightRegular,
-                      color: "hsla(351, 6%, 25%, 1)",
+                      color: "white",
                       height: "31px",
+                      backgroundColor:"rgb(255, 61, 31)",
+                      "&:hover": {
+                        backgroundColor: "rgb(255 113 91)",
+                      },
                     }}
                     onClick={() => setOpenVenderPop(true)}
                   >
