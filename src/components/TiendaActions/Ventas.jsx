@@ -51,7 +51,6 @@ const Ventas = () => {
       data.append("page", 0);
       data.append("bypage", 10);
       apiFetch(data, "operaciones", "all_saler").then((res) => {
-        console.log(res.status);
         if (res.status === "success") {
           for (const ii in res.result.operaciones) {
             array.push(res.result.operaciones[ii]);
@@ -64,9 +63,7 @@ const Ventas = () => {
             res.result === "No se encontraron operaciones"
           ) {
             setLoading(false);
-            console.log("error1");
           } else {
-            console.log("error2");
             setError(true);
             setLoading(false);
           }

@@ -46,7 +46,6 @@ const OfertasRecibidas = () => {
             setLoading(false);
             setOfertas([]);
           } else {
-            console.log("error");
             setError(true);
             setLoading(false);
           }

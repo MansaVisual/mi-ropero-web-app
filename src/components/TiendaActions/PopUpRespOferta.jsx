@@ -14,7 +14,6 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
   const [respuesta, setRespuesta] = useState("");
 
   const handleSubmit = (action) => {
-    console.log(action);
     setLoading(true);
     const offer = new FormData();
     offer.append("idcliente", Number(userLog));
@@ -22,9 +21,7 @@ const PopUpRespOferta = ({ setOpenPopUp, ofertaSelecc }) => {
     if (action === "accept") {
       offer.append("respuesta", respuesta);
     }
-    console.log(Object.fromEntries(offer));
     apiFetch(offer, "ofertas", action).then((res) => {
-      console.log(res);
       if (res.status === "success") {
         setLoading(false);
         setOpenPopUp(false);

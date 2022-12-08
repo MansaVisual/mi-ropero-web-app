@@ -40,7 +40,6 @@ const Transferencias = () => {
       data.append("idcliente", userLog);
       data.append("estado", filtroSelecc.id);
       apiFetch(data, "transferencias", "all").then((res) => {
-        console.log(res);
         if (res.status === "success") {
           setLoading(false);
           setTransferencias(res.result);
@@ -50,9 +49,7 @@ const Transferencias = () => {
             res.result === "El cliente no tiene transferencias"
           ) {
             setLoading(false);
-            console.log("error1");
           } else {
-            console.log("error2");
             setError(true);
             setLoading(false);
           }
@@ -70,7 +67,6 @@ const Transferencias = () => {
     return formatoFinal;
   };
 
-  console.log(transferencias);
 
   return (
     <div className="transferenciasContainer">

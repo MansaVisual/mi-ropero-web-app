@@ -19,7 +19,6 @@ const TiendaBanner = () => {
 
   const [transfPopUp, setTransfPopUp] = useState(false);
 
-  console.log(location)
   return (
     <div className="bannerContainer">
       <div className="breadcrumbs">

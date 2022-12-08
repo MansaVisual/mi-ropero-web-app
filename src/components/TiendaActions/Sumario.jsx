@@ -24,7 +24,6 @@ const Sumario = ({ form }) => {
     return;
   }
 
-  console.log(form, infoUser);
 
   const handleSubmit = () => {
     setLoading(true);
@@ -57,23 +56,19 @@ const Sumario = ({ form }) => {
       formData.append("entre_calle_2", direccion.entre_calle_2);
       formData.append("informacion_adicional", direccion.informacion_adicional);
       formData.append("normalized", direccion.raw_data);
-      console.log(Object.fromEntries(formData));
-      console.log(Object.fromEntries(prod));
+
       apiFetch(formData, "tiendas", "insert").then((tiendaRes) => {
-        console.log(tiendaRes.result);
         const tienda = new FormData();
         tienda.append("idcliente", Number(userLog));
         apiFetch(tienda, "tiendas", "list").then((resIdTienda) => {
           if (resIdTienda.status === "success") {
             prod.append("idtienda", resIdTienda.result[0].idtienda);
             apiFetch(prod, "productos", "insert").then(async (prodRes) => {
-              console.log(prodRes);
               if (prodRes.status === "success") {
                 const img = new FormData();
                 img.append("idtienda", Number(resIdTienda.result[0].idtienda));
                 img.append("idproducto", Number(prodRes.result.idproducto));
                 for (const i in form.imagenes) {
-                  console.log(form.imagenes[i]);
                   if (form.imagenes[i] !== null) {
                     const img = new FormData();
                     img.append(
@@ -85,7 +80,6 @@ const Sumario = ({ form }) => {
                     await insertImg(img);
                   }
                 }
-                console.log(form.video);
                 if (form.video) {
                   const vid = new FormData();
                   vid.append(
@@ -94,11 +88,7 @@ const Sumario = ({ form }) => {
                   );
                   vid.append("idproducto", Number(prodRes.result.idproducto));
                   vid.append("video", form.video);
-                  await apiFetch(vid, "productos", "insert_video").then(
-                    (vidRes) => {
-                      console.log(vidRes);
-                    }
-                  );
+                  await apiFetch(vid, "productos", "insert_video")
                 }
                 setLoading(false);
                 Swal.fire({
@@ -112,8 +102,6 @@ const Sumario = ({ form }) => {
                 });
               }
             });
-          } else {
-            console.log(tiendaRes);
           }
         });
       });
@@ -124,7 +112,6 @@ const Sumario = ({ form }) => {
       prod.append("idtienda", tiendaData.idtienda);
       apiFetch(prod, "productos", form.prodEditar ? "update" : "insert").then(
         async (res) => {
-          console.log(res.result);
           if (res.status === "success") {
             for (const i in form.imagenes) {
               if (form.imagenes[i] !== null) {
@@ -168,11 +155,7 @@ const Sumario = ({ form }) => {
                   "idproductoimagen",
                   form.videoApi.idproductoimagen
                 );
-                await apiFetch(vidApi, "productos", "delete_image").then(
-                  (vidRes) => {
-                    console.log(vidRes);
-                  }
-                );
+                await apiFetch(vidApi, "productos", "delete_image")
               }
               const vid = new FormData();
               vid.append("idtienda", Number(tiendaData.idtienda));
@@ -185,12 +168,7 @@ const Sumario = ({ form }) => {
                 )
               );
               vid.append("video", form.video);
-              console.log(Object.fromEntries(vid));
-              await apiFetch(vid, "productos", "insert_video").then(
-                (vidRes) => {
-                  console.log(vidRes);
-                }
-              );
+              await apiFetch(vid, "productos", "insert_video")
             }
             setLoading(false);
             Swal.fire({
@@ -210,13 +188,11 @@ const Sumario = ({ form }) => {
 
   const insertImg = async (prod) => {
     await apiFetch(prod, "productos", "insert_image").then((res) => {
-      console.log(res);
       return res;
     });
   };
   const editarImg = async (prod) => {
     await apiFetch(prod, "productos", "update_image").then((res) => {
-      console.log(res);
       return res;
     });
   };

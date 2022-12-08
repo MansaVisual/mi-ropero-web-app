@@ -62,7 +62,6 @@ const MisMensajes = () => {
         setMensajesFiltrados(mensajesPadre.filter((msg) => msg.estado === "2"));
       }
     }
-    console.log(mensajes, mensajesFiltrados);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensajes, typeMessage]);

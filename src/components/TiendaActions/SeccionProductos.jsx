@@ -24,7 +24,6 @@ const SeccionProductos = ({ setForm }) => {
   const [openPopUp2, setOpenPopUp2] = useState(false);
 
   const handleOpenModal = (infoDesc, metodo) => {
-    console.log(metodo, infoDesc);
     if (metodo === "productos") {
       setOpenPopUp(true);
       setDescuentoInfo({
@@ -133,7 +132,6 @@ const SeccionProductos = ({ setForm }) => {
           <div className="productList">
             {productos.length > 0 &&
               productos.map((product, id) => {
-                console.log(product);
                 return (
                   <>
                     <div key={id} className="desktopCard">

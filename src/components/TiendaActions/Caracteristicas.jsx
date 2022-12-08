@@ -27,12 +27,10 @@ const Caracteristicas = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
-      console.log(form);
       setData(form.caracteristicasList);
       setCaracteristicas(form.caracteristicas);
       setIdCaracteristica(form.idCaracteristicaOld);
     } else {
-      console.log(form);
       const dir = new FormData();
       dir.append("idcategoria", form.categoriaId);
       let caract = {};
@@ -102,7 +100,6 @@ const Caracteristicas = ({ form, setForm }) => {
       } else {
         let i = idCaracteristica[valueSeleccionado2.nombre];
         let ii = [];
-        console.log(idCaracteristica, i);
         const busqueda = i.find((e) => e === estadoSeleccionado);
 
         if (busqueda !== undefined) {
@@ -172,7 +169,6 @@ const Caracteristicas = ({ form, setForm }) => {
     });
   };
 
-  console.log(form);
   return (
     <div className="caractContainer">
       <div className="container">
@@ -201,7 +197,6 @@ const Caracteristicas = ({ form, setForm }) => {
             </div>
           ) : (
             data.map((select) => {
-              console.log(data, select);
               return (
                 <div className="inputBox">
                   <p className="labelInput" id="label">
@@ -216,7 +211,6 @@ const Caracteristicas = ({ form, setForm }) => {
                     id={select.nombre}
                     value={caracteristicas[select.nombre]}
                     renderValue={(selected) => {
-                      console.log(selected);
                       if (selected.length === 0) {
                         return (
                           <em>

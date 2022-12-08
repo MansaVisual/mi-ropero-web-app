@@ -46,11 +46,9 @@ const ProductPage = () => {
   const [prod, setProd] = useState([]);
   const [prodFotos, setProdFotos] = useState([]);
   const [prodCaracteristicas, setProdCaracteristicas] = useState([]);
-  console.log(prodFotos);
 
   const _renderVideo = (item) => {
-    console.log(item);
-    console.log(item.original);
+
     return (
       <video
         key={item.original}
@@ -89,7 +87,6 @@ const ProductPage = () => {
       prod.append("idproducto", itemID);
       prod.append("idcliente", userLog);
       apiFetch(prod, "productos", "details").then((res) => {
-        console.log("PRODUCTO", res);
         if (res.status === "success") {
           let arrayFotos = [];
           for (const i in res.result.imagenes) {
@@ -143,8 +140,6 @@ const ProductPage = () => {
       return;
     }
   };
-
-  console.log(prod);
 
   return (
     <Container maxWidth="xl">

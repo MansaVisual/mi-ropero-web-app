@@ -160,7 +160,6 @@ const ProductBuyBox = ({ prod, itemID,tienda }) => {
       document.getElementById("outlined-number").value
     );
     apiFetch(envio, "productos", "check_shipping_cost").then((res) => {
-      console.log(res)
       setLoad2(false);
       if (res.status === "success") {
         setCostoEnvio(res.result);

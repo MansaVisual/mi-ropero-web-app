@@ -37,7 +37,6 @@ const DetallesProd = ({ form, setForm }) => {
     }
   };
 
-  console.log(form, detalles);
 
   useEffect(() => {
     if (!form.categoriaId) {
@@ -45,7 +44,6 @@ const DetallesProd = ({ form, setForm }) => {
       return;
     }
     if (form.prodEditar) {
-      console.log("entra");
       setDetalles({
         titulo: form.prodEditar.nombre,
         precio: Math.floor(form.prodEditar.precio),

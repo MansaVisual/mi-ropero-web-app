@@ -74,8 +74,7 @@ const EditarDir = ({setDir}) => {
       setContactForm({ ...contactForm, barrioLocalidad: "CAPITAL FEDERAL" });
     }
   };
-  console.log(provincia)
-  console.log("DATA UPDATE", dataUpdate)
+
   const handleChangeLoc = () => {
     if (document.getElementById("barrioLocalidad") !== "CAPITAL FEDERAL") {
       if (document.getElementById("barrioLocalidad").value.length >= 3) {
@@ -157,7 +156,6 @@ const EditarDir = ({setDir}) => {
       }
     }
 
-    console.log("FORMULARIO",contactForm)
     validarDireccion();
   };
 
@@ -202,9 +200,7 @@ const EditarDir = ({setDir}) => {
 
   useEffect(() => {
     if (guardarDireccion) {
-      console.log(infoLocFinal)
-      console.log(direccion)
-      console.log("PISO 2", document.getElementById("piso").value)
+
       setDataUpdate((prevState)=>({
         ...prevState,
         calle:direccion.calle,

@@ -27,9 +27,7 @@ const Calificaciones = () => {
       const data = new FormData();
       data.append("idcliente", Number(userLog));
       apiFetch(data, "calificaciones", "all").then((res) => {
-        console.log(res.status);
         if (res.status === "success") {
-          console.log("");
           setCalificaciones(res.result);
           setLoading(false);
         } else {
@@ -39,7 +37,6 @@ const Calificaciones = () => {
           ) {
             setLoading(false);
           } else {
-            console.log("error");
             setError(true);
             setLoading(false);
           }

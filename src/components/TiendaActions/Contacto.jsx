@@ -55,7 +55,6 @@ const Contacto = ({ form, setForm }) => {
   const [changeLoc, setChangeLoc] = useState(false);
 
   const [cambioProvincia, setCambioProvincia] = useState(false);
-  console.log(infoLocFinal);
   useEffect(() => {
     if (!popLoc && infoLocFinal.length !== 0) {
       document.getElementById("codigoPostal").value =

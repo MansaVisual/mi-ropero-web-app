@@ -44,7 +44,6 @@ const ElegirImagenes = ({ form, setForm }) => {
       return;
     }
     if (form.editarProd) {
-      console.log(form);
       const idCaracteristica = form.prodEditar.caracteristicas.split(",");
       const caractOld = {};
       const caractList = {};
@@ -98,7 +97,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           let video = null;
           setImgNecesarias(categorias[i].imagenes_necesarias);
           const { imagenes } = form.prodEditar;
-          console.log(imagenes);
           for (let j = 0; j < 2; j++) {
             let obj = categorias[i].imagenes_necesarias[j].nombre;
             img[obj] = imagenes[j].imagen_original;
@@ -106,7 +104,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           if (imagenes.length > 2) {
             let updatedArray = [];
             let extraNumber = numeroImgExtra;
-            console.log(imagenes);
             for (let k = 2; k < imagenes.length; k++) {
               if (
                 imagenes[k].imagen_original.includes("video") &&
@@ -150,7 +147,6 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
       setImagenes(form.imagenes);
     } else if (form.editarProd === false) {
-      console.log(form.seccionExtra);
       setImagenes(form.imagenes);
       setImagenesPreview(form.imagenesPreview);
       setSeccionExtra(form.seccionExtra);
@@ -259,7 +255,6 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   };
 
-  console.log(form);
 
   return (
     <div className="elegirImgContainer">

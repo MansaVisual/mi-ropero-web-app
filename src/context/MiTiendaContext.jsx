@@ -14,16 +14,12 @@ export const MiTiendaContext = ({ children }) => {
   const [tiendaDetail, setTiendaDetail] = useState([]);
   const [dataUpdate, setDataUpdate] = useState({});
 
-  useEffect(() => {
-    console.log(dataUpdate);
-  }, [dataUpdate]);
 
   useEffect(() => {
     if (userLog !== "") {
       const tienda = new FormData();
       tienda.append("idcliente", Number(userLog));
       apiFetch(tienda, "tiendas", "list").then((res) => {
-        console.log(res);
         if (res.status === "success") {
           setTiendaData(res.result[0]);
           apiFetch(tienda, "cuentascorrientes", "balance").then((res) => {
@@ -33,7 +29,6 @@ export const MiTiendaContext = ({ children }) => {
           });
           tienda.append("idtienda", Number(res.result[0].idtienda));
           apiFetch(tienda, "tiendas", "get").then((res) => {
-            console.log(res);
             if (res.status === "success") {
               setTiendaDetail(res.result);
               setDataUpdate({
@@ -70,7 +65,6 @@ export const MiTiendaContext = ({ children }) => {
     }
   }, [userLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(tiendaData, tiendaDetail);
 
   return (
     <UseMiTiendaContext.Provider
