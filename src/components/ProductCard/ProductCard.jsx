@@ -79,9 +79,6 @@ const ProductCard = ({
             loading="lazy"
             sx={{
               objectFit: "cover",
-              "&:hover": {
-                filter: "blur(2px)",
-              },
             }}
             onClick={() => {
               handleClickItem();
