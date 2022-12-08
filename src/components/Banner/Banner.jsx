@@ -41,7 +41,7 @@ const Banner = () => {
       <Carousel
         animation="slide"
         className="bannerCarousel"
-        autoPlay={false}
+        autoPlay={true}
         navButtonsAlwaysVisible
         navButtonsProps={{
           style: {

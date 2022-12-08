@@ -506,6 +506,9 @@ input[type="number"]::-webkit-outer-spin-button {
     min-height: 140px !important;
     max-height: 320px !important;
   }
+  &>div{
+    height: 24px !important;
+  }
 }
 
 .formatNumber {
