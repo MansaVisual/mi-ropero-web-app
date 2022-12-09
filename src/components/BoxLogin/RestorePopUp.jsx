@@ -28,7 +28,7 @@ const RestorePopUp = ({setRestorePassword}) => {
         ).then((res)=>{
             if(res.status==="success"){
                 Swal.fire({
-                    title: 'REVISÁ TU CORREO ELECTRÓNICO',
+                    title: 'Se ha enviado un correo electrónico con un link para restrablecer la contraseña',
                     icon: "success",
                     confirmButtonText: "CONTINUAR",
                   }).then((res) => {

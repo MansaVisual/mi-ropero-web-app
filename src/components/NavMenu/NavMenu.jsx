@@ -195,12 +195,16 @@ const NavMenu = () => {
             sx={{
               border: "0.5px solid #BABCBE",
               borderRadius: "20px",
-              color: "hsla(0, 0%, 53%, 1)",
               fontWeight: theme.typography.fontWeightRegular,
               letterSpacing: "0.8px",
               fontSize: theme.typography.fontSize[2],
               minWidth: "190px",
-              marginBottom:"16px"
+              marginBottom:"16px",
+              color: "white",
+              backgroundColor:"rgb(255, 61, 31)",
+              "&:hover": {
+                backgroundColor: "rgb(255 113 91)",
+              },
             }}
             onClick={() => setOpenVenderPop(true)}
           >
