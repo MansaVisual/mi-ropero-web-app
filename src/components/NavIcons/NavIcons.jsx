@@ -835,7 +835,10 @@ const NavIcons = () => {
 
   return (<>
       <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
-        <Box>
+        <Box sx={{
+              display:"flex",
+              alignItems:"center"
+            }}>
           <Button
             sx={{
               border: "1px solid white",
