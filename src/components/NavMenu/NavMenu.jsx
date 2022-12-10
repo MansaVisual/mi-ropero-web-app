@@ -205,6 +205,8 @@ const NavMenu = () => {
               "&:hover": {
                 backgroundColor: "rgb(255 113 91)",
               },
+              display:"flex",
+              alignItems:"center"
             }}
             onClick={() => setOpenVenderPop(true)}
           >
