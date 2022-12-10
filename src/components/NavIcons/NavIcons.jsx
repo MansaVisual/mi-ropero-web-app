@@ -40,6 +40,7 @@ import iconoMensaje from "../../assets/img/iconMensaje.png";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import ReactGA from "react-ga4";
+import NavBarPopUp from "../NavBar/NavBarPopUp";
 
 const NavIcons = () => {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ const NavIcons = () => {
   const [prodEliminar, setProdEliminar] = useState(null);
   const [aparece, setAparece] = useState(true);
   const [prod,setProd]=useState(null)
+  const [openVenderPop, setOpenVenderPop] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("idClienteMiRopero") !== null) {
@@ -831,133 +833,98 @@ const NavIcons = () => {
     );
   };
 
-  return (
-    <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
-      {userLog !== "" && (
-        <IconButton onClick={userLog !== "" && handleClickNotif}>
-          <StyledBadge
-            badgeContent={notis.mensajes !== undefined ? notis.total : 0}
-            color="secondary"
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
+  return (<>
+      <Stack direction="row" spacing={{ xs: 1, lg: 3 }}>
+        <Box>
+          <Button
+            sx={{
+              border: "1px solid white",
+              borderRadius: "20px",
+              padding: "6px 25px 6px 25px",
+              fontSize: theme.typography.fontSize[2],
+              fontWeight: theme.typography.fontWeightRegular,
+              color: "white",
+              height: "31px",
+              backgroundColor:"rgb(255, 61, 31)",
+              "&:hover": {
+                backgroundColor: "rgb(255 113 91)",
+              },
+              display:"flex",
+              alignItems:"center"
             }}
+            onClick={() => setOpenVenderPop(true)}
           >
-            <img src={BellNotif} alt="Icono de notificacion" width="17px" />
-          </StyledBadge>
-        </IconButton>
-      )}
+            Vender
+          </Button>
+        </Box>
+        {userLog !== "" && (
+          <IconButton onClick={userLog !== "" && handleClickNotif}>
+            <StyledBadge
+              badgeContent={notis.mensajes !== undefined ? notis.total : 0}
+              color="secondary"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+            >
+              <img src={BellNotif} alt="Icono de notificacion" width="17px" />
+            </StyledBadge>
+          </IconButton>
+        )}
 
-      <StyledMenu
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        anchorEl={notifMenu}
-        open={openNotif}
-        onClose={handleCloseNotif}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-            "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            "&:before": {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              top: 0,
-              left: 125,
-              width: 13,
-              height: 13,
-              borderRadius: "2px",
-              bgcolor: "background.paper",
-              transform: "translateY(-50%) rotate(45deg)",
-              zIndex: 0,
-            },
-          },
-        }}
-      >
-        {getMenuBell()}
-      </StyledMenu>
-      <IconButton onClick={handleClickAvatar}>
-        <StyledBadge
-          badgeContent={0}
-          color="secondary"
+        <StyledMenu
           anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          transformOrigin={{
             vertical: "top",
-            horizontal: "right",
+            horizontal: "center",
+          }}
+          anchorEl={notifMenu}
+          open={openNotif}
+          onClose={handleCloseNotif}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                left: 125,
+                width: 13,
+                height: 13,
+                borderRadius: "2px",
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
           }}
         >
-          <img src={Avatar} alt="icono de avatar" width="20px" />
-        </StyledBadge>
-        {!avatarMenu ? (
-          <ExpandMoreIcon
-            sx={{ position: "absolute", top: "12px", left: "30px" }}
-          />
-        ) : (
-          <ExpandLessIcon
-            sx={{ position: "absolute", top: "12px", left: "30px" }}
-          />
-        )}
-      </IconButton>
-      <StyledMenu
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        anchorEl={avatarMenu}
-        open={openAvatar}
-        onClose={handleCloseAvatar}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-            "&:before": {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              top: 0,
-              right: { xs: 105, md: 120, lg: 120, xl: 120 },
-              width: 13,
-              height: 13,
-              borderRadius: "2px",
-              bgcolor: "background.paper",
-              transform: "translateY(-50%) rotate(45deg)",
-              zIndex: 0,
-            },
-          },
-        }}
-      >
-        {getMenuAvatar()}
-      </StyledMenu>
-      {userLog !== "" && (
-        <IconButton onClick={userLog !== "" && handleClickCart}>
+          {getMenuBell()}
+        </StyledMenu>
+        <IconButton onClick={handleClickAvatar}>
           <StyledBadge
-            badgeContent={carrito.length}
+            badgeContent={0}
             color="secondary"
             anchorOrigin={{
               vertical: "top",
               horizontal: "right",
             }}
           >
-            <img src={Cart} alt="logo-mi-ropero" width="21px" />
+            <img src={Avatar} alt="icono de avatar" width="20px" />
           </StyledBadge>
-          {!cartMenu ? (
+          {!avatarMenu ? (
             <ExpandMoreIcon
               sx={{ position: "absolute", top: "12px", left: "30px" }}
             />
@@ -967,104 +934,163 @@ const NavIcons = () => {
             />
           )}
         </IconButton>
-      )}
-      <StyledMenu
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        anchorEl={cartMenu}
-        open={openCart}
-        onClose={handleCloseCart}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-            "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
+        <StyledMenu
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+          anchorEl={avatarMenu}
+          open={openAvatar}
+          onClose={handleCloseAvatar}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: { xs: 105, md: 120, lg: 120, xl: 120 },
+                width: 13,
+                height: 13,
+                borderRadius: "2px",
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
             },
-            "&:before": {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              top: 0,
-              right: { xs: 60, md: 75, lg: 44, xl: 120 },
-              width: 13,
-              height: 13,
-              borderRadius: "2px",
-              bgcolor: "background.paper",
-              transform: "translateY(-50%) rotate(45deg)",
-              zIndex: 0,
-            },
-          },
-        }}
-      >
-        {getMenuCart()}
-      </StyledMenu>
-      {eliminar && (
-        <div
-          className="cartElimianrPopUp"
-          style={{ display: aparece ? "flex" : "none" }}
+          }}
         >
-          <div className="fondoPopUp" onClick={() => setEliminar(false)}></div>
-          <div className="popUp">
-            <img
-              src={basura}
-              alt="BORRAR"
-              style={{ marginTop: "28px" }}
-              className="basuraLogo"
-            />
-            <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: "24px",
+          {getMenuAvatar()}
+        </StyledMenu>
+        {userLog !== "" && (
+          <IconButton onClick={userLog !== "" && handleClickCart}>
+            <StyledBadge
+              badgeContent={carrito.length}
+              color="secondary"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
               }}
             >
-              <Button className="cancelar" onClick={() => setEliminar(false)}>
-                CANCELAR
-              </Button>
-              <Button
-                className="eliminar"
-                onClick={() => handleEliminarFinal()}
-              >
-                ELIMINAR
-              </Button>
-            </div>
-            {load && (
+              <img src={Cart} alt="logo-mi-ropero" width="21px" />
+            </StyledBadge>
+            {!cartMenu ? (
+              <ExpandMoreIcon
+                sx={{ position: "absolute", top: "12px", left: "30px" }}
+              />
+            ) : (
+              <ExpandLessIcon
+                sx={{ position: "absolute", top: "12px", left: "30px" }}
+              />
+            )}
+          </IconButton>
+        )}
+        <StyledMenu
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+          anchorEl={cartMenu}
+          open={openCart}
+          onClose={handleCloseCart}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: { xs: 60, md: 75, lg: 44, xl: 120 },
+                width: 13,
+                height: 13,
+                borderRadius: "2px",
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
+          }}
+        >
+          {getMenuCart()}
+        </StyledMenu>
+        {eliminar && (
+          <div
+            className="cartElimianrPopUp"
+            style={{ display: aparece ? "flex" : "none" }}
+          >
+            <div className="fondoPopUp" onClick={() => setEliminar(false)}></div>
+            <div className="popUp">
+              <img
+                src={basura}
+                alt="BORRAR"
+                style={{ marginTop: "28px" }}
+                className="basuraLogo"
+              />
+              <p>¿Seguro que quieres eliminar este producto de tu carrito?</p>
               <div
                 style={{
-                  marginBottom: "24px",
-                  width: "100%",
                   display: "flex",
+                  flexWrap: "wrap",
                   justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: "24px",
                 }}
               >
-                <Loader spin={"spinnerG"} />
+                <Button className="cancelar" onClick={() => setEliminar(false)}>
+                  CANCELAR
+                </Button>
+                <Button
+                  className="eliminar"
+                  onClick={() => handleEliminarFinal()}
+                >
+                  ELIMINAR
+                </Button>
               </div>
-            )}
-            {load && <br />}
-            <img
-              src={cruz}
-              alt="CRUZ"
-              className="cruz"
-              onClick={() => setEliminar(false)}
-            />
+              {load && (
+                <div
+                  style={{
+                    marginBottom: "24px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader spin={"spinnerG"} />
+                </div>
+              )}
+              {load && <br />}
+              <img
+                src={cruz}
+                alt="CRUZ"
+                className="cruz"
+                onClick={() => setEliminar(false)}
+              />
+            </div>
           </div>
-        </div>
-      )}
-    </Stack>
+        )}
+      </Stack>
+      {openVenderPop && <NavBarPopUp setOpenVenderPop={setOpenVenderPop} />}
+    </>
   );
 };
 
