@@ -123,11 +123,7 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">1.6 Si te arrepentís de una compra</p>
         <p className="textoRegular">
-          Si te arrepentís de una compra Tenés derecho a arrepentirte y devolver
-          una compra efectuada en nuestro Sitio Web, sin costo y sin justificar
-          el motivo, dentro de un plazo de DIEZ (10) DÍAS corridos desde que la
-          hayas abonado. Para ello, deberás seguir los pasos indicados en la
-          Sección 9.1.- Derecho de Revocación, de estos Términos y Condiciones.
+          STenés derecho a arrepentirte y devolver una compra efectuada en nuestro Sitio Web, sin costo y sin justificar el motivo, dentro de un plazo de DIEZ (10) DÍAS corridos desde que la hayas abonado o desde la entrega del producto, lo último que ocurra. Para ello, deberás seguir los pasos indicados en la Sección 9.1.- Derecho de Revocación, de estos Términos y Condiciones. También podés ejercer de este derecho a través del “botón de arrepentimiento” disponible en la página de inicio de nuestro Sitio Web.
         </p>
         <p className="tituloSecundario">
           1.7 Aceptación de los Términos y Condiciones
@@ -146,15 +142,10 @@ const TyC = () => {
         </p>
         <p className="tituloPrimario">2. ACCESO A NUESTRO SITIO WEB</p>
         <p className="tituloSecundario">
-          2.1 Prohibición de uso por menores de edad
+          2.1 Restricciones del uso por menores de edad
         </p>
         <p className="textoRegular">
-          Está prohibido el acceso a nuestro Sitio Web por parte de menores de
-          edad y, de forma general, de personas que no tengan capacidad para
-          contratar. Los padres, tutores o representantes legales deberán
-          instalar los controles parentales correspondientes y serán los únicos
-          responsables en caso de que las personas a su cargo accedan y usen
-          cualquier funcionalidad de nuestro Sitio Web.
+        Está prohibido el acceso a nuestro Sitio Web por menores de catorce años. Los menores de dieciocho años no emancipados podrán ingresar e interactuar con el Sitio Web únicamente bajo la supervisión de sus padres o tutores. Los padres, tutores o representantes legales deberán instalar en los equipos electrónicos de las personas a su cargo los controles parentales correspondientes y serán solidariamente responsables de toda o cualquier interacción que las personas a su cargo realicen con nuestro Sitio Web en los términos del artículo 1.754 del Código Civil y Comercial de la Nación.
         </p>
         <p className="tituloSecundario">2.2 Acceso libre y gratuito</p>
         <p className="textoRegular">
@@ -217,31 +208,16 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">3.1 Alta de una cuenta</p>
         <p className="textoRegular">
-          El alta de una cuenta se lleva a cabo completando el formulario
-          disponible a tal efecto en nuestro Sitio Web. En el caso de comercios
-          o negocios, antes del alta de la cuenta, podremos solicitar
-          información adicional y documentación que acredite tu condición fiscal
-          o cualquier otra circunstancia legal. Toda la información que nos
-          comuniques durante el proceso de alta de una cuenta tienen el carácter
-          de declaración jurada, lo que significa que garantizás y te hacés
-          responsable frente a MI ROPERO y al resto de los Usuarios de nuestro
-          Sitio Web de que esa información es cierta, completa y actual. También
-          te comprometés a mantener actualizada la información de tu cuenta
-          mientras permanezca abierta.
+        El alta de una cuenta se lleva a cabo completando el formulario disponible a tal efecto en nuestro Sitio Web. En el caso de comercios o negocios, antes del alta de la cuenta, podremos solicitar información adicional y documentación que acredite tu condición fiscal o cualquier otra circunstancia legal. Toda la información que nos comuniques durante el proceso de alta de una cuenta tienen el carácter de declaración jurada, lo que significa que garantizás y te hacés responsable frente a MI ROPERO y al resto de los Usuarios de nuestro Sitio Web de que esa información es cierta, completa y actual. También te comprometés a mantener actualizada la información de tu cuenta mientras permanezca abierta. 
         </p>
         <p className="textoRegular">
-          De forma general, el alta de tu cuenta será automática tras completar
-          nuestro formulario. Sin embargo, en algunos casos y, en particular,
-          cuando se trate de comercios o negocios, el alta puede quedar
-          condicionada a que revisemos y validemos la información que nos hayas
-          compartido. En este caso, te confirmaremos el alta mediante el envío
-          de un email a la dirección que nos hayas comunicado durante el proceso
-          de alta.
+        Los adolescentes mayores de catorce años podrán abrir cuentas en el Sitio Web únicamente bajo supervisión parental y sujeto a la dispuesto en la Cláusula 2.1 de estos Términos y Condiciones.
         </p>
         <p className="textoRegular">
-          Todos los datos personales que nos compartas durante el proceso de
-          alta serán tratados de conformidad con nuestra Política de Privacidad
-          que podés consultar aquí
+        De forma general, el alta de tu cuenta será automática tras completar nuestro formulario. Sin embargo, en algunos casos y, en particular, cuando se trate de comercios o negocios, el alta puede quedar condicionada a que revisemos y validemos la información que nos hayas compartido. En este caso, te confirmaremos el alta mediante el envío de un email a la dirección que nos hayas comunicado durante el proceso de alta. 
+        </p>
+        <p className="textoRegular">
+        Todos los datos personales que nos compartas durante el proceso de alta serán tratados de conformidad con nuestra Política de Privacidad que podés consultar <span style={{cursor:"pointer",color:"blue",textDecoration:"underline"}}>aquí</span>
         </p>
         <p className="tituloSecundario">
           3.2 Nuestro derecho a rechazar el alta de una cuenta
@@ -295,15 +271,10 @@ const TyC = () => {
           3.5 Responsabilidad por los contenidos de tu cuenta
         </p>
         <p className="textoRegular">
-          Serás el único responsable de todos y cada uno de los contenidos que
-          publiques en tu cuenta en cada momento. Antes de subirlo a tu cuenta,
-          deberás asegurarte que cuentas con todos los derechos y licencias
-          necesarias para publicar un determinado contenido. MI ROPERO podrá
-          bloquear o dar de baja cualquier contenido que sea denunciado como un
-          uso no autorizado de las marcas o de la propiedad intelectual de
-          terceros, sin perjuicio de las responsabilidades legales que
-          correspondan y que serán en todos los casos asumidas exclusivamente
-          por el titular de la cuenta.
+        Serás el único responsable de todos y cada uno de los contenidos que publiques en tu cuenta en cada momento. Antes de subirlo a tu cuenta, deberás asegurarte que cuentas con todos los derechos y licencias necesarias para publicar un determinado contenido. MI ROPERO podrá bloquear o dar de baja cualquier contenido que sea denunciado como un uso no autorizado de las marcas o de la propiedad intelectual de terceros, sin perjuicio de las responsabilidades legales que correspondan y que serán en todos los casos asumidas exclusivamente por el titular de la cuenta.
+        </p>
+        <p className="textoRegular">
+        Por “contenido” a los efectos de estos Términos y Condiciones se entenderá, sin carácter limitativo, cualquier texto, símbolo, signo, hashtag, dibujo, imagen, fotografía, collage, reel, video, animación, meme, sónido, música, composición audiovisual, en 3D o de realidad aumentada, geolocalización, enlace, archivo, carpeta, programa, etc. publicado de tanto en tanto y en cada momento en nuestro Sitio Web.
         </p>
         <p className="tituloSecundario">
           3.6 Licencia de los contenidos a favor de MI ROPERO
@@ -481,26 +452,7 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">4.5 Publicidad y marketing</p>
         <p className="textoRegular">
-          Sólo podrás realizar las campañas y las acciones publicitarias y de
-          marketing de tus productos que en cada momento se encuentren
-          autorizadas en nuestro Sitio Web. No podrás incluir enlaces a otras
-          páginas web, incluyendo a tus perfiles en redes sociales, salvo que
-          esa opción esté expresamente disponible. Si instalás cookies, sólo
-          podrán ser para analizar el rendimiento (“métricas”) o el
-          comportamiento de los usuarios dentro de la página web correspondiente
-          a tu cuenta. En ningún caso podrás instalar cookies persistentes, que
-          permanezcan activas una vez que el Usuario ha abandonado la página web
-          correspondiente a tu cuenta. Si realizas campañas de keyword
-          advertising, en ningún caso deberán interferir con las realizadas por
-          nuestro Sitio Web; caso contrario, deberás suspenderlas
-          inmediatamente. También deberás asegurarte que las palabras que
-          utilices dentro de esas campañas no afecten derechos de terceros, ya
-          que serás el único responsable de los reclamos que puedan generarse al
-          respecto. MI ROPERO se reserva el derecho, a nuestro exclusivo
-          criterio, de incluir o no la página correspondiente a tu cuenta,
-          incluyendo cualquier contenido o parte de la misma, dentro de las
-          campañas publicitarias, de SEM y similares que de tanto en tanto
-          realicemos desde nuestro Sitio Web.
+        Sólo podrás realizar las campañas y las acciones publicitarias y de marketing de tus productos que en cada momento se encuentren autorizadas en nuestro Sitio Web. No podrás incluir enlaces a otras páginas web, incluyendo a tus perfiles en redes sociales, salvo que esa opción esté expresamente disponible. Si instalás cookies, sólo podrán ser para analizar el rendimiento (“métricas”) o el comportamiento de los usuarios dentro de la página web correspondiente a tu cuenta y deberás informar su uso en forma destacada.  . Si realizas campañas de keyword advertising, en ningún caso deberán interferir con las realizadas por nuestro Sitio Web; caso contrario, deberás suspenderlas inmediatamente. También deberás asegurarte que las palabras que utilices dentro de esas campañas no afecten derechos de terceros, ya que serás el único responsable de los reclamos que puedan generarse al respecto. MI ROPERO se reserva el derecho, a nuestro exclusivo criterio, de incluir o no la página correspondiente a tu cuenta, incluyendo cualquier contenido o parte de la misma, dentro de las campañas publicitarias, de SEM y similares que de tanto en tanto realicemos desde nuestro Sitio Web. 
         </p>
         <p className="tituloSecundario">
           4.6 Diligencia en atender las consultas y pedidos de los Usuarios
@@ -538,37 +490,13 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">4.8 Ofertas</p>
         <p className="textoRegular">
-          Si publicás ofertas, incluyendo cualquier tipo de rebaja, promoción o
-          descuento, deberán ser reales y transparentes. Deberás publicar de
-          forma clara, detallada y descatada las condiciones de la oferta,
-          incluyendo, de corresponder, el porcentaje de descuento sobre el
-          precio anterior. Si no establecés un plazo, las ofertas estarán
-          vigentes durante todo el tiempo que permanezcan accesibles en nuestro
-          Sitio Web.
+        Si publicás ofertas, incluyendo cualquier tipo de rebaja, promoción o descuento, deberán ser reales y transparentes. Deberás publicar de forma clara, detallada y descatada las condiciones de la oferta, incluyendo, de corresponder, el porcentaje de descuento sobre el precio anterior. Si no establecés un plazo, las ofertas  estarán vigentes durante todo el tiempo que permanezcan accesibles en nuestro Sitio Web. 
         </p>
         <p className="textoRegular">
-          En ningún caso podrás: a) presentar como una oferta situaciones que no
-          impliquen una reducción significativa de los precios previos u
-          ofrezcan otros beneficios reales para los destinatarios, en este caso,
-          debiendo explicar claramente en qué consiste y cuál es la ventaja para
-          los destinatarios; b) ofrecer o entregar premios o regalos vinculados
-          directa o indirectamente a la compra de un producto, cuando dichos
-          premios o regalos estén sujetos a la intervención del azar; y c)
-          organizar concursos, sorteos o eventos de cualquier tipo, online u
-          offline, en los que la participación esté condicionada a la
-          adquisición de un producto.{" "}
+        En ningún caso podrás: a) presentar como una oferta situaciones que no impliquen una reducción significativa de los precios previos u ofrezcan otros beneficios reales para los destinatarios, en este caso, debiendo explicar claramente en qué consisten y cuál es la ventaja para los destinatarios; b) ofrecer o entregar premios o regalos vinculados directa o indirectamente a la compra de un producto, cuando dichos premios o regalos estén sujetos a la intervención del azar; y c) organizar concursos, sorteos o eventos de cualquier tipo, online u offline, en los que la participación esté condicionada a la adquisición de un producto.
         </p>
         <p className="textoRegular">
-          De tanto en tanto, MI ROPERO podrá establecer ofertas o condiciones
-          bajo las cuales nuestros Usuarios pueden obtener cupones de descuento
-          u otros beneficios en nuestro Sitio Web. Las mismas serán obligatorias
-          para los Vendedores que ofrezcan productos incluidos dentro de las
-          condiciones de la oferta o del beneficio de que se trate. También
-          podremos adherir y participar de iniciativas sectoriales para ofrecer
-          descuentos u otros beneficios generalizados, o en relación con
-          determinadas categorías de productos, en determinadas fechas u
-          ocasiones especiales. Los descuentos o beneficios así acordados serán
-          obligatorios para todos los Vendedores de nuestro Sitio Web.
+        De tanto en tanto, MI ROPERO podrá establecer ofertas o condiciones bajo las cuales nuestros Usuarios pueden obtener cupones de descuento u otros beneficios en nuestro Sitio Web. Las mismas serán obligatorias para los Vendedores que ofrezcan productos incluidos dentro de las condiciones de la oferta o del beneficio de que se trate. También podremos adherir y participar de iniciativas sectoriales para ofrecer descuentos u otros beneficios generalizados, o en relación con determinadas categorías de productos, en determinadas fechas u ocasiones especiales. Los descuentos o beneficios así acordados serán obligatorios para todos los Vendedores de nuestro Sitio Web.
         </p>
         <p className="tituloSecundario">4.9 Garantías</p>
         <p className="textoRegular">
@@ -596,22 +524,7 @@ const TyC = () => {
           5.1 Los riesgos de comprar por Internet
         </p>
         <p className="textoRegular">
-          Los riesgos de comprar por Internet Las compras en nuestro Sitio Web
-          se realizan, total o parcialmente, de forma electrónica, es decir,
-          mediante la transmisión de datos en formato digital por redes de
-          telecomunicaciones. Tenés que tener en cuenta que comprar por Internet
-          implica ciertos riesgos como ser, sin carácter limitativo, la
-          interrupción y el fracaso de la transmisión de los datos, la
-          intercepción con fines ilícitos (“hackeo”) de los datos que
-          transmitas, la transmisión de datos que no querías enviar o su envío a
-          destinatarios distintos de aquellos a los que la transmisión estaba
-          dirigida, etc. MI ROPERO no será responsable por ninguna incidencia
-          ocurrida durante el proceso de compra por medios electrónicos,
-          incluyendo el extravío o el desvío, de forma intencional o accidental,
-          de un pago antes del ingreso en nuestras cuentas. Al iniciar el
-          proceso de compra en nuestro Sitio Web, confirmás entender, aceptar y
-          asumir todos los riesgos asociados a la contratación por medios
-          electrónicos.
+        Las compras en nuestro Sitio Web se realizan, total o parcialmente, de forma electrónica, es decir, mediante la transmisión de datos en formato digital por redes de telecomunicaciones. Tenés que tener en cuenta que comprar por Internet implica ciertos riesgos como ser, sin carácter limitativo, la interrupción y el fracaso de la transmisión de los datos, la intercepción con fines ilícitos (“hackeo”) de los datos que transmitas, la transmisión de datos que no querías enviar o su envío a destinatarios distintos de aquellos a los que la transmisión estaba dirigida, etc. MI ROPERO no será responsable por ninguna incidencia ocurrida durante el proceso de compra por medios electrónicos, incluyendo el extravío o el desvío, de forma intencional o accidental, de un pago antes del ingreso en nuestras cuentas.<span style={{color:"black",fontWeight:"600"}}>Al iniciar el proceso de compra en nuestro Sitio Web, confirmás entender, aceptar y asumir todos los riesgos asociados a la contratación por medios electrónicos.</span> 
         </p>
         <p className="tituloSecundario">
           5.2 Descripción del proceso de compra
@@ -672,25 +585,7 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">5.3 Calificación de la compra</p>
         <p className="textoRegular">
-          MI ROPERO ofrece a sus Usuarios la posibilidad de calificar las
-          prestaciones recibidas por parte de otros Usuarios, con base a
-          criterios tales como, sin carácter limitativo, su nivel de
-          satisfacción con la atención brindada y con los productos recibidos,
-          el tiempo de respuesta de las consultas y, en su caso, de los
-          reclamos, el plazo para despachar los envíos, etc. En base a estas
-          calificaciones, se generará en forma automática un puntaje que podrá
-          ser consultado por los restantes Usuarios y por el público en general.
-          Por el simple hecho de publicar en nuestro Sitio Web, aceptás
-          participar de este sistema y ser calificado por los restantes Usuarios
-          de nuestro Sitio Web. También declarás conocer que MI ROPERO no tiene
-          ninguna injerencia ni posibilidad de influencia en las calificaciones
-          emitidas por nuestros Usuarios, y renunciás a formular cualquier
-          reclamo fundado en las calificaciones y en el puntaje que recibas como
-          Usuario de nuestro Sitio Web. MI ROPERO podrá suspender o cerrar una
-          cuenta que reciba una o más calificaciones negativas, o cuyo puntaje
-          basado en las calificaciones de nuestros Usuarios evidencie, a nuestro
-          exclusivo criterio, un comportamiento poco fiable o negligente como
-          Usuario de nuestro Sitio Web.
+        MI ROPERO ofrece a sus Usuarios la posibilidad de calificar las prestaciones recibidas por parte de otros Usuarios, con base a criterios tales como, sin carácter limitativo, su nivel de satisfacción con la atención brindada y con los productos recibidos, el tiempo de respuesta de las consultas y, en su caso, de los reclamos, el plazo para despachar los envíos, etc. En base a estas calificaciones, se generará en forma automática un puntaje que podrá ser consultado por los restantes Usuarios y por el público en general. Por el simple hecho de publicar en nuestro Sitio Web, aceptás participar de este sistema y ser calificado por los restantes Usuarios de nuestro Sitio Web. También declarás conocer que MI ROPERO no tiene ninguna injerencia ni posibilidad de influencia en las calificaciones emitidas por nuestros Usuarios, y renunciás a formular cualquier reclamo fundado en las calificaciones y en el puntaje que recibas como Usuario de nuestro Sitio Web. Queda prohibido intentar influenciar de cualquier forma en la calificación de una operación por parte de un Usuario con el objeto de mejorar el puntaje de su cuenta. MI ROPERO podrá suspender o cerrar una cuenta que reciba una o más calificaciones negativas,  cuyo puntaje basado en las calificaciones de nuestros Usuarios evidencie, a nuestro exclusivo criterio, un comportamiento poco fiable o negligente como Usuario de nuestro Sitio Web, o cuyo titular haya intentado influenciar de cualquier forma o modificar la calificación dada por un Usuario a una determinada operación 
         </p>
         <p className="tituloSecundario">5.4 Plazo para calificar una compra</p>
         <p className="textoRegular">
@@ -703,12 +598,7 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">5.5 Incidencias durante la compra</p>
         <p className="textoRegular">
-          Podrás ponerte en contacto con nosotros por WhatsApp al número 11
-          54864779 por cualquier incidencia que pudiera surgir durante el
-          proceso de compra. Tené en cuenta que este servicio estará disponible
-          únicamente de lunes a viernes en el horario de 09 a18 hs. . En las
-          compras que realices fuera de ese horario no contarás con este
-          soporte.
+        Podrás ponerte en contacto con nosotros por WhatsApp al número (+54 9) 11-5486-4779 por cualquier incidencia que pudiera surgir durante el proceso de compra. Tené en cuenta que este servicio estará disponible únicamente de lunes a viernes en el horario argentino de 9 a 18. En las compras que realices fuera de ese horario no contarás con este soporte.
         </p>
         <p className="tituloPrimario">6. PAGAR EN NUESTRO SITIO WEB</p>
         <p className="tituloSecundario">
@@ -730,18 +620,7 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">6.2 Gateway de MercadoPago</p>
         <p className="textoRegular">
-          MI ROPERO utiliza MercadoPago para procesar los pagos online de
-          nuestro Sitio Web. El uso por tu parte de este medio de pago,
-          incluyendo sus costos y tarifas, los plazos de liquidación, los
-          límites de procesamientos de pago y los mecanismos para la resolución
-          de reclamos y disputas, quedará sujeto a las condiciones del servicio
-          de Mercado Pago que podés consultar aquí MercadoPago ofrece, como
-          parte de sus servicios, la seguridad y la estabilidad de sus sistemas
-          de pago. Por lo tanto, en ningún caso MI ROPERO será responsable de
-          ningún daño derivado de las fallas de seguridad de MercadoPago. Las
-          tarifas de MercadoPago estarán en todos los casos a cargo de los
-          Usuarios y se adicionarán al precio final de cada operación en la que
-          se elija MercadoPago como medio de pago.
+        MI ROPERO utiliza MercadoPago para procesar los pagos online de nuestro Sitio Web. El uso por tu parte de este medio de pago, incluyendo sus costos y tarifas, los plazos de liquidación, los límites de procesamientos de pago y los mecanismos para la resolución de reclamos y disputas, quedará sujeto a las condiciones del servicio de Mercado Pago que podés consultar <span style={{cursor:"pointer",color:"blue",textDecoration:"underline"}}>aquí</span>. MercadoPago ofrece, como parte de sus servicios, la seguridad y la estabilidad de sus sistemas de pago. Por lo tanto, en ningún caso MI ROPERO será responsable de ningún daño derivado de las fallas de seguridad de MercadoPago. Las tarifas de MercadoPago estarán en todos los casos a cargo de los Usuarios y se adicionarán al precio final de cada operación en la que se elija MercadoPago como medio de pago.
         </p>
         <p className="tituloSecundario">6.3 Medios de pago offline</p>
         <p className="textoRegular">
@@ -909,71 +788,43 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">8.3 Envíos por OCA</p>
         <p className="textoRegular">
-          En caso de que la forma de envío seleccionada sea OCA, junto con la
-          confirmación de la compra, se enviará al Vendedor por email un link en
-          el que podrá seleccionar la sucursal desde la que realizará el envío y
-          descargar la etiqueta que deberá pegar el paquete con el/los
-          artículo/s vendido/s. El Vendedor tendrá cinco (5) días hábiles desde
-          la recepción de nuestro email para despachar el envío. Vencido dicho
-          plazo, la compra se cancelará de forma automática, se informará al
-          Comprador y se le devolverá la totalidad de su dinero, sin perjuicio
-          de que MI ROPERO pueda ofrecerle otros productos en reemplazo de los
-          adquiridos en la compra anulada.
+        En caso de que la forma de envío seleccionada sea OCA, junto con la confirmación de la compra, se enviará al Vendedor por email un link en el que podrá seleccionar la sucursal desde la que realizará el envío y descargar la etiqueta que deberá pegar el paquete con el/los artículo/s vendido/s. El Vendedor tendrá cinco (5) días hábiles desde la recepción de nuestro email para despachar el envío. Vencido dicho plazo, la compra se cancelará de forma automática, se informará al Comprador y se le devolverá la totalidad de su dinero, sin perjuicio de que MI ROPERO pueda ofrecerle otros productos en reemplazo de los adquiridos en la compra anulada.
         </p>
         <p className="tituloSecundario">8.4 Envío por MOOVA</p>
         <p className="textoRegular">
-          En caso de que la forma de envío seleccionada – en los casos en que
-          proceda - sea mediante la aplicación MOOVA, junto con la confirmación
-          de la compra, se informará al Vendedor la hora aproximada en que se
-          procederá a retirar el envío de su domicilio. El Vendedor - o una
-          persona autorizada por este último - deberá encontrarse en el
-          domicilio de recogida y tener el paquete listo para su retiro a la
-          hora informada. MI ROPERO enviará al Vendedor actualizaciones sobre la
-          ubicación y la hora estimada de llegada del encargado de retirar el
-          envío. En caso de que el Vendedor - o una persona autorizada por este
-          último – no esté en el domicilio de recogida al momento previsto para
-          su retiro o no tenga listo el paquete con el envío, la compra se
-          cancelará de forma automática, se informará al Comprador y se le
-          devolverá la totalidad de su dinero, sin perjuicio de que MI ROPERO
-          pueda ofrecerle otros productos en reemplazo de los adquiridos en la
-          compra anulada.
+        En caso de que la forma de envío seleccionada – en los casos en que proceda - sea mediante servicio de moto, junto con la confirmación de la compra, se informará al Vendedor la hora aproximada en que se procederá a retirar el envío de su domicilio. El Vendedor - o una persona autorizada por este último - deberá encontrarse en el domicilio de recogida y tener el paquete listo para su retiro a la hora informada. MI ROPERO enviará al Vendedor actualizaciones sobre la ubicación y la hora estimada de llegada del encargado de retirar el envío. En caso de que el Vendedor - o una persona autorizada por este último – no esté en el domicilio de recogida al momento previsto para su retiro o no tenga listo el paquete con el envío, la compra se cancelará de forma automática, se informará al Comprador y se le devolverá la totalidad de su dinero, sin perjuicio de que MI ROPERO pueda ofrecerle otros productos en reemplazo de los adquiridos en la compra anulada.
         </p>
         <p className="tituloSecundario">
           8.5 Seguimiento del envío y plazos de entrega
         </p>
         <p className="textoRegular">
-          Los Usuarios podrán hacer un seguimiento online del envío, ingresando
-          a la sección correspondiente de nuestro Sitio Web.
+        Los Usuarios podrán hacer un seguimiento online del envío, ingresando a la sección correspondiente de nuestro Sitio Web.
         </p>
         <p className="textoRegular">
-          De forma general, los plazos de entrega serán los siguientes:
+        De forma general, los plazos de entrega serán los siguientes:
         </p>
         <p className="textoRegular">
-          - Por OCA: entre siete (7) y quince (15) días hábiles, dependiendo de
-          la ubicación del Vendedor y del Comprador.
+        - Por OCA: entre siete (7) y quince (15) días hábiles, dependiendo de la ubicación del Vendedor y del Comprador.
         </p>
-        <p className="textoRegular">- Por MOOVA:</p>
+        <p className="textoRegular">- Por servicio de moto: </p>
         <p className="textoRegular">
           - En el mismo día si la operación ingresa en nuestros sistemas antes
           de las catorce (14:00) horas;
         </p>
         <p className="textoRegular">
-          - El siguiente día hábil antes de las diez (10:00) horas, si la
-          operación ingresa en nuestros sistemas después de las catorce (14:00)
-          horas;
+          - En el mismo día si la operación ingresa en nuestros sistemas antes de las catorce (14:00) horas;
         </p>
         <p className="textoRegular">
-          - El siguiente día habil antes de las diez (10:00) horas, si la
-          operación ingresa en nuestros sistemas un viernes después de las
-          catorce (14:00) horas;
+          - El siguiente día hábil antes de las diez (10:00) horas, si la operación ingresa en nuestros sistemas después de las catorce (14:00) horas; 
         </p>
         <p className="textoRegular">
-          - El siguiente día habíl antes de las diez (10:00) horas, si la
-          operación ingresa en nuestros sistemas un sábado o domingo.
+          - El siguiente día habil antes de las diez (10:00) horas, si la operación ingresa en nuestros sistemas un viernes después de las catorce (14:00) horas;
         </p>
         <p className="textoRegular">
-          Los plazos informados arriba son estimativos. En ningún caso MI ROPERO
-          garantiza la entrega de un envío en un determinado plazo.
+          - El siguiente día habíl antes de las diez (10:00) horas, si la operación ingresa en nuestros sistemas un sábado,  domingo o feriado.
+        </p>
+        <p className="textoRegular">
+        Los plazos informados arriba son estimativos. En ningún caso MI ROPERO garantiza la entrega de un envío en un determinado plazo. 
         </p>
         <p className="tituloSecundario">8.6 Reclamos por envíos extraviados</p>
         <p className="textoRegular">
@@ -992,47 +843,19 @@ const TyC = () => {
         <p className="tituloPrimario">9. CANCELACIONES Y DEVOLUCIONES</p>
         <p className="tituloSecundario">9.1 Derecho de revocación</p>
         <p className="textoRegular">
-          Tenés derecho a revocar una compra y devolver cualquier artículo
-          adquirido en nuestro Sitio Web, sin cargo y sin necesidad de
-          explicarnos los motivos de la cancelación, dentro del plazo de DIEZ
-          (10) DÍAS CORRIDOS desde el momento en que abones tu compra.
+        Tenés derecho a revocar una compra y devolver cualquier artículo adquirido en nuestro Sitio Web, sin cargo y sin necesidad de explicarnos los motivos de la cancelación, dentro del plazo de DIEZ (10) DÍAS CORRIDOS desde el momento en que abones tu compra o desde la entrega del producto, lo último que ocurra.
         </p>
         <p className="textoRegular">
-          Tené en cuenta que existen productos que, por su naturaleza, podrán no
-          tener disponible el ejercicio de este derecho de conformidad con lo
-          dispuesto en el artículo 1.116 del Código Civil y Comercial de la
-          Nación. En particular, esto podrá ocurrir, sin carácter limitativo, en
-          relación con todas o alguna de las siguientes categorías de productos:
-          a) artículos usados con posterioridad a su recepción, dado que no
-          podrá comprobarse que no han sido usados por el Comprador antes de
-          solicitar la revocación; b) la ropa interior; c) las prendas de baño;
-          d) los productos de belleza o para el cabello que hayan sido abiertos.
-          Tampoco podrán devolverse los productos nuevos con signos de haber
-          sido usados.
+        Tené en cuenta que existen productos que, por su naturaleza, podrán no tener disponible el ejercicio de este derecho de conformidad con lo dispuesto en el artículo 1.116 del Código Civil y Comercial de la Nación. En particular, esto podrá ocurrir, sin carácter limitativo, en relación con todas o alguna de las siguientes categorías de productos: a) artículos usados con posterioridad a su recepción, dado que no podrá comprobarse que no han sido usados por el Comprador antes de solicitar la revocación; b) la ropa interior; c) las prendas de baño; d) los productos de belleza o para el cabello que hayan sido abiertos; y e) productos que pueden ser objeto de un único uso, como vestidos de novia, vestidos o trajes de fiesta, smokings, chaqués, fracs y similares. Tampoco podrán devolverse los productos nuevos con signos de haber sido usados. 
         </p>
         <p className="textoRegular">
-          Para el ejercicio de tu derecho de revocación, deberás enviarnos un
-          email a la casilla: reclamos@miropero.com.ar, haciendo constar
-          expresamente como asunto “DERECHO DE REVOCACIÓN”, y añadiendo toda la
-          información que nos permita identificar la operación que deseas
-          cancelar, incluyendo tus datos y los del Vendedor así como la correcta
-          identificación del o de los artículos cuya compra querés revocar. Si
-          ya has recibido el o los artículos cuya compra has revocado, dentro de
-          las veinticuatro (24) horas recibirás un email nuestro con las
-          instrucciones para que puedas devolverlos sin costo. En este caso, una
-          vez que los recibamos y comprobemos que está todo correcto, te
-          reintegraremos la totalidad del dinero de la compra, sin perjuicio de
-          que podamos ofrecerte otros productos en reemplazo de los productos
-          cuya compra hayas revocado.
+        Para el ejercicio de tu derecho de revocación, deberás enviarnos un email a la casilla: <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>, haciendo constar expresamente como asunto “DERECHO DE REVOCACIÓN”, y añadiendo toda la información que nos permita identificar la operación que  deseas cancelar, incluyendo tus datos y los del Vendedor así como la correcta identificación del o de los artículos cuya compra querés revocar. Si ya has recibido el o los artículos cuya compra has revocado, dentro de las veinticuatro (24) horas recibirás un email nuestro con las instrucciones para que puedas devolverlos sin costo. En este caso, una vez que los recibamos y comprobemos que está todo correcto, te reintegraremos la totalidad del dinero de la compra, sin perjuicio de que podamos ofrecerte otros productos en reemplazo de los productos cuya compra hayas revocado. 
         </p>
         <p className="textoRegular">
-          Al publicar productos para la venta en nuestro Sitio Web, te obligás
-          expresamente a cumplir, facilitar y con tus mejores esfuerzos
-          ayudarnos a cumplir en todo momento con el ejercicio del derecho de
-          revocación por parte de los Usuarios de nuestro Sitio Web. Caso
-          contrario, podremos suspender o cerrar tu cuenta, además de reclamarte
-          todos los daños y perjuicios que una conducta reticente o no diligente
-          de tu parte nos ocasione.
+        También podrás ejercer tu derecho de revocación, en las mismas condiciones previstas en el párrafo anterior, mediante el “botón de arrepentimiento” disponible en la página de inicio de nuestro Sitio Web. Para ello, deberás completar los campos del formulario que se despliega tras hacer click en dicho botón y enviárnoslo.
+        </p>
+        <p className="textoRegular">
+        Al publicar productos para la venta en nuestro Sitio Web, te obligás expresamente a cumplir, facilitar y con tus mejores esfuerzos ayudarnos a cumplir en todo momento con el ejercicio del derecho de revocación por parte de los Usuarios de nuestro Sitio Web. Caso contrario, podremos suspender o cerrar tu cuenta, además de reclamarte todos los daños y perjuicios que una conducta reticente o no diligente de tu parte nos ocasione.
         </p>
         <p className="tituloSecundario">
           9.2 Devolución de artículos no satisfactorios
@@ -1055,45 +878,16 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">9.3 Plazo para la devolución</p>
         <p className="textoRegular">
-          Si no estás conforme con un producto recibido, deberás presentar tu
-          reclamo a través de la sección “Mis Compras” de tu cuenta,
-          seleccionando e indicando en todos los casos el/los motivo/s de la
-          devolución. El plazo para comunicarnos la devolución de un producto es
-          de veinticuatro (24) horas si el envío se realizó por OCA, y de dos
-          (2) horas si fue por MOOVA, en ambos casos a contar desde el momento
-          en que recibas el envío. Recordá que una vez que hayas calificado la
-          compra o que haya vencido el plazo para hacerlo previsto en la Sección
-          5.4, no se aceptarán devoluciones.
+        Si no estás conforme con un producto recibido, deberás presentar tu reclamo a través de la sección “Mis Compras” de tu cuenta, seleccionando e indicando en todos los casos el/los motivo/s de la devolución. El plazo para comunicarnos la devolución de un producto es de veinticuatro (24) horas si el envío se realizó por OCA, y de dos (2) horas si fue por servicio de moto, en ambos casos a contar desde el momento en que recibas el envío. Recordá que una vez que hayas calificado la compra o que haya vencido el plazo para hacerlo previsto en la Sección 5.4, no se aceptarán devoluciones.
         </p>
         <p className="tituloSecundario">
           9.4 Procedimiento para las devoluciones
         </p>
         <p className="textoRegular">
-          Una vez que comprobemos que la devolución está dentro del plazo, te
-          enviaremos la etiqueta de devolución que deberás adjuntar al paquete y
-          te informaremos, dependiendo de tu ubicación, si pasamos a recoger el
-          paquete por tu domicilio o si tenés que acercarte a una sucursal de
-          OCA para remitírnoslo sin costo. En caso de que pasemos a retirarlo,
-          deberás tener el paquete listo en el horario que te vayamos
-          informando. Si tenés que enviárnoslo por OCA, deberás hacerlo dentro
-          de un plazo de cuarenta y ocho (48) horas desde que recibas la
-          etiqueta de devolución. En cualquiera de los dos supuestos (retiro o
-          envío por OCA), en caso de que no cumplás estrictamente con estas
-          condiciones, perderás automáticamente el derecho a la devolución.
+        Una vez que comprobemos que la devolución está dentro del plazo, te enviaremos la etiqueta de devolución que deberás adjuntar al paquete y te informaremos, dependiendo de tu ubicación, si pasamos a recoger el paquete por tu domicilio o si tenés que acercarte a una sucursal de OCA para remitírnoslo sin costo. En caso de que pasemos a retirarlo, deberás tener el paquete listo en el horario que te vayamos informando. Si tenés que enviárnoslo por OCA, deberás hacerlo dentro de un plazo de cuarenta y ocho (48) horas desde que recibas la etiqueta de devolución. En cualquiera de los dos supuestos (retiro o envío por OCA), en caso de que no cumplás estrictamente con estas condiciones, perderás automáticamente el derecho a la devolución.
         </p>
         <p className="textoRegular">
-          Una vez recibido el/los producto/s devuelto/s, comprobaremos
-          someramente los motivos indicados para la devolución. Si en nuestra
-          opinión, los motivos son fundados, se lo comunicaremos al Vendedor,
-          quien podrá pasar por nuestras oficinas a revisar y retirar el/los
-          producto/s devuelto/s dentro de un plazo de diez (10) días hábiles.
-          Por el contrario, si entendemos que los motivos de devolución no son
-          fundados, se lo comunicaremos al Comprador y este último podrá pasar
-          por nuestras oficinas a retirar el/los producto/s dentro de un plazo
-          de diez (10) días hábiles o, en el mismo plazo, solicitar que se lo
-          enviemos a su domicilio, con cargo. Transcurridos los plazos previstos
-          en este párrafo, a nuestro exclusivo criterio, podremos donar u
-          ofrecer nuevamente a la venta el/los producto/s devuelto/s.
+          Una vez recibido el/los producto/s devuelto/s, comprobaremos someramente los motivos indicados para la devolución. Si en nuestra opinión, los motivos son fundados, se lo comunicaremos al Vendedor, quien podrá pasar por nuestras oficinas a revisar y retirar el/los producto/s devuelto/s dentro de un plazo de diez (10) días hábiles. Por el contrario, si entendemos que los motivos de devolución no son fundados, se lo comunicaremos al Comprador y este último podrá pasar por nuestras oficinas a retirar el/los producto/s dentro de un plazo de diez (10) días hábiles o, en el mismo plazo, solicitar que se lo enviemos a su domicilio, con cargo. Transcurridos los plazos previstos en este párrafo, a nuestro exclusivo criterio, podremos donar u ofrecer nuevamente a la venta el/los producto/s devuelto/s.
         </p>
         <p className="tituloSecundario">
           9.5 Exención de responsabilidad por las devoluciones
@@ -1114,31 +908,23 @@ const TyC = () => {
         <p className="tituloPrimario">10. CÓMO PODÉS CONTACTARNOS</p>
         <p className="tituloSecundario">10.1 Canales de atención</p>
         <p className="textoRegular">
-          De forma general y salvo otras formas de contacto informadas para
-          cuestiones específicas, podrás contactarnos en las siguientes
-          direcciones de email:
+          De forma general y salvo otras formas de contacto informadas para cuestiones específicas, podrás contactarnos en las siguientes direcciones de email: 
           <p className="textoRegular">
-            - por consultas e información general: Hola@miropero.com.ar
+            - por consultas e información general: <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>
           </p>
           <p className="textoRegular">
-            - por devoluciones: reclamos@miropero.com.ar;
+            - por devoluciones : <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>;  
           </p>
         </p>
-        <p className="textoRegular">- por reclamos: reclamos@miropero.com.ar</p>
+        <p className="textoRegular">- por reclamos: : <a href="mir@miropero.com.ar">mir@miropero.com.ar</a> </p>
         <p className="textoRegular">
-          - por denuncias: reclamos@miropero.com.ar
+          - por denuncias: <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>
         </p>
         <p className="textoRegular">
-          También podrás ponerte en contacto con nosotros por WhatsApp al número
-          11 54864779, en particular por cualquier incidencia ocurrida durante
-          el proceso de compra, de lunes a viernes en el horario de 09 a 18
-          horas.
+        También podrás ponerte en contacto con nosotros por WhatsApp al número (+54 9) 11 5486-4779 en particular por cualquier incidencia ocurrida durante el proceso de compra, de lunes a viernes en el horario de 09 a 18 horas de la República Argentina.
         </p>
         <p className="textoRegular">
-          Adicionalmente, podrás acceder a otra información relevante sobre
-          nosotros y contactarnos, sin garantías de respuesta, a través de las
-          páginas oficiales de nuestras redes sociales accesibles desde el Sitio
-          Web.
+        Adicionalmente, podrás acceder a otra información relevante sobre nosotros y contactarnos, sin garantías de respuesta, a través de las páginas oficiales de nuestras redes sociales accesibles desde el Sitio Web.
         </p>
         <p className="tituloSecundario">
           10.2 Tramitación de reclamos e incidencias
@@ -1248,16 +1034,7 @@ const TyC = () => {
           11.3 Derecho a modificar estos Términos y Condiciones
         </p>
         <p className="textoRegular">
-          MI ROPERO podrá modificar estos Términos y Condiciones en cualquier
-          momento, sin que ningún Usuario pueda oponerse o invocar algún tipo de
-          derecho al mantenimiento de una determinada versión de estos Términos
-          y Condiciones o de una determinada parte, Sección o Cláusula. De forma
-          general, toda modificación de estos Términos y Condiciones entrará en
-          vigencia desde el momento de su publicación en nuestro Sitio Web. MI
-          ROPERO notificará cualquier modificación de estos Términos y
-          Condiciones a los Usuarios registrados en nuestro Sitio Web mediante
-          email con diez (10) días de antelación a su publicación en nuestro
-          Sitio Web.
+        MI ROPERO podrá modificar estos Términos y Condiciones en cualquier momento, sin que ningún Usuario pueda oponerse o invocar algún tipo de derecho al mantenimiento de una determinada versión de estos Términos y Condiciones o de una determinada parte, Sección o Cláusula. De forma general, toda modificación de estos Términos y Condiciones entrará en vigencia desde el momento de su publicación en nuestro Sitio Web. MI ROPERO notificará cualquier modificación de estos Términos y Condiciones a los Usuarios registrados en nuestro Sitio Web mediante email con diez (10) días de antelación a su publicación en nuestro Sitio Web.
         </p>
         <p className="tituloSecundario">
           11.4 Cierre de funcionalidades, páginas o del Sitio Web
