@@ -41,12 +41,12 @@ const TyC = () => {
         Nuestra propiedad se extiende a todos los contenidos de este Sitio Web (salvo aquellos que, de tanto en tanto, publiquen sus Usuarios y sobre los cuales podemos tener derechos conforme a lo previsto en estos Términos y Condiciones), incluyendo sin carácter limitativo, el diseño, la gráfica, las combinaciones de colores, los programas, los textos, los eslóganes y mensajes publicitarios, los logos, las marcas, los nombres de dominio, etc. No deberás usar ninguno de ellos sin autorización expresa de MI ROPERO.
         </p>
         <p className="tituloSecundario">1.2 Nuestra responsabilidad</p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Como regla general, MI ROPERO no será responsable por ninguna de las
           acciones u omisiones realizadas por los Usuarios de y en nuestro Sitio
-          Web.
+          Web.</span>
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           MI ROPERO es un proveedor de un servicio de Internet y como tal,
           ponemos a disposición una plataforma de acceso público en la que
           terceros, sin vinculación legal con nosotros más allá de estos
@@ -56,7 +56,7 @@ const TyC = () => {
           de algunas actividades que realizan a través del mismo pero, de forma
           general, no tenemos la capacidad técnica ni la obligación legal de
           supervisar el comportamiento de nuestros Usuarios dentro del Sitio
-          Web.
+          Web.</span>
         </p>
         <p className="textoRegular">
           MI ROPERO no vende (salvo que lo indiquemos expresamente) ni compra
@@ -78,10 +78,10 @@ const TyC = () => {
           En tales casos, el bloqueo deberá ser ordenado por un juez competente.
         </p>
         <p className="tituloSecundario">1.3 Tu responsabilidad</p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Es importante que entiendas que si publicás, vendés y/o comprás en
           nuestro Sitio Web, lo hacés en todos los casos exclusivamente bajo tu
-          propia responsabilidad. Por regla general y dentro de los límites de
+          propia responsabilidad.</span> Por regla general y dentro de los límites de
           la legislación vigente en cada momento, todas las operaciones que se
           realicen en nuestro Sitio Web son por cuenta y riesgo exclusivamente
           de sus Usuarios. Además, como Usuario de este Sitio Web, te
@@ -122,15 +122,15 @@ const TyC = () => {
           formular las denuncias y reclamos legales correspondientes.
         </p>
         <p className="tituloSecundario">1.6 Si te arrepentís de una compra</p>
-        <p className="textoRegular">
-          STenés derecho a arrepentirte y devolver una compra efectuada en nuestro Sitio Web, sin costo y sin justificar el motivo, dentro de un plazo de DIEZ (10) DÍAS corridos desde que la hayas abonado o desde la entrega del producto, lo último que ocurra. Para ello, deberás seguir los pasos indicados en la Sección 9.1.- Derecho de Revocación, de estos Términos y Condiciones. También podés ejercer de este derecho a través del “botón de arrepentimiento” disponible en la página de inicio de nuestro Sitio Web.
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
+          Tenés derecho a arrepentirte y devolver una compra efectuada en nuestro Sitio Web, sin costo y sin justificar el motivo, dentro de un plazo de DIEZ (10) DÍAS corridos desde que la hayas abonado o desde la entrega del producto, lo último que ocurra. Para ello, deberás seguir los pasos indicados en la Sección 9.1.- Derecho de Revocación, de estos Términos y Condiciones. También podés ejercer de este derecho a través del “botón de arrepentimiento” disponible en la página de inicio de nuestro Sitio Web.</span>
         </p>
         <p className="tituloSecundario">
           1.7 Aceptación de los Términos y Condiciones
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Si usás de cualquier forma nuestro Sitio Web, estás aceptando de
-          manera incondicionada estos Términos y Condiciones. En aquellas
+          manera incondicionada estos Términos y Condiciones.</span> En aquellas
           funcionalidades a las que sólo se accede mediante registración previa
           como, de forma general, para comprar o vender a través de nuestro
           Sitio Web, la aceptación se realiza de forma expresa mediante uno o
@@ -197,14 +197,14 @@ const TyC = () => {
           Usuario. En esta Sección, te explicamos cuáles son las reglas bajo las
           que podés crear una cuenta en nuestro Sitio Web.
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Al crear una cuenta en MI ROPERO, aceptás ser el único responsable de
           su uso y de todas las operaciones que se realicen a través de la
           misma. Antes de completar el proceso de alta, deberás aceptar en forma
           expresa estos Términos y Condiciones, que establecen las obligaciones
           y las responsabilidades que asumes por crear una cuenta en MI ROPERO.
           No deberías crear una cuenta en MI ROPERO sin leer antes atentamente
-          estos Términos y Condiciones.
+          estos Términos y Condiciones.</span>
         </p>
         <p className="tituloSecundario">3.1 Alta de una cuenta</p>
         <p className="textoRegular">
@@ -507,13 +507,13 @@ const TyC = () => {
           reparaciones, sustituciones y devoluciones que correspondan en virtud
           de dicha garantía.
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Se informa a los Usuarios que los plazos de las garantías
           contractuales y legales han sido suspendidos por todo el periodo en
           que se hayan visto imposibilitados de ejercer sus derechos en virtud
           del Aislamiento Social, Preventivo y Obligatorio dictado por el
           Decreto nº 297 de 19 de marzo de 2020 y sus modificatorios (cfr. Res.
-          244/2020, de la Secretaría de Comercio Interior).
+          244/2020, de la Secretaría de Comercio Interior).</span>
         </p>
         <p className="tituloPrimario">5. COMPRAR EN NUESTRO SITIO WEB</p>
         <p className="textoRegular">
@@ -578,10 +578,10 @@ const TyC = () => {
           Condiciones en un formato que podrás guardar y recuperar en cualquier
           momento.
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           10. A partir de la confirmación de tu pago, podrás ejercer el derecho
           de revocación informado en la Sección 9.1 de estos Términos y
-          Condiciones.
+          Condiciones.</span>
         </p>
         <p className="tituloSecundario">5.3 Calificación de la compra</p>
         <p className="textoRegular">
@@ -711,11 +711,11 @@ const TyC = () => {
         <p className="tituloSecundario">
           7.1 Tarifas por operaciones y a cargo del Vendedor
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Las tarifas de MI ROPERO consisten exclusivamente en un porcentaje de
           las operaciones que involucren pagos en dinero celebradas en nuestro
           Sitio Web. Nuestras tarifas estarán en todos los casos exclusivamente
-          a cargo del Usuario que actúe como Vendedor.
+          a cargo del Usuario que actúe como Vendedor.</span>
         </p>
         <p className="tituloSecundario">
           7.2 Esquema de tarifas y derecho a modificarlo
@@ -823,8 +823,8 @@ const TyC = () => {
         <p className="textoRegular">
           - El siguiente día habíl antes de las diez (10:00) horas, si la operación ingresa en nuestros sistemas un sábado,  domingo o feriado.
         </p>
-        <p className="textoRegular">
-        Los plazos informados arriba son estimativos. En ningún caso MI ROPERO garantiza la entrega de un envío en un determinado plazo. 
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
+        Los plazos informados arriba son estimativos. En ningún caso MI ROPERO garantiza la entrega de un envío en un determinado plazo. </span>
         </p>
         <p className="tituloSecundario">8.6 Reclamos por envíos extraviados</p>
         <p className="textoRegular">
@@ -842,17 +842,17 @@ const TyC = () => {
         </p>
         <p className="tituloPrimario">9. CANCELACIONES Y DEVOLUCIONES</p>
         <p className="tituloSecundario">9.1 Derecho de revocación</p>
-        <p className="textoRegular">
-        Tenés derecho a revocar una compra y devolver cualquier artículo adquirido en nuestro Sitio Web, sin cargo y sin necesidad de explicarnos los motivos de la cancelación, dentro del plazo de DIEZ (10) DÍAS CORRIDOS desde el momento en que abones tu compra o desde la entrega del producto, lo último que ocurra.
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
+        Tenés derecho a revocar una compra y devolver cualquier artículo adquirido en nuestro Sitio Web, sin cargo y sin necesidad de explicarnos los motivos de la cancelación, dentro del plazo de DIEZ (10) DÍAS CORRIDOS desde el momento en que abones tu compra o desde la entrega del producto, lo último que ocurra.</span>
+        </p>
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
+        Tené en cuenta que existen productos que, por su naturaleza, podrán no tener disponible el ejercicio de este derecho de conformidad con lo dispuesto en el artículo 1.116 del Código Civil y Comercial de la Nación. En particular, esto podrá ocurrir, sin carácter limitativo, en relación con todas o alguna de las siguientes categorías de productos: a) artículos usados con posterioridad a su recepción, dado que no podrá comprobarse que no han sido usados por el Comprador antes de solicitar la revocación; b) la ropa interior; c) las prendas de baño; d) los productos de belleza o para el cabello que hayan sido abiertos; y e) productos que pueden ser objeto de un único uso, como vestidos de novia, vestidos o trajes de fiesta, smokings, chaqués, fracs y similares. Tampoco podrán devolverse los productos nuevos con signos de haber sido usados. </span>
         </p>
         <p className="textoRegular">
-        Tené en cuenta que existen productos que, por su naturaleza, podrán no tener disponible el ejercicio de este derecho de conformidad con lo dispuesto en el artículo 1.116 del Código Civil y Comercial de la Nación. En particular, esto podrá ocurrir, sin carácter limitativo, en relación con todas o alguna de las siguientes categorías de productos: a) artículos usados con posterioridad a su recepción, dado que no podrá comprobarse que no han sido usados por el Comprador antes de solicitar la revocación; b) la ropa interior; c) las prendas de baño; d) los productos de belleza o para el cabello que hayan sido abiertos; y e) productos que pueden ser objeto de un único uso, como vestidos de novia, vestidos o trajes de fiesta, smokings, chaqués, fracs y similares. Tampoco podrán devolverse los productos nuevos con signos de haber sido usados. 
+        Para el ejercicio de tu derecho de revocación, deberás enviarnos un email a la casilla: <a href="mailto:mir@miropero.com.ar">mir@miropero.com.ar</a>, haciendo constar expresamente como asunto “DERECHO DE REVOCACIÓN”, y añadiendo toda la información que nos permita identificar la operación que  deseas cancelar, incluyendo tus datos y los del Vendedor así como la correcta identificación del o de los artículos cuya compra querés revocar. Si ya has recibido el o los artículos cuya compra has revocado, dentro de las veinticuatro (24) horas recibirás un email nuestro con las instrucciones para que puedas devolverlos sin costo. En este caso, una vez que los recibamos y comprobemos que está todo correcto, te reintegraremos la totalidad del dinero de la compra, sin perjuicio de que podamos ofrecerte otros productos en reemplazo de los productos cuya compra hayas revocado. 
         </p>
-        <p className="textoRegular">
-        Para el ejercicio de tu derecho de revocación, deberás enviarnos un email a la casilla: <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>, haciendo constar expresamente como asunto “DERECHO DE REVOCACIÓN”, y añadiendo toda la información que nos permita identificar la operación que  deseas cancelar, incluyendo tus datos y los del Vendedor así como la correcta identificación del o de los artículos cuya compra querés revocar. Si ya has recibido el o los artículos cuya compra has revocado, dentro de las veinticuatro (24) horas recibirás un email nuestro con las instrucciones para que puedas devolverlos sin costo. En este caso, una vez que los recibamos y comprobemos que está todo correcto, te reintegraremos la totalidad del dinero de la compra, sin perjuicio de que podamos ofrecerte otros productos en reemplazo de los productos cuya compra hayas revocado. 
-        </p>
-        <p className="textoRegular">
-        También podrás ejercer tu derecho de revocación, en las mismas condiciones previstas en el párrafo anterior, mediante el “botón de arrepentimiento” disponible en la página de inicio de nuestro Sitio Web. Para ello, deberás completar los campos del formulario que se despliega tras hacer click en dicho botón y enviárnoslo.
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
+        También podrás ejercer tu derecho de revocación, en las mismas condiciones previstas en el párrafo anterior, mediante el “botón de arrepentimiento” disponible en la página de inicio de nuestro Sitio Web. Para ello, deberás completar los campos del formulario que se despliega tras hacer click en dicho botón y enviárnoslo.</span>
         </p>
         <p className="textoRegular">
         Al publicar productos para la venta en nuestro Sitio Web, te obligás expresamente a cumplir, facilitar y con tus mejores esfuerzos ayudarnos a cumplir en todo momento con el ejercicio del derecho de revocación por parte de los Usuarios de nuestro Sitio Web. Caso contrario, podremos suspender o cerrar tu cuenta, además de reclamarte todos los daños y perjuicios que una conducta reticente o no diligente de tu parte nos ocasione.
@@ -878,13 +878,13 @@ const TyC = () => {
         </p>
         <p className="tituloSecundario">9.3 Plazo para la devolución</p>
         <p className="textoRegular">
-        Si no estás conforme con un producto recibido, deberás presentar tu reclamo a través de la sección “Mis Compras” de tu cuenta, seleccionando e indicando en todos los casos el/los motivo/s de la devolución. El plazo para comunicarnos la devolución de un producto es de veinticuatro (24) horas si el envío se realizó por OCA, y de dos (2) horas si fue por servicio de moto, en ambos casos a contar desde el momento en que recibas el envío. Recordá que una vez que hayas calificado la compra o que haya vencido el plazo para hacerlo previsto en la Sección 5.4, no se aceptarán devoluciones.
+        Si no estás conforme con un producto recibido, deberás presentar tu reclamo a través de la sección “Mis Compras” de tu cuenta, seleccionando e indicando en todos los casos el/los motivo/s de la devolución.<span style={{color:"black",fontWeight:"600"}}> El plazo para comunicarnos la devolución de un producto es de veinticuatro (24) horas si el envío se realizó por OCA, y de dos (2) horas si fue por servicio de moto, en ambos casos a contar desde el momento en que recibas el envío. Recordá que una vez que hayas calificado la compra o que haya vencido el plazo para hacerlo previsto en la Sección 5.4, no se aceptarán devoluciones.</span>
         </p>
         <p className="tituloSecundario">
           9.4 Procedimiento para las devoluciones
         </p>
         <p className="textoRegular">
-        Una vez que comprobemos que la devolución está dentro del plazo, te enviaremos la etiqueta de devolución que deberás adjuntar al paquete y te informaremos, dependiendo de tu ubicación, si pasamos a recoger el paquete por tu domicilio o si tenés que acercarte a una sucursal de OCA para remitírnoslo sin costo. En caso de que pasemos a retirarlo, deberás tener el paquete listo en el horario que te vayamos informando. Si tenés que enviárnoslo por OCA, deberás hacerlo dentro de un plazo de cuarenta y ocho (48) horas desde que recibas la etiqueta de devolución. En cualquiera de los dos supuestos (retiro o envío por OCA), en caso de que no cumplás estrictamente con estas condiciones, perderás automáticamente el derecho a la devolución.
+        Una vez que comprobemos que la devolución está dentro del plazo, te enviaremos la etiqueta de devolución que deberás adjuntar al paquete y te informaremos, dependiendo de tu ubicación, si pasamos a recoger el paquete por tu domicilio o si tenés que acercarte a una sucursal de OCA para remitírnoslo sin costo.<span style={{color:"black",fontWeight:"600"}}> En caso de que pasemos a retirarlo, deberás tener el paquete listo en el horario que te vayamos informando. Si tenés que enviárnoslo por OCA, deberás hacerlo dentro de un plazo de cuarenta y ocho (48) horas desde que recibas la etiqueta de devolución. En cualquiera de los dos supuestos (retiro o envío por OCA), en caso de que no cumplás estrictamente con estas condiciones, perderás automáticamente el derecho a la devolución.</span>
         </p>
         <p className="textoRegular">
           Una vez recibido el/los producto/s devuelto/s, comprobaremos someramente los motivos indicados para la devolución. Si en nuestra opinión, los motivos son fundados, se lo comunicaremos al Vendedor, quien podrá pasar por nuestras oficinas a revisar y retirar el/los producto/s devuelto/s dentro de un plazo de diez (10) días hábiles. Por el contrario, si entendemos que los motivos de devolución no son fundados, se lo comunicaremos al Comprador y este último podrá pasar por nuestras oficinas a retirar el/los producto/s dentro de un plazo de diez (10) días hábiles o, en el mismo plazo, solicitar que se lo enviemos a su domicilio, con cargo. Transcurridos los plazos previstos en este párrafo, a nuestro exclusivo criterio, podremos donar u ofrecer nuevamente a la venta el/los producto/s devuelto/s.
@@ -892,7 +892,7 @@ const TyC = () => {
         <p className="tituloSecundario">
           9.5 Exención de responsabilidad por las devoluciones
         </p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Tanto el Vendedor como el Comprador declarán entender que la
           comprobación que realiza MI ROPERO de los motivos invocados por el
           Comprador para la devolución de un producto es meramente superficial y
@@ -903,22 +903,22 @@ const TyC = () => {
           las devoluciones, sin en ningún caso emitir un juicio definitivo sobre
           las razones que las fundamentan. Cualquier controversia entre un
           Vendedor y un Comprador relacionada con la devolución de un producto
-          deberá ser resuelta entre ellos exclusivamente.
+          deberá ser resuelta entre ellos exclusivamente.</span>
         </p>
         <p className="tituloPrimario">10. CÓMO PODÉS CONTACTARNOS</p>
         <p className="tituloSecundario">10.1 Canales de atención</p>
         <p className="textoRegular">
           De forma general y salvo otras formas de contacto informadas para cuestiones específicas, podrás contactarnos en las siguientes direcciones de email: 
           <p className="textoRegular">
-            - por consultas e información general: <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>
+            - por consultas e información general: <a href="mailto:mir@miropero.com.ar">mir@miropero.com.ar</a>
           </p>
           <p className="textoRegular">
-            - por devoluciones : <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>;  
+            - por devoluciones : <a href="mailto:mir@miropero.com.ar">mir@miropero.com.ar</a>;  
           </p>
         </p>
-        <p className="textoRegular">- por reclamos: : <a href="mir@miropero.com.ar">mir@miropero.com.ar</a> </p>
+        <p className="textoRegular">- por reclamos: : <a href="mailto:mir@miropero.com.ar">mir@miropero.com.ar</a> </p>
         <p className="textoRegular">
-          - por denuncias: <a href="mir@miropero.com.ar">mir@miropero.com.ar</a>
+          - por denuncias: <a href="mailto:mir@miropero.com.ar">mir@miropero.com.ar</a>
         </p>
         <p className="textoRegular">
         También podrás ponerte en contacto con nosotros por WhatsApp al número (+54 9) 11 5486-4779 en particular por cualquier incidencia ocurrida durante el proceso de compra, de lunes a viernes en el horario de 09 a 18 horas de la República Argentina.
@@ -959,11 +959,11 @@ const TyC = () => {
           nuestro Sitio Web.
         </p>
         <p className="tituloSecundario">10.4 Defensa del Consumidor</p>
-        <p className="textoRegular">
+        <p className="textoRegular"><span style={{color:"black",fontWeight:"600"}}>
           Te informamos que si estás disconforme con la respuesta que demos a tu
           reclamo y tenés el carácter de consumidor según la legislación vigente
           en cada momento, en general, podrás presentar un reclamo ante la
-          oficina de Defensa del Consumidor que corresponsa a tu domicilio.
+          oficina de Defensa del Consumidor que corresponsa a tu domicilio.</span>
         </p>
         <p className="tituloPrimario">
           11. OTRA INFORMACIÓN IMPORTANTE QUE DEBES CONOCER
