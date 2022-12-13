@@ -217,7 +217,7 @@ const TyC = () => {
         De forma general, el alta de tu cuenta será automática tras completar nuestro formulario. Sin embargo, en algunos casos y, en particular, cuando se trate de comercios o negocios, el alta puede quedar condicionada a que revisemos y validemos la información que nos hayas compartido. En este caso, te confirmaremos el alta mediante el envío de un email a la dirección que nos hayas comunicado durante el proceso de alta. 
         </p>
         <p className="textoRegular">
-        Todos los datos personales que nos compartas durante el proceso de alta serán tratados de conformidad con nuestra Política de Privacidad que podés consultar <span style={{cursor:"pointer",color:"blue",textDecoration:"underline"}}>aquí</span>
+        Todos los datos personales que nos compartas durante el proceso de alta serán tratados de conformidad con nuestra Política de Privacidad que podés consultar <span style={{cursor:"pointer",color:"blue",textDecoration:"underline"}} onClick={()=>window.location.replace("https://www.miropero.ar/politica&de&privacidad")}>aquí</span>
         </p>
         <p className="tituloSecundario">
           3.2 Nuestro derecho a rechazar el alta de una cuenta
