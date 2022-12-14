@@ -13,6 +13,7 @@ import PopUpImg from "./PopUpImg";
 import Loader from "../Loader/Loader";
 import PopUpVideo from "./PopUpVideo";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import Swal from "sweetalert2";
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
@@ -184,6 +185,33 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const deleteImage = (image)=>{
+    console.log(imagenesPreview)
+    console.log(seccionExtra)
+    console.log(imgsEditar)
+    if(form.prodEditar){
+
+    }else{
+
+    }
+  }
+
+  const deleteVideo = ()=>{
+    Swal.fire({
+      title: "¿ ELIMINAR VIDEO ?",
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: "ELIMINAR",
+      cancelButtonText:"CANCELAR"
+    }).then((res)=>{
+      if(res.isConfirmed){
+        setVideo(null)
+        setCambioVideo(false)
+        setVideoPreview(null);
+      }
+    })
+  }
+
   const handleSubmit = async () => {
     let variable = false;
     for (let i = 0; i < imgNecesarias.length; i++) {
@@ -320,7 +348,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             })
           )}
           {seccionExtra.length > 0 &&
-            seccionExtra.map((imgBox, i) => {
+            seccionExtra.map((imgBox, i) => {console.log(imgBox)
               return (
                 <div
                   className="section"
@@ -346,7 +374,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="foto"
                     />
                     <img className="editButton" src={editIcon} alt="edit" />
-                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" />}
+                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteImage(imgBox)}/>}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
@@ -392,7 +420,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             <div className="imgBox">
               <img src={video ? check : plusButton} alt="foto" />
               <img className="editButton" src={editIcon} alt="edit" />
-              {video && <img className="deleteButton" src={deleteIcon} alt="delete" />}
+              {video && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteVideo()} />}
             </div>
             <div className="bottomContainer">
               <span>Agregar video</span>
