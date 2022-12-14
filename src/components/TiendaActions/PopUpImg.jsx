@@ -34,6 +34,7 @@ const PopUpImg = ({
   }, []);
 
   const onFileChange = async (e) => {
+    console.log(e.target.files)
     setImagenCargada(true);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
