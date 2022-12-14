@@ -304,7 +304,6 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="foto"
                     />
                     <img className="editButton" src={editIcon} alt="edit" />
-                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" />}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
