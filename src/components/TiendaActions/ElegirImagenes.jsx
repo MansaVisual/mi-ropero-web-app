@@ -166,6 +166,14 @@ const ElegirImagenes = ({ form, setForm }) => {
           let imagenes = {};
           setImgNecesarias(categorias[i].imagenes_necesarias);
 
+          if(!form.imagenes){
+            Swal.fire({
+              title: "OCURRIÓ UN ERROR",
+              text: "Surgió un error. Volvé a intentarlo",
+              icon: "error",
+              confirmButtonText: "ACEPTAR",
+            }).then((res)=>window.location.reload())
+          }
           if (Object.keys(form.imagenes).length === 0) {
             for (let j = 0; j < categorias[i].imagenes_necesarias.length; j++) {
               let obj = categorias[i].imagenes_necesarias[j].nombre;
@@ -187,9 +195,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const deleteImage = (image)=>{
-    console.log(imagenesPreview)
-    console.log(seccionExtra)
-    console.log(imgsEditar)
+    console.log(imagenes)
     if(form.prodEditar){
 
     }else{
