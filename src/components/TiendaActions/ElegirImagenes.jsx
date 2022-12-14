@@ -6,6 +6,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import check from "../../assets/img/successImg.png";
 import editIcon from "../../assets/img/editIcon.svg";
+import deleteIcon from "../../assets/img/basura.png";
 import plusButton from "../../assets/img/plusButton.svg";
 import infoIcon from "../../assets/img/infoIcon.svg";
 import PopUpImg from "./PopUpImg";
@@ -303,6 +304,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="foto"
                     />
                     <img className="editButton" src={editIcon} alt="edit" />
+                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" />}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>

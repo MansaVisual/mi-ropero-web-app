@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Swal from "sweetalert2";
+import theme from "../../styles/theme";
 
 const PopUpVideo = ({
   setOpenVidPopUp,
@@ -12,6 +13,8 @@ const PopUpVideo = ({
   setCambioVideo,
 }) => {
   const [videoSrc, setVideoSrc] = useState(null);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
 
   function readFile(file) {
     return new Promise((resolve) => {
@@ -69,7 +72,7 @@ const PopUpVideo = ({
                 style={{
                   width: "100%",
                   maxWidth: "300px",
-                  maxHeight:"140px",
+                  maxHeight: isMobile?"107px":"130px",
                   marginBottom: "30px",
                 }}
               />
