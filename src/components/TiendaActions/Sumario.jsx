@@ -322,19 +322,27 @@ const Sumario = ({ form }) => {
               {form.prodEditar ? "EDITAR" : "PUBLICAR"}
             </Button>
           )}
-          <p>
-            Al oprimir {form.prodEditar ? "GUARDAR CAMBIOS " : "PUBLICAR "}
-            aceptas los{" "}
-            <span
-              onClick={() =>
-                window.open("https://www.miropero.ar/terminos&y&condiciones")
-              }
-            >
-              términos y condiciones
-            </span>{" "}
-            de uso de la plataforma Mi Ropero y nuestras politicas de
-            privacidad.
-          </p>
+          {form.prodEditar ? <></> : 
+            <p>
+              Al oprimir {form.prodEditar ? "GUARDAR CAMBIOS " : "PUBLICAR "}
+              aceptas los{" "}
+              <span
+                onClick={() =>
+                  window.open("https://www.miropero.ar/terminos&y&condiciones")
+                }
+                >
+                términos y condiciones
+              </span>{" "}
+              de uso de la plataforma Mi Ropero y nuestras
+              <span
+                onClick={() =>
+                  window.open("https://www.miropero.ar/politica&de&privacidad")
+                }
+              >
+                politicas de privacidad.
+              </span>
+            </p>
+          }
         </div>
         <div
           className="returnLink"
