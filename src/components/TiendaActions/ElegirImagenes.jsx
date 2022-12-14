@@ -14,6 +14,7 @@ import Loader from "../Loader/Loader";
 import PopUpVideo from "./PopUpVideo";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import Swal from "sweetalert2";
+import logo from "../../assets/img/isologo.png"
 
 const ElegirImagenes = ({ form, setForm }) => {
   const location = useLocation();
@@ -197,12 +198,14 @@ const ElegirImagenes = ({ form, setForm }) => {
   }
 
   const deleteVideo = ()=>{
+    setSection(null);
+    setOpenVidPopUp(false);
     Swal.fire({
       title: "¿ ELIMINAR VIDEO ?",
+      iconHtml: `<img src=${logo} alt="LOGO">`,
       showCloseButton: true,
       showCancelButton: true,
       confirmButtonText: "ELIMINAR",
-      cancelButtonText:"CANCELAR"
     }).then((res)=>{
       if(res.isConfirmed){
         setVideo(null)
