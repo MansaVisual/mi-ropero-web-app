@@ -19,6 +19,8 @@ const Sumario = ({ form }) => {
   const { tiendaData } = useContext(UseMiTiendaContext);
   const [loading, setLoading] = useState(false);
 
+  const [mensajeFinal,setMensajeFinal]=useState("")
+
   if (!form.categoriaId) {
     navigate(`/Mi&Tienda/CATEGORIA`);
     return;
@@ -81,6 +83,7 @@ const Sumario = ({ form }) => {
                   }
                 }
                 if (form.video) {
+                  setMensajeFinal("El producto esta en revisión porque contiene un video.")
                   const vid = new FormData();
                   vid.append(
                     "idtienda",
@@ -93,6 +96,7 @@ const Sumario = ({ form }) => {
                 setLoading(false);
                 Swal.fire({
                   title: "PRODUCTO CARGADO EXITOSAMENTE",
+                  text:mensajeFinal===""?null:mensajeFinal,
                   icon: "success",
                   confirmButtonText: "CONTINUAR",
                 }).then((res) => {
@@ -148,6 +152,7 @@ const Sumario = ({ form }) => {
             }
             if (form.video) {
               if (form.videoApi && form.cambioVideo) {
+                setMensajeFinal("El producto esta en revisión porque contiene un video.")
                 const vidApi = new FormData();
                 vidApi.append("idtienda", Number(tiendaData.idtienda));
                 vidApi.append("idproducto", Number(form.prodEditar.idproducto));
@@ -173,6 +178,7 @@ const Sumario = ({ form }) => {
             setLoading(false);
             Swal.fire({
               title: form.prodEditar?"PRODUCTO EDITADO EXITOSAMENTE":"PRODUCTO CARGADO EXITOSAMENTE",
+              text:mensajeFinal===""?null:mensajeFinal,
               icon: "success",
               confirmButtonText: "CONTINUAR",
             }).then((res) => {
