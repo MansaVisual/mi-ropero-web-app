@@ -212,6 +212,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         if(res.isConfirmed){
           const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
           delete imagenesPreview[image.nombre]
+          delete imagenes[image.nombre]
           setSeccionExtra(newArrayImgs)
         }
       })
