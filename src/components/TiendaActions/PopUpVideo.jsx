@@ -69,6 +69,7 @@ const PopUpVideo = ({
                 style={{
                   width: "100%",
                   maxWidth: "300px",
+                  maxHeight:"140px",
                   marginBottom: "30px",
                 }}
               />
