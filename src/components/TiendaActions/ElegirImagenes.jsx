@@ -203,8 +203,11 @@ const ElegirImagenes = ({ form, setForm }) => {
     Swal.fire({
       title: "¿ ELIMINAR VIDEO ?",
       iconHtml: `<img src=${logo} alt="LOGO">`,
+      customClass: {
+        icon: 'no-border',
+        container:"popUpLoginAlert",
+      },
       showCloseButton: true,
-      showCancelButton: true,
       confirmButtonText: "ELIMINAR",
     }).then((res)=>{
       if(res.isConfirmed){
@@ -416,13 +419,21 @@ const ElegirImagenes = ({ form, setForm }) => {
           </div>
           <div
             className="section"
-            onClick={() => {
+            onClick={video?null:() => {
               handleExtraSubmit("video");
             }}
           >
             <div className="imgBox">
-              <img src={video ? check : plusButton} alt="foto" />
-              <img className="editButton" src={editIcon} alt="edit" />
+              <img src={video ? check : plusButton} alt="foto" 
+                onClick={() => {
+                  handleExtraSubmit("video");
+                }}
+              />
+              <img className="editButton" src={editIcon} alt="edit" 
+                onClick={() => {
+                  handleExtraSubmit("video");
+                }}
+              />
               {video && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteVideo()} />}
             </div>
             <div className="bottomContainer">
