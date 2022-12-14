@@ -333,7 +333,7 @@ const Sumario = ({ form }) => {
                 >
                 términos y condiciones
               </span>{" "}
-              de uso de la plataforma Mi Ropero y nuestras
+              de uso de la plataforma Mi Ropero y nuestras{" "}
               <span
                 onClick={() =>
                   window.open("https://www.miropero.ar/politica&de&privacidad")
