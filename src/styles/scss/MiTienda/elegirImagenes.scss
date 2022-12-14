@@ -242,10 +242,6 @@
             flex-direction: column-reverse;
           }
         }
-        .popUpContainerVideo{
-          max-height: 410px;
-          overflow-y: scroll;          
-        }
         .logoModal {
           height: 32px;
           width: 32px;
@@ -379,6 +375,10 @@
           right: 0;
           cursor: pointer;
         }
+      }
+      .popUpContainerVideo{
+        max-height: 410px;
+        overflow-y: scroll;          
       }
     }
   }
