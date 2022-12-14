@@ -55,7 +55,7 @@ const PopUpVideo = ({
             setOpenVidPopUp(false);
           }}
         />
-        <div className="popUpContainer">
+        <div className="popUpContainer popUpContainerVideo">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">ELEGÍ TU VIDEO</p>
           <p className="popUpDescription" style={{ marginTop: "8px" }}>
