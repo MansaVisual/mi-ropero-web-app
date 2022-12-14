@@ -193,7 +193,22 @@ const ElegirImagenes = ({ form, setForm }) => {
     if(form.prodEditar){
 
     }else{
-
+      Swal.fire({
+        title: "¿ ELIMINAR IMAGEN ?",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: 'no-border',
+          container:"popUpLoginAlert",
+        },
+        showCloseButton: true,
+        confirmButtonText: "ELIMINAR",
+      }).then((res)=>{
+        if(res.isConfirmed){
+          const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
+          delete imagenesPreview[image.nombre]
+          setSeccionExtra(newArrayImgs)
+        }
+      })
     }
   }
 
@@ -358,7 +373,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               return (
                 <div
                   className="section"
-                  onClick={() => {
+                  onClick={imagenesPreview[imgBox.nombre]?null:() => {
                     if (form.imagenesApi.length > 0) {
                       setIdImgEditar(
                         form.imagenesApi[i + imgNecesarias.length - 1]
@@ -378,8 +393,31 @@ const ElegirImagenes = ({ form, setForm }) => {
                           : imgBox.imagen
                       }
                       alt="foto"
+                      onClick={() => {
+                        if (form.imagenesApi.length > 0) {
+                          setIdImgEditar(
+                            form.imagenesApi[i + imgNecesarias.length - 1]
+                              .idproductoimagen
+                          );
+                        }
+                        setSection(imgBox.nombre);
+                        setEsOpcional(false);
+                        setOpenImgPopUp(true);
+                      }}
                     />
-                    <img className="editButton" src={editIcon} alt="edit" />
+                    <img className="editButton" src={editIcon} alt="edit" 
+                      onClick={() => {
+                        if (form.imagenesApi.length > 0) {
+                          setIdImgEditar(
+                            form.imagenesApi[i + imgNecesarias.length - 1]
+                              .idproductoimagen
+                          );
+                        }
+                        setSection(imgBox.nombre);
+                        setEsOpcional(false);
+                        setOpenImgPopUp(true);
+                      }}
+                    />
                     {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteImage(imgBox)}/>}
                   </div>
                   <div className="bottomContainer">
