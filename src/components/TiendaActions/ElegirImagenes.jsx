@@ -347,6 +347,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       alt="foto"
                     />
                     <img className="editButton" src={editIcon} alt="edit" />
+                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" />}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
@@ -369,7 +370,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           >
             <div className="imgBox">
               <img src={plusButton} alt="foto" />
-              <img className="editButton" src={editIcon} alt="edit" />
             </div>
             <div className="bottomContainer">
               <span>Agregar foto extra</span>
@@ -393,6 +393,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             <div className="imgBox">
               <img src={video ? check : plusButton} alt="foto" />
               <img className="editButton" src={editIcon} alt="edit" />
+              {video && <img className="deleteButton" src={deleteIcon} alt="delete" />}
             </div>
             <div className="bottomContainer">
               <span>Agregar video</span>
