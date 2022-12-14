@@ -359,7 +359,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       }
                       alt="foto"
                     />
-                    <img className="editButton" src={editIcon} alt="edit" />
+                    {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" />}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
@@ -412,19 +412,21 @@ const ElegirImagenes = ({ form, setForm }) => {
                         setOpenImgPopUp(true);
                       }}
                     />
-                    <img className="editButton" src={editIcon} alt="edit" 
-                      onClick={() => {
-                        if (form.imagenesApi.length > 0) {
-                          setIdImgEditar(
-                            form.imagenesApi[i + imgNecesarias.length - 1]
-                              .idproductoimagen
-                          );
-                        }
-                        setSection(imgBox.nombre);
-                        setEsOpcional(false);
-                        setOpenImgPopUp(true);
-                      }}
-                    />
+                    {imagenesPreview[imgBox.nombre] &&
+                      <img className="editButton" src={editIcon} alt="edit" 
+                        onClick={() => {
+                          if (form.imagenesApi.length > 0) {
+                            setIdImgEditar(
+                              form.imagenesApi[i + imgNecesarias.length - 1]
+                                .idproductoimagen
+                            );
+                          }
+                          setSection(imgBox.nombre);
+                          setEsOpcional(false);
+                          setOpenImgPopUp(true);
+                        }}
+                      />
+                    }
                     {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteImage(imgBox)}/>}
                   </div>
                   <div className="bottomContainer">
@@ -474,11 +476,13 @@ const ElegirImagenes = ({ form, setForm }) => {
                   handleExtraSubmit("video");
                 }}
               />
-              <img className="editButton" src={editIcon} alt="edit" 
-                onClick={() => {
-                  handleExtraSubmit("video");
-                }}
-              />
+              {video && 
+                <img className="editButton" src={editIcon} alt="edit" 
+                  onClick={() => {
+                    handleExtraSubmit("video");
+                  }}
+                />
+              }
               {video && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteVideo()} />}
             </div>
             <div className="bottomContainer">
