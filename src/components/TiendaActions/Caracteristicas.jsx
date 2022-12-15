@@ -291,10 +291,10 @@ const Caracteristicas = ({ form, setForm }) => {
         </div>
         <div
           className="returnLink"
-          onClick={() => navigate(`/Mi&Tienda/IMAGENES`)}
+          
         >
           <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A IMAGENES</p>
+          <p onClick={() => navigate(`/Mi&Tienda/IMAGENES`)}>VOLVER A IMAGENES</p>
         </div>
       </div>
     </div>

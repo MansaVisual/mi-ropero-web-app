@@ -71,7 +71,10 @@ const ElegirCategoria = ({ setForm }) => {
         </div>
         <div
           className="returnLink"
-          onClick={() => {
+          
+        >
+          <img src={leftArrow} alt="leftArrow" />
+          <p onClick={() => {
             setForm({
               categoria: "",
               tipo: "",
@@ -86,10 +89,7 @@ const ElegirCategoria = ({ setForm }) => {
               setTiendaData([]);
             }
             navigate(`/Mi&Tienda`);
-          }}
-        >
-          <img src={leftArrow} alt="leftArrow" />
-          <p>VOLVER A MI TIENDA</p>
+          }}>VOLVER A MI TIENDA</p>
         </div>
       </div>
     </div>

@@ -352,14 +352,14 @@ const Sumario = ({ form }) => {
         </div>
         <div
           className="returnLink"
-          onClick={() => {
+          
+        >
+          <img src={leftArrow} alt="leftArrow" />
+          <p onClick={() => {
             form.crearTienda
               ? navigate(`/Mi&Tienda/CONTACTO`)
               : navigate(`/Mi&Tienda/DETALLES`);
-          }}
-        >
-          <img src={leftArrow} alt="leftArrow" />
-          <p>{form.crearTienda ? "VOLVER A CONTACTO" : "VOLVER A DETALLES"}</p>
+          }}>{form.crearTienda ? "VOLVER A CONTACTO" : "VOLVER A DETALLES"}</p>
         </div>
       </div>
     </div>

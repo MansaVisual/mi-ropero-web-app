@@ -169,10 +169,10 @@ const DetallesProd = ({ form, setForm }) => {
           </div>
           <div
             className="returnLink"
-            onClick={() => navigate(`/Mi&Tienda/CARACTERISTICAS`)}
+            
           >
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A CARACTERÍSTICAS</p>
+            <p onClick={() => navigate(`/Mi&Tienda/CARACTERISTICAS`)}>VOLVER A CARACTERÍSTICAS</p>
           </div>
         </div>
         {openDescPopUp && (

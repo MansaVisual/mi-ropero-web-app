@@ -84,10 +84,9 @@ const ElegirTipo = ({ form, setForm }) => {
         {form.prodEditar === undefined && (
           <div
             className="returnLink"
-            onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}
           >
             <img src={leftArrow} alt="leftArrow" />
-            <p>VOLVER A MI CATEGORIA</p>
+            <p onClick={() => navigate(`/Mi&Tienda/CATEGORIA`)}>VOLVER A MI CATEGORIA</p>
           </div>
         )}
       </div>
