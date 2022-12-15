@@ -36,6 +36,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [disabledButton, setDisabledButton] = useState(true);
   const [cambioVideo, setCambioVideo] = useState(false);
 
+  const [imgsBorrar,setImgsBorrar] = useState([])
   const [imgsEditar, setImgsEditar] = useState([]);
   const [idImgEditar, setIdImgEditar] = useState("");
 
@@ -197,7 +198,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   const deleteImage = (image)=>{
     console.log(imagenes)
     if(form.prodEditar){
-
+      setImgsBorrar(imgsBorrar.push(image.nombre))
     }else{
       Swal.fire({
         title: "¿ ELIMINAR IMAGEN ?",
@@ -241,6 +242,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   }
 
   const handleSubmit = async () => {
+    console.log(imgsBorrar)
     let variable = false;
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
@@ -262,6 +264,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         video: video,
         cambioVideo: cambioVideo,
         imagenesEditar: imgsEditar,
+        imagenesBorrar: imgsBorrar
       }));
       navigate(`/Mi&Tienda/CARACTERISTICAS`);
     }
