@@ -150,6 +150,24 @@ const Sumario = ({ form }) => {
                 await editarImg(img);
               }
             }
+            for (const i in form.imagenesBorrar) {
+              if (form.imagenesBorrar[i] !== null) {
+                console.log(form.imagenesBorrar[i])
+                const img = new FormData();
+                img.append("idtienda", Number(tiendaData.idtienda));
+                img.append(
+                  "idproducto",
+                  Number(
+                    form.prodEditar
+                      ? form.prodEditar.idproducto
+                      : res.result.idproducto
+                  )
+                );
+                img.append("image", form.imagenesBorrar[i].nombre);
+                img.append("idproductoimagen", form.imagenesBorrar[i].id);
+                await borrarImg(img);
+              }
+            }
             if (form.video) {
               if (form.videoApi && form.cambioVideo) {
                 setMensajeFinal("El producto esta en revisión porque contiene un video.")
@@ -199,6 +217,11 @@ const Sumario = ({ form }) => {
   };
   const editarImg = async (prod) => {
     await apiFetch(prod, "productos", "update_image").then((res) => {
+      return res;
+    });
+  };
+  const borrarImg = async (prod) => {
+    await apiFetch(prod, "productos", "delete_image").then((res) => {
       return res;
     });
   };

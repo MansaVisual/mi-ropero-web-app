@@ -195,30 +195,34 @@ const ElegirImagenes = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const deleteImage = (image)=>{
-    console.log(imagenes)
-    if(form.prodEditar){
-      setImgsBorrar(imgsBorrar.push(image.nombre))
-    }else{
-      Swal.fire({
-        title: "¿ ELIMINAR IMAGEN ?",
-        iconHtml: `<img src=${logo} alt="LOGO">`,
-        customClass: {
-          icon: 'no-border',
-          container:"popUpLoginAlert",
-        },
-        showCloseButton: true,
-        confirmButtonText: "ELIMINAR",
-      }).then((res)=>{
-        if(res.isConfirmed){
-          const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
-          delete imagenesPreview[image.nombre]
-          delete imagenes[image.nombre]
-          setSeccionExtra(newArrayImgs)
+  const deleteImage = (image,idImg)=>{
+    Swal.fire({
+      title: "¿ ELIMINAR IMAGEN ?",
+      iconHtml: `<img src=${logo} alt="LOGO">`,
+      customClass: {
+        icon: 'no-border',
+        container:"popUpLoginAlert",
+      },
+      showCloseButton: true,
+      confirmButtonText: "ELIMINAR",
+    }).then((res)=>{
+      if(res.isConfirmed){
+        const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
+        delete imagenesPreview[image.nombre]
+        delete imagenes[image.nombre]
+        setSeccionExtra(newArrayImgs)
+        if(form.prodEditar){
+          let img = {
+            nombre:image.nombre,
+            id:idImg
+          }
+          setImgsBorrar([...imgsBorrar,img])
         }
-      })
-    }
+      }
+    })
   }
+
+  console.log(imgsBorrar)
 
   const deleteVideo = ()=>{
     setSection(null);
@@ -430,7 +434,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                         }}
                       />
                     }
-                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteImage(imgBox)}/>}
+                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1].idproductoimagen)}/>}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
