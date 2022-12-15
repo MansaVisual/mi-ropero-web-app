@@ -19,15 +19,13 @@ const Sumario = ({ form }) => {
   const { tiendaData } = useContext(UseMiTiendaContext);
   const [loading, setLoading] = useState(false);
 
-  const [mensajeFinal,setMensajeFinal]=useState("")
-
   if (!form.categoriaId) {
     navigate(`/Mi&Tienda/CATEGORIA`);
     return;
   }
 
-
   const handleSubmit = () => {
+    let mensajeFinal=""
     setLoading(true);
     const prod = new FormData();
     prod.append("idcategoria", form.tipoId);
@@ -82,8 +80,11 @@ const Sumario = ({ form }) => {
                     await insertImg(img);
                   }
                 }
+                if(form.tipoNombre==="Ropa interior" || form.tipoNombre==="Trajes de baño"){
+                  mensajeFinal = "El producto esta en revisión por la categoria seleccionada."
+                }
                 if (form.video) {
-                  setMensajeFinal("El producto esta en revisión porque contiene un video.")
+                  mensajeFinal = "El producto esta en revisión porque contiene un video."
                   const vid = new FormData();
                   vid.append(
                     "idtienda",
@@ -168,18 +169,21 @@ const Sumario = ({ form }) => {
                 await borrarImg(img);
               }
             }
+            if(form.tipoNombre==="Ropa interior" || form.tipoNombre==="Trajes de baño"){
+              mensajeFinal = "El producto esta en revisión por la categoria seleccionada."
+            }
             if (form.video) {
               if (form.videoApi && form.cambioVideo) {
-                setMensajeFinal("El producto esta en revisión porque contiene un video.")
                 const vidApi = new FormData();
                 vidApi.append("idtienda", Number(tiendaData.idtienda));
                 vidApi.append("idproducto", Number(form.prodEditar.idproducto));
                 vidApi.append(
                   "idproductoimagen",
                   form.videoApi.idproductoimagen
-                );
-                await apiFetch(vidApi, "productos", "delete_image")
-              }
+                  );
+                  await apiFetch(vidApi, "productos", "delete_image")
+                }
+              mensajeFinal = "El producto esta en revisión porque contiene un video."
               const vid = new FormData();
               vid.append("idtienda", Number(tiendaData.idtienda));
               vid.append(

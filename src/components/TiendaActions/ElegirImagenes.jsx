@@ -434,7 +434,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                         }}
                       />
                     }
-                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1].idproductoimagen)}/>}
+                    {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete"
+                      onClick={form.imagenesApi.length > 0?()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1].idproductoimagen):()=>deleteImage(imgBox)}
+                    />}
                   </div>
                   <div className="bottomContainer">
                     <span>{imgBox.nombre}</span>
@@ -510,7 +512,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             }}
             onClick={() => handleSubmit()}
           >
-            IR A CARACTERÍSTICAS
+            AGREGAR CARACTERÍSTICAS
           </button>
         </div>
         {form.prodEditar === undefined && (

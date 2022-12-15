@@ -254,7 +254,7 @@ const PopUpImg = ({
             </Button>
             <>
               <label for="file-upload" class="custom-file-upload">
-                CARGAR IMAGEN
+                SUBIR IMAGEN
               </label>
               <input
                 id="file-upload"
