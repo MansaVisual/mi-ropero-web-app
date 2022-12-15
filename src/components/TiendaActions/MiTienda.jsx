@@ -66,7 +66,7 @@ const MiTienda = () => {
               );
             })}
           </div>
-          <div className="returnLink" onClick={() => navigate(`/`)}>
+          <div className="returnLink" onClick={() => window.location.replace(`https://www.miropero.ar`)}>
             <img src={leftArrow} alt="leftArrow" />
             <p>VOLVER A INICIO</p>
           </div>

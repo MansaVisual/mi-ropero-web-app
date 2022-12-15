@@ -7,6 +7,8 @@ import AccesorioICon from "../../assets/img/accesorioICon.png";
 import BellezaICon from "../../assets/img/bellezaICon.png";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
+import Swal from "sweetalert2";
+import logo from "../../assets/img/isologo.png"
 
 const categorias = [
   {
@@ -31,7 +33,7 @@ const categorias = [
   },
 ];
 
-const ElegirCategoria = ({ setForm }) => {
+const ElegirCategoria = ({ setForm, form }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -49,15 +51,43 @@ const ElegirCategoria = ({ setForm }) => {
               <div
                 className="section"
                 onClick={() => {
-                  setForm((prevState) => ({
-                    ...prevState,
-                    categoriaId: section.idCategoriaPadre,
-                    categoriaNombre: section.nombre,
-                    caracteristicas: [],
-                    idCaracteristica: [],
-                    idCaracteristicaOld: [],
-                  }));
-                  navigate(`/Mi&Tienda/TIPO`);
+                  if(form.tipoId!==null){
+                    Swal.fire({
+                      title: "Si cambia de categoría, se perderán los datos cargados.",
+                      iconHtml: `<img src=${logo} alt="LOGO">`,
+                      customClass: {
+                        icon: 'no-border',
+                        container:"popUpLoginAlert",
+                        cancelButton:"popUpLoginCancel"
+                      },
+                      showCloseButton: true,
+                      showCancelButton: true,
+                      confirmButtonText: "CONFIRMAR",
+                      cancelButtonText:"CANCELAR"
+                    }).then((res)=>{
+                      if(res.isConfirmed){
+                        setForm((prevState) => ({
+                          ...prevState,
+                          categoriaId: section.idCategoriaPadre,
+                          categoriaNombre: section.nombre,
+                          caracteristicas: [],
+                          idCaracteristica: [],
+                          idCaracteristicaOld: [],
+                        }));
+                        navigate(`/Mi&Tienda/TIPO`);
+                      }
+                    })
+                  }else{
+                    setForm((prevState) => ({
+                      ...prevState,
+                      categoriaId: section.idCategoriaPadre,
+                      categoriaNombre: section.nombre,
+                      caracteristicas: [],
+                      idCaracteristica: [],
+                      idCaracteristicaOld: [],
+                    }));
+                    navigate(`/Mi&Tienda/TIPO`);
+                  }
                 }}
               >
                 <div className="imgBox">
@@ -76,19 +106,31 @@ const ElegirCategoria = ({ setForm }) => {
           <img src={leftArrow} alt="leftArrow" />
           <p onClick={() => {
             setForm({
-              categoria: "",
-              tipo: "",
+              crearTienda: null,
+              categoriaId: null,
+              categoriaNombre: null,
+              tipoId: null,
+              tipoNombre: null,
               caracteristicas: [],
               idCaracteristica: [],
               idCaracteristicaOld: [],
-              titulo: "",
-              precio: "",
-              descripcion: "",
+              direccion: [],
+              telefono: "",
+              detalles: {
+                titulo: "",
+                precio: "",
+                descripcion: "",
+              },
+              imagenes: {},
+              imagenesApi: [],
+              imagenesPreview: {},
+              video: null,
+              seccionExtra: [],
             });
             if (tiendaData[0] === "") {
               setTiendaData([]);
             }
-            navigate(`/Mi&Tienda`);
+            window.location.replace(`https://www.miropero.ar/Mi&Tienda`);
           }}>VOLVER A MI TIENDA</p>
         </div>
       </div>
