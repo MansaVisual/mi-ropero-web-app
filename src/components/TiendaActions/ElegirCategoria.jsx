@@ -66,14 +66,27 @@ const ElegirCategoria = ({ setForm, form }) => {
                       cancelButtonText:"CANCELAR"
                     }).then((res)=>{
                       if(res.isConfirmed){
-                        setForm((prevState) => ({
-                          ...prevState,
+                        setForm({
                           categoriaId: section.idCategoriaPadre,
                           categoriaNombre: section.nombre,
+                          tipoId: null,
+                          tipoNombre: null,
                           caracteristicas: [],
                           idCaracteristica: [],
                           idCaracteristicaOld: [],
-                        }));
+                          direccion: [],
+                          telefono: "",
+                          detalles: {
+                            titulo: "",
+                            precio: "",
+                            descripcion: "",
+                          },
+                          imagenes: {},
+                          imagenesApi: [],
+                          imagenesPreview: {},
+                          video: null,
+                          seccionExtra: [],
+                        });
                         navigate(`/Mi&Tienda/TIPO`);
                       }
                     })
@@ -105,31 +118,6 @@ const ElegirCategoria = ({ setForm, form }) => {
         >
           <img src={leftArrow} alt="leftArrow" />
           <p onClick={() => {
-            setForm({
-              crearTienda: null,
-              categoriaId: null,
-              categoriaNombre: null,
-              tipoId: null,
-              tipoNombre: null,
-              caracteristicas: [],
-              idCaracteristica: [],
-              idCaracteristicaOld: [],
-              direccion: [],
-              telefono: "",
-              detalles: {
-                titulo: "",
-                precio: "",
-                descripcion: "",
-              },
-              imagenes: {},
-              imagenesApi: [],
-              imagenesPreview: {},
-              video: null,
-              seccionExtra: [],
-            });
-            if (tiendaData[0] === "") {
-              setTiendaData([]);
-            }
             window.location.replace(`https://www.miropero.ar/Mi&Tienda`);
           }}>VOLVER A MI TIENDA</p>
         </div>

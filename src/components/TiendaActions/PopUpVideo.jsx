@@ -89,9 +89,6 @@ const PopUpVideo = ({
           )}
 
           <div className="buttonContainer">
-            <Button onClick={() => setOpenVidPopUp(false)} className="volver">
-              CANCELAR
-            </Button>
             <>
               <label for="file-upload-video" class="custom-file-upload">
                 CARGAR VIDEO

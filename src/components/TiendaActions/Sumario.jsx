@@ -352,12 +352,12 @@ const Sumario = ({ form }) => {
             <Loader spin={"spinnerM"} />
           ) : (
             <Button onClick={() => handleSubmit()}>
-              {form.prodEditar ? "EDITAR" : "PUBLICAR"}
+              {form.prodEditar ? "GUARDAR CAMBIOS" : "PUBLICAR"}
             </Button>
           )}
           {form.prodEditar ? <></> : 
             <p>
-              Al oprimir {form.prodEditar ? "GUARDAR CAMBIOS " : "PUBLICAR "}
+              Al oprimir {form.prodEditar ? "GUARDAR CAMBIOS" : "PUBLICAR "}
               aceptas los{" "}
               <span
                 onClick={() =>

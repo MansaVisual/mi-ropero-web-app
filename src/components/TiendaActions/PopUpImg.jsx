@@ -249,9 +249,6 @@ const PopUpImg = ({
             )}
 
           <div className="buttonContainer">
-            <Button onClick={() => closeModal()} className="volver">
-              CANCELAR
-            </Button>
             <>
               <label for="file-upload" class="custom-file-upload">
                 SUBIR IMAGEN
