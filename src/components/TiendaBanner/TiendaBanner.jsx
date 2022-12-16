@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Banner from "../../assets/img/bannerPng.png";
 import iconHide from "../../assets/img/iconHide.svg";
 import iconShow from "../../assets/img/iconShow.svg";

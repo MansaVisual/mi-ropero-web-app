@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import RopaIcon from "../../assets/img/ropaIcon.png";
@@ -6,7 +6,6 @@ import CalzadoIcon from "../../assets/img/calzadoIcon.png";
 import AccesorioICon from "../../assets/img/accesorioICon.png";
 import BellezaICon from "../../assets/img/bellezaICon.png";
 import leftArrow from "../../assets/img/leftArrow.png";
-import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import Swal from "sweetalert2";
 import logo from "../../assets/img/isologo.png"
 
@@ -37,7 +36,6 @@ const ElegirCategoria = ({ setForm, form }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-  const { setTiendaData, tiendaData } = useContext(UseMiTiendaContext);
 
   return (
     <div className="elegirCatContainer">
