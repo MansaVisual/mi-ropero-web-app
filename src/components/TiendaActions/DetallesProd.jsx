@@ -119,7 +119,7 @@ const DetallesProd = ({ form, setForm }) => {
                 customInput={TextField}
                 className={`inputForm`}
                 placeholder="Ingresar precio de venta del producto"
-                value={detalles.precio}
+                value={detalles.precio===0?null:detalles.precio}
                 onValueChange={(values) => {
                   handleChange(values.value, "precio");
                 }}

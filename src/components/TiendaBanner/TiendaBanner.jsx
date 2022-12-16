@@ -83,6 +83,7 @@ const TiendaBanner = () => {
                   setTransfPopUp(true);
                 }
               }}
+              style={{display:"flex",alignItems:"center",justifyContent:"center"}}
             >
               SOLICITAR TRANSFERENCIA
             </button>

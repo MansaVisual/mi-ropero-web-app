@@ -146,7 +146,12 @@ const SeccionProductos = ({ setForm }) => {
                         />
                         <div>
                           <p className="title">{product.nombre}</p>
-                          <p className="state">{product.estado_text}</p>
+                          <p className="state"><span style={{
+                            color:"#423b3c",
+                            fontSize:"14px",
+                            fontWeight:"600",
+                            lineHeight:"24px"
+                          }}>Estado:</span>{" "}{product.estado_text}</p>
                           <p
                             className="discountLink"
                             onClick={
@@ -174,7 +179,7 @@ const SeccionProductos = ({ setForm }) => {
                       </div>
                       <div className="ofertaData">
                         {product.precio_oferta === "0.00" ? (
-                          <p className="monto">
+                          <p className="monto" style={{color:"#423B3C"}}>
                             $
                             {new Intl.NumberFormat("de-DE").format(
                               product.precio

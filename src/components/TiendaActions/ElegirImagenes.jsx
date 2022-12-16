@@ -344,7 +344,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox, i) => {
+            imgNecesarias.map((imgBox, i) => {console.log(imgBox)
               return (
                 <div
                   className="section"
@@ -458,7 +458,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             }}
           >
             <div className="imgBox">
-              <img src={plusButton} alt="foto" />
+              <img src={plusButton} alt="foto" className="imgAdd"/>
             </div>
             <div className="bottomContainer">
               <span>Agregar foto extra</span>
@@ -480,7 +480,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             }}
           >
             <div className="imgBox">
-              <img src={video ? check : plusButton} alt="foto" 
+              <img src={video ? check : plusButton} alt="foto" className="imgAdd"
                 onClick={() => {
                   handleExtraSubmit("video");
                 }}

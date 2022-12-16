@@ -336,7 +336,7 @@ const Sumario = ({ form }) => {
                   return (
                     <div key={index}>
                       <p>{key}:</p>
-                      <span>{form.detalles[key]}</span>
+                      <span>{key.toUpperCase()==="PRECIO"?" $ ":null}{form.detalles[key]}</span>
                     </div>
                   );
                 })}
