@@ -358,6 +358,11 @@ const ElegirImagenes = ({ form, setForm }) => {
                   }}
                 >
                   <div className="imgBox">
+                    <p>{
+                        imagenesPreview[imgBox.nombre]
+                          ? ""
+                          : "Agregar imágen"
+                      }</p>
                     <img
                       src={
                         imagenesPreview[imgBox.nombre]
@@ -383,7 +388,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             })
           )}
           {seccionExtra.length > 0 &&
-            seccionExtra.map((imgBox, i) => {console.log(imgBox)
+            seccionExtra.map((imgBox, i) => {console.log(imgBox.nombre.indexOf("fotoExtra"))
               return (
                 <div
                   className="section"
@@ -439,14 +444,14 @@ const ElegirImagenes = ({ form, setForm }) => {
                     />}
                   </div>
                   <div className="bottomContainer">
-                    <span>{imgBox.nombre}</span>
+                    <span>{imgBox.nombre.indexOf("fotoExtra")?"Foto Extra":imgBox.nombre}</span>
                     <div class="tooltip">
                       <img src={infoIcon} alt="infoIcon" />
                       <span>{imgBox.descripcion}</span>
                     </div>
                   </div>
                   <p className="bottomText">
-                    ({imgBox.obligatoria === "1" ? "obligatoria" : "opcional"})
+                    ({imgBox.obligatoria === "1" ? "obligatoria" : imgBox.nombre.indexOf("fotoExtra")?"":"opcional"})
                   </p>
                 </div>
               );
