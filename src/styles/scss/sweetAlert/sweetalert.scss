@@ -86,3 +86,40 @@
         }
     }
 }
+
+.popUpProdAlert{
+    div{
+        margin-bottom: 0px !important;
+    }
+    .no-border {
+        border: 0 !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    .swal2-actions{
+        display: flex;
+        @include screen_601{
+            flex-direction: column;
+        }
+    }
+    .popUpButtons{
+        font-size: 13px;
+        line-height: 36px;
+        text-decoration-line: underline;
+        color: #443988 !important;
+        background-color: white !important;
+        height: 50px;
+        &:hover{
+            background-color: white !important;
+            background-image: none !important;
+            transform: scale(1.1);
+        }
+        &:active{
+            background-color: white !important;
+            background-image: none !important;
+        }
+        &:focus{
+            box-shadow: none !important;
+        }
+    }
+}

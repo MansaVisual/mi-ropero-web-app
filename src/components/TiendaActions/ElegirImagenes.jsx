@@ -36,11 +36,13 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [disabledButton, setDisabledButton] = useState(true);
   const [cambioVideo, setCambioVideo] = useState(false);
 
-  const [displayPopUpImg,setDisplayPopUpImg]=useState(false)
 
   const [imgsBorrar,setImgsBorrar] = useState([])
   const [imgsEditar, setImgsEditar] = useState([]);
   const [idImgEditar, setIdImgEditar] = useState("");
+
+  const [imagenCargadaUser,setImagenCargadaUser]=useState(null)
+  const [videoCargadoUser,setVideoCargadoUser]=useState(null)
 
   const { categorias } = useContext(UseProdsContext);
 
@@ -310,14 +312,26 @@ const ElegirImagenes = ({ form, setForm }) => {
         setNumeroImgExtra(numeroImgExtra + 1);
         setSection(`fotoExtra ${numeroImgExtra}`);
         setEsOpcional(true);
-        setOpenImgPopUp(true);
+        document.getElementById("file-upload").click()
       } else {
         setSection("video");
-        setOpenVidPopUp(true);
+        document.getElementById("file-upload-video").click()
       }
     }
   };
 
+  const onFileChange=async(e)=>{
+    if (e.target.files && e.target.files.length > 0) {
+      await setImagenCargadaUser(e.target.files[0])
+      setOpenImgPopUp(true)
+    }
+  }
+  const onVideoChange=async(e)=>{
+    if (e.target.files && e.target.files.length > 0) {
+      await setVideoCargadoUser(e.target.files[0])
+      setOpenVidPopUp(true)
+    }
+  }
 
   return (
     <div className="elegirImgContainer">
@@ -353,7 +367,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                     }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
-                    setOpenImgPopUp(true);
+                    document.getElementById("file-upload").click()
                   }}
                 >
                   <div className="imgBox">
@@ -400,7 +414,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                     }
                     setSection(imgBox.nombre);
                     setEsOpcional(false);
-                    setOpenImgPopUp(true);
+                    document.getElementById("file-upload").click()
                   }}
                 >
                   <div className="imgBox">
@@ -420,7 +434,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                         }
                         setSection(imgBox.nombre);
                         setEsOpcional(false);
-                        setOpenImgPopUp(true);
+                        document.getElementById("file-upload").click()
                       }}
                     />
                     {imagenesPreview[imgBox.nombre] &&
@@ -434,7 +448,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                           }
                           setSection(imgBox.nombre);
                           setEsOpcional(false);
-                          setOpenImgPopUp(true);
+                          document.getElementById("file-upload").click()
                         }}
                       />
                     }
@@ -450,7 +464,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                     </div>
                   </div>
                   <p className="bottomText">
-                    ({imgBox.obligatoria === "1" ? "obligatoria" : imgBox.nombre.indexOf("fotoExtra")?"":"opcional"})
+                    {imgBox.obligatoria === "1" ? "(obligatoria)" : imgBox.nombre.indexOf("fotoExtra")?"":"(opcional)"}
                   </p>
                 </div>
               );
@@ -546,8 +560,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           idImgEditar={idImgEditar}
           setImgsEditar={setImgsEditar}
           setIdImgEditar={setIdImgEditar}
-          setDisplayPopUpImg={setDisplayPopUpImg}
-          displayPopUpImg={displayPopUpImg}
+          imagenCargadaUser={imagenCargadaUser}
         />
       )}
       {openVidPopUp && (
@@ -560,8 +573,23 @@ const ElegirImagenes = ({ form, setForm }) => {
           setVideoPreview={setVideoPreview}
           videoPreview={videoPreview}
           setCambioVideo={setCambioVideo}
+          videoCargadoUser={videoCargadoUser}
         />
       )}
+      <input
+        id="file-upload"
+        type="file"
+        onChange={onFileChange}
+        accept="image/*"
+        style={{zIndex:"-99",position:"absolute",top:"0"}}
+      />
+      <input
+        id="file-upload-video"
+        type="file"
+        onChange={onVideoChange}
+        accept="video/mp4"
+        style={{zIndex:"-99",position:"absolute",top:"0"}}
+      />
     </div>
   );
 };

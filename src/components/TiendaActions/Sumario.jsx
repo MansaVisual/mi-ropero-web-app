@@ -204,12 +204,25 @@ const Sumario = ({ form }) => {
             Swal.fire({
               title: form.prodEditar?"PRODUCTO EDITADO EXITOSAMENTE":"PRODUCTO CARGADO EXITOSAMENTE",
               text:mensajeFinal===""?null:mensajeFinal,
+              customClass: {
+                container:"popUpProdAlert",
+                cancelButton:"popUpButtons",
+                confirmButton:"popUpButtons"
+              },
               icon: "success",
-              confirmButtonText: "CONTINUAR",
+              showCancelButton:true,
+              confirmButtonText: "VER MIS PRODUCTOS",
+              cancelButtonText: "CARGAR OTRO PRODUCTO",
             }).then((res) => {
-              window.location.replace(
-                "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
-              );
+              if(!res.isConfirmed){
+                window.location.replace(
+                  "https://www.miropero.ar/Mi&Tienda/CATEGORIA"
+                );
+              }else{
+                window.location.replace(
+                  "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
+                );
+              }
             });
           }
         }

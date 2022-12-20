@@ -19,8 +19,7 @@ const PopUpImg = ({
   idImgEditar,
   setImgsEditar,
   setIdImgEditar,
-  setDisplayPopUpImg,
-  displayPopUpImg
+  imagenCargadaUser
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -32,25 +31,24 @@ const PopUpImg = ({
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
 
-  useEffect(() => {
-    if(!displayPopUpImg){
-      document.getElementById("file-upload").click()
-    }
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
-
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
-  const onFileChange = async (e) => {
-    setDisplayPopUpImg(true)
-    setImagenCargada(true);
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
+  useEffect(() => {
+    if(imagenCargadaUser!==null){
+      load()
+    }
+  }, [imagenCargadaUser])// eslint-disable-next-line react-hooks/exhaustive-deps
+  
+  const load = async()=>{
+    if(imagenCargadaUser!==null){
+      setImagenCargada(true);
+      const file = imagenCargadaUser;
       let imageDataUrl = await readFile(file);
       setImageSrc(imageDataUrl);
     }
-  };
+  }
 
   function readFile(file) {
     return new Promise((resolve) => {
@@ -203,7 +201,7 @@ const PopUpImg = ({
   };
 
   return (
-    <div className="PopUpImg" style={{display:displayPopUpImg?"flex":"none"}}>
+    <div className="PopUpImg">
       <div className="fondoPopUp" onClick={() => closeModal()}></div>
       <div className="popUp">
         <CancelIcon
@@ -250,7 +248,7 @@ const PopUpImg = ({
                   <Button
                     onClick={showCroppedImage}
                     variant="contained"
-                    color="primary"
+                    className="custom-file-upload"
                   >
                     Guardar imagen
                   </Button>
@@ -258,7 +256,7 @@ const PopUpImg = ({
               </>
             )}
 
-          <div className="buttonContainer">
+          {/* <div className="buttonContainer">
             <>
               <label for="file-upload" class="custom-file-upload">
                 SUBIR IMAGEN
@@ -270,7 +268,7 @@ const PopUpImg = ({
                 accept="image/*"
               />
             </>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

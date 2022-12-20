@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button, useMediaQuery } from "@mui/material";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -11,10 +11,33 @@ const PopUpVideo = ({
   setVideoPreview,
   videoPreview,
   setCambioVideo,
+  videoCargadoUser
 }) => {
   const [videoSrc, setVideoSrc] = useState(null);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  useEffect(() => {
+    if(videoCargadoUser!==null){
+      load()
+    }
+  }, [videoCargadoUser])// eslint-disable-next-line react-hooks/exhaustive-deps
+  
+  const load = async()=>{
+    if(videoCargadoUser!==null){
+      if (videoCargadoUser > 20000000) {
+        Swal.fire({
+          title: "VIDEO SUPERIOR A 20MB",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
+        setOpenVidPopUp(false);
+      } else {
+        let imageDataUrl = await readFile(videoCargadoUser);
+        setVideoPreview(imageDataUrl);
+        setVideoSrc(videoCargadoUser);
+      }
+    }
+  }
 
   function readFile(file) {
     return new Promise((resolve) => {
@@ -23,24 +46,6 @@ const PopUpVideo = ({
       reader.readAsDataURL(file);
     });
   }
-
-  const onFileChange = async (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (e.target.files[0].size > 20000000) {
-        Swal.fire({
-          title: "VIDEO SUPERIOR A 20MB",
-          icon: "error",
-          confirmButtonText: "ACEPTAR",
-        });
-        setOpenVidPopUp(false);
-      } else {
-        let imageDataUrl = await readFile(file);
-        setVideoPreview(imageDataUrl);
-        setVideoSrc(file);
-      }
-    }
-  };
 
   const handleSubmit = () => {
     setVideo(videoSrc);
@@ -78,28 +83,22 @@ const PopUpVideo = ({
               />
               <div>
                 <Button
-                  onClick={() => handleSubmit()}
-                  variant="contained"
-                  color="primary"
-                >
-                  Guardar video
-                </Button>
+                    onClick={() => handleSubmit()}
+                    variant="contained"
+                    className="custom-file-upload"
+                  >
+                    Guardar video
+                  </Button>
               </div>
             </>
           )}
 
           <div className="buttonContainer">
-            <>
+            {/* <>
               <label for="file-upload-video" class="custom-file-upload">
                 CARGAR VIDEO
               </label>
-              <input
-                id="file-upload-video"
-                type="file"
-                onChange={onFileChange}
-                accept="video/mp4"
-              />
-            </>
+            </> */}
           </div>
         </div>
       </div>
