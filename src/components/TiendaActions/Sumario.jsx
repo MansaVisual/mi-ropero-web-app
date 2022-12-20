@@ -207,7 +207,7 @@ const Sumario = ({ form }) => {
               customClass: {
                 container:"popUpProdAlert",
                 cancelButton:"popUpButtons",
-                confirmButton:"popUpButtons"
+                confirmButton:"popUpButtons2"
               },
               icon: "success",
               showCancelButton:true,

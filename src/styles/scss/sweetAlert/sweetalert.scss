@@ -103,12 +103,45 @@
         }
     }
     .popUpButtons{
-        font-size: 13px;
-        line-height: 36px;
-        text-decoration-line: underline;
-        color: #443988 !important;
+        font-size: 13px !important;
+        line-height: 36px !important;
+        padding: 0px 48px !important;
+        width: 207px !important;
+        height: 36px !important;
+        background: #443988 !important;
+        box-shadow: 0px 2px 6px rgba(66, 65, 67, 0.1) !important;
+        border-radius: 20px !important;
+        font-family: 'Open Sans' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        color: #FFFFFF !important;
+        &:hover{
+            background: #443988 !important;
+            background-image: none !important;
+            transform: scale(1.1);
+        }
+        &:active{
+            background: #443988 !important;
+            background-image: none !important;
+        }
+        &:focus{
+            box-shadow: none !important;
+        }
+    }
+    .popUpButtons2{
+        font-size: 13px !important;
+        line-height: 36px !important;
+        padding: 0px 48px !important;
+        width: 207px !important;
+        height: 36px !important;
+        border: 0.5px solid #443988 !important;
+        filter: drop-shadow(0px 2px 6px rgba(66, 65, 67, 0.1)) !important;
+        border-radius: 20px !important;
         background-color: white !important;
-        height: 50px;
+        font-family: 'Open Sans' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        color: #443988 !important;
         &:hover{
             background-color: white !important;
             background-image: none !important;
