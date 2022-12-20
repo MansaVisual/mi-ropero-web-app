@@ -14,6 +14,7 @@ const PopUpDescTienda = ({ setOpenPopUp, descuentoInfo }) => {
   const [fin, setFin] = useState(false);
 
   const submit = () => {
+    setFin(false)
     setLoading(true);
 
     const desc = new FormData();

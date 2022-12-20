@@ -19,7 +19,7 @@ const PopUpMensajePP = ({ setOpenMessagePop, prod,descripcion }) => {
     if(descripcion!==undefined){
       setMessage("¡HOLA! ¿El producto está disponible?")
     }
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const submit = () => {
     setLoading(true);

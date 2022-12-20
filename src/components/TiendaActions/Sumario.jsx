@@ -9,6 +9,7 @@ import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import Loader from "../Loader/Loader";
 import Swal from "sweetalert2";
+import videoLogo from "../../assets/img/bx-video.svg"
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
@@ -271,7 +272,7 @@ const Sumario = ({ form }) => {
               />
             </div>
             <div className="infoImagenes">
-              <div>
+              <div><>
                 {Object.keys(form.imagenesPreview).map((key, i) => {
                   if (!form.imagenesPreview[key]) {
                     return null;
@@ -284,6 +285,14 @@ const Sumario = ({ form }) => {
                     />
                   );
                 })}
+                {form.video !== null && 
+                  <img
+                    src={videoLogo}
+                    alt="formImg"
+                    width={30}
+                    height={30}
+                  />
+                }</>
               </div>
               <button onClick={() => navigate(`/Mi&Tienda/IMAGENES`)}>
                 MODIFICAR

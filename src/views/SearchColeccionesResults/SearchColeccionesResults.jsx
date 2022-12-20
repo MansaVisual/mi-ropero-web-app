@@ -11,7 +11,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import Onboarding from "../../components/Onboarding/Onboarding";
 import Filter from "../../components/Filter/Filter";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";

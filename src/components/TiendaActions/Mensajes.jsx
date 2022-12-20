@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
 import error from "../../assets/img/error.png";
-import basura from "../../assets/img/basura.png";
 import mensaje from "../../assets/img/mensajesVacio.png";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import Loader from "../Loader/Loader";

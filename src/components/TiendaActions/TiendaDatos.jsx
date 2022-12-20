@@ -5,7 +5,6 @@ import editIcon from "../../assets/img/editIcon.png";
 import { useNavigate } from "react-router-dom";
 import { Button, Grid, TextField } from "@mui/material";
 import { UseMiTiendaContext } from "../../context/MiTiendaContext";
-import SeccionProductos from "./CrearTienda";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import { UseLoginContext } from "../../context/LoginContext";

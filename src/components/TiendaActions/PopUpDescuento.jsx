@@ -15,6 +15,7 @@ const PopUpDescuento = ({ setOpenPopUp, descuentoInfo }) => {
 
   const submit = () => {
     setLoading(true);
+    setFin(false)
 
     const desc = new FormData();
     desc.append("idproducto", descuentoInfo.productId);

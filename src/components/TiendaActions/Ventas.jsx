@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import TiendaBanner from "../TiendaBanner/TiendaBanner";
 import leftArrow from "../../assets/img/leftArrow.png";
-import basura from "../../assets/img/basura.png";
 import { useNavigate } from "react-router-dom";
 import { Button, Grid, MenuItem, Select } from "@mui/material";
 import { apiFetch } from "../../apiFetch/apiFetch";
@@ -83,13 +82,13 @@ const Ventas = () => {
     "Finalizada",
   ];
 
-  const formatoFecha = (fecha) => {
-    const fechaSinHora = fecha.substring(0, 10);
-    const [year, month, day] = fechaSinHora.split("-");
+  // const formatoFecha = (fecha) => {
+  //   const fechaSinHora = fecha.substring(0, 10);
+  //   const [year, month, day] = fechaSinHora.split("-");
 
-    const formatoFinal = `${day} / ${month} / ${year}`;
-    return formatoFinal;
-  };
+  //   const formatoFinal = `${day} / ${month} / ${year}`;
+  //   return formatoFinal;
+  // };
 
   return (
     <div className="ventasContainer">
