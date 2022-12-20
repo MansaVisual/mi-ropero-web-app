@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import editIcon from "../../assets/img/editIcon.png";
@@ -10,11 +10,13 @@ import { UseMiTiendaContext } from "../../context/MiTiendaContext";
 import Loader from "../Loader/Loader";
 import Swal from "sweetalert2";
 import videoLogo from "../../assets/img/bx-video.svg"
+import theme from "../../styles/theme";
 
 const Sumario = ({ form }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const { infoUser, userLog } = useContext(UseLoginContext);
   const { tiendaData } = useContext(UseMiTiendaContext);
@@ -289,8 +291,8 @@ const Sumario = ({ form }) => {
                   <img
                     src={videoLogo}
                     alt="formImg"
-                    width={30}
-                    height={30}
+                    width={isMobile?25:30}
+                    height={isMobile?25:30}
                   />
                 }</>
               </div>

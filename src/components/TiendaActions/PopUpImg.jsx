@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback,useEffect } from "react";
 import MRlogoModal from "../../assets/img/isologo.png";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button, Slider, Typography } from "@mui/material";
@@ -18,7 +18,9 @@ const PopUpImg = ({
   form,
   idImgEditar,
   setImgsEditar,
-  setIdImgEditar
+  setIdImgEditar,
+  setDisplayPopUpImg,
+  displayPopUpImg
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -29,12 +31,19 @@ const PopUpImg = ({
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
+
+  useEffect(() => {
+    if(!displayPopUpImg){
+      document.getElementById("file-upload").click()
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
   const onFileChange = async (e) => {
-    console.log(e.target.files)
+    setDisplayPopUpImg(true)
     setImagenCargada(true);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -192,8 +201,9 @@ const PopUpImg = ({
     }
     setOpenImgPopUp(false);
   };
+
   return (
-    <div className="PopUpImg">
+    <div className="PopUpImg" style={{display:displayPopUpImg?"flex":"none"}}>
       <div className="fondoPopUp" onClick={() => closeModal()}></div>
       <div className="popUp">
         <CancelIcon

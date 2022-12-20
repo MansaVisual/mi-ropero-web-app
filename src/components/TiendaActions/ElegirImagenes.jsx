@@ -36,6 +36,8 @@ const ElegirImagenes = ({ form, setForm }) => {
   const [disabledButton, setDisabledButton] = useState(true);
   const [cambioVideo, setCambioVideo] = useState(false);
 
+  const [displayPopUpImg,setDisplayPopUpImg]=useState(false)
+
   const [imgsBorrar,setImgsBorrar] = useState([])
   const [imgsEditar, setImgsEditar] = useState([]);
   const [idImgEditar, setIdImgEditar] = useState("");
@@ -222,8 +224,6 @@ const ElegirImagenes = ({ form, setForm }) => {
     })
   }
 
-  console.log(imgsBorrar)
-
   const deleteVideo = ()=>{
     setSection(null);
     setOpenVidPopUp(false);
@@ -246,7 +246,6 @@ const ElegirImagenes = ({ form, setForm }) => {
   }
 
   const handleSubmit = async () => {
-    console.log(imgsBorrar)
     let variable = false;
     for (let i = 0; i < imgNecesarias.length; i++) {
       if (imgNecesarias[i].obligatoria === "1") {
@@ -344,7 +343,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox, i) => {console.log(imgBox)
+            imgNecesarias.map((imgBox, i) => {
               return (
                 <div
                   className="section"
@@ -358,11 +357,11 @@ const ElegirImagenes = ({ form, setForm }) => {
                   }}
                 >
                   <div className="imgBox">
-                    <p>{
-                        imagenesPreview[imgBox.nombre]
-                          ? ""
-                          : "Agregar imágen"
-                      }</p>
+                    {imagenesPreview[imgBox.nombre]
+                        ? null
+                        :
+                      <p>Agregar imágen</p>
+                    }
                     <img
                       src={
                         imagenesPreview[imgBox.nombre]
@@ -547,6 +546,8 @@ const ElegirImagenes = ({ form, setForm }) => {
           idImgEditar={idImgEditar}
           setImgsEditar={setImgsEditar}
           setIdImgEditar={setIdImgEditar}
+          setDisplayPopUpImg={setDisplayPopUpImg}
+          displayPopUpImg={displayPopUpImg}
         />
       )}
       {openVidPopUp && (
