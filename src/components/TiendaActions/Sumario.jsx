@@ -154,6 +154,7 @@ const Sumario = ({ form }) => {
                 await editarImg(img);
               }
             }
+            console.log(form)
             for (const i in form.imagenesBorrar) {
               if (form.imagenesBorrar[i] !== null) {
                 console.log(form.imagenesBorrar[i])

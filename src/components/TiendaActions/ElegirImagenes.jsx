@@ -210,6 +210,8 @@ const ElegirImagenes = ({ form, setForm }) => {
       showCloseButton: true,
       confirmButtonText: "ELIMINAR",
     }).then((res)=>{
+      console.log(image)
+      console.log(idImg)
       if(res.isConfirmed){
         const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
         delete imagenesPreview[image.nombre]
