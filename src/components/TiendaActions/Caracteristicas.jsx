@@ -126,11 +126,9 @@ const Caracteristicas = ({ form, setForm }) => {
   const handleSubmit = async() => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
+    let array = []
     for (let i = 0; i < obligatorio.length; i++) {
-      let array = []
       for (const item in caracteristicas) {
-        console.log(obligatorio[i].nombre)
-        console.log(item)
         if (
           obligatorio[i].nombre === item &&
           caracteristicas[item].length === 0
@@ -140,11 +138,11 @@ const Caracteristicas = ({ form, setForm }) => {
           await array.push(obligatorio[i].nombre)
         }
       }
-      if(array.length>0){
-        setErroresArray(array)
-        scrollTop()
-        return
-      }
+    }
+    if(array.length>0){
+      setErroresArray(array)
+      scrollTop()
+      return
     }
     if (!errorObligatorio) {
       let array = [];
