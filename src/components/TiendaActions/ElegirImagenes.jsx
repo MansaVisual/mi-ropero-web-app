@@ -335,6 +335,10 @@ console.log(imgsBorrar)
     }
   }
 
+  const clearVideo=()=>{
+    document.getElementById("file-upload-video").value=""
+  }
+
   return (
     <div className="elegirImgContainer">
       <div className="container">
@@ -359,52 +363,55 @@ console.log(imgsBorrar)
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox, i) => {console.log(imgBox)
-              return (
-                <div
-                  className="section"
-                  onClick={() => {
-                    if (form.imagenesApi.length > 0) {
-                      setIdImgEditar(form.imagenesApi[i].idproductoimagen);
-                    }
-                    setSection(imgBox.nombre);
-                    setEsOpcional(false);
-                    document.getElementById("file-upload").click()
-                  }}
-                >
-                  <div className="imgBox">
-                    {imagenesPreview[imgBox.nombre]
-                        ? null
-                        :
-                      <p>Agregar imágen</p>
-                    }
-                    <img
-                      src={
-                        imagenesPreview[imgBox.nombre]
-                          ? imagenesPreview[imgBox.nombre]
-                          : imgBox.imagen
+            imgNecesarias.map((imgBox, i) => {console.log(form.editarProd)
+              console.log(imgBox.obligatoria)
+              console.log(seccionExtra.length)
+              return (<>
+                {(form.editarProd && imgBox.obligatoria!==0) || (!form.editarProd) || (seccionExtra.length>0) ?
+                  <div
+                    className="section"
+                    onClick={() => {
+                      if (form.imagenesApi.length > 0) {
+                        setIdImgEditar(form.imagenesApi[i].idproductoimagen);
                       }
-                      alt="foto"
-                    />
-                    {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" />}
-                  </div>
-                  <div className="bottomContainer">
-                    <span>{imgBox.nombre}</span>
-                    <div class="tooltip">
-                      <img src={infoIcon} alt="infoIcon" />
-                      <span>{imgBox.descripcion}</span>
+                      setSection(imgBox.nombre);
+                      setEsOpcional(false);
+                      document.getElementById("file-upload").click()
+                    }}
+                  >
+                    <div className="imgBox">
+                      {imagenesPreview[imgBox.nombre]
+                          ? null
+                          :
+                        <p>Agregar imágen</p>
+                      }
+                      <img
+                        src={
+                          imagenesPreview[imgBox.nombre]
+                            ? imagenesPreview[imgBox.nombre]
+                            : imgBox.imagen
+                        }
+                        alt="foto"
+                      />
+                      {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" />}
                     </div>
+                    <div className="bottomContainer">
+                      <span>{imgBox.nombre}</span>
+                      <div class="tooltip">
+                        <img src={infoIcon} alt="infoIcon" />
+                        <span>{imgBox.descripcion}</span>
+                      </div>
+                    </div>
+                    <p className="bottomText">
+                      ({imgBox.obligatoria === "1" ? "obligatoria" : "opcional"})
+                    </p>
                   </div>
-                  <p className="bottomText">
-                    ({imgBox.obligatoria === "1" ? "obligatoria" : "opcional"})
-                  </p>
-                </div>
-              );
+                : <></>}
+              </>);
             })
           )}
           {seccionExtra.length > 0 &&
-            seccionExtra.map((imgBox, i) => {console.log(imgBox)
-              console.log(i + imgNecesarias.length - 1)
+            seccionExtra.map((imgBox, i) => {
               return (
                 <div
                   className="section"
@@ -574,6 +581,7 @@ console.log(imgsBorrar)
           videoPreview={videoPreview}
           setCambioVideo={setCambioVideo}
           videoCargadoUser={videoCargadoUser}
+          clearVideo={clearVideo}
         />
       )}
       <input

@@ -11,7 +11,8 @@ const PopUpVideo = ({
   setVideoPreview,
   videoPreview,
   setCambioVideo,
-  videoCargadoUser
+  videoCargadoUser,
+  clearVideo
 }) => {
   const [videoSrc, setVideoSrc] = useState(null);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -54,12 +55,18 @@ const PopUpVideo = ({
   };
   return (
     <div className="PopUpImg">
-      <div className="fondoPopUp" onClick={() => setOpenVidPopUp(false)}></div>
+      <div className="fondoPopUp"
+        onClick={async() => {
+          await clearVideo()
+          setOpenVidPopUp(false)
+        }}
+      ></div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
-          onClick={() => {
+          onClick={async() => {
+            await clearVideo()
             setOpenVidPopUp(false);
           }}
         />
