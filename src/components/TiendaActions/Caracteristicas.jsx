@@ -21,6 +21,8 @@ const Caracteristicas = ({ form, setForm }) => {
   const [valueSeleccionado, setValueSeleccionado] = useState([]);
   const [valueSeleccionado2, setValueSeleccionado2] = useState([]);
 
+  const [erroresArray,setErroresArray]=useState([])
+
   useEffect(() => {
     if (!form.categoriaId && !form.prodEditar) {
       navigate(`/Mi&Tienda/CATEGORIA`);
@@ -121,20 +123,27 @@ const Caracteristicas = ({ form, setForm }) => {
   };
 
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
     for (let i = 0; i < obligatorio.length; i++) {
+      let array = []
       for (const item in caracteristicas) {
+        console.log(obligatorio[i].nombre)
+        console.log(item)
         if (
           obligatorio[i].nombre === item &&
           caracteristicas[item].length === 0
         ) {
           setCampoError(item);
           setErrorObligatorio(true);
-          scrollTop();
-          return;
+          await array.push(obligatorio[i].nombre)
         }
+      }
+      if(array.length>0){
+        setErroresArray(array)
+        scrollTop()
+        return
       }
     }
     if (!errorObligatorio) {
@@ -180,12 +189,14 @@ const Caracteristicas = ({ form, setForm }) => {
         <span className="subtitle">
           Podés seleccionar varias opciones en cada caso.
         </span>
-        {errorObligatorio && (
-          <div className="errorBox">
-            <CancelOutlinedIcon color="secondary" className="cruz" />
-            <p>Ingresar campo obligatorio "{campoError}"</p>
-          </div>
-        )}
+        {errorObligatorio && erroresArray.map((error,i)=>{console.log(erroresArray)
+          return(
+            <div className="errorBox" key={i}>
+              <CancelOutlinedIcon color="secondary" className="cruz" />
+              <p>Ingresar campo obligatorio "{error}"</p>
+            </div>
+          )
+        })}
         <div className="inputContainer">
           {data.length === 0 ? (
             <div
