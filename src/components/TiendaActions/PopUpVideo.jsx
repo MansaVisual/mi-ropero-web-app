@@ -52,7 +52,9 @@ const PopUpVideo = ({
     setVideo(videoSrc);
     setCambioVideo(true);
     setOpenVidPopUp(false);
+    clearVideo()
   };
+  
   return (
     <div className="PopUpImg">
       <div className="fondoPopUp"
@@ -73,9 +75,6 @@ const PopUpVideo = ({
         <div className="popUpContainer popUpContainerVideo">
           <img src={MRlogoModal} alt="logo" className="logoModal" />
           <p className="popUpTitle">ELEGÍ TU VIDEO</p>
-          <p className="popUpDescription" style={{ marginTop: "8px" }}>
-            Debes subir tu video en formato mp4, con un límite de 20mb
-          </p>
           {videoPreview && (
             <>
               <video

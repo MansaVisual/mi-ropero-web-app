@@ -320,6 +320,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   };
 
   const onFileChange=async(e)=>{
+    console.log(e)
     if (e.target.files && e.target.files.length > 0) {
       await setImagenCargadaUser(e.target.files[0])
       setOpenImgPopUp(true)
@@ -334,6 +335,9 @@ const ElegirImagenes = ({ form, setForm }) => {
 
   const clearVideo=()=>{
     document.getElementById("file-upload-video").value=""
+  }
+  const clearImg=()=>{
+    document.getElementById("file-upload").value=""
   }
 
   return (
@@ -365,7 +369,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div
                     className="section"
-                    onClick={() => {
+                    onClick={imagenesPreview[imgBox.nombre]?null:() => {
                       if (form.imagenesApi.length > 0) {
                         setIdImgEditar(form.imagenesApi[i].idproductoimagen);
                       }
@@ -388,7 +392,16 @@ const ElegirImagenes = ({ form, setForm }) => {
                         }
                         alt="foto"
                       />
-                      {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" />}
+                      {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" 
+                        onClick={imagenesPreview[imgBox.nombre]?() => {
+                          if (form.imagenesApi.length > 0) {
+                            setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                          }
+                          setSection(imgBox.nombre);
+                          setEsOpcional(false);
+                          document.getElementById("file-upload").click()
+                        }:null}
+                      />}
                     </div>
                     <div className="bottomContainer">
                       <span>{imgBox.nombre}</span>
@@ -572,6 +585,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setImgsEditar={setImgsEditar}
           setIdImgEditar={setIdImgEditar}
           imagenCargadaUser={imagenCargadaUser}
+          clearImg={clearImg}
         />
       )}
       {openVidPopUp && (
@@ -592,7 +606,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         id="file-upload"
         type="file"
         onChange={onFileChange}
-        accept="image/*"
+        accept="image/png, image/jpg, image/jpeg"
         style={{zIndex:"-99",position:"absolute",top:"0"}}
       />
       <input

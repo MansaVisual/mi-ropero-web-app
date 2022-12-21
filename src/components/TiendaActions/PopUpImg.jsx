@@ -19,7 +19,8 @@ const PopUpImg = ({
   idImgEditar,
   setImgsEditar,
   setIdImgEditar,
-  imagenCargadaUser
+  imagenCargadaUser,
+  clearImg
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -190,6 +191,7 @@ const PopUpImg = ({
       console.error(e);
       setOpenImgPopUp(false);
     }
+    clearImg()
     setIdImgEditar("")
   }, [imageSrc, croppedAreaPixels]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -202,12 +204,19 @@ const PopUpImg = ({
 
   return (
     <div className="PopUpImg">
-      <div className="fondoPopUp" onClick={() => closeModal()}></div>
+      <div className="fondoPopUp"
+        onClick={() => {
+          clearImg()
+          closeModal()
+        }}
+      >
+      </div>
       <div className="popUp">
         <CancelIcon
           color="tertiary"
           className="cross"
           onClick={() => {
+            clearImg()
             closeModal();
           }}
         />
