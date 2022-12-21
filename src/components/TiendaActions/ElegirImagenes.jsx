@@ -209,7 +209,6 @@ const ElegirImagenes = ({ form, setForm }) => {
       showCloseButton: true,
       confirmButtonText: "ELIMINAR",
     }).then(async(res)=>{
-      console.log(idImg)
       if(res.isConfirmed){
         const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
         delete imagenesPreview[image.nombre]
@@ -261,7 +260,6 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
     }
     if (!variable) {
-      console.log(imgsBorrar)
       setForm((prevState) => ({
         ...prevState,
         imagenes: imagenes,
@@ -362,10 +360,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox, i) => {console.log(form)
-              console.log(form.editarProd)
-              console.log(imgBox.obligatoria)
-              console.log(seccionExtra.length)
+            imgNecesarias.map((imgBox, i) => {
               return (<>
                 {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div

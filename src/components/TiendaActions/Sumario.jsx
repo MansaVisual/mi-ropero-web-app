@@ -119,7 +119,7 @@ const Sumario = ({ form }) => {
       }
       prod.append("idtienda", tiendaData.idtienda);
       apiFetch(prod, "productos", form.prodEditar ? "update" : "insert").then(
-        async (res) => {console.log(res)
+        async (res) => {
           if (res.status === "success") {
             for (const i in form.imagenes) {
               if (form.imagenes[i] !== null) {
@@ -154,10 +154,8 @@ const Sumario = ({ form }) => {
                 await editarImg(img);
               }
             }
-            console.log(form)
             for (const i in form.imagenesBorrar) {
               if (form.imagenesBorrar[i] !== null) {
-                console.log(form.imagenesBorrar[i])
                 const img = new FormData();
                 img.append("idtienda", Number(tiendaData.idtienda));
                 img.append(
@@ -247,7 +245,6 @@ const Sumario = ({ form }) => {
     });
   };
 
-  console.log(form)
 
   return (
     <div className="sumarioContainer">
