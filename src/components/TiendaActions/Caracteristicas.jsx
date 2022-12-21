@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MenuItem, Select } from "@mui/material";
+import { Checkbox, MenuItem, Select } from "@mui/material";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import leftArrow from "../../assets/img/leftArrow.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -120,6 +120,7 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   };
 
+
   const handleSubmit = () => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
@@ -168,6 +169,8 @@ const Caracteristicas = ({ form, setForm }) => {
       behavior: "smooth",
     });
   };
+
+  console.log(caracteristicas)
 
   return (
     <div className="caractContainer">
@@ -276,6 +279,7 @@ const Caracteristicas = ({ form, setForm }) => {
                             }}
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
+                            {/* <Checkbox checked={}/> */}
                             {option.valor}
                           </MenuItem>
                         );
