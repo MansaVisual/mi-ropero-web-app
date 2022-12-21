@@ -27,7 +27,7 @@ const ElegirTipo = ({ form, setForm }) => {
         <div className="subTypeSection">
           {form.categoriaId !== null && (
             <>
-              {categorias.map((cat, i) => {console.log(cat)
+              {categorias.map((cat, i) => {
                 return (
                   <Fragment key={i}>
                     {cat.idcategoriapadre === form.categoriaId.toString() && (

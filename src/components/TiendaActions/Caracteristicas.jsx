@@ -32,7 +32,7 @@ const Caracteristicas = ({ form, setForm }) => {
       setIdCaracteristica(form.idCaracteristicaOld);
     } else {
       const dir = new FormData();
-      dir.append("idcategoria", form.categoriaId);
+      dir.append("idcategoria", form.tipoId);
       let caract = {};
       if (form.caracteristicas.length === 0) {
         apiFetch(dir, "categorias", "get").then((res) => {
