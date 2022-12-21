@@ -24,7 +24,7 @@ const PopUpVideo = ({
   
   const load = async()=>{
     if(videoCargadoUser!==null){
-      if (videoCargadoUser > 20000000) {
+      if (videoCargadoUser.size > 20000000) {
         Swal.fire({
           title: "VIDEO SUPERIOR A 20MB",
           icon: "error",

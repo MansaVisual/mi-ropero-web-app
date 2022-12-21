@@ -496,19 +496,16 @@ console.log(imgsBorrar)
           </div>
           <div
             className="section"
-            onClick={video?null:() => {
-              handleExtraSubmit("video");
-            }}
           >
             <div className="imgBox">
               <img src={video ? check : plusButton} alt="foto" className="imgAdd"
-                onClick={() => {
+                onClick={video?null:() => {
                   handleExtraSubmit("video");
                 }}
               />
               {video && 
                 <img className="editButton" src={editIcon} alt="edit" 
-                  onClick={() => {
+                  onClick={video?null:() => {
                     handleExtraSubmit("video");
                   }}
                 />

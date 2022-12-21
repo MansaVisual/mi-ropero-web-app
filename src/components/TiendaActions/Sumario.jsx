@@ -211,7 +211,7 @@ const Sumario = ({ form }) => {
                 confirmButton:"popUpButtons2"
               },
               icon: "success",
-              showCancelButton: form.prodEditar ? true : false,
+              showCancelButton: true,
               confirmButtonText: "VER MIS PRODUCTOS",
               cancelButtonText: "CARGAR OTRO PRODUCTO",
             }).then((res) => {
