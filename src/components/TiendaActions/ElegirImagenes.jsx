@@ -505,7 +505,7 @@ console.log(imgsBorrar)
               />
               {video && 
                 <img className="editButton" src={editIcon} alt="edit" 
-                  onClick={video?null:() => {
+                  onClick={() => {
                     handleExtraSubmit("video");
                   }}
                 />
