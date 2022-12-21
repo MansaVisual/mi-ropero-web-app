@@ -320,7 +320,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   };
 
   const onFileChange=async(e)=>{
-    console.log(e)
+    console.log(e.target.files)
     if (e.target.files && e.target.files.length > 0) {
       await setImagenCargadaUser(e.target.files[0])
       setOpenImgPopUp(true)

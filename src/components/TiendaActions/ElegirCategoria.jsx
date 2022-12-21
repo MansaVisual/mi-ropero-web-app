@@ -49,7 +49,7 @@ const ElegirCategoria = ({ setForm, form }) => {
               <div
                 className="section"
                 onClick={() => {
-                  if(form.tipoId!==null){
+                  if(form.tipoId!==null && form.categoriaId!==section.idCategoriaPadre){
                     Swal.fire({
                       title: "Si cambia de categoría, se perderán los datos cargados.",
                       iconHtml: `<img src=${logo} alt="LOGO">`,
@@ -116,7 +116,23 @@ const ElegirCategoria = ({ setForm, form }) => {
         >
           <img src={leftArrow} alt="leftArrow" />
           <p onClick={() => {
-            window.location.replace(`https://www.miropero.ar/Mi&Tienda`);
+            Swal.fire({
+              title: "Si vuelve a 'Mi Tienda' se perderán los datos cargados recientemente.",
+              iconHtml: `<img src=${logo} alt="LOGO">`,
+              customClass: {
+                icon: 'no-border',
+                container:"popUpLoginAlert",
+                cancelButton:"popUpLoginCancel"
+              },
+              showCloseButton: true,
+              showCancelButton: true,
+              confirmButtonText: "CONTINUAR",
+              cancelButtonText:"CANCELAR"
+            }).then((res)=>{
+              if(res.isConfirmed){
+                window.location.replace(`https://www.miropero.ar/Mi&Tienda`);
+              }
+            })
           }}>VOLVER A MI TIENDA</p>
         </div>
       </div>
