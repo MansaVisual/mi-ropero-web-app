@@ -99,10 +99,10 @@ const Sumario = ({ form }) => {
                 }
                 setLoading(false);
                 Swal.fire({
-                  title: "PRODUCTO CARGADO EXITOSAMENTE",
+                  title:"PRODUCTO CARGADO EXITOSAMENTE",
                   text:mensajeFinal===""?null:mensajeFinal,
                   icon: "success",
-                  confirmButtonText: "CONTINUAR",
+                  confirmButtonText: "VER MIS PRODUCTOS",
                 }).then((res) => {
                   window.location.replace(
                     "https://www.miropero.ar/Mi&Tienda/PRODUCTOS"
@@ -119,7 +119,7 @@ const Sumario = ({ form }) => {
       }
       prod.append("idtienda", tiendaData.idtienda);
       apiFetch(prod, "productos", form.prodEditar ? "update" : "insert").then(
-        async (res) => {
+        async (res) => {console.log(res)
           if (res.status === "success") {
             for (const i in form.imagenes) {
               if (form.imagenes[i] !== null) {
@@ -211,7 +211,7 @@ const Sumario = ({ form }) => {
                 confirmButton:"popUpButtons2"
               },
               icon: "success",
-              showCancelButton:true,
+              showCancelButton: form.prodEditar ? true : false,
               confirmButtonText: "VER MIS PRODUCTOS",
               cancelButtonText: "CARGAR OTRO PRODUCTO",
             }).then((res) => {

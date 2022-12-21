@@ -359,7 +359,7 @@ console.log(imgsBorrar)
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox, i) => {
+            imgNecesarias.map((imgBox, i) => {console.log(imgBox)
               return (
                 <div
                   className="section"
@@ -456,7 +456,10 @@ console.log(imgsBorrar)
                       />
                     }
                     {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete"
-                      onClick={form.imagenesApi.length > 0?()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1 + imgsBorrar.length].idproductoimagen):()=>deleteImage(imgBox)}
+                      onClick={form.imagenesApi.length > 0 && form.imagenesApi[i + imgNecesarias.length - 1 + imgsBorrar.length]!==undefined?
+                          ()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1 + imgsBorrar.length].idproductoimagen)
+                        :
+                          ()=>deleteImage(imgBox)}
                     />}
                   </div>
                   <div className="bottomContainer">
