@@ -209,8 +209,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       },
       showCloseButton: true,
       confirmButtonText: "ELIMINAR",
-    }).then((res)=>{
-      console.log(image)
+    }).then(async(res)=>{
       console.log(idImg)
       if(res.isConfirmed){
         const newArrayImgs = seccionExtra.filter(e=>e.nombre!==image.nombre)
@@ -222,12 +221,12 @@ const ElegirImagenes = ({ form, setForm }) => {
             nombre:image.nombre,
             id:idImg
           }
-          setImgsBorrar([...imgsBorrar,img])
+          await setImgsBorrar([...imgsBorrar,img])
         }
       }
     })
   }
-
+console.log(imgsBorrar)
   const deleteVideo = ()=>{
     setSection(null);
     setOpenVidPopUp(false);
@@ -263,6 +262,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
     }
     if (!variable) {
+      console.log(imgsBorrar)
       setForm((prevState) => ({
         ...prevState,
         imagenes: imagenes,
@@ -403,7 +403,8 @@ const ElegirImagenes = ({ form, setForm }) => {
             })
           )}
           {seccionExtra.length > 0 &&
-            seccionExtra.map((imgBox, i) => {console.log(imgBox.nombre.indexOf("fotoExtra"))
+            seccionExtra.map((imgBox, i) => {console.log(imgBox)
+              console.log(i + imgNecesarias.length - 1)
               return (
                 <div
                   className="section"
@@ -455,19 +456,16 @@ const ElegirImagenes = ({ form, setForm }) => {
                       />
                     }
                     {imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete"
-                      onClick={form.imagenesApi.length > 0?()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1].idproductoimagen):()=>deleteImage(imgBox)}
+                      onClick={form.imagenesApi.length > 0?()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1 + imgsBorrar.length].idproductoimagen):()=>deleteImage(imgBox)}
                     />}
                   </div>
                   <div className="bottomContainer">
-                    <span>{imgBox.nombre.indexOf("fotoExtra")?"Foto Extra":imgBox.nombre}</span>
+                    <span>Foto Extra</span>
                     <div class="tooltip">
                       <img src={infoIcon} alt="infoIcon" />
                       <span>{imgBox.descripcion}</span>
                     </div>
                   </div>
-                  <p className="bottomText">
-                    {imgBox.obligatoria === "1" ? "(obligatoria)" : imgBox.nombre.indexOf("fotoExtra")?"":"(opcional)"}
-                  </p>
                 </div>
               );
             })}
