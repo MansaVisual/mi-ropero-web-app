@@ -135,7 +135,6 @@ const ElegirImagenes = ({ form, setForm }) => {
           }
           setForm((prevState) => ({
             ...prevState,
-            editarProd: false,
             categoriaId: categorias[i].idcategoriapadre,
             tipoId: categorias[i].idcategoria,
             tipoNombre: categorias[i].nombre,
@@ -226,7 +225,7 @@ const ElegirImagenes = ({ form, setForm }) => {
       }
     })
   }
-console.log(imgsBorrar)
+
   const deleteVideo = ()=>{
     setSection(null);
     setOpenVidPopUp(false);
@@ -363,11 +362,12 @@ console.log(imgsBorrar)
               <Loader spin={"spinnerG"} />
             </div>
           ) : (
-            imgNecesarias.map((imgBox, i) => {console.log(form.editarProd)
+            imgNecesarias.map((imgBox, i) => {console.log(form)
+              console.log(form.editarProd)
               console.log(imgBox.obligatoria)
               console.log(seccionExtra.length)
               return (<>
-                {(form.editarProd && imgBox.obligatoria!==0) || (!form.editarProd) || (seccionExtra.length>0) ?
+                {(form.prodEditar && imgBox.obligatoria!==0) || (!form.prodEditar) || (seccionExtra.length>0) ?
                   <div
                     className="section"
                     onClick={() => {
