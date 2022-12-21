@@ -279,7 +279,7 @@ const Caracteristicas = ({ form, setForm }) => {
                             }}
                             sx={{ fontSize: "14px", color: "#969696" }}
                           >
-                            <Checkbox checked={caracteristicas[select.nombre].find(option.valor)}/>
+                            <Checkbox checked={caracteristicas[select.nombre].find(e=> e === option.valor)?true:false}/>
                             {option.valor}
                           </MenuItem>
                         );
