@@ -476,15 +476,20 @@ const ElegirImagenes = ({ form, setForm }) => {
             })}
           <div
             className="section"
-            onClick={() => {
-              handleExtraSubmit("imagen");
-            }}
           >
             <div className="imgBox">
-              <img src={plusButton} alt="foto" className="imgAdd"/>
+              <img src={plusButton} alt="foto" className="imgAdd"
+                onClick={() => {
+                  handleExtraSubmit("imagen");
+                }}
+              />
             </div>
             <div className="bottomContainer">
-              <span>Agregar foto extra</span>
+              <span 
+                onClick={() => {
+                  handleExtraSubmit("imagen");
+                }}
+              >Agregar foto extra</span>
               <div class="tooltip">
                 <img src={infoIcon} alt="infoIcon" />
                 <span>
@@ -507,7 +512,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               />
               {video && 
                 <img className="editButton" src={editIcon} alt="edit" 
-                  onClick={() => {
+                  onClick={video?null:() => {
                     handleExtraSubmit("video");
                   }}
                 />
@@ -515,7 +520,11 @@ const ElegirImagenes = ({ form, setForm }) => {
               {video && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteVideo()} />}
             </div>
             <div className="bottomContainer">
-              <span>Agregar video</span>
+              <span
+                onClick={video?null:() => {
+                  handleExtraSubmit("video");
+                }}
+              >Agregar video</span>
               <div class="tooltip">
                 <img src={infoIcon} alt="infoIcon" />
                 <span>¡Subí un video mostrando tu producto!</span>
