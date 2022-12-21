@@ -367,7 +367,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               console.log(imgBox.obligatoria)
               console.log(seccionExtra.length)
               return (<>
-                {(form.prodEditar && imgBox.obligatoria!==0) || (!form.prodEditar) || (seccionExtra.length>0) ?
+                {(form.prodEditar && imgBox.obligatoria===0 && seccionExtra.length<=0) || (!form.prodEditar) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div
                     className="section"
                     onClick={() => {

@@ -89,6 +89,7 @@ const ElegirCategoria = ({ setForm, form }) => {
                       }
                     })
                   }else{
+                    console.log(section)
                     setForm((prevState) => ({
                       ...prevState,
                       categoriaId: section.idCategoriaPadre,
