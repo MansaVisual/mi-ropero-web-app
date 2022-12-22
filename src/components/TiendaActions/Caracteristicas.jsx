@@ -56,11 +56,12 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleChange = (event, value) => {
-    setCampoError("");
+  const handleChange = async (event, value) => {
+    console.log(value)
+    let newArray=await erroresArray.filter(e=>e!==value.nombre)
+    setErroresArray(newArray)
     setValueSeleccionado(event.target.value);
     setValueSeleccionado2(value);
-    setErrorObligatorio(false);
     if (value.valores_multiples === "0") {
       setCaracteristicas((prevState) => ({
         ...prevState,
@@ -187,14 +188,12 @@ const Caracteristicas = ({ form, setForm }) => {
         <span className="subtitle">
           Podés seleccionar varias opciones en cada caso.
         </span>
-        {errorObligatorio && erroresArray.map((error,i)=>{console.log(erroresArray)
-          return(
-            <div className="errorBox" key={i}>
-              <CancelOutlinedIcon color="secondary" className="cruz" />
-              <p>Ingresar campo obligatorio "{error}"</p>
-            </div>
-          )
-        })}
+        {errorObligatorio && erroresArray.length>0 &&
+          <div className="errorBox">
+            <CancelOutlinedIcon color="secondary" className="cruz" />
+            <p>Ingresar campo{erroresArray.length>0?"s":""} obligatorio{erroresArray.length>0?"s":""}: {erroresArray.map((err,i)=>(<span key={i}>"{err}"{erroresArray.length===i+1?"":", "}</span>))}</p>
+          </div>
+        }
         <div className="inputContainer">
           {data.length === 0 ? (
             <div
