@@ -394,12 +394,28 @@ const ElegirImagenes = ({ form, setForm }) => {
                       />
                       {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" 
                         onClick={imagenesPreview[imgBox.nombre]?() => {
-                          if (form.imagenesApi.length > 0) {
-                            setIdImgEditar(form.imagenesApi[i].idproductoimagen);
-                          }
-                          setSection(imgBox.nombre);
-                          setEsOpcional(false);
-                          document.getElementById("file-upload").click()
+                          Swal.fire({
+                            title: "¿Desea sustituir esta foto?",
+                            iconHtml: `<img src=${logo} alt="LOGO">`,
+                            customClass: {
+                              icon: 'no-border',
+                              container:"popUpLoginAlert",
+                              cancelButton:"popUpLoginCancel"
+                            },
+                            showCloseButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: "CONTINUAR",
+                            cancelButtonText:"CANCELAR"
+                          }).then((res)=>{
+                            if(res.isConfirmed){
+                              if (form.imagenesApi.length > 0) {
+                                setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                              }
+                              setSection(imgBox.nombre);
+                              setEsOpcional(false);
+                              document.getElementById("file-upload").click()
+                            }
+                          })
                         }:null}
                       />}
                     </div>
@@ -463,15 +479,31 @@ const ElegirImagenes = ({ form, setForm }) => {
                     {imagenesPreview[imgBox.nombre] &&
                       <img className="editButton" src={editIcon} alt="edit" 
                         onClick={() => {
-                          if (form.imagenesApi.length > 0) {
-                            setIdImgEditar(
-                              form.imagenesApi[i + imgNecesarias.length - 1]
-                                .idproductoimagen
-                            );
-                          }
-                          setSection(imgBox.nombre);
-                          setEsOpcional(false);
-                          document.getElementById("file-upload").click()
+                          Swal.fire({
+                            title: "¿Desea sustituir esta foto?",
+                            iconHtml: `<img src=${logo} alt="LOGO">`,
+                            customClass: {
+                              icon: 'no-border',
+                              container:"popUpLoginAlert",
+                              cancelButton:"popUpLoginCancel"
+                            },
+                            showCloseButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: "CONTINUAR",
+                            cancelButtonText:"CANCELAR"
+                          }).then((res)=>{
+                            if(res.isConfirmed){
+                              if (form.imagenesApi.length > 0) {
+                                setIdImgEditar(
+                                  form.imagenesApi[i + imgNecesarias.length - 1]
+                                    .idproductoimagen
+                                );
+                              }
+                              setSection(imgBox.nombre);
+                              setEsOpcional(false);
+                              document.getElementById("file-upload").click()
+                            }
+                          })
                         }}
                       />
                     }
@@ -531,7 +563,23 @@ const ElegirImagenes = ({ form, setForm }) => {
               {video && 
                 <img className="editButton" src={editIcon} alt="edit" 
                   onClick={video?null:() => {
-                    handleExtraSubmit("video");
+                    Swal.fire({
+                      title: "¿Desea sustituir este video?",
+                      iconHtml: `<img src=${logo} alt="LOGO">`,
+                      customClass: {
+                        icon: 'no-border',
+                        container:"popUpLoginAlert",
+                        cancelButton:"popUpLoginCancel"
+                      },
+                      showCloseButton: true,
+                      showCancelButton: true,
+                      confirmButtonText: "CONTINUAR",
+                      cancelButtonText:"CANCELAR"
+                    }).then((res)=>{
+                      if(res.isConfirmed){
+                        handleExtraSubmit("video");
+                      }
+                    })
                   }}
                 />
               }
