@@ -607,7 +607,7 @@ const ElegirImagenes = ({ form, setForm }) => {
             }}
             onClick={() => handleSubmit()}
           >
-            AGREGAR CARACTERÍSTICAS
+            CONTINUAR A CARACTERÍSTICAS
           </button>
         </div>
         {form.prodEditar === undefined && (

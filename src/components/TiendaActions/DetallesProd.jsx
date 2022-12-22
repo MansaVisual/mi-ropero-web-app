@@ -164,7 +164,7 @@ const DetallesProd = ({ form, setForm }) => {
                 backgroundColor: habilitado ? "#443988" : "#857db3",
               }}
             >
-              {form.crearTienda ? "IR A MODO DE CONTACTO" : "IR A SUMARIO"}
+              {form.crearTienda ? "CONTINUAR A MODO DE CONTACTO" : "CONTINUAR A SUMARIO"}
             </button>
           </div>
           <div

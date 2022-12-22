@@ -303,7 +303,7 @@ const Caracteristicas = ({ form, setForm }) => {
           )}
         </div>
         <div className="buttonContainer">
-          <button onClick={() => handleSubmit()}>IR A DETALLES</button>
+          <button onClick={() => handleSubmit()}>CONTINUAR A DETALLES</button>
         </div>
         <div
           className="returnLink"

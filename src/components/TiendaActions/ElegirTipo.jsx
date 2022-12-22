@@ -78,7 +78,7 @@ const ElegirTipo = ({ form, setForm }) => {
               backgroundColor: form.tipoId ? "#443988" : "#857db3",
             }}
           >
-            AGREGAR IMÁGENES
+            CONTINUAR A IMÁGENES
           </button>
         </div>
         {form.prodEditar === undefined && (
