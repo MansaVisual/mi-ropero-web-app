@@ -93,6 +93,12 @@ const Caracteristicas = ({ form, setForm }) => {
     arrayIdCaracteristicas();
   }, [estadoSeleccionado]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if(erroresArray.length===0){
+      setErrorObligatorio(false)
+    }
+  }, [erroresArray]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const arrayIdCaracteristicas = () => {
     if (valueSeleccionado2.length !== 0) {
       if (valueSeleccionado2.valores_multiples === "0") {
