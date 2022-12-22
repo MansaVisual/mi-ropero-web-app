@@ -417,7 +417,13 @@ const ElegirImagenes = ({ form, setForm }) => {
                             }
                           })
                         }:null}
-                      />}
+                    />}
+                    {imgBox.obligatoria !== "1" && imagenesPreview[imgBox.nombre] && <img className="deleteButton" src={deleteIcon} alt="delete"
+                      onClick={form.imagenesApi.length > 0 && form.imagenesApi[i + imgNecesarias.length - 1 + imgsBorrar.length]!==undefined?
+                        ()=>deleteImage(imgBox,form.imagenesApi[i + imgNecesarias.length - 1 + imgsBorrar.length].idproductoimagen)
+                      :
+                        ()=>deleteImage(imgBox)}
+                    />}
                     </div>
                     <div className="bottomContainer">
                       <span>{imgBox.nombre}</span>
