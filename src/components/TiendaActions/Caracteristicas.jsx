@@ -14,7 +14,6 @@ const Caracteristicas = ({ form, setForm }) => {
 
   const [caracteristicas, setCaracteristicas] = useState({});
   const [errorObligatorio, setErrorObligatorio] = useState(false);
-  const [campoError, setCampoError] = useState("");
   const [data, setData] = useState([]);
   const [estadoSeleccionado, setEstadoSeleccionado] = useState([]);
   const [idCaracteristica, setIdCaracteristica] = useState({});
@@ -140,7 +139,6 @@ const Caracteristicas = ({ form, setForm }) => {
           obligatorio[i].nombre === item &&
           caracteristicas[item].length === 0
         ) {
-          setCampoError(item);
           setErrorObligatorio(true);
           await array.push(obligatorio[i].nombre)
         }
