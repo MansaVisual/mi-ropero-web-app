@@ -380,7 +380,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                   >
                     <div className="imgBox">
                       {imagenesPreview[imgBox.nombre]
-                          ? null
+                          ? <p></p>
                           :
                         <p>Agregar imágen</p>
                       }
@@ -436,6 +436,11 @@ const ElegirImagenes = ({ form, setForm }) => {
                   }}
                 >
                   <div className="imgBox">
+                    {imagenesPreview[imgBox.nombre]
+                      ? <p></p>
+                      :
+                      null
+                    }
                     <img
                       src={
                         imagenesPreview[imgBox.nombre]
