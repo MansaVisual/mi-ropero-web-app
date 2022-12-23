@@ -244,7 +244,7 @@ const Sumario = ({ form }) => {
       return res;
     });
   };
-
+console.log(form)
 
   return (
     <div className="sumarioContainer">

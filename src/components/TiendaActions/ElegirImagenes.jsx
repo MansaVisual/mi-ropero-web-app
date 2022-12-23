@@ -320,10 +320,23 @@ const ElegirImagenes = ({ form, setForm }) => {
   };
 
   const onFileChange=async(e)=>{
-    console.log(e.target.files)
-    if (e.target.files && e.target.files.length > 0) {
-      await setImagenCargadaUser(e.target.files[0])
-      setOpenImgPopUp(true)
+    if(e.target.files[0].name.indexOf(".png") || e.target.files[0].name.indexOf(".jpg") || e.target.files[0].name.indexOf(".jpeg")){
+      if (e.target.files && e.target.files.length > 0) {
+        await setImagenCargadaUser(e.target.files[0])
+        setOpenImgPopUp(true)
+      }
+    }else{
+      Swal.fire({
+        title: "La imagen que estás intentando subir es incompatible. Te recomendamos descargar la imagen en la computadora y volver a subirla.",
+        iconHtml: `<img src=${logo} alt="LOGO">`,
+        customClass: {
+          icon: 'no-border',
+          container:"popUpLoginAlert",
+          cancelButton:"popUpLoginCancel"
+        },
+        showCloseButton: true,
+        confirmButtonText: "ACEPTAR",
+      })
     }
   }
   const onVideoChange=async(e)=>{
