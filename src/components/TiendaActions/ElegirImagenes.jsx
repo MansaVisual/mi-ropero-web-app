@@ -408,7 +408,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       {imagenesPreview[imgBox.nombre] && <img className="editButton" src={editIcon} alt="edit" 
                         onClick={imagenesPreview[imgBox.nombre]?() => {
                           Swal.fire({
-                            title: "¿Desea sustituir esta foto?",
+                            title: "¿Desea sustituir esta imágen?",
                             iconHtml: `<img src=${logo} alt="LOGO">`,
                             customClass: {
                               icon: 'no-border',
@@ -499,7 +499,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                       <img className="editButton" src={editIcon} alt="edit" 
                         onClick={() => {
                           Swal.fire({
-                            title: "¿Desea sustituir esta foto?",
+                            title: "¿Desea sustituir esta imágen?",
                             iconHtml: `<img src=${logo} alt="LOGO">`,
                             customClass: {
                               icon: 'no-border',
