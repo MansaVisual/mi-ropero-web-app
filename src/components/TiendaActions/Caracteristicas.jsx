@@ -131,9 +131,10 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   };
 
+  console.log(idCaracteristica)
+
 
   const handleSubmit = async() => {
-    console.log("CARACS OLD", idCaracteristica)
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
     let array = []
@@ -155,10 +156,11 @@ const Caracteristicas = ({ form, setForm }) => {
     }
     if (!errorObligatorio) {
       let array = [];
+      console.log("CARACS",idCaracteristica)
       for (const i in idCaracteristica) {
+      console.log("CARACS 2",idCaracteristica[i])
         if (idCaracteristica[i] !== undefined)
           for (const ii in idCaracteristica[i]) {
-            console.log(idCaracteristica[i], idCaracteristica[i][ii])
             array = array.concat([idCaracteristica[i][ii]]);
           }
       }
@@ -287,8 +289,10 @@ const Caracteristicas = ({ form, setForm }) => {
                                 estadoSeleccionado ===
                                 `${option.idcaracteristica}:${option.idcaracteristicavalor}`
                               ) {
+                                console.log("CAHUUU")
                                 arrayIdCaracteristicas();
                               } else {
+                                console.log("HOLAA")
                                 setEstadoSeleccionado(
                                   `${option.idcaracteristica}:${option.idcaracteristicavalor}`
                                 );
@@ -308,7 +312,7 @@ const Caracteristicas = ({ form, setForm }) => {
           )}
         </div>
         <div className="buttonContainer">
-          <button onClick={() => handleSubmit()}>CONTINUAR A DETALLES</button>
+          <button onClick={() => {console.log(idCaracteristica);handleSubmit()}}>CONTINUAR A DETALLES</button>
         </div>
         <div
           className="returnLink"

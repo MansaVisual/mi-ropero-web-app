@@ -68,6 +68,8 @@ const DetallesProd = ({ form, setForm }) => {
       detalles.descripcion !== ""
     ) {
       setHabilitado(true);
+    }else{
+      setHabilitado(false)
     }
   }, [detalles]);
 
@@ -135,7 +137,7 @@ const DetallesProd = ({ form, setForm }) => {
           >
             <div className="contenedorTextarea">
               <InputLabel className="labelForm" sx={{ marginBottom: "12px" }}>
-                Descripción
+                Descripción *
               </InputLabel>
               <TextField
                 multiline
