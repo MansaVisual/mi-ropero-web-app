@@ -59,6 +59,7 @@ const Caracteristicas = ({ form, setForm }) => {
     console.log(value)
     let newArray=await erroresArray.filter(e=>e!==value.nombre)
     setErroresArray(newArray)
+
     setValueSeleccionado(event.target.value);
     setValueSeleccionado2(value);
     if (value.valores_multiples === "0") {
@@ -98,10 +99,11 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   }, [erroresArray]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const arrayIdCaracteristicas = () => {
+  const arrayIdCaracteristicas = async () => {
+    console.log(valueSeleccionado2)
     if (valueSeleccionado2.length !== 0) {
       if (valueSeleccionado2.valores_multiples === "0") {
-        setIdCaracteristica((prevState) => ({
+        await setIdCaracteristica((prevState) => ({
           ...prevState,
           [valueSeleccionado2.nombre]: [estadoSeleccionado],
         }));
@@ -109,16 +111,17 @@ const Caracteristicas = ({ form, setForm }) => {
         let i = idCaracteristica[valueSeleccionado2.nombre];
         let ii = [];
         const busqueda = i.find((e) => e === estadoSeleccionado);
-
+        console.log(busqueda)
+        
         if (busqueda !== undefined) {
           ii = i.filter((e) => e !== estadoSeleccionado);
-          setIdCaracteristica((prevState) => ({
+          await setIdCaracteristica((prevState) => ({
             ...prevState,
             [valueSeleccionado2.nombre]: ii,
           }));
         } else {
           if (valueSeleccionado.length <= 3) {
-            setIdCaracteristica((prevState) => ({
+            await setIdCaracteristica((prevState) => ({
               ...prevState,
               [valueSeleccionado2.nombre]: i.concat(estadoSeleccionado),
             }));
@@ -130,6 +133,7 @@ const Caracteristicas = ({ form, setForm }) => {
 
 
   const handleSubmit = async() => {
+    console.log("CARACS OLD", idCaracteristica)
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
     let array = []
@@ -154,6 +158,7 @@ const Caracteristicas = ({ form, setForm }) => {
       for (const i in idCaracteristica) {
         if (idCaracteristica[i] !== undefined)
           for (const ii in idCaracteristica[i]) {
+            console.log(idCaracteristica[i], idCaracteristica[i][ii])
             array = array.concat([idCaracteristica[i][ii]]);
           }
       }
