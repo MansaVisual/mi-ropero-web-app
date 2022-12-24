@@ -27,6 +27,7 @@ import PopUpMensajePP from "../../components/Dialog/PopUpMensajePP";
 import logo from "../../assets/img/isologo.png";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
+import { Helmet } from "react-helmet";
 
 const ProductPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -46,6 +47,9 @@ const ProductPage = () => {
   const [prod, setProd] = useState([]);
   const [prodFotos, setProdFotos] = useState([]);
   const [prodCaracteristicas, setProdCaracteristicas] = useState([]);
+
+  const [marcaData,setMarcaData]=useState(null)
+  const [imageData,setImageData]=useState(null)
 
   const _renderVideo = (item) => {
 
@@ -78,6 +82,12 @@ const ProductPage = () => {
           setTienda(res.result);
         }
       });
+      for(const i in prod.caracteristicas){
+        if(prod.caracteristicas[i].caracteristica==="Marca"){
+          setMarcaData(prod.caracteristicas[i].valores)
+        }
+      }
+      setImageData(prod.imagenes[0].imagen_chica)
     }
   }, [prod]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -140,9 +150,22 @@ const ProductPage = () => {
       return;
     }
   };
-
+console.log(prod)
   return (
     <Container maxWidth="xl">
+      <Helmet>
+        <meta property="og:title" content={prod.nombre}/>
+        <meta property="og:description" content={prod.descripcion}/>
+        <meta property="og:url" content={window.location}/>
+        <meta property="og:image" content={imageData!==null?imageData:""}/>
+        <meta property="product:brand" content={marcaData!==null?marcaData:""}/>
+        <meta property="product:availability" content={""}/>
+        <meta property="product:condition" content={""}/>
+        <meta property="product:price:amount" content={Number(prod.precio)}/>
+        <meta property="product:price:currency" content={"ARS"}/>
+        <meta property="product:retailer_item_id" content={""}/>
+        <meta property="product:item_group_id" content={prod.categoria!==undefined?prod.categoria.idcategoria:""}/>
+      </Helmet>
       <Grid
         container
         sx={{

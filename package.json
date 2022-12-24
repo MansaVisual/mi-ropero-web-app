@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-easy-crop": "^4.6.2",
     "react-ga4": "^1.4.1",
+    "react-helmet": "^6.1.0",
     "react-icons": "^4.4.0",
     "react-image-gallery": "^1.2.9",
     "react-material-ui-carousel": "^3.4.2",
