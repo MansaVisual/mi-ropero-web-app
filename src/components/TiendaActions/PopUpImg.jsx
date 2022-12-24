@@ -202,8 +202,6 @@ const PopUpImg = ({
     setOpenImgPopUp(false);
   };
 
-  console.log(imageSrc)
-
   return (
     <div className="PopUpImg">
       <div className="fondoPopUp"

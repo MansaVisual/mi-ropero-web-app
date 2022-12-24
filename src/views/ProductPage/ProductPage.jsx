@@ -150,7 +150,6 @@ const ProductPage = () => {
       return;
     }
   };
-console.log(prod)
   return (
     <Container maxWidth="xl">
       <Helmet>
