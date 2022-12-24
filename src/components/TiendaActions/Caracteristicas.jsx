@@ -56,7 +56,6 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = async (event, value) => {
-    console.log(value)
     let newArray=await erroresArray.filter(e=>e!==value.nombre)
     setErroresArray(newArray)
 
@@ -91,7 +90,7 @@ const Caracteristicas = ({ form, setForm }) => {
 
   useEffect(() => {
     arrayIdCaracteristicas();
-  }, [estadoSeleccionado]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [valueSeleccionado2]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if(erroresArray.length===0){
@@ -99,11 +98,10 @@ const Caracteristicas = ({ form, setForm }) => {
     }
   }, [erroresArray]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const arrayIdCaracteristicas = async () => {
-    console.log(valueSeleccionado2)
+  const arrayIdCaracteristicas =  () => {
     if (valueSeleccionado2.length !== 0) {
       if (valueSeleccionado2.valores_multiples === "0") {
-        await setIdCaracteristica((prevState) => ({
+        setIdCaracteristica((prevState) => ({
           ...prevState,
           [valueSeleccionado2.nombre]: [estadoSeleccionado],
         }));
@@ -111,17 +109,16 @@ const Caracteristicas = ({ form, setForm }) => {
         let i = idCaracteristica[valueSeleccionado2.nombre];
         let ii = [];
         const busqueda = i.find((e) => e === estadoSeleccionado);
-        console.log(busqueda)
         
         if (busqueda !== undefined) {
           ii = i.filter((e) => e !== estadoSeleccionado);
-          await setIdCaracteristica((prevState) => ({
+          setIdCaracteristica((prevState) => ({
             ...prevState,
             [valueSeleccionado2.nombre]: ii,
           }));
         } else {
           if (valueSeleccionado.length <= 3) {
-            await setIdCaracteristica((prevState) => ({
+            setIdCaracteristica((prevState) => ({
               ...prevState,
               [valueSeleccionado2.nombre]: i.concat(estadoSeleccionado),
             }));
@@ -133,7 +130,6 @@ const Caracteristicas = ({ form, setForm }) => {
 
 
   const handleSubmit = async() => {
-    console.log("CARACS OLD", idCaracteristica)
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");
 
     let array = []
@@ -158,7 +154,6 @@ const Caracteristicas = ({ form, setForm }) => {
       for (const i in idCaracteristica) {
         if (idCaracteristica[i] !== undefined)
           for (const ii in idCaracteristica[i]) {
-            console.log(idCaracteristica[i], idCaracteristica[i][ii])
             array = array.concat([idCaracteristica[i][ii]]);
           }
       }
@@ -187,7 +182,6 @@ const Caracteristicas = ({ form, setForm }) => {
     });
   };
 
-  console.log(caracteristicas)
 
   return (
     <div className="caractContainer">
