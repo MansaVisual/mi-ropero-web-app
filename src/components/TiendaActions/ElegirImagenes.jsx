@@ -376,15 +376,17 @@ const ElegirImagenes = ({ form, setForm }) => {
             >
               <Loader spin={"spinnerG"} />
             </div>
-          ) : (
-            imgNecesarias.map((imgBox, i) => {
+          ) : 
+            imgNecesarias.map((imgBox, i) => {console.log(imgBox)
               return (<>
                 {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div
                     className="section"
                     onClick={imagenesPreview[imgBox.nombre]?null:() => {
                       if (form.imagenesApi.length > 0) {
-                        setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                        if(form.imagenesApi[i]!==undefined){
+                          setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                        }
                       }
                       setSection(imgBox.nombre);
                       setEsOpcional(false);
@@ -452,7 +454,7 @@ const ElegirImagenes = ({ form, setForm }) => {
                 : <></>}
               </>);
             })
-          )}
+          }
           {seccionExtra.length > 0 &&
             seccionExtra.map((imgBox, i) => {
               return (
