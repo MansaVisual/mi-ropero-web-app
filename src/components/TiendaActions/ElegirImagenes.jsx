@@ -377,7 +377,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               <Loader spin={"spinnerG"} />
             </div>
           ) : 
-            imgNecesarias.map((imgBox, i) => {console.log(imgBox)
+            imgNecesarias.map((imgBox, i) => {
               return (<>
                 {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div
