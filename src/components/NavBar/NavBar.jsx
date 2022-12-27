@@ -195,7 +195,7 @@ const NavBar = () => {
                 flex: isMobileBigScreen ? 1 : null,
               }}
             >
-              <Link href="/">
+              <Link href="https://www.miropero.ar/">
                 <img src={isologoMR2} alt="logo-mi-ropero" className="logo-mi-ropero"/>
               </Link>
             </Box>
