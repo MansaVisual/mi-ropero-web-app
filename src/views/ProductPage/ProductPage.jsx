@@ -50,6 +50,8 @@ const ProductPage = () => {
 
   const [marcaData,setMarcaData]=useState(null)
   const [imageData,setImageData]=useState(null)
+  const [conditionData,setConditionData]=useState(null)
+  const [availableData,setAvailableData]=useState(null)
 
   const _renderVideo = (item) => {
 
@@ -74,6 +76,7 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
+    console.log(prod)
     if (prod.length !== 0) {
       const ropero = new FormData();
       ropero.append("idtienda", prod.tienda.idtienda);
@@ -88,6 +91,8 @@ const ProductPage = () => {
         }
       }
       setImageData(prod.imagenes[0].imagen_chica)
+      setConditionData(prod.es_nuevo)
+      setAvailableData(prod.estado_text)
     }
   }, [prod]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -158,12 +163,15 @@ const ProductPage = () => {
         <meta property="og:url" content={window.location}/>
         <meta property="og:image" content={imageData!==null?imageData:""}/>
         <meta property="product:brand" content={marcaData!==null?marcaData:""}/>
-        <meta property="product:availability" content={""}/>
-        <meta property="product:condition" content={""}/>
+        <meta property="product:availability" content={availableData==="Publicado"?"in stock":""}/>
+        <meta property="product:condition" content={conditionData?"new":"used"}/>
         <meta property="product:price:amount" content={Number(prod.precio)}/>
         <meta property="product:price:currency" content={"ARS"}/>
-        <meta property="product:retailer_item_id" content={""}/>
+        <meta property="product:retailer_item_id" content={prod.idproducto}/>
         <meta property="product:item_group_id" content={prod.categoria!==undefined?prod.categoria.idcategoria:""}/>
+        <meta property="google_product_category" content={prod.categoria!==undefined?prod.categoria.nombre:""}/>
+        <meta property="fb:pages" content="105027674829385" />
+        <link rel="canonical" href={window.location}/>
       </Helmet>
       <Grid
         container
