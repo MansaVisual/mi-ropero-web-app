@@ -47,6 +47,7 @@ const PopUpImg = ({
       setImagenCargada(true);
       const file = imagenCargadaUser;
       let imageDataUrl = await readFile(file);
+      console.log(imageDataUrl)
       setImageSrc(imageDataUrl);
     }
   }

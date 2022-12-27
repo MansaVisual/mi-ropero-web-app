@@ -159,17 +159,17 @@ const ProductPage = () => {
     <Container maxWidth="xl">
       <Helmet>
         <meta property="og:title" content={prod.nombre}/>
-        <meta property="og:description" content={prod.descripcion}/>
+        <meta property="og:description" content={prod.descripcion!==""?prod.descripcion:"no description"}/>
         <meta property="og:url" content={window.location}/>
-        <meta property="og:image" content={imageData!==null?imageData:""}/>
-        <meta property="product:brand" content={marcaData!==null?marcaData:""}/>
-        <meta property="product:availability" content={availableData==="Publicado"?"in stock":""}/>
+        <meta property="og:image" content={imageData!==null?imageData:"no image"}/>
+        <meta property="product:brand" content={marcaData!==null?marcaData:"no brand"}/>
+        <meta property="product:availability" content={availableData==="Publicado"?"in stock":"out of stock"}/>
         <meta property="product:condition" content={conditionData?"new":"used"}/>
         <meta property="product:price:amount" content={Number(prod.precio)}/>
         <meta property="product:price:currency" content={"ARS"}/>
         <meta property="product:retailer_item_id" content={prod.idproducto}/>
-        <meta property="product:item_group_id" content={prod.categoria!==undefined?prod.categoria.idcategoria:""}/>
-        <meta property="google_product_category" content={prod.categoria!==undefined?prod.categoria.nombre:""}/>
+        <meta property="product:item_group_id" content={prod.categoria!==undefined?prod.categoria.idcategoria:"no id"}/>
+        <meta property="google_product_category" content={prod.categoria!==undefined?prod.categoria.nombre:"no category"}/>
         <meta property="fb:pages" content="105027674829385" />
         <link rel="canonical" href={window.location}/>
       </Helmet>
