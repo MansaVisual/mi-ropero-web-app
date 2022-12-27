@@ -320,7 +320,9 @@ const ElegirImagenes = ({ form, setForm }) => {
   };
 
   const onFileChange=async(e)=>{
-    if(e.target.files[0].name.indexOf(".png") || e.target.files[0].name.indexOf(".jpg") || e.target.files[0].name.indexOf(".jpeg")){
+    console.log(e.target.files[0].name)
+    if(e.target.files[0].name.indexOf(".png")!==-1 || e.target.files[0].name.indexOf(".jpg")!==-1 || e.target.files[0].name.indexOf(".jpeg")!==-1 ||
+      e.target.files[0].name.indexOf(".PNG")!==-1 || e.target.files[0].name.indexOf(".JPG")!==-1 || e.target.files[0].name.indexOf(".JPEG")!==-1){
       if (e.target.files && e.target.files.length > 0) {
         await setImagenCargadaUser(e.target.files[0])
         setOpenImgPopUp(true)
@@ -424,7 +426,9 @@ const ElegirImagenes = ({ form, setForm }) => {
                           }).then((res)=>{
                             if(res.isConfirmed){
                               if (form.imagenesApi.length > 0) {
-                                setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                                if(form.imagenesApi[i]!==undefined){
+                                  setIdImgEditar(form.imagenesApi[i].idproductoimagen);
+                                }
                               }
                               setSection(imgBox.nombre);
                               setEsOpcional(false);
@@ -680,7 +684,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         id="file-upload"
         type="file"
         onChange={onFileChange}
-        accept="image/png, image/jpg, image/jpeg"
+        accept="image/*"
         style={{zIndex:"-99",position:"absolute",top:"0"}}
       />
       <input
