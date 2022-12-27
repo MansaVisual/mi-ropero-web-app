@@ -18,7 +18,7 @@ export const apiFetch=async(data, clase, metodo)=>{
               icon: "info",
               confirmButtonText: "CONTINUAR",
             }).then((res) => {
-              window.location.replace("https://www.miropero.ar/");
+              window.location.replace("https://www.miropero.ar");
             });
           }
         })
