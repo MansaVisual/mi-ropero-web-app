@@ -332,6 +332,7 @@ const ElegirImagenes = ({ form, setForm }) => {
   };
 
   const onFileChange=async(e)=>{
+    console.log(e.target.files)
     if(e.target.files[0].name.indexOf(".png")!==-1 || e.target.files[0].name.indexOf(".jpg")!==-1 || e.target.files[0].name.indexOf(".jpeg")!==-1 ||
       e.target.files[0].name.indexOf(".PNG")!==-1 || e.target.files[0].name.indexOf(".JPG")!==-1 || e.target.files[0].name.indexOf(".JPEG")!==-1){
       if (e.target.files && e.target.files.length > 0) {
