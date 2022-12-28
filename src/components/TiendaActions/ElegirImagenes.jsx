@@ -379,8 +379,11 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
           ) : 
             imgNecesarias.map((imgBox, i) => {
+              console.log("IMAGENES PREVIEW", imagenesPreview)
+              console.log("IMAGENES BOX", imgBox)
+              console.log("FORM", form)
               return (<>
-                {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
+                {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0 && imgBox.obligatoria!==0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div
                     className="section"
                     onClick={imagenesPreview[imgBox.nombre]?null:() => {
@@ -428,6 +431,12 @@ const ElegirImagenes = ({ form, setForm }) => {
                                 if(form.imagenesApi[i]!==undefined){
                                   setIdImgEditar(form.imagenesApi[i].idproductoimagen);
                                 }
+                              }
+                              if(form.prodEditar){
+                                setForm((prevState) => ({
+                                  ...prevState,
+                                  editarProd:false
+                                }));
                               }
                               setSection(imgBox.nombre);
                               setEsOpcional(false);
