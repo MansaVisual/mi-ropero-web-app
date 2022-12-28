@@ -17,7 +17,6 @@ import HomeBannerBottom from "../../assets/img/HomeBannerBottom.jpg";
 import homeBannerMobile from "../../assets/img/bannerHomeMobile.jpg"
 
 const Home = () => {
-  console.log("HOLAAAAAAAAAAAAAAAAAA")
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
@@ -28,7 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     if (redirectUrl) {
-      window.location.replace(`https://www.miropero.ar/${redirectUrl}`);
+      window.location.replace(`https://www.miropero.ar${redirectUrl}`);
       localStorage.setItem("redirectUrl", "");
     }
     window.scrollTo({

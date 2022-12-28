@@ -42,7 +42,7 @@ const BoxLoginValidate = () => {
               `https://www.miropero.ar/${redirectUrl}`
             );
           } else {
-            window.location.replace("https://www.miropero.ar/");
+            window.location.replace("https://www.miropero.ar");
           }
         } else {
           setLoad(false);

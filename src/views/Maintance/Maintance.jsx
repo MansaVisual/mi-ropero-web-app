@@ -63,7 +63,7 @@ const Maintance = () => {
             </div>
           </Link>
           <Link
-            href="https://www.instagram.com/miroperoapp/"
+            href="https://www.instagram.com/miroperoapp"
             underline="none"
             target={"_blank"}
           >
