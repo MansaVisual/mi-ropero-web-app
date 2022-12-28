@@ -12,7 +12,9 @@ const PopUpVideo = ({
   videoPreview,
   setCambioVideo,
   videoCargadoUser,
-  clearVideo
+  clearVideo,
+  setForm,
+  form
 }) => {
   const [videoSrc, setVideoSrc] = useState(null);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -36,6 +38,12 @@ const PopUpVideo = ({
         let imageDataUrl = await readFile(videoCargadoUser);
         setVideoPreview(imageDataUrl);
         setVideoSrc(videoCargadoUser);
+        if(form.prodEditar){
+          setForm((prevState) => ({
+            ...prevState,
+            editarProd:false
+          }));
+        }
       }
     }
   }

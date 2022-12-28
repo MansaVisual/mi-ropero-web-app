@@ -693,6 +693,7 @@ const ElegirImagenes = ({ form, setForm }) => {
           setIdImgEditar={setIdImgEditar}
           imagenCargadaUser={imagenCargadaUser}
           clearImg={clearImg}
+          setForm={setForm}
         />
       )}
       {openVidPopUp && (
@@ -707,6 +708,8 @@ const ElegirImagenes = ({ form, setForm }) => {
           setCambioVideo={setCambioVideo}
           videoCargadoUser={videoCargadoUser}
           clearVideo={clearVideo}
+          setForm={setForm}
+          form={form}
         />
       )}
       <input

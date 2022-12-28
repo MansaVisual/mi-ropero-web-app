@@ -20,7 +20,8 @@ const PopUpImg = ({
   setImgsEditar,
   setIdImgEditar,
   imagenCargadaUser,
-  clearImg
+  clearImg,
+  setForm
 }) => {
   const [imageSrc, setImageSrc] = useState(
     imagenesPreview[section] ? imagenesPreview[section] : null
@@ -48,6 +49,12 @@ const PopUpImg = ({
       const file = imagenCargadaUser;
       let imageDataUrl = await readFile(file);
       setImageSrc(imageDataUrl);
+      if(form.prodEditar){
+        setForm((prevState) => ({
+          ...prevState,
+          editarProd:false
+        }));
+      }
     }
   }
 
