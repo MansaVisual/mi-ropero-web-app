@@ -215,9 +215,14 @@ const ElegirImagenes = ({ form, setForm }) => {
         delete imagenes[image.nombre]
         setSeccionExtra(newArrayImgs)
         if(form.prodEditar){
+          if(form.prodEditar){
+            setForm((prevState) => ({
+              ...prevState,
+              editarProd:false
+            }));
+          }
           let img = {
             nombre:image.nombre,
-            editarProd:false,
             id:idImg
           }
           await setImgsBorrar([...imgsBorrar,img])
@@ -239,13 +244,13 @@ const ElegirImagenes = ({ form, setForm }) => {
       showCloseButton: true,
       confirmButtonText: "ELIMINAR",
     }).then((res)=>{
-      if(form.prodEditar){
-        setForm((prevState) => ({
-          ...prevState,
-          editarProd:false
-        }));
-      }
       if(res.isConfirmed){
+        if(form.prodEditar){
+          setForm((prevState) => ({
+            ...prevState,
+            editarProd:false
+          }));
+        }
         setVideo(null)
         setCambioVideo(false)
         setVideoPreview(null);
