@@ -20,6 +20,12 @@ const DetallesProd = ({ form, setForm }) => {
   const [openDescPopUp, setOpenDescPopUp] = useState(false);
 
   const handleChange = (e, detalle) => {
+    if(form.prodEditar){
+      setForm((prevState) => ({
+        ...prevState,
+        editarProd:false
+      }));
+    }
     if (detalle === "precio") {
       setDetalles((prevState) => {
         return {

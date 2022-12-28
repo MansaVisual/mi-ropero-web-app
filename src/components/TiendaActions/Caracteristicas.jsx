@@ -56,6 +56,12 @@ const Caracteristicas = ({ form, setForm }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = async (event, value) => {
+    if(form.prodEditar){
+      setForm((prevState) => ({
+        ...prevState,
+        editarProd:false
+      }));
+    }
     let newArray=await erroresArray.filter(e=>e!==value.nombre)
     setErroresArray(newArray)
 
@@ -127,9 +133,6 @@ const Caracteristicas = ({ form, setForm }) => {
       }
     }
   };
-
-  console.log(idCaracteristica)
-
 
   const handleSubmit = async() => {
     const obligatorio = data.filter((info) => info.es_obligatoria === "1");

@@ -217,6 +217,7 @@ const ElegirImagenes = ({ form, setForm }) => {
         if(form.prodEditar){
           let img = {
             nombre:image.nombre,
+            editarProd:false,
             id:idImg
           }
           await setImgsBorrar([...imgsBorrar,img])
@@ -238,6 +239,12 @@ const ElegirImagenes = ({ form, setForm }) => {
       showCloseButton: true,
       confirmButtonText: "ELIMINAR",
     }).then((res)=>{
+      if(form.prodEditar){
+        setForm((prevState) => ({
+          ...prevState,
+          editarProd:false
+        }));
+      }
       if(res.isConfirmed){
         setVideo(null)
         setCambioVideo(false)
@@ -532,6 +539,12 @@ const ElegirImagenes = ({ form, setForm }) => {
                                     .idproductoimagen
                                 );
                               }
+                              if(form.prodEditar){
+                                setForm((prevState) => ({
+                                  ...prevState,
+                                  editarProd:false
+                                }));
+                              }
                               setSection(imgBox.nombre);
                               setEsOpcional(false);
                               document.getElementById("file-upload").click()
@@ -595,7 +608,7 @@ const ElegirImagenes = ({ form, setForm }) => {
               />
               {video && 
                 <img className="editButton" src={editIcon} alt="edit" 
-                  onClick={video?null:() => {
+                  onClick={video?() => {
                     Swal.fire({
                       title: "¿Desea sustituir este video?",
                       iconHtml: `<img src=${logo} alt="LOGO">`,
@@ -609,11 +622,17 @@ const ElegirImagenes = ({ form, setForm }) => {
                       confirmButtonText: "CONTINUAR",
                       cancelButtonText:"CANCELAR"
                     }).then((res)=>{
+                      if(form.prodEditar){
+                        setForm((prevState) => ({
+                          ...prevState,
+                          editarProd:false
+                        }));
+                      }
                       if(res.isConfirmed){
                         handleExtraSubmit("video");
                       }
                     })
-                  }}
+                  }:null}
                 />
               }
               {video && <img className="deleteButton" src={deleteIcon} alt="delete" onClick={()=>deleteVideo()} />}
