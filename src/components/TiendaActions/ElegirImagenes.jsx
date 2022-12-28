@@ -391,9 +391,6 @@ const ElegirImagenes = ({ form, setForm }) => {
             </div>
           ) : 
             imgNecesarias.map((imgBox, i) => {
-              console.log("IMAGENES PREVIEW", imagenesPreview)
-              console.log("IMAGENES BOX", imgBox)
-              console.log("FORM", form)
               return (<>
                 {(!form.prodEditar) || (form.prodEditar && seccionExtra.length<=0 && imgBox.obligatoria!==0) || (imgBox.obligatoria!==0 && seccionExtra.length>0) ?
                   <div

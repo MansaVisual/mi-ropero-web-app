@@ -76,7 +76,6 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(prod)
     if (prod.length !== 0) {
       const ropero = new FormData();
       ropero.append("idtienda", prod.tienda.idtienda);

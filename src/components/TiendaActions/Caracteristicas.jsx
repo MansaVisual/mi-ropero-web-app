@@ -156,9 +156,7 @@ const Caracteristicas = ({ form, setForm }) => {
     }
     if (!errorObligatorio) {
       let array = [];
-      console.log("CARACS",idCaracteristica)
       for (const i in idCaracteristica) {
-      console.log("CARACS 2",idCaracteristica[i])
         if (idCaracteristica[i] !== undefined)
           for (const ii in idCaracteristica[i]) {
             array = array.concat([idCaracteristica[i][ii]]);
@@ -288,10 +286,8 @@ const Caracteristicas = ({ form, setForm }) => {
                                 estadoSeleccionado ===
                                 `${option.idcaracteristica}:${option.idcaracteristicavalor}`
                               ) {
-                                console.log("CAHUUU")
                                 arrayIdCaracteristicas();
                               } else {
-                                console.log("HOLAA")
                                 setEstadoSeleccionado(
                                   `${option.idcaracteristica}:${option.idcaracteristicavalor}`
                                 );
@@ -311,7 +307,7 @@ const Caracteristicas = ({ form, setForm }) => {
           )}
         </div>
         <div className="buttonContainer">
-          <button onClick={() => {console.log(idCaracteristica);handleSubmit()}}>CONTINUAR A DETALLES</button>
+          <button onClick={() => {handleSubmit()}}>CONTINUAR A DETALLES</button>
         </div>
         <div
           className="returnLink"
