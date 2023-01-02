@@ -236,18 +236,18 @@ useEffect(()=>{
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //-------------------|-----------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda/OFERTAS%20RECIBIDAS";
               } else if (
                 itemURL.indexOf("/app/profile-showroom/transfers") !== -1
               ) {
                 //------------------|------------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda/TRANSFERENCIAS";
               } else if (itemURL.indexOf("/app/cart") !== -1) {
                 //--------------------------|----------------------
                 url = "/carrito";
               } else if (itemURL.indexOf("/app/profile-showroom") !== -1) {
                 //--------------------|----------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda";
               } else if (itemURL === "#") {
                 url = false;
               } else {
