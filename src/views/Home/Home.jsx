@@ -1,4 +1,4 @@
-import { Box, Container, Link, useMediaQuery } from "@mui/material";
+import { Box, Button, Container, Link, Typography, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { UpButton } from "../../components/ActionButton/ActionButton";
@@ -20,7 +20,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { slider1, slider2, slider3 } = useContext(UseProdsContext);
-  const { colecciones, buscandoCols } = useContext(UseColeccionContext);
+  const { colecciones, buscandoCols, coleccionNoEncontrada } = useContext(UseColeccionContext);
   const { reBuscarInfo } = useContext(UseLoginContext);
 
   const redirectUrl = localStorage.getItem("redirectUrl");
@@ -208,14 +208,14 @@ const Home = () => {
                 lineHeight: "36px",
                 width: isMobile ? "189px" : null,
               }}
-              href="https://play.google.com/store/apps/details?id=biz.pupila.MiRopero"
+              onClick={()=>navigate("/Mi&Tienda")}
               target={"_blank"}
             >
               Vender
             </Button> 
           </Box>
         </Box> */}
-        {colecciones.length !== 0 &&
+        {colecciones.length !== 0 && !coleccionNoEncontrada &&
           colecciones.map((res, i) => {
             return (
               <Fragment key={i}>
@@ -255,7 +255,7 @@ const Home = () => {
               </Fragment>
             );
           })}
-        {colecciones.length !== 0 &&
+        {colecciones.length !== 0 && !coleccionNoEncontrada &&
           colecciones.map((res, i) => {
             return (
               <Fragment key={i}>
