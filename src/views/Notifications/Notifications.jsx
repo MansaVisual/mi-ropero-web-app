@@ -179,7 +179,7 @@ useEffect(()=>{
             if (i <= 7) {
               if (itemURL.indexOf("/app/profile-showroom/sales") !== -1) {
                 //-----------------------|-------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda/VENTAS";
               } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("/app/profile/messages?id=");
@@ -189,11 +189,7 @@ useEffect(()=>{
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //------------------|------------------------------
-                if(item.titulo==="Rechazaron tu oferta"){
-                  url = "/mantenimiento";
-                }else if(item.titulo==="Aceptaron tu oferta"){
-                  url = "/mantenimiento";
-                }
+                url="/Mi&Tienda/OFERTAS%20RECIBIDAS"
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
                 let buscarI2 = itemURL.indexOf("&backLink");
