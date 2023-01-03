@@ -21,11 +21,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FiMenu } from "react-icons/fi";
 import { UseProdsContext } from "../../context/ProdsContext";
 import { useNavigate } from "react-router-dom";
-import NavBarPopUp from "../NavBar/NavBarPopUp";
 
 const NavMenu = () => {
   const navigate = useNavigate();
-  const [openVenderPop, setOpenVenderPop] = useState(false);
 
   const [state, setState] = useState({
     right: false,
@@ -204,9 +202,9 @@ const NavMenu = () => {
               backgroundColor:"rgb(255, 61, 31)",
               "&:hover": {
                 backgroundColor: "rgb(255 113 91)",
-              },
+              }
             }}
-            onClick={() => setOpenVenderPop(true)}
+            onClick={() => navigate("/Mi&Tienda")}
           >
             Vender
           </Button>
@@ -226,7 +224,7 @@ const NavMenu = () => {
         </Toolbar>
       </Box>
     </Box>
-    {openVenderPop && <NavBarPopUp setOpenVenderPop={setOpenVenderPop} />}
+    {/* {openVenderPop && <NavBarPopUp setOpenVenderPop={setOpenVenderPop} />} */}
     </>
   );
 
