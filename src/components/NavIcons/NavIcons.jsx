@@ -9,6 +9,7 @@ import {
   Icon,
   Button,
   Divider,
+  useMediaQuery,
 } from "@mui/material";
 import BellNotif from "../../assets/img/BellNotif.svg";
 import Cart from "../../assets/img/Cart.svg";
@@ -19,7 +20,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { CgCloseO } from "react-icons/cg";
 import {
-  // IoStorefrontOutline,
+  IoStorefrontOutline,
   IoLocationOutline,
 } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi";
@@ -40,10 +41,10 @@ import iconoMensaje from "../../assets/img/iconMensaje.png";
 import Swal from "sweetalert2";
 import { apiFetch } from "../../apiFetch/apiFetch";
 import ReactGA from "react-ga4";
-import NavBarPopUp from "../NavBar/NavBarPopUp";
 
 const NavIcons = () => {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { userLog, setUserLog, notis, buscandoNotis } =
     useContext(UseLoginContext);
@@ -60,7 +61,6 @@ const NavIcons = () => {
   const [prodEliminar, setProdEliminar] = useState(null);
   const [aparece, setAparece] = useState(true);
   const [prod,setProd]=useState(null)
-  const [openVenderPop, setOpenVenderPop] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("idClienteMiRopero") !== null) {
@@ -167,11 +167,11 @@ const NavIcons = () => {
   };
 
   const optionUser = [
-    // {
-    //   title: "Mi tienda",
-    //   icon: <IoStorefrontOutline />,
-    //   url:"MI TIENDA"
-    // },
+    {
+      title: "Mi tienda",
+      icon: <IoStorefrontOutline />,
+      url:"MI TIENDA"
+    },
     {
       title: "Mis datos",
       icon: <HiOutlineUser />,
@@ -351,7 +351,11 @@ const NavIcons = () => {
               }}
               onClick={() => {
                 handleCloseAvatar();
-                navigate(`/perfil/${item.url}`);
+                if(item.url==="MI TIENDA"){
+                  navigate(`/Mi&Tienda`);
+                }else{
+                  navigate(`/perfil/${item.url}`);
+                }
               }}
             >
               <Icon sx={{ fontSize: "15px" }}>{item.icon}</Icon>
@@ -410,7 +414,7 @@ const NavIcons = () => {
                 itemURL.indexOf("/app/profile-showroom/sales-detail") !== -1
               ) {
                 //-----------------------|-------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda/VENTAS";
               } else if (itemURL.indexOf("/app/profile/messages?id=") !== -1) {
                 //---------------|---------------------------------
                 buscarI = itemURL.indexOf("/app/profile/messages?id=");
@@ -421,7 +425,7 @@ const NavIcons = () => {
               ) {
                 //------------------|------------------------------
 
-                url = "/mantenimiento";
+                url="/Mi&Tienda/OFERTAS%20RECIBIDAS"
               } else if (itemURL.indexOf("idproducto=") !== -1) {
                 //--------------------------------|----------------
                 let buscarI2 = itemURL.indexOf("&backLink");
@@ -466,18 +470,18 @@ const NavIcons = () => {
                 itemURL.indexOf("/app/profile-showroom/offers") !== -1
               ) {
                 //-------------------|-----------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda/OFERTAS%20RECIBIDAS";
               } else if (
                 itemURL.indexOf("/app/profile-showroom/transfers") !== -1
               ) {
                 //------------------|------------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda/TRANSFERENCIAS";
               } else if (itemURL.indexOf("/app/cart") !== -1) {
                 //--------------------------|----------------------
                 url = "/carrito";
               } else if (itemURL.indexOf("/app/profile-showroom") !== -1) {
                 //--------------------|----------------------------
-                url = "/mantenimiento";
+                url = "/Mi&Tienda";
               } else if (itemURL === "#") {
                 url = false;
               } else {
@@ -852,10 +856,10 @@ const NavIcons = () => {
               "&:hover": {
                 backgroundColor: "rgb(255 113 91)",
               },
-              display:"flex",
+              display: isMobile?"none":"flex",
               alignItems:"center"
             }}
-            onClick={() => setOpenVenderPop(true)}
+            onClick={() => navigate("/Mi&Tienda")}
           >
             Vender
           </Button>
@@ -1092,7 +1096,6 @@ const NavIcons = () => {
           </div>
         )}
       </Stack>
-      {openVenderPop && <NavBarPopUp setOpenVenderPop={setOpenVenderPop} />}
     </>
   );
 };
