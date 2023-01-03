@@ -9,7 +9,7 @@ const PopUpSesion = ({ setCloseSession }) => {
   const {setUserLog}=useContext(UseLoginContext)
 
   const handleCerrarSesion=()=>{
-    localStorage.clear("idClienteRopero")
+    localStorage.removeItem("idClienteRopero")
     setUserLog("")
     window.location.replace('https://www.miropero.ar')
   }

@@ -21,6 +21,7 @@ const BoxLogin = () => {
   const [load, setLoad] = useState(false);
 
   const redirectUrl = localStorage.getItem("redirectUrl");
+  const returnTienda = localStorage.getItem("returnVenderMR")
 
   const handleLogin = async () => {
     setLoad(true);
@@ -38,6 +39,7 @@ const BoxLogin = () => {
     await apiFetch(loginUser, "clientes", "login").then((res) => {
       setLoad(false);
       if (res.status === "success") {
+
         if (redireccionCompra !== undefined) {
           window.location.replace(
             `https://www.miropero.ar${redireccionCompra}`
@@ -48,7 +50,11 @@ const BoxLogin = () => {
           top: 0,
           behavior: "auto",
         });
-        if (redirectUrl) {
+        if(returnTienda !== undefined){
+          window.location.replace(
+            `https://www.miropero.ar/Mi&Tienda`
+          );
+        } else if (redirectUrl) {
           localStorage.setItem("redirectUrl", "");
           window.location.replace(`https://www.miropero.ar${redirectUrl}`);
         } else {

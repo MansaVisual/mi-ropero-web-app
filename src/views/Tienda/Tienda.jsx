@@ -75,6 +75,8 @@ const Tienda = () => {
     if (num !== 1) {
       if (userLog === "") {
         navigate("/login");
+      }else{
+        localStorage.removeItem("returnVenderMR")
       }
     }
   }, [num]); // eslint-disable-line react-hooks/exhaustive-deps

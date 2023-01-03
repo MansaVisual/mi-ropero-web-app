@@ -104,6 +104,7 @@ useEffect(()=>{
     const formatoFinal = `Fecha: ${day} / ${month} / ${year} ${hora} Hs.`;
     return formatoFinal;
   };
+  
   return (
     <div className="notifications">
       <Breadcrumbs links={pathnames} />

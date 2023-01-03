@@ -8,7 +8,7 @@ import { apiFetch } from '../../apiFetch/apiFetch';
 
 const ValidationPopUp = ({setSendCod}) => {
     const user = JSON.parse(localStorage.getItem("sendCodMiRopero"))
-    localStorage.clear("sendCodMiRopero")
+    localStorage.removeItem("sendCodMiRopero")
   
     const [load,setLoad]=useState(false)
 

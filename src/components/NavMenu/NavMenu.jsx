@@ -204,7 +204,7 @@ const NavMenu = () => {
                 backgroundColor: "rgb(255 113 91)",
               }
             }}
-            onClick={() => {navigate("/Mi&Tienda");setOpen(false)}}
+            onClick={() => {localStorage.setItem("returnVenderMR","true");setOpen(false);navigate("/Mi&Tienda")}}
           >
             Vender
           </Button>

@@ -75,7 +75,7 @@ const NavIcons = () => {
   }, [userLog]);
 
   const handleCerrarSesion = () => {
-    localStorage.clear("idClienteRopero");
+    localStorage.removeItem("idClienteRopero");
     setUserLog("");
     closeSession();
     window.location.reload();
@@ -859,7 +859,7 @@ const NavIcons = () => {
               display: isMobile?"none":"flex",
               alignItems:"center"
             }}
-            onClick={() => navigate("/Mi&Tienda")}
+            onClick={() => {localStorage.setItem("returnVenderMR","true");navigate("/Mi&Tienda")}}
           >
             Vender
           </Button>
