@@ -7,6 +7,7 @@ export const ColeccionContext = ({ children }) => {
   const [coleccionesBuscadas, setColeccionesBuscadas] = useState([]);
   const [colecciones, setColecciones] = useState([]);
   const [buscandoCols,setBuscandoCols]=useState(true)
+  const [coleccionNoEncontrada,setColeccionNoEncontrada]=useState(false)
 
   useEffect(() => {
     apiFetch(
@@ -21,6 +22,15 @@ export const ColeccionContext = ({ children }) => {
   }, [coleccionesBuscadas]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const completarColecciones=async()=>{
+    setBuscandoCols(true)
+    setColeccionNoEncontrada(false)
+
+    if(coleccionesBuscadas==="No se encontraron colecciones"){
+      setColeccionNoEncontrada(true)
+      setBuscandoCols(false)
+      return
+    }
+    
     if(coleccionesBuscadas.length!==0){
       let newCols=[]
       for(const i in coleccionesBuscadas){
@@ -49,7 +59,8 @@ export const ColeccionContext = ({ children }) => {
     <UseColeccionContext.Provider
       value={{
         colecciones,
-        buscandoCols
+        buscandoCols,
+        coleccionNoEncontrada
       }}
     >
       {children}
