@@ -8,7 +8,7 @@ import misDirecc from "../../assets/img/misDireccIcon.png";
 import misFavs from "../../assets/img/misFavsIcon.png";
 import misMensajes from "../../assets/img/misMensajesIcon.png";
 import misOfertas from "../../assets/img/misOfertasIcon.png";
-// import miTienda from '../../assets/img/miTiendaIcon.png';
+import miTienda from '../../assets/img/miTiendaIcon.png';
 import PopUpNotis from "./PopUpNotis";
 import PopUpSesion from "./PopUpSesion";
 import PopUpEliminar from "./PopUpEliminar";
@@ -36,10 +36,10 @@ const MiPerfil = () => {
   };
 
   const profileSections = [
-    // {
-    //   name: 'MI TIENDA',
-    //   icon: miTienda,
-    // },
+    {
+      name: 'MI TIENDA',
+      icon: miTienda,
+    },
     {
       name: "MIS DATOS",
       icon: misDatos,
@@ -97,7 +97,13 @@ const MiPerfil = () => {
             return (
               <div
                 className="section"
-                onClick={() => navigate(`/perfil/${section.name}`)}
+                onClick={() =>{
+                  if(section.name==="MI TIENDA"){
+                    navigate(`/Mi&Tienda`);
+                  }else{
+                    navigate(`/perfil/${section.name}`);
+                  }
+                }}
               >
                 <div className="imgBox">
                   <img src={section.icon} alt="icon" />
