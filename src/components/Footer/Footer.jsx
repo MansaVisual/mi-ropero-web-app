@@ -126,12 +126,12 @@ const Footer = () => {
               </StyledLink>
             </Box>
             <Box sx={{ pt: isMobile ? "78px" : null, lineHeight: "18px" }}>
-              {/* <StyledLink>VENDER</StyledLink> */}
+              <StyledLink>VENDER</StyledLink>
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 {footerContent.section.text.map((item, key) => (
                   <StyledLink
                     key={key}
-                    sx={{ mb: isMobile ? "30px" : "12px", lineHeight: "18px" }}
+                    sx={{ mb: isMobile ? "30px" : "12px", lineHeight: "18px", mt:"12px" }}
                     href={item.href}
                   >
                     {item.title}
