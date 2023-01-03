@@ -126,7 +126,7 @@ const Footer = () => {
               </StyledLink>
             </Box>
             <Box sx={{ pt: isMobile ? "78px" : null, lineHeight: "18px" }}>
-              <StyledLink>VENDER</StyledLink>
+              <StyledLink onClick={()=>navigate("/Mi&Tienda")}>VENDER</StyledLink>
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 {footerContent.section.text.map((item, key) => (
                   <StyledLink
