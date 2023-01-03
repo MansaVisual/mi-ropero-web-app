@@ -204,7 +204,7 @@ const NavMenu = () => {
                 backgroundColor: "rgb(255 113 91)",
               }
             }}
-            onClick={() => navigate("/Mi&Tienda")}
+            onClick={() => {navigate("/Mi&Tienda");setOpen(false)}}
           >
             Vender
           </Button>
