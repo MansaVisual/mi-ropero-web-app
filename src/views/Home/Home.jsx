@@ -13,8 +13,8 @@ import theme from "../../styles/theme";
 import "react-multi-carousel/lib/styles.css";
 import { UseLoginContext } from "../../context/LoginContext";
 import Loader from "../../components/Loader/Loader";
-import HomeBannerBottom from "../../assets/img/HomeBannerBottom.jpg";
-import homeBannerMobile from "../../assets/img/bannerHomeMobile.jpg"
+import HomeBannerBottom from "../../assets/img/BANNER-HOME-ABAJO.jpg";
+import homeBannerMobile from "../../assets/img/BANNER-HOME-ABAJO-MOBILE.jpg"
 
 const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -163,9 +163,10 @@ const Home = () => {
           </Box>
         </Container>
         <Box
+          onClick={()=>{localStorage.setItem("returnVenderMR","true");navigate("/Mi&Tienda")}}
           component="img"
           src={isMobile? homeBannerMobile: HomeBannerBottom}
-          sx={{ width: "100%", mt: "44px", mb: "40px" }}
+          sx={{ width: "100%", mt: "44px", mb: "40px", cursor:"pointer" }}
         />
 
         {/* <Box
