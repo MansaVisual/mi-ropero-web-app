@@ -74,8 +74,8 @@ const NavIcons = () => {
     }
   }, [userLog]);
 
-  const handleCerrarSesion = () => {
-    localStorage.removeItem("idClienteRopero");
+  const handleCerrarSesion = async() => {
+    await localStorage.removeItem("idClienteMiRopero");
     setUserLog("");
     closeSession();
     window.location.reload();

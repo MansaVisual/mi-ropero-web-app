@@ -8,8 +8,8 @@ const PopUpSesion = ({ setCloseSession }) => {
 
   const {setUserLog}=useContext(UseLoginContext)
 
-  const handleCerrarSesion=()=>{
-    localStorage.removeItem("idClienteRopero")
+  const handleCerrarSesion=async()=>{
+    await localStorage.removeItem("idClienteMiRopero")
     setUserLog("")
     window.location.replace('https://www.miropero.ar')
   }
