@@ -229,31 +229,19 @@ const PopUpTransferencia = ({ setTransfPopUp }) => {
                 )}
                 <Button
                   className={
-                    data.cbu === "" ||
-                    data.alias === "" ||
-                    data.titular === "" ||
-                    data.dni === "" ||
-                    data.monto === ""
-                      ? "mensajeDisabled"
-                      : "recordar"
+                    (data.cbu!=="" || data.alias!=="") && data.titular!=="" && data.dni!=="" && data.monto!==""
+                      ? "recordar"
+                      : "mensajeDisabled"
                   }
                   disabled={
-                    data.cbu === "" ||
-                    data.alias === "" ||
-                    data.titular === "" ||
-                    data.dni === "" ||
-                    data.monto === ""
-                      ? true
-                      : false
+                    (data.cbu!=="" || data.alias!=="") && data.titular!=="" && data.dni!=="" && data.monto!==""
+                      ? false
+                      : true
                   }
                   onClick={
-                    data.cbu === "" ||
-                    data.alias === "" ||
-                    data.titular === "" ||
-                    data.dni === "" ||
-                    data.monto === ""
-                      ? null
-                      : () => submit()
+                    (data.cbu!=="" || data.alias!=="") && data.titular!=="" && data.dni!=="" && data.monto!==""
+                      ? () => submit()
+                      : null
                   }
                 >
                   SOLICITAR
